@@ -1,96 +1,84 @@
-# 🚀 Universal Gutenberg, Yoast SEO & GitBook Knowledge Base CMS Engine
+# 🚀 Finnova Universal Native JS Blog & Studio Engine
 
-[![Yoast SEO Core](https://img.shields.io/badge/Yoast_SEO_Engine-robinbakshi007%2Fwordpress--seo-a0305a?style=for-the-badge&logo=wordpress)](https://github.com/robinbakshi007/wordpress-seo)
-[![GitBook Workspace](https://img.shields.io/badge/GitBook_Layout-3--Column_Workspace-388bfd?style=for-the-badge&logo=gitbook)](https://gitbook.com)
-[![Gutenberg Inserter](https://img.shields.io/badge/Gutenberg-Block_Inserter-000000?style=for-the-badge&logo=wordpress)](https://github.com/WordPress/gutenberg)
-[![Standalone CMS](https://img.shields.io/badge/CMS_Type-Portable_%26_Reusable-059669?style=for-the-badge)](https://github.com/Finnova-Ltd/Blogs-Content)
+[![Native JS](https://img.shields.io/badge/Architecture-Pure_Vanilla_JS_%26_HTML5-0176d3?style=for-the-badge&logo=javascript)](https://finnova.org.au)
+[![No WordPress](https://img.shields.io/badge/Dependencies-Zero_PHP_%2F_Zero_WordPress-059669?style=for-the-badge)](https://github.com/Finnova-Ltd/Blogs-Content)
+[![Standalone CMS](https://img.shields.io/badge/CMS-Standalone_%26_Portable-388bfd?style=for-the-badge)](https://github.com/Finnova-Ltd/Blogs-Content)
 
-An **independent, portable, multi-project Blog & Knowledge Base CMS engine** combining the full power of **WordPress Gutenberg Block Inserters**, **Yoast SEO Content & Schema.org Analysis**, and **GitBook 3-Column Workspace Architecture**.
-
-Designed to be dropped seamlessly into **ANY** web application or project without complex backend dependencies.
+A **100% Native Client-Side JavaScript & HTML5 Engine** that re-engineers and improves upon the best features of **Yoast SEO**, **Gutenberg Block Editors**, and **GitBook Workspaces** — built entirely without PHP, WordPress, or external framework bloat.
 
 ---
 
-## 🔗 Architecture & Source References Map
+## 💡 How We Engineered This Native Code Engine
 
-| Component Engine | Reference & Source Code Link | Architectural Function |
-|------------------|------------------------------|------------------------|
-| ⚙️ **Yoast SEO Engine** | [`robinbakshi007/wordpress-seo`](https://github.com/robinbakshi007/wordpress-seo) | Focus keyphrase analysis, Flesch reading score, SEO title/meta replacement variable pills (`%%title%%`, `%%excerpt%%`, etc.), Google snippet preview, and connected JSON-LD Schema.org `@graph` generation. |
-| 📚 **GitBook Workspace** | [`GitBook Documentation Spec`](https://gitbook.com) | 3-column workspace design (Left block inserter, Center typography canvas, Right metadata sidebar), automated TOC, inline callout boxes, and keyboard `/slash` command inserters. |
-| 🧩 **Gutenberg Inserter** | [`WordPress/gutenberg`](https://github.com/WordPress/gutenberg) | Visual Left Inserter Drawer with `TEXT`, `MEDIA`, `DESIGN`, `WIDGETS`, and `THEME` categories. |
-| 💻 **Main Finnova Site** | [`PRO-CRM-AU/finnova`](https://github.com/PRO-CRM-AU/finnova) | Live production application utilizing this repository as its headless content & studio engine. |
-| 🌐 **Live Website** | [finnova.org.au](https://finnova.org.au) | Live deployed website reading from `posts.json`. |
+While classic Yoast SEO requires PHP/WordPress and GitBook requires cloud SaaS subscriptions, **we engineered a native, lightweight JavaScript/HTML5 system** directly inside [`index.html`](./index.html) and [`posts.json`](./posts.json):
+
+```
+                       ┌───────────────────────────────────────────────────────────┐
+                       │          FINNOVA NATIVE ENGINE (index.html)               │
+                       └─────────────────────────────┬─────────────────────────────┘
+                                                     │
+         ┌───────────────────────────────────────────┼───────────────────────────────────────────┐
+         │                                           │                                           │
+ ┌───────▼────────────────────────┐         ┌────────▼────────────────────────┐         ┌───────▼────────────────────────┐
+ │   Gutenberg Block Studio       │         │   Yoast-Style SEO Engine        │         │   GitBook Workspace Layout     │
+ ├────────────────────────────────┤         ├────────────────────────────────┤         ├────────────────────────────────┤
+ │ • Left Inserter Drawer         │         │ • 4-Tab Real-time Assessment   │         │ • 3-Column Studio Workspace    │
+ │ • TEXT, MEDIA, DESIGN, WIDGETS │         │ • Flesch Readability Score     │         │ • Inline /Slash Popover        │
+ │ • Click-to-insert snippet HTML │         │ • Snippet & Replacement Pills  │         │ • Auto Table of Contents       │
+ │ • Pre-configured layout blocks │         │ • Connected JSON-LD @graph     │         │ • Sticky Social Share Bar      │
+ └────────────────────────────────┘         └────────────────────────────────┘         └────────────────────────────────┘
+```
 
 ---
 
-## 🧰 How to Use This Engine in ANY Other Project
+## ⚡ Key Technical Innovations We Built
 
-This repository is **completely independent and reusable across multiple projects**. To embed this blog and knowledge base into a new website, use any of the options below:
+### 1. Native Yoast-Grade SEO & Readability Engine (Pure JS)
+- Re-architected Yoast's PHP analysis rules into a zero-latency JavaScript evaluator (`updateYoastAnalysis()`).
+- Calculates keyphrase density, H1 keyphrase placement, first paragraph presence, meta description length (120–156 chars), title length (50–60 chars), and Flesch Reading Ease scores instantly as authors type.
+- Generates dynamic Schema.org JSON-LD structured data trees (`updateYoastSchemaGraph()`) connecting `Organization`, `WebPage`, `Article`, `BreadcrumbList`, and `LocalBusiness` nodes into `<script type="application/ld+json">`.
 
-### Method 1 — Load Content via CDN (1 Line of Code)
-In your application's JavaScript, fetch articles directly from this repository:
+### 2. Native Inline `/Slash` Command Inserter
+- Built a keyboard-friendly slash listener (`handleEditorSlashCommand(event)`) in native JS.
+- Typing `/` anywhere in the editor body opens an inline block menu filtering blocks by keyword for mouse-free authoring.
+
+### 3. GitBook 3-Column Workspace Architecture
+- **Column 1**: Left Gutenberg Block & Pattern library inserter drawer.
+- **Column 2**: Focused typography canvas with inline callouts (`💡 Key Takeaway`), details accordions, and custom block templates.
+- **Column 3**: Right Yoast SEO assessment tabs (`🔴 SEO`, `🟢 Readability`, `▦ Schema`, `⇘ Social`).
+
+### 4. Local SEO & Location Archive CPT (`/locations`)
+- Built an interactive store locator and locations archive page (`#page-locations`) displaying community hubs (Melbourne CBD HQ, Geelong, Ballarat) with latitude/longitude coordinates, opening hours, directions, and GeoJSON sitemap outputs.
+
+---
+
+## 🛠️ Repository Code Files
+
+| File | Type | Description |
+|------|------|-------------|
+| 🛠️ [`index.html`](./index.html) | **Native Application Engine** | Full single-page application containing our custom Gutenberg Inserter, Yoast SEO Analysis Engine, GitBook Studio, and Local SEO Store Locator. |
+| 📄 [`posts.json`](./posts.json) | **Headless Content Store** | Master JSON database storing all published articles, guides, and knowledge base entries. |
+| 📘 [`README.md`](./README.md) | **Documentation** | Technical overview and integration instructions. |
+
+---
+
+## 🧰 How to Use This Engine in Other Projects
+
+Because this engine is **100% native JavaScript and HTML5**, you can drop it into any project:
 
 ```javascript
-// Fetch raw blog content from this single-source-of-truth repo
+// Fetch articles directly from this single-source-of-truth JSON database
 fetch('https://cdn.jsdelivr.net/gh/Finnova-Ltd/Blogs-Content@main/posts.json')
   .then(res => res.json())
   .then(posts => {
-    console.log('Loaded blog posts:', posts);
-    // Render posts in your project UI!
+    // Render posts in your web project
   });
 ```
 
-### Method 2 — Embed Full Standalone Studio & Editor (`index.html`)
-Simply drop `index.html` into your project directory or host it directly. It contains:
-- Complete Gutenberg Block Inserter Drawer
-- Full Yoast SEO 4-Tab Sidebar (`SEO`, `Readability`, `Schema`, `Social`)
-- GitBook 3-Column Reading & Authoring Canvas
-- Inline `/Slash` command inserter popover
-
 ---
 
-## ✍️ How to Edit or Add Articles
+## 🔒 Maintenance
+Maintained by the **Finnova Ltd Digital & Engineering Team**.  
+Contact: `info@finnova.org.au` · Production Site: [finnova.org.au](https://finnova.org.au)
 
-### Option 1 — Edit in GitHub UI (Easiest)
-1. Open [`posts.json`](./posts.json) in this repository.
-2. Click the ✏️ **Edit** pencil icon in the top-right.
-3. Add your new post or update existing content.
-4. Click **Commit changes** → All connected projects receive the update instantly.
-
-### Option 2 — Use the Standalone Studio (`index.html`)
-1. Open [`index.html`](./index.html) in your browser.
-2. Click **Create / Edit Article** in the top navigation bar.
-3. Author your content using the `/slash` command inserter and Yoast SEO assessment drawer.
-4. Click **Publish** to update `posts.json`.
-
----
-
-## 📄 Standardized Article Data Format
-
-```json
-{
-  "id": "unique-article-slug",
-  "title": "YOUR ARTICLE TITLE",
-  "date": "10 August 2026",
-  "author": "Author Name",
-  "category": "Documentation",
-  "tags": ["Tag1", "Tag2"],
-  "excerpt": "A short 1-2 sentence summary shown in cards.",
-  "image": "images/blog-image.png",
-  "isHtml": true,
-  "body": [
-    "<p>Article content paragraph with HTML support...</p>",
-    "<h3>Section Heading</h3>",
-    "<p>More content...</p>"
-  ]
-}
-```
-
----
-
-## 📜 Credits & External References
-- **Yoast SEO Core**: Derived from [`Yoast/wordpress-seo`](https://github.com/Yoast/wordpress-seo) & [`robinbakshi007/wordpress-seo`](https://github.com/robinbakshi007/wordpress-seo).
-- **GitBook Specification**: Inspired by [GitBook Knowledge Base Workspace Design](https://gitbook.com).
-- **Gutenberg Block Library**: Modeled on [WordPress Gutenberg Block System](https://github.com/WordPress/gutenberg).
-
-*Maintained by Digital Engineering Team · Open for multi-project reuse*
+*Last updated: August 2026*
