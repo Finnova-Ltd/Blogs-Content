@@ -5275,9 +5275,9 @@ var defaultSeedPosts = [
    Falls back seamlessly across jsDelivr CDN, GitHub raw, and local posts.json.
    ============================================================ */
 var BLOGS_CONTENT_URLS = [
-  'https://cdn.jsdelivr.net/gh/Finnova-Ltd/Blogs-Content@main/posts.json',
-  'https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/posts.json',
-  'posts.json'
+  'https://cdn.jsdelivr.net/gh/Finnova-Ltd/Blogs-Content@main/posts.json?v=' + Date.now(),
+  'https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/posts.json?v=' + Date.now(),
+  'posts.json?v=' + Date.now()
 ];
 
 function loadPosts() {
@@ -6485,6 +6485,7 @@ function viewPost(postId) {
 
   // Set active view display
   setBlogLayout(currentBlogLayout || 'editorial');
+  setTimeout(updateBlogTocList, 100);
 
   window.scrollTo(0, 0);
 }
@@ -6622,19 +6623,10 @@ function renderEditorialArticleCenter(post) {
   html += '<span>NO COMMENTS YET</span>';
   html += '</div>';
 
-  // Sub-headings Table of Contents / Jump Bar (Matching reference image!)
-  var subHeadings = [
-    { id: 'editorial-sec-1', text: '1. Executive Overview' },
-    { id: 'editorial-sec-2', text: '2. Key Community Findings & Impact' },
-    { id: 'editorial-sec-3', text: '3. Finnova 1-on-1 Support Solution' },
-    { id: 'editorial-sec-4', text: '4. Key Takeaways & Recommendations' }
-  ];
-
+  // Sub-headings Table of Contents / Jump Bar (Populated dynamically by updateBlogTocList)
   html += '<div class="editorial-subheading-nav">';
   html += '<div style="font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px">📌 Jump to Section:</div>';
-  subHeadings.forEach(function(sh) {
-    html += '<div onclick="scrollToSubheading(\'' + sh.id + '\')" class="editorial-subheading-link"><span>»</span><span>' + esc(sh.text) + '</span></div>';
-  });
+  html += '<div style="font-size:12px;color:var(--text-muted)">Loading sections...</div>';
   html += '</div>';
 
   // Lead Excerpt Box
@@ -6645,19 +6637,11 @@ function renderEditorialArticleCenter(post) {
   html += '<img src="' + esc(safeImageUrl(post.image)) + '" alt="' + esc(post.title) + '" style="width:100%;height:360px;object-fit:cover;border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,0.06);border:1px solid var(--border)" loading="lazy" decoding="async">';
   html += '</div>';
 
-  // Body Content with Section IDs and Pulsing Highlights
+  // Body Content with Dynamic Section Rendering
   html += '<div style="font-size:15px;color:var(--text);line-height:1.8" class="article-body-content">';
-
-  html += '<h2 id="editorial-sec-1" style="font-size:22px;font-weight:900;color:var(--text);margin:28px 0 12px;letter-spacing:-0.3px">1. Executive Overview</h2>';
 
   if (Array.isArray(post.body)) {
     post.body.forEach(function(para, idx) {
-      if (idx === 1) {
-        html += '<h2 id="editorial-sec-2" style="font-size:22px;font-weight:900;color:var(--text);margin:28px 0 12px;letter-spacing:-0.3px">2. Key Community Findings &amp; Impact</h2>';
-      }
-      if (idx === 3) {
-        html += '<h2 id="editorial-sec-3" style="font-size:22px;font-weight:900;color:var(--text);margin:28px 0 12px;letter-spacing:-0.3px">3. Finnova 1-on-1 Support Solution</h2>';
-      }
       if (typeof para === 'string' && (para.trim().startsWith('<') || post.isHtml)) {
         html += para;
       } else {
@@ -9746,6 +9730,41 @@ function filterLocationsArchive(query) {
   });
 }
 
+function updateBlogTocList() {
+  var tocContainer = document.getElementById('blog-toc-list');
+  var editorialTocContainer = document.querySelector('.editorial-subheading-nav');
+  if (!tocContainer && !editorialTocContainer) return;
+
+  var headings = document.querySelectorAll('#blog-col-center h2, #editorial-col-center h2, .article-body-content h2');
+  var html = '';
+  var subheadHtml = '<div style="font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px">📌 Jump to Section:</div>';
+
+  if (headings.length > 0) {
+    headings.forEach(function(h, idx) {
+      if (!h.id) h.id = 'sec-heading-' + idx;
+      var text = h.textContent.trim();
+      html += '<div onclick="scrollToSubheading(\'' + h.id + '\')" style="cursor:pointer;padding:4px 8px;border-radius:6px;transition:all .2s;color:var(--text-secondary);font-size:12.5px;font-weight:600" class="toc-item-link">› ' + esc(text) + '</div>';
+      subheadHtml += '<div onclick="scrollToSubheading(\'' + h.id + '\')" class="editorial-subheading-link"><span>»</span><span>' + esc(text) + '</span></div>';
+    });
+  } else {
+    html = '<div style="font-size:12px;color:var(--text-muted)">General Article Reading</div>';
+    subheadHtml += '<div style="font-size:12px;color:var(--text-muted)">General Article Reading</div>';
+  }
+
+  if (tocContainer) tocContainer.innerHTML = html;
+  if (editorialTocContainer) editorialTocContainer.innerHTML = subheadHtml;
+}
+
+function scrollToSubheading(id) {
+  var el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    el.style.transition = 'background 0.5s ease';
+    var origBg = el.style.background;
+    el.style.background = 'var(--primary-light)';
+    setTimeout(function() { el.style.background = origBg; }, 1500);
+  }
+}
 function showXmlSitemapModal() {
   var sitemapXml = '<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <sitemap>\n    <loc>https://finnova.org.au/post-sitemap.xml</loc>\n    <lastmod>2026-08-10</lastmod>\n  </sitemap>\n  <sitemap>\n    <loc>https://finnova.org.au/page-sitemap.xml</loc>\n    <lastmod>2026-08-10</lastmod>\n  </sitemap>\n  <sitemap>\n    <loc>https://finnova.org.au/geo-sitemap.xml</loc>\n    <lastmod>2026-08-10</lastmod>\n  </sitemap>\n</sitemapindex>';
   showToast('XML Sitemap Index generated successfully!', 'success');
