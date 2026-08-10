@@ -4371,6 +4371,9 @@ body.dark-mode .cta-booking-card{background:linear-gradient(135deg,#1a3a2a 0%,#1
 
     </div>
 
+    <!-- RIGHT DRAWER: Yoast SEO & Schema Drawer (Matching Images 1, 2, 3, 4!) -->
+    <div id="editor-yoast-sidebar" style="width:360px;background:var(--bg-card);border-left:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto;z-index:10">
+      
       <!-- Yoast Header with Tab Navigation (Matching Images 1, 2, 3, 4) -->
       <div style="padding:16px;background:linear-gradient(135deg,#a0305a,#802044);color:#fff;display:flex;align-items:center;justify-content:space-between">
         <div style="display:flex;align-items:center;gap:8px">
@@ -8287,7 +8290,11 @@ function hideToast() {
   document.getElementById('toast').classList.add('hidden');
 }
 
-navigate('home');
+if (window.location.hash && window.location.hash !== '#home' && window.location.hash !== '#') {
+  handleHashRoute();
+} else {
+  navigate('home');
+}
 initBookingWidget('hero-booking-widget', 'general');
 setTimeout(function() {
   if (!document.body.classList.contains('donation-flow')) openPopup(false);
@@ -9498,6 +9505,11 @@ var GUTENBERG_BLOCK_CATEGORIES = [
 ];
 
 function openCreateArticleModal() {
+  if (!adminKey) {
+    showToast('🔒 Admin Authentication Required: Sign in to access the Article Studio & Editor.', 'error');
+    navigate('admin');
+    return;
+  }
   var modal = document.getElementById('modal-create-article');
   if (modal) modal.classList.remove('hidden');
   renderInserterBlocks();
