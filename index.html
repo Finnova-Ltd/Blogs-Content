@@ -6613,6 +6613,8 @@ function renderEditorialArticleCenter(post) {
   html += '<div style="font-size:12px;color:var(--text-muted)">Loading sections...</div>';
   html += '</div>';
 
+  setTimeout(updateBlogTocList, 30);
+
   // Lead Excerpt Box
   html += '<p style="font-size:16px;color:var(--text-secondary);line-height:1.7;margin-bottom:24px;border-left:4px solid #e65100;padding-left:16px;font-style:italic">' + esc(post.excerpt) + '</p>';
 
