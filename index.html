@@ -5267,7 +5267,6 @@ var defaultSeedPosts = [
   }
 ];
 
-
 /* ============================================================
    BLOG SOURCE: github.com/Finnova-Ltd/Blogs-Content
    Posts are loaded from the Blogs-Content GitHub repo.
@@ -5295,6 +5294,12 @@ function loadPosts() {
         if (Array.isArray(jsonPosts) && jsonPosts.length > 0) {
           posts = jsonPosts;
           renderHomeBlogGrid();
+          var currentHash = window.location.hash || '';
+          if (currentPage === 'blog' || currentHash.indexOf('#blog') === 0) {
+            var hashMatch = currentHash.match(/^#blog[\/?](?:id=)?([^&]+)/);
+            var activeId = hashMatch ? decodeURIComponent(hashMatch[1]) : (window._activePostId || posts[0].id);
+            viewPost(activeId);
+          }
           return posts;
         }
         throw new Error('Empty payload');
@@ -6469,11 +6474,28 @@ function viewPost(postId) {
   if (mobMenu) mobMenu.classList.add('hidden');
 
   var blogPostsToRender = (posts && posts.length > 0) ? posts : defaultSeedPosts;
-  var targetPost = blogPostsToRender.find(function(p) {
-    return p.id === postId || p.id === postId + '-article' || p.id.replace('-article', '') === postId;
-  }) || blogPostsToRender[0];
+  var targetPost = null;
+  if (postId) {
+    targetPost = blogPostsToRender.find(function(p) {
+      return p.id === postId || p.id === postId + '-article' || p.id.replace('-article', '') === postId;
+    });
+  }
+  if (!targetPost) {
+    targetPost = blogPostsToRender[0];
+  }
 
   window._activePostId = targetPost.id;
+
+  // Update URL Hash to unique article URL (#blog/post-id)
+  var targetHash = '#blog/' + targetPost.id;
+  if (window.location.hash !== targetHash) {
+    try {
+      history.replaceState(null, '', targetHash);
+    } catch(e) {
+      window.location.hash = targetHash;
+    }
+  }
+  document.title = targetPost.title + ' | Finnova Ltd';
 
   // Render both layouts for quick toggling
   renderBlogSidebar(targetPost.id);
