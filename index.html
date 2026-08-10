@@ -2473,8 +2473,8 @@ body.dark-mode .cta-booking-card{background:linear-gradient(135deg,#1a3a2a 0%,#1
       </div>
     </div>
 
-    <!-- VIEW 1: 3-COLUMN GITBOOK READER LAYOUT -->
-    <div id="blog-layout-gitbook-view" class="blog-3col-grid" style="display:grid;grid-template-columns:260px 1fr 260px;gap:24px;align-items:start">
+    <!-- VIEW 1: 3-COLUMN GITBOOK READER LAYOUT (Hidden by default) -->
+    <div id="blog-layout-gitbook-view" class="blog-3col-grid hidden" style="display:none;grid-template-columns:260px 1fr 260px;gap:24px;align-items:start">
 
       <!-- COLUMN 1 (LEFT 20%): All Articles Index & Search Navigation -->
       <div style="position:sticky;top:100px;align-self:start;max-height:calc(100vh - 120px);overflow-y:auto;background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:16px;box-shadow:0 4px 16px rgba(0,0,0,0.04)" class="blog-col-left">
@@ -2517,8 +2517,8 @@ body.dark-mode .cta-booking-card{background:linear-gradient(135deg,#1a3a2a 0%,#1
 
     </div>
 
-    <!-- VIEW 2: CLASSIC EDITORIAL LAYOUT (New layout matching reference screenshot!) -->
-    <div id="blog-layout-editorial-view" class="blog-editorial-grid hidden">
+    <!-- VIEW 2: CLASSIC EDITORIAL LAYOUT (Default Layout) -->
+    <div id="blog-layout-editorial-view" class="blog-editorial-grid">
       
       <!-- COLUMN 1 (LEFT STICKY): Vertical Social Sharing Bar -->
       <div class="editorial-social-sticky">
@@ -6422,15 +6422,11 @@ function setBlogLayout(mode) {
   var btnEditorial = document.getElementById('btn-layout-editorial');
 
   if (currentBlogLayout === 'gitbook') {
-    if (gitbookView) gitbookView.classList.remove('hidden');
-    if (editorialView) editorialView.classList.add('hidden');
-    if (btnGitbook) { btnGitbook.style.background = 'var(--primary)'; btnGitbook.style.color = '#ffffff'; }
-    if (btnEditorial) { btnEditorial.style.background = 'transparent'; btnEditorial.style.color = 'var(--text-secondary)'; }
+    if (gitbookView) { gitbookView.classList.remove('hidden'); gitbookView.style.display = 'grid'; }
+    if (editorialView) { editorialView.classList.add('hidden'); editorialView.style.display = 'none'; }
   } else {
-    if (gitbookView) gitbookView.classList.add('hidden');
-    if (editorialView) editorialView.classList.remove('hidden');
-    if (btnEditorial) { btnEditorial.style.background = 'var(--primary)'; btnEditorial.style.color = '#ffffff'; }
-    if (btnGitbook) { btnGitbook.style.background = 'transparent'; btnGitbook.style.color = 'var(--text-secondary)'; }
+    if (gitbookView) { gitbookView.classList.add('hidden'); gitbookView.style.display = 'none'; }
+    if (editorialView) { editorialView.classList.remove('hidden'); editorialView.style.display = 'grid'; }
   }
 
   var blogPostsToRender = (posts && posts.length > 0) ? posts : defaultSeedPosts;
