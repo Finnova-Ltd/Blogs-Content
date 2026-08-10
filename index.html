@@ -6667,9 +6667,9 @@ function renderEditorialArticleCenter(post) {
 
   // Previous / Next Post Navigation
   var blogPostsToRender = (posts && posts.length > 0) ? posts : defaultSeedPosts;
-  var currIdx = blogPostsToRender.findIndex(function(p) { return p.id === post.id; });
-  var prevPost = currIdx > 0 ? blogPostsToRender[currIdx - 1] : null;
-  var nextPost = currIdx < blogPostsToRender.length - 1 ? blogPostsToRender[currIdx + 1] : null;
+  var currIdx = blogPostsToRender.findIndex(function(p) { return p && p.id === post.id; });
+  var prevPost = (currIdx > 0 && blogPostsToRender[currIdx - 1]) ? blogPostsToRender[currIdx - 1] : null;
+  var nextPost = (currIdx >= 0 && currIdx < blogPostsToRender.length - 1 && blogPostsToRender[currIdx + 1]) ? blogPostsToRender[currIdx + 1] : null;
 
   html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:36px;font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted)">';
   if (prevPost) {
@@ -6734,7 +6734,10 @@ function renderEditorialSidebar(activePost) {
   if (!container) return;
 
   var blogPostsToRender = (posts && posts.length > 0) ? posts : defaultSeedPosts;
-  var html = '';
+  if (!blogPostsToRender || blogPostsToRender.length === 0) return;
+
+  try {
+    var html = '';
 
   // 1. Search Box Widget (Matching reference screenshot)
   html += '<div class="editorial-widget-card">';
@@ -6808,7 +6811,10 @@ function renderEditorialSidebar(activePost) {
   html += '</div>';
   html += '</div>';
 
-  container.innerHTML = html;
+    container.innerHTML = html;
+  } catch (err) {
+    console.error('[Blog Error] Sidebar render failure:', err);
+  }
 }
 
 function scrollToSubheading(id) {
