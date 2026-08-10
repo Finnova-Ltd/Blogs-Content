@@ -1,5 +1,22 @@
 [
   {
+    "id": "gitbook-knowledge-base-guide",
+    "title": "FINNOVA GITBOOK KNOWLEDGE BASE & DOCUMENTATION STUDIO GUIDE",
+    "date": "10 August 2026",
+    "author": "Finnova Engineering & Product Team",
+    "category": "Documentation",
+    "tags": ["GitBook", "Knowledge Base", "Documentation", "Gutenberg"],
+    "excerpt": "Complete developer and user guide explaining how Finnova amalgamated GitBook 3-column workspace layouts, rich text editing, and slash command block inserters into our web platform.",
+    "image": "images/blog-digital-divide.png",
+    "isHtml": true,
+    "body": [
+      "<div style=\"background:var(--primary-light);border:1px solid var(--primary);border-radius:12px;padding:20px;margin-bottom:24px\"><h3 style=\"color:var(--primary);margin-bottom:8px\">📚 How GitBook Architectural Logic Was Amalgamated Into Finnova</h3><p style=\"font-size:14px;color:var(--text);line-height:1.6\">Finnova has integrated GitBook's industry-leading documentation experience directly into our single-page application framework. Here is how the 3-column workspace architecture works under the hood:</p></div>",
+      "<h3 style=\"font-size:18px;font-weight:800;margin:20px 0 10px\">1. Three-Column Workspace Layout</h3><p style=\"font-size:14px;line-height:1.75;margin-bottom:16px\">Just like GitBook, our interface is structured into three synchronized columns: <b>Column 1 (Left Navigation / Block Inserter)</b> provides full block navigation and category search; <b>Column 2 (Center Editor &amp; Reading Canvas)</b> presents clean typography, inline callout boxes, and smooth scroll anchors; and <b>Column 3 (Right Metadata Sidebar)</b> houses Yoast SEO assessment, Schema settings, and table of contents.</p>",
+      "<h3 style=\"font-size:18px;font-weight:800;margin:20px 0 10px\">2. Inline Slash Command Quick Inserter</h3><p style=\"font-size:14px;line-height:1.75;margin-bottom:16px\">By typing <code>/</code> anywhere in the content area, authors trigger a keyboard-friendly popup block menu—mirroring GitBook's <code>/slash</code> command flow—allowing instant insertion of headings, images, callout boxes, details accordions, tables, and video embeds without leaving the typing flow.</p>",
+      "<h3 style=\"font-size:18px;font-weight:800;margin:20px 0 10px\">3. Multi-Source GitHub Sync (jsDelivr + Raw GitHub)</h3><p style=\"font-size:14px;line-height:1.75;margin-bottom:16px\">Articles are stored in JSON format at <code>github.com/Finnova-Ltd/Blogs-Content</code> and loaded seamlessly across high-performance CDN endpoints (jsDelivr CDN, GitHub Raw, and local fallbacks) to ensure instant rendering across regional Australia.</p>"
+    ]
+  },
+  {
     "id": "first-home-buyer-grants-2026",
     "title": "FIRST HOME BUYER GUIDE: GRANTS & TIPS FOR 2026",
     "date": "27 October 2026",
