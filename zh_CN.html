@@ -711,6 +711,37 @@ img,iframe,video{max-width:100%}
   .brand-logo-img{height:36px!important;max-height:36px!important;width:auto!important;max-width:140px!important;object-fit:contain!important}
   .donate-header{display:flex!important;min-height:36px!important;height:36px!important;padding:6px 12px!important;font-size:12px!important}
 
+/* Header Action Buttons Hover Animations */
+.donate-header {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  position: relative;
+  overflow: hidden;
+}
+.donate-header:hover {
+  transform: translateY(-2px) scale(1.05) !important;
+  box-shadow: 0 8px 25px rgba(124, 58, 237, 0.45) !important;
+  background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%) !important;
+}
+.donate-header:hover span {
+  display: inline-block;
+  animation: heartBeat 0.8s infinite alternate ease-in-out;
+}
+
+.header-actions a[href="#contact"] {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.header-actions a[href="#contact"]:hover {
+  transform: translateY(-2px) scale(1.05) !important;
+  box-shadow: 0 8px 25px rgba(1, 118, 211, 0.4) !important;
+  background: linear-gradient(135deg, #0284c7 0%, #003a70 100%) !important;
+}
+
+@keyframes heartBeat {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.35); }
+  100% { transform: scale(1); }
+}
+
   /* Hero CTA Buttons Mobile Flex */
   .hero-cta-group{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;gap:8px!important;width:100%!important}
   .hero-cta-group button,.hero-cta-group a{flex:1!important;min-width:0!important;padding:11px 8px!important;font-size:12.5px!important;justify-content:center!important;text-align:center!important;white-space:nowrap!important}
@@ -1475,7 +1506,7 @@ body.dark-mode .cta-booking-card{background:linear-gradient(135deg,#1a3a2a 0%,#1
 
       <!-- 3x2 Carousel Container -->
       <div class="programs-carousel-container" onmouseenter="pauseProgramsAutoScroll()" onmouseleave="resumeProgramsAutoScroll()" style="position:relative">
-        <div class="grid-3x2 stagger-children reveal" id="programs-grid">
+        <div class="grid-3x2 stagger-children" id="programs-grid">
           <!-- Rendered dynamically by JS (6 cards per view, 3 cols x 2 rows) -->
         </div>
 
@@ -6127,6 +6158,11 @@ var programsAutoTimer = null;
 function renderProgramsGrid() {
   var grid = document.getElementById('programs-grid');
   if (!grid) return;
+  
+  grid.style.opacity = '1';
+  grid.style.transform = 'none';
+  grid.style.visibility = 'visible';
+  grid.classList.add('visible');
   
   var totalItems = FINNOVA_PROGRAMS_DATA.length;
   var totalPages = Math.ceil(totalItems / programsPerPage) || 1;
