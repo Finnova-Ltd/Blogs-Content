@@ -49,13 +49,6 @@ var LOCALE_TO_GT = {
 function switchLanguageLocale(locale) {
   if (!LOCALE_TO_GT[locale]) locale = 'en_AU';
   var gtLang = LOCALE_TO_GT[locale];
-  
-  var targetPath = '/' + locale + '.html';
-  if (window.location.pathname !== targetPath) {
-    if (window.history && window.history.pushState) {
-      window.history.pushState(null, '', targetPath);
-    }
-  }
 
   try {
     var selectEl = document.querySelector('.goog-te-combo');
@@ -5673,12 +5666,8 @@ function navigate(page) {
   if (mobMenu) mobMenu.classList.add('hidden');
 
   if (page === 'home') {
-    var cleanPath = window.location.pathname;
-    if (!cleanPath || cleanPath === '/' || cleanPath.endsWith('index.html')) {
-      cleanPath = '/en_AU.html';
-    }
-    if (window.history && window.history.replaceState) {
-      window.history.replaceState(null, '', cleanPath);
+    if (window.location.hash && window.history && window.history.replaceState) {
+      window.history.replaceState(null, '', window.location.pathname + window.location.search);
     }
   } else if (window.location.hash !== '#' + page) {
     if (window.history && window.history.pushState) {
