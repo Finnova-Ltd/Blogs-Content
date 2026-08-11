@@ -1,0 +1,10 @@
+{
+  "name": "finnova-charity-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node tests/qa.mjs",
+    "check": "node --check functions/api.js && npm test"
+  }
+}

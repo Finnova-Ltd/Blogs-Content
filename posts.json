@@ -12,209 +12,202 @@
       "First Home Buyer"
     ],
     "excerpt": "Buying your first home is an exciting milestone. Learn about the First Home Owner Grant (FHOG), stamp duty concessions, 5% deposit schemes, and securing competitive loan rates in 2026.",
-    "image": "images/blog-digital-divide.png",
+    "image": "images/blog-digital-divide.webp",
     "isHtml": true,
     "body": [
-      "<div style=\"background:var(--primary-light);border-left:4px solid var(--primary);border-radius:12px;padding:20px;margin-bottom:28px\"><h3 style=\"color:var(--primary);margin-bottom:8px;font-size:16px;font-weight:800\">\ud83d\udca1 Executive Summary & Key Takeaways</h3><p style=\"font-size:14px;color:var(--text);line-height:1.65;margin:0\">In 2026, eligible Australian first home buyers can access direct capital grants up to ,000, full stamp duty waivers, and the Federal Home Guarantee Scheme allowing purchases with only a 5% deposit without paying Lender's Mortgage Insurance (LMI).</p></div>",
-      "<h2 id=\"editorial-sec-1\" style=\"font-size:22px;font-weight:900;color:var(--text);margin:32px 0 14px\">1. 2026 State-by-State Grant & Duty Concession Breakdown</h2>",
+      "<div style=\"background:var(--primary-light);border-left:4px solid var(--primary);border-radius:12px;padding:20px;margin-bottom:28px\"><h3 style=\"color:var(--primary);margin-bottom:8px;font-size:16px;font-weight:800\">\ud83d\udca1 Executive Summary &amp; Key Takeaways</h3><p style=\"font-size:14px;color:var(--text);line-height:1.65;margin:0\">In 2026, eligible Australian first home buyers can access direct capital grants up to $30,000, full stamp duty waivers, and the Federal Home Guarantee Scheme allowing purchases with only a 5% deposit without paying Lender's Mortgage Insurance (LMI).</p></div>",
+      "<h2 id=\"editorial-sec-1\" style=\"font-size:22px;font-weight:900;color:var(--text);margin:32px 0 14px\">1. 2026 State-by-State Grant &amp; Duty Concession Breakdown</h2>",
       "<p style=\"font-size:15px;line-height:1.75;margin-bottom:20px\">Government assistance programs vary significantly depending on which state or territory you reside in. Below is a comprehensive comparison of active incentives for 2026:</p>",
-      "<div style=\"overflow-x:auto;margin:24px 0\"><table style=\"width:100%;border-collapse:collapse;font-size:13.5px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;overflow:hidden\"><thead><tr style=\"background:var(--primary-light);color:var(--primary);text-align:left\"><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">State / Territory</th><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">First Home Owner Grant (FHOG)</th><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">Full Stamp Duty Exemption Threshold</th><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">Concession Threshold</th></tr></thead><tbody><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:12px 14px;font-weight:700\">Victoria (VIC)</td><td style=\"padding:12px 14px\">,000 (New builds under k)</td><td style=\"padding:12px 14px;color:#10b981;font-weight:700\">Up to ,000</td><td style=\"padding:12px 14px\">,001 \u2013 ,000</td></tr><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:12px 14px;font-weight:700\">New South Wales (NSW)</td><td style=\"padding:12px 14px\">,000 (New builds under k)</td><td style=\"padding:12px 14px;color:#10b981;font-weight:700\">Up to ,000</td><td style=\"padding:12px 14px\">,001 \u2013 ,000,000</td></tr><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:12px 14px;font-weight:700\">Queensland (QLD)</td><td style=\"padding:12px 14px;color:#10b981;font-weight:800\">,000 (New builds under k)</td><td style=\"padding:12px 14px;color:#10b981;font-weight:700\">Up to ,000</td><td style=\"padding:12px 14px\">,001 \u2013 ,000</td></tr><tr><td style=\"padding:12px 14px;font-weight:700\">Western Australia (WA)</td><td style=\"padding:12px 14px\">,000 (New builds under k)</td><td style=\"padding:12px 14px;color:#10b981;font-weight:700\">Up to ,000</td><td style=\"padding:12px 14px\">,001 \u2013 ,000</td></tr></tbody></table></div>",
+      "<div style=\"overflow-x:auto;margin:24px 0\"><table style=\"width:100%;border-collapse:collapse;font-size:13.5px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;overflow:hidden\"><thead><tr style=\"background:var(--primary-light);color:var(--primary);text-align:left\"><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">State / Territory</th><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">First Home Owner Grant (FHOG)</th><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">Full Stamp Duty Exemption Threshold</th><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">Concession Threshold</th></tr></thead><tbody><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:12px 14px;font-weight:700\">Victoria (VIC)</td><td style=\"padding:12px 14px\">$10,000 (New builds under $750k)</td><td style=\"padding:12px 14px;color:#10b981;font-weight:700\">Up to $600,000</td><td style=\"padding:12px 14px\">$600,001 \u2013 $750,000</td></tr><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:12px 14px;font-weight:700\">New South Wales (NSW)</td><td style=\"padding:12px 14px\">$10,000 (New builds under $750k)</td><td style=\"padding:12px 14px;color:#10b981;font-weight:700\">Up to $800,000</td><td style=\"padding:12px 14px\">$800,001 \u2013 $1,000,000</td></tr><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:12px 14px;font-weight:700\">Queensland (QLD)</td><td style=\"padding:12px 14px;color:#10b981;font-weight:800\">$30,000 (New builds under $750k)</td><td style=\"padding:12px 14px;color:#10b981;font-weight:700\">Up to $700,000</td><td style=\"padding:12px 14px\">$700,001 \u2013 $800,000</td></tr><tr><td style=\"padding:12px 14px;font-weight:700\">Western Australia (WA)</td><td style=\"padding:12px 14px\">$10,000 (New builds under $750k)</td><td style=\"padding:12px 14px;color:#10b981;font-weight:700\">Up to $450,000</td><td style=\"padding:12px 14px\">$450,001 \u2013 $600,000</td></tr></tbody></table></div>",
       "<h2 id=\"editorial-sec-2\" style=\"font-size:22px;font-weight:900;color:var(--text);margin:32px 0 14px\">2. The Federal Home Guarantee Scheme (5% Deposit, No LMI)</h2>",
-      "<p style=\"font-size:15px;line-height:1.75;margin-bottom:18px\">Under traditional lending criteria, purchasing a home with less than a 20% deposit requires paying Lender's Mortgage Insurance (LMI) \u2014 an upfront cost ranging from ,000 to ,000. However, through Housing Australia's <b>First Home Guarantee (FHBG)</b>, eligible buyers can secure a home loan with as little as a <b>5% deposit</b> while the Federal Government guarantees up to 15% of the loan value.</p>",
-      "<div style=\"background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:20px;margin:24px 0\"><h4 style=\"font-size:15px;font-weight:800;color:var(--text);margin-bottom:10px\">\ud83d\udccc Key Eligibility Requirements for the 5% Deposit Scheme:</h4><ul style=\"margin-left:20px;font-size:14px;color:var(--text-secondary);line-height:1.75\"><li>Must be an Australian citizen or Permanent Resident aged 18+.</li><li>Income cap: Single applicants up to ,000 per annum; Joint applicants up to ,000 per annum.</li><li>Property price caps: Greater Melbourne (,000), Regional Victoria (,000), Sydney (,000), Brisbane (,000).</li><li>Must be an owner-occupier residential property (not an investment).</li></ul></div>",
+      "<p style=\"font-size:15px;line-height:1.75;margin-bottom:18px\">Under traditional lending criteria, purchasing a home with less than a 20% deposit requires paying Lender's Mortgage Insurance (LMI) \u2014 an upfront cost ranging from $15,000 to $35,000. However, through Housing Australia's <b>First Home Guarantee (FHBG)</b>, eligible buyers can secure a home loan with as little as a <b>5% deposit</b> while the Federal Government guarantees up to 15% of the loan value.</p>",
+      "<div style=\"background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:20px;margin:24px 0\"><h4 style=\"font-size:15px;font-weight:800;color:var(--text);margin-bottom:10px\">\ud83d\udccc Key Eligibility Requirements for the 5% Deposit Scheme:</h4><ul style=\"margin-left:20px;font-size:14px;color:var(--text-secondary);line-height:1.75\"><li>Must be an Australian citizen or Permanent Resident aged 18+.</li><li>Income cap: Single applicants up to $125,000 per annum; Joint applicants up to $200,000 per annum.</li><li>Property price caps: Greater Melbourne ($800,000), Regional Victoria ($650,000), Sydney ($900,000), Brisbane ($700,000).</li><li>Must be an owner-occupier residential property (not an investment).</li></ul></div>",
       "<h2 id=\"editorial-sec-3\" style=\"font-size:22px;font-weight:900;color:var(--text);margin:32px 0 14px\">3. Step-by-Step Purchasing Roadmap for 2026</h2>",
-      "<div style=\"display:flex;flex-direction:column;gap:14px;margin:24px 0\"><div style=\"padding:16px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;display:flex;gap:16px;align-items:flex-start\"><span style=\"background:var(--primary);color:#fff;font-weight:900;font-size:16px;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0\">1</span><div><h4 style=\"font-size:15px;font-weight:800;color:var(--text);margin-bottom:4px\">Credit Audit & Savings Benchmark</h4><p style=\"font-size:13.5px;color:var(--text-secondary);line-height:1.6;margin:0\">Ensure 3\u20136 months of clean bank statements, eliminate credit card limits, and demonstrate genuine savings equal to at least 5% of your target purchase price.</p></div></div><div style=\"padding:16px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;display:flex;gap:16px;align-items:flex-start\"><span style=\"background:var(--primary);color:#fff;font-weight:900;font-size:16px;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0\">2</span><div><h4 style=\"font-size:15px;font-weight:800;color:var(--text);margin-bottom:4px\">Pre-Approval with Accredited Lender</h4><p style=\"font-size:13.5px;color:var(--text-secondary);line-height:1.6;margin:0\">Work with an accredited broker or financial counselor to submit formal pre-approval applications and lock in home guarantee allocation spots.</p></div></div><div style=\"padding:16px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;display:flex;gap:16px;align-items:flex-start\"><span style=\"background:var(--primary);color:#fff;font-weight:900;font-size:16px;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0\">3</span><div><h4 style=\"font-size:15px;font-weight:800;color:var(--text);margin-bottom:4px\">Conveyancing & Settlement Assistance</h4><p style=\"font-size:13.5px;color:var(--text-secondary);line-height:1.6;margin:0\">Engage a licensed conveyancer or solicitor to review Section 32 vendor statements, verify title details, and process government grant applications prior to settlement.</p></div></div></div>",
+      "<div style=\"display:flex;flex-direction:column;gap:14px;margin:24px 0\"><div style=\"padding:16px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;display:flex;gap:16px;align-items:flex-start\"><span style=\"background:var(--primary);color:#fff;font-weight:900;font-size:16px;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0\">1</span><div><h4 style=\"font-size:15px;font-weight:800;color:var(--text);margin-bottom:4px\">Credit Audit &amp; Savings Benchmark</h4><p style=\"font-size:13.5px;color:var(--text-secondary);line-height:1.6;margin:0\">Ensure 3\u20136 months of clean bank statements, eliminate credit card limits, and demonstrate genuine savings equal to at least 5% of your target purchase price.</p></div></div><div style=\"padding:16px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;display:flex;gap:16px;align-items:flex-start\"><span style=\"background:var(--primary);color:#fff;font-weight:900;font-size:16px;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0\">2</span><div><h4 style=\"font-size:15px;font-weight:800;color:var(--text);margin-bottom:4px\">Pre-Approval with Accredited Lender</h4><p style=\"font-size:13.5px;color:var(--text-secondary);line-height:1.6;margin:0\">Work with an accredited broker or financial counselor to submit formal pre-approval applications and lock in home guarantee allocation spots.</p></div></div><div style=\"padding:16px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;display:flex;gap:16px;align-items:flex-start\"><span style=\"background:var(--primary);color:#fff;font-weight:900;font-size:16px;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0\">3</span><div><h4 style=\"font-size:15px;font-weight:800;color:var(--text);margin-bottom:4px\">Conveyancing &amp; Settlement Assistance</h4><p style=\"font-size:13.5px;color:var(--text-secondary);line-height:1.6;margin:0\">Engage a licensed conveyancer or solicitor to review Section 32 vendor statements, verify title details, and process government grant applications prior to settlement.</p></div></div></div>",
       "<h2 id=\"editorial-sec-4\" style=\"font-size:22px;font-weight:900;color:var(--text);margin:32px 0 14px\">4. Frequently Asked Questions (FAQ)</h2>",
-      "<details style=\"padding:16px;border:1px solid var(--border);border-radius:12px;margin-bottom:12px;background:var(--bg)\"><summary style=\"font-size:15px;font-weight:800;cursor:pointer;color:var(--text)\">\u2753 Can I claim the FHOG on an existing established house?</summary><p style=\"font-size:14px;color:var(--text-secondary);line-height:1.65;margin-top:10px\">In most states including Victoria and NSW, the First Home Owner Grant (,000) applies exclusively to newly constructed homes, off-the-plan apartments, or substantially renovated properties. However, established homes are still eligible for full or partial stamp duty exemptions.</p></details>",
+      "<details style=\"padding:16px;border:1px solid var(--border);border-radius:12px;margin-bottom:12px;background:var(--bg)\"><summary style=\"font-size:15px;font-weight:800;cursor:pointer;color:var(--text)\">\u2753 Can I claim the FHOG on an existing established house?</summary><p style=\"font-size:14px;color:var(--text-secondary);line-height:1.65;margin-top:10px\">In most states including Victoria and NSW, the First Home Owner Grant ($10,000) applies exclusively to newly constructed homes, off-the-plan apartments, or substantially renovated properties. However, established homes are still eligible for full or partial stamp duty exemptions.</p></details>",
       "<details style=\"padding:16px;border:1px solid var(--border);border-radius:12px;margin-bottom:24px;background:var(--bg)\"><summary style=\"font-size:15px;font-weight:800;cursor:pointer;color:var(--text)\">\u2753 How does Finnova Ltd assist first home buyers?</summary><p style=\"font-size:14px;color:var(--text-secondary);line-height:1.65;margin-top:10px\">Finnova Ltd provides 100% free, impartial financial literacy education, workshops in community languages, and connections to accredited ethical mortgage brokers and legal aid services for vulnerable and first-time buyers.</p></details>",
-      "<div style=\"display:flex;gap:12px;flex-wrap:wrap;margin-top:32px;padding-top:20px;border-top:1px solid var(--border)\"><button onclick=\"openBookingModal('melbourne')\" class=\"btn-blue\" style=\"padding:12px 20px;font-size:14px;font-weight:800\">\ud83d\udcc5 Book Free 1-on-1 Financial Guidance</button><a href=\"#calculator-anchor\" onclick=\"navigate('pay-calculator')\" class=\"btn-blue\" style=\"padding:12px 20px;font-size:14px;font-weight:800;text-decoration:none\">\ud83d\udcca Calculate Borrowing Capacity</a></div>"
+      "<div style=\"display:flex;gap:12px;flex-wrap:wrap;margin-top:32px;padding-top:20px;border-top:1px solid var(--border)\"><button onclick=\"openBookingModal('melbourne')\" class=\"btn-green\" style=\"padding:12px 20px;font-size:14px;font-weight:800\">\ud83d\udcc5 Book Free 1-on-1 Financial Guidance</button><a href=\"#calculator-anchor\" onclick=\"navigate('pay-calculator')\" class=\"btn-blue\" style=\"padding:12px 20px;font-size:14px;font-weight:800;text-decoration:none\">\ud83d\udcca Calculate Borrowing Capacity</a></div>"
     ]
   },
   {
-    "id": "ndis-navigating-disability-support-2026",
-    "title": "NDIS NAVIGATOR GUIDE: ACCESSING ASSISTIVE TECHNOLOGY & DISABILITY SUPPORT IN 2026",
+    "id": "smsf-property-investment",
+    "title": "SMSF PROPERTY INVESTMENT: GROW YOUR SUPER",
     "date": "15 November 2026",
-    "author": "Finnova NDIS Navigator Team",
-    "category": "NDIS Support",
+    "author": "Finnova Wealth Team",
+    "category": "Grants",
     "tags": [
-      "NDIS",
-      "Disability",
-      "AssistiveTech",
-      "2026",
-      "Finnova"
+      "Property",
+      "Superannuation",
+      "Investment",
+      "SMSF"
     ],
-    "excerpt": "Navigating your NDIS plan can be complex. Learn how Finnova's free NDIS Navigators assist participants in securing assistive technology, hardware funding, and community care support in 2026.",
-    "image": "images/blog-cyber-safety.png",
+    "excerpt": "Take control of your retirement savings by investing in commercial or residential real estate through your self-managed super fund with Limited Recourse Borrowing Arrangements.",
+    "image": "images/blog-volunteer.webp",
     "isHtml": true,
     "body": [
-      "<div style=\"background:var(--primary-light);border-left:4px solid var(--primary);border-radius:12px;padding:20px;margin-bottom:28px\"><h3 style=\"color:var(--primary);margin-bottom:8px;font-size:16px;font-weight:800\">\ud83d\udca1 Free NDIS Plan Guidance for Australians</h3><p style=\"font-size:14px;color:var(--text);line-height:1.65;margin:0\">Finnova Ltd provides free independent NDIS Navigator guidance to help people with disability, carers, and families access funding for screen readers, specialized tablets, communication software, and local support services.</p></div>",
-      "<h2 id=\"editorial-sec-1\" style=\"font-size:22px;font-weight:900;color:var(--text);margin:32px 0 14px\">1. Understanding Assistive Technology (AT) Funding under NDIS in 2026</h2>",
-      "<p style=\"font-size:15px;line-height:1.75;margin-bottom:18px\">Under the 2026 NDIS Quality and Safeguards Framework, participants can claim low-cost, mid-cost, and high-cost Assistive Technology directly from their Capital and Core budgets without unnecessary administrative delays.</p>",
-      "<ul style=\"margin-left:20px;font-size:14.5px;color:var(--text-secondary);line-height:1.8\"><li><b>Low-Cost AT (Under ,500):</b> Specialized keyboards, adapted touch tablets, magnification tools, and eye-tracking mounts.</li><li><b>Mid-Cost AT (,500 \u2013 ,000):</b> Customized wheelchairs, motorized ramps, specialized speech devices (AAC).</li><li><b>High-Cost AT (,000+):</b> Complex environmental controls, home automation integrations, and robotic aids.</li></ul>",
-      "<h2 id=\"editorial-sec-2\" style=\"font-size:22px;font-weight:900;color:var(--text);margin:32px 0 14px\">2. How Finnova Helps You Prepare for NDIS Plan Reviews</h2>",
-      "<p style=\"font-size:15px;line-height:1.75;margin-bottom:18px\">Our bilingual mentors sit down with participants to compile occupational therapy reports, quote comparisons, and evidence letters to present to your NDIS Local Area Coordinator (LAC) during plan reviews.</p>",
-      "<div style=\"display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;padding-top:20px;border-top:1px solid var(--border)\"><button onclick=\"openBookingModal('melbourne')\" class=\"btn-blue\" style=\"padding:12px 20px;font-size:14px;font-weight:800\">\ud83e\udd1d Book Free NDIS Navigation Session</button></div>"
+      "<div style=\"background:var(--primary-light);border-left:4px solid var(--primary);border-radius:12px;padding:20px;margin-bottom:28px\"><h3 style=\"color:var(--primary);margin-bottom:8px;font-size:16px;font-weight:800\">\ud83d\udca1 Executive Summary</h3><p style=\"font-size:14px;color:var(--text);line-height:1.65;margin:0\">Investing in real estate through a Self-Managed Super Fund (SMSF) offers unique tax concessions, including a maximum 15% tax rate on rental income and 0% Capital Gains Tax in the pension phase.</p></div>",
+      "<h2 id=\"editorial-sec-1\" style=\"font-size:22px;font-weight:900;color:var(--text);margin:32px 0 14px\">1. SMSF Property vs Personal Investment Comparison</h2>",
+      "<div style=\"overflow-x:auto;margin:24px 0\"><table style=\"width:100%;border-collapse:collapse;font-size:13.5px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;overflow:hidden\"><thead><tr style=\"background:var(--primary-light);color:var(--primary);text-align:left\"><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">Feature</th><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">SMSF Real Estate Investment</th><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">Personal Property Investment</th></tr></thead><tbody><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:12px 14px;font-weight:700\">Rental Income Tax Rate</td><td style=\"padding:12px 14px;color:#10b981;font-weight:700\">Max 15% (0% in Pension Phase)</td><td style=\"padding:12px 14px\">Marginal Tax Rate (Up to 47%)</td></tr><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:12px 14px;font-weight:700\">Capital Gains Tax (CGT)</td><td style=\"padding:12px 14px;color:#10b981;font-weight:700\">10% (If held >12 months; 0% in Pension)</td><td style=\"padding:12px 14px\">Up to 23.5% (with 50% discount)</td></tr><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:12px 14px;font-weight:700\">Borrowing Mechanism</td><td style=\"padding:12px 14px\">Limited Recourse Borrowing (LRBA)</td><td style=\"padding:12px 14px\">Standard Full Recourse Mortgage</td></tr><tr><td style=\"padding:12px 14px;font-weight:700\">Asset Protection</td><td style=\"padding:12px 14px;color:#10b981;font-weight:700\">Protected from personal bankruptcy</td><td style=\"padding:12px 14px\">Exposed to personal creditor claims</td></tr></tbody></table></div>",
+      "<h2 id=\"editorial-sec-2\" style=\"font-size:22px;font-weight:900;color:var(--text);margin:32px 0 14px\">2. ATO Compliance Rules for SMSF Property</h2>",
+      "<p style=\"font-size:15px;line-height:1.75;margin-bottom:18px\">The Australian Taxation Office (ATO) enforces strict governance around SMSF property transactions:</p>",
+      "<ul style=\"margin-left:20px;font-size:14px;color:var(--text-secondary);line-height:1.75;margin-bottom:24px\"><li><b>Sole Purpose Test:</b> The property must be acquired for the sole purpose of providing retirement benefits for fund members.</li><li><b>No Related Party Residential Leases:</b> Neither SMSF trustees nor their family members may reside in or rent a residential property owned by the SMSF.</li><li><b>Commercial Property Exception:</b> Business owners can lease commercial premises owned by their SMSF provided rent is paid at market rate.</li></ul>",
+      "<div style=\"display:flex;gap:12px;flex-wrap:wrap;margin-top:32px;padding-top:20px;border-top:1px solid var(--border)\"><button onclick=\"openBookingModal('melbourne')\" class=\"btn-green\" style=\"padding:12px 20px;font-size:14px;font-weight:800\">\ud83d\udcc5 Book SMSF Strategy Consult</button></div>"
     ]
   },
   {
-    "id": "aged-care-tech-literacy-seniors-guide",
-    "title": "AGED CARE & SENIORS TECH LITERACY: MASTERING TELEHEALTH & MYGOV SAFELY",
+    "id": "asset-finance-business-growth",
+    "title": "ASSET FINANCE: UNLOCK BUSINESS GROWTH",
     "date": "04 December 2026",
-    "author": "Finnova Seniors Inclusion Team",
-    "category": "Seniors Tech",
+    "author": "Finnova Commercial Team",
+    "category": "Inclusion",
     "tags": [
-      "Seniors",
-      "AgedCare",
-      "Telehealth",
-      "myGov",
-      "DigitalInclusion"
+      "Asset Finance",
+      "Business Growth",
+      "Commercial"
     ],
-    "excerpt": "Empowering older Australians to stay connected. Discover Finnova's free drop-in seniors workshops for video calling, telehealth appointments, and myGov access with peace of mind.",
-    "image": "images/blog-volunteer.png",
+    "excerpt": "Preserve working capital while acquiring vehicles, machinery, and equipment with tailored chattel mortgage and lease options.",
+    "image": "images/blog-cyber-safety.webp",
     "isHtml": true,
     "body": [
-      "<div style=\"background:var(--primary-light);border-left:4px solid var(--primary);border-radius:12px;padding:20px;margin-bottom:28px\"><h3 style=\"color:var(--primary);margin-bottom:8px;font-size:16px;font-weight:800\">\ud83d\udca1 Dignified & Patient Tech Guidance for Older Citizens</h3><p style=\"font-size:14px;color:var(--text);line-height:1.65;margin:0\">Learning digital tools shouldn't feel scary. Finnova's Seniors Tech Workshops offer free hands-on practice in a friendly, relaxed setting with free morning tea and patient mentors.</p></div>",
-      "<h2 id=\"editorial-sec-1\" style=\"font-size:22px;font-weight:900;color:var(--text);margin:32px 0 14px\">1. Top 4 Digital Skills We Teach Seniors in 2026</h2>",
-      "<div style=\"display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:20px 0\"><div style=\"padding:18px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px\"><h4 style=\"font-size:15px;font-weight:800;color:var(--text);margin-bottom:6px\">\ud83d\udcde Video Calling Family</h4><p style=\"font-size:13px;color:var(--text-secondary);line-height:1.6;margin:0\">Learn WhatsApp, FaceTime, and Zoom to video chat with children and grandchildren anywhere in Australia or overseas.</p></div><div style=\"padding:18px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px\"><h4 style=\"font-size:15px;font-weight:800;color:var(--text);margin-bottom:6px\">\ud83e\ude7a Telehealth Consultations</h4><p style=\"font-size:13px;color:var(--text-secondary);line-height:1.6;margin:0\">Connect with your GP, specialist, or chemist from home safely without traveling in inclement weather.</p></div><div style=\"padding:18px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px\"><h4 style=\"font-size:15px;font-weight:800;color:var(--text);margin-bottom:6px\">\ud83c\udfdb\ufe0f myGov & Medicare Access</h4><p style=\"font-size:13px;color:var(--text-secondary);line-height:1.6;margin:0\">Check pension statements, digital Medicare cards, and immunization records with full password privacy.</p></div><div style=\"padding:18px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px\"><h4 style=\"font-size:15px;font-weight:800;color:var(--text);margin-bottom:6px\">\ud83d\udee1\ufe0f Scam Shield Basics</h4><p style=\"font-size:13px;color:var(--text-secondary);line-height:1.6;margin:0\">Recognize fake bank SMS alerts, unexpected caller requests, and fraudulent email links before clicking.</p></div></div>",
-      "<div style=\"display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;padding-top:20px;border-top:1px solid var(--border)\"><button onclick=\"openBookingModal('melbourne')\" class=\"btn-blue\" style=\"padding:12px 20px;font-size:14px;font-weight:800\">\u2615 Reserve Free Seniors Workshop Seat</button></div>"
-    ]
-  },
-  {
-    "id": "financial-literacy-centrelink-grants-2026",
-    "title": "FREE FINANCIAL LITERACY & CENTRELINK BENEFIT FINDER: A GUIDE FOR AUSTRALIAN FAMILIES",
-    "date": "10 January 2026",
-    "author": "Finnova Financial Inclusion Team",
-    "category": "Financial Inclusion",
-    "tags": [
-      "FinancialLiteracy",
-      "Centrelink",
-      "CommunitySupport",
-      "Grants",
-      "Finnova"
-    ],
-    "excerpt": "Unlocking government concessions and budget tools. Learn how Finnova's free bilingual mentors help Australian families access Centrelink rebates, utility subsidies, and stress-free household budgeting.",
-    "image": "images/blog-digital-divide.png",
-    "isHtml": true,
-    "body": [
-      "<div style=\"background:var(--primary-light);border-left:4px solid var(--primary);border-radius:12px;padding:20px;margin-bottom:28px\"><h3 style=\"color:var(--primary);margin-bottom:8px;font-size:16px;font-weight:800\">\ud83d\udca1 Free Impartial Community Financial Education</h3><p style=\"font-size:14px;color:var(--text);line-height:1.65;margin:0\">Finnova Ltd is a registered charity. We do not sell financial products or charge fees. Our certified financial literacy counselors help low-income households access hidden government relief programs.</p></div>",
-      "<h2 id=\"editorial-sec-1\" style=\"font-size:22px;font-weight:900;color:var(--text);margin:32px 0 14px\">1. Essential Concessions Every Household Should Check</h2>",
-      "<ul style=\"margin-left:20px;font-size:14.5px;color:var(--text-secondary);line-height:1.8\"><li><b>Victorian Energy Compare  Bonus:</b> Annual power bill relief for concession card holders.</li><li><b>Family Tax Benefit (FTB Part A & B):</b> Supplemental payments for school supplies, childcare, and healthcare.</li><li><b>No Interest Loan Scheme (NILS):</b> Access up to ,000 with 0% interest and 0 fees for essential home appliances or education gear.</li></ul>",
-      "<div style=\"display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;padding-top:20px;border-top:1px solid var(--border)\"><button onclick=\"openBookingModal('melbourne')\" class=\"btn-blue\" style=\"padding:12px 20px;font-size:14px;font-weight:800\">\ud83d\udcca Book Free Household Budget Review</button></div>"
+      "<div style=\"background:var(--primary-light);border-left:4px solid var(--primary);border-radius:12px;padding:20px;margin-bottom:28px\"><h3 style=\"color:var(--primary);margin-bottom:8px;font-size:16px;font-weight:800\">\ud83d\udca1 Executive Summary</h3><p style=\"font-size:14px;color:var(--text);line-height:1.65;margin:0\">Asset finance allows commercial enterprises to acquire specialized machinery, fleet vehicles, and IT hardware without tying up cash flow or existing credit lines.</p></div>",
+      "<h2 id=\"editorial-sec-1\" style=\"font-size:22px;font-weight:900;color:var(--text);margin:32px 0 14px\">1. Commercial Asset Finance Structures</h2>",
+      "<div style=\"overflow-x:auto;margin:24px 0\"><table style=\"width:100%;border-collapse:collapse;font-size:13.5px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;overflow:hidden\"><thead><tr style=\"background:var(--primary-light);color:var(--primary);text-align:left\"><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">Finance Product</th><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">Asset Ownership</th><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">GST Tax Treatment</th><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">Tax Deductions</th></tr></thead><tbody><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:12px 14px;font-weight:700\">Chattel Mortgage</td><td style=\"padding:12px 14px;color:#10b981;font-weight:700\">Business owns from Day 1</td><td style=\"padding:12px 14px\">Claim full GST upfront on BAS</td><td style=\"padding:12px 14px\">Interest + Asset Depreciation</td></tr><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:12px 14px;font-weight:700\">Finance Lease</td><td style=\"padding:12px 14px\">Lender owns until balloon paid</td><td style=\"padding:12px 14px\">Claim GST on monthly repayments</td><td style=\"padding:12px 14px\">Full monthly rental payments</td></tr><tr><td style=\"padding:12px 14px;font-weight:700\">Commercial Hire Purchase</td><td style=\"padding:12px 14px\">Passes to business on final payment</td><td style=\"padding:12px 14px\">Claim GST on purchase price upfront</td><td style=\"padding:12px 14px\">Interest + Asset Depreciation</td></tr></tbody></table></div>",
+      "<div style=\"display:flex;gap:12px;flex-wrap:wrap;margin-top:32px;padding-top:20px;border-top:1px solid var(--border)\"><button onclick=\"openBookingModal('melbourne')\" class=\"btn-blue\" style=\"padding:12px 20px;font-size:14px;font-weight:800\">\ud83d\udcca Compare Asset Loan Rates</button></div>"
     ]
   },
   {
     "id": "braille-low-vision-census-2026",
     "title": "BLIND, LOW VISION & BRAILLE 2026 CENSUS SUPPORT & RESOURCES",
-    "date": "07 August 2026",
+    "date": "7 August 2026",
     "author": "Finnova Accessibility Team",
     "category": "Census",
     "tags": [
-      "Census2026",
+      "Census 2026",
       "Accessibility",
-      "Braille",
-      "LowVision",
-      "ABS"
+      "Braille"
     ],
-    "excerpt": "Ensuring every Australian can complete the compulsory 2026 Census independently. Learn about Braille forms, large print guides, audio screen-reader support, and Finnova assistance.",
-    "image": "images/blog-digital-divide.png",
+    "excerpt": "Official Braille (.brf), Large Print, and Audio (.mp3) resources for the 2026 Australian Census. Finnova Ltd provides independent community guidance to ensure accessibility for all.",
+    "image": "images/blog-volunteer.webp",
     "isHtml": true,
     "body": [
-      "<div style=\"background:var(--primary-light);border-left:4px solid var(--primary);border-radius:12px;padding:20px;margin-bottom:28px\"><h3 style=\"color:var(--primary);margin-bottom:8px;font-size:16px;font-weight:800\">\ud83d\udca1 Accessible Census Assistance for All Australians</h3><p style=\"font-size:14px;color:var(--text);line-height:1.65;margin:0\">Completing the compulsory 2026 Australian Census is legally required under federal law. Finnova provides free accessible formats including Braille, large print 18pt, screen-reader optimized digital forms, and trained support mentors.</p></div>"
+      "<div style=\"background:#fff8e6;border:1.5px solid #ffe58f;border-left:5px solid #faad14;border-radius:12px;padding:18px 20px;margin-bottom:28px\"><div style=\"display:flex;align-items:flex-start;gap:12px\"><span style=\"font-size:24px\">\u26a0\ufe0f</span><div style=\"font-size:14px;color:#614700;line-height:1.65\"><b style=\"font-size:15px;color:#d48806;display:block;margin-bottom:4px\">Important Independent Charity Disclaimer</b><b>Finnova Ltd</b> is an independent, ACNC-registered Public Benevolent Institution and charity. <b>Finnova Ltd is NOT affiliated with, endorsed by, or part of the Australian Bureau of Statistics (ABS).</b> The 2026 Australian Census is administered exclusively by the Australian Bureau of Statistics (ABS) under the <i>Census and Statistics Act 1905</i>. All official forms and downloadable files linked below are hosted directly by the ABS.</div></div></div>",
+      "<p style=\"font-size:16px;line-height:1.75;margin-bottom:22px\">We are committed to making essential civic information accessible to everyone. The Australian Bureau of Statistics provides dedicated resources for people who are blind or have low vision. For official guidance and direct inquiries, visit the official <a href=\"https://info.census.abs.gov.au/help/information-people-who-need-extra-support-and-people-living-disability/blind-low-vision-including-braille\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color:var(--primary);font-weight:700;text-decoration:underline\">ABS Blind, Low Vision &amp; Braille Help Centre \u2197</a>.</p>",
+      "<div style=\"background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:24px;margin:28px 0;box-shadow:0 4px 16px rgba(0,0,0,0.06)\"><h3 style=\"font-size:18px;font-weight:800;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:8px\"><span>\u2803\u2817\u2807</span> Official 2026 Braille Resources (.brf Downloads)</h3><p style=\"font-size:14px;color:var(--text-secondary);margin-bottom:18px\">Download official 2026 Census forms and help booklets available in Grade 1 and Grade 2 braille for refreshable braille displays or braille printers:</p><div style=\"display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px\"><a href=\"https://info.census.abs.gov.au/help/information-people-who-need-extra-support-and-people-living-disability/blind-low-vision-including-braille/2026%20braille%20Census%20Household%20form%20Grade%201.brf\" target=\"_blank\" rel=\"noopener\" style=\"display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:var(--primary-light);border:1px solid var(--primary);border-radius:12px;color:var(--primary);font-weight:700;font-size:13px;text-decoration:none\"><span>\ud83d\udcc4 Braille Household Form (Grade 1)</span><span style=\"font-size:11px;background:var(--primary);color:#fff;padding:4px 8px;border-radius:6px\">49.17 KB .brf</span></a><a href=\"https://info.census.abs.gov.au/help/information-people-who-need-extra-support-and-people-living-disability/blind-low-vision-including-braille/2026%20braille%20Census%20Household%20form%20Grade%202.brf\" target=\"_blank\" rel=\"noopener\" style=\"display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:var(--primary-light);border:1px solid var(--primary);border-radius:12px;color:var(--primary);font-weight:700;font-size:13px;text-decoration:none\"><span>\ud83d\udcc4 Braille Household Form (Grade 2)</span><span style=\"font-size:11px;background:var(--primary);color:#fff;padding:4px 8px;border-radius:6px\">40.1 KB .brf</span></a></div></div>"
     ]
   },
   {
     "id": "digital-divide-outer-melbourne",
     "title": "CLOSING THE DIGITAL DIVIDE IN OUTER MELBOURNE",
-    "date": "18 September 2026",
-    "author": "Finnova Digital Divide Team",
+    "date": "10 June 2026",
+    "author": "Finnova Team",
     "category": "Inclusion",
     "tags": [
-      "DigitalDivide",
-      "RefurbishedDevices",
-      "Victoria",
-      "ADII"
+      "Digital Inclusion",
+      "Outer Melbourne"
     ],
-    "excerpt": "Over 2.5 million Australians remain digitally excluded. Discover how Finnova's refurbished device program delivers free computers, internet access, and digital mentoring across outer suburban hubs.",
-    "image": "images/blog-digital-divide.png",
+    "excerpt": "Why access to a device and a data connection has become as essential as electricity \u2014 and how our volunteers are helping.",
+    "image": "images/blog-digital-divide.webp",
     "isHtml": true,
     "body": [
-      "<div style=\"background:var(--primary-light);border-left:4px solid var(--primary);border-radius:12px;padding:20px;margin-bottom:28px\"><h3 style=\"color:var(--primary);margin-bottom:8px;font-size:16px;font-weight:800\">\ud83d\udca1 Refurbished Devices & Internet Access</h3><p style=\"font-size:14px;color:var(--text);line-height:1.65;margin:0\">Finnova Ltd reclaims corporate computers, installs high-speed SSDs, and distributes them free to families in Wyndham, Hume, Casey, and regional Victoria.</p></div>"
+      "<div style=\"background:var(--primary-light);border-left:4px solid var(--primary);border-radius:12px;padding:20px;margin-bottom:28px\"><h3 style=\"color:var(--primary);margin-bottom:8px;font-size:16px;font-weight:800\">\ud83d\udca1 Executive Summary</h3><p style=\"font-size:14px;color:var(--text);line-height:1.65;margin:0\">Over 7 million Australians face digital exclusion. Discover how refurbished hardware and community workshops are transforming lives in Wyndham, Geelong, and Ballarat.</p></div>",
+      "<h2 id=\"editorial-sec-1\" style=\"font-size:22px;font-weight:900;color:var(--text);margin:32px 0 14px\">1. Australian Digital Inclusion Index (ADII) Scorecard</h2>",
+      "<div style=\"overflow-x:auto;margin:24px 0\"><table style=\"width:100%;border-collapse:collapse;font-size:13.5px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;overflow:hidden\"><thead><tr style=\"background:var(--primary-light);color:var(--primary);text-align:left\"><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">Demographic Category</th><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">ADII Score (Out of 100)</th><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">Primary Barrier</th></tr></thead><tbody><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:12px 14px;font-weight:700\">National Average</td><td style=\"padding:12px 14px;font-weight:700\">73.2 / 100</td><td style=\"padding:12px 14px\">General Literacy</td></tr><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:12px 14px;font-weight:700\">Low-Income Households (&lt;$35k)</td><td style=\"padding:12px 14px;color:#e11d48;font-weight:800\">54.8 / 100</td><td style=\"padding:12px 14px\">Device Affordability</td></tr><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:12px 14px;font-weight:700\">CALD &amp; Migrant Communities</td><td style=\"padding:12px 14px;color:#e11d48;font-weight:800\">58.1 / 100</td><td style=\"padding:12px 14px\">Language &amp; myGov Navigation</td></tr><tr><td style=\"padding:12px 14px;font-weight:700\">Seniors (Aged 65+)</td><td style=\"padding:12px 14px;color:#e11d48;font-weight:800\">49.6 / 100</td><td style=\"padding:12px 14px\">Cyber Security Anxiety</td></tr></tbody></table></div>",
+      "<div style=\"display:flex;gap:12px;flex-wrap:wrap;margin-top:32px;padding-top:20px;border-top:1px solid var(--border)\"><button onclick=\"openRequestModal()\" class='btn-green' style=\"padding:12px 20px;font-size:14px;font-weight:800\">\ud83c\udf92 Request Refurbished Laptop</button></div>"
     ]
   },
   {
     "id": "cyber-safety-seniors-habits",
     "title": "FIVE CYBER-SAFETY HABITS WE TEACH EVERY SENIOR",
-    "date": "22 October 2026",
-    "author": "Finnova Cyber Safety Team",
+    "date": "02 June 2026",
+    "author": "Finnova Cyber Team",
     "category": "Cyber",
     "tags": [
-      "CyberSafety",
-      "ScamProtection",
-      "Seniors",
-      "OnlineSecurity"
+      "Cyber Safety",
+      "Seniors"
     ],
-    "excerpt": "Scams cost older Australians over M annually. Here are 5 practical, easy-to-remember habits our digital mentors teach seniors during our free community workshops.",
-    "image": "images/blog-cyber-safety.png",
+    "excerpt": "Scams targeting older Australians are rising. Here are the simple, practical habits that make the biggest difference.",
+    "image": "images/blog-cyber-safety.webp",
     "isHtml": true,
     "body": [
-      "<div style=\"background:var(--primary-light);border-left:4px solid var(--primary);border-radius:12px;padding:20px;margin-bottom:28px\"><h3 style=\"color:var(--primary);margin-bottom:8px;font-size:16px;font-weight:800\">\ud83d\udca1 5 Golden Scam Shield Rules</h3><p style=\"font-size:14px;color:var(--text);line-height:1.65;margin:0\">Never click links in unexpected SMS messages. Always call your bank back directly using the number printed on your physical card. Never share 2FA login codes over the phone.</p></div>"
+      "<div style=\"background:var(--primary-light);border-left:4px solid var(--primary);border-radius:12px;padding:20px;margin-bottom:28px\"><h3 style=\"color:var(--primary);margin-bottom:8px;font-size:16px;font-weight:800\">\ud83d\udca1 Executive Summary</h3><p style=\"font-size:14px;color:var(--text);line-height:1.65;margin:0\">Over $3.1 billion was lost to scams in Australia last year. These 5 golden habits stop over 95% of text and phone phishing attempts.</p></div>",
+      "<h2 id=\"editorial-sec-1\" style=\"font-size:22px;font-weight:900;color:var(--text);margin:32px 0 14px\">1. Scam Type Identification Matrix</h2>",
+      "<div style=\"overflow-x:auto;margin:24px 0\"><table style=\"width:100%;border-collapse:collapse;font-size:13.5px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;overflow:hidden\"><thead><tr style=\"background:var(--primary-light);color:var(--primary);text-align:left\"><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">Scam Type</th><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">Common Red Flags</th><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">Action Required</th></tr></thead><tbody><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:12px 14px;font-weight:700\">myGov / ATO Text Scam</td><td style=\"padding:12px 14px\">Contains direct link asking to \"claim tax refund\"</td><td style=\"padding:12px 14px;color:#e11d48;font-weight:700\">Delete &amp; Do NOT click link</td></tr><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:12px 14px;font-weight:700\">Bank Fraud Phone Call</td><td style=\"padding:12px 14px\">Caller demands urgent money transfer to \"safe account\"</td><td style=\"padding:12px 14px;color:#e11d48;font-weight:700\">Hang up &amp; call bank hotline directly</td></tr><tr><td style=\"padding:12px 14px;font-weight:700\">Remote Access Scam</td><td style=\"padding:12px 14px\">Caller asks to install AnyDesk or TeamViewer</td><td style=\"padding:12px 14px;color:#e11d48;font-weight:700\">Refuse access &amp; turn off Wi-Fi</td></tr></tbody></table></div>",
+      "<div style=\"display:flex;gap:12px;flex-wrap:wrap;margin-top:32px;padding-top:20px;border-top:1px solid var(--border)\"><button onclick=\"navigate('cyber')\" class=\"btn-blue\" style=\"padding:12px 20px;font-size:14px;font-weight:800\">\ud83d\udee1\ufe0f Run Free Cyber Safety Checkup</button></div>"
     ]
   },
   {
     "id": "volunteer-story-priya",
     "title": "FROM NERVOUS BEGINNER TO CONFIDENT HELPER: A VOLUNTEER STORY",
-    "date": "02 November 2026",
-    "author": "Finnova Volunteer Network",
+    "date": "24 May 2026",
+    "author": "Finnova Team",
     "category": "Volunteer",
     "tags": [
-      "Volunteering",
-      "Community",
-      "DigitalInclusion",
-      "Mentorship"
+      "Volunteer Stories",
+      "Community"
     ],
-    "excerpt": "Meet Priya, a university student in Tarneit who joined Finnova as a volunteer mentor. Read her journey helping local seniors send their first emails and setup myGov accounts.",
-    "image": "images/blog-volunteer.png",
+    "excerpt": "One of our volunteers shares how a few hours a week changed both the people she helped and her own confidence.",
+    "image": "images/blog-volunteer.webp",
     "isHtml": true,
     "body": [
-      "<div style=\"background:var(--primary-light);border-left:4px solid var(--primary);border-radius:12px;padding:20px;margin-bottom:28px\"><h3 style=\"color:var(--primary);margin-bottom:8px;font-size:16px;font-weight:800\">\ud83d\udca1 Join Our Volunteer Digital Mentor Team</h3><p style=\"font-size:14px;color:var(--text);line-height:1.65;margin:0\">Giving just 2 hours a week can transform a senior's life. Finnova provides full training, police checks, and reference certificates for university students and community helpers.</p></div>"
+      "<div style=\"background:var(--primary-light);border-left:4px solid var(--primary);border-radius:12px;padding:20px;margin-bottom:28px\"><h3 style=\"color:var(--primary);margin-bottom:8px;font-size:16px;font-weight:800\">\ud83d\udca1 Volunteer Spotlight</h3><p style=\"font-size:14px;color:var(--text);line-height:1.65;margin:0\">Priya joined Finnova Ltd as a volunteer in Tarneit and has now mentored over 80 seniors and migrants to navigate digital tools safely.</p></div>",
+      "<p style=\"font-size:15px;line-height:1.75;margin-bottom:18px\">\"When I first started, I was worried I wasn't techy enough,\" Priya recalls. \"But I quickly realized that people don't need a software developer \u2014 they need someone patient who listens and explains myGov or online banking in plain English.\"</p>",
+      "<div style=\"display:flex;gap:12px;flex-wrap:wrap;margin-top:32px;padding-top:20px;border-top:1px solid var(--border)\"><button onclick=\"openBookingModal('melbourne')\" class=\"btn-green\" style=\"padding:12px 20px;font-size:14px;font-weight:800\">\ud83e\udd1d Join as a Finnova Volunteer</button></div>"
     ]
   },
   {
     "id": "mygov-scams-guide",
     "title": "HOW TO STAY SAFE FROM MYGOV & MEDICARE SMS SCAMS",
-    "date": "12 November 2026",
-    "author": "Finnova Security Desk",
+    "date": "18 July 2026",
+    "author": "Finnova Cyber Team",
     "category": "Cyber",
     "tags": [
-      "myGov",
-      "SMSScams",
-      "Scamwatch",
-      "Phishing"
+      "Cyber Safety",
+      "myGov"
     ],
-    "excerpt": "Fake tax refund SMS messages are surging across Australia. Learn how to verify official myGov communications and report fraudulent links to Scamwatch instantly.",
-    "image": "images/blog-cyber-safety.png",
+    "excerpt": "Scammers are actively targeting Australians with fake postal delivery links and myGov rebate texts. Learn the 3 golden rules of cyber safety.",
+    "image": "images/blog-cyber-safety.webp",
     "isHtml": true,
     "body": [
-      "<div style=\"background:var(--primary-light);border-left:4px solid var(--primary);border-radius:12px;padding:20px;margin-bottom:28px\"><h3 style=\"color:var(--primary);margin-bottom:8px;font-size:16px;font-weight:800\">\ud83d\udca1 myGov Security Alert</h3><p style=\"font-size:14px;color:var(--text);line-height:1.65;margin:0\">Official government agencies like myGov, ATO, and Medicare will NEVER send an SMS containing a direct website link demanding urgent payment or refund verification.</p></div>"
+      "<div style=\"background:var(--primary-light);border-left:4px solid var(--primary);border-radius:12px;padding:20px;margin-bottom:28px\"><h3 style=\"color:var(--primary);margin-bottom:8px;font-size:16px;font-weight:800\">\ud83d\udca1 Executive Summary</h3><p style=\"font-size:14px;color:var(--text);line-height:1.65;margin:0\">Government agencies like myGov, Medicare, and the ATO will NEVER send an SMS containing a direct link asking for login credentials.</p></div>",
+      "<div style=\"display:flex;gap:12px;flex-wrap:wrap;margin-top:32px;padding-top:20px;border-top:1px solid var(--border)\"><button onclick=\"navigate('cyber')\" class=\"btn-blue\" style=\"padding:12px 20px;font-size:14px;font-weight:800\">\ud83d\udee1\ufe0f Open Cyber Safety Hub</button></div>"
     ]
   },
   {
     "id": "corporate-hardware-donations",
     "title": "HOW CORPORATE E-WASTE PROGRAMS TRANSFORM LOCAL COMMUNITIES",
-    "date": "01 December 2026",
-    "author": "Finnova Corporate Partnerships",
+    "date": "02 July 2026",
+    "author": "Finnova Sustainability Team",
     "category": "Inclusion",
     "tags": [
-      "CorporateCSR",
-      "EWaste",
-      "CircularEconomy",
-      "Refurbishment"
+      "Digital Inclusion",
+      "Sustainability"
     ],
-    "excerpt": "Discover how corporate hardware donations help companies meet ESG targets while providing refurbished laptops and tablets to digitally excluded Australian families.",
-    "image": "images/blog-digital-divide.png",
+    "excerpt": "Over 3.5 million computers enter Australian landfills every year. See how corporate device recycling turns electronic waste into community empowerment.",
+    "image": "images/blog-digital-divide.webp",
     "isHtml": true,
     "body": [
-      "<div style=\"background:var(--primary-light);border-left:4px solid var(--primary);border-radius:12px;padding:20px;margin-bottom:28px\"><h3 style=\"color:var(--primary);margin-bottom:8px;font-size:16px;font-weight:800\">\ud83d\udca1 Corporate E-Waste Partnerships</h3><p style=\"font-size:14px;color:var(--text);line-height:1.65;margin:0\">Finnova provides enterprise-grade data wiping certificates and ESG reporting for companies donating retired laptops, monitors, and smartphones.</p></div>"
+      "<div style=\"background:var(--primary-light);border-left:4px solid var(--primary);border-radius:12px;padding:20px;margin-bottom:28px\"><h3 style=\"color:var(--primary);margin-bottom:8px;font-size:16px;font-weight:800\">\ud83d\udca1 Corporate Sustainability &amp; E-Waste Impact</h3><p style=\"font-size:14px;color:var(--text);line-height:1.65;margin:0\">By donating decommissioned corporate laptops to Finnova Ltd, companies receive 100% tax-deductible DGR receipts while eliminating electronic landfill waste.</p></div>",
+      "<div style=\"display:flex;gap:12px;flex-wrap:wrap;margin-top:32px;padding-top:20px;border-top:1px solid var(--border)\"><button onclick=\"openPledgeModal()\" class=\"btn-green\" style=\"padding:12px 20px;font-size:14px;font-weight:800\">\ud83d\udcbb Submit Corporate Device Pledge</button></div>"
+    ]
+  },
+  {
+    "id": "gitbook-knowledge-base-guide",
+    "title": "FINNOVA GITBOOK KNOWLEDGE BASE & DOCUMENTATION STUDIO GUIDE",
+    "date": "10 August 2026",
+    "author": "Finnova Engineering & Product Team",
+    "category": "Documentation",
+    "tags": [
+      "GitBook",
+      "Knowledge Base",
+      "Documentation",
+      "Gutenberg"
+    ],
+    "excerpt": "Complete developer and user guide explaining how Finnova amalgamated GitBook 3-column workspace layouts, rich text editing, and slash command block inserters into our web platform.",
+    "image": "images/blog-digital-divide.webp",
+    "isHtml": true,
+    "body": [
+      "<div style=\"background:var(--primary-light);border:1px solid var(--primary);border-radius:12px;padding:20px;margin-bottom:24px\"><h3 style=\"color:var(--primary);margin-bottom:8px\">\ud83d\udcda How GitBook Architectural Logic Was Amalgamated Into Finnova</h3><p style=\"font-size:14px;color:var(--text);line-height:1.6\">Finnova has integrated GitBook's industry-leading documentation experience directly into our single-page application framework.</p></div>"
     ]
   }
 ]

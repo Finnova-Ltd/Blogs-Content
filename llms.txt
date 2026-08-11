@@ -6,21 +6,17 @@
 Finnova Ltd bridges the digital divide for elderly, vulnerable, CALD (Culturally and Linguistically Diverse), and migrant Australians through free, multilingual, and consent-led community programs.
 
 ## Key Services & Programs
-- **National Inclusion Programs**: Free 1-on-1 and group digital literacy workshops in 12+ languages.
-- **Assisted myGov Sessions**: Patient, in-person assistance for navigating Centrelink, Medicare, ATO, and digital identity services with strict privacy controls.
-- **Cyber Safety & Scam Protection**: Free advice and community workshops on identifying scams, phishing, safe passwords, and protecting personal identity online.
-- **Census 2026 Support**: Community assistance to ensure every household can complete the compulsory Australian Census safely and accurately.
-- **Refurbished Hardware & Tech Access**: Providing low-cost and free refurbished laptops, tablets, and mobile devices to low-income families and seniors.
+- [National Inclusion Programs](https://finnova.org.au/#services): Free 1-on-1 and group digital literacy workshops in 12+ languages.
+- [Assisted myGov Sessions](https://finnova.org.au/#services): Patient, in-person assistance for navigating Centrelink, Medicare, ATO, and digital identity services with strict privacy controls.
+- [Cyber Safety & Scam Protection](https://finnova.org.au/#cyber): Free advice and community workshops on identifying scams, phishing, safe passwords, and protecting personal identity online.
+- [Census 2026 Support](https://finnova.org.au/#census-explorer): Community assistance to ensure every household can complete the compulsory Australian Census safely and accurately.
+- [Refurbished Hardware & Tech Access](https://finnova.org.au/#services): Providing low-cost and free refurbished laptops, tablets, and mobile devices to low-income families and seniors.
 
-## Organisational Details & Governance
-- **Legal Entity**: Finnova Ltd (ABN 55 687 130 767)
-- **Charity Status**: ACNC Registered Charity & Public Benevolent Institution (PBI)
-- **Tax Status**: Deductible Gift Recipient Item 1 (DGR Item 1 — All gifts $2+ tax-deductible)
-- **Security & Quality**: ISO 27001:2022 Certified Organisation
-- **Location**: Tarneit, Victoria, Australia
-- **Official Website**: https://finnova.org.au
-
-## Documentation & API Endpoints
-- **Home**: https://finnova.org.au/en_AU.html
-- **Cookie Policy**: https://finnova.org.au/cookie-policy.html
-- **API Baseline**: https://finnova.org.au/api
+## Links & Endpoints
+- [Official Website Home](https://finnova.org.au/en_AU.html)
+- [About Finnova Ltd](https://finnova.org.au/#about)
+- [Community Impact & Governance](https://finnova.org.au/#impact)
+- [News & Articles Blog](https://finnova.org.au/#blog-anchor)
+- [Cookie & Privacy Policy](https://finnova.org.au/cookie-policy.html)
+- [Donate to Finnova Ltd](https://finnova.org.au/#donate)
+- [Contact Support Team](https://finnova.org.au/#contact)
