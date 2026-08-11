@@ -1060,7 +1060,7 @@ body.dark-mode .cta-booking-card{background:linear-gradient(135deg,#1a3a2a 0%,#1
         <button onclick="toggleDarkMode()" class="dark-toggle" id="dark-mode-btn" aria-label="Toggle dark mode" style="width:36px;height:36px;border-radius:50%;background:var(--bg);border:1.5px solid var(--border);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;transition:background .3s,border-color .3s;flex-shrink:0">🌙</button>
         <button class="header-search" onclick="var q=prompt('Search Finnova...');if(q&amp;&amp;q.length&gt;1)searchSite(q);else if(q)showToast('Enter at least 2 characters.','error');" style="width:36px;height:36px;border-radius:50%;background:var(--bg);border:1.5px solid var(--border);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;transition:background .3s,border-color .3s" aria-label="Search">🔍</button>
         <button onclick="openMemberAuth('login')" style="display:none;padding:7px 14px;background:var(--primary);color:#fff;border:none;border-radius:8px;font-weight:700;font-size:12.5px;cursor:pointer;align-items:center;gap:5px;box-shadow:0 3px 10px rgba(1,118,211,0.25);white-space:nowrap">Login / Sign Up</button>
-        <a href="https://www.paypal.com/au/fundraiser/charity/5851308" class="donate-header" style="padding:7px 14px;background:var(--success);color:#fff;border:none;border-radius:8px;font-weight:700;font-size:12.5px;cursor:pointer;display:flex;align-items:center;gap:5px;box-shadow:0 3px 10px rgba(46,132,74,0.25);white-space:nowrap;text-decoration:none">Donate now</a>
+        <a href="https://www.paypal.com/au/fundraiser/charity/5851308" class="donate-header" style="padding:7px 14px;background:var(--primary);color:#fff;border:none;border-radius:8px;font-weight:700;font-size:12.5px;cursor:pointer;display:flex;align-items:center;gap:5px;box-shadow:0 3px 10px rgba(1,118,211,0.25);white-space:nowrap;text-decoration:none">Donate now</a>
         <button class="mobile-menu-btn" onclick="toggleMobileMenu()" style="display:none;width:36px;height:36px;border-radius:8px;background:var(--bg);border:1px solid var(--border);cursor:pointer;font-size:18px;align-items:center;justify-content:center;transition:background .3s,border-color .3s" aria-label="Toggle menu">☰</button>
       </div>
     </div>
@@ -1082,7 +1082,7 @@ body.dark-mode .cta-booking-card{background:linear-gradient(135deg,#1a3a2a 0%,#1
       <a href="#blog" onclick="navigate('blog'); toggleMobileMenu()" style="display:flex;align-items:center;gap:10px;width:100%;padding:10px;background:none;border:none;border-radius:6px;color:var(--text-secondary);cursor:pointer;font-size:13px;margin-bottom:1px;transition:color .3s;text-decoration:none">📝 Blog &amp; News</a>
       <a href="#contact" onclick="navigate('contact'); toggleMobileMenu()" style="display:flex;align-items:center;gap:10px;width:100%;padding:10px;background:none;border:none;border-radius:6px;color:var(--text-secondary);cursor:pointer;font-size:13px;margin-bottom:1px;transition:color .3s;text-decoration:none">✉️ Contact Us</a>
       <button onclick="toggleEasyReadMode()" style="display:flex;align-items:center;gap:10px;width:100%;padding:10px;background:var(--primary-light);color:var(--primary);border:1px solid var(--primary);border-radius:6px;cursor:pointer;font-size:13px;margin-bottom:1px;font-weight:700">♿ Easy Read Mode</button>
-      <button onclick="startDonation()" style="display:flex;align-items:center;gap:10px;width:100%;padding:10px;background:var(--success);color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:13px;margin-top:6px;font-weight:700">❤️ Donate</button>
+      <button onclick="startDonation()" style="display:flex;align-items:center;gap:10px;width:100%;padding:10px;background:var(--primary);color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:13px;margin-top:6px;font-weight:700">❤️ Donate</button>
     </div>
   </header>
 
@@ -1119,7 +1119,7 @@ body.dark-mode .cta-booking-card{background:linear-gradient(135deg,#1a3a2a 0%,#1
             Finnova Ltd helps vulnerable, elderly and migrant Australians access digital services, government support and community resources — with dignity and consent.
           </p>
           <div class="hero-cta-group" style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:0">
-            <button class="btn-green" onclick="startDonation()">❤️ Donate now</button>
+            <button class="btn-blue" onclick="startDonation()">❤️ Donate now</button>
             <button onclick="document.getElementById('svc-anchor').scrollIntoView({behavior:'smooth'})" style="display:inline-flex;align-items:center;gap:8px;padding:11px 22px;background:var(--bg-card);color:var(--primary);border:2px solid var(--primary);border-radius:8px;font-weight:700;font-size:14px;cursor:pointer">📺 Our Services</button>
           </div>
         </div>
@@ -2446,6 +2446,11 @@ body.dark-mode .cta-booking-card{background:linear-gradient(135deg,#1a3a2a 0%,#1
 <div id="page-blog" class="hidden">
   <div style="max-width:1440px;margin:0 auto;padding:24px 20px 48px">
     
+    <!-- Hero Header Banner Image (Matching Image 2) -->
+    <div style="width:100%;height:220px;border-radius:16px;overflow:hidden;margin-bottom:24px;box-shadow:0 6px 24px rgba(0,0,0,0.08);border:1px solid var(--border)">
+      <img src="images/blog-header-banner.png" alt="Finnova Digital Inclusion & Community Hubs" style="width:100%;height:100%;object-fit:cover;object-position:center" loading="lazy" decoding="async">
+    </div>
+
     <!-- Top Header Breadcrumbs Bar -->
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--border);flex-wrap:wrap;gap:12px">
       <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-muted)">
@@ -2565,7 +2570,7 @@ body.dark-mode .cta-booking-card{background:linear-gradient(135deg,#1a3a2a 0%,#1
           <div>Sunday: Closed</div>
         </div>
         <div style="display:flex;gap:10px">
-          <button onclick="openBookingModal('melbourne')" class="btn-green" style="flex:1;font-size:12px;padding:8px 12px">📅 Book 1-on-1 Help</button>
+          <button onclick="openBookingModal('melbourne')" class="btn-blue" style="flex:1;font-size:12px;padding:8px 12px">📅 Book 1-on-1 Help</button>
           <a href="https://maps.google.com/?q=-37.8163,144.9631" target="_blank" rel="noopener" class="btn-ghost" style="font-size:12px;padding:8px 12px">🗺️ Directions</a>
         </div>
       </div>
@@ -2591,7 +2596,7 @@ body.dark-mode .cta-booking-card{background:linear-gradient(135deg,#1a3a2a 0%,#1
           <div>Fri – Sun: Closed</div>
         </div>
         <div style="display:flex;gap:10px">
-          <button onclick="openBookingModal('geelong')" class="btn-green" style="flex:1;font-size:12px;padding:8px 12px">📅 Book 1-on-1 Help</button>
+          <button onclick="openBookingModal('geelong')" class="btn-blue" style="flex:1;font-size:12px;padding:8px 12px">📅 Book 1-on-1 Help</button>
           <a href="https://maps.google.com/?q=-38.1499,144.3617" target="_blank" rel="noopener" class="btn-ghost" style="font-size:12px;padding:8px 12px">🗺️ Directions</a>
         </div>
       </div>
@@ -2617,7 +2622,7 @@ body.dark-mode .cta-booking-card{background:linear-gradient(135deg,#1a3a2a 0%,#1
           <div>Sat – Mon: Closed</div>
         </div>
         <div style="display:flex;gap:10px">
-          <button onclick="openBookingModal('ballarat')" class="btn-green" style="flex:1;font-size:12px;padding:8px 12px">📅 Book 1-on-1 Help</button>
+          <button onclick="openBookingModal('ballarat')" class="btn-blue" style="flex:1;font-size:12px;padding:8px 12px">📅 Book 1-on-1 Help</button>
           <a href="https://maps.google.com/?q=-37.5622,143.8503" target="_blank" rel="noopener" class="btn-ghost" style="font-size:12px;padding:8px 12px">🗺️ Directions</a>
         </div>
       </div>
