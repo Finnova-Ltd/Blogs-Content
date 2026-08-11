@@ -2446,9 +2446,9 @@ body.dark-mode .cta-booking-card{background:linear-gradient(135deg,#1a3a2a 0%,#1
 <div id="page-blog" class="hidden">
   <div style="max-width:1440px;margin:0 auto;padding:24px 20px 48px">
     
-    <!-- Hero Header Banner Image (Matching Image 2) -->
-    <div style="width:100%;height:220px;border-radius:16px;overflow:hidden;margin-bottom:24px;box-shadow:0 6px 24px rgba(0,0,0,0.08);border:1px solid var(--border)">
-      <img src="images/blog-header-banner.png" alt="Finnova Digital Inclusion & Community Hubs" style="width:100%;height:100%;object-fit:cover;object-position:center" loading="lazy" decoding="async">
+    <!-- Hero Header Banner Image (Matching Image 3) -->
+    <div style="width:100%;height:140px;border-radius:12px;overflow:hidden;margin-bottom:18px;box-shadow:0 4px 16px rgba(0,0,0,0.06);border:1px solid var(--border)">
+      <img src="images/blog-header-banner.png" alt="Finnova Digital Inclusion & Community Hubs" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block" loading="lazy" decoding="async">
     </div>
 
     <!-- Top Header Breadcrumbs Bar -->
@@ -7579,46 +7579,7 @@ function renderBlogList() {
 }
 
 function openPost(id) {
-  var pool = (posts && posts.length > 0) ? posts : defaultSeedPosts;
-  currentPost = pool.find(function(p) {
-    return p.id === id || p.id === id + '-article' || p.id.replace('-article', '') === id;
-  }) || defaultSeedPosts.find(function(p) {
-    return p.id === id || p.id === id + '-article';
-  });
-
-  if (!currentPost) {
-    viewPost(id);
-    return;
-  }
-
-  var bodyHtml = '';
-  if (Array.isArray(currentPost.body)) {
-    bodyHtml = currentPost.body.map(function(par) {
-      if (typeof par === 'string' && (par.trim().startsWith('<') || currentPost.isHtml)) {
-        return par;
-      }
-      return '<p style="color:var(--text-secondary);font-size:15px;line-height:1.85;margin-bottom:18px;transition:color .3s">' + esc(par) + '</p>';
-    }).join('');
-  } else if (typeof currentPost.body === 'string') {
-    bodyHtml = (currentPost.body.trim().startsWith('<') || currentPost.isHtml)
-      ? currentPost.body
-      : '<p style="color:var(--text-secondary);font-size:15px;line-height:1.85;margin-bottom:18px;transition:color .3s">' + esc(currentPost.body) + '</p>';
-  }
-  
-  var imgHtml = '<div style="height:280px;border-radius:16px;background:url(&quot;' + esc(safeImageUrl(currentPost.image)) + '&quot;) center/cover no-repeat;margin-bottom:26px;box-shadow:0 8px 24px rgba(0,0,0,0.08);border:1px solid var(--border)"></div>';
-
-  document.getElementById('post-content').innerHTML =
-    '<div style="font-size:12px;color:var(--text-muted);margin-bottom:10px;transition:color .3s">📅 ' + esc(currentPost.date) + ' · ✍️ ' + esc(currentPost.author) + '</div>'
-    + '<h1 style="font-size:clamp(24px,4vw,36px);font-weight:900;color:var(--text);line-height:1.25;margin-bottom:22px;transition:color .3s">' + esc(currentPost.title) + '</h1>'
-    + imgHtml
-    + bodyHtml;
-
-  renderBlogSidebar(currentPost.id);
-  renderBlogArticleCenter(currentPost);
-  renderBlogTocAndMetrics();
-
-  navigate('post');
-  try { history.pushState({post:id}, '', '#blog/' + id); } catch(e) {}
+  viewPost(id);
 }
 
 function startDonation() {
@@ -8353,9 +8314,9 @@ if (TURNSTILE_SITE_KEY) {
 // Preload posts so the Blog is instant, and support direct links like #blog/post-id
 loadPosts().then(function() {
   var hash = window.location.hash || '';
-  var m = hash.match(/^#blog\/(.+)$/);
+  var m = hash.match(/^#blog[\/?](?:id=)?([^&]+)/) || hash.match(/^#post[\/?](?:id=)?([^&]+)/);
   if (m && posts.length) {
-    openPost(decodeURIComponent(m[1]));
+    viewPost(decodeURIComponent(m[1]));
   }
 });
 
