@@ -31,8 +31,8 @@
 <link rel="stylesheet" href="cookie-consent.css?v=20260811_v4">
 
 <!-- Resource Preloads for LCP Optimization -->
-<link rel="preload" as="image" href="images/finnova-logo-stars.png">
-<link rel="preload" as="image" href="images/blog-digital-divide.png" fetchpriority="high">
+<link rel="preload" as="image" href="images/finnova-logo-stars.webp" type="image/webp">
+<link rel="preload" as="image" href="images/blog-digital-divide.webp" type="image/webp" fetchpriority="high">
 
 <!-- Deferred Third-Party SDK Loader -->
 <script type="text/javascript">
@@ -1157,7 +1157,7 @@ body.dark-mode .cta-booking-card{background:linear-gradient(135deg,#1a3a2a 0%,#1
       
       <!-- Brand Logo -->
       <a href="#home" onclick="navigate('home'); event.preventDefault();" style="display:flex;align-items:center;gap:10px;cursor:pointer;flex-shrink:0;text-decoration:none;color:inherit" aria-label="Finnova Limited Home">
-        <img src="images/finnova-logo-stars.png" alt="Finnova Limited Logo" style="height:44px;width:auto;object-fit:contain" class="brand-logo-img" loading="lazy" decoding="async">
+        <img src="images/finnova-logo-stars.png" alt="Finnova Limited Logo" width="160" height="44" style="height:44px;width:auto;object-fit:contain" class="brand-logo-img" loading="lazy" decoding="async">
       </a>
 
       <!-- Desktop Nav Bar (Matching Image 1) -->
@@ -1227,6 +1227,9 @@ body.dark-mode .cta-booking-card{background:linear-gradient(135deg,#1a3a2a 0%,#1
     </div>
   </header>
 
+  <!-- MAIN LANDMARK FOR LIGHTHOUSE & ACCESSIBILITY -->
+  <main id="main-content">
+
   <!-- ABN / ACNC / DGR TRUST BAR -->
   <div class="trust-bar-wrap" style="background:var(--primary-light);border-bottom:1px solid var(--border);padding:8px 20px;font-size:12px;color:var(--text);transition:background .3s">
     <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px">
@@ -1267,9 +1270,9 @@ body.dark-mode .cta-booking-card{background:linear-gradient(135deg,#1a3a2a 0%,#1
         <div id="hero-media-box" style="position:relative;overflow:hidden;border-radius:16px;min-height:360px;height:100%;background:#0f172a;box-shadow:0 8px 32px rgba(0,0,0,0.12);border:1px solid var(--border)">
           <!-- Images Carousel -->
           <div id="hero-carousel-track" style="position:relative;width:100%;height:100%;min-height:360px">
-            <img id="hero-carousel-img-1" src="images/blog-digital-divide.png" alt="Community digital inclusion" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:1;transition:opacity 0.8s ease" loading="lazy" decoding="async">
-            <img id="hero-carousel-img-2" src="images/blog-volunteer.png" alt="Volunteer providing digital help" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 0.8s ease" loading="lazy" decoding="async">
-            <img id="hero-carousel-img-3" src="images/blog-cyber-safety.png" alt="Cyber safety learning session" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 0.8s ease" loading="lazy" decoding="async">
+            <img id="hero-carousel-img-1" src="images/blog-digital-divide.webp" width="600" height="400" alt="Community digital inclusion" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:1;transition:opacity 0.8s ease" fetchpriority="high" decoding="async">
+            <img id="hero-carousel-img-2" src="images/blog-volunteer.webp" width="600" height="400" alt="Volunteer providing digital help" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 0.8s ease" loading="lazy" decoding="async">
+            <img id="hero-carousel-img-3" src="images/blog-cyber-safety.webp" width="600" height="400" alt="Cyber safety learning session" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 0.8s ease" loading="lazy" decoding="async">
           </div>
 
           <!-- Top Overlay Header matching Image 2 -->
@@ -1502,7 +1505,7 @@ body.dark-mode .cta-booking-card{background:linear-gradient(135deg,#1a3a2a 0%,#1
             <div class="pillar-card-item">
               <div>
                 <div style="font-size:36px;margin-bottom:12px">💻</div>
-                <h4 style="font-size:19px;font-weight:800;color:#1e293b;margin-bottom:10px">Hardware Equity</h4>
+                <h3 style="font-size:19px;font-weight:800;color:#1e293b;margin-bottom:10px">Hardware Equity</h3>
                 <p style="font-size:13.5px;color:#475569;line-height:1.65;margin-bottom:16px">Reclaiming corporate PCs and rehoming pre-configured laptops to low-income Australians. Every device is securely wiped (DoD/NIST 800-88 standard) and refurbished with SSD upgrades.</p>
               </div>
               <div style="display:flex;gap:8px;flex-wrap:wrap">
@@ -1514,7 +1517,7 @@ body.dark-mode .cta-booking-card{background:linear-gradient(135deg,#1a3a2a 0%,#1
             <div class="pillar-card-item">
               <div>
                 <div style="font-size:36px;margin-bottom:12px">🌐</div>
-                <h4 style="font-size:19px;font-weight:800;color:#1e293b;margin-bottom:10px">Language Equity</h4>
+                <h3 style="font-size:19px;font-weight:800;color:#1e293b;margin-bottom:10px">Language Equity</h3>
                 <p style="font-size:13.5px;color:#475569;line-height:1.65;margin-bottom:16px">Community workshops delivered in 12+ languages for new arrivals and CALD seniors. Our multilingual mentors provide hands-on digital literacy training in native community languages.</p>
               </div>
               <div style="display:flex;gap:8px;flex-wrap:wrap">
@@ -1526,7 +1529,7 @@ body.dark-mode .cta-booking-card{background:linear-gradient(135deg,#1a3a2a 0%,#1
             <div class="pillar-card-item">
               <div>
                 <div style="font-size:36px;margin-bottom:12px">🛡️</div>
-                <h4 style="font-size:19px;font-weight:800;color:#1e293b;margin-bottom:10px">Cyber Dignity</h4>
+                <h3 style="font-size:19px;font-weight:800;color:#1e293b;margin-bottom:10px">Cyber Dignity</h3>
                 <p style="font-size:13.5px;color:#475569;line-height:1.65;margin-bottom:16px">Protecting vulnerable users against SMS scams, identity theft, and fake banking calls. We teach safe password practices, 2FA setup, and how to spot phishing attempts.</p>
               </div>
               <div style="display:flex;gap:8px;flex-wrap:wrap">
@@ -1538,7 +1541,7 @@ body.dark-mode .cta-booking-card{background:linear-gradient(135deg,#1a3a2a 0%,#1
             <div class="pillar-card-item">
               <div>
                 <div style="font-size:36px;margin-bottom:12px">📋</div>
-                <h4 style="font-size:19px;font-weight:800;color:#1e293b;margin-bottom:10px">Civic Inclusion</h4>
+                <h3 style="font-size:19px;font-weight:800;color:#1e293b;margin-bottom:10px">Civic Inclusion</h3>
                 <p style="font-size:13.5px;color:#475569;line-height:1.65;margin-bottom:16px">Providing 1-on-1 assistance for myGov, Centrelink, Medicare, and Census completion. Our consent-led approach ensures every participant maintains full control of personal data.</p>
               </div>
               <div style="display:flex;gap:8px;flex-wrap:wrap">
@@ -3999,6 +4002,8 @@ body.dark-mode .cta-booking-card{background:linear-gradient(135deg,#1a3a2a 0%,#1
     </div>
   </div>
 </div>
+
+  </main>
 
 <!-- FOOTER -->
 <footer style="background:#181818;color:rgba(255,255,255,0.62);padding:44px 20px 22px;margin-top:56px">
