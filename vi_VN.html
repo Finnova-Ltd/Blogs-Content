@@ -85,13 +85,13 @@ function switchLanguageLocale(locale, isUserAction) {
   try { localStorage.setItem('finnova_user_locale', locale); } catch(e) {}
 
   var targetPath = '/' + locale + '.html';
+  setGoogtransCookies(gtLang);
+
   if (window.location.pathname !== targetPath && window.history && window.history.pushState) {
     try {
       window.history.pushState(null, '', targetPath + window.location.hash);
     } catch(e) {}
   }
-
-  setGoogtransCookies(gtLang);
 
   var selector = document.getElementById('finnova-lang-selector');
   if (selector) selector.value = locale;
@@ -106,6 +106,12 @@ function switchLanguageLocale(locale, isUserAction) {
       if (triggerGoogleCombo(gtLang) || attempts > 25) {
         clearInterval(timer);
       }
+    }, 100);
+  }
+
+  if (isUserAction) {
+    setTimeout(function() {
+      window.location.reload();
     }, 100);
   }
 }
@@ -1339,15 +1345,15 @@ body.dark-mode .cta-booking-card{background:linear-gradient(135deg,#1a3a2a 0%,#1
         <!-- COL 2 (RIGHT): 2-Row Exclusive Accordion for Vision & Mission -->
         <div style="display:flex;flex-direction:column;gap:14px;justify-content:center;height:100%">
           
-          <!-- ROW 1: OUR VISION ACCORDION (Open by default) -->
-          <details id="acc-about-vision" open style="background:var(--bg-card);border:1px solid var(--border);border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,0.15);overflow:hidden;transition:all 0.3s ease">
-            <summary onclick="toggleAboutAccordion('vision')" style="padding:16px 20px;font-size:16px;font-weight:900;color:var(--text);background:var(--bg);display:flex;justify-content:space-between;align-items:center;cursor:pointer;user-select:none;list-style:none">
-              <span style="display:flex;align-items:center;gap:10px">👁️ Our Vision</span>
-              <span id="acc-vision-arrow" style="font-size:13px;color:var(--primary);font-weight:800">▲</span>
+          <!-- ROW 1: OUR VISION ACCORDION (Closed by default, Light Blue Background) -->
+          <details id="acc-about-vision" style="background:#f0f9ff;border:1px solid #bae6fd;border-radius:14px;box-shadow:0 6px 20px rgba(0,0,0,0.12);overflow:hidden;transition:all 0.3s ease">
+            <summary onclick="toggleAboutAccordion('vision')" style="padding:16px 20px;font-size:16px;font-weight:900;color:#003a70;background:#e0f2fe;display:flex;justify-content:space-between;align-items:center;cursor:pointer;user-select:none;list-style:none">
+              <span>Our Vision</span>
+              <span id="acc-vision-arrow" style="font-size:13px;color:#003a70;font-weight:800">▼</span>
             </summary>
-            <div style="padding:18px 20px;border-top:1px solid var(--border)">
+            <div style="padding:18px 20px;background:#ffffff;border-top:1px solid #bae6fd">
               <div style="background:#e0f2fe;border-left:4px solid #0284c7;color:#0369a1;padding:8px 12px;border-radius:8px;font-weight:700;font-size:12.5px;margin-bottom:12px">
-                👁️ <strong>Vision Summary:</strong> Universal digital inclusion for every Australian household.
+                <strong>Vision Summary:</strong> Universal digital inclusion for every Australian household.
               </div>
               <h3 style="font-size:17px;font-weight:900;color:var(--text);margin-bottom:8px">Our Vision</h3>
               <div style="background:var(--primary-light);border-left:4px solid var(--primary);padding:12px;border-radius:8px;margin-bottom:10px">
@@ -1361,15 +1367,15 @@ body.dark-mode .cta-booking-card{background:linear-gradient(135deg,#1a3a2a 0%,#1
             </div>
           </details>
 
-          <!-- ROW 2: OUR MISSION ACCORDION (Closed by default) -->
-          <details id="acc-about-mission" style="background:var(--bg-card);border:1px solid var(--border);border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,0.15);overflow:hidden;transition:all 0.3s ease">
-            <summary onclick="toggleAboutAccordion('mission')" style="padding:16px 20px;font-size:16px;font-weight:900;color:var(--text);background:var(--bg);display:flex;justify-content:space-between;align-items:center;cursor:pointer;user-select:none;list-style:none">
-              <span style="display:flex;align-items:center;gap:10px">🎯 Our Mission</span>
-              <span id="acc-mission-arrow" style="font-size:13px;color:var(--text-muted);font-weight:800">▼</span>
+          <!-- ROW 2: OUR MISSION ACCORDION (Closed by default, Light Blue Background) -->
+          <details id="acc-about-mission" style="background:#f0f9ff;border:1px solid #bae6fd;border-radius:14px;box-shadow:0 6px 20px rgba(0,0,0,0.12);overflow:hidden;transition:all 0.3s ease">
+            <summary onclick="toggleAboutAccordion('mission')" style="padding:16px 20px;font-size:16px;font-weight:900;color:#003a70;background:#e0f2fe;display:flex;justify-content:space-between;align-items:center;cursor:pointer;user-select:none;list-style:none">
+              <span>Our Mission</span>
+              <span id="acc-mission-arrow" style="font-size:13px;color:#003a70;font-weight:800">▼</span>
             </summary>
-            <div style="padding:18px 20px;border-top:1px solid var(--border)">
+            <div style="padding:18px 20px;background:#ffffff;border-top:1px solid #bae6fd">
               <div style="background:#e0f2fe;border-left:4px solid #0284c7;color:#0369a1;padding:8px 12px;border-radius:8px;font-weight:700;font-size:12.5px;margin-bottom:12px">
-                🎯 <strong>Mission Summary:</strong> Relieving disadvantage through technology, skills, and secure access.
+                <strong>Mission Summary:</strong> Relieving disadvantage through technology, skills, and secure access.
               </div>
               <h3 style="font-size:17px;font-weight:900;color:var(--text);margin-bottom:6px">Our Mission</h3>
               <p style="font-size:12.5px;color:var(--text-secondary);line-height:1.5;margin-bottom:8px">
