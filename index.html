@@ -1087,7 +1087,7 @@ body.dark-mode .cta-booking-card{background:linear-gradient(135deg,#1a3a2a 0%,#1
         </div>
 
         <a href="#impact" onclick="navigate('impact'); event.preventDefault();" id="nav-impact" class="navbtn" style="padding:8px 16px;color:#334155;font-weight:600;cursor:pointer;font-size:14px;border-radius:20px;transition:all .2s;text-decoration:none">Testimonials</a>
-        <a href="#blog" onclick="navigate('blog'); event.preventDefault();" id="nav-blog" class="navbtn" style="padding:8px 16px;color:#334155;font-weight:600;cursor:pointer;font-size:14px;border-radius:20px;transition:all .2s;text-decoration:none">Blog</a>
+        <a href="#blog-anchor" onclick="scrollToSection('blog-anchor', 'nav-blog'); event.preventDefault();" id="nav-blog" class="navbtn" style="padding:8px 16px;color:#334155;font-weight:600;cursor:pointer;font-size:14px;border-radius:20px;transition:all .2s;text-decoration:none">Blog</a>
       </nav>
 
       <!-- Right Controls (Language Selector + Search Circle + Donate & Contact Pills) -->
@@ -1105,14 +1105,12 @@ body.dark-mode .cta-booking-card{background:linear-gradient(135deg,#1a3a2a 0%,#1
 
         <button class="header-search" onclick="var q=prompt('Search Finnova...');if(q&&q.length>1)searchSite(q);else if(q)showToast('Enter at least 2 characters.','error');" style="width:40px;height:40px;border-radius:50%;background:#ffffff;border:1.5px solid #cbd5e1;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;color:#475569;transition:all .2s" aria-label="Search">🔍</button>
 
-        <a href="https://www.paypal.com/au/fundraiser/charity/5851308" class="donate-header" style="padding:9px 20px;background:#0176d3;color:#ffffff;border:none;border-radius:28px;font-weight:700;font-size:13.5px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;box-shadow:0 4px 14px rgba(1,118,211,0.25);white-space:nowrap;text-decoration:none;transition:all .2s">Donate now</a>
+        <a href="https://www.paypal.com/au/fundraiser/charity/5851308" class="donate-header" style="padding:9px 20px;background:#7c3aed;color:#ffffff;border:none;border-radius:28px;font-weight:700;font-size:13.5px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;box-shadow:0 4px 14px rgba(124,58,237,0.3);white-space:nowrap;text-decoration:none;transition:all .2s"><span style="color:#ef4444;font-size:14px">❤️</span> Donate now</a>
         
         <a href="#contact" onclick="navigate('contact'); event.preventDefault();" style="padding:9px 20px;background:var(--primary);color:#ffffff;border:none;border-radius:28px;font-weight:700;font-size:13.5px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(1,118,211,0.22);text-decoration:none;transition:all .2s">Contact</a>
 
         <button class="mobile-menu-btn" onclick="toggleMobileMenu()" style="display:none;width:40px;height:40px;border-radius:50%;background:#ffffff;border:1.5px solid #e2e8f0;cursor:pointer;font-size:18px;align-items:center;justify-content:center;color:#334155" aria-label="Toggle menu">☰</button>
       </div>
-
-        <button class="mobile-menu-btn" onclick="toggleMobileMenu()" style="display:none;width:40px;height:40px;border-radius:50%;background:#ffffff;border:1.5px solid #e2e8f0;cursor:pointer;font-size:18px;align-items:center;justify-content:center;color:#334155" aria-label="Toggle menu">☰</button>
       </div>
 
     </div>
@@ -5632,7 +5630,7 @@ function navigate(page) {
   if (page === 'digital-divide') { scrollToSection('programs-anchor', 'nav-digital-divide'); return; }
   if (page === 'booking') { scrollToSection('booking-anchor', 'nav-booking'); return; }
   if (page === 'contact') { scrollToSection('contact-anchor', 'nav-contact'); return; }
-  if (page === 'blog') { viewPost(); return; }
+  if (page === 'blog') { scrollToSection('blog-anchor', 'nav-blog'); return; }
 
   ['home','about','impact','digital-divide','services','blog','post','donate','donation-thanks','booking','help','legal','contact','admin','census-explorer','aged-care-tracker','census','ndis-finder','ndis-wizard','ndis-gpt','grants','pay-calculator','cyber','locations'].forEach(function(p) {
     var el = document.getElementById('page-' + p);
