@@ -57,16 +57,30 @@ function switchLanguageLocale(locale) {
     } catch(e) {}
   }
 
-  try {
+  loadDeferredSDKs();
+
+  document.cookie = 'googtrans=/en/' + gtLang + '; path=/; domain=' + window.location.hostname;
+  document.cookie = 'googtrans=/en/' + gtLang + '; path=/;';
+
+  function applyTranslation() {
     var selectEl = document.querySelector('.goog-te-combo');
     if (selectEl) {
       selectEl.value = gtLang;
       selectEl.dispatchEvent(new Event('change'));
-    } else {
-      document.cookie = 'googtrans=/en/' + gtLang + '; path=/; domain=' + window.location.hostname;
-      document.cookie = 'googtrans=/en/' + gtLang + '; path=/;';
+      return true;
     }
-  } catch(e) { console.warn('[Language Error]', e); }
+    return false;
+  }
+
+  if (!applyTranslation()) {
+    var attempts = 0;
+    var timer = setInterval(function() {
+      attempts++;
+      if (applyTranslation() || attempts > 30) {
+        clearInterval(timer);
+      }
+    }, 100);
+  }
 
   var selector = document.getElementById('finnova-lang-selector');
   if (selector) selector.value = locale;
@@ -97,6 +111,8 @@ function googleTranslateElementInit() {
     layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
     autoDisplay: false
   }, 'google_translate_element');
+  
+  setTimeout(detectLanguageLocaleOnLoad, 200);
 }
 
 function loadDeferredSDKs() {
@@ -121,12 +137,7 @@ function loadDeferredSDKs() {
   }
 }
 
-window.addEventListener('DOMContentLoaded', function() {
-  setTimeout(loadDeferredSDKs, 2000);
-});
-['touchstart', 'scroll', 'mousemove', 'keydown'].forEach(function(evt) {
-  window.addEventListener(evt, loadDeferredSDKs, { once: true, passive: true });
-});
+window.addEventListener('DOMContentLoaded', loadDeferredSDKs);
 </script>
 <style>
 .goog-te-gadget-simple{background:var(--bg)!important;border:1px solid var(--border)!important;padding:4px 8px!important;border-radius:6px!important;font-size:12px!important;color:var(--text)!important;display:inline-flex!important;align-items:center!important;gap:4px!important}
