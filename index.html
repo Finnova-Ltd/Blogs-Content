@@ -1018,51 +1018,46 @@ body.dark-mode .cta-booking-card{background:linear-gradient(135deg,#1a3a2a 0%,#1
     </div>
   </div>
 
-  <!-- HEADER -->
-  <header id="site-header" style="background:var(--header-bg);border-bottom:1px solid var(--border);position:relative;box-shadow:0 1px 6px rgba(0,0,0,0.07);transition:background .3s,border-color .3s">
-    <div class="wrap" style="height:64px;display:flex;align-items:center;gap:12px;max-width:1400px">
+  <!-- HEADER (Matching Image 1 Design) -->
+  <header id="site-header" style="background:#ffffff;border-bottom:1px solid #e2e8f0;position:sticky;top:0;z-index:1000;box-shadow:0 2px 12px rgba(0,0,0,0.04);transition:background .3s,border-color .3s">
+    <div class="wrap" style="height:70px;display:flex;align-items:center;justify-content:space-between;max-width:1380px;padding:0 24px;margin:0 auto">
+      
+      <!-- Brand Logo -->
       <a href="#home" onclick="navigate('home'); event.preventDefault();" style="display:flex;align-items:center;gap:10px;cursor:pointer;flex-shrink:0;text-decoration:none;color:inherit" aria-label="Finnova Limited Home">
-        <img src="images/finnova-logo-stars.png" alt="Finnova Limited Logo" style="height:48px;max-height:50px;width:auto;object-fit:contain" class="brand-logo-img" loading="lazy" decoding="async">
-        <div style="line-height:1.1;display:none">
-          <div class="brand-name" style="font-weight:800;font-size:14px;color:var(--text);letter-spacing:-0.2px">Finnova Ltd</div>
-          <div class="brand-abn" style="font-size:9px;color:var(--text-muted);font-weight:600">ABN 55 687 130 767</div>
-        </div>
+        <img src="images/finnova-logo-stars.png" alt="Finnova Limited Logo" style="height:44px;width:auto;object-fit:contain" class="brand-logo-img" loading="lazy" decoding="async">
+        <span style="font-weight:800;font-size:16px;color:#0f172a;letter-spacing:-0.3px">FINNOVA</span>
       </a>
 
-      <nav class="desktop-nav" style="display:flex;gap:6px;flex:1;justify-content:center;align-items:center">
-        <a href="#home" onclick="navigate('home'); event.preventDefault();" id="nav-home" class="navbtn" style="padding:7px 14px;background:var(--primary-light);border:none;border-radius:8px;color:var(--primary);font-weight:700;cursor:pointer;font-size:13px;display:flex;align-items:center;gap:5px;transition:all .2s;text-decoration:none">Home</a>
+      <!-- Desktop Nav Bar (Matching Image 1) -->
+      <nav class="desktop-nav" style="display:flex;gap:4px;align-items:center;margin:0 20px">
+        <a href="#home" onclick="navigate('home'); event.preventDefault();" id="nav-home" class="navbtn" style="padding:8px 16px;color:#334155;font-weight:600;cursor:pointer;font-size:14px;border-radius:20px;transition:all .2s;text-decoration:none">Home</a>
+        <a href="#about" onclick="navigate('about'); event.preventDefault();" id="nav-about" class="navbtn" style="padding:8px 16px;color:#334155;font-weight:600;cursor:pointer;font-size:14px;border-radius:20px;transition:all .2s;text-decoration:none">About Us</a>
 
         <!-- SERVICES & ABOUT DROPDOWN -->
         <div style="position:relative" id="svc-menu-wrap">
-          <button onclick="toggleSvcMenu(event)" id="nav-svc" class="navbtn" style="padding:7px 14px;background:none;border:none;border-radius:8px;color:var(--text-secondary);font-weight:600;cursor:pointer;font-size:13px;display:flex;align-items:center;gap:5px;transition:all .2s">Services &amp; About ▼</button>
-          <div id="svc-menu-dropdown" class="hidden" style="position:absolute;top:100%;left:0;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,0.15);padding:6px;z-index:200;min-width:240px;transition:background .3s,border-color .3s">
-            <a href="#impact" onclick="navigate('impact'); closeSvcMenu(); event.preventDefault();" style="display:flex;align-items:center;gap:8px;width:100%;padding:8px 12px;background:var(--primary-light);border:none;border-radius:6px;color:var(--primary);font-weight:700;cursor:pointer;font-size:13px;text-align:left;margin-bottom:3px;text-decoration:none">📊 Inaugural Impact &amp; Financial Transparency</a>
-            <a href="#services" onclick="navigate('services'); closeSvcMenu(); event.preventDefault();" style="display:flex;align-items:center;gap:8px;width:100%;padding:8px 12px;background:none;border:none;border-radius:6px;color:var(--text);font-weight:600;cursor:pointer;font-size:13px;text-align:left;text-decoration:none">🛒 Non-Profit Community Services</a>
-            <a href="#cyber" onclick="navigate('cyber'); closeSvcMenu(); event.preventDefault();" style="display:flex;align-items:center;gap:8px;width:100%;padding:8px 12px;background:var(--primary-light);border:none;border-radius:6px;color:var(--primary);font-weight:700;cursor:pointer;font-size:13px;text-align:left;text-decoration:none">🛡️ Full-Spectrum Cyber Security</a>
-            <a href="#about" onclick="navigate('about'); closeSvcMenu(); event.preventDefault();" style="display:flex;align-items:center;gap:8px;width:100%;padding:8px 12px;background:none;border:none;border-radius:6px;color:var(--text);font-weight:600;cursor:pointer;font-size:13px;text-align:left;text-decoration:none">ℹ️ About Us &amp; Mission</a>
-            <a href="#census-explorer" onclick="navigate('census-explorer'); closeSvcMenu(); event.preventDefault();" style="display:flex;align-items:center;gap:8px;width:100%;padding:8px 12px;background:none;border:none;border-radius:6px;color:var(--text-secondary);cursor:pointer;font-size:13px;text-align:left;text-decoration:none">📋 Census Questions (Q1–Q66)</a>
-            <a href="#booking" onclick="navigate('booking'); closeSvcMenu(); event.preventDefault();" style="display:flex;align-items:center;gap:8px;width:100%;padding:8px 12px;background:none;border:none;border-radius:6px;color:var(--text-secondary);cursor:pointer;font-size:13px;text-align:left;text-decoration:none">📅 Book 1:1 Support Session</a>
-            <div style="border-top:1px solid var(--border);margin:4px 0"></div>
-            <a href="#help" onclick="navigate('help'); closeSvcMenu(); event.preventDefault();" style="display:flex;align-items:center;gap:8px;width:100%;padding:8px 12px;background:none;border:none;border-radius:6px;color:var(--text-secondary);cursor:pointer;font-size:13px;text-align:left;text-decoration:none">🧭 Help &amp; Guidance</a>
-            <a href="#privacy" onclick="navigate('privacy'); closeSvcMenu(); event.preventDefault();" style="display:flex;align-items:center;gap:8px;width:100%;padding:8px 12px;background:none;border:none;border-radius:6px;color:var(--text-secondary);cursor:pointer;font-size:13px;text-align:left;text-decoration:none">🔒 Privacy Policy</a>
-            <a href="#terms" onclick="navigate('terms'); closeSvcMenu(); event.preventDefault();" style="display:flex;align-items:center;gap:8px;width:100%;padding:8px 12px;background:none;border:none;border-radius:6px;color:var(--text-secondary);cursor:pointer;font-size:13px;text-align:left;text-decoration:none">📋 Terms of Use</a>
-            <a href="#charity" onclick="navigate('charity'); closeSvcMenu(); event.preventDefault();" style="display:flex;align-items:center;gap:8px;width:100%;padding:8px 12px;background:none;border:none;border-radius:6px;color:var(--text-secondary);cursor:pointer;font-size:13px;text-align:left;text-decoration:none">🏛️ ACNC Charity Notice</a>
+          <button onclick="toggleSvcMenu(event)" id="nav-svc" class="navbtn" style="padding:8px 16px;background:none;border:none;color:#334155;font-weight:600;cursor:pointer;font-size:14px;display:flex;align-items:center;gap:4px;transition:all .2s">Services &amp; About ▼</button>
+          <div id="svc-menu-dropdown" class="hidden" style="position:absolute;top:100%;left:0;background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.12);padding:8px;z-index:200;min-width:260px">
+            <a href="#impact" onclick="navigate('impact'); closeSvcMenu(); event.preventDefault();" style="display:flex;align-items:center;gap:8px;width:100%;padding:10px 14px;border-radius:8px;color:#334155;font-weight:600;font-size:13px;text-decoration:none">📊 Inaugural Impact &amp; Transparency</a>
+            <a href="#services" onclick="navigate('services'); closeSvcMenu(); event.preventDefault();" style="display:flex;align-items:center;gap:8px;width:100%;padding:10px 14px;border-radius:8px;color:#334155;font-weight:600;font-size:13px;text-decoration:none">🛒 Non-Profit Community Services</a>
+            <a href="#cyber" onclick="navigate('cyber'); closeSvcMenu(); event.preventDefault();" style="display:flex;align-items:center;gap:8px;width:100%;padding:10px 14px;border-radius:8px;color:#334155;font-weight:600;font-size:13px;text-decoration:none">🛡️ Full-Spectrum Cyber Security</a>
+            <a href="#ndis-finder" onclick="navigate('ndis-finder'); closeSvcMenu(); event.preventDefault();" style="display:flex;align-items:center;gap:8px;width:100%;padding:10px 14px;border-radius:8px;color:#334155;font-weight:600;font-size:13px;text-decoration:none">🔍 NDIS Support Finder</a>
+            <a href="#census-explorer" onclick="navigate('census-explorer'); closeSvcMenu(); event.preventDefault();" style="display:flex;align-items:center;gap:8px;width:100%;padding:10px 14px;border-radius:8px;color:#334155;font-weight:600;font-size:13px;text-decoration:none">📋 2026 Census Support</a>
           </div>
         </div>
 
-        <a href="#blog" onclick="navigate('blog'); event.preventDefault();" id="nav-blog" class="navbtn" style="padding:7px 14px;background:none;border:none;border-radius:8px;color:var(--text-secondary);font-weight:600;cursor:pointer;font-size:13px;display:flex;align-items:center;gap:5px;transition:all .2s;text-decoration:none">Blog</a>
-        <a href="#contact" onclick="navigate('contact'); event.preventDefault();" id="nav-contact" class="navbtn" style="padding:7px 14px;background:none;border:none;border-radius:8px;color:var(--text-secondary);font-weight:600;cursor:pointer;font-size:13px;display:flex;align-items:center;gap:5px;transition:all .2s;text-decoration:none">Contact</a>
-        <button onclick="toggleEasyReadMode()" class="navbtn" id="easy-read-btn" aria-label="Toggle Easy Read Mode" style="padding:5px 12px;border-radius:20px;background:var(--primary-light);border:1.5px solid var(--primary);color:var(--primary);font-weight:700;cursor:pointer;display:flex;align-items:center;gap:4px;font-size:12px;margin-left:4px">Easy Read</button>
+        <a href="#impact" onclick="navigate('impact'); event.preventDefault();" id="nav-impact" class="navbtn" style="padding:8px 16px;color:#334155;font-weight:600;cursor:pointer;font-size:14px;border-radius:20px;transition:all .2s;text-decoration:none">Testimonials</a>
+        <a href="#blog" onclick="navigate('blog'); event.preventDefault();" id="nav-blog" class="navbtn" style="padding:8px 16px;color:#334155;font-weight:600;cursor:pointer;font-size:14px;border-radius:20px;transition:all .2s;text-decoration:none">Blog</a>
       </nav>
 
-      <div class="header-actions" style="display:flex;align-items:center;gap:8px;margin-left:auto;flex-shrink:0">
-        <div id="google_translate_element" style="display:inline-block"></div>
-        <button onclick="toggleDarkMode()" class="dark-toggle" id="dark-mode-btn" aria-label="Toggle dark mode" style="width:36px;height:36px;border-radius:50%;background:var(--bg);border:1.5px solid var(--border);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;transition:background .3s,border-color .3s;flex-shrink:0">🌙</button>
-        <button class="header-search" onclick="var q=prompt('Search Finnova...');if(q&amp;&amp;q.length&gt;1)searchSite(q);else if(q)showToast('Enter at least 2 characters.','error');" style="width:36px;height:36px;border-radius:50%;background:var(--bg);border:1.5px solid var(--border);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;transition:background .3s,border-color .3s" aria-label="Search">🔍</button>
-        <button onclick="openMemberAuth('login')" style="display:none;padding:7px 14px;background:var(--primary);color:#fff;border:none;border-radius:8px;font-weight:700;font-size:12.5px;cursor:pointer;align-items:center;gap:5px;box-shadow:0 3px 10px rgba(1,118,211,0.25);white-space:nowrap">Login / Sign Up</button>
-        <a href="https://www.paypal.com/au/fundraiser/charity/5851308" class="donate-header" style="padding:7px 14px;background:var(--primary);color:#fff;border:none;border-radius:8px;font-weight:700;font-size:12.5px;cursor:pointer;display:flex;align-items:center;gap:5px;box-shadow:0 3px 10px rgba(1,118,211,0.25);white-space:nowrap;text-decoration:none">Donate now</a>
-        <button class="mobile-menu-btn" onclick="toggleMobileMenu()" style="display:none;width:36px;height:36px;border-radius:8px;background:var(--bg);border:1px solid var(--border);cursor:pointer;font-size:18px;align-items:center;justify-content:center;transition:background .3s,border-color .3s" aria-label="Toggle menu">☰</button>
+      <!-- Right Controls (Search Circle + Contact / Donate Pill) -->
+      <div class="header-actions" style="display:flex;align-items:center;gap:12px;flex-shrink:0">
+        <button class="header-search" onclick="var q=prompt('Search Finnova...');if(q&&q.length>1)searchSite(q);else if(q)showToast('Enter at least 2 characters.','error');" style="width:40px;height:40px;border-radius:50%;background:#ffffff;border:1.5px solid #cbd5e1;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;color:#475569;transition:all .2s" aria-label="Search">🔍</button>
+        
+        <a href="#contact" onclick="navigate('contact'); event.preventDefault();" class="donate-header" style="padding:10px 24px;background:#047857;color:#ffffff;border:none;border-radius:28px;font-weight:700;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(4,120,87,0.22);text-decoration:none;transition:all .2s">Contact</a>
+
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()" style="display:none;width:40px;height:40px;border-radius:50%;background:#ffffff;border:1.5px solid #e2e8f0;cursor:pointer;font-size:18px;align-items:center;justify-content:center;color:#334155" aria-label="Toggle menu">☰</button>
       </div>
+
     </div>
 
     <div id="mobile-menu" class="hidden" style="background:var(--bg-card);border-top:1px solid var(--border);padding:10px 16px 16px;transition:background .3s,border-color .3s">
@@ -2445,25 +2440,21 @@ body.dark-mode .cta-booking-card{background:linear-gradient(135deg,#1a3a2a 0%,#1
 <!-- GITBOOK 3-COLUMN & CLASSIC EDITORIAL BLOG WORKSPACE (#page-blog) -->
 <div id="page-blog" class="hidden">
   
-  <!-- FULL-WIDTH HERO COVER HEADER BANNER WITH BLUR & OVERLAYED BREADCRUMB + SOCIAL SHARE CARDS -->
-  <div style="position:relative;width:100%;min-height:180px;overflow:hidden;margin-bottom:24px;border-bottom:1px solid var(--border);box-shadow:0 4px 20px rgba(0,0,0,0.06);display:flex;align-items:center;justify-content:center;padding:16px 0">
-    <!-- Blurred Background Cover Image -->
-    <img src="images/blog-header-banner.jpg?v=5" alt="Finnova Cover Header" style="position:absolute;top:-10px;left:-10px;width:calc(100% + 20px);height:calc(100% + 20px);object-fit:cover;object-position:center;filter:blur(6px) brightness(0.9);transform:scale(1.05)" loading="lazy" decoding="async">
-    
-    <!-- Overlay Content Container -->
-    <div style="position:relative;z-index:2;max-width:1440px;width:100%;padding:0 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px">
+  <!-- SLEEK EDITORIAL HEADER BREADCRUMB BAR -->
+  <div style="background:#ffffff;border-bottom:1px solid #e2e8f0;padding:16px 24px;margin-bottom:24px;box-shadow:0 2px 8px rgba(0,0,0,0.03)">
+    <div style="max-width:1380px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px">
       
-      <!-- Left: White Card Overlay for Breadcrumbs -->
-      <div style="background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.8);border-radius:12px;padding:10px 18px;box-shadow:0 8px 32px rgba(0,0,0,0.15);display:inline-flex;align-items:center;gap:8px;max-width:100%;overflow-x:auto">
-        <span onclick="navigate('home')" style="cursor:pointer;color:var(--primary);font-weight:700;font-size:13px;white-space:nowrap">🏠 Home</span>
+      <!-- Left: Clean Breadcrumb Navigation -->
+      <div style="display:inline-flex;align-items:center;gap:8px;font-size:13.5px;max-width:100%;overflow-x:auto">
+        <span onclick="navigate('home')" style="cursor:pointer;color:#047857;font-weight:700;white-space:nowrap">🏠 Home</span>
         <span style="color:#94a3b8">/</span>
-        <span onclick="viewPost()" style="cursor:pointer;color:var(--primary);font-weight:700;font-size:13px;white-space:nowrap">📝 Blog</span>
+        <span onclick="viewPost()" style="cursor:pointer;color:#047857;font-weight:700;white-space:nowrap">📝 Blog</span>
         <span style="color:#94a3b8">/</span>
-        <span id="blog-breadcrumb-active" style="color:#0f172a;font-weight:700;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Digital Inclusion &amp; News</span>
+        <span id="blog-breadcrumb-active" style="color:#0f172a;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Digital Inclusion &amp; News</span>
       </div>
 
-      <!-- Right: White Card Overlay for Social Sharing Icons -->
-      <div style="background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.8);border-radius:12px;padding:8px 14px;box-shadow:0 8px 32px rgba(0,0,0,0.15);display:inline-flex;align-items:center;gap:6px;max-width:100%;flex-wrap:wrap">
+      <!-- Right: Social Sharing Icons -->
+      <div style="display:inline-flex;align-items:center;gap:6px;max-width:100%;flex-wrap:wrap">
         <button onclick="shareArticle('facebook')" class="social-share-pill fb" title="Share on Facebook">f</button>
         <button onclick="shareArticle('twitter')" class="social-share-pill tw" title="Share on X">𝕏</button>
         <button onclick="shareArticle('linkedin')" class="social-share-pill li" title="Share on LinkedIn">in</button>
