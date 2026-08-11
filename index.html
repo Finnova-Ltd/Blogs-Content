@@ -50,6 +50,13 @@ function switchLanguageLocale(locale) {
   if (!LOCALE_TO_GT[locale]) locale = 'en_AU';
   var gtLang = LOCALE_TO_GT[locale];
 
+  var targetPath = '/' + locale + '.html';
+  if (window.location.pathname !== targetPath && window.history && window.history.pushState) {
+    try {
+      window.history.pushState(null, '', targetPath + window.location.hash);
+    } catch(e) {}
+  }
+
   try {
     var selectEl = document.querySelector('.goog-te-combo');
     if (selectEl) {
@@ -73,6 +80,11 @@ function detectLanguageLocaleOnLoad() {
   } else {
     var selector = document.getElementById('finnova-lang-selector');
     if (selector) selector.value = 'en_AU';
+    if (window.history && window.history.replaceState) {
+      try {
+        window.history.replaceState(null, '', '/en_AU.html' + window.location.hash);
+      } catch(e) {}
+    }
   }
 }
 
@@ -7261,16 +7273,15 @@ window.shiftBookingDays = shiftBookingDays;
 window.submitSimplifiedBooking = submitSimplifiedBooking;
 
 function initAllComponents() {
-  startHeroImageCarousel();
-  startAboutTabsAutoSwitch();
-  renderServiceTabs();
-  renderProgramsGrid();
-  startProgramsAutoScroll();
-  renderHomeBlogGrid();
-  startHomeBlogAutoScroll();
-  renderBookingDays();
-  loadSimplifiedAvailability();
-  updateBookingSummaryText();
+  try { if (typeof startHeroImageCarousel === 'function') startHeroImageCarousel(); } catch(e) {}
+  try { if (typeof renderServiceTabs === 'function') renderServiceTabs(); } catch(e) {}
+  try { if (typeof renderProgramsGrid === 'function') renderProgramsGrid(); } catch(e) {}
+  try { if (typeof startProgramsAutoScroll === 'function') startProgramsAutoScroll(); } catch(e) {}
+  try { if (typeof renderHomeBlogGrid === 'function') renderHomeBlogGrid(); } catch(e) {}
+  try { if (typeof startHomeBlogAutoScroll === 'function') startHomeBlogAutoScroll(); } catch(e) {}
+  try { if (typeof renderBookingDays === 'function') renderBookingDays(); } catch(e) {}
+  try { if (typeof loadSimplifiedAvailability === 'function') loadSimplifiedAvailability(); } catch(e) {}
+  try { if (typeof updateBookingSummaryText === 'function') updateBookingSummaryText(); } catch(e) {}
 }
 
 document.addEventListener('DOMContentLoaded', function() {
