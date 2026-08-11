@@ -1067,7 +1067,6 @@ body.dark-mode .cta-booking-card{background:linear-gradient(135deg,#1a3a2a 0%,#1
       <!-- Brand Logo -->
       <a href="#home" onclick="navigate('home'); event.preventDefault();" style="display:flex;align-items:center;gap:10px;cursor:pointer;flex-shrink:0;text-decoration:none;color:inherit" aria-label="Finnova Limited Home">
         <img src="images/finnova-logo-stars.png" alt="Finnova Limited Logo" style="height:44px;width:auto;object-fit:contain" class="brand-logo-img" loading="lazy" decoding="async">
-        <span style="font-weight:800;font-size:16px;color:#0f172a;letter-spacing:-0.3px">FINNOVA</span>
       </a>
 
       <!-- Desktop Nav Bar (Matching Image 1) -->
@@ -1091,7 +1090,7 @@ body.dark-mode .cta-booking-card{background:linear-gradient(135deg,#1a3a2a 0%,#1
         <a href="#blog" onclick="navigate('blog'); event.preventDefault();" id="nav-blog" class="navbtn" style="padding:8px 16px;color:#334155;font-weight:600;cursor:pointer;font-size:14px;border-radius:20px;transition:all .2s;text-decoration:none">Blog</a>
       </nav>
 
-      <!-- Right Controls (Language Selector + Search Circle + Contact Pill) -->
+      <!-- Right Controls (Language Selector + Search Circle + Donate & Contact Pills) -->
       <div class="header-actions" style="display:flex;align-items:center;gap:10px;flex-shrink:0">
         <select id="finnova-lang-selector" onchange="switchLanguageLocale(this.value)" aria-label="Select Language" style="padding:7px 12px;border-radius:20px;border:1.5px solid #cbd5e1;background:#ffffff;color:#334155;font-weight:700;font-size:12.5px;cursor:pointer;outline:none;box-shadow:0 2px 6px rgba(0,0,0,0.04)">
           <option value="en_AU">🇦🇺 English (en_AU)</option>
@@ -1105,8 +1104,13 @@ body.dark-mode .cta-booking-card{background:linear-gradient(135deg,#1a3a2a 0%,#1
         <div id="google_translate_element" style="display:none"></div>
 
         <button class="header-search" onclick="var q=prompt('Search Finnova...');if(q&&q.length>1)searchSite(q);else if(q)showToast('Enter at least 2 characters.','error');" style="width:40px;height:40px;border-radius:50%;background:#ffffff;border:1.5px solid #cbd5e1;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;color:#475569;transition:all .2s" aria-label="Search">🔍</button>
+
+        <a href="https://www.paypal.com/au/fundraiser/charity/5851308" class="donate-header" style="padding:9px 20px;background:#0176d3;color:#ffffff;border:none;border-radius:28px;font-weight:700;font-size:13.5px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;box-shadow:0 4px 14px rgba(1,118,211,0.25);white-space:nowrap;text-decoration:none;transition:all .2s">Donate now</a>
         
-        <a href="#contact" onclick="navigate('contact'); event.preventDefault();" class="donate-header" style="padding:10px 24px;background:#047857;color:#ffffff;border:none;border-radius:28px;font-weight:700;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(4,120,87,0.22);text-decoration:none;transition:all .2s">Contact</a>
+        <a href="#contact" onclick="navigate('contact'); event.preventDefault();" style="padding:9px 20px;background:var(--primary);color:#ffffff;border:none;border-radius:28px;font-weight:700;font-size:13.5px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(1,118,211,0.22);text-decoration:none;transition:all .2s">Contact</a>
+
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()" style="display:none;width:40px;height:40px;border-radius:50%;background:#ffffff;border:1.5px solid #e2e8f0;cursor:pointer;font-size:18px;align-items:center;justify-content:center;color:#334155" aria-label="Toggle menu">☰</button>
+      </div>
 
         <button class="mobile-menu-btn" onclick="toggleMobileMenu()" style="display:none;width:40px;height:40px;border-radius:50%;background:#ffffff;border:1.5px solid #e2e8f0;cursor:pointer;font-size:18px;align-items:center;justify-content:center;color:#334155" aria-label="Toggle menu">☰</button>
       </div>
@@ -1249,40 +1253,16 @@ body.dark-mode .cta-booking-card{background:linear-gradient(135deg,#1a3a2a 0%,#1
           </div>
         </div>
 
-        <!-- COL 2 (RIGHT): Card containing Tabs (About Us, Our Vision, Our Mission) -->
-        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:16px;box-shadow:0 12px 32px rgba(0,0,0,0.2);overflow:hidden;color:var(--text);display:flex;flex-direction:column;height:100%;min-height:280px">
+        <!-- COL 2 (RIGHT): 2-Row Exclusive Accordion for Vision & Mission -->
+        <div style="display:flex;flex-direction:column;gap:14px;justify-content:center;height:100%">
           
-          <!-- Tab Navigation Bar with Hover & Click Triggers -->
-          <div style="display:flex;border-bottom:1px solid var(--border);background:var(--bg);overflow-x:auto" id="about-tabs-nav">
-            <button class="about-tab-btn active" onclick="switchAboutTab(0, true)" onmouseenter="switchAboutTab(0, true)">
-              ℹ️ About Us
-            </button>
-            <button class="about-tab-btn" onclick="switchAboutTab(1, true)" onmouseenter="switchAboutTab(1, true)">
-              👁️ Our Vision
-            </button>
-            <button class="about-tab-btn" onclick="switchAboutTab(2, true)" onmouseenter="switchAboutTab(2, true)">
-              🎯 Our Mission
-            </button>
-          </div>
-
-          <!-- Tab Contents Panel (Flex Fill for Consistent Height) -->
-          <div style="padding:18px 20px;flex:1;display:flex;flex-direction:column;justify-content:space-between">
-            <!-- Tab 0: About Us -->
-            <div id="about-panel-0" class="about-panel" style="display:block">
-              <div style="background:#e0f2fe;border-left:4px solid #0284c7;color:#0369a1;padding:8px 12px;border-radius:8px;font-weight:700;font-size:12.5px;margin-bottom:12px">
-                💡 <strong>Finnova Summary:</strong> ACNC registered charity, ISO 27001:2022 certified, and PBI dedicated to closing Australia's digital divide.
-              </div>
-              <h3 style="font-size:17px;font-weight:900;color:var(--text);margin-bottom:8px">Closing Australia's Digital Divide</h3>
-              <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;margin-bottom:10px">
-                Finnova Ltd helps Australians locked out of essential online services due to poverty, disability, domestic violence, or isolation. Digital access is not a luxury — it's basic community inclusion.
-              </p>
-              <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;margin:0">
-                Endorsed as a Deductible Gift Recipient (DGR Item 1), 100% of our funds advance public benefit and charitable purpose.
-              </p>
-            </div>
-
-            <!-- Tab 1: Our Vision -->
-            <div id="about-panel-1" class="about-panel" style="display:none">
+          <!-- ROW 1: OUR VISION ACCORDION (Open by default) -->
+          <details id="acc-about-vision" open style="background:var(--bg-card);border:1px solid var(--border);border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,0.15);overflow:hidden;transition:all 0.3s ease">
+            <summary onclick="toggleAboutAccordion('vision')" style="padding:16px 20px;font-size:16px;font-weight:900;color:var(--text);background:var(--bg);display:flex;justify-content:space-between;align-items:center;cursor:pointer;user-select:none;list-style:none">
+              <span style="display:flex;align-items:center;gap:10px">👁️ Our Vision</span>
+              <span id="acc-vision-arrow" style="font-size:13px;color:var(--primary);font-weight:800">▲</span>
+            </summary>
+            <div style="padding:18px 20px;border-top:1px solid var(--border)">
               <div style="background:#e0f2fe;border-left:4px solid #0284c7;color:#0369a1;padding:8px 12px;border-radius:8px;font-weight:700;font-size:12.5px;margin-bottom:12px">
                 👁️ <strong>Vision Summary:</strong> Universal digital inclusion for every Australian household.
               </div>
@@ -1296,9 +1276,15 @@ body.dark-mode .cta-booking-card{background:linear-gradient(135deg,#1a3a2a 0%,#1
                 A future where digital inclusion is universal, equitable, and safe for all citizens regardless of socio-economic status.
               </p>
             </div>
+          </details>
 
-            <!-- Tab 2: Our Mission -->
-            <div id="about-panel-2" class="about-panel" style="display:none">
+          <!-- ROW 2: OUR MISSION ACCORDION (Closed by default) -->
+          <details id="acc-about-mission" style="background:var(--bg-card);border:1px solid var(--border);border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,0.15);overflow:hidden;transition:all 0.3s ease">
+            <summary onclick="toggleAboutAccordion('mission')" style="padding:16px 20px;font-size:16px;font-weight:900;color:var(--text);background:var(--bg);display:flex;justify-content:space-between;align-items:center;cursor:pointer;user-select:none;list-style:none">
+              <span style="display:flex;align-items:center;gap:10px">🎯 Our Mission</span>
+              <span id="acc-mission-arrow" style="font-size:13px;color:var(--text-muted);font-weight:800">▼</span>
+            </summary>
+            <div style="padding:18px 20px;border-top:1px solid var(--border)">
               <div style="background:#e0f2fe;border-left:4px solid #0284c7;color:#0369a1;padding:8px 12px;border-radius:8px;font-weight:700;font-size:12.5px;margin-bottom:12px">
                 🎯 <strong>Mission Summary:</strong> Relieving disadvantage through technology, skills, and secure access.
               </div>
@@ -1321,7 +1307,8 @@ body.dark-mode .cta-booking-card{background:linear-gradient(135deg,#1a3a2a 0%,#1
                 </li>
               </ul>
             </div>
-          </div>
+          </details>
+
         </div>
 
       </div>
@@ -5923,36 +5910,23 @@ function loadHeroVideo() {
   box.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/CpwgXiJU7_4?autoplay=1&rel=0" title="Finnova Digital Inclusion Video" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
 }
 
-var activeAboutTabIdx = 0;
-var aboutTabAutoTimer = null;
+function toggleAboutAccordion(target) {
+  var visionAcc = document.getElementById('acc-about-vision');
+  var missionAcc = document.getElementById('acc-about-mission');
+  var visionArrow = document.getElementById('acc-vision-arrow');
+  var missionArrow = document.getElementById('acc-mission-arrow');
 
-function switchAboutTab(idx, isManual) {
-  activeAboutTabIdx = idx;
-  var btns = document.querySelectorAll('#about-tabs-nav .about-tab-btn');
-  var panels = document.querySelectorAll('.about-panel');
-  btns.forEach(function(btn, i) {
-    if (i === idx) btn.classList.add('active');
-    else btn.classList.remove('active');
-  });
-  panels.forEach(function(p, i) {
-    if (i === idx) p.style.display = 'block';
-    else p.style.display = 'none';
-  });
-
-  if (isManual) {
-    startAboutTabsAutoSwitch();
-  }
+  setTimeout(function() {
+    if (target === 'vision' && visionAcc && visionAcc.open) {
+      if (missionAcc) missionAcc.open = false;
+    } else if (target === 'mission' && missionAcc && missionAcc.open) {
+      if (visionAcc) visionAcc.open = false;
+    }
+    if (visionArrow) visionArrow.textContent = (visionAcc && visionAcc.open) ? '▲' : '▼';
+    if (missionArrow) missionArrow.textContent = (missionAcc && missionAcc.open) ? '▲' : '▼';
+  }, 20);
 }
-window.switchAboutTab = switchAboutTab;
-
-function startAboutTabsAutoSwitch() {
-  if (aboutTabAutoTimer) clearInterval(aboutTabAutoTimer);
-  aboutTabAutoTimer = setInterval(function() {
-    activeAboutTabIdx = (activeAboutTabIdx + 1) % 3;
-    switchAboutTab(activeAboutTabIdx, false);
-  }, 30000);
-}
-window.startAboutTabsAutoSwitch = startAboutTabsAutoSwitch;
+window.toggleAboutAccordion = toggleAboutAccordion;
 
 function renderServicesTicker() {
   var trackSingle = document.getElementById('services-marquee-track-single');
