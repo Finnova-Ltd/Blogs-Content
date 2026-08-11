@@ -522,7 +522,7 @@ img,iframe,video{max-width:100%}
 /* Classic Editorial Blog Layout Styles */
 .blog-editorial-grid {
   display: grid;
-  grid-template-columns: 46px 1fr 310px;
+  grid-template-columns: 1fr 310px;
   gap: 32px;
   align-items: start;
   max-width: 1360px;
@@ -534,52 +534,32 @@ img,iframe,video{max-width:100%}
     grid-template-columns: 1fr !important;
     gap: 24px !important;
   }
-  .editorial-social-sticky {
-    position: relative !important;
-    top: 0 !important;
-    flex-direction: row !important;
-    justify-content: center !important;
-    margin-bottom: 16px !important;
-  }
 }
 
-.editorial-social-sticky {
-  position: sticky;
-  top: 100px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: center;
-}
-
-.social-share-btn {
-  width: 36px;
-  height: 36px;
+.social-share-pill {
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   border: 1px solid var(--border);
-  background: var(--bg-card);
+  background: var(--bg);
   color: var(--text-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
-  font-weight: 700;
+  font-size: 12.5px;
+  font-weight: 800;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.03);
 }
 
-.social-share-btn:hover {
-  transform: translateY(-2px);
-  color: #ffffff;
-}
-
-.social-share-btn.fb:hover { background: #1877f2; border-color: #1877f2; }
-.social-share-btn.tw:hover { background: #000000; border-color: #000000; }
-.social-share-btn.pin:hover { background: #e60023; border-color: #e60023; }
-.social-share-btn.li:hover { background: #0a66c2; border-color: #0a66c2; }
-.social-share-btn.email:hover { background: #10b981; border-color: #10b981; }
-.social-share-btn.copy:hover { background: var(--primary); border-color: var(--primary); }
+.social-share-pill:hover { transform: translateY(-2px); color: #ffffff; }
+.social-share-pill.fb:hover { background: #1877f2; border-color: #1877f2; }
+.social-share-pill.tw:hover { background: #000000; border-color: #000000; }
+.social-share-pill.li:hover { background: #0a66c2; border-color: #0a66c2; }
+.social-share-pill.wa:hover { background: #25d366; border-color: #25d366; }
+.social-share-pill.email:hover { background: #10b981; border-color: #10b981; }
+.social-share-pill.copy:hover { background: var(--primary); border-color: var(--primary); }
 
 .editorial-cat-tag {
   display: inline-block;
@@ -2517,25 +2497,15 @@ body.dark-mode .cta-booking-card{background:linear-gradient(135deg,#1a3a2a 0%,#1
 
     </div>
 
-    <!-- VIEW 2: CLASSIC EDITORIAL LAYOUT (Default Layout) -->
+    <!-- VIEW 2: CLASSIC EDITORIAL LAYOUT (2-Column Grid: Main Content + Sidebar) -->
     <div id="blog-layout-editorial-view" class="blog-editorial-grid">
       
-      <!-- COLUMN 1 (LEFT STICKY): Vertical Social Sharing Bar -->
-      <div class="editorial-social-sticky">
-        <button onclick="shareArticle('facebook')" class="social-share-btn fb" title="Share on Facebook">f</button>
-        <button onclick="shareArticle('twitter')" class="social-share-btn tw" title="Share on Twitter / X">𝕏</button>
-        <button onclick="shareArticle('pinterest')" class="social-share-btn pin" title="Share on Pinterest">p</button>
-        <button onclick="shareArticle('linkedin')" class="social-share-btn li" title="Share on LinkedIn">in</button>
-        <button onclick="shareArticle('email')" class="social-share-btn email" title="Share via Email">✉️</button>
-        <button onclick="shareArticle('copy')" class="social-share-btn copy" title="Copy Article Link">🔗</button>
-      </div>
-
-      <!-- COLUMN 2 (CENTER): Article Main Content + Interactive Comments -->
+      <!-- COLUMN 1 (CENTER MAIN): Article Main Content + Interactive Comments -->
       <div id="editorial-col-center" style="background:var(--bg-card);border:1px solid var(--border);border-radius:18px;padding:36px 32px;box-shadow:0 6px 24px rgba(0,0,0,0.05)">
         <!-- Rendered dynamically by JS -->
       </div>
 
-      <!-- COLUMN 3 (RIGHT SIDEBAR): Search, Categories, Recent Posts, Tags Cloud -->
+      <!-- COLUMN 2 (RIGHT SIDEBAR): Search, Jump to Section, Categories, Recent Posts, Tags Cloud -->
       <div id="editorial-col-right">
         <!-- Rendered dynamically by JS -->
       </div>
@@ -6602,8 +6572,18 @@ function renderEditorialArticleCenter(post) {
   var html = '';
 
   try {
-    // Category Tag
-    html += '<div class="editorial-cat-tag">' + esc(categoryLabel) + '</div>';
+    // Top Row Header: Category Tag (Left) + Social Share Pills (Top Right of Col 2)
+    html += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:12px">';
+    html += '<div class="editorial-cat-tag" style="margin-bottom:0">' + esc(categoryLabel) + '</div>';
+    html += '<div style="display:flex;gap:6px;align-items:center">';
+    html += '<button onclick="shareArticle(\'facebook\')" class="social-share-pill fb" title="Share on Facebook">f</button>';
+    html += '<button onclick="shareArticle(\'twitter\')" class="social-share-pill tw" title="Share on X">𝕏</button>';
+    html += '<button onclick="shareArticle(\'linkedin\')" class="social-share-pill li" title="Share on LinkedIn">in</button>';
+    html += '<button onclick="shareArticle(\'whatsapp\')" class="social-share-pill wa" title="Share on WhatsApp">💬</button>';
+    html += '<button onclick="shareArticle(\'email\')" class="social-share-pill email" title="Share via Email">✉️</button>';
+    html += '<button onclick="shareArticle(\'copy\')" class="social-share-pill copy" title="Copy Article Link">🔗</button>';
+    html += '</div>';
+    html += '</div>';
 
     // Headline H1
     html += '<h1 class="editorial-title">' + esc(post.title || 'Article') + '</h1>';
@@ -6615,12 +6595,6 @@ function renderEditorialArticleCenter(post) {
     html += '<span>ADMIN (' + esc(post.author || 'Finnova Team') + ')</span>';
     html += '<span>\u2022</span>';
     html += '<span>FINANCIAL INCLUSION</span>';
-    html += '</div>';
-
-    // Sub-headings Table of Contents / Jump Bar
-    html += '<div class="editorial-subheading-nav">';
-    html += '<div style="font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px">\ud83d\udccc Jump to Section:</div>';
-    html += '<div style="font-size:12px;color:var(--text-muted)">Loading sections...</div>';
     html += '</div>';
 
     // Lead Excerpt Box
@@ -6696,7 +6670,7 @@ function renderEditorialArticleCenter(post) {
     }
     html += '</div>';
 
-    // Leave a Reply
+    // Leave a Reply (Protected by Cloudflare Turnstile)
     html += '<div>';
     html += '<h3 style="font-size:22px;font-weight:900;color:var(--text);margin-bottom:8px">Leave a Reply</h3>';
     html += '<p style="font-size:12.5px;color:var(--text-muted);margin-bottom:20px">Your email address will not be published. Required fields are marked *</p>';
@@ -6708,6 +6682,10 @@ function renderEditorialArticleCenter(post) {
     html += '<div><label style="font-size:12px;font-weight:700;color:var(--text-secondary);display:block;margin-bottom:4px">Website</label><input id="cmt-website" class="inp" placeholder="Website (optional)" style="width:100%;box-sizing:border-box;border-radius:8px"></div>';
     html += '</div>';
     html += '<label style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-secondary);cursor:pointer"><input type="checkbox" id="cmt-save-info"><span>Save my name, email, and website in this browser for the next time I comment.</span></label>';
+    
+    // Cloudflare Turnstile Protection Box
+    html += '<div id="cmt-turnstile" style="margin:4px 0;display:flex;justify-content:flex-start"></div>';
+
     html += '<div><button type="submit" class="btn-green" style="font-size:13.5px;padding:12px 24px;border-radius:8px;font-weight:800;background:#e65100;border:none;color:#fff">Post Comment</button></div>';
     html += '</form>';
     html += '</div>';
@@ -6720,7 +6698,10 @@ function renderEditorialArticleCenter(post) {
   }
 
   container.innerHTML = html;
-  setTimeout(updateBlogTocList, 50);
+  setTimeout(function() {
+    updateBlogTocList();
+    renderTurnstile('cmt-turnstile');
+  }, 50);
 }
 
 function renderEditorialSidebar(activePost) {
@@ -6733,8 +6714,8 @@ function renderEditorialSidebar(activePost) {
   try {
     var html = '';
 
-  // 1. Search Box Widget (Matching reference screenshot)
-  html += '<div class="editorial-widget-card">';
+  // 1. Search Box Widget
+  html += '<div class="editorial-widget-card" style="margin-bottom:18px">';
   html += '<div class="editorial-widget-title">🔍 Search</div>';
   html += '<div style="display:flex;gap:6px">';
   html += '<input id="editorial-sidebar-search" class="inp" placeholder="Search ..." onkeyup="filterBlogSidebarQuery(this.value)" style="flex:1;font-size:13px;padding:8px 12px;border-radius:8px">';
@@ -6742,7 +6723,17 @@ function renderEditorialSidebar(activePost) {
   html += '</div>';
   html += '</div>';
 
-  // 2. Categories Widget (With Live Counts matching reference screenshot)
+  // 2. Jump to Section Accordion Widget (Closed by default)
+  html += '<details class="editorial-widget-card" style="margin-bottom:18px;cursor:pointer">';
+  html += '<summary style="font-size:14px;font-weight:800;color:var(--text);display:flex;justify-content:space-between;align-items:center;user-select:none;list-style:none">';
+  html += '<span>📌 Jump to Section</span><span style="font-size:11px;color:var(--text-muted)">▼</span>';
+  html += '</summary>';
+  html += '<div id="editorial-toc-sidebar" style="margin-top:12px;display:flex;flex-direction:column;gap:6px">';
+  html += '<div style="font-size:12px;color:var(--text-muted)">Loading sections...</div>';
+  html += '</div>';
+  html += '</details>';
+
+  // 3. Categories Accordion Widget (Closed by default)
   var categoryCounts = {
     'Digital Inclusion': 0,
     'Cyber Safety': 0,
@@ -6763,9 +6754,11 @@ function renderEditorialSidebar(activePost) {
     else categoryCounts['Uncategorized']++;
   });
 
-  html += '<div class="editorial-widget-card">';
-  html += '<div class="editorial-widget-title">📁 Categories</div>';
-  html += '<div style="display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--text-secondary)">';
+  html += '<details class="editorial-widget-card" style="margin-bottom:18px;cursor:pointer">';
+  html += '<summary style="font-size:14px;font-weight:800;color:var(--text);display:flex;justify-content:space-between;align-items:center;user-select:none;list-style:none">';
+  html += '<span>📁 Categories</span><span style="font-size:11px;color:var(--text-muted)">▼</span>';
+  html += '</summary>';
+  html += '<div style="margin-top:12px;display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--text-secondary)">';
   Object.keys(categoryCounts).forEach(function(catName) {
     var cnt = categoryCounts[catName];
     if (cnt > 0 || catName === 'Digital Inclusion' || catName === 'Cyber Safety') {
@@ -6776,10 +6769,10 @@ function renderEditorialSidebar(activePost) {
     }
   });
   html += '</div>';
-  html += '</div>';
+  html += '</details>';
 
-  // 3. Recent Posts Widget (Matching reference screenshot with thumbnails)
-  html += '<div class="editorial-widget-card">';
+  // 4. Recent Posts Widget
+  html += '<div class="editorial-widget-card" style="margin-bottom:18px">';
   html += '<div class="editorial-widget-title">📰 Recent Posts</div>';
   html += '<div style="display:flex;flex-direction:column;gap:12px">';
   blogPostsToRender.slice(0, 4).forEach(function(p) {
@@ -6794,7 +6787,7 @@ function renderEditorialSidebar(activePost) {
   html += '</div>';
   html += '</div>';
 
-  // 4. Tags Cloud Widget (Matching reference screenshot)
+  // 5. Tags Cloud Widget
   var tagsList = ['ADII', 'AUSTRALIA', 'CENSUS2026', 'CYBERSAFETY', 'DIGITALDIVIDE', 'FINNOVA', 'FIRSTHOME', 'NDIS', 'SENIORS', 'SMSF'];
   html += '<div class="editorial-widget-card">';
   html += '<div class="editorial-widget-title">🏷️ Tags</div>';
@@ -6844,6 +6837,7 @@ function shareArticle(platform, title, url) {
     facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(pageUrl),
     twitter: 'https://twitter.com/intent/tweet?url=' + encodeURIComponent(pageUrl) + '&text=' + encodeURIComponent(shareText),
     linkedin: 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(pageUrl),
+    whatsapp: 'https://api.whatsapp.com/send?text=' + encodeURIComponent(shareText + ' ' + pageUrl),
     pinterest: 'https://pinterest.com/pin/create/button/?url=' + encodeURIComponent(pageUrl) + '&description=' + encodeURIComponent(shareText)
   };
 
@@ -6871,11 +6865,18 @@ function submitArticleComment(event) {
     return false;
   }
 
+  var turnstileToken = getTurnstileToken('cmt-turnstile');
+  if (TURNSTILE_SITE_KEY && !turnstileToken) {
+    showToast('🔒 Security Check Required: Please complete the Cloudflare security verification before posting your comment.', 'error');
+    return false;
+  }
+
   showToast('Thank you, ' + name + '! Your comment has been submitted for moderation.', 'success');
   if (document.getElementById('cmt-name')) document.getElementById('cmt-name').value = '';
   if (document.getElementById('cmt-email')) document.getElementById('cmt-email').value = '';
   if (document.getElementById('cmt-website')) document.getElementById('cmt-website').value = '';
   if (document.getElementById('cmt-text')) document.getElementById('cmt-text').value = '';
+  if (window.turnstile) turnstile.reset('#cmt-turnstile');
   return false;
 }
 
@@ -9737,23 +9738,23 @@ function filterLocationsArchive(query) {
 
 function updateBlogTocList() {
   var tocContainer = document.getElementById('blog-toc-list');
-  var editorialTocContainer = document.querySelector('.editorial-subheading-nav');
+  var editorialTocContainer = document.getElementById('editorial-toc-sidebar') || document.querySelector('.editorial-subheading-nav');
   if (!tocContainer && !editorialTocContainer) return;
 
   var headings = document.querySelectorAll('#blog-col-center h2, #editorial-col-center h2, .article-body-content h2');
   var html = '';
-  var subheadHtml = '<div style="font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px">📌 Jump to Section:</div>';
+  var subheadHtml = '';
 
   if (headings.length > 0) {
     headings.forEach(function(h, idx) {
       if (!h.id) h.id = 'sec-heading-' + idx;
       var text = h.textContent.trim();
       html += '<div onclick="scrollToSubheading(\'' + h.id + '\')" style="cursor:pointer;padding:4px 8px;border-radius:6px;transition:all .2s;color:var(--text-secondary);font-size:12.5px;font-weight:600" class="toc-item-link">› ' + esc(text) + '</div>';
-      subheadHtml += '<div onclick="scrollToSubheading(\'' + h.id + '\')" class="editorial-subheading-link"><span>»</span><span>' + esc(text) + '</span></div>';
+      subheadHtml += '<div onclick="scrollToSubheading(\'' + h.id + '\')" class="editorial-subheading-link" style="display:flex;align-items:center;gap:6px;padding:4px 0;font-size:12.5px;font-weight:600;color:var(--primary);cursor:pointer"><span>»</span><span>' + esc(text) + '</span></div>';
     });
   } else {
     html = '<div style="font-size:12px;color:var(--text-muted)">General Article Reading</div>';
-    subheadHtml += '<div style="font-size:12px;color:var(--text-muted)">General Article Reading</div>';
+    subheadHtml = '<div style="font-size:12px;color:var(--text-muted)">General Article Reading</div>';
   }
 
   if (tocContainer) tocContainer.innerHTML = html;
