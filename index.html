@@ -6585,70 +6585,71 @@ function renderBlogArticleCenter(post) {
 function renderEditorialArticleCenter(post) {
   var container = document.getElementById('editorial-col-center');
   var breadcrumbActive = document.getElementById('blog-breadcrumb-active');
-  if (!container) return;
+  if (!container) { console.error('[Blog] editorial-col-center not found'); return; }
 
   var blogPostsToRender = (posts && posts.length > 0) ? posts : defaultSeedPosts;
   if (!post) {
     post = (blogPostsToRender && blogPostsToRender.length > 0) ? blogPostsToRender[0] : null;
   }
-  if (!post) return;
+  if (!post) { console.error('[Blog] No post to render'); return; }
 
-  try {
-    if (breadcrumbActive) breadcrumbActive.textContent = post.title || 'Blog Article';
+  if (breadcrumbActive) breadcrumbActive.textContent = post.title || 'Blog Article';
 
-    var categoryLabel = (post.category || 'INCLUSION').toUpperCase();
-    var html = '';
+  var categoryLabel = (post.category || 'INCLUSION').toUpperCase();
+  var html = '';
 
-    // Category Tag (Matching reference image e.g. UNCATEGORIZED or DIGITAL INCLUSION)
-    html += '<div class="editorial-cat-tag">' + esc(categoryLabel) + '</div>';
+  // Category Tag
+  html += '<div class="editorial-cat-tag">' + esc(categoryLabel) + '</div>';
 
-    // Headline H1 (Editorial typography)
-    html += '<h1 class="editorial-title">' + esc(post.title || '') + '</h1>';
+  // Headline H1
+  html += '<h1 class="editorial-title">' + esc(post.title || '') + '</h1>';
 
-    // Meta Sub-bar (Date · Author · Comments)
-    html += '<div style="font-size:11.5px;font-weight:800;letter-spacing:0.8px;color:var(--text-muted);text-transform:uppercase;margin-bottom:20px;display:flex;gap:12px;align-items:center;flex-wrap:wrap">';
-    html += '<span>' + esc(post.date || 'SEPTEMBER 11, 2026') + '</span>';
-    html += '<span>•</span>';
-    html += '<span>ADMIN (' + esc(post.author || 'Finnova Team') + ')</span>';
-    html += '<span>•</span>';
-    html += '<span>NO COMMENTS YET</span>';
-    html += '</div>';
+  // Meta Sub-bar
+  html += '<div style="font-size:11.5px;font-weight:800;letter-spacing:0.8px;color:var(--text-muted);text-transform:uppercase;margin-bottom:20px;display:flex;gap:12px;align-items:center;flex-wrap:wrap">';
+  html += '<span>' + esc(post.date || 'SEPTEMBER 11, 2026') + '</span>';
+  html += '<span>\u2022</span>';
+  html += '<span>ADMIN (' + esc(post.author || 'Finnova Team') + ')</span>';
+  html += '<span>\u2022</span>';
+  html += '<span>NO COMMENTS YET</span>';
+  html += '</div>';
 
-    // Sub-headings Table of Contents / Jump Bar (Populated dynamically by updateBlogTocList)
-    html += '<div class="editorial-subheading-nav">';
-    html += '<div style="font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px">📌 Jump to Section:</div>';
-    html += '<div style="font-size:12px;color:var(--text-muted)">Loading sections...</div>';
-    html += '</div>';
-
-    setTimeout(updateBlogTocList, 30);
+  // Sub-headings Table of Contents / Jump Bar
+  html += '<div class="editorial-subheading-nav">';
+  html += '<div style="font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px">\ud83d\udccc Jump to Section:</div>';
+  html += '<div style="font-size:12px;color:var(--text-muted)">Loading sections...</div>';
+  html += '</div>';
 
   // Lead Excerpt Box
-  html += '<p style="font-size:16px;color:var(--text-secondary);line-height:1.7;margin-bottom:24px;border-left:4px solid #e65100;padding-left:16px;font-style:italic">' + esc(post.excerpt) + '</p>';
+  html += '<p style="font-size:16px;color:var(--text-secondary);line-height:1.7;margin-bottom:24px;border-left:4px solid #e65100;padding-left:16px;font-style:italic">' + esc(post.excerpt || '') + '</p>';
 
   // Featured Image
   html += '<div style="margin-bottom:28px">';
-  html += '<img src="' + esc(safeImageUrl(post.image)) + '" alt="' + esc(post.title) + '" style="width:100%;height:360px;object-fit:cover;border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,0.06);border:1px solid var(--border)" loading="lazy" decoding="async">';
+  html += '<img src="' + esc(safeImageUrl(post.image)) + '" alt="' + esc(post.title || '') + '" style="width:100%;height:360px;object-fit:cover;border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,0.06);border:1px solid var(--border)" loading="lazy" decoding="async">';
   html += '</div>';
 
-  // Body Content with Dynamic Section Rendering
+  // Body Content
   html += '<div style="font-size:15px;color:var(--text);line-height:1.8" class="article-body-content">';
-
   if (Array.isArray(post.body)) {
-    post.body.forEach(function(para, idx) {
-      if (typeof para === 'string' && (para.trim().startsWith('<') || post.isHtml)) {
+    post.body.forEach(function(para) {
+      if (typeof para === 'string' && (para.trim().charAt(0) === '<' || post.isHtml)) {
         html += para;
       } else {
         html += '<p style="margin-bottom:18px">' + esc(para) + '</p>';
       }
     });
   } else if (typeof post.body === 'string') {
-    html += post.body;
+    if (post.body.trim().charAt(0) === '<' || post.isHtml) {
+      html += post.body;
+    } else {
+      html += '<p style="margin-bottom:18px">' + esc(post.body) + '</p>';
+    }
   }
+  html += '</div>';
 
   // Key Takeaways Section
   html += '<h2 id="editorial-sec-4" style="font-size:22px;font-weight:900;color:var(--text);margin:32px 0 12px;letter-spacing:-0.3px">4. Key Takeaways &amp; Recommendations</h2>';
   html += '<div style="background:var(--primary-light);border-left:4px solid var(--primary);border-radius:12px;padding:20px;margin-bottom:32px">';
-  html += '<h3 style="font-size:15.5px;font-weight:800;color:var(--primary);margin-bottom:8px">💡 Practical Steps for Citizens</h3>';
+  html += '<h3 style="font-size:15.5px;font-weight:800;color:var(--primary);margin-bottom:8px">\ud83d\udca1 Practical Steps for Citizens</h3>';
   html += '<ul style="margin-left:20px;font-size:13.5px;color:var(--text);line-height:1.7">';
   html += '<li>Book a free 1-on-1 support session with a bilingual Finnova digital mentor.</li>';
   html += '<li>Request a pre-refurbished device with myGov and security tools installed.</li>';
@@ -6656,77 +6657,52 @@ function renderEditorialArticleCenter(post) {
   html += '</ul>';
   html += '</div>';
 
-  // Author Bio Card (Matching reference screenshot)
+  // Author Bio Card
   html += '<div style="background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:22px;margin:36px 0;display:flex;gap:18px;align-items:center">';
-  html += '<div style="width:60px;height:60px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:26px">👤</div>';
+  html += '<div style="width:60px;height:60px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:26px">\ud83d\udc64</div>';
   html += '<div>';
   html += '<div style="font-size:16px;font-weight:800;color:var(--text)">' + esc(post.author || 'admin') + '</div>';
-  html += '<div style="font-size:12.5px;color:var(--text-secondary);line-height:1.5;margin-top:4px">Finnova Ltd Editorial Team · Accredited Charity Mentors providing plain-language digital guidance, device refurbishments, and civic support across Australia.</div>';
+  html += '<div style="font-size:12.5px;color:var(--text-secondary);line-height:1.5;margin-top:4px">Finnova Ltd Editorial Team \u00b7 Accredited Charity Mentors providing plain-language digital guidance, device refurbishments, and civic support across Australia.</div>';
   html += '</div>';
   html += '</div>';
 
   // Previous / Next Post Navigation
-  var blogPostsToRender = (posts && posts.length > 0) ? posts : defaultSeedPosts;
   var currIdx = blogPostsToRender.findIndex(function(p) { return p && p.id === post.id; });
-  var prevPost = (currIdx > 0 && blogPostsToRender[currIdx - 1]) ? blogPostsToRender[currIdx - 1] : null;
-  var nextPost = (currIdx >= 0 && currIdx < blogPostsToRender.length - 1 && blogPostsToRender[currIdx + 1]) ? blogPostsToRender[currIdx + 1] : null;
+  var prevPost = (currIdx > 0) ? blogPostsToRender[currIdx - 1] : null;
+  var nextPost = (currIdx >= 0 && currIdx < blogPostsToRender.length - 1) ? blogPostsToRender[currIdx + 1] : null;
 
   html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:36px;font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted)">';
   if (prevPost) {
-    html += '<button onclick="viewPost(\'' + prevPost.id + '\')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-weight:800">‹ PREVIOUS</button>';
+    html += '<button onclick="viewPost(\'' + prevPost.id + '\')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-weight:800">\u2039 PREVIOUS</button>';
   } else {
     html += '<span></span>';
   }
   if (nextPost) {
-    html += '<button onclick="viewPost(\'' + nextPost.id + '\')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-weight:800">NEXT ›</button>';
+    html += '<button onclick="viewPost(\'' + nextPost.id + '\')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-weight:800">NEXT \u203a</button>';
   } else {
     html += '<span></span>';
   }
   html += '</div>';
 
-  // Interactive Comments Section ("Leave a Reply" matching reference screenshot)
+  // Leave a Reply
   html += '<div>';
   html += '<h3 style="font-size:22px;font-weight:900;color:var(--text);margin-bottom:8px">Leave a Reply</h3>';
   html += '<p style="font-size:12.5px;color:var(--text-muted);margin-bottom:20px">Your email address will not be published. Required fields are marked *</p>';
-  
   html += '<form onsubmit="return submitArticleComment(event)" style="display:flex;flex-direction:column;gap:16px">';
-  html += '<div>';
-  html += '<label style="font-size:12px;font-weight:700;color:var(--text-secondary);display:block;margin-bottom:4px">Comment *</label>';
-  html += '<textarea id="cmt-text" required rows="5" class="inp" placeholder="Write your comment or question..." style="width:100%;box-sizing:border-box;border-radius:10px"></textarea>';
-  html += '</div>';
-
+  html += '<div><label style="font-size:12px;font-weight:700;color:var(--text-secondary);display:block;margin-bottom:4px">Comment *</label>';
+  html += '<textarea id="cmt-text" required rows="5" class="inp" placeholder="Write your comment or question..." style="width:100%;box-sizing:border-box;border-radius:10px"></textarea></div>';
   html += '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px">';
-  html += '<div>';
-  html += '<label style="font-size:12px;font-weight:700;color:var(--text-secondary);display:block;margin-bottom:4px">Name *</label>';
-  html += '<input id="cmt-name" required class="inp" placeholder="Your Name" style="width:100%;box-sizing:border-box;border-radius:8px">';
+  html += '<div><label style="font-size:12px;font-weight:700;color:var(--text-secondary);display:block;margin-bottom:4px">Name *</label><input id="cmt-name" required class="inp" placeholder="Your Name" style="width:100%;box-sizing:border-box;border-radius:8px"></div>';
+  html += '<div><label style="font-size:12px;font-weight:700;color:var(--text-secondary);display:block;margin-bottom:4px">Email *</label><input id="cmt-email" required type="email" class="inp" placeholder="Your Email" style="width:100%;box-sizing:border-box;border-radius:8px"></div>';
+  html += '<div><label style="font-size:12px;font-weight:700;color:var(--text-secondary);display:block;margin-bottom:4px">Website</label><input id="cmt-website" class="inp" placeholder="Website (optional)" style="width:100%;box-sizing:border-box;border-radius:8px"></div>';
   html += '</div>';
-  html += '<div>';
-  html += '<label style="font-size:12px;font-weight:700;color:var(--text-secondary);display:block;margin-bottom:4px">Email *</label>';
-  html += '<input id="cmt-email" required type="email" class="inp" placeholder="Your Email" style="width:100%;box-sizing:border-box;border-radius:8px">';
-  html += '</div>';
-  html += '<div>';
-  html += '<label style="font-size:12px;font-weight:700;color:var(--text-secondary);display:block;margin-bottom:4px">Website</label>';
-  html += '<input id="cmt-website" class="inp" placeholder="Website (optional)" style="width:100%;box-sizing:border-box;border-radius:8px">';
-  html += '</div>';
-  html += '</div>';
-
-  html += '<label style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-secondary);cursor:pointer">';
-  html += '<input type="checkbox" id="cmt-save-info">';
-  html += '<span>Save my name, email, and website in this browser for the next time I comment.</span>';
-  html += '</label>';
-
-  html += '<div>';
-  html += '<button type="submit" class="btn-green" style="font-size:13.5px;padding:12px 24px;border-radius:8px;font-weight:800;background:#e65100;border:none;color:#fff">Post Comment</button>';
-  html += '</div>';
+  html += '<label style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-secondary);cursor:pointer"><input type="checkbox" id="cmt-save-info"><span>Save my name, email, and website in this browser for the next time I comment.</span></label>';
+  html += '<div><button type="submit" class="btn-green" style="font-size:13.5px;padding:12px 24px;border-radius:8px;font-weight:800;background:#e65100;border:none;color:#fff">Post Comment</button></div>';
   html += '</form>';
-
-  html += '</div>';
   html += '</div>';
 
-    container.innerHTML = html;
-  } catch (err) {
-    console.error('[Blog Error] Render failure:', err);
-  }
+  container.innerHTML = html;
+  setTimeout(updateBlogTocList, 50);
 }
 
 function renderEditorialSidebar(activePost) {
