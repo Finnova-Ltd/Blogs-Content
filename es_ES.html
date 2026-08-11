@@ -46,7 +46,39 @@ var LOCALE_TO_GT = {
   'es_ES': 'es'
 };
 
-function switchLanguageLocale(locale) {
+function setGoogtransCookies(gtLang) {
+  var host = window.location.hostname;
+  var domainParts = host.split('.');
+  var rootDomain = domainParts.length > 1 ? domainParts.slice(-2).join('.') : host;
+
+  document.cookie = 'googtrans=/en/' + gtLang + '; path=/;';
+  document.cookie = 'googtrans=/en/' + gtLang + '; path=/; domain=' + host + ';';
+  document.cookie = 'googtrans=/en/' + gtLang + '; path=/; domain=.' + rootDomain + ';';
+}
+
+function triggerGoogleCombo(gtLang) {
+  var selectEl = document.querySelector('.goog-te-combo');
+  if (!selectEl) return false;
+
+  selectEl.value = gtLang;
+
+  if (typeof selectEl.onchange === 'function') {
+    try { selectEl.onchange(); } catch(e) {}
+  }
+  try {
+    selectEl.dispatchEvent(new Event('change', { bubbles: true }));
+  } catch(e) {}
+  if (document.createEvent) {
+    try {
+      var evt = document.createEvent('HTMLEvents');
+      evt.initEvent('change', true, true);
+      selectEl.dispatchEvent(evt);
+    } catch(e) {}
+  }
+  return true;
+}
+
+function switchLanguageLocale(locale, isUserAction) {
   if (!LOCALE_TO_GT[locale]) locale = 'en_AU';
   var gtLang = LOCALE_TO_GT[locale];
 
@@ -57,51 +89,54 @@ function switchLanguageLocale(locale) {
     } catch(e) {}
   }
 
-  loadDeferredSDKs();
-
-  document.cookie = 'googtrans=/en/' + gtLang + '; path=/; domain=' + window.location.hostname;
-  document.cookie = 'googtrans=/en/' + gtLang + '; path=/;';
-
-  function applyTranslation() {
-    var selectEl = document.querySelector('.goog-te-combo');
-    if (selectEl) {
-      selectEl.value = gtLang;
-      selectEl.dispatchEvent(new Event('change'));
-      return true;
-    }
-    return false;
-  }
-
-  if (!applyTranslation()) {
-    var attempts = 0;
-    var timer = setInterval(function() {
-      attempts++;
-      if (applyTranslation() || attempts > 30) {
-        clearInterval(timer);
-      }
-    }, 100);
-  }
+  setGoogtransCookies(gtLang);
 
   var selector = document.getElementById('finnova-lang-selector');
   if (selector) selector.value = locale;
+
+  loadDeferredSDKs();
+
+  var triggered = triggerGoogleCombo(gtLang);
+  if (!triggered) {
+    var attempts = 0;
+    var timer = setInterval(function() {
+      attempts++;
+      if (triggerGoogleCombo(gtLang) || attempts > 25) {
+        clearInterval(timer);
+        if (isUserAction && attempts > 25) {
+          window.location.reload();
+        }
+      }
+    }, 100);
+  } else if (isUserAction) {
+    setTimeout(function() {
+      var fontTags = document.querySelector('font');
+      if (!fontTags && gtLang !== 'en') {
+        window.location.reload();
+      }
+    }, 400);
+  }
 }
 
 function detectLanguageLocaleOnLoad() {
   var path = window.location.pathname;
   var match = path.match(/\/(en_AU|hi_IN|pa_IN|zh_CN|ar_SA|vi_VN|es_ES)\.html/);
-  if (match && match[1]) {
-    switchLanguageLocale(match[1]);
-  } else {
-    var selector = document.getElementById('finnova-lang-selector');
-    if (selector) selector.value = 'en_AU';
-    if (window.history && window.history.replaceState) {
-      try {
-        window.history.replaceState(null, '', '/en_AU.html' + window.location.hash);
-      } catch(e) {}
-    }
+  var locale = (match && match[1]) ? match[1] : 'en_AU';
+  var gtLang = LOCALE_TO_GT[locale] || 'en';
+
+  setGoogtransCookies(gtLang);
+
+  var selector = document.getElementById('finnova-lang-selector');
+  if (selector) selector.value = locale;
+
+  if (!match && window.history && window.history.replaceState) {
+    try {
+      window.history.replaceState(null, '', '/en_AU.html' + window.location.hash);
+    } catch(e) {}
   }
 }
 
+detectLanguageLocaleOnLoad();
 window.addEventListener('DOMContentLoaded', detectLanguageLocaleOnLoad);
 
 function googleTranslateElementInit() {
@@ -112,7 +147,7 @@ function googleTranslateElementInit() {
     autoDisplay: false
   }, 'google_translate_element');
   
-  setTimeout(detectLanguageLocaleOnLoad, 200);
+  setTimeout(detectLanguageLocaleOnLoad, 100);
 }
 
 function loadDeferredSDKs() {
@@ -1146,7 +1181,7 @@ body.dark-mode .cta-booking-card{background:linear-gradient(135deg,#1a3a2a 0%,#1
 
       <!-- Right Controls (Language Selector + Search Circle + Donate & Contact Pills) -->
       <div class="header-actions" style="display:flex;align-items:center;gap:10px;flex-shrink:0">
-        <select id="finnova-lang-selector" onchange="switchLanguageLocale(this.value)" aria-label="Select Language" style="padding:7px 12px;border-radius:20px;border:1.5px solid #cbd5e1;background:#ffffff;color:#334155;font-weight:700;font-size:12.5px;cursor:pointer;outline:none;box-shadow:0 2px 6px rgba(0,0,0,0.04)">
+        <select id="finnova-lang-selector" onchange="switchLanguageLocale(this.value, true)" aria-label="Select Language" style="padding:7px 12px;border-radius:20px;border:1.5px solid #cbd5e1;background:#ffffff;color:#334155;font-weight:700;font-size:12.5px;cursor:pointer;outline:none;box-shadow:0 2px 6px rgba(0,0,0,0.04)">
           <option value="en_AU">🇦🇺 English (en_AU)</option>
           <option value="hi_IN">🇮🇳 Hindi (hi_IN)</option>
           <option value="pa_IN">🇮🇳 Punjabi (pa_IN)</option>
