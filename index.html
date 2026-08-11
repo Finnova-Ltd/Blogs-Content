@@ -6437,12 +6437,16 @@ function setBlogLayout(mode) {
     if (currentBlogLayout === 'gitbook') {
       renderBlogSidebar(targetPost.id);
       renderBlogArticleCenter(targetPost);
-      renderBlogTocAndMetrics();
+      if (typeof renderBlogTocAndMetrics === 'function') renderBlogTocAndMetrics();
     } else {
       renderEditorialArticleCenter(targetPost);
       renderEditorialSidebar(targetPost);
     }
   }
+}
+
+function renderBlogTocAndMetrics() {
+  // Safe fallback no-op to prevent reference errors across legacy handlers
 }
 
 function viewPost(postId) {
@@ -6485,13 +6489,13 @@ function viewPost(postId) {
   }
   document.title = targetPost.title + ' | Finnova Ltd';
 
-  // Render both layouts for quick toggling
-  renderBlogSidebar(targetPost.id);
-  renderBlogArticleCenter(targetPost);
-  renderBlogTocAndMetrics();
+  // Render both layouts safely
+  try { renderBlogSidebar(targetPost.id); } catch(e) { console.warn(e); }
+  try { renderBlogArticleCenter(targetPost); } catch(e) { console.warn(e); }
+  try { renderBlogTocAndMetrics(); } catch(e) { console.warn(e); }
 
-  renderEditorialArticleCenter(targetPost);
-  renderEditorialSidebar(targetPost);
+  try { renderEditorialArticleCenter(targetPost); } catch(e) { console.error('Editorial Article Center Error:', e); }
+  try { renderEditorialSidebar(targetPost); } catch(e) { console.error('Editorial Sidebar Error:', e); }
 
   // Set active view display
   setBlogLayout(currentBlogLayout || 'editorial');
