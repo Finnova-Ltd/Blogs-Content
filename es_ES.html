@@ -28,7 +28,7 @@
 <link rel="apple-touch-icon" href="images/finnova-logo-stars.png">
 
 <!-- Cookie Policy & Consent Styles -->
-<link rel="stylesheet" href="cookie-consent.css">
+<link rel="stylesheet" href="cookie-consent.css?v=20260811_v4">
 
 <!-- Resource Preloads for LCP Optimization -->
 <link rel="preload" as="image" href="images/finnova-logo-stars.png">
@@ -82,6 +82,8 @@ function switchLanguageLocale(locale, isUserAction) {
   if (!LOCALE_TO_GT[locale]) locale = 'en_AU';
   var gtLang = LOCALE_TO_GT[locale];
 
+  try { localStorage.setItem('finnova_user_locale', locale); } catch(e) {}
+
   var targetPath = '/' + locale + '.html';
   if (window.location.pathname !== targetPath && window.history && window.history.pushState) {
     try {
@@ -103,25 +105,18 @@ function switchLanguageLocale(locale, isUserAction) {
       attempts++;
       if (triggerGoogleCombo(gtLang) || attempts > 25) {
         clearInterval(timer);
-        if (isUserAction && attempts > 25) {
-          window.location.reload();
-        }
       }
     }, 100);
-  } else if (isUserAction) {
-    setTimeout(function() {
-      var fontTags = document.querySelector('font');
-      if (!fontTags && gtLang !== 'en') {
-        window.location.reload();
-      }
-    }, 400);
   }
 }
 
 function detectLanguageLocaleOnLoad() {
   var path = window.location.pathname;
   var match = path.match(/\/(en_AU|hi_IN|pa_IN|zh_CN|ar_SA|vi_VN|es_ES)\.html/);
-  var locale = (match && match[1]) ? match[1] : 'en_AU';
+  var savedLocale = null;
+  try { savedLocale = localStorage.getItem('finnova_user_locale'); } catch(e) {}
+
+  var locale = (match && match[1]) ? match[1] : (savedLocale && LOCALE_TO_GT[savedLocale] ? savedLocale : 'en_AU');
   var gtLang = LOCALE_TO_GT[locale] || 'en';
 
   setGoogtransCookies(gtLang);
@@ -129,9 +124,10 @@ function detectLanguageLocaleOnLoad() {
   var selector = document.getElementById('finnova-lang-selector');
   if (selector) selector.value = locale;
 
-  if (!match && window.history && window.history.replaceState) {
+  var targetPath = '/' + locale + '.html';
+  if (window.location.pathname !== targetPath && window.history && window.history.replaceState) {
     try {
-      window.history.replaceState(null, '', '/en_AU.html' + window.location.hash);
+      window.history.replaceState(null, '', targetPath + window.location.hash);
     } catch(e) {}
   }
 }
@@ -1165,7 +1161,7 @@ body.dark-mode .cta-booking-card{background:linear-gradient(135deg,#1a3a2a 0%,#1
 
         <!-- SERVICES & ABOUT DROPDOWN -->
         <div style="position:relative" id="svc-menu-wrap">
-          <button onclick="toggleSvcMenu(event)" id="nav-svc" class="navbtn" style="padding:8px 16px;background:none;border:none;color:#334155;font-weight:600;cursor:pointer;font-size:14px;display:flex;align-items:center;gap:4px;transition:all .2s">Services &amp; About ▼</button>
+          <button onclick="toggleSvcMenu(event)" id="nav-svc" class="navbtn" style="padding:8px 16px;background:none;border:none;color:#334155;font-weight:600;cursor:pointer;font-size:14px;display:flex;align-items:center;gap:4px;transition:all .2s">Services ▼</button>
           <div id="svc-menu-dropdown" class="hidden" style="position:absolute;top:100%;left:0;background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.12);padding:8px;z-index:200;min-width:260px">
             <a href="#impact" onclick="navigate('impact'); closeSvcMenu(); event.preventDefault();" style="display:flex;align-items:center;gap:8px;width:100%;padding:10px 14px;border-radius:8px;color:#334155;font-weight:600;font-size:13px;text-decoration:none">📊 Inaugural Impact &amp; Transparency</a>
             <a href="#services" onclick="navigate('services'); closeSvcMenu(); event.preventDefault();" style="display:flex;align-items:center;gap:8px;width:100%;padding:10px 14px;border-radius:8px;color:#334155;font-weight:600;font-size:13px;text-decoration:none">🛒 Non-Profit Community Services</a>
