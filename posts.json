@@ -1,213 +1,302 @@
 [
   {
-    "id": "first-home-buyer-grants-2026",
-    "title": "FIRST HOME BUYER GUIDE: GRANTS & TIPS FOR 2026",
-    "date": "27 October 2026",
-    "author": "Finnova Financial Inclusion Team",
-    "category": "Grants",
-    "tags": [
-      "Grants & Tips",
-      "Property",
-      "2026",
-      "First Home Buyer"
-    ],
-    "excerpt": "Buying your first home is an exciting milestone. Learn about the First Home Owner Grant (FHOG), stamp duty concessions, 5% deposit schemes, and securing competitive loan rates in 2026.",
-    "image": "images/blog-digital-divide.webp",
-    "isHtml": true,
-    "body": [
-      "<div style=\"background:var(--primary-light);border-left:4px solid var(--primary);border-radius:12px;padding:20px;margin-bottom:28px\"><h3 style=\"color:var(--primary);margin-bottom:8px;font-size:16px;font-weight:800\">\ud83d\udca1 Executive Summary &amp; Key Takeaways</h3><p style=\"font-size:14px;color:var(--text);line-height:1.65;margin:0\">In 2026, eligible Australian first home buyers can access direct capital grants up to $30,000, full stamp duty waivers, and the Federal Home Guarantee Scheme allowing purchases with only a 5% deposit without paying Lender's Mortgage Insurance (LMI).</p></div>",
-      "<h2 id=\"editorial-sec-1\" style=\"font-size:22px;font-weight:900;color:var(--text);margin:32px 0 14px\">1. 2026 State-by-State Grant &amp; Duty Concession Breakdown</h2>",
-      "<p style=\"font-size:15px;line-height:1.75;margin-bottom:20px\">Government assistance programs vary significantly depending on which state or territory you reside in. Below is a comprehensive comparison of active incentives for 2026:</p>",
-      "<div style=\"overflow-x:auto;margin:24px 0\"><table style=\"width:100%;border-collapse:collapse;font-size:13.5px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;overflow:hidden\"><thead><tr style=\"background:var(--primary-light);color:var(--primary);text-align:left\"><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">State / Territory</th><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">First Home Owner Grant (FHOG)</th><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">Full Stamp Duty Exemption Threshold</th><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">Concession Threshold</th></tr></thead><tbody><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:12px 14px;font-weight:700\">Victoria (VIC)</td><td style=\"padding:12px 14px\">$10,000 (New builds under $750k)</td><td style=\"padding:12px 14px;color:#10b981;font-weight:700\">Up to $600,000</td><td style=\"padding:12px 14px\">$600,001 \u2013 $750,000</td></tr><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:12px 14px;font-weight:700\">New South Wales (NSW)</td><td style=\"padding:12px 14px\">$10,000 (New builds under $750k)</td><td style=\"padding:12px 14px;color:#10b981;font-weight:700\">Up to $800,000</td><td style=\"padding:12px 14px\">$800,001 \u2013 $1,000,000</td></tr><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:12px 14px;font-weight:700\">Queensland (QLD)</td><td style=\"padding:12px 14px;color:#10b981;font-weight:800\">$30,000 (New builds under $750k)</td><td style=\"padding:12px 14px;color:#10b981;font-weight:700\">Up to $700,000</td><td style=\"padding:12px 14px\">$700,001 \u2013 $800,000</td></tr><tr><td style=\"padding:12px 14px;font-weight:700\">Western Australia (WA)</td><td style=\"padding:12px 14px\">$10,000 (New builds under $750k)</td><td style=\"padding:12px 14px;color:#10b981;font-weight:700\">Up to $450,000</td><td style=\"padding:12px 14px\">$450,001 \u2013 $600,000</td></tr></tbody></table></div>",
-      "<h2 id=\"editorial-sec-2\" style=\"font-size:22px;font-weight:900;color:var(--text);margin:32px 0 14px\">2. The Federal Home Guarantee Scheme (5% Deposit, No LMI)</h2>",
-      "<p style=\"font-size:15px;line-height:1.75;margin-bottom:18px\">Under traditional lending criteria, purchasing a home with less than a 20% deposit requires paying Lender's Mortgage Insurance (LMI) \u2014 an upfront cost ranging from $15,000 to $35,000. However, through Housing Australia's <b>First Home Guarantee (FHBG)</b>, eligible buyers can secure a home loan with as little as a <b>5% deposit</b> while the Federal Government guarantees up to 15% of the loan value.</p>",
-      "<div style=\"background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:20px;margin:24px 0\"><h4 style=\"font-size:15px;font-weight:800;color:var(--text);margin-bottom:10px\">\ud83d\udccc Key Eligibility Requirements for the 5% Deposit Scheme:</h4><ul style=\"margin-left:20px;font-size:14px;color:var(--text-secondary);line-height:1.75\"><li>Must be an Australian citizen or Permanent Resident aged 18+.</li><li>Income cap: Single applicants up to $125,000 per annum; Joint applicants up to $200,000 per annum.</li><li>Property price caps: Greater Melbourne ($800,000), Regional Victoria ($650,000), Sydney ($900,000), Brisbane ($700,000).</li><li>Must be an owner-occupier residential property (not an investment).</li></ul></div>",
-      "<h2 id=\"editorial-sec-3\" style=\"font-size:22px;font-weight:900;color:var(--text);margin:32px 0 14px\">3. Step-by-Step Purchasing Roadmap for 2026</h2>",
-      "<div style=\"display:flex;flex-direction:column;gap:14px;margin:24px 0\"><div style=\"padding:16px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;display:flex;gap:16px;align-items:flex-start\"><span style=\"background:var(--primary);color:#fff;font-weight:900;font-size:16px;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0\">1</span><div><h4 style=\"font-size:15px;font-weight:800;color:var(--text);margin-bottom:4px\">Credit Audit &amp; Savings Benchmark</h4><p style=\"font-size:13.5px;color:var(--text-secondary);line-height:1.6;margin:0\">Ensure 3\u20136 months of clean bank statements, eliminate credit card limits, and demonstrate genuine savings equal to at least 5% of your target purchase price.</p></div></div><div style=\"padding:16px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;display:flex;gap:16px;align-items:flex-start\"><span style=\"background:var(--primary);color:#fff;font-weight:900;font-size:16px;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0\">2</span><div><h4 style=\"font-size:15px;font-weight:800;color:var(--text);margin-bottom:4px\">Pre-Approval with Accredited Lender</h4><p style=\"font-size:13.5px;color:var(--text-secondary);line-height:1.6;margin:0\">Work with an accredited broker or financial counselor to submit formal pre-approval applications and lock in home guarantee allocation spots.</p></div></div><div style=\"padding:16px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;display:flex;gap:16px;align-items:flex-start\"><span style=\"background:var(--primary);color:#fff;font-weight:900;font-size:16px;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0\">3</span><div><h4 style=\"font-size:15px;font-weight:800;color:var(--text);margin-bottom:4px\">Conveyancing &amp; Settlement Assistance</h4><p style=\"font-size:13.5px;color:var(--text-secondary);line-height:1.6;margin:0\">Engage a licensed conveyancer or solicitor to review Section 32 vendor statements, verify title details, and process government grant applications prior to settlement.</p></div></div></div>",
-      "<h2 id=\"editorial-sec-4\" style=\"font-size:22px;font-weight:900;color:var(--text);margin:32px 0 14px\">4. Frequently Asked Questions (FAQ)</h2>",
-      "<details style=\"padding:16px;border:1px solid var(--border);border-radius:12px;margin-bottom:12px;background:var(--bg)\"><summary style=\"font-size:15px;font-weight:800;cursor:pointer;color:var(--text)\">\u2753 Can I claim the FHOG on an existing established house?</summary><p style=\"font-size:14px;color:var(--text-secondary);line-height:1.65;margin-top:10px\">In most states including Victoria and NSW, the First Home Owner Grant ($10,000) applies exclusively to newly constructed homes, off-the-plan apartments, or substantially renovated properties. However, established homes are still eligible for full or partial stamp duty exemptions.</p></details>",
-      "<details style=\"padding:16px;border:1px solid var(--border);border-radius:12px;margin-bottom:24px;background:var(--bg)\"><summary style=\"font-size:15px;font-weight:800;cursor:pointer;color:var(--text)\">\u2753 How does Finnova Ltd assist first home buyers?</summary><p style=\"font-size:14px;color:var(--text-secondary);line-height:1.65;margin-top:10px\">Finnova Ltd provides 100% free, impartial financial literacy education, workshops in community languages, and connections to accredited ethical mortgage brokers and legal aid services for vulnerable and first-time buyers.</p></details>",
-      "<div style=\"display:flex;gap:12px;flex-wrap:wrap;margin-top:32px;padding-top:20px;border-top:1px solid var(--border)\"><button onclick=\"openBookingModal('melbourne')\" class=\"btn-green\" style=\"padding:12px 20px;font-size:14px;font-weight:800\">\ud83d\udcc5 Book Free 1-on-1 Financial Guidance</button><a href=\"#calculator-anchor\" onclick=\"navigate('pay-calculator')\" class=\"btn-blue\" style=\"padding:12px 20px;font-size:14px;font-weight:800;text-decoration:none\">\ud83d\udcca Calculate Borrowing Capacity</a></div>"
-    ]
-  },
-  {
-    "id": "smsf-property-investment",
-    "title": "SMSF PROPERTY INVESTMENT: GROW YOUR SUPER",
-    "date": "15 November 2026",
-    "author": "Finnova Wealth Team",
-    "category": "Grants",
-    "tags": [
-      "Property",
-      "Superannuation",
-      "Investment",
-      "SMSF"
-    ],
-    "excerpt": "Take control of your retirement savings by investing in commercial or residential real estate through your self-managed super fund with Limited Recourse Borrowing Arrangements.",
+    "id": "volunteer-priya-journey",
+    "title": "From Nervous Beginner to Confident Helper: Priya's Volunteer Story",
+    "date": "12 August 2026",
+    "author": "ADMIN (Finnova Team)",
+    "category": "Volunteer Spotlight",
     "image": "images/blog-volunteer.webp",
-    "isHtml": true,
+    "summary": "Priya joined Finnova Ltd as a volunteer in Tarneit and has now mentored over 80 seniors and migrants to navigate digital technology independently.",
     "body": [
-      "<div style=\"background:var(--primary-light);border-left:4px solid var(--primary);border-radius:12px;padding:20px;margin-bottom:28px\"><h3 style=\"color:var(--primary);margin-bottom:8px;font-size:16px;font-weight:800\">\ud83d\udca1 Executive Summary</h3><p style=\"font-size:14px;color:var(--text);line-height:1.65;margin:0\">Investing in real estate through a Self-Managed Super Fund (SMSF) offers unique tax concessions, including a maximum 15% tax rate on rental income and 0% Capital Gains Tax in the pension phase.</p></div>",
-      "<h2 id=\"editorial-sec-1\" style=\"font-size:22px;font-weight:900;color:var(--text);margin:32px 0 14px\">1. SMSF Property vs Personal Investment Comparison</h2>",
-      "<div style=\"overflow-x:auto;margin:24px 0\"><table style=\"width:100%;border-collapse:collapse;font-size:13.5px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;overflow:hidden\"><thead><tr style=\"background:var(--primary-light);color:var(--primary);text-align:left\"><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">Feature</th><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">SMSF Real Estate Investment</th><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">Personal Property Investment</th></tr></thead><tbody><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:12px 14px;font-weight:700\">Rental Income Tax Rate</td><td style=\"padding:12px 14px;color:#10b981;font-weight:700\">Max 15% (0% in Pension Phase)</td><td style=\"padding:12px 14px\">Marginal Tax Rate (Up to 47%)</td></tr><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:12px 14px;font-weight:700\">Capital Gains Tax (CGT)</td><td style=\"padding:12px 14px;color:#10b981;font-weight:700\">10% (If held >12 months; 0% in Pension)</td><td style=\"padding:12px 14px\">Up to 23.5% (with 50% discount)</td></tr><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:12px 14px;font-weight:700\">Borrowing Mechanism</td><td style=\"padding:12px 14px\">Limited Recourse Borrowing (LRBA)</td><td style=\"padding:12px 14px\">Standard Full Recourse Mortgage</td></tr><tr><td style=\"padding:12px 14px;font-weight:700\">Asset Protection</td><td style=\"padding:12px 14px;color:#10b981;font-weight:700\">Protected from personal bankruptcy</td><td style=\"padding:12px 14px\">Exposed to personal creditor claims</td></tr></tbody></table></div>",
-      "<h2 id=\"editorial-sec-2\" style=\"font-size:22px;font-weight:900;color:var(--text);margin:32px 0 14px\">2. ATO Compliance Rules for SMSF Property</h2>",
-      "<p style=\"font-size:15px;line-height:1.75;margin-bottom:18px\">The Australian Taxation Office (ATO) enforces strict governance around SMSF property transactions:</p>",
-      "<ul style=\"margin-left:20px;font-size:14px;color:var(--text-secondary);line-height:1.75;margin-bottom:24px\"><li><b>Sole Purpose Test:</b> The property must be acquired for the sole purpose of providing retirement benefits for fund members.</li><li><b>No Related Party Residential Leases:</b> Neither SMSF trustees nor their family members may reside in or rent a residential property owned by the SMSF.</li><li><b>Commercial Property Exception:</b> Business owners can lease commercial premises owned by their SMSF provided rent is paid at market rate.</li></ul>",
-      "<div style=\"display:flex;gap:12px;flex-wrap:wrap;margin-top:32px;padding-top:20px;border-top:1px solid var(--border)\"><button onclick=\"openBookingModal('melbourne')\" class=\"btn-green\" style=\"padding:12px 20px;font-size:14px;font-weight:800\">\ud83d\udcc5 Book SMSF Strategy Consult</button></div>"
+      "<p>When Priya first stepped into the Finnova Community Hub in Tarneit, she was unsure how much impact a few hours a week could make. As a newly arrived resident herself, she understood how daunting it feels to navigate complex government portals, online banking, and digital health services in a new country. Joining Finnova's volunteer program gave her a platform to turn her tech confidence into a vital lifeline for others.</p>",
+      "<p>Over the past eight months, Priya has delivered more than 120 hours of 1-on-1 digital mentoring. She has assisted over 80 elderly citizens and multicultural migrants to set up myGov accounts, link Medicare services, install two-factor security authentication, and safely video-call relatives overseas. Her patient, step-by-step approach ensures participants never feel rushed or overwhelmed.</p>",
+      "<p>\"Seeing the transformation in someone's eyes when they successfully link their Medicare card or spot a fake SMS scam for the first time is incredibly rewarding,\" Priya shares. \"Digital literacy isn't just about knowing how to tap a screen \u2014 it is about dignity, independence, and ensuring no one gets left behind in today's digital world.\"</p>",
+      "<p>Finnova Ltd provides all volunteers with accredited digital inclusion training, privacy protocol orientation, and cultural safety awareness. If you have basic tech skills and a passion for helping your local community, join our volunteer mentor network today.</p>"
     ]
   },
   {
-    "id": "asset-finance-business-growth",
-    "title": "ASSET FINANCE: UNLOCK BUSINESS GROWTH",
-    "date": "04 December 2026",
-    "author": "Finnova Commercial Team",
-    "category": "Inclusion",
-    "tags": [
-      "Asset Finance",
-      "Business Growth",
-      "Commercial"
-    ],
-    "excerpt": "Preserve working capital while acquiring vehicles, machinery, and equipment with tailored chattel mortgage and lease options.",
+    "id": "census-2026-cald-wyndham",
+    "title": "Bridging the Census 2026 Gap for CALD Communities in Wyndham",
+    "date": "12 August 2026",
+    "author": "Community Inclusion Team",
+    "category": "Census 2026",
+    "image": "images/finnova-census-support.webp",
+    "summary": "How bilingual volunteers in Wyndham are assisting elderly and multicultural residents to complete their compulsory Census safely.",
+    "body": [
+      "<p>With the compulsory 2026 Australian Census approaching, thousands of multicultural residents across Melbourne's outer West face linguistic and technical barriers when attempting to complete their household forms online. Language barriers, fear of scams, and unfamiliarity with digital identity verification can lead to under-reporting in historically diverse growth corridors like Point Cook, Tarneit, and Truganina.</p>",
+      "<p>To address this challenge, Finnova Ltd has launched a dedicated Census 2026 Assistance Desk staffed by bilingual volunteers fluent in Hindi, Punjabi, Mandarin, Arabic, Vietnamese, and Spanish. Our mentors provide free, in-person guidance at local library hubs, community centres, and through confidential telephone support sessions.</p>",
+      "<p>Our consent-led assistance model ensures that every participant retains complete privacy and administrative control over their personal household data. Volunteers never store passwords, government identifiers, or confidential responses. By providing patient assistance in native languages, Finnova helps ensure every Australian household is accurately represented.</p>",
+      "<p>Accurate Census data directly influences government funding for local healthcare, public transport, schools, and community infrastructure. Book a free 1-on-1 Census assistance session with a Finnova bilingual navigator today.</p>"
+    ]
+  },
+  {
+    "id": "robert-scam-prevention-story",
+    "title": "Overcoming Phone Scam Fears: How Robert Saved His Savings",
+    "date": "11 August 2026",
+    "author": "Cyber Safety Taskforce",
+    "category": "Cyber Safety & Scams",
     "image": "images/blog-cyber-safety.webp",
-    "isHtml": true,
+    "summary": "72-year-old pensioner Robert shares how a Finnova cyber security workshop stopped him from falling for a ,000 bank impersonation scam.",
     "body": [
-      "<div style=\"background:var(--primary-light);border-left:4px solid var(--primary);border-radius:12px;padding:20px;margin-bottom:28px\"><h3 style=\"color:var(--primary);margin-bottom:8px;font-size:16px;font-weight:800\">\ud83d\udca1 Executive Summary</h3><p style=\"font-size:14px;color:var(--text);line-height:1.65;margin:0\">Asset finance allows commercial enterprises to acquire specialized machinery, fleet vehicles, and IT hardware without tying up cash flow or existing credit lines.</p></div>",
-      "<h2 id=\"editorial-sec-1\" style=\"font-size:22px;font-weight:900;color:var(--text);margin:32px 0 14px\">1. Commercial Asset Finance Structures</h2>",
-      "<div style=\"overflow-x:auto;margin:24px 0\"><table style=\"width:100%;border-collapse:collapse;font-size:13.5px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;overflow:hidden\"><thead><tr style=\"background:var(--primary-light);color:var(--primary);text-align:left\"><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">Finance Product</th><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">Asset Ownership</th><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">GST Tax Treatment</th><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">Tax Deductions</th></tr></thead><tbody><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:12px 14px;font-weight:700\">Chattel Mortgage</td><td style=\"padding:12px 14px;color:#10b981;font-weight:700\">Business owns from Day 1</td><td style=\"padding:12px 14px\">Claim full GST upfront on BAS</td><td style=\"padding:12px 14px\">Interest + Asset Depreciation</td></tr><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:12px 14px;font-weight:700\">Finance Lease</td><td style=\"padding:12px 14px\">Lender owns until balloon paid</td><td style=\"padding:12px 14px\">Claim GST on monthly repayments</td><td style=\"padding:12px 14px\">Full monthly rental payments</td></tr><tr><td style=\"padding:12px 14px;font-weight:700\">Commercial Hire Purchase</td><td style=\"padding:12px 14px\">Passes to business on final payment</td><td style=\"padding:12px 14px\">Claim GST on purchase price upfront</td><td style=\"padding:12px 14px\">Interest + Asset Depreciation</td></tr></tbody></table></div>",
-      "<div style=\"display:flex;gap:12px;flex-wrap:wrap;margin-top:32px;padding-top:20px;border-top:1px solid var(--border)\"><button onclick=\"openBookingModal('melbourne')\" class=\"btn-blue\" style=\"padding:12px 20px;font-size:14px;font-weight:800\">\ud83d\udcca Compare Asset Loan Rates</button></div>"
+      "<p>When 72-year-old Werribee resident Robert received an urgent text message claiming to be from his bank's fraud department, alarm bells immediately rang. The message urged him to click a link to cancel an unauthorized ,200 transaction. In the past, panic might have driven him to click the link and enter his internet banking credentials.</p>",
+      "<p>Fortunately, Robert had attended a Finnova Cyber Safety & Scam Awareness Workshop just two weeks prior at his local senior citizens club. During the interactive session, Finnova mentors taught participants how to identify suspicious domain names, spot fake SMS sender headers, and verify bank alerts through official telephone channels rather than clicking links.</p>",
+      "<p>\"The workshop taught me to pause, take a deep breath, and never click links in text messages,\" Robert explains. \"Instead of clicking, I called my bank directly using the phone number printed on the back of my card. The bank confirmed the message was a sophisticated phishing attempt. Finnova saved my life savings.\"</p>",
+      "<p>Scammers lose Australians over  billion annually, targeting seniors and vulnerable citizens through sophisticated impersonation tactics. Finnova offers free, plain-language cyber safety workshops for senior groups, community clubs, and individual households across Victoria.</p>"
     ]
   },
   {
-    "id": "braille-low-vision-census-2026",
-    "title": "BLIND, LOW VISION & BRAILLE 2026 CENSUS SUPPORT & RESOURCES",
-    "date": "7 August 2026",
-    "author": "Finnova Accessibility Team",
-    "category": "Census",
-    "tags": [
-      "Census 2026",
-      "Accessibility",
-      "Braille"
-    ],
-    "excerpt": "Official Braille (.brf), Large Print, and Audio (.mp3) resources for the 2026 Australian Census. Finnova Ltd provides independent community guidance to ensure accessibility for all.",
-    "image": "images/blog-volunteer.webp",
-    "isHtml": true,
+    "id": "refurbished-laptops-local-students",
+    "title": "Second Chance Tech: Giving Refurbished Laptops to Local Students",
+    "date": "11 August 2026",
+    "author": "Tech Rehome Program",
+    "category": "Hardware Equity",
+    "image": "images/finnova-hardware-equity.webp",
+    "summary": "Through corporate PC donations and DoD data-sanitisation, Finnova delivered 150 wiped laptops to low-income students in Melbourne's West.",
     "body": [
-      "<div style=\"background:#fff8e6;border:1.5px solid #ffe58f;border-left:5px solid #faad14;border-radius:12px;padding:18px 20px;margin-bottom:28px\"><div style=\"display:flex;align-items:flex-start;gap:12px\"><span style=\"font-size:24px\">\u26a0\ufe0f</span><div style=\"font-size:14px;color:#614700;line-height:1.65\"><b style=\"font-size:15px;color:#d48806;display:block;margin-bottom:4px\">Important Independent Charity Disclaimer</b><b>Finnova Ltd</b> is an independent, ACNC-registered Public Benevolent Institution and charity. <b>Finnova Ltd is NOT affiliated with, endorsed by, or part of the Australian Bureau of Statistics (ABS).</b> The 2026 Australian Census is administered exclusively by the Australian Bureau of Statistics (ABS) under the <i>Census and Statistics Act 1905</i>. All official forms and downloadable files linked below are hosted directly by the ABS.</div></div></div>",
-      "<p style=\"font-size:16px;line-height:1.75;margin-bottom:22px\">We are committed to making essential civic information accessible to everyone. The Australian Bureau of Statistics provides dedicated resources for people who are blind or have low vision. For official guidance and direct inquiries, visit the official <a href=\"https://info.census.abs.gov.au/help/information-people-who-need-extra-support-and-people-living-disability/blind-low-vision-including-braille\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color:var(--primary);font-weight:700;text-decoration:underline\">ABS Blind, Low Vision &amp; Braille Help Centre \u2197</a>.</p>",
-      "<div style=\"background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:24px;margin:28px 0;box-shadow:0 4px 16px rgba(0,0,0,0.06)\"><h3 style=\"font-size:18px;font-weight:800;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:8px\"><span>\u2803\u2817\u2807</span> Official 2026 Braille Resources (.brf Downloads)</h3><p style=\"font-size:14px;color:var(--text-secondary);margin-bottom:18px\">Download official 2026 Census forms and help booklets available in Grade 1 and Grade 2 braille for refreshable braille displays or braille printers:</p><div style=\"display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px\"><a href=\"https://info.census.abs.gov.au/help/information-people-who-need-extra-support-and-people-living-disability/blind-low-vision-including-braille/2026%20braille%20Census%20Household%20form%20Grade%201.brf\" target=\"_blank\" rel=\"noopener\" style=\"display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:var(--primary-light);border:1px solid var(--primary);border-radius:12px;color:var(--primary);font-weight:700;font-size:13px;text-decoration:none\"><span>\ud83d\udcc4 Braille Household Form (Grade 1)</span><span style=\"font-size:11px;background:var(--primary);color:#fff;padding:4px 8px;border-radius:6px\">49.17 KB .brf</span></a><a href=\"https://info.census.abs.gov.au/help/information-people-who-need-extra-support-and-people-living-disability/blind-low-vision-including-braille/2026%20braille%20Census%20Household%20form%20Grade%202.brf\" target=\"_blank\" rel=\"noopener\" style=\"display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:var(--primary-light);border:1px solid var(--primary);border-radius:12px;color:var(--primary);font-weight:700;font-size:13px;text-decoration:none\"><span>\ud83d\udcc4 Braille Household Form (Grade 2)</span><span style=\"font-size:11px;background:var(--primary);color:#fff;padding:4px 8px;border-radius:6px\">40.1 KB .brf</span></a></div></div>"
+      "<p>Access to a reliable personal computer is no longer a luxury for Australian students \u2014 it is an absolute necessity for completing homework, researching assignments, and attending online tutorials. Yet for low-income families and new arrival migrants, purchasing a brand-new laptop can present an insurmountable financial burden.</p>",
+      "<p>Through Finnova's Digital Hardware Bank, enterprise partners donate decommissioned corporate laptops and desktop PCs. Every donated device undergoes rigorous military-grade data sanitisation (DoD 5220.22-M and NIST 800-88 standards), followed by SSD storage upgrades, battery health checks, and installation of clean, pre-configured software packages.</p>",
+      "<p>Last month, Finnova successfully distributed 150 refurbished, high-performance laptops to students across secondary schools in Wyndham and Brimbank. Each device comes pre-loaded with essential productivity tools, cybersecurity protections, and a 12-month hardware support guarantee provided by volunteer IT specialists.</p>",
+      "<p>By bridging the hardware divide, we empower young learners to pursue their academic goals without technological disadvantage. Learn how your organization can donate retired IT assets to Finnova's Hardware Equity initiative.</p>"
     ]
   },
   {
-    "id": "digital-divide-outer-melbourne",
-    "title": "CLOSING THE DIGITAL DIVIDE IN OUTER MELBOURNE",
-    "date": "10 June 2026",
-    "author": "Finnova Team",
-    "category": "Inclusion",
-    "tags": [
-      "Digital Inclusion",
-      "Outer Melbourne"
-    ],
-    "excerpt": "Why access to a device and a data connection has become as essential as electricity \u2014 and how our volunteers are helping.",
-    "image": "images/blog-digital-divide.webp",
-    "isHtml": true,
-    "body": [
-      "<div style=\"background:var(--primary-light);border-left:4px solid var(--primary);border-radius:12px;padding:20px;margin-bottom:28px\"><h3 style=\"color:var(--primary);margin-bottom:8px;font-size:16px;font-weight:800\">\ud83d\udca1 Executive Summary</h3><p style=\"font-size:14px;color:var(--text);line-height:1.65;margin:0\">Over 7 million Australians face digital exclusion. Discover how refurbished hardware and community workshops are transforming lives in Wyndham, Geelong, and Ballarat.</p></div>",
-      "<h2 id=\"editorial-sec-1\" style=\"font-size:22px;font-weight:900;color:var(--text);margin:32px 0 14px\">1. Australian Digital Inclusion Index (ADII) Scorecard</h2>",
-      "<div style=\"overflow-x:auto;margin:24px 0\"><table style=\"width:100%;border-collapse:collapse;font-size:13.5px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;overflow:hidden\"><thead><tr style=\"background:var(--primary-light);color:var(--primary);text-align:left\"><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">Demographic Category</th><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">ADII Score (Out of 100)</th><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">Primary Barrier</th></tr></thead><tbody><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:12px 14px;font-weight:700\">National Average</td><td style=\"padding:12px 14px;font-weight:700\">73.2 / 100</td><td style=\"padding:12px 14px\">General Literacy</td></tr><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:12px 14px;font-weight:700\">Low-Income Households (&lt;$35k)</td><td style=\"padding:12px 14px;color:#e11d48;font-weight:800\">54.8 / 100</td><td style=\"padding:12px 14px\">Device Affordability</td></tr><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:12px 14px;font-weight:700\">CALD &amp; Migrant Communities</td><td style=\"padding:12px 14px;color:#e11d48;font-weight:800\">58.1 / 100</td><td style=\"padding:12px 14px\">Language &amp; myGov Navigation</td></tr><tr><td style=\"padding:12px 14px;font-weight:700\">Seniors (Aged 65+)</td><td style=\"padding:12px 14px;color:#e11d48;font-weight:800\">49.6 / 100</td><td style=\"padding:12px 14px\">Cyber Security Anxiety</td></tr></tbody></table></div>",
-      "<div style=\"display:flex;gap:12px;flex-wrap:wrap;margin-top:32px;padding-top:20px;border-top:1px solid var(--border)\"><button onclick=\"openRequestModal()\" class='btn-green' style=\"padding:12px 20px;font-size:14px;font-weight:800\">\ud83c\udf92 Request Refurbished Laptop</button></div>"
-    ]
-  },
-  {
-    "id": "cyber-safety-seniors-habits",
-    "title": "FIVE CYBER-SAFETY HABITS WE TEACH EVERY SENIOR",
-    "date": "02 June 2026",
-    "author": "Finnova Cyber Team",
-    "category": "Cyber",
-    "tags": [
-      "Cyber Safety",
-      "Seniors"
-    ],
-    "excerpt": "Scams targeting older Australians are rising. Here are the simple, practical habits that make the biggest difference.",
-    "image": "images/blog-cyber-safety.webp",
-    "isHtml": true,
-    "body": [
-      "<div style=\"background:var(--primary-light);border-left:4px solid var(--primary);border-radius:12px;padding:20px;margin-bottom:28px\"><h3 style=\"color:var(--primary);margin-bottom:8px;font-size:16px;font-weight:800\">\ud83d\udca1 Executive Summary</h3><p style=\"font-size:14px;color:var(--text);line-height:1.65;margin:0\">Over $3.1 billion was lost to scams in Australia last year. These 5 golden habits stop over 95% of text and phone phishing attempts.</p></div>",
-      "<h2 id=\"editorial-sec-1\" style=\"font-size:22px;font-weight:900;color:var(--text);margin:32px 0 14px\">1. Scam Type Identification Matrix</h2>",
-      "<div style=\"overflow-x:auto;margin:24px 0\"><table style=\"width:100%;border-collapse:collapse;font-size:13.5px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;overflow:hidden\"><thead><tr style=\"background:var(--primary-light);color:var(--primary);text-align:left\"><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">Scam Type</th><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">Common Red Flags</th><th style=\"padding:12px 14px;border-bottom:2px solid var(--border)\">Action Required</th></tr></thead><tbody><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:12px 14px;font-weight:700\">myGov / ATO Text Scam</td><td style=\"padding:12px 14px\">Contains direct link asking to \"claim tax refund\"</td><td style=\"padding:12px 14px;color:#e11d48;font-weight:700\">Delete &amp; Do NOT click link</td></tr><tr style=\"border-bottom:1px solid var(--border)\"><td style=\"padding:12px 14px;font-weight:700\">Bank Fraud Phone Call</td><td style=\"padding:12px 14px\">Caller demands urgent money transfer to \"safe account\"</td><td style=\"padding:12px 14px;color:#e11d48;font-weight:700\">Hang up &amp; call bank hotline directly</td></tr><tr><td style=\"padding:12px 14px;font-weight:700\">Remote Access Scam</td><td style=\"padding:12px 14px\">Caller asks to install AnyDesk or TeamViewer</td><td style=\"padding:12px 14px;color:#e11d48;font-weight:700\">Refuse access &amp; turn off Wi-Fi</td></tr></tbody></table></div>",
-      "<div style=\"display:flex;gap:12px;flex-wrap:wrap;margin-top:32px;padding-top:20px;border-top:1px solid var(--border)\"><button onclick=\"navigate('cyber')\" class=\"btn-blue\" style=\"padding:12px 20px;font-size:14px;font-weight:800\">\ud83d\udee1\ufe0f Run Free Cyber Safety Checkup</button></div>"
-    ]
-  },
-  {
-    "id": "volunteer-story-priya",
-    "title": "FROM NERVOUS BEGINNER TO CONFIDENT HELPER: A VOLUNTEER STORY",
-    "date": "24 May 2026",
-    "author": "Finnova Team",
-    "category": "Volunteer",
-    "tags": [
-      "Volunteer Stories",
-      "Community"
-    ],
-    "excerpt": "One of our volunteers shares how a few hours a week changed both the people she helped and her own confidence.",
-    "image": "images/blog-volunteer.webp",
-    "isHtml": true,
-    "body": [
-      "<div style=\"background:var(--primary-light);border-left:4px solid var(--primary);border-radius:12px;padding:20px;margin-bottom:28px\"><h3 style=\"color:var(--primary);margin-bottom:8px;font-size:16px;font-weight:800\">\ud83d\udca1 Volunteer Spotlight</h3><p style=\"font-size:14px;color:var(--text);line-height:1.65;margin:0\">Priya joined Finnova Ltd as a volunteer in Tarneit and has now mentored over 80 seniors and migrants to navigate digital tools safely.</p></div>",
-      "<p style=\"font-size:15px;line-height:1.75;margin-bottom:18px\">\"When I first started, I was worried I wasn't techy enough,\" Priya recalls. \"But I quickly realized that people don't need a software developer \u2014 they need someone patient who listens and explains myGov or online banking in plain English.\"</p>",
-      "<div style=\"display:flex;gap:12px;flex-wrap:wrap;margin-top:32px;padding-top:20px;border-top:1px solid var(--border)\"><button onclick=\"openBookingModal('melbourne')\" class=\"btn-green\" style=\"padding:12px 20px;font-size:14px;font-weight:800\">\ud83e\udd1d Join as a Finnova Volunteer</button></div>"
-    ]
-  },
-  {
-    "id": "mygov-scams-guide",
-    "title": "HOW TO STAY SAFE FROM MYGOV & MEDICARE SMS SCAMS",
-    "date": "18 July 2026",
-    "author": "Finnova Cyber Team",
-    "category": "Cyber",
-    "tags": [
-      "Cyber Safety",
-      "myGov"
-    ],
-    "excerpt": "Scammers are actively targeting Australians with fake postal delivery links and myGov rebate texts. Learn the 3 golden rules of cyber safety.",
-    "image": "images/blog-cyber-safety.webp",
-    "isHtml": true,
-    "body": [
-      "<div style=\"background:var(--primary-light);border-left:4px solid var(--primary);border-radius:12px;padding:20px;margin-bottom:28px\"><h3 style=\"color:var(--primary);margin-bottom:8px;font-size:16px;font-weight:800\">\ud83d\udca1 Executive Summary</h3><p style=\"font-size:14px;color:var(--text);line-height:1.65;margin:0\">Government agencies like myGov, Medicare, and the ATO will NEVER send an SMS containing a direct link asking for login credentials.</p></div>",
-      "<div style=\"display:flex;gap:12px;flex-wrap:wrap;margin-top:32px;padding-top:20px;border-top:1px solid var(--border)\"><button onclick=\"navigate('cyber')\" class=\"btn-blue\" style=\"padding:12px 20px;font-size:14px;font-weight:800\">\ud83d\udee1\ufe0f Open Cyber Safety Hub</button></div>"
-    ]
-  },
-  {
-    "id": "corporate-hardware-donations",
-    "title": "HOW CORPORATE E-WASTE PROGRAMS TRANSFORM LOCAL COMMUNITIES",
-    "date": "02 July 2026",
-    "author": "Finnova Sustainability Team",
-    "category": "Inclusion",
-    "tags": [
-      "Digital Inclusion",
-      "Sustainability"
-    ],
-    "excerpt": "Over 3.5 million computers enter Australian landfills every year. See how corporate device recycling turns electronic waste into community empowerment.",
-    "image": "images/blog-digital-divide.webp",
-    "isHtml": true,
-    "body": [
-      "<div style=\"background:var(--primary-light);border-left:4px solid var(--primary);border-radius:12px;padding:20px;margin-bottom:28px\"><h3 style=\"color:var(--primary);margin-bottom:8px;font-size:16px;font-weight:800\">\ud83d\udca1 Corporate Sustainability &amp; E-Waste Impact</h3><p style=\"font-size:14px;color:var(--text);line-height:1.65;margin:0\">By donating decommissioned corporate laptops to Finnova Ltd, companies receive 100% tax-deductible DGR receipts while eliminating electronic landfill waste.</p></div>",
-      "<div style=\"display:flex;gap:12px;flex-wrap:wrap;margin-top:32px;padding-top:20px;border-top:1px solid var(--border)\"><button onclick=\"openPledgeModal()\" class=\"btn-green\" style=\"padding:12px 20px;font-size:14px;font-weight:800\">\ud83d\udcbb Submit Corporate Device Pledge</button></div>"
-    ]
-  },
-  {
-    "id": "gitbook-knowledge-base-guide",
-    "title": "FINNOVA GITBOOK KNOWLEDGE BASE & DOCUMENTATION STUDIO GUIDE",
+    "id": "mygov-medicare-migrant-families",
+    "title": "Navigating myGov and Medicare for First-Generation Migrant Families",
     "date": "10 August 2026",
-    "author": "Finnova Engineering & Product Team",
-    "category": "Documentation",
-    "tags": [
-      "GitBook",
-      "Knowledge Base",
-      "Documentation",
-      "Gutenberg"
-    ],
-    "excerpt": "Complete developer and user guide explaining how Finnova amalgamated GitBook 3-column workspace layouts, rich text editing, and slash command block inserters into our web platform.",
+    "author": "Civic Support Mentors",
+    "category": "myGov & Civic Inclusion",
     "image": "images/blog-digital-divide.webp",
-    "isHtml": true,
+    "summary": "Step-by-step patient guidance helping newly arrived families establish digital identity, link Medicare, and access essential Centrelink services.",
     "body": [
-      "<div style=\"background:var(--primary-light);border:1px solid var(--primary);border-radius:12px;padding:20px;margin-bottom:24px\"><h3 style=\"color:var(--primary);margin-bottom:8px\">\ud83d\udcda How GitBook Architectural Logic Was Amalgamated Into Finnova</h3><p style=\"font-size:14px;color:var(--text);line-height:1.6\">Finnova has integrated GitBook's industry-leading documentation experience directly into our single-page application framework.</p></div>"
+      "<p>Arriving in Australia as a first-generation migrant brings immense promise, but setting up essential government services online can quickly become overwhelming. Linking myGov to Medicare, Centrelink, the ATO, and Digital ID requires multi-step authentication, identity document verification, and familiarity with Australian administrative processes.</p>",
+      "<p>Finnova's Assisted Digital Sessions provide newly arrived individuals and families with free, 1-on-1 administrative guidance. Operating out of community hubs, our trained navigators guide participants through document scanning, Digital ID creation, password management, and linking essential services step-by-step.</p>",
+      "<p>Crucially, Finnova adheres to a strict consent-led framework. Mentors work alongside participants on their own personal devices, ensuring passwords and confidential health details remain entirely private. We empower users to gain self-sufficiency rather than creating ongoing dependency.</p>",
+      "<p>Whether you need help downloading your digital Medicare card, setting up My Health Record, or updating Centrelink family details, Finnova's friendly navigators are here to support you in a welcoming environment.</p>"
+    ]
+  },
+  {
+    "id": "seniors-video-calls-ehealth",
+    "title": "Digital Independence for Seniors: Learning Video Calls and E-Health",
+    "date": "10 August 2026",
+    "author": "Digital Literacy Mentors",
+    "category": "Senior Empowerment",
+    "image": "images/blog-volunteer.webp",
+    "summary": "Elderly residents in Werribee share their joy at connecting with overseas grandchildren and booking telehealth appointments independently.",
+    "body": [
+      "<p>Social isolation and difficulty accessing medical transport are two major challenges facing older Australians. As healthcare providers increasingly transition to telehealth consultations and online appointment booking, digital literacy has become essential for maintaining personal health and staying connected with loved ones.</p>",
+      "<p>Finnova's Senior Digital Empowerment classes offer gentle, hands-on instruction tailored specifically for older adults. Held in small groups of 6 to 8 participants, the workshops focus on practical everyday skills: navigating smartphones, placing WhatsApp video calls, requesting e-Prescriptions, and accessing virtual doctor visits.</p>",
+      "<p>81-year-old Margaret shares: \"Before attending Finnova's classes, I felt terrified of pressing the wrong button and breaking my tablet. Now I talk to my daughter in England every Sunday and order my prescriptions online without bothering my family.\"</p>",
+      "<p>Building digital confidence transforms senior lives by reducing loneliness and preserving autonomy. Contact Finnova today to register for upcoming senior tech classes near you.</p>"
+    ]
+  },
+  {
+    "id": "amandeep-ndis-access-story",
+    "title": "Demystifying NDIS Access: How Amandeep Secured Support for Her Son",
+    "date": "09 August 2026",
+    "author": "Disability Support Navigators",
+    "category": "NDIS Guidance",
+    "image": "images/blog-digital-divide.webp",
+    "summary": "Amandeep shares how Finnova's free multicultural NDIS guidance helped her family navigate section 33 rules and submit successful evidence.",
+    "body": [
+      "<p>Navigating the National Disability Insurance Scheme (NDIS) can be an intricate process, particularly for culturally and linguistically diverse (CALD) carers who may struggle with complex medical terminology and formal access criteria under Section 33 of the NDIS Act.</p>",
+      "<p>When Amandeep sought early intervention support for her 6-year-old son, she faced multiple administrative rejections due to incomplete evidence formatting and confusing paperwork. Seeking help, she visited Finnova's NDIS Community Help Desk in Tarneit.</p>",
+      "<p>Finnova's disability support navigators reviewed her documentation, translated administrative guidelines into plain Punjabi, and assisted in organizing supporting reports from allied health professionals. With our guidance, Amandeep resubmitted her access request with clear, structured evidence aligned with NDIS criteria.</p>",
+      "<p>Three weeks later, her son's NDIS plan was approved, granting funded access to speech pathology and occupational therapy. \"Finnova gave us hope when we felt completely lost in bureaucratic paperwork,\" Amandeep shares. \"Their guidance opened doors for my child's future.\"</p>"
+    ]
+  },
+  {
+    "id": "spot-fake-sms-links-guide",
+    "title": "How to Spot Fake Postal & Bank SMS Links Before You Click",
+    "date": "09 August 2026",
+    "author": "Finnova Cyber Team",
+    "category": "Cyber Safety",
+    "image": "images/blog-cyber-safety.webp",
+    "summary": "Practical visual guide on identifying malicious URL shorteners, fake Australia Post tracking links, and compromised payment portals.",
+    "body": [
+      "<p>Smishing \u2014 fraudulent text messages designed to steal personal banking credentials \u2014 remains the most frequent cyber threat targeting Australian households. Scammers regularly spoof Australia Post parcel delivery alerts, Linkt toll notices, myGov updates, and major bank notifications.</p>",
+      "<p>To protect yourself and your family, watch for these four critical red flags in any unexpected text message: 1) Generic greetings or urgent threats demanding immediate payment; 2) Misspelled domain names (such as auspost-redelivery-auth.com instead of auspost.com.au); 3) Requests for credit card details to release a parcel; and 4) Sender numbers coming from random overseas mobile numbers.</p>",
+      "<p>Rule of thumb: Never tap a link contained inside a text message. If an alert claims your package is delayed or your bank account is locked, open your browser independently, type the official website address directly, or call the organization via their published phone number.</p>",
+      "<p>If you suspect you have entered banking details on a suspicious website, contact your financial institution immediately and report the scam to Scamwatch.gov.au. Finnova offers free cyber security health checks for all community members.</p>"
+    ]
+  },
+  {
+    "id": "regional-digital-hubs-geelong",
+    "title": "Connecting Regional Victorians: Bringing Digital Pop-Up Hubs to Geelong",
+    "date": "08 August 2026",
+    "author": "Regional Outreach Team",
+    "category": "Community Outreach",
+    "image": "images/blog-digital-divide.webp",
+    "summary": "Finnova's mobile digital help desk expands to regional libraries, offering free tech support for rural seniors and low-income households.",
+    "body": [
+      "<p>While major capital cities enjoy abundant digital infrastructure, regional and rural communities across Victoria frequently face limited access to in-person technical support, digital literacy training, and affordable hardware replacement options.</p>",
+      "<p>In response to growing demand, Finnova Ltd has launched its Regional Digital Pop-Up Hub initiative, traveling to regional libraries, senior community halls, and neighborhood houses across Geelong, Ballarat, and the Surf Coast. Our mobile team brings refurbished laptops, high-speed Wi-Fi hotspots, and multilingual tech navigators directly to regional residents.</p>",
+      "<p>During our inaugural two-day workshop at the Geelong West Neighborhood House, over 140 regional participants received free device diagnostics, myGov account assistance, cybersecurity checks, and hands-on digital training.</p>",
+      "<p>Expanding digital inclusion to regional Victoria ensures that geographic location never dictates a citizen's access to essential government, health, and economic services. Discover when Finnova's mobile digital hub is visiting your local township.</p>"
+    ]
+  },
+  {
+    "id": "women-coding-skills-bootcamp",
+    "title": "Empowering Women in Tech: Free Coding & Skills Bootcamps for Mothers",
+    "date": "08 August 2026",
+    "author": "Education & Pathways Team",
+    "category": "Digital Literacy",
+    "image": "images/finnova-multilingual-workshop.webp",
+    "summary": "Re-entering the workforce made easier through Finnova's weekend digital skills bootcamps for mothers and female jobseekers.",
+    "body": [
+      "<p>Re-entering the workforce after career breaks or caring responsibilities can be challenging, particularly in an increasingly automated economy where digital proficiency is mandatory across almost every job description.</p>",
+      "<p>Finnova's Women in Tech Pathways program delivers free, beginner-friendly weekend bootcamps designed specifically for mothers, female jobseekers, and mature-age career changers. The curriculum covers essential digital tools: cloud document collaboration, project management software, basic web development, data entry standards, and professional online networking.</p>",
+      "<p>Participants work on real-world community projects while receiving mentorship from experienced female tech professionals. To ensure accessibility for mothers, classes feature flexible hybrid attendance options and free onsite child-friendly learning nooks.</p>",
+      "<p>Graduates from our pilot cohort have successfully secured roles in administrative support, digital customer service, and community coordination. Explore upcoming enrollment dates for Finnova's digital pathways program.</p>"
+    ]
+  },
+  {
+    "id": "data-privacy-digital-consent-rights",
+    "title": "Understanding Your Rights: Data Privacy and Digital Consent Explained",
+    "date": "07 August 2026",
+    "author": "Governance & Legal Committee",
+    "category": "Privacy & Ethics",
+    "image": "images/blog-digital-divide.webp",
+    "summary": "Why Finnova strictly enforces a consent-led model, and how every citizen can protect their personal data while using government online portals.",
+    "body": [
+      "<p>In an era of increasing data collection, artificial intelligence algorithms, and frequent corporate data breaches, protecting personal privacy is a fundamental human right. Citizens accessing online government services must understand how their personal data is collected, stored, and shared.</p>",
+      "<p>At Finnova Ltd, privacy protection is embedded into our core organizational governance. Operating as an ISO 27001:2022 certified charity, Finnova enforces a strict consent-led operating model. Our volunteers never record passwords, store tax file numbers, or retain participant documents after a support session ends.</p>",
+      "<p>During our community privacy workshops, we educate participants on their rights under the Australian Privacy Act 1988: how to review privacy terms, revoke app permissions, manage cookie preferences, and opt out of unnecessary data broker profiling.</p>",
+      "<p>Maintaining control over your personal information is essential for maintaining digital dignity. Read Finnova's full Privacy Policy to learn more about our data protection standards.</p>"
+    ]
+  },
+  {
+    "id": "safe-tech-dv-survivors-lifeline",
+    "title": "Safe Technology for Domestic Violence Survivors: A Confidential Lifeline",
+    "date": "07 August 2026",
+    "author": "Safe Tech Crisis Unit",
+    "category": "Safe Tech Support",
+    "image": "images/blog-digital-divide.webp",
+    "summary": "Confidential hardware wipes, location privacy checks, and emergency phone replacements for individuals escaping family violence and digital abuse.",
+    "body": [
+      "<p>Technology-facilitated abuse \u2014 including unauthorized GPS location tracking, stalkerware installation, social media harassment, and account takeover \u2014 is an alarming tactic used by perpetrators of domestic and family violence to exert power and control over victims.</p>",
+      "<p>Finnova's Safe Tech Support initiative provides crisis intervention and technical security assistance for individuals escaping abusive relationships. Working in direct partnership with frontline family violence support agencies and legal services, our specialized technicians perform discreet safety audits on personal smartphones and devices.</p>",
+      "<p>Services include detecting hidden spy software, securing compromised Google/Apple accounts, revoking shared location permissions, and providing free, pre-configured emergency phones loaded with secure SIM cards and emergency contact shortcuts.</p>",
+      "<p>All Safe Tech inquiries are handled with absolute confidentiality and trauma-informed care. If you or someone you know is in immediate danger, please call 000 or contact 1800RESPECT (1800 737 732).</p>"
+    ]
+  },
+  {
+    "id": "arabic-online-banking-workshops",
+    "title": "Mastering Online Banking for Arabic-Speaking New Arrivals",
+    "date": "06 August 2026",
+    "author": "Multicultural Mentors",
+    "category": "CALD Programs",
+    "image": "images/finnova-multilingual-workshop.webp",
+    "summary": "Bilingual mentors in Dallas and Broadmeadows deliver hands-on banking security workshops in Arabic to build financial confidence.",
+    "body": [
+      "<p>Navigating online banking, BPAY bill payments, and digital transaction receipts can present significant hurdles for newly arrived Arabic-speaking refugees and migrants who may be unfamiliar with Australian financial systems and English terminology.</p>",
+      "<p>To build financial independence and protect against predatory scams, Finnova's multicultural mentors deliver interactive digital banking workshops in Arabic across Melbourne's Northern suburbs. Held at local community hubs, the sessions cover online banking registration, setting up secure two-factor authentication, scheduling BPAY payments, and recognizing fake bank SMS alerts.</p>",
+      "<p>Participants practice essential digital tasks using simulated demo environments on tablet devices, allowing them to gain practical confidence without risking real financial transactions.</p>",
+      "<p>Over 200 Arabic-speaking community members have completed the program, reporting increased confidence in managing household utility bills and conducting secure online transactions. Join our next bilingual financial literacy session.</p>"
+    ]
+  },
+  {
+    "id": "energy-relief-utility-concessions-guide",
+    "title": "Energy Relief & Utility Concessions: Claiming Your Government Rebates",
+    "date": "06 August 2026",
+    "author": "Community Welfare Team",
+    "category": "Financial Support",
+    "image": "images/blog-digital-divide.webp",
+    "summary": "How Finnova's community sessions helped 200+ households verify eligibility for National Energy Bill Relief and state utility concessions.",
+    "body": [
+      "<p>Rising living costs and electricity tariffs have placed significant pressure on Australian pensioners, low-income earners, and concession card holders. Although various federal and state energy relief grants exist, many eligible households remain unaware of how to apply online.</p>",
+      "<p>Through Finnova's Utility Concession Assistance Desk, our navigators assist eligible residents to verify and claim government rebates, including the National Energy Bill Relief Fund, Victorian Energy Compare bonuses, and municipal rate concessions.</p>",
+      "<p>During 1-on-1 sessions, mentors help participants upload energy bills, link concession cards via myGov, and submit digital applications directly to energy retailers.</p>",
+      "<p>In the past quarter alone, Finnova assisted over 200 vulnerable households to secure more than ,000 in cumulative utility relief. Visit Finnova's community hub to ensure your household is receiving all eligible energy concessions.</p>"
+    ]
+  },
+  {
+    "id": "passkeys-vs-passwords-2fa-guide",
+    "title": "Passkeys vs Passwords: Why 2FA is Your Best Defense in 2026",
+    "date": "05 August 2026",
+    "author": "Technical Security Lead",
+    "category": "Cyber Safety",
+    "image": "images/blog-cyber-safety.webp",
+    "summary": "An easy-to-read breakdown on upgrading from traditional passwords to biometric passkeys (Touch ID / Face ID) and multi-factor authentication.",
+    "body": [
+      "<p>Traditional passwords \u2014 especially short, repeated, or predictable ones \u2014 are rapidly becoming obsolete as automated credential-stuffing attacks become more prevalent. Upgrading your accounts to modern authentication methods is the single most effective step you can take to protect your digital identity.</p>",
+      "<p>Biometric Passkeys (utilizing fingerprint readers, Touch ID, or Face ID) eliminate the need to memorize complex passwords altogether. Because passkeys rely on public-key cryptography tied directly to your physical device, they are virtually immune to online phishing scams and credential theft.</p>",
+      "<p>For services where passkeys are not yet available, enabling Two-Factor Authentication (2FA) via authenticator apps (such as Google Authenticator or Microsoft Authenticator) provides a robust secondary defense layer.</p>",
+      "<p>Finnova's technical team offers free 1-on-1 security tune-ups to help community members enable passkeys and 2FA across their email, social media, and online banking accounts.</p>"
+    ]
+  },
+  {
+    "id": "youth-digital-ambassadors-intergenerational",
+    "title": "Youth Digital Ambassadors: High Schoolers Teaching Seniors Smart Devices",
+    "date": "05 August 2026",
+    "author": "Youth Engagement Mentors",
+    "category": "Youth & Intergenerational",
+    "image": "images/blog-volunteer.webp",
+    "summary": "High school students in Wyndham pair with local retirees in an intergenerational program to build digital literacy and mutual respect.",
+    "body": [
+      "<p>Bridging the generational gap while tackling digital exclusion is the core mission of Finnova's Youth Digital Ambassadors initiative. The program pairs local high school students with senior citizens for weekly 1-on-1 technology mentoring sessions.</p>",
+      "<p>Senior participants bring questions about organizing photos, setting up smartphone contacts, downloading digital library books, and managing online calendars. In return, youth mentors share their natural digital fluency while gaining valuable communication skills, empathy, and volunteer leadership experience.</p>",
+      "<p>The intergenerational dynamic creates a warm, encouraging atmosphere where learning happens naturally on both sides. Seniors gain essential tech skills without feeling self-conscious, while youth ambassadors earn community service credits and mentorship references.</p>",
+      "<p>Finnova runs intergenerational digital sessions in partnership with secondary colleges across Wyndham and Hobsons Bay. Learn how your school or senior group can participate.</p>"
+    ]
+  },
+  {
+    "id": "centrelink-digital-claims-support",
+    "title": "Navigating Centrelink Digital Claims Without Stigma or Stress",
+    "date": "04 August 2026",
+    "author": "Community Navigators",
+    "category": "Civic Support",
+    "image": "images/blog-digital-divide.webp",
+    "summary": "How patient 1-on-1 assistance helps jobseekers and carers upload documents, report earnings, and resolve claim errors with confidence.",
+    "body": [
+      "<p>Submitting digital claims through Centrelink's online portal can be a stress-inducing experience for jobseekers, carers, and people with disabilities. Technical upload errors, complex eligibility questionnaires, and strict reporting deadlines frequently lead to delayed benefit payments for those in desperate need.</p>",
+      "<p>Finnova's Civic Support Team provides free, compassionate assistance for individuals navigating Centrelink online services. Mentors help participants navigate claim workflows, scan and upload income documentation, verify identity status, and set up automated reporting reminders.</p>",
+      "<p>Our navigators operate with absolute empathy, creating a welcoming, non-judgmental environment where every individual is treated with warmth and respect.</p>",
+      "<p>By eliminating technical friction and administrative anxiety, Finnova ensures vulnerable community members access the financial support payments they are legally entitled to receive.</p>"
+    ]
+  },
+  {
+    "id": "ehealth-telehealth-virtual-consultations",
+    "title": "eHealth and Telehealth: Accessing Virtual Medical Consultations",
+    "date": "04 August 2026",
+    "author": "Health Inclusion Team",
+    "category": "Health & Wellbeing",
+    "image": "images/blog-digital-divide.webp",
+    "summary": "Empowering patients with mobility challenges to set up video consultations, e-Prescriptions, and My Health Record access securely.",
+    "body": [
+      "<p>Telehealth and digital health records have revolutionized Australian healthcare access, enabling patients to consult doctors, receive e-Prescriptions via SMS, and view diagnostic test results from the comfort of home.</p>",
+      "<p>However, for elderly patients, individuals with mobility limitations, or those living with chronic conditions, setting up telehealth software and managing digital health profiles can present significant barriers.</p>",
+      "<p>Finnova's eHealth Inclusion workshops guide patients through installing secure video consultation apps, testing microphone and camera settings, connecting electronic prescription tokens to local pharmacies, and managing privacy settings on My Health Record.</p>",
+      "<p>Empowering individuals to utilize telehealth ensures timely medical care, reduces unnecessary hospital visits, and improves overall health outcomes for vulnerable citizens. Book an eHealth assistance session with Finnova today.</p>"
+    ]
+  },
+  {
+    "id": "corporate-partner-ewaste-sustainability",
+    "title": "Corporate Partner Spotlight: Reclaiming E-Waste for Community Good",
+    "date": "03 August 2026",
+    "author": "Sustainability Committee",
+    "category": "Sustainability & ESG",
+    "image": "images/finnova-hardware-equity.webp",
+    "summary": "Partnering with Australian enterprises to divert decommissioned IT equipment from landfills into refreshed devices for low-income families.",
+    "body": [
+      "<p>Electronic waste (e-waste) is one of the fastest-growing waste streams in Australia, with thousands of working enterprise laptops and monitors decommissioned annually during routine corporate refresh cycles.</p>",
+      "<p>Finnova's Corporate E-Waste & Hardware Reclamation Partnership allows forward-thinking Australian businesses to fulfill Environmental, Social, and Governance (ESG) objectives by donating surplus IT hardware to our non-profit digital bank.</p>",
+      "<p>Every donated device receives certified, DoD-compliant data erasure, complete hardware sanitization, and refurbishing upgrades before being gifted to low-income students, refugees, and seniors across Victoria.</p>",
+      "<p>By extending the operational lifecycle of corporate IT assets, our enterprise partners simultaneously reduce toxic e-waste landfill while making a direct, measurable contribution to Australian digital inclusion. Contact Finnova's ESG team to donate your retired fleet.</p>"
+    ]
+  },
+  {
+    "id": "building-inclusive-communities-2026-roadmap",
+    "title": "Building Inclusive Communities: Our 2026 Vision and Impact Roadmap",
+    "date": "03 August 2026",
+    "author": "Executive Board",
+    "category": "Organisational Vision",
+    "image": "images/blog-digital-divide.webp",
+    "summary": "Finnova Ltd outlines its strategic vision to deliver 10,000+ hours of free digital inclusion, myGov assistance, and Census support across Australia.",
+    "body": [
+      "<p>As Finnova Ltd looks ahead into 2026 and beyond, our commitment to closing the digital divide across Australia remains stronger than ever. Digital access is no longer optional \u2014 it is the primary gateway to education, healthcare, civic participation, and economic opportunity.</p>",
+      "<p>Our 2026 Impact Roadmap sets ambitious goals: delivering 10,000+ hours of free 1-on-1 digital literacy support, distributing 1,000+ refurbished laptops to disadvantaged students, expanding bilingual workshops into 15+ community languages, and providing comprehensive Census 2026 assistance across regional growth corridors.</p>",
+      "<p>Achieving this vision relies on the dedication of our volunteer mentors, the generosity of our donors, and collaborative partnerships with local councils, community organizations, and corporate partners.</p>",
+      "<p>Together, we can build an Australia where every household, regardless of age, background, or income, enjoys safe, confident, and dignified access to the online world. Read our 2026 Annual Strategy & Impact Report to join us on this journey.</p>"
     ]
   }
 ]
