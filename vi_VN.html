@@ -10,6 +10,31 @@
 <meta name="author" content="Finnova Ltd">
 <meta name="theme-color" content="#0176d3">
 
+<!-- Google tag (gtag.js) - GA4 & Google Ad Grants Conversion Tracking -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JRRM05VVK8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JRRM05VVK8', {
+    'send_page_view': true,
+    'cookie_flags': 'SameSite=None;Secure'
+  });
+
+  // Helper for Google Ad Grants Conversion Tracking
+  function trackAdGrantsConversion(eventName, eventParams) {
+    try {
+      if (typeof gtag === 'function') {
+        gtag('event', eventName, Object.assign({
+          'event_category': 'AdGrants_Conversion',
+          'send_to': 'G-JRRM05VVK8'
+        }, eventParams || {}));
+      }
+    } catch(e) {}
+  }
+</script>
+
 <!-- Open Graph -->
 <meta property="og:title" content="Finnova Ltd — Digital Inclusion for Every Australian">
 <meta property="og:description" content="ACNC registered charity helping vulnerable, elderly and migrant Australians access digital services with dignity.">
@@ -7987,6 +8012,7 @@ function openPost(id) {
 
 function startDonation() {
   trackFunnelEvent('donate_cta_clicked');
+  trackAdGrantsConversion('donate_click', { value: 25.00, currency: 'AUD' });
   window.open('https://www.paypal.com/au/fundraiser/charity/5851308', '_blank', 'noopener');
 }
 
@@ -8653,6 +8679,7 @@ function handleSubscribe() {
 
 function handleInlineSubscribe() {
   var email = document.getElementById('inline-sub-email').value.trim();
+  trackAdGrantsConversion('newsletter_signup', { location: 'Footer Ticker' });
   submitSubscription('', email, getTurnstileToken('turnstile-inline'), function() {
     document.getElementById('inline-sub-email').value = '';
   });
@@ -8830,6 +8857,7 @@ function activateContactTurnstile() {
 function submitContactForm(event) {
   event.preventDefault();
   activateContactTurnstile();
+  trackAdGrantsConversion('contact_form_submit', { form_name: 'Main Contact' });
 
   var nameEl = document.getElementById('contact-name') || document.getElementById('home-contact-name');
   var emailEl = document.getElementById('contact-email') || document.getElementById('home-contact-email');
