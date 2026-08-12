@@ -58,6 +58,8 @@ While classic Yoast SEO requires PHP/WordPress and GitBook requires cloud SaaS s
 |------|------|-------------|
 | 🛠️ [`index.html`](./index.html) | **Native Application Engine** | Full single-page application containing our custom Gutenberg Inserter, Yoast SEO Analysis Engine, GitBook Studio, and Local SEO Store Locator. |
 | 📄 [`posts.json`](./posts.json) | **Headless Content Store** | Master JSON database storing all published articles, guides, and knowledge base entries. |
+| 📘 [`WRITING_STYLE_GUIDE.md`](./WRITING_STYLE_GUIDE.md) | **Writing Style Guide** | Production guidelines for writing tone, structure, callout boxes, responsive tables, Australian date formatting (`DD-MMM-YYYY`), and CTA blueprints across Finnova projects. |
+| 📦 [`TEMPLATES/`](./TEMPLATES/) | **Content Schema & Samples** | Production-ready JSON schemas and sample articles (such as `smsf_lending_article_sample.json`). |
 | 📘 [`README.md`](./README.md) | **Documentation** | Technical overview and integration instructions. |
 
 ---
