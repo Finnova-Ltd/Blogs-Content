@@ -1,0 +1,872 @@
+/* ==========================================================================
+   EZ Mortgage Broker / EZ Mortgage Broker Calculator Layout Styles (Image 1 Match)
+   ========================================================================== */
+
+:root {
+  --brand-blue: #224A91;
+  --brand-blue-hover: #1b3e7a;
+  --text-dark: #0f172a;
+  --text-medium: #475569;
+  --text-muted: #64748b;
+  --border-light: #cbd5e1;
+  --surface-light: #f8fafc;
+  --bg-banner: #eaf2ff;
+}
+
+.calculator-page {
+  min-height: 100vh;
+  background: #f4f7fb;
+  color: #0f172a;
+  font-family: 'Lato', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.calculator-page .site-header .container {
+  max-width: 1720px;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+@media (min-width: 769px) {
+  .calculator-page .site-header .logo {
+    transform: translateX(-30px);
+  }
+}
+
+@media (max-width: 768px) {
+  .calculator-page .site-header .logo {
+    transform: none;
+  }
+}
+
+.calculator-page-container {
+  width: 100%;
+  max-width: 1720px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.calculator-page-header-inner {
+  width: 100%;
+  max-width: 1720px !important;
+  margin: 0 auto;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+.calculator-workspace {
+  display: grid;
+  grid-template-columns: 280px 1fr 320px;
+  gap: 24px;
+  align-items: stretch;
+  width: 100%;
+}
+
+/* Column 1 & Column 3 Sticky Docking */
+@media (min-width: 1024px) {
+  .calculator-sidebar,
+  .calculator-sidebar-right {
+    position: sticky;
+    top: 90px;
+    align-self: start;
+    max-height: calc(100vh - 110px);
+    overflow-y: auto;
+  }
+}
+
+/* Left Accordion Sidebar */
+.calc-search-box {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.calc-search-input {
+  width: 100%;
+  padding: 8px 12px 8px 30px;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--text-dark);
+  outline: none;
+  background: #ffffff;
+}
+
+.calc-search-input:focus {
+  border-color: var(--brand-blue);
+  box-shadow: 0 0 0 3px rgba(34, 74, 145, 0.15);
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.calc-accordion-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.calc-accordion-group {
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.calc-accordion-header {
+  width: 100%;
+  padding: 10px 12px;
+  background: #f8fafc;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--brand-blue);
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.calc-accordion-header:hover,
+.calc-accordion-header.active {
+  background: #f1f5f9;
+}
+
+.calc-accordion-body {
+  padding: 6px 8px 10px;
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.calc-accordion-group.open .calc-accordion-body { display: flex; }
+
+.calc-accordion-body .calc-sidebar-btn {
+  padding: 7px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  border: none;
+  background: transparent;
+  color: var(--text-medium);
+  border-radius: 4px;
+  text-decoration: none;
+  display: block;
+}
+
+.calc-accordion-body .calc-sidebar-btn:hover {
+  background: #f1f5f9;
+  color: var(--brand-blue);
+  font-weight: 700;
+}
+
+.calc-accordion-body .calc-sidebar-btn.active {
+  background: var(--brand-blue);
+  color: #ffffff !important;
+  font-weight: 700;
+}
+
+/* Center Native Calculator Card (JM Loans Match) */
+.va-calc-wrapper {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+}
+
+.va-calc-header {
+  background: #ffffff;
+  padding: 14px 20px;
+  border-bottom: 3px solid var(--brand-blue);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 12px;
+  white-space: nowrap;
+}
+
+.va-calc-header h2 {
+  font-size: 20px;
+  font-weight: 800;
+  color: #0f2b48;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.va-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.va-btn {
+  padding: 7px 14px;
+  border-radius: 4px;
+  font-size: 12.5px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.va-btn-navy { background: #0f2b48; color: #ffffff; }
+.va-btn-navy:hover { background: #1e3a5f; }
+.va-btn-teal { background: var(--brand-blue); color: #ffffff; }
+.va-btn-teal:hover { background: var(--brand-blue-hover); }
+
+.va-chart-legend {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  min-height: 28px;
+  margin-bottom: 4px;
+}
+
+.va-chart-legend .legend-item {
+  cursor: pointer;
+  font-size: 13px !important;
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.va-chart-legend .legend-item:hover,
+.va-chart-legend .legend-item:focus-visible {
+  transform: translateY(-1px);
+}
+
+.va-chart-legend .legend-item.inactive { opacity: 0.28; }
+
+.va-chart-tooltip {
+  position: absolute;
+  top: 28px;
+  right: 18px;
+  z-index: 2;
+  min-width: 156px;
+  padding: 10px 12px;
+  border-radius: 7px;
+  background: rgba(15, 23, 42, 0.94);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.22);
+  color: #fff;
+  font-size: 11px;
+  line-height: 1.55;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-5px);
+  transition: opacity 140ms ease, transform 140ms ease;
+}
+
+.va-chart-tooltip.visible { opacity: 1; transform: translateY(0); }
+.va-chart-tooltip strong { display: block; margin-bottom: 3px; color: #35c4bb; font-size: 12px; }
+
+.va-calc-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  padding: 18px 24px 20px;
+  align-items: start;
+}
+
+.va-col-left { grid-column: 1; grid-row: 1; display: flex; flex-direction: column; gap: 16px; }
+.va-col-right { grid-column: 2; grid-row: 1; display: flex; flex-direction: column; min-height: 100%; }
+.va-results-section { margin-top: 0; padding-top: 14px; border-top: 1px dashed #cbd5e1; }
+
+.va-col-left,
+.va-col-right {
+  min-width: 0;
+}
+
+.va-col-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.va-chart-box {
+  min-height: 0 !important;
+  height: auto !important;
+  justify-content: flex-start !important;
+  overflow: hidden;
+}
+
+.va-svg {
+  height: 240px !important;
+}
+
+.va-section-heading {
+  font-size: 15px;
+  font-weight: 800;
+  color: #0f2b48;
+  margin: 18px 0 14px;
+  padding-bottom: 7px;
+  border-bottom: 1px solid #d9e2ee;
+  letter-spacing: 0;
+}
+
+.va-form-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.va-form-group label {
+  font-size: 13px;
+  color: #334155;
+  font-weight: 600;
+  flex: 1;
+}
+
+/* Pill Toggle Buttons (Single / Joint, 0, 1, 2, 3, 4) */
+.va-pill-toggle-group {
+  display: flex;
+  background: #f1f5f9;
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  padding: 2px;
+  gap: 2px;
+}
+
+.va-pill-btn {
+  flex: 1;
+  padding: 5px 10px;
+  border: none;
+  background: transparent;
+  font-size: 12px;
+  font-weight: 700;
+  color: #475569;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.va-pill-btn.active {
+  background: var(--brand-blue);
+  color: #ffffff;
+}
+
+/* Input Boxes with Prefix ($) and Suffix (Monthly/Annually) */
+.va-input-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  background: #f1f5f9;
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  padding: 5px 8px;
+  width: 132px;
+  box-sizing: border-box;
+}
+
+.va-field-unit {
+  flex: 0 0 auto;
+  min-width: 62px;
+  margin-left: 8px;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.va-form-group > .va-field-unit + .va-field-unit { margin-left: 4px; }
+
+.va-input-box input {
+  min-width: 0;
+  width: 100%;
+  border: none;
+  background: transparent;
+  text-align: right;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #0f172a;
+  outline: none;
+}
+
+.va-select-box {
+  flex: 0 0 132px;
+  min-width: 0;
+  padding: 6px 8px;
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  background: #f1f5f9;
+  color: #334155;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.va-reset-button {
+  display: block;
+  width: 132px;
+  margin: 14px 0 0 auto;
+  padding: 7px 12px;
+  border: 0;
+  border-radius: 4px;
+  background: #08a99f;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.va-reset-button:hover { background: #078e86; }
+
+.va-chart-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-height: 0;
+  margin-top: 8px;
+  color: #224a91;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.va-chart-brand img {
+  height: 30px;
+  width: auto;
+}
+
+.va-disclaimer-fine {
+  margin: 10px 0 0;
+  color: #64748b;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.calculator-modal[hidden] { display: none; }
+
+.calculator-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.calculator-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.62);
+  backdrop-filter: blur(3px);
+}
+
+.calculator-modal-dialog {
+  position: relative;
+  width: min(100%, 560px);
+  max-height: min(90vh, 720px);
+  overflow-y: auto;
+  padding: 28px;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.28);
+}
+
+.calculator-modal-dialog h2 {
+  margin: 0 36px 10px 0;
+  color: #0f172a;
+  font-size: 21px;
+  line-height: 1.25;
+}
+
+.calculator-modal-intro {
+  margin: 0 0 18px;
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.calculator-modal-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  background: transparent;
+  color: #64748b;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.calculator-modal-summary {
+  margin-bottom: 20px;
+  padding: 16px;
+  border: 1px solid #dbe4ef;
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.calculator-modal-summary > strong {
+  display: block;
+  margin-bottom: 10px;
+  color: #087f99;
+  font-size: 13px;
+  letter-spacing: .04em;
+}
+
+.calculator-modal-summary-list {
+  display: grid;
+  gap: 6px;
+  color: #475569;
+  font-size: 13px;
+}
+
+.calculator-modal-summary-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.calculator-modal-summary-row strong { color: #0f172a; }
+
+.calculator-modal-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.calculator-modal-field { margin-bottom: 16px; }
+
+.calculator-modal-field label {
+  display: block;
+  margin-bottom: 7px;
+  color: #334155;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.calculator-modal-field label span { color: #224a91; }
+
+.calculator-modal-field input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 13px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  color: #0f172a;
+  font: inherit;
+  font-size: 14px;
+}
+
+.calculator-modal-field input:focus {
+  outline: 2px solid rgba(34, 74, 145, .2);
+  border-color: #224a91;
+}
+
+.calculator-modal-status {
+  min-height: 20px;
+  margin: 0 0 10px;
+  color: #b42318;
+  font-size: 13px;
+}
+
+.calculator-modal-status.success { color: #087f5b; }
+
+.calculator-modal-submit {
+  width: 100%;
+  padding: 14px 18px;
+  border: 0;
+  border-radius: 7px;
+  background: #092640;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.calculator-modal-submit:disabled { cursor: wait; opacity: .65; }
+
+@media (max-width: 600px) {
+  .calculator-modal { padding: 12px; }
+  .calculator-modal-dialog { padding: 22px 16px; border-radius: 12px; }
+  .calculator-modal-field-row { grid-template-columns: 1fr; gap: 0; }
+}
+
+.va-symbol {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 600;
+  margin: 0 2px;
+}
+
+/* Column 3 Right Rail Broker Profile Card (JM Loans Match) */
+.broker-profile-card {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+}
+
+.broker-cover-header {
+  height: 80px;
+  overflow: hidden;
+}
+
+.broker-cover-header img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.broker-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 3px solid #ffffff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+  margin: -32px auto 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.broker-avatar img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+}
+
+.broker-info {
+  text-align: center;
+  padding: 0 16px 14px;
+}
+
+.broker-info h4 {
+  font-size: 16px;
+  font-weight: 800;
+  color: #0f2b48;
+  margin: 0 0 2px;
+}
+
+.broker-company {
+  font-size: 12px;
+  color: #64748b;
+  margin: 0 0 6px;
+}
+
+.broker-stars {
+  font-size: 13px;
+  color: #f59e0b;
+  font-weight: 700;
+}
+
+.broker-stars span {
+  color: #64748b;
+  font-weight: 500;
+}
+
+.broker-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 16px 16px;
+}
+
+.btn-broker.primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #0f2b48;
+  color: #ffffff;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.btn-broker.primary:hover {
+  background: var(--brand-blue);
+}
+
+.calculator-review-status,
+.calculator-review-summary {
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.calculator-review-summary {
+  margin: -4px 0 12px;
+  color: #b45309;
+  font-weight: 700;
+}
+
+.calculator-review-item {
+  display: none;
+  border-bottom: 1px solid #f1f5f9;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+
+.calculator-review-item.is-active {
+  display: block;
+  animation: calculator-review-in 0.35s ease both;
+}
+
+@keyframes calculator-review-in {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.calculator-review-item:last-child {
+  border-bottom: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.calculator-review-item strong {
+  display: block;
+  color: #0f172a;
+  font-size: 13px;
+}
+
+.calculator-review-meta {
+  color: #f59e0b;
+  font-size: 11px;
+}
+
+.calculator-review-item p {
+  margin: 4px 0 0;
+  color: #475569;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.calculator-review-item details {
+  margin-top: 8px;
+}
+
+.calculator-review-item summary {
+  color: #224a91;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 700;
+  list-style-position: inside;
+}
+
+.calculator-review-item .calculator-review-full {
+  margin-top: 8px;
+}
+
+@media (max-width: 900px) {
+  .calculator-workspace {
+    grid-template-columns: 1fr;
+  }
+  .calc-workspace-main,
+  .va-calc-wrapper,
+  .va-calc-body {
+    min-width: 0;
+  }
+  .va-calc-header,
+  .va-header-actions {
+    flex-wrap: wrap;
+    white-space: normal;
+  }
+  .va-calc-body {
+    grid-template-columns: 1fr;
+  }
+  .va-col-left,
+  .va-col-right,
+  .va-results-section,
+  .va-calc-body.repayment-layout .va-results-section {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .va-chart-tooltip { top: 18px; right: 12px; }
+}
+
+/* =========================================
+   Calculator Page Mobile Overrides
+   ========================================= */
+@media (max-width: 900px) {
+  .calculator-page-container,
+  .calculator-page-header-inner,
+  .calculator-page .site-header .container {
+    max-width: 100% !important;
+    padding: 0 16px !important;
+  }
+
+  .calculator-workspace {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .calc-sidebar {
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    gap: 8px !important;
+    padding-bottom: 10px !important;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .calc-sidebar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .calc-accordion-group {
+    flex: 0 0 auto !important;
+    min-width: 0 !important;
+  }
+
+  .calc-accordion-header {
+    padding: 8px 12px !important;
+    font-size: 12px !important;
+    white-space: nowrap !important;
+    border-radius: 20px !important;
+    background: #e2e8f0 !important;
+  }
+
+  .calc-accordion-body {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 6px !important;
+    padding: 4px 0 !important;
+  }
+
+  .calc-sidebar-btn {
+    white-space: nowrap !important;
+    padding: 6px 12px !important;
+    font-size: 12px !important;
+    border-radius: 16px !important;
+    background: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+  }
+
+  .calc-sidebar-btn.active {
+    background: #224a91 !important;
+    color: #ffffff !important;
+    border-color: #224a91 !important;
+  }
+
+  .va-calc-body {
+    grid-template-columns: 1fr !important;
+  }
+
+  .va-svg {
+    height: 200px !important;
+  }
+}

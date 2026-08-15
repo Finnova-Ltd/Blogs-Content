@@ -1,0 +1,166 @@
+{
+  "General": {
+    "badge": "National Overview",
+    "title": "Australian Federal First Home Schemes & Grants Overview",
+    "portalName": "Official Australian Government First Home Portal",
+    "portalUrl": "https://www.firsthome.gov.au/",
+    "sections": [
+      {
+        "heading": "Federal First Home Guarantee (FHBG) — 5% Deposit Scheme",
+        "content": "<p>Under the Federal Home Guarantee Scheme administered by Housing Australia, eligible first home buyers can purchase a residential property with as little as a <strong>5% genuine savings deposit</strong> without paying any Lenders Mortgage Insurance (LMI). The Australian Government guarantees up to 15% of the loan value.</p><ul><li><strong>Low Deposit:</strong> 5% deposit for first home buyers, or 2% for single parents via the Family Home Guarantee (FHG).</li><li><strong>No LMI:</strong> Saves borrowers between $15,000 and $35,000 in upfront insurance fees.</li><li><strong>Property Types:</strong> New homes, established houses, townhouses, apartments, or house and land packages.</li><li><strong>Unlimited Places:</strong> Available across major panel lenders through EZ Mortgage Broker.</li></ul>"
+      },
+      {
+        "heading": "First Home Super Saver Scheme (FHSSS)",
+        "content": "<p>Allows first home buyers to save money inside their superannuation fund at a concessional tax rate of 15% (compared to marginal income tax rates up to 47%).</p><ul><li><strong>Savings Cap:</strong> Release up to $50,000 of voluntary contributions per individual ($100,000 for a couple) plus associated compound earnings.</li><li><strong>Annual Limit:</strong> Up to $15,000 per financial year in voluntary concessional/non-concessional contributions.</li></ul>"
+      },
+      {
+        "heading": "Federal Help to Buy Shared Equity Scheme",
+        "content": "<p>The Australian Government contributes up to <strong>30% equity for established homes</strong> or up to <strong>40% equity for new builds</strong>, allowing buyers to purchase with just a 2% deposit and significantly lower monthly mortgage repayments.</p>"
+      }
+    ]
+  },
+  "VIC": {
+    "badge": "Victoria (SRO)",
+    "title": "Victoria (VIC) State Revenue Office — Grants, Exemptions & Concessions",
+    "portalName": "Official State Revenue Office (SRO) Victoria Portal",
+    "portalUrl": "https://www.sro.vic.gov.au/buying-property/land-transfer-stamp-duty/concessions-exemptions-and-waivers/first-home-buyers/first-home-buyer-duty-exemption-or-concession",
+    "sections": [
+      {
+        "heading": "First Home Buyer Land Transfer (Stamp) Duty Exemption & Concession",
+        "content": "<p>The State Revenue Office (SRO) provides substantial duty savings for Victorian first home buyers:</p><ul><li><strong>Full Stamp Duty Exemption ($0 Duty):</strong> Available if your first home has a dutiable value of <strong>$600,000 or less</strong>. You pay $0 in stamp duty (saving up to $31,070 in land transfer tax).</li><li><strong>Sliding Scale Concession:</strong> A tapered duty discount applies for homes valued between <strong>$600,001 and $750,000</strong>.</li><li><strong>Property Eligibility:</strong> Applies to new homes, established homes, and vacant land intended for home construction.</li><li><strong>Vacant Land Assessment:</strong> Dutiable value is calculated strictly on the land price itself — building contract costs are not included.</li></ul>"
+      },
+      {
+        "heading": "Victorian First Home Owner Grant (FHOG)",
+        "content": "<p>A direct <strong>$10,000 payment</strong> is available for first home buyers purchasing or building a new home with a contract price of up to <strong>$750,000</strong>.</p>"
+      },
+      {
+        "heading": "Off-the-Plan & Strata Duty Concessions",
+        "content": "<p><strong>Owner-Occupier Pathway:</strong> Reduces dutiable value by deducting construction costs occurring after contract signing.</p><p><strong>Temporary Strata/Townhouse Extension (Active until 21 April 2027):</strong> Broad concession applying to all buyers (including investors, companies, and trusts) purchasing apartments, units, or townhouses in strata subdivisions with no property price cap.</p>"
+      },
+      {
+        "heading": "Pensioner, Family & Special SRO Exemptions",
+        "content": "<ul><li><strong>Pensioners & Concession Cardholders:</strong> Full duty exemption up to $600,000; partial discount up to $750,000 (one-time benefit for principal residence).</li><li><strong>Spouse / Partner Exemption:</strong> Transfers of a principal home between legal spouses or de facto domestic partners are 100% exempt from stamp duty.</li><li><strong>Principal Place of Residence (PPR) Concession:</strong> General stamp duty reduction for homes valued up to $550,000 if occupied for 12 continuous months.</li><li><strong>Family Farms & Deceased Estates:</strong> Full exemptions apply for farming land transfers between immediate family and properties passed through wills.</li><li><strong>Disability Exemption:</strong> Home transfers from immediate family to a qualifying person with a disability are exempt.</li></ul>"
+      },
+      {
+        "heading": "Applicant Eligibility & Residency Requirements",
+        "content": "<ul><li>Must be natural persons, at least 18 years old, and Australian citizens or permanent residents.</li><li>Must occupy the home as Principal Place of Residence for at least <strong>12 continuous months</strong>, moving in within 12 months of settlement (or 12 months from occupancy certificate / 36 months from settlement for vacant land).</li><li>Defence Force personnel are exempt from residency requirements if enrolled on Victorian electoral roll.</li></ul>"
+      },
+      {
+        "heading": "How to Apply (Digital Duties Form)",
+        "content": "<p>Your conveyancer or solicitor completes the official SRO <strong>Digital Duties Form</strong> online during settlement. All exemptions and concessions are calculated automatically and deducted directly from settlement funds.</p>"
+      }
+    ]
+  },
+  "NSW": {
+    "badge": "New South Wales (Revenue NSW)",
+    "title": "New South Wales (NSW) — First Home Buyers Assistance Scheme & FHOG",
+    "portalName": "Official Revenue NSW First Home Portal",
+    "portalUrl": "https://www.revenue.nsw.gov.au/grants-schemes/first-home-owner-new-homes-grant",
+    "sections": [
+      {
+        "heading": "First Home Buyers Assistance Scheme (FHBAS)",
+        "content": "<ul><li><strong>Full Transfer Duty Exemption:</strong> Pay $0 transfer duty on new and established homes valued up to <strong>$800,000</strong> (savings up to $30,735).</li><li><strong>Concessional Transfer Duty:</strong> Tapered discount for properties valued between <strong>$800,001 and $1,000,000</strong>.</li><li><strong>Vacant Land:</strong> Full exemption on vacant land up to $350,000; concession between $350,001 and $450,000.</li></ul>"
+      },
+      {
+        "heading": "NSW First Home Owner (New Homes) Grant",
+        "content": "<p><strong>$10,000 cash grant</strong> for buying or building a brand-new home:</p><ul><li>Newly constructed homes valued up to $600,000.</li><li>Comprehensive building contract to build valued up to $750,000.</li></ul>"
+      },
+      {
+        "heading": "Residency Criteria",
+        "content": "<p>At least one buyer must move in within 12 months of settlement and reside continuously for at least 12 months.</p>"
+      }
+    ]
+  },
+  "QLD": {
+    "badge": "Queensland (QRO)",
+    "title": "Queensland (QLD) — $30,000 FHOG & Transfer Duty Concessions",
+    "portalName": "Official Queensland Revenue Office (QRO) Portal",
+    "portalUrl": "https://qro.qld.gov.au/property-concessions-grants/first-home-grant/",
+    "sections": [
+      {
+        "heading": "Queensland First Home Owner Grant ($30,000)",
+        "content": "<p>Queensland offers the highest state grant in Australia: a <strong>$30,000 direct cash grant</strong> for eligible first home buyers purchasing or building a brand-new home valued under <strong>$750,000</strong>.</p>"
+      },
+      {
+        "heading": "First Home Transfer Duty Concession",
+        "content": "<ul><li><strong>Full Duty Exemption ($0 Duty):</strong> Zero transfer duty on homes valued up to <strong>$700,000</strong> (saving up to $17,350).</li><li><strong>Concession:</strong> Tapered concession on properties valued between <strong>$700,001 and $800,000</strong>.</li><li><strong>First Home Vacant Land Concession:</strong> Full exemption on vacant land valued up to $350,000; concession up to $500,000.</li></ul>"
+      },
+      {
+        "heading": "Residency Rules",
+        "content": "<p>Must move into the property as principal residence within 1 year of settlement and live continuously for at least 1 year.</p>"
+      }
+    ]
+  },
+  "WA": {
+    "badge": "Western Australia (WA Treasury)",
+    "title": "Western Australia (WA) — FHOG & First Home Owner Rate (FHOR)",
+    "portalName": "Official WA Department of Treasury & Finance Portal",
+    "portalUrl": "https://www.wa.gov.au/organisation/department-of-treasury-and-finance/first-home-owner-grant-fhog",
+    "sections": [
+      {
+        "heading": "WA First Home Owner Grant (FHOG)",
+        "content": "<p><strong>$10,000 cash grant</strong> for purchasing or building a new residential home:</p><ul><li>Up to <strong>$750,000</strong> for properties south of the 26th parallel (Perth and South West).</li><li>Up to <strong>$1,000,000</strong> for properties north of the 26th parallel.</li></ul>"
+      },
+      {
+        "heading": "First Home Owner Rate (FHOR) Duty Concessions",
+        "content": "<ul><li><strong>Full Stamp Duty Exemption:</strong> $0 transfer duty on homes valued up to <strong>$450,000</strong>.</li><li><strong>Concession:</strong> Reduced rate on homes valued between <strong>$450,001 and $600,000</strong>.</li><li><strong>Vacant Land:</strong> $0 duty up to $300,000; concession between $300,001 and $400,000.</li></ul>"
+      }
+    ]
+  },
+  "SA": {
+    "badge": "South Australia (RevenueSA)",
+    "title": "South Australia (SA) — $15,000 FHOG & Unlimited Stamp Duty Relief",
+    "portalName": "Official RevenueSA First Home Portal",
+    "portalUrl": "https://www.revenuesa.sa.gov.au/first-home-owners-grant",
+    "sections": [
+      {
+        "heading": "Complete Stamp Duty Relief on New Homes (No Price Cap)",
+        "content": "<p>South Australia offers <strong>complete stamp duty relief</strong> for eligible first home buyers purchasing brand-new homes, off-the-plan apartments, or vacant land for construction — with <strong>no property price cap</strong>.</p>"
+      },
+      {
+        "heading": "First Home Owner Grant ($15,000)",
+        "content": "<p>A direct grant of <strong>$15,000</strong> is payable to eligible first home buyers entering contracts to buy or build a new home.</p>"
+      }
+    ]
+  },
+  "ACT": {
+    "badge": "ACT Revenue Office",
+    "title": "Australian Capital Territory (ACT) — Home Buyer Concession Scheme",
+    "portalName": "Official ACT Revenue Office Portal",
+    "portalUrl": "https://www.revenue.act.gov.au/home-buyer-assistance/first-home-owner-grant",
+    "sections": [
+      {
+        "heading": "ACT Home Buyer Concession Scheme (Zero Stamp Duty)",
+        "content": "<p>The ACT operates a progressive buyer assistance scheme providing <strong>full $0 conveyance stamp duty exemption</strong> for eligible first-time and owner-occupier buyers across all residential properties (new and established) below qualifying household income thresholds.</p>"
+      }
+    ]
+  },
+  "TAS": {
+    "badge": "Tasmania (SRO TAS)",
+    "title": "Tasmania (TAS) — $10,000 FHOG & 50% Stamp Duty Discount",
+    "portalName": "Official State Revenue Office of Tasmania Portal",
+    "portalUrl": "https://www.sro.tas.gov.au/",
+    "sections": [
+      {
+        "heading": "Tasmanian First Home Owner Grant",
+        "content": "<p><strong>$10,000 cash grant</strong> for buying or building a brand-new home in Tasmania.</p>"
+      },
+      {
+        "heading": "First Home Buyer 50% Duty Discount",
+        "content": "<p>First home buyers purchasing an established home with a dutiable value of <strong>$600,000 or less</strong> receive an automatic <strong>50% discount on transfer duty</strong>.</p>"
+      }
+    ]
+  },
+  "NT": {
+    "badge": "Northern Territory (TRO)",
+    "title": "Northern Territory (NT) — $10,000 FHOG & Territory HomeGrown Grants",
+    "portalName": "Official Territory Revenue Office NT Portal",
+    "portalUrl": "https://treasury.nt.gov.au/dtf/territory-revenue-office",
+    "sections": [
+      {
+        "heading": "NT First Home Owner Grant & HomeGrown Initiatives",
+        "content": "<p><strong>$10,000 grant</strong> for buying or building a new home, combined with Territory HomeGrown scheme incentives and territorial housing assistance.</p>"
+      }
+    ]
+  }
+}
