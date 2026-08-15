@@ -5296,3 +5296,216 @@ p, .article-main-content p {
   font-weight: 800 !important;
   letter-spacing: 0.12em !important;
 }
+
+
+/* =========================================
+   White Theme Site Footer
+   ========================================= */
+.site-footer {
+  background: #ffffff !important;
+  color: #475569 !important;
+  border-top: 1.5px solid #e2e8f0;
+  padding: 64px 0 0;
+}
+
+.site-footer-compact {
+  padding-top: 0;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.3fr;
+  gap: 40px;
+  padding-bottom: 48px;
+}
+
+.footer-brand .logo-name {
+  color: #0A2540 !important;
+}
+
+.footer-brand .logo-tagline {
+  color: #64748b !important;
+}
+
+.footer-brand-desc,
+.footer-brand p {
+  color: #475569 !important;
+  font-size: 0.95rem !important;
+  line-height: 1.65 !important;
+  font-weight: 400 !important;
+  margin-top: 16px !important;
+  margin-bottom: 24px !important;
+  max-width: 320px;
+}
+
+.footer-col h4 {
+  color: #0A2540 !important;
+  font-size: 0.95rem !important;
+  font-family: var(--font-body);
+  font-weight: 800 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 20px;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-links a {
+  font-size: 0.92rem !important;
+  color: #475569 !important;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+.footer-links a:hover {
+  color: #1D4ED8 !important;
+  transform: translateX(3px);
+}
+
+/* Colorful Social Icons */
+.footer-social {
+  display: flex;
+  gap: 12px;
+}
+
+.social-link {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.social-fb {
+  background: #eff6ff;
+  color: #1877f2 !important;
+  border: 1px solid #bfdbfe;
+}
+.social-fb:hover {
+  background: #1877f2;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+}
+
+.social-in {
+  background: #f0f9ff;
+  color: #0077b5 !important;
+  border: 1px solid #bae6fd;
+}
+.social-in:hover {
+  background: #0077b5;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+}
+
+.social-ig {
+  background: #fdf2f8;
+  color: #e1306c !important;
+  border: 1px solid #fbcfe8;
+}
+.social-ig:hover {
+  background: #e1306c;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+}
+
+/* Colorful Contact Badges & Details */
+.footer-contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.footer-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.92rem;
+  color: #475569 !important;
+  line-height: 1.45;
+}
+
+.footer-contact-item strong {
+  color: #0A2540;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.icon-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.icon-phone { background: #eff6ff; border: 1px solid #bfdbfe; }
+.icon-email { background: #fef3c7; border: 1px solid #fde68a; }
+.icon-loc   { background: #fee2e2; border: 1px solid #fecaca; }
+.icon-clock { background: #ecfdf5; border: 1px solid #a7f3d0; }
+
+.footer-contact-link {
+  color: #0A2540 !important;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-contact-link:hover {
+  color: #1D4ED8 !important;
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  padding: 24px 0;
+  margin-top: 20px;
+}
+
+.footer-bottom-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-bottom-inner p {
+  font-size: 0.86rem !important;
+  color: #64748b !important;
+  margin: 0;
+}
+
+.footer-legal {
+  display: flex;
+  gap: 16px;
+}
+
+.footer-legal a {
+  color: #64748b !important;
+  font-size: 0.86rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-legal a:hover {
+  color: #0A2540 !important;
+  text-decoration: underline;
+}
