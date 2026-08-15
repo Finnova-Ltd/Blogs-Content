@@ -5889,3 +5889,66 @@ p, .article-main-content p {
 .insight-card:hover .insight-img img {
   transform: scale(1.05);
 }
+
+
+/* =========================================
+   About EZ Mortgage Broker - 3 Columns 1 Row
+   ========================================= */
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 40px;
+}
+
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+.about-card {
+  background: #ffffff;
+  border: 1.5px solid #DCE9FE;
+  border-radius: 16px;
+  padding: 32px 24px;
+  text-align: left;
+  box-shadow: 0 4px 16px rgba(10, 37, 64, 0.04);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(10, 37, 64, 0.08);
+  border-color: #BFDBFE;
+}
+
+.about-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: #EFF6FF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 18px;
+}
+
+.about-card h3 {
+  font-size: 1.18rem;
+  color: #0A2540 !important;
+  font-weight: 800;
+  margin: 0 0 10px;
+  line-height: 1.3;
+}
+
+.about-card p {
+  font-size: 0.95rem !important;
+  color: #475569 !important;
+  line-height: 1.6;
+  margin: 0;
+}
