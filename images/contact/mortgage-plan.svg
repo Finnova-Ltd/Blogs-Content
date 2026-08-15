@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">Mortgage planning illustration</title>
+  <desc id="desc">A couple reviewing a home loan plan with a broker.</desc>
+  <rect width="1200" height="700" fill="#e9f4ef"/>
+  <circle cx="1040" cy="110" r="170" fill="#c9e5d8"/>
+  <path d="M0 555h1200v145H0z" fill="#d5e8e0"/>
+  <path d="m150 315 205-165 205 165v245H150z" fill="#fff" stroke="#1b4f2a" stroke-width="8"/>
+  <path d="m120 320 235-195 235 195-30 38-205-167-205 167z" fill="#2d7a44"/>
+  <path d="M255 555V390h200v165" fill="#b9dccb" stroke="#1b4f2a" stroke-width="8"/>
+  <path d="M520 430h230v145H520z" fill="#fff" stroke="#1b4f2a" stroke-width="8"/>
+  <path d="M555 470h120M555 505h155M555 540h90" stroke="#6c9180" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="810" cy="355" r="58" fill="#f0b28f"/>
+  <path d="M755 345q55-92 110 0v35H755z" fill="#34495e"/>
+  <path d="M735 610q10-185 145-185t145 185" fill="#2d7a44"/>
+  <circle cx="710" cy="410" r="54" fill="#e3a47f"/>
+  <path d="M660 405q52-88 102-2v25H660z" fill="#5c3d35"/>
+  <path d="M630 610q8-170 140-170t140 170" fill="#f0b44c"/>
+  <path d="M730 455 790 505 840 455" fill="none" stroke="#fff" stroke-width="8"/>
+  <path d="M810 260v-75M775 225l35-40 35 40" fill="none" stroke="#1b4f2a" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="810" cy="150" r="34" fill="#f5a623"/>
+</svg>

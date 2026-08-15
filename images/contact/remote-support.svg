@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">Remote mortgage support illustration</title>
+  <desc id="desc">A customer meeting a mortgage broker through a video call.</desc>
+  <rect width="1200" height="700" fill="#fff4e7"/>
+  <circle cx="178" cy="160" r="120" fill="#ffe0b4"/>
+  <path d="M0 555h1200v145H0z" fill="#f6dfc1"/>
+  <path d="M180 560V300h410v260" fill="#fff" stroke="#315d78" stroke-width="8"/>
+  <rect x="220" y="340" width="330" height="160" rx="12" fill="#d7edf2"/>
+  <circle cx="335" cy="405" r="42" fill="#f0b28f"/>
+  <path d="M294 398q40-72 82 0v27h-82z" fill="#4d3f3c"/>
+  <path d="M270 500q7-107 93-107t93 107" fill="#2d7a44"/>
+  <circle cx="835" cy="350" r="59" fill="#e3a47f"/>
+  <path d="M780 340q54-92 110 0v35H780z" fill="#34495e"/>
+  <path d="M745 610q10-190 145-190t145 190" fill="#38508b"/>
+  <path d="M895 245h95q30 0 30 30v70q0 30-30 30h-55l-35 30v-30h-5q-30 0-30-30v-70q0-30 30-30z" fill="#f5a623"/>
+  <path d="M886 293h94M886 323h67" stroke="#fff" stroke-width="9" stroke-linecap="round"/>
+  <path d="M630 390h100M665 350v80" stroke="#2d7a44" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="650" cy="315" r="18" fill="#f5a623"/>
+  <path d="M590 520q80-75 155 0" fill="none" stroke="#315d78" stroke-width="9" stroke-linecap="round"/>
+</svg>

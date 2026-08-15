@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">Phone consultation illustration</title>
+  <desc id="desc">A broker speaking with a customer on the phone.</desc>
+  <rect width="1200" height="700" fill="#edf1fb"/>
+  <circle cx="935" cy="170" r="155" fill="#d6ddf7"/>
+  <path d="M0 555h1200v145H0z" fill="#e0e6f5"/>
+  <path d="M170 525h720v35H170z" fill="#38508b"/>
+  <path d="M235 555v115M825 555v115" stroke="#38508b" stroke-width="24"/>
+  <rect x="280" y="300" width="310" height="190" rx="18" fill="#fff" stroke="#38508b" stroke-width="8"/>
+  <rect x="312" y="332" width="246" height="122" rx="9" fill="#b9c8ef"/>
+  <path d="M345 370h145M345 405h105" stroke="#fff" stroke-width="11" stroke-linecap="round"/>
+  <circle cx="740" cy="278" r="66" fill="#f0b28f"/>
+  <path d="M678 265q60-105 124 0v38H678z" fill="#354763"/>
+  <path d="M650 600q12-214 180-214t180 214" fill="#f5a623"/>
+  <path d="M660 425 615 355q-20-33 10-53 26-17 45 12l44 69" fill="#f0b28f"/>
+  <path d="M615 315q-70-60-37-108 25-36 60 1l42 50" fill="none" stroke="#f5a623" stroke-width="30" stroke-linecap="round"/>
+  <path d="M620 205q-16-39 16-58 31-18 49 16l28 58" fill="none" stroke="#f5a623" stroke-width="28" stroke-linecap="round"/>
+  <path d="M895 255q73-45 128 20" fill="none" stroke="#2d7a44" stroke-width="11" stroke-linecap="round"/>
+  <path d="M930 200q76-24 116 51" fill="none" stroke="#2d7a44" stroke-width="11" stroke-linecap="round"/>
+  <circle cx="1025" cy="285" r="14" fill="#f5a623"/>
+</svg>
