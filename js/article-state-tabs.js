@@ -78,12 +78,13 @@
 
   // Manual Sidebar Click Handling
   sidebarHdrBtns.forEach(function (hdr) {
-    hdr.addEventListener('click', function () {
+    hdr.addEventListener('click', function (e) {
+      e.preventDefault();
       sidebarManualLock = true;
       clearTimeout(sidebarLockTimeout);
       sidebarLockTimeout = setTimeout(function () {
         sidebarManualLock = false;
-      }, 4000);
+      }, 5000);
 
       var widget = this.closest('.sidebar-accordion-widget');
       if (!widget) return;
@@ -95,7 +96,6 @@
         this.setAttribute('aria-expanded', 'false');
         if (icon) icon.textContent = '+';
       } else {
-        // Smoothly collapse other sidebar widgets to keep column 2 neat
         sidebarWidgets.forEach(function (otherW) {
           if (otherW !== widget) {
             otherW.classList.remove('open');
@@ -132,12 +132,13 @@
     var hdr = acc.querySelector('.article-section-accordion-header');
     if (!hdr) return;
 
-    hdr.addEventListener('click', function () {
+    hdr.addEventListener('click', function (e) {
+      e.preventDefault();
       userManualLock = true;
       clearTimeout(lockTimeout);
       lockTimeout = setTimeout(function () {
         userManualLock = false;
-      }, 3500);
+      }, 4000);
 
       var icon = this.querySelector('.section-accordion-icon');
       var isOpen = acc.classList.contains('open');
@@ -164,12 +165,12 @@
     });
   });
 
-  // 6. Dynamic Scroll-Driven Auto-Closing (Column 1 & Column 2)
+  // 6. Dynamic Scroll-Driven Auto-Closing (Column 1 AND Column 2)
   var scrollDebounce = null;
   function handleScrollSpy() {
     var scrollY = window.pageYOffset || document.documentElement.scrollTop;
 
-    // At top of page (< 80px): keep everything open
+    // At top of page (< 80px): keep everything OPEN in Col 1 and Col 2
     if (scrollY < 80) {
       if (!userManualLock) {
         sectionAccordions.forEach(function (acc) {
@@ -192,7 +193,8 @@
       return;
     }
 
-    // When scrolling down, auto-collapse Column 1 sections except active one in reading line
+    // When scrolling down past 80px:
+    // A. Auto-close Column 1 except the single active reading section
     if (!userManualLock && sectionAccordions.length > 0) {
       var activeAcc = null;
       var smallestDist = Infinity;
@@ -201,7 +203,7 @@
       sectionAccordions.forEach(function (acc) {
         var rect = acc.getBoundingClientRect();
         var dist = Math.abs(rect.top - targetReadingLine);
-        if (rect.top <= (window.innerHeight * 0.7) && rect.bottom >= 100) {
+        if (rect.top <= (window.innerHeight * 0.75) && rect.bottom >= 80) {
           if (dist < smallestDist) {
             smallestDist = dist;
             activeAcc = acc;
@@ -230,25 +232,23 @@
       }
     }
 
-    // When scrolling down into deep reading, also collapse Column 2 widgets so the sticky CTA stays visible
+    // B. Auto-close Column 2 widgets so the sticky Assessment Card is prominent
     if (!sidebarManualLock && sidebarWidgets.length > 0) {
-      if (scrollY > 350) {
-        sidebarWidgets.forEach(function (w) {
-          if (w.classList.contains('open')) {
-            w.classList.remove('open');
-            var hdr = w.querySelector('.sidebar-accordion-header');
-            var icon = w.querySelector('.sidebar-accordion-icon');
-            if (hdr) hdr.setAttribute('aria-expanded', 'false');
-            if (icon) icon.textContent = '+';
-          }
-        });
-      }
+      sidebarWidgets.forEach(function (w) {
+        if (w.classList.contains('open')) {
+          w.classList.remove('open');
+          var hdr = w.querySelector('.sidebar-accordion-header');
+          var icon = w.querySelector('.sidebar-accordion-icon');
+          if (hdr) hdr.setAttribute('aria-expanded', 'false');
+          if (icon) icon.textContent = '+';
+        }
+      });
     }
   }
 
   window.addEventListener('scroll', function () {
     clearTimeout(scrollDebounce);
-    scrollDebounce = setTimeout(handleScrollSpy, 40);
+    scrollDebounce = setTimeout(handleScrollSpy, 25);
   }, { passive: true });
 
   // 7. Sticky Region Selector Bar on Scroll
