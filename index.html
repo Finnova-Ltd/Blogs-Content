@@ -314,7 +314,7 @@
       <div class="loan-tab-panel is-active" id="panel-personal" role="tabpanel" aria-labelledby="tab-btn-personal">
         
         <!-- Step-by-Step Guidance Split Layout -->
-        <div class="loan-step-guidance-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; margin-bottom:64px;">
+        <div class="loan-step-guidance-grid" style="display:grid; grid-template-columns:1fr 1.35fr; gap:56px; align-items:center; margin-bottom:64px;">
           <div class="loan-step-content fade-up">
             <span class="section-label" style="color:#1D4ED8; font-weight:800; letter-spacing:0.12em; text-transform:uppercase;">STEP-BY-STEP GUIDANCE</span>
             <h2 class="section-title" style="color:#0A2540; font-size:clamp(1.8rem, 3vw, 2.5rem); font-weight:800; line-height:1.25; margin:12px 0 18px;">We'll Guide You Through Every Step</h2>
@@ -344,7 +344,7 @@
             </div>
           </div>
 
-          <div class="loan-step-visual fade-up fade-up-delay-1" style="border-radius:24px; overflow:hidden; box-shadow:0 14px 36px rgba(10,37,64,0.12); border:1px solid #E2E8F0; background:#0A2540; position:relative; height:360px;">
+          <div class="loan-step-visual fade-up fade-up-delay-1" style="border-radius:24px; overflow:hidden; box-shadow:0 20px 48px rgba(10,37,64,0.16); border:1px solid #CBD5E1; background:#0A2540; position:relative; min-height:480px; height:100%; display:flex; align-items:center;">
             <img src="images/canva/02._blog/article/02._for_home_loans.png" alt="EZ Mortgage Broker Home Loan Step-by-Step Guidance" style="width:100%; height:100%; object-fit:cover; display:block;">
             <div style="position:absolute; bottom:16px; left:16px; right:16px; background:rgba(10,37,64,0.85); backdrop-filter:blur(10px); padding:12px 18px; border-radius:12px; border:1px solid rgba(255,255,255,0.2); color:#ffffff; font-size:0.88rem; text-align:center; font-weight:600;">
               Over 50+ Australian Lenders Compared Side-by-Side
@@ -428,9 +428,9 @@
         </div>
 
         <!-- Part 2: Business Finance Specialists You Can Trust (Image 2) -->
-        <div class="business-why-us-grid" style="display:grid; grid-template-columns:1fr 1.15fr; gap:48px; align-items:center; background:#ffffff; border-radius:20px; padding:32px 0;">
+        <div class="business-why-us-grid" style="display:grid; grid-template-columns:1.35fr 1fr; gap:56px; align-items:center; background:#ffffff; border-radius:20px; padding:32px 0;">
           
-          <div class="business-visual fade-up" style="border-radius:24px; overflow:hidden; box-shadow:0 14px 36px rgba(10,37,64,0.12); border:1px solid #E2E8F0; background:#0A2540; position:relative; height:380px;">
+          <div class="business-visual fade-up" style="border-radius:24px; overflow:hidden; box-shadow:0 20px 48px rgba(10,37,64,0.16); border:1px solid #CBD5E1; background:#0A2540; position:relative; min-height:480px; height:100%; display:flex; align-items:center;">
             <img src="images/canva/02._blog/article/04._business_loan.png" alt="EZ Mortgage Broker Commercial and Business Lending Specialists" style="width:100%; height:100%; object-fit:cover; display:block;">
             <div style="position:absolute; bottom:16px; left:16px; right:16px; background:rgba(10,37,64,0.85); backdrop-filter:blur(10px); padding:12px 18px; border-radius:12px; border:1px solid rgba(255,255,255,0.2); color:#ffffff; font-size:0.88rem; text-align:center; font-weight:600;">
               Commercial &amp; Business Lending Specialists
@@ -965,5 +965,74 @@
     };
   </script>
   <script src="https://omni-agent.testcustomer2022.workers.dev/widget.js" defer></script>
+
+  <!-- SPA Loan Tab Switcher Script -->
+  <script>
+    window.switchLoanTab = function(tabName) {
+      var tabPersonalBtn = document.getElementById('tab-btn-personal');
+      var tabBusinessBtn = document.getElementById('tab-btn-business');
+      var panelPersonal = document.getElementById('panel-personal');
+      var panelBusiness = document.getElementById('panel-business');
+
+      if (!tabPersonalBtn || !tabBusinessBtn || !panelPersonal || !panelBusiness) return;
+
+      if (tabName === 'personal') {
+        tabPersonalBtn.classList.add('active');
+        tabPersonalBtn.setAttribute('aria-selected', 'true');
+        tabBusinessBtn.classList.remove('active');
+        tabBusinessBtn.setAttribute('aria-selected', 'false');
+        
+        panelPersonal.style.display = 'block';
+        panelBusiness.style.display = 'none';
+      } else if (tabName === 'business') {
+        tabBusinessBtn.classList.add('active');
+        tabBusinessBtn.setAttribute('aria-selected', 'true');
+        tabPersonalBtn.classList.remove('active');
+        tabPersonalBtn.setAttribute('aria-selected', 'false');
+        
+        panelPersonal.style.display = 'none';
+        panelBusiness.style.display = 'block';
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', function() {
+      var personalBtn = document.getElementById('tab-btn-personal');
+      var businessBtn = document.getElementById('tab-btn-business');
+
+      if (personalBtn) {
+        personalBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          window.switchLoanTab('personal');
+        });
+      }
+
+      if (businessBtn) {
+        businessBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          window.switchLoanTab('business');
+        });
+      }
+
+      document.querySelectorAll('.nav-tab-link').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          var targetTab = this.getAttribute('data-tab');
+          if (targetTab) {
+            window.switchLoanTab(targetTab);
+            var section = document.getElementById('loan-solutions');
+            if (section) {
+              section.scrollIntoView({ behavior: 'smooth' });
+            }
+          }
+        });
+      });
+
+      if (window.location.hash === '#business-finance' || window.location.hash === '#business') {
+        window.switchLoanTab('business');
+      } else if (window.location.hash === '#home-loans' || window.location.hash === '#personal') {
+        window.switchLoanTab('personal');
+      }
+    });
+  </script>
 </body>
+
 </html>

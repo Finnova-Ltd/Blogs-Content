@@ -2357,3 +2357,70 @@
 
 
 })();
+
+
+// --- Loan Solutions Tab Switcher ---
+window.switchLoanTab = function(tabName) {
+  const tabPersonalBtn = document.getElementById('tab-btn-personal');
+  const tabBusinessBtn = document.getElementById('tab-btn-business');
+  const panelPersonal = document.getElementById('panel-personal');
+  const panelBusiness = document.getElementById('panel-business');
+
+  if (!tabPersonalBtn || !tabBusinessBtn || !panelPersonal || !panelBusiness) return;
+
+  if (tabName === 'personal') {
+    tabPersonalBtn.classList.add('active');
+    tabPersonalBtn.setAttribute('aria-selected', 'true');
+    tabBusinessBtn.classList.remove('active');
+    tabBusinessBtn.setAttribute('aria-selected', 'false');
+    
+    panelPersonal.style.display = 'block';
+    panelBusiness.style.display = 'none';
+  } else if (tabName === 'business') {
+    tabBusinessBtn.classList.add('active');
+    tabBusinessBtn.setAttribute('aria-selected', 'true');
+    tabPersonalBtn.classList.remove('active');
+    tabPersonalBtn.setAttribute('aria-selected', 'false');
+    
+    panelPersonal.style.display = 'none';
+    panelBusiness.style.display = 'block';
+  }
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  const personalBtn = document.getElementById('tab-btn-personal');
+  const businessBtn = document.getElementById('tab-btn-business');
+
+  if (personalBtn) {
+    personalBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.switchLoanTab('personal');
+    });
+  }
+
+  if (businessBtn) {
+    businessBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.switchLoanTab('business');
+    });
+  }
+
+  document.querySelectorAll('.nav-tab-link').forEach((link) => {
+    link.addEventListener('click', function(e) {
+      const targetTab = this.getAttribute('data-tab');
+      if (targetTab) {
+        window.switchLoanTab(targetTab);
+        const section = document.getElementById('loan-solutions');
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+  });
+
+  if (window.location.hash === '#business-finance' || window.location.hash === '#business') {
+    window.switchLoanTab('business');
+  } else if (window.location.hash === '#home-loans' || window.location.hash === '#personal') {
+    window.switchLoanTab('personal');
+  }
+});
