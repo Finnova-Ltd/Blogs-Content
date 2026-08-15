@@ -5461,6 +5461,7 @@ p, .article-main-content p {
 
 .footer-contact-link {
   color: #0A2540 !important;
+  font-weight: 800 !important;
   font-weight: 700;
   text-decoration: none;
   transition: color 0.2s ease;
@@ -5793,6 +5794,7 @@ p, .article-main-content p {
 
 .footer-contact-link {
   color: #0A2540 !important;
+  font-weight: 800 !important;
   font-weight: 700;
   text-decoration: none;
   transition: color 0.2s ease;
@@ -5840,4 +5842,50 @@ p, .article-main-content p {
 .footer-legal a:hover {
   color: #0A2540 !important;
   text-decoration: underline;
+}
+
+
+/* 5-Column Grid Layout for Desktop */
+.footer-grid-5 {
+  display: grid;
+  grid-template-columns: 1.8fr 1.1fr 1.2fr 1.1fr 1.4fr;
+  gap: 32px;
+  padding-bottom: 48px;
+}
+
+@media (max-width: 1100px) {
+  .footer-grid-5 {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-grid-5 {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+.footer-bottom-dark a:hover {
+  color: #FFDC4A !important;
+  text-decoration: underline;
+}
+
+.insight-img {
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+  display: block;
+}
+
+.insight-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.insight-card:hover .insight-img img {
+  transform: scale(1.05);
 }
