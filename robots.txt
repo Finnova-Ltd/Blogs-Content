@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://finnova.org.au/sitemap.xml
+Sitemap: https://ezmortgagebroker.com.au/sitemap.xml
+
+# LLM & AI Agent Knowledge
+# Standard: https://ezmortgagebroker.com.au/llms.txt
+# Full Knowledge: https://ezmortgagebroker.com.au/llms-full.txt

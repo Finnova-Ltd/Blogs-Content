@@ -338,6 +338,47 @@
   var modalTitle = document.getElementById('ezModalTitle');
 
   if (modal) {
+
+    // AJAX Lead Form Submission Handler
+    var leadForm = document.getElementById('ezLeadForm');
+    var submitBtn = document.getElementById('ezSubmitBtn');
+
+    if (leadForm) {
+      leadForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Submitting Assessment...';
+        }
+
+        var formData = {
+          loan_purpose: (document.querySelector('input[name="loan_purpose"]:checked') || {}).value || 'First Home Buyer',
+          estimated_amount: (document.getElementById('ezLoanAmount') || {}).value || '$500,000 – $750,000',
+          full_name: (document.getElementById('ezFullName') || {}).value || '',
+          mobile_number: (document.getElementById('ezMobile') || {}).value || '',
+          email_address: (document.getElementById('ezEmail') || {}).value || '',
+          source_url: window.location.href
+        };
+
+        fetch('/api/leads', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        })
+        .then(function (res) {
+          return res.json().catch(function () { return { ok: true }; });
+        })
+        .then(function () {
+          window.location.href = '/thank-you';
+        })
+        .catch(function () {
+          // Fallback redirect to thank-you even on network glitch
+          window.location.href = '/thank-you';
+        });
+      });
+    }
+
     var openModal = function (e) {
       if (e) e.preventDefault();
       modal.classList.add('active');
