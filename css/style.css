@@ -1196,9 +1196,13 @@ p {
 }
 
 .benefits-section .section-title,
-.benefits-section .benefit-item h3,
+.benefits-section .benefit-item h3 {
+  color: #ffffff !important;
+}
+
 .benefits-section .benefit-item p {
-  color: #fff;
+  color: #FED7AA !important; /* Light orange for high readability */
+  font-weight: 500;
 }
 
 .benefits-grid {
@@ -1301,7 +1305,7 @@ p {
 }
 
 .benefit-item h3 {
-  color: var(--text-dark);
+  color: #ffffff !important;
   font-family: var(--font-body);
   font-size: 1rem;
   font-weight: 800;
@@ -1311,9 +1315,10 @@ p {
 .benefit-item p {
   max-width: 170px;
   margin: 0 auto;
-  color: var(--text-mid);
+  color: #FED7AA !important; /* Light orange */
   font-size: 0.9rem;
   line-height: 1.45;
+  font-weight: 500;
 }
 
 /* =========================================
@@ -2660,7 +2665,8 @@ p {
 }
 
 .cta-banner-content p {
-  color: rgba(255,255,255,0.8);
+  color: #FED7AA !important; /* Light orange/yellow contrast */
+  font-weight: 500;
   font-size: 1.05rem;
   margin: 0;
 }
@@ -5261,4 +5267,10 @@ p, .article-main-content p {
 }
 .article-checklist-list li strong {
   color: #0f172a;
+}
+
+.about-section .section-label {
+  color: #1D4ED8 !important; /* Brand Blue */
+  font-weight: 800 !important;
+  letter-spacing: 0.12em !important;
 }
