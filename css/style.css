@@ -5509,3 +5509,335 @@ p, .article-main-content p {
   color: #0A2540 !important;
   text-decoration: underline;
 }
+
+
+/* =========================================
+   Why Choose Us - Light Blue 2-Column Theme
+   ========================================= */
+.benefits-section-split {
+  background: #F0F7FF !important; /* Premium soft light blue */
+  padding: 80px 0;
+  border-top: 1px solid #E2E8F0;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.benefits-split-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.benefits-badge {
+  display: inline-block;
+  background: #0A2540;
+  color: #ffffff !important;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  padding: 6px 14px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.benefits-split-title {
+  font-size: clamp(2rem, 3.4vw, 2.75rem);
+  font-weight: 800;
+  color: #0A2540 !important;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  margin-bottom: 20px;
+}
+
+.benefits-split-lead {
+  font-size: 1.12rem;
+  color: #334155 !important;
+  line-height: 1.65;
+  margin-bottom: 14px;
+  font-weight: 500;
+}
+
+.benefits-split-sub {
+  font-size: 0.98rem;
+  color: #64748B !important;
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+.benefits-split-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.benefits-split-right {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.benefit-split-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: #ffffff;
+  border: 1.5px solid #DCE9FE;
+  border-radius: 14px;
+  padding: 16px 20px;
+  box-shadow: 0 4px 14px rgba(10, 37, 64, 0.03);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.benefit-split-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(10, 37, 64, 0.07);
+  border-color: #BFDBFE;
+}
+
+.benefit-split-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: #DBEAFE;
+  color: #1D4ED8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+
+.benefit-split-content h3 {
+  font-size: 1.05rem;
+  color: #0A2540 !important;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+
+.benefit-split-content p {
+  font-size: 0.88rem;
+  color: #475569 !important;
+  line-height: 1.5;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .benefits-split-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+/* =========================================
+   Light Blue Theme Site Footer
+   ========================================= */
+.site-footer {
+  background: #F0F7FF !important; /* Premium soft light blue */
+  color: #334155 !important;
+  border-top: 1.5px solid #DCE9FE;
+  padding: 64px 0 0;
+}
+
+.site-footer-compact {
+  padding-top: 0;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.3fr;
+  gap: 40px;
+  padding-bottom: 48px;
+}
+
+.footer-brand .logo-name {
+  color: #0A2540 !important;
+}
+
+.footer-brand .logo-tagline {
+  color: #64748B !important;
+}
+
+.footer-brand-desc,
+.footer-brand p {
+  color: #475569 !important;
+  font-size: 0.95rem !important;
+  line-height: 1.65 !important;
+  font-weight: 400 !important;
+  margin-top: 16px !important;
+  margin-bottom: 24px !important;
+  max-width: 320px;
+}
+
+.footer-col h4 {
+  color: #0A2540 !important;
+  font-size: 0.95rem !important;
+  font-family: var(--font-body);
+  font-weight: 800 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 20px;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-links a {
+  font-size: 0.92rem !important;
+  color: #475569 !important;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+.footer-links a:hover {
+  color: #1D4ED8 !important;
+  transform: translateX(3px);
+}
+
+/* Colorful Social Icons */
+.footer-social {
+  display: flex;
+  gap: 12px;
+}
+
+.social-link {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.social-fb {
+  background: #DBEAFE;
+  color: #1877f2 !important;
+  border: 1px solid #BFDBFE;
+}
+.social-fb:hover {
+  background: #1877f2;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+}
+
+.social-in {
+  background: #E0F2FE;
+  color: #0077b5 !important;
+  border: 1px solid #BAE6FD;
+}
+.social-in:hover {
+  background: #0077b5;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+}
+
+.social-ig {
+  background: #FDF2F8;
+  color: #e1306c !important;
+  border: 1px solid #FBCFE8;
+}
+.social-ig:hover {
+  background: #e1306c;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+}
+
+/* Colorful Contact Badges & Details */
+.footer-contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.footer-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.92rem;
+  color: #475569 !important;
+  line-height: 1.45;
+}
+
+.footer-contact-item strong {
+  color: #0A2540;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.icon-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.icon-phone { background: #DBEAFE; border: 1px solid #BFDBFE; }
+.icon-email { background: #FEF3C7; border: 1px solid #FDE68A; }
+.icon-loc   { background: #FEE2E2; border: 1px solid #FECACA; }
+.icon-clock { background: #ECFDF5; border: 1px solid #A7F3D0; }
+
+.footer-contact-link {
+  color: #0A2540 !important;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-contact-link:hover {
+  color: #1D4ED8 !important;
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  background: #E5F0FD;
+  border-top: 1px solid #DCE9FE;
+  padding: 24px 0;
+  margin-top: 20px;
+}
+
+.footer-bottom-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-bottom-inner p {
+  font-size: 0.86rem !important;
+  color: #475569 !important;
+  margin: 0;
+}
+
+.footer-legal {
+  display: flex;
+  gap: 16px;
+}
+
+.footer-legal a {
+  color: #475569 !important;
+  font-size: 0.86rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-legal a:hover {
+  color: #0A2540 !important;
+  text-decoration: underline;
+}
