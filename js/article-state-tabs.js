@@ -62,37 +62,63 @@
   });
 
   // 4. Column 2 Sidebar Accordions (Reviews, Calculators, Related Guides)
+  var sidebarWidgets = document.querySelectorAll('.sidebar-accordion-widget');
   var sidebarHdrBtns = document.querySelectorAll('.sidebar-accordion-header');
+  var sidebarManualLock = false;
+  var sidebarLockTimeout = null;
+
+  // Make sure all sidebar widgets start open
+  sidebarWidgets.forEach(function (w) {
+    w.classList.add('open');
+    var hdr = w.querySelector('.sidebar-accordion-header');
+    var icon = w.querySelector('.sidebar-accordion-icon');
+    if (hdr) hdr.setAttribute('aria-expanded', 'true');
+    if (icon) icon.textContent = '−';
+  });
+
+  // Manual Sidebar Click Handling
   sidebarHdrBtns.forEach(function (hdr) {
     hdr.addEventListener('click', function () {
+      sidebarManualLock = true;
+      clearTimeout(sidebarLockTimeout);
+      sidebarLockTimeout = setTimeout(function () {
+        sidebarManualLock = false;
+      }, 4000);
+
       var widget = this.closest('.sidebar-accordion-widget');
       if (!widget) return;
-      var body = widget.querySelector('.sidebar-accordion-body');
       var icon = this.querySelector('.sidebar-accordion-icon');
       var isOpen = widget.classList.contains('open');
 
       if (isOpen) {
         widget.classList.remove('open');
         this.setAttribute('aria-expanded', 'false');
-        if (body) body.style.display = 'none';
         if (icon) icon.textContent = '+';
       } else {
+        // Smoothly collapse other sidebar widgets to keep column 2 neat
+        sidebarWidgets.forEach(function (otherW) {
+          if (otherW !== widget) {
+            otherW.classList.remove('open');
+            var otherHdr = otherW.querySelector('.sidebar-accordion-header');
+            var otherIcon = otherW.querySelector('.sidebar-accordion-icon');
+            if (otherHdr) otherHdr.setAttribute('aria-expanded', 'false');
+            if (otherIcon) otherIcon.textContent = '+';
+          }
+        });
+
         widget.classList.add('open');
         this.setAttribute('aria-expanded', 'true');
-        if (body) body.style.display = 'block';
         if (icon) icon.textContent = '−';
       }
     });
   });
 
-  // 5. Section Accordions:
-  // - ALL accordions are open by default on initial page load.
-  // - As soon as the user scrolls down, auto-close all accordions EXCEPT the one the user is currently reading!
+  // 5. Main Section Accordions (Column 1)
   var sectionAccordions = document.querySelectorAll('.article-section-accordion');
   var userManualLock = false;
   var lockTimeout = null;
 
-  // Make sure all are open on initial load
+  // All accordions open on initial load
   sectionAccordions.forEach(function (acc) {
     acc.classList.add('open');
     var hdr = acc.querySelector('.article-section-accordion-header');
@@ -101,7 +127,7 @@
     if (icon) icon.textContent = '−';
   });
 
-  // Manual click handler
+  // Manual Click handler for main content
   sectionAccordions.forEach(function (acc) {
     var hdr = acc.querySelector('.article-section-accordion-header');
     if (!hdr) return;
@@ -121,7 +147,6 @@
         this.setAttribute('aria-expanded', 'false');
         if (icon) icon.textContent = '+';
       } else {
-        // Close other accordions when manually opening
         sectionAccordions.forEach(function (otherAcc) {
           if (otherAcc !== acc) {
             otherAcc.classList.remove('open');
@@ -139,63 +164,85 @@
     });
   });
 
-  // Dynamic Scroll-Driven Auto-Closing Observer
+  // 6. Dynamic Scroll-Driven Auto-Closing (Column 1 & Column 2)
   var scrollDebounce = null;
   function handleScrollSpy() {
-    if (userManualLock || sectionAccordions.length === 0) return;
-
     var scrollY = window.pageYOffset || document.documentElement.scrollTop;
 
-    // If user is at very top (first 80px), keep all open
+    // At top of page (< 80px): keep everything open
     if (scrollY < 80) {
-      sectionAccordions.forEach(function (acc) {
-        acc.classList.add('open');
-        var hdr = acc.querySelector('.article-section-accordion-header');
-        var icon = acc.querySelector('.section-accordion-icon');
-        if (hdr) hdr.setAttribute('aria-expanded', 'true');
-        if (icon) icon.textContent = '−';
-      });
+      if (!userManualLock) {
+        sectionAccordions.forEach(function (acc) {
+          acc.classList.add('open');
+          var hdr = acc.querySelector('.article-section-accordion-header');
+          var icon = acc.querySelector('.section-accordion-icon');
+          if (hdr) hdr.setAttribute('aria-expanded', 'true');
+          if (icon) icon.textContent = '−';
+        });
+      }
+      if (!sidebarManualLock) {
+        sidebarWidgets.forEach(function (w) {
+          w.classList.add('open');
+          var hdr = w.querySelector('.sidebar-accordion-header');
+          var icon = w.querySelector('.sidebar-accordion-icon');
+          if (hdr) hdr.setAttribute('aria-expanded', 'true');
+          if (icon) icon.textContent = '−';
+        });
+      }
       return;
     }
 
-    // Find the accordion whose header is in the active reading zone (top 100px to 450px)
-    var activeAcc = null;
-    var smallestDistance = Infinity;
-    var targetReadingLine = 220; // pixels from top of viewport
+    // When scrolling down, auto-collapse Column 1 sections except active one in reading line
+    if (!userManualLock && sectionAccordions.length > 0) {
+      var activeAcc = null;
+      var smallestDist = Infinity;
+      var targetReadingLine = 220;
 
-    sectionAccordions.forEach(function (acc) {
-      var rect = acc.getBoundingClientRect();
-      // Distance from top of accordion to reading line
-      var dist = Math.abs(rect.top - targetReadingLine);
-
-      // Accordion is visible in viewport reading range
-      if (rect.top <= (window.innerHeight * 0.7) && rect.bottom >= 100) {
-        if (dist < smallestDistance) {
-          smallestDistance = dist;
-          activeAcc = acc;
-        }
-      }
-    });
-
-    if (activeAcc) {
       sectionAccordions.forEach(function (acc) {
-        var hdr = acc.querySelector('.article-section-accordion-header');
-        var icon = acc.querySelector('.section-accordion-icon');
-
-        if (acc === activeAcc) {
-          if (!acc.classList.contains('open')) {
-            acc.classList.add('open');
-            if (hdr) hdr.setAttribute('aria-expanded', 'true');
-            if (icon) icon.textContent = '−';
-          }
-        } else {
-          if (acc.classList.contains('open')) {
-            acc.classList.remove('open');
-            if (hdr) hdr.setAttribute('aria-expanded', 'false');
-            if (icon) icon.textContent = '+';
+        var rect = acc.getBoundingClientRect();
+        var dist = Math.abs(rect.top - targetReadingLine);
+        if (rect.top <= (window.innerHeight * 0.7) && rect.bottom >= 100) {
+          if (dist < smallestDist) {
+            smallestDist = dist;
+            activeAcc = acc;
           }
         }
       });
+
+      if (activeAcc) {
+        sectionAccordions.forEach(function (acc) {
+          var hdr = acc.querySelector('.article-section-accordion-header');
+          var icon = acc.querySelector('.section-accordion-icon');
+          if (acc === activeAcc) {
+            if (!acc.classList.contains('open')) {
+              acc.classList.add('open');
+              if (hdr) hdr.setAttribute('aria-expanded', 'true');
+              if (icon) icon.textContent = '−';
+            }
+          } else {
+            if (acc.classList.contains('open')) {
+              acc.classList.remove('open');
+              if (hdr) hdr.setAttribute('aria-expanded', 'false');
+              if (icon) icon.textContent = '+';
+            }
+          }
+        });
+      }
+    }
+
+    // When scrolling down into deep reading, also collapse Column 2 widgets so the sticky CTA stays visible
+    if (!sidebarManualLock && sidebarWidgets.length > 0) {
+      if (scrollY > 350) {
+        sidebarWidgets.forEach(function (w) {
+          if (w.classList.contains('open')) {
+            w.classList.remove('open');
+            var hdr = w.querySelector('.sidebar-accordion-header');
+            var icon = w.querySelector('.sidebar-accordion-icon');
+            if (hdr) hdr.setAttribute('aria-expanded', 'false');
+            if (icon) icon.textContent = '+';
+          }
+        });
+      }
     }
   }
 
@@ -204,7 +251,7 @@
     scrollDebounce = setTimeout(handleScrollSpy, 40);
   }, { passive: true });
 
-  // 6. Sticky Region Selector Bar on Scroll
+  // 7. Sticky Region Selector Bar on Scroll
   var stickyTabs = document.getElementById('stickyHeaderStateTabs');
   if (stickyTabs) {
     var initialOffset = stickyTabs.offsetTop + 120;
@@ -217,68 +264,127 @@
     }, { passive: true });
   }
 
-  // 7. State Tabs Switching
+  // 8. State Tabs Switching
   var rawDataEl = document.getElementById('rawStateData');
-  if (!rawDataEl) return;
+  if (rawDataEl) {
+    var stateDataMap = {};
+    try {
+      stateDataMap = JSON.parse(rawDataEl.textContent);
+    } catch (e) {
+      console.error('Failed to parse state data', e);
+    }
 
-  var stateDataMap = {};
-  try {
-    stateDataMap = JSON.parse(rawDataEl.textContent);
-  } catch (e) {
-    console.error('Failed to parse state data', e);
-    return;
-  }
+    var tabBtns = document.querySelectorAll('[data-state-tab]');
+    var titleEl = document.getElementById('dynamicStateTitle');
+    var badgeEl = document.getElementById('dynamicStateBadge');
+    var bodyEl = document.getElementById('dynamicStateBodyContent');
+    var portalLinkEl = document.getElementById('dynamicStatePortalLink');
+    var hubBox = document.getElementById('dynamicStateHubBox');
 
-  var tabBtns = document.querySelectorAll('[data-state-tab]');
-  var titleEl = document.getElementById('dynamicStateTitle');
-  var badgeEl = document.getElementById('dynamicStateBadge');
-  var bodyEl = document.getElementById('dynamicStateBodyContent');
-  var portalLinkEl = document.getElementById('dynamicStatePortalLink');
-  var hubBox = document.getElementById('dynamicStateHubBox');
+    function renderState(stateKey, shouldScroll) {
+      var data = stateDataMap[stateKey] || stateDataMap['General'];
+      if (!data) return;
 
-  function renderState(stateKey, shouldScroll) {
-    var data = stateDataMap[stateKey] || stateDataMap['General'];
-    if (!data) return;
+      tabBtns.forEach(function (b) {
+        if (b.getAttribute('data-state-tab') === stateKey) {
+          b.classList.add('active');
+        } else {
+          b.classList.remove('active');
+        }
+      });
 
-    tabBtns.forEach(function (b) {
-      if (b.getAttribute('data-state-tab') === stateKey) {
-        b.classList.add('active');
-      } else {
-        b.classList.remove('active');
+      if (titleEl) titleEl.textContent = data.title;
+      if (badgeEl) badgeEl.textContent = data.badge;
+      if (portalLinkEl) {
+        portalLinkEl.href = data.portalUrl;
+        portalLinkEl.textContent = '🏛️ ' + data.portalName + ' →';
       }
+
+      if (bodyEl && data.sections) {
+        var html = '';
+        for (var i = 0; i < data.sections.length; i++) {
+          var sec = data.sections[i];
+          html += '<div class="dynamic-state-content-section">' +
+                  '<h4>' + sec.heading + '</h4>' +
+                  sec.content +
+                  '</div>';
+        }
+        bodyEl.innerHTML = html;
+      }
+
+      if (shouldScroll && hubBox) {
+        hubBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+
+    tabBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var targetState = this.getAttribute('data-state-tab');
+        renderState(targetState, true);
+      });
     });
 
-    if (titleEl) titleEl.textContent = data.title;
-    if (badgeEl) badgeEl.textContent = data.badge;
-    if (portalLinkEl) {
-      portalLinkEl.href = data.portalUrl;
-      portalLinkEl.textContent = '🏛️ ' + data.portalName + ' →';
-    }
-
-    if (bodyEl && data.sections) {
-      var html = '';
-      for (var i = 0; i < data.sections.length; i++) {
-        var sec = data.sections[i];
-        html += '<div class="dynamic-state-content-section">' +
-                '<h4>' + sec.heading + '</h4>' +
-                sec.content +
-                '</div>';
-      }
-      bodyEl.innerHTML = html;
-    }
-
-    if (shouldScroll && hubBox) {
-      hubBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
+    renderState('General', false);
   }
 
-  tabBtns.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var targetState = this.getAttribute('data-state-tab');
-      renderState(targetState, true);
-    });
-  });
+  // 9. 2-Step 360° Review Lead Modal Engine
+  var modal = document.getElementById('ezModalOverlay');
+  var closeBtn = document.getElementById('ezModalClose');
+  var nextBtn = document.getElementById('ezNextBtn');
+  var backBtn = document.getElementById('ezBackBtn');
+  var step1 = document.getElementById('ezStep1');
+  var step2 = document.getElementById('ezStep2');
+  var progressFill = document.getElementById('ezProgressFill');
+  var modalTitle = document.getElementById('ezModalTitle');
 
-  // Initialize with default state
-  renderState('General', false);
+  if (modal) {
+    var openModal = function (e) {
+      if (e) e.preventDefault();
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    };
+
+    var closeModal = function () {
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+
+    document.querySelectorAll('.open-ez-modal, a[href="#contact"], a[href="#book-consult"], a[href="#free-review"]').forEach(function (el) {
+      el.addEventListener('click', openModal);
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+    });
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function () {
+        if (step1 && step2) {
+          step1.classList.remove('active');
+          step2.classList.add('active');
+          if (progressFill) progressFill.style.width = '100%';
+          if (modalTitle) modalTitle.textContent = 'Where should we send your borrowing report?';
+          var nameInput = document.getElementById('ezFullName');
+          if (nameInput) nameInput.focus();
+        }
+      });
+    }
+
+    if (backBtn) {
+      backBtn.addEventListener('click', function () {
+        if (step1 && step2) {
+          step2.classList.remove('active');
+          step1.classList.add('active');
+          if (progressFill) progressFill.style.width = '50%';
+          if (modalTitle) modalTitle.textContent = "Let's find your best loan options";
+        }
+      });
+    }
+  }
 })();

@@ -8,8 +8,8 @@
   <link rel="canonical" href="https://ezmortgagebroker.com.au/pages/blog/mortgage-broker-tarneit.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Lato:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../css/style.css?v=20260815v3">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css?v=20260815inter">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Mortgage Broker Tarneit VIC 3029 | First Home Buyers, Construction &amp; Refinancing">
@@ -75,7 +75,7 @@
     /* Hero Header with Lazy Crossfade Carousel */
     .article-header {
       position: relative;
-      background-color: #1e293b;
+      background-color: #0A2540;
       color: #ffffff;
       padding: 48px 0 42px;
       overflow: hidden;
@@ -96,7 +96,7 @@
     .article-header-overlay {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0.22) 0%, rgba(0, 0, 0, 0.42) 100%);
+      background: linear-gradient(180deg, rgba(10, 37, 64, 0.35) 0%, rgba(10, 37, 64, 0.75) 100%);
       z-index: 2;
     }
     .article-header-content {
@@ -115,7 +115,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(15, 23, 42, 0.85);
+      background: rgba(10, 37, 64, 0.85);
       border: 1px solid rgba(255, 255, 255, 0.4);
       backdrop-filter: blur(12px);
       padding: 6px 16px;
@@ -152,37 +152,38 @@
     .share-x { background: #000000; }
     .share-in { background: #0077b5; }
     .share-wa { background: #25d366; font-size: 0.95rem; }
-    .share-mail { background: #009688; font-size: 0.88rem; }
-    .share-copy { background: #0284c7; font-size: 0.88rem; }
+    .share-mail { background: #00876C; font-size: 0.88rem; }
+    .share-copy { background: #1D4ED8; font-size: 0.88rem; }
 
     .article-category-tag {
       display: inline-block;
-      background: #00a859;
+      background: #00876C;
       color: #ffffff;
-      font-weight: 900;
+      font-weight: 800;
       padding: 6px 16px;
       border-radius: 6px;
       font-size: 0.82rem;
       text-transform: uppercase;
       letter-spacing: 0.04em;
       margin-bottom: 12px;
-      box-shadow: 0 4px 12px rgba(0, 168, 89, 0.5);
+      box-shadow: 0 4px 12px rgba(0, 135, 108, 0.4);
     }
     .article-title-h1 {
       color: #ffffff;
-      font-size: clamp(1.5rem, 2.8vw, 2.2rem);
-      line-height: 1.25;
+      font-size: clamp(1.75rem, 3.2vw, 2.35rem);
+      line-height: 1.2;
+      letter-spacing: -0.025em;
       margin-bottom: 14px;
-      font-family: var(--font-heading);
+      font-weight: 700;
       text-shadow: 0 2px 14px rgba(0, 0, 0, 0.85);
     }
     .article-lead-summary {
       font-size: 1.1rem;
-      line-height: 1.55;
+      line-height: 1.6;
       color: #ffffff;
       max-width: 980px;
       text-shadow: 0 2px 10px rgba(0, 0, 0, 0.85);
-      font-weight: 600;
+      font-weight: 500;
     }
 
     /* Grid Layout */
@@ -196,137 +197,8 @@
     }
     .article-main-content {
       font-size: 1.05rem;
-      line-height: 1.75;
-      color: #334155;
-    }
-
-    /* Column 2 Sidebar Accordion Widgets */
-    .sidebar-accordion-widget {
-      background: #ffffff;
-      border: 1.5px solid #e2e8f0;
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
-      margin-bottom: 16px;
-    }
-    .sidebar-accordion-header {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px 18px;
-      background: #ffffff;
-      border: none;
-      cursor: pointer;
-      text-align: left;
-      border-bottom: 1.5px solid #f1f5f9;
-    }
-    .sidebar-accordion-header:hover {
-      background: #f8fafc;
-    }
-    .sidebar-accordion-header h4 {
-      color: #17345f;
-      font-size: 1.05rem;
-      margin: 0;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .sidebar-accordion-icon {
-      font-size: 1.2rem;
-      font-weight: 900;
-      color: #224a91;
-    }
-    .sidebar-accordion-body {
-      padding: 16px 18px;
-    }
-
-    /* Benefits 6-Card Grid with Rich Animations */
-    .benefits-grid-overview {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-      margin: 12px 0 24px;
-    }
-    .benefit-item {
-      border-radius: 12px;
-      padding: 20px;
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      cursor: default;
-    }
-    .benefit-item:hover {
-      transform: translateY(-6px) scale(1.01);
-      box-shadow: 0 12px 28px rgba(16, 39, 75, 0.12);
-    }
-    .benefit-card-blue { background: #f2f7fe; border: 1.5px solid #d4e5f9; }
-    .benefit-card-green { background: #f2faf4; border: 1.5px solid #d1eed8; }
-    .benefit-card-yellow { background: #fffdf2; border: 1.5px solid #fef0b8; }
-    .benefit-card-rose { background: #fef4f3; border: 1.5px solid #fcdad7; }
-    .benefit-card-cyan { background: #f0f9ff; border: 1.5px solid #c9ecfe; }
-    .benefit-card-purple { background: #faf5ff; border: 1.5px solid #ebdcfc; }
-    .benefit-icon-wrapper {
-      width: 46px; height: 46px; border-radius: 10px; background: #ffffff;
-      display: grid; place-items: center; font-size: 1.45rem; margin-bottom: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-      transition: transform 0.3s ease;
-    }
-    .benefit-item:hover .benefit-icon-wrapper {
-      transform: scale(1.12) rotate(4deg);
-    }
-
-    /* Program Comparison Cards */
-    .program-comparison-cards {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-      margin: 18px 0 24px;
-    }
-    .program-card {
-      border-radius: 12px;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      background: #f8fafc;
-      border: 1.5px solid #e2e8f0;
-      transition: transform 0.25s ease;
-    }
-    .program-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 24px rgba(16, 39, 75, 0.08);
-    }
-    .program-card-blue { background: #f2f7fe; border-color: #d4e5f9; }
-    .program-card-amber { background: #fffdf2; border-color: #fef0b8; }
-    .program-card-rose { background: #fef4f3; border-color: #fcdad7; }
-    .program-scheme-label { font-size: 0.75rem; text-transform: uppercase; font-weight: 800; color: #64748b; margin-bottom: 4px; }
-    .program-highlight-pill { background: #ffffff; padding: 6px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; color: #17345f; margin-top: auto; }
-
-    /* Tables */
-    .table-responsive-wrapper {
-      overflow-x: auto;
-      margin: 18px 0 24px;
-    }
-    .content-data-table {
-      width: 100%;
-      border-collapse: collapse;
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      overflow: hidden;
-      font-size: 0.9rem;
-    }
-    .content-data-table th {
-      background: #17345f;
-      color: #ffffff;
-      padding: 12px 16px;
-      text-align: left;
-    }
-    .content-data-table td {
-      padding: 12px 16px;
-      border-top: 1px solid #e2e8f0;
+      line-height: 1.65;
+      color: #1E293B;
     }
 
     /* Sidebar & Sticky Assessment Card */
@@ -344,12 +216,12 @@
       z-index: 100;
       align-self: flex-start;
       width: 100%;
-      background: linear-gradient(135deg, #0f2341 0%, #17345f 100%);
+      background: linear-gradient(135deg, #0A2540 0%, #17345f 100%);
       border: 1.5px solid rgba(255, 220, 74, 0.4);
       border-radius: 16px;
       padding: 26px 20px;
       color: #ffffff;
-      box-shadow: 0 12px 32px rgba(15, 35, 65, 0.22);
+      box-shadow: 0 12px 32px rgba(10, 37, 64, 0.22);
       text-align: left;
       overflow: hidden;
       margin-top: 8px;
@@ -369,8 +241,8 @@
     }
     .sidebar-cta-heading {
       font-size: 1.15rem;
-      font-family: var(--font-heading);
       color: #ffffff;
+      font-weight: 700;
       margin: 0 0 10px;
       line-height: 1.35;
     }
@@ -388,7 +260,7 @@
     }
     .btn-sidebar-gold {
       background: #ffdc4a;
-      color: #0f2b48;
+      color: #0A2540;
       padding: 12px 16px;
       border-radius: 8px;
       font-weight: 800;
@@ -400,6 +272,7 @@
       gap: 6px;
       box-shadow: 0 4px 14px rgba(255, 220, 74, 0.4);
       transition: all 0.2s ease;
+      cursor: pointer;
     }
     .btn-sidebar-gold:hover { background: #ffe366; transform: translateY(-2px); }
     .btn-sidebar-navy {
@@ -464,22 +337,22 @@
     }
     .author-profile-avatar-img { width: 100%; height: 100%; object-fit: contain; }
     .author-profile-content { padding: 0 18px 20px; }
-    .author-profile-name { font-size: 1.3rem; font-family: var(--font-heading); color: #0f2b48; margin: 0 0 4px; font-weight: 800; }
+    .author-profile-name { font-size: 1.3rem; color: #0A2540; margin: 0 0 4px; font-weight: 800; }
     .author-profile-title { font-size: 0.88rem; color: #64748b; margin: 0 0 6px; }
     .author-rating-stars { color: #f59e0b; font-size: 0.95rem; margin-bottom: 16px; font-weight: 700; }
     .author-actions-col { display: flex; flex-direction: column; gap: 10px; }
     .author-action-btn {
       display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%;
       padding: 12px 16px; border-radius: 8px; font-weight: 800; font-size: 0.9rem;
-      text-decoration: none; background: #0f2b48; color: #ffffff;
+      text-decoration: none; background: #0A2540; color: #ffffff; cursor: pointer;
     }
 
-    .review-mini-author { font-weight: 800; color: #17345f; font-size: 0.88rem; }
+    .review-mini-author { font-weight: 800; color: #0A2540; font-size: 0.88rem; }
     .review-mini-stars { color: #f59e0b; font-size: 0.8rem; margin-bottom: 4px; }
     .review-mini-text { font-size: 0.82rem; color: #475569; line-height: 1.4; margin: 0; }
     .related-guide-item { display: flex; gap: 10px; align-items: center; margin-bottom: 12px; text-decoration: none; }
     .sidebar-guide-thumb { width: 64px; height: 48px; object-fit: cover; border-radius: 6px; flex-shrink: 0; }
-    .sidebar-guide-title { font-size: 0.82rem; font-weight: 700; color: #17345f; line-height: 1.3; margin: 0 0 2px; }
+    .sidebar-guide-title { font-size: 0.82rem; font-weight: 700; color: #0A2540; line-height: 1.3; margin: 0 0 2px; }
     .sidebar-guide-date { font-size: 0.72rem; color: #64748b; }
 
     @media (max-width: 1024px) {
@@ -526,7 +399,7 @@
         </nav>
         <div class="header-cta">
           <a href="tel:1300050099" class="btn btn-outline">Call Us</a>
-          <a href="../../#contact" class="btn btn-primary">Book Consult</a>
+          <a href="#book-consult" class="btn btn-primary open-ez-modal">Book Consult</a>
         </div>
       </div>
     </div>
@@ -677,7 +550,7 @@
           <p class="author-profile-title">EZ Mortgage Broker</p>
           <div class="author-rating-stars">★★★★★ <span>(14)</span></div>
           <div class="author-actions-col">
-            <a href="../../#contact" class="author-action-btn">💬 Book Appointment</a>
+            <a href="#book-consult" class="author-action-btn open-ez-modal">💬 Book Appointment</a>
             <a href="tel:1300050099" class="author-action-btn">📱 Send Message</a>
             <a href="../../pages/contact.html" class="author-action-btn">📇 Contact Card</a>
           </div>
@@ -712,11 +585,11 @@
         </button>
         <div class="sidebar-accordion-body">
           <div style="display:flex; flex-direction:column; gap:8px;">
-            <a href="../../calculators.html#borrowing-power" style="color:var(--brand-blue); font-weight:700; font-size:0.88rem;">→ Borrowing Power Calculator</a>
-            <a href="../../calculators.html#repayments" style="color:var(--brand-blue); font-weight:700; font-size:0.88rem;">→ Loan Repayment Calculator</a>
-            <a href="../../calculators.html#stamp-duty" style="color:var(--brand-blue); font-weight:700; font-size:0.88rem;">→ Stamp Duty Calculator</a>
-            <a href="../../calculators.html#offset" style="color:var(--brand-blue); font-weight:700; font-size:0.88rem;">→ Mortgage Offset Calculator</a>
-            <a href="../../calculators.html#loan-comparison" style="color:var(--brand-blue); font-weight:700; font-size:0.88rem;">→ Loan Comparison Calculator</a>
+            <a href="../../calculators.html#borrowing-power" style="color:#1D4ED8; font-weight:700; font-size:0.88rem;">→ Borrowing Power Calculator</a>
+            <a href="../../calculators.html#repayments" style="color:#1D4ED8; font-weight:700; font-size:0.88rem;">→ Loan Repayment Calculator</a>
+            <a href="../../calculators.html#stamp-duty" style="color:#1D4ED8; font-weight:700; font-size:0.88rem;">→ Stamp Duty Calculator</a>
+            <a href="../../calculators.html#offset" style="color:#1D4ED8; font-weight:700; font-size:0.88rem;">→ Mortgage Offset Calculator</a>
+            <a href="../../calculators.html#loan-comparison" style="color:#1D4ED8; font-weight:700; font-size:0.88rem;">→ Loan Comparison Calculator</a>
           </div>
         </div>
       </div>
@@ -781,7 +654,7 @@
         <h3 class="sidebar-cta-heading">Ready to Check Your Grant Eligibility or Secure Low Rates?</h3>
         <p class="sidebar-cta-subtext">Speak directly with <strong>R BAKSHI</strong> and our senior broker team. We check every federal scheme and state stamp duty concession to maximize your upfront savings.</p>
         <div class="sidebar-cta-buttons">
-          <a href="../../#contact" class="btn-sidebar-gold">💬 Book Free Consultation</a>
+          <a href="#book-consult" class="btn-sidebar-gold open-ez-modal">💬 Book Free Consultation</a>
           <a href="tel:1300050099" class="btn-sidebar-navy">📞 Call 1300 050 099</a>
           <a href="../contact.html" class="btn-sidebar-outline">✉️ Send Message</a>
         </div>
@@ -802,6 +675,110 @@
       </div>
     </div>
   </footer>
+
+  
+  <!-- EZ Mortgage Broker - 2-Step 360° Review Lead Modal -->
+  <div id="ezModalOverlay" class="ez-modal-overlay" aria-hidden="true" role="dialog">
+    <div class="ez-modal-card">
+      <button type="button" class="ez-modal-close" id="ezModalClose" aria-label="Close modal">&times;</button>
+      <div class="ez-modal-header">
+        <span class="ez-badge">360° Borrowing & Rate Assessment</span>
+        <h3 id="ezModalTitle">Let's find your best loan options</h3>
+        <p id="ezModalSubtitle">Takes under 60 seconds • Bound by Best Interests Duty (BID)</p>
+        <div class="ez-progress-bar">
+          <div class="ez-progress-fill" id="ezProgressFill"></div>
+        </div>
+      </div>
+      <form id="ezLeadForm" action="/thank-you/" method="POST">
+        <!-- STEP 1: Loan Goals & Details -->
+        <div class="ez-form-step active" id="ezStep1">
+          <label class="ez-field-label">What is your primary goal?</label>
+          <div class="ez-grid-options">
+            <label class="ez-option-tile">
+              <input type="radio" name="loan_purpose" value="First Home Buyer" checked>
+              <span class="tile-content">
+                <span class="tile-icon">🏠</span>
+                <span class="tile-title">First Home</span>
+              </span>
+            </label>
+            <label class="ez-option-tile">
+              <input type="radio" name="loan_purpose" value="Refinance / Lower Rate">
+              <span class="tile-content">
+                <span class="tile-icon">🔄</span>
+                <span class="tile-title">Refinance</span>
+              </span>
+            </label>
+            <label class="ez-option-tile">
+              <input type="radio" name="loan_purpose" value="Self-Employed / Alt-Doc">
+              <span class="tile-content">
+                <span class="tile-icon">💼</span>
+                <span class="tile-title">Self-Employed</span>
+              </span>
+            </label>
+            <label class="ez-option-tile">
+              <input type="radio" name="loan_purpose" value="Investment / NDIS">
+              <span class="tile-content">
+                <span class="tile-icon">📈</span>
+                <span class="tile-title">Investment / NDIS</span>
+              </span>
+            </label>
+          </div>
+
+          <div class="ez-form-group">
+            <label for="ezLoanAmount" class="ez-field-label">Estimated Loan or Purchase Amount</label>
+            <select id="ezLoanAmount" name="estimated_amount" class="ez-input" required>
+              <option value="$350k - $500k">$350,000 – $500,000</option>
+              <option value="$500k - $750k" selected>$500,000 – $750,000</option>
+              <option value="$750k - $1M">$750,000 – $1,000,000</option>
+              <option value="$1M - $1.5M">$1,000,000 – $1,500,000</option>
+              <option value="$1.5M+">$1,500,000+</option>
+            </select>
+          </div>
+
+          <button type="button" class="ez-btn-submit" id="ezNextBtn">
+            Continue to Step 2 ➔
+          </button>
+        </div>
+
+        <!-- STEP 2: Contact Details -->
+        <div class="ez-form-step" id="ezStep2">
+          <div class="ez-form-group">
+            <label for="ezFullName" class="ez-field-label">Full Name</label>
+            <input type="text" id="ezFullName" name="full_name" class="ez-input" placeholder="e.g. Robin Bakshi" required>
+          </div>
+
+          <div class="ez-form-group">
+            <label for="ezMobile" class="ez-field-label">Mobile Number (for SMS & Call Assessment)</label>
+            <input type="tel" id="ezMobile" name="mobile_number" class="ez-input" placeholder="e.g. 0412 345 678" required>
+          </div>
+
+          <div class="ez-form-group">
+            <label for="ezEmail" class="ez-field-label">Email Address (to receive scenario report)</label>
+            <input type="email" id="ezEmail" name="email_address" class="ez-input" placeholder="e.g. name@example.com" required>
+          </div>
+
+          <div class="ez-button-group">
+            <button type="button" class="ez-btn-back" id="ezBackBtn">← Back</button>
+            <button type="submit" class="ez-btn-submit" id="ezSubmitBtn">Get My 360° Assessment</button>
+          </div>
+
+          <div class="ez-form-footer">
+            <p>🔒 100% Privacy. No impact on credit score. Call us directly on <strong>1300 050 099</strong> or email <strong>info@ezmortgagebroker.com.au</strong>.</p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Mobile Sticky Bottom Thumb-Zone Conversion Bar -->
+  <div class="ez-mobile-bottom-bar">
+    <a href="tel:1300050099" class="mobile-btn call-btn">
+      <span>📞 Call 1300 050 099</span>
+    </a>
+    <a href="#book-consult" class="mobile-btn form-btn open-ez-modal">
+      <span>📝 Free 360° Review</span>
+    </a>
+  </div>
 
   <script src="../../js/main.js"></script>
   <script src="../../js/article-state-tabs.js"></script>
