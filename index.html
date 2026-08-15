@@ -42,8 +42,8 @@
           <nav>
             <ul class="nav-primary">
               <li><a href="/" class="active">Home</a></li>
-              <li><a href="pages/buying-a-home.html">Personal</a></li>
-              <li><a href="pages/business-finance.html">Business</a></li>
+              <li><a href="#loan-solutions" class="nav-tab-link" data-tab="personal">Home Loans</a></li>
+              <li><a href="#loan-solutions" class="nav-tab-link" data-tab="business">Business Finance</a></li>
               <li class="nav-calculators">
                 <a href="calculators.html" aria-haspopup="true">Calculators</a>
                 <div class="calculator-mega-menu" role="menu">
@@ -126,8 +126,8 @@
     </div>
     <div class="mobile-nav-links">
       <a href="/">Home</a>
-      <a href="pages/buying-a-home.html">Personal</a>
-      <a href="pages/business-finance.html">Business</a>
+      <a href="#loan-solutions" class="nav-tab-link" data-tab="personal">Home Loans</a>
+      <a href="#loan-solutions" class="nav-tab-link" data-tab="business">Business Finance</a>
       <a href="calculators.html">Calculators</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
@@ -294,91 +294,148 @@
     </div>
   </section>
 
-  <!-- ========== MORTGAGE GUIDES ========== -->
-  <section class="guides-section section-pad" aria-labelledby="guides-title">
+    <!-- ========== LOAN SOLUTIONS (SPA TABS: PERSONAL & BUSINESS FINANCE) ========== -->
+  <section class="section-pad loan-solutions-section" id="loan-solutions" style="background:#ffffff; border-top:1px solid #E2E8F0; border-bottom:1px solid #E2E8F0;">
     <div class="container">
-      <div class="text-center fade-up">
-        <span class="section-label">What We Do</span>
-        <h2 class="section-title" id="guides-title">Loan Solutions for Every Stage of Life</h2>
-        <p class="section-subtitle">From first home buyers to seasoned investors — we have the expertise and lender network to match you with the right loan.</p>
-      </div>
-      <div class="guides-carousel" aria-label="Mortgage guides">
-        <button class="guides-carousel-button guides-carousel-prev" type="button" aria-label="Previous mortgage guides">&lsaquo;</button>
-        <div class="guides-grid">
-          <article class="guide-card">
-            <img src="images/guide-image-1.png" alt="Couple buying their first home" loading="lazy" decoding="async">
-            <div class="guide-card-content">
-              <h3>Ready to buy your first home?</h3>
-              <p>A clear starting point for planning, borrowing, and making your first move.</p>
-              <div class="guide-actions">
-                <button type="button" class="btn btn-primary" data-guide="first-home-buyers">Download</button>
-                <a href="#hero-contact" class="btn btn-outline">Contact Us</a>
-              </div>
-            </div>
-          </article>
-          <article class="guide-card">
-            <img src="images/guide-image-2.png" alt="Single parent buying a home" loading="lazy" decoding="async">
-            <div class="guide-card-content">
-              <h3>Need a single parent home loan?</h3>
-              <p>Understand your options for buying a family home with practical broker guidance.</p>
-              <div class="guide-actions">
-                <button type="button" class="btn btn-primary" data-guide="single-parent-home-loan">Download</button>
-                <a href="#hero-contact" class="btn btn-outline">Contact Us</a>
-              </div>
-            </div>
-          </article>
-          <article class="guide-card">
-            <img src="images/guide-image-3.png" alt="Home loan upgrade consultation" loading="lazy" decoding="async">
-            <div class="guide-card-content">
-              <h3>Need a loan to upgrade your house?</h3>
-              <p>Plan your next renovation or upgrade with lending options shaped around your goals.</p>
-              <div class="guide-actions">
-                <button type="button" class="btn btn-primary" data-guide="upgrade-home">Download</button>
-                <a href="#hero-contact" class="btn btn-outline">Contact Us</a>
-              </div>
-            </div>
-          </article>
-          <article class="guide-card">
-            <img src="images/guide-image-4.png" alt="Family moving into a home" loading="lazy" decoding="async">
-            <div class="guide-card-content">
-              <h3>Refinance your existing home loan</h3>
-              <p>Review your rate, repayments, and flexibility to see whether refinancing could help.</p>
-              <div class="guide-actions">
-                <button type="button" class="btn btn-primary" data-guide="refinancing">Download</button>
-                <a href="#hero-contact" class="btn btn-outline">Contact Us</a>
-              </div>
-            </div>
-          </article>
-          <article class="guide-card">
-            <img src="images/guide-image-5.png" alt="Mortgage broker discussing equity cash out" loading="lazy" decoding="async">
-            <div class="guide-card-content">
-              <h3>Do you need equity cash out?</h3>
-              <p>Explore how usable home equity may support your next financial move.</p>
-              <div class="guide-actions">
-                <button type="button" class="btn btn-primary" data-guide="equity-cashout">Download</button>
-                <a href="#hero-contact" class="btn btn-outline">Contact Us</a>
-              </div>
-            </div>
-          </article>
-          <article class="guide-card">
-            <img src="images/guide-image-6.png" alt="Mortgage broker discussing an investment property" loading="lazy" decoding="async">
-            <div class="guide-card-content">
-              <h3>Need a loan to purchase an investment property?</h3>
-              <p>Work through the lending considerations behind a confident investment plan.</p>
-              <div class="guide-actions">
-                <button type="button" class="btn btn-primary" data-guide="investment-loans">Download</button>
-                <a href="#hero-contact" class="btn btn-outline">Contact Us</a>
-              </div>
-            </div>
-          </article>
+      
+      <!-- Section Tab Switcher -->
+      <div class="loan-tabs-wrapper text-center fade-up" style="margin-bottom:48px;">
+        <div class="loan-tab-buttons" role="tablist" style="display:inline-flex; background:#F1F5F9; padding:6px; border-radius:12px; border:1px solid #CBD5E1; gap:6px;">
+          <button class="loan-tab-btn active" id="tab-btn-personal" role="tab" aria-selected="true" aria-controls="panel-personal" onclick="switchLoanTab('personal')">
+            🏠 Personal / Home Loans
+          </button>
+          <button class="loan-tab-btn" id="tab-btn-business" role="tab" aria-selected="false" aria-controls="panel-business" onclick="switchLoanTab('business')">
+            💼 Business Finance
+          </button>
         </div>
-        <button class="guides-carousel-button guides-carousel-next" type="button" aria-label="Next mortgage guides">&rsaquo;</button>
       </div>
-      <div class="guides-carousel-dots" aria-label="Mortgage guide slides"></div>
+
+      <!-- TAB PANEL 1: PERSONAL / HOME LOANS -->
+      <div class="loan-tab-panel is-active" id="panel-personal" role="tabpanel" aria-labelledby="tab-btn-personal">
+        
+        <!-- Step-by-Step Guidance Split Layout -->
+        <div class="loan-step-guidance-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; margin-bottom:64px;">
+          <div class="loan-step-content fade-up">
+            <span class="section-label" style="color:#1D4ED8; font-weight:800; letter-spacing:0.12em; text-transform:uppercase;">STEP-BY-STEP GUIDANCE</span>
+            <h2 class="section-title" style="color:#0A2540; font-size:clamp(1.8rem, 3vw, 2.5rem); font-weight:800; line-height:1.25; margin:12px 0 18px;">We'll Guide You Through Every Step</h2>
+            <p class="section-subtitle" style="color:#475569; font-size:1.05rem; line-height:1.65; margin-bottom:24px; text-align:left;">Buying a property is one of the biggest financial decisions you'll ever make. Our experienced brokers take the complexity out of the process and work with you from start to finish.</p>
+            
+            <ul class="loan-checklist" style="list-style:none; padding:0; margin:0 0 32px 0; display:flex; flex-direction:column; gap:12px;">
+              <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;">
+                <span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> We assess your borrowing capacity and financial goals
+              </li>
+              <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;">
+                <span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> We search 50+ lenders for the best loan product
+              </li>
+              <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;">
+                <span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> We handle the full loan application and paperwork
+              </li>
+              <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;">
+                <span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> We liaise with lenders, solicitors, and real estate agents
+              </li>
+              <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;">
+                <span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> We're with you from offer to settlement and beyond
+              </li>
+            </ul>
+
+            <div class="loan-actions" style="display:flex; gap:16px; flex-wrap:wrap;">
+              <a href="#contact" class="btn btn-primary" style="background:#0A2540; color:#ffffff; font-weight:800; padding:12px 28px; border-radius:8px;">Start Your Application</a>
+              <a href="calculators.html" class="btn btn-outline" style="border:1.5px solid #0A2540; color:#0A2540; font-weight:700; padding:12px 24px; border-radius:8px;">Use Our Calculator</a>
+            </div>
+          </div>
+
+          <div class="loan-step-visual fade-up fade-up-delay-1" style="background:linear-gradient(135deg, #0A2540 0%, #1E3A8A 100%); border-radius:24px; height:340px; display:flex; align-items:center; justify-content:center; box-shadow:0 12px 32px rgba(10,37,64,0.12); position:relative; overflow:hidden;">
+            <div style="font-size:5rem; filter:drop-shadow(0 8px 16px rgba(0,0,0,0.25)); animation:floatIcon 4s ease-in-out infinite;">🏡</div>
+            <div style="position:absolute; bottom:20px; left:20px; right:20px; background:rgba(255,255,255,0.12); backdrop-filter:blur(8px); padding:12px 18px; border-radius:12px; border:1px solid rgba(255,255,255,0.2); color:#ffffff; font-size:0.88rem; text-align:center;">
+              Over 50+ Australian Lenders Compared Side-by-Side
+            </div>
+          </div>
+        </div>
+
+        <!-- Home Loan Options We Compare (4 Cards in 1 Row) -->
+        <div class="loan-compare-block" style="background:#F8FAFC; border-radius:20px; padding:40px 32px; border:1px solid #E2E8F0;">
+          <div class="text-center fade-up" style="margin-bottom:32px;">
+            <span class="section-label" style="color:#1D4ED8; font-weight:800; letter-spacing:0.12em; text-transform:uppercase;">LOAN TYPES</span>
+            <h2 class="section-title" style="color:#0A2540; font-size:clamp(1.8rem, 2.6vw, 2.2rem); font-weight:800; margin:8px 0 10px;">Home Loan Options We Compare</h2>
+            <p class="section-subtitle" style="color:#64748B; font-size:0.98rem; max-width:640px; margin:0 auto;">Find the structure that fits your life and repayment strategy.</p>
+          </div>
+
+          <div class="loan-cards-grid" style="display:grid; grid-template-columns:repeat(4, 1fr); gap:20px;">
+            <div class="loan-feature-card">
+              <div class="loan-card-icon" style="background:#EFF6FF;">📊</div>
+              <h3 style="color:#0A2540; font-size:1.1rem; font-weight:800; margin:14px 0 8px;">Variable Rate Loans</h3>
+              <p style="color:#64748B; font-size:0.9rem; line-height:1.55; margin:0;">Your rate moves with the market. Enjoy flexibility, offset accounts, and extra repayment options.</p>
+            </div>
+
+            <div class="loan-feature-card highlight-card">
+              <div class="loan-card-icon" style="background:#0A2540; color:#ffffff;">🔒</div>
+              <h3 style="color:#0A2540; font-size:1.1rem; font-weight:800; margin:14px 0 8px;">Fixed Rate Loans</h3>
+              <p style="color:#64748B; font-size:0.9rem; line-height:1.55; margin:0;">Lock in your rate for 1–5 years for certainty over your repayments and protection against rate rises.</p>
+            </div>
+
+            <div class="loan-feature-card">
+              <div class="loan-card-icon" style="background:#EFF6FF;">⚖️</div>
+              <h3 style="color:#0A2540; font-size:1.1rem; font-weight:800; margin:14px 0 8px;">Split Loans</h3>
+              <p style="color:#64748B; font-size:0.9rem; line-height:1.55; margin:0;">Get the best of both worlds — fix part of your loan and keep the rest variable.</p>
+            </div>
+
+            <div class="loan-feature-card">
+              <div class="loan-card-icon" style="background:#EFF6FF;">🏦</div>
+              <h3 style="color:#0A2540; font-size:1.1rem; font-weight:800; margin:14px 0 8px;">Offset Accounts</h3>
+              <p style="color:#64748B; font-size:0.9rem; line-height:1.55; margin:0;">Link a transaction account to your mortgage to reduce the interest you pay.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- TAB PANEL 2: BUSINESS FINANCE -->
+      <div class="loan-tab-panel" id="panel-business" role="tabpanel" aria-labelledby="tab-btn-business" style="display:none;">
+        
+        <div class="business-solutions-block" style="background:#F8FAFC; border-radius:20px; padding:44px 32px; border:1px solid #E2E8F0;">
+          <div class="text-center fade-up" style="margin-bottom:36px;">
+            <span class="section-label" style="color:#1D4ED8; font-weight:800; letter-spacing:0.12em; text-transform:uppercase;">BUSINESS SOLUTIONS</span>
+            <h2 class="section-title" style="color:#0A2540; font-size:clamp(1.8rem, 2.8vw, 2.4rem); font-weight:800; margin:8px 0 12px;">Finance Solutions for Business Owners</h2>
+            <p class="section-subtitle" style="color:#64748B; font-size:1rem; max-width:700px; margin:0 auto; line-height:1.6;">We understand that every business is different. Our business finance specialists work with you to find the right funding solution for your specific needs.</p>
+          </div>
+
+          <div class="loan-cards-grid" style="display:grid; grid-template-columns:repeat(4, 1fr); gap:20px; margin-bottom:36px;">
+            <div class="loan-feature-card">
+              <div class="loan-card-icon" style="background:#EFF6FF;">🏢</div>
+              <h3 style="color:#0A2540; font-size:1.1rem; font-weight:800; margin:14px 0 8px;">Commercial Property Loans</h3>
+              <p style="color:#64748B; font-size:0.9rem; line-height:1.55; margin:0;">Purchase or refinance commercial premises. We source competitive rates from our panel of commercial lenders.</p>
+            </div>
+
+            <div class="loan-feature-card highlight-card">
+              <div class="loan-card-icon" style="background:#0A2540; color:#ffffff;">🔧</div>
+              <h3 style="color:#0A2540; font-size:1.1rem; font-weight:800; margin:14px 0 8px;">Equipment Finance</h3>
+              <p style="color:#64748B; font-size:0.9rem; line-height:1.55; margin:0;">Fund machinery, vehicles, or technology assets with equipment loans, chattel mortgages, or finance leases.</p>
+            </div>
+
+            <div class="loan-feature-card">
+              <div class="loan-card-icon" style="background:#EFF6FF;">💼</div>
+              <h3 style="color:#0A2540; font-size:1.1rem; font-weight:800; margin:14px 0 8px;">Business Loans</h3>
+              <p style="color:#64748B; font-size:0.9rem; line-height:1.55; margin:0;">Unsecured and secured business loans for working capital, expansion, acquisitions, or cash flow management.</p>
+            </div>
+
+            <div class="loan-feature-card">
+              <div class="loan-card-icon" style="background:#EFF6FF;">📋</div>
+              <h3 style="color:#0A2540; font-size:1.1rem; font-weight:800; margin:14px 0 8px;">SMSF Lending</h3>
+              <p style="color:#64748B; font-size:0.9rem; line-height:1.55; margin:0;">Purchase commercial or residential property within your self-managed super fund with specialist SMSF loan structuring.</p>
+            </div>
+          </div>
+
+          <div class="text-center">
+            <a href="#contact" class="btn btn-primary" style="background:#0A2540; color:#ffffff; font-weight:800; padding:12px 32px; border-radius:8px; display:inline-block;">Discuss Business Lending Options</a>
+          </div>
+        </div>
+
+      </div>
+
     </div>
   </section>
 
-        <!-- ========== WHY CHOOSE US (LIGHT BLUE THEME - 4 TRUST CARDS) ========== -->
+  <!-- ========== WHY CHOOSE US (LIGHT BLUE THEME - 4 TRUST CARDS) ========== -->
   <section class="benefits-section-split" id="why-choose-us" aria-labelledby="benefits-title" style="background:#F0F7FF !important; border-top:1px solid #DCE9FE; border-bottom:1px solid #DCE9FE;">
     <div class="container">
       <div class="benefits-split-layout">
