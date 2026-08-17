@@ -418,53 +418,7 @@
   <section class="section-pad" style="background:#F8FAFC; padding-top:40px;">
     <div class="container">
       
-      <!-- Tag Only: Featured Articles -->
-      <div style="margin-bottom:24px;">
-        <span class="section-label" style="display:inline-block; padding:4px 14px; background:#EFF6FF; color:#1D4ED8; border-radius:20px; font-weight:800; font-size:0.8rem; letter-spacing:0.08em; border:1px solid #DBEAFE;">FEATURED ARTICLES</span>
-      </div>
 
-      <!-- 2 Featured Large Cards -->
-      <div class="featured-articles-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-bottom:52px;">
-        
-        <!-- Featured Card 1 -->
-        <div class="article-feed-card" style="border-radius:20px; box-shadow:0 8px 24px rgba(10,37,64,0.06);">
-          <div class="article-card-thumb" style="height:240px;">
-            <img src="/images/canva/02._blog/article/02._for_home_loans.png" alt="First Home Buyer Guide">
-            <span class="article-card-category-badge">FIRST HOME BUYERS</span>
-          </div>
-          <div class="article-card-body" style="padding:24px;">
-            <div class="article-card-meta">
-              <span>18-Aug-2026</span>
-              <span>⏱️ 6 min read</span>
-            </div>
-            <h3 class="article-card-title" style="font-size:1.25rem;">
-              <a href="/pages/blog/first-home-buyers-grant-2026-guide.html">First Home Buyer's Complete Guide: Step-by-Step Pre-Approval to Settlement</a>
-            </h3>
-            <p class="article-card-excerpt">Navigate borrowing power assessments, suburb valuation reports, and 50+ lender options to secure your first home confidently.</p>
-            <a href="/pages/blog/first-home-buyers-grant-2026-guide.html" class="article-card-link">Read full guide &rarr;</a>
-          </div>
-        </div>
-
-        <!-- Featured Card 2 -->
-        <div class="article-feed-card" style="border-radius:20px; box-shadow:0 8px 24px rgba(10,37,64,0.06);">
-          <div class="article-card-thumb" style="height:240px;">
-            <img src="/images/canva/02._blog/article/06._refinance.png" alt="Mortgage Refinancing Playbook">
-            <span class="article-card-category-badge">REFINANCING</span>
-          </div>
-          <div class="article-card-body" style="padding:24px;">
-            <div class="article-card-meta">
-              <span>15-Aug-2026</span>
-              <span>⏱️ 5 min read</span>
-            </div>
-            <h3 class="article-card-title" style="font-size:1.25rem;">
-              <a href="/pages/blog/how-to-refinance-mortgage-australia-playbook.html">How to Refinance and Save Thousands: The Complete Australian Mortgage Playbook</a>
-            </h3>
-            <p class="article-card-excerpt">Learn how switching lenders can lower your monthly repayments, release built-up home equity, and consolidate high-interest debts.</p>
-            <a href="/pages/blog/how-to-refinance-mortgage-australia-playbook.html" class="article-card-link">Read full guide &rarr;</a>
-          </div>
-        </div>
-
-      </div>
 
       <!-- 3-COLUMN ALL ARTICLES LAYOUT (as per Image 4) -->
       <div class="blog-hub-layout">
@@ -482,6 +436,10 @@
               <li class="sidebar-cat-item active" data-cat="all">
                 <span>All News &amp; Insights</span>
                 <span class="sidebar-cat-count">10</span>
+              </li>
+              <li class="sidebar-cat-item" data-cat="featured">
+                <span>⭐ Featured</span>
+                <span class="sidebar-cat-count">2</span>
               </li>
               <li class="sidebar-cat-item" data-cat="home-loans">
                 <span>Home Loans</span>
@@ -537,8 +495,9 @@
         <main class="blog-main-feed">
           
           <!-- Category Feed Tabs -->
-          <div class="feed-category-tabs">
+          <div class="feed-category-tabs" id="blogFeedTabs">
             <button class="feed-tab-btn active" data-cat="all">All News &amp; Insights</button>
+            <button class="feed-tab-btn" data-cat="featured">⭐ Featured</button>
             <button class="feed-tab-btn" data-cat="home-loans">Home Loans</button>
             <button class="feed-tab-btn" data-cat="business-loans">Business Loans</button>
             <button class="feed-tab-btn" data-cat="refinancing">Refinancing</button>
@@ -562,39 +521,39 @@
             <span>Page 1 of 1</span>
           </div>
 
-          <!-- 3-Column Article Feed Cards -->
-          <div class="article-cards-grid">
+                    <!-- 3-Column Article Feed Cards -->
+          <div class="article-cards-grid" id="blogCardsGrid">
             
-            <!-- Article 1 -->
-            <div class="article-feed-card">
+            <!-- Article 1 (Featured + Home Loans) -->
+            <div class="article-feed-card" data-category="featured home-loans">
               <div class="article-card-thumb">
                 <img src="/images/canva/02._blog/article/02._for_home_loans.png" alt="First Home Guide">
                 <span class="article-card-category-badge">HOME LOANS</span>
               </div>
               <div class="article-card-body">
                 <div class="article-card-meta"><span>18-Aug-2026</span><span>⏱️ 6 min</span></div>
-                <h4 class="article-card-title"><a href="/pages/blog/first-home-buyers-grant-2026-guide.html">First Home Buyer's Complete Guide</a></h4>
+                <h4 class="article-card-title"><a href="/pages/blog/first-home-buyers-grant-2026-guide.html">First Home Buyer's Complete Guide: Step-by-Step Pre-Approval to Settlement</a></h4>
                 <p class="article-card-excerpt">Borrowing power calculation, conditional pre-approval, and finding your first home.</p>
                 <a href="/pages/blog/first-home-buyers-grant-2026-guide.html" class="article-card-link">Read article &rarr;</a>
               </div>
             </div>
 
-            <!-- Article 2 -->
-            <div class="article-feed-card">
+            <!-- Article 2 (Featured + Refinance) -->
+            <div class="article-feed-card" data-category="featured refinancing">
               <div class="article-card-thumb">
                 <img src="/images/canva/02._blog/article/06._refinance.png" alt="Refinance Playbook">
                 <span class="article-card-category-badge">REFINANCE</span>
               </div>
               <div class="article-card-body">
                 <div class="article-card-meta"><span>15-Aug-2026</span><span>⏱️ 5 min</span></div>
-                <h4 class="article-card-title"><a href="/pages/blog/how-to-refinance-mortgage-australia-playbook.html">How to Refinance &amp; Save Thousands</a></h4>
+                <h4 class="article-card-title"><a href="/pages/blog/how-to-refinance-mortgage-australia-playbook.html">How to Refinance &amp; Save Thousands: The Complete Australian Mortgage Playbook</a></h4>
                 <p class="article-card-excerpt">Switch lenders, cut monthly repayments, and unlock usable home equity.</p>
                 <a href="/pages/blog/how-to-refinance-mortgage-australia-playbook.html" class="article-card-link">Read article &rarr;</a>
               </div>
             </div>
 
-            <!-- Article 3 -->
-            <div class="article-feed-card">
+            <!-- Article 3 (Business Loans) -->
+            <div class="article-feed-card" data-category="business-loans">
               <div class="article-card-thumb">
                 <img src="/images/canva/02._blog/article/04._business_loan.png" alt="Self Employed Loans">
                 <span class="article-card-category-badge">BUSINESS</span>
@@ -607,8 +566,8 @@
               </div>
             </div>
 
-            <!-- Article 4 -->
-            <div class="article-feed-card">
+            <!-- Article 4 (Home Loans) -->
+            <div class="article-feed-card" data-category="home-loans">
               <div class="article-card-thumb">
                 <img src="/images/canva/02._blog/article/08._equity_cashout.png" alt="Borrowing Power Decoded">
                 <span class="article-card-category-badge">HOME LOANS</span>
@@ -621,8 +580,8 @@
               </div>
             </div>
 
-            <!-- Article 5 -->
-            <div class="article-feed-card">
+            <!-- Article 5 (Investing) -->
+            <div class="article-feed-card" data-category="investing">
               <div class="article-card-thumb">
                 <img src="/images/canva/02._blog/article/03._smsf.png" alt="SMSF Property Lending">
                 <span class="article-card-category-badge">INVESTING</span>
@@ -635,8 +594,8 @@
               </div>
             </div>
 
-            <!-- Article 6 -->
-            <div class="article-feed-card">
+            <!-- Article 6 (Investing) -->
+            <div class="article-feed-card" data-category="investing">
               <div class="article-card-thumb">
                 <img src="/images/canva/03._generic_graphic/01._ez_mortgage_broker.png" alt="Property Investment Structuring">
                 <span class="article-card-category-badge">INVESTING</span>
@@ -794,5 +753,57 @@
   </footer>
 
   <script src="/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const feedTabs = document.querySelectorAll('.feed-tab-btn');
+      const sidebarItems = document.querySelectorAll('.sidebar-cat-item');
+      const cards = document.querySelectorAll('.article-feed-card');
+      const searchInput = document.getElementById('blogSearchInput');
+
+      function filterCategory(cat) {
+        // Sync tabs
+        feedTabs.forEach(t => t.classList.toggle('active', t.getAttribute('data-cat') === cat));
+        sidebarItems.forEach(s => s.classList.toggle('active', s.getAttribute('data-cat') === cat));
+
+        // Filter cards
+        cards.forEach(card => {
+          const cardCats = (card.getAttribute('data-category') || '').split(' ');
+          if (cat === 'all' || cardCats.includes(cat)) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      }
+
+      feedTabs.forEach(btn => {
+        btn.addEventListener('click', function () {
+          filterCategory(this.getAttribute('data-cat'));
+        });
+      });
+
+      sidebarItems.forEach(item => {
+        item.addEventListener('click', function () {
+          filterCategory(this.getAttribute('data-cat'));
+        });
+      });
+
+      if (searchInput) {
+        searchInput.addEventListener('input', function () {
+          const query = this.value.toLowerCase().trim();
+          cards.forEach(card => {
+            const title = (card.querySelector('.article-card-title') || {}).textContent || '';
+            const excerpt = (card.querySelector('.article-card-excerpt') || {}).textContent || '';
+            const text = (title + ' ' + excerpt).toLowerCase();
+            if (!query || text.includes(query)) {
+              card.style.display = 'flex';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      }
+    });
+  </script>
 </body>
 </html>
