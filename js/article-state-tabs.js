@@ -413,100 +413,49 @@
     }
   }
 
-  // 6. Scroll-Aware Minimizing Obligation-Free Assessment Card (with smooth animation)
-  var stickyCtaCard = document.getElementById('sidebarStickyAssessmentCard') || document.querySelector('.sidebar-sticky-cta-card');
-  var ctaToggleBtn = document.getElementById('sidebarCtaToggleBtn') || (stickyCtaCard ? stickyCtaCard.querySelector('.sidebar-cta-toggle-btn') : null);
-  var isUserManuallyExpanded = false;
+  // 6. Obligation-Free Assessment Accordion & Scroll Auto-Close
+  var ctaWidget = document.getElementById('sidebarStickyAssessmentCard');
+  var ctaUserClicked = false;
+  var ctaTimeout = null;
 
-  if (stickyCtaCard) {
+  if (ctaWidget) {
+    var ctaHdr = ctaWidget.querySelector('.cta-sidebar-header') || ctaWidget.querySelector('.sidebar-accordion-header');
+    var ctaIcon = ctaWidget.querySelector('.sidebar-accordion-icon');
+
+    // Auto-close on scroll down past 300px
     window.addEventListener('scroll', function () {
       var scrollY = window.pageYOffset || document.documentElement.scrollTop;
-      if (scrollY > 350) {
-        if (!isUserManuallyExpanded) {
-          stickyCtaCard.classList.add('is-scrolled-minimized');
-          if (ctaToggleBtn) ctaToggleBtn.textContent = '+';
+      if (!ctaUserClicked) {
+        if (scrollY > 300) {
+          if (ctaWidget.classList.contains('open')) {
+            ctaWidget.classList.remove('open');
+            if (ctaHdr) ctaHdr.setAttribute('aria-expanded', 'false');
+            if (ctaIcon) ctaIcon.textContent = '+';
+          }
+        } else {
+          if (!ctaWidget.classList.contains('open')) {
+            ctaWidget.classList.add('open');
+            if (ctaHdr) ctaHdr.setAttribute('aria-expanded', 'true');
+            if (ctaIcon) ctaIcon.textContent = '−';
+          }
         }
-      } else {
-        stickyCtaCard.classList.remove('is-scrolled-minimized');
-        stickyCtaCard.classList.remove('user-expanded');
-        isUserManuallyExpanded = false;
-        if (ctaToggleBtn) ctaToggleBtn.textContent = '−';
       }
     }, { passive: true });
 
-    if (ctaToggleBtn) {
-      ctaToggleBtn.addEventListener('click', function (e) {
+    // Manual click toggle
+    if (ctaHdr) {
+      ctaHdr.addEventListener('click', function (e) {
         e.preventDefault();
-        e.stopPropagation();
-        var isMin = stickyCtaCard.classList.contains('is-scrolled-minimized');
-        if (isMin) {
-          var isExp = stickyCtaCard.classList.toggle('user-expanded');
-          ctaToggleBtn.textContent = isExp ? '−' : '+';
-          isUserManuallyExpanded = isExp;
-        } else {
-          stickyCtaCard.classList.add('is-scrolled-minimized');
-          ctaToggleBtn.textContent = '+';
-        }
+        ctaUserClicked = true;
+        clearTimeout(ctaTimeout);
+        ctaTimeout = setTimeout(function () {
+          ctaUserClicked = false;
+        }, 8000);
+
+        var isOpen = ctaWidget.classList.toggle('open');
+        this.setAttribute('aria-expanded', isOpen);
+        if (ctaIcon) ctaIcon.textContent = isOpen ? '−' : '+';
       });
     }
   }
-
 })();
-
-
-  // 7. Interactive Highlights Timeline Smooth Scroll & Section Pulse
-  document.querySelectorAll('.highlight-timeline-item').forEach(function (item) {
-    item.addEventListener('click', function (e) {
-      e.preventDefault();
-      var targetIdx = this.getAttribute('data-target');
-      var targetSection = document.querySelector('.article-section-accordion[data-accordion-index="' + targetIdx + '"]') ||
-                          document.getElementById('section-' + targetIdx);
-
-      if (targetSection) {
-        // Ensure target section is expanded
-        targetSection.classList.add('open');
-        var hdr = targetSection.querySelector('.article-section-accordion-header');
-        var icon = targetSection.querySelector('.section-accordion-icon');
-        if (hdr) hdr.setAttribute('aria-expanded', 'true');
-        if (icon) icon.textContent = '−';
-
-        // Smooth scroll with fixed header clearance
-        var headerOffset = 95;
-        var elementPos = targetSection.getBoundingClientRect().top;
-        var offsetPos = elementPos + window.pageYOffset - headerOffset;
-
-        window.scrollTo({
-          top: offsetPos,
-          behavior: 'smooth'
-        });
-
-        // Trigger visual highlight pulse
-        targetSection.classList.remove('section-pulse-highlight');
-        void targetSection.offsetWidth;
-        targetSection.classList.add('section-pulse-highlight');
-      }
-    });
-  });
-
-
-  // Highlights Widget Accordion Toggle
-  var highlightsWidget = document.querySelector('.article-highlights-widget');
-  if (highlightsWidget) {
-    var hlHeader = highlightsWidget.querySelector('.highlights-widget-header');
-    var hlIcon = highlightsWidget.querySelector('.highlights-accordion-icon');
-    if (hlHeader) {
-      hlHeader.addEventListener('click', function(e) {
-        e.preventDefault();
-        var isOpen = highlightsWidget.classList.contains('open');
-        if (isOpen) {
-          highlightsWidget.classList.remove('open');
-          hlHeader.setAttribute('aria-expanded', 'false');
-          if (hlIcon) hlIcon.textContent = '+';
-        } else {
-          highlightsWidget.classList.add('open');
-          hlHeader.setAttribute('aria-expanded', 'true');
-          if (hlIcon) hlIcon.textContent = '−';
-        }
-      });
-    }
-  }
