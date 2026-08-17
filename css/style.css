@@ -6516,3 +6516,97 @@ table tbody tr:hover {
 .content-data-table tbody tr:hover {
   background: #EFF6FF !important;
 }
+
+
+/* =========================================================
+   Standardized Editorial Typography System (typography.md)
+   ========================================================= */
+:root {
+  --font-serif-editorial: sueca_hd_regular, Merriweather, Georgia, "Times New Roman", Times, serif;
+  --font-sans-ui: suecanano_regular, Lato, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, "Lucida Grande", sans-serif;
+  
+  --fs-h1-mobile: 1.6875rem;
+  --fs-h1-tablet: 2.5625rem;
+  --fs-h1-desktop: 3rem;
+  
+  --fs-h2: 1.875rem;
+  --fs-widget-heading: 0.875rem;
+  
+  --fs-body-mobile: 1rem;
+  --fs-body-desktop: 1.125rem;
+  
+  --lh-body: 1.6;
+}
+
+/* Article Headline Scale */
+.article-header h1,
+.article-content h1,
+.blog-post h1 {
+  font-family: var(--font-serif-editorial) !important;
+  font-size: var(--fs-h1-mobile) !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.02em !important;
+  font-weight: 700 !important;
+  color: #0A2540 !important;
+  margin-bottom: 16px !important;
+}
+
+@media (min-width: 768px) {
+  .article-header h1,
+  .article-content h1,
+  .blog-post h1 {
+    font-size: var(--fs-h1-tablet) !important;
+  }
+}
+
+@media (min-width: 1020px) {
+  .article-header h1,
+  .article-content h1,
+  .blog-post h1 {
+    font-size: var(--fs-h1-desktop) !important;
+  }
+}
+
+/* Article Section Subheadings (h2) */
+.article-content h2,
+.blog-post h2,
+.article-section-title {
+  font-family: var(--font-serif-editorial) !important;
+  font-size: var(--fs-h2) !important;
+  line-height: 1.3 !important;
+  font-weight: 700 !important;
+  color: #0A2540 !important;
+  margin: 36px 0 16px !important;
+}
+
+/* Widget / Unit Headings */
+.widget-heading,
+.unit-heading,
+.sidebar-block-title,
+.sidebar-accordion-header h4 {
+  font-family: var(--font-sans-ui) !important;
+  font-size: var(--fs-widget-heading) !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  color: #64748B !important;
+}
+
+/* Article Body / Narrative Paragraphs (<p>) */
+.article-content p,
+.article-body-text,
+.blog-post p {
+  font-family: var(--font-serif-editorial) !important;
+  font-size: var(--fs-body-mobile) !important;
+  line-height: var(--lh-body) !important;
+  color: #334155 !important;
+  margin-bottom: 20px !important;
+}
+
+@media (min-width: 768px) {
+  .article-content p,
+  .article-body-text,
+  .blog-post p {
+    font-size: var(--fs-body-desktop) !important;
+  }
+}
