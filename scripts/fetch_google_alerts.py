@@ -42,6 +42,12 @@ BLOG_PAGES_DIR = os.path.join(PROJECT_DIR, "pages", "blog")
 
 TARGET_FEEDS = [
     {
+        "category": "Super & SMSF",
+        "badge": "SUPER & SMSF INSIGHT",
+        "url": "https://www.google.com/alerts/feeds/14625353401416373956/1200677753741493727",
+        "feed_type": "google_alerts"
+    },
+    {
         "category": "RBA & Rates",
         "badge": "RBA & RATE CYCLE",
         "url": "https://news.google.com/rss/search?q=RBA+cash+rate+decision+OR+interest+rates+Australia&hl=en-AU&gl=AU&ceid=AU:en",
@@ -96,7 +102,7 @@ def is_relevant_mortgage_topic(title, snippet):
         if bad_word in combined:
             return False
     relevant_terms = [
-        "mortgage", "home loan", "lending", "lender", "bank", "interest rate",
+        "mortgage", "home loan", "superannuation", "super", "smsf", "lending", "lender", "bank", "interest rate",
         "rba", "refinanc", "first home", "fhb", "fhog", "stamp duty", "deposit", "equity",
         "borrower", "borrowing", "broker", "apra", "serviceability", "buffer", "cba", "nab", "westpac", "anz"
     ]
@@ -116,8 +122,10 @@ def format_longtail_headline(raw_title, category):
         return f"How Much Deposit Is Required for the First Home Guarantee in Victoria?"
     elif "apra" in t.lower() or "buffer" in t.lower() or "serviceability" in t.lower():
         return f"How Does the APRA 3.0% Serviceability Buffer Impact Borrowing Power?"
+    elif "super" in t.lower() or "smsf" in t.lower():
+        return f"How Can Australians Leverage Superannuation & SMSF Property Lending in 2026?"
     elif "refinanc" in t.lower() or "fixed" in t.lower():
-        return f"What Are the Best Refinancing Strategies When Fixed Rates Expire?"
+        return f"What Are the Best Refinancing Strategies When Fixed Rates Expire?" 
     else:
         if not t.endswith('?'):
             return f"What Does {t} Mean for Australian Borrowers?"
@@ -142,6 +150,12 @@ def generate_value_dense_content(headline, snippet, category):
         b2 = "<strong>Government Price Caps:</strong> Property price caps apply per capital city and regional zone across all participating lenders."
         b3 = "<strong>Pre-Approval Crucial:</strong> Scheme allocation places fill rapidly; securing conditional pre-approval ensures your spot is reserved before auction day."
         tip = "<strong>Broker Advisory:</strong> Speak with our team to verify whether your income and target purchase price meet federal and state scheme criteria at zero broker cost."
+    elif "super" in category.lower() or "smsf" in category.lower():
+        summary = "Australia's $4+ trillion superannuation system continues to evolve amid legislative debates on early access for housing, First Home Super Saver Scheme (FHSSS) rules, and Limited Recourse Borrowing Arrangements (LRBA) for property investment."
+        b1 = "<strong>FHSSS Home Deposit Accelerators:</strong> Eligible buyers can withdraw up to $50,000 in voluntary contributions taxed at only 15% to build a home deposit faster."
+        b2 = "<strong>SMSF Property Lending (LRBA):</strong> Self-Managed Super Funds can purchase residential and commercial investment property using specialized SMSF lending structures."
+        b3 = "<strong>Contribution Caps & Tax Efficiency:</strong> Concessional super contributions offer substantial tax deductions while growing retirement equity."
+        tip = "<strong>Broker Advisory:</strong> Speak with our SMSF finance specialists to structure compliant property loans inside your Self-Managed Super Fund with accredited lenders."
     elif "apra" in headline.lower() or "apra" in category.lower():
         summary = "APRA's 3.00% mortgage serviceability buffer requires Australian banks to evaluate loan affordability at least 300 basis points above the actual product interest rate, maintaining prudent lending standards across household credit."
         b1 = "<strong>Maximum Loan Caps:</strong> The 300 bps assessment hurdle limits the total debt-to-income multiple lenders can extend to applicants."
