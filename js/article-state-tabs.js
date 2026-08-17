@@ -149,312 +149,40 @@
     });
   });
 
-  // 6. Dynamic Scroll-Driven Auto-Closing (Column 1 AND Column 2)
-  var scrollDebounce = null;
-  function handleScrollSpy() {
-    var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+  // 6. Scroll-Aware Minimizing Obligation-Free Assessment Card (with smooth animation)
+  var stickyCtaCard = document.getElementById('sidebarStickyAssessmentCard') || document.querySelector('.sidebar-sticky-cta-card');
+  var ctaToggleBtn = document.getElementById('sidebarCtaToggleBtn') || (stickyCtaCard ? stickyCtaCard.querySelector('.sidebar-cta-toggle-btn') : null);
+  var isUserManuallyExpanded = false;
 
-    // At top of page (< 80px): keep everything OPEN in Col 1 and Col 2
-    if (scrollY < 80) {
-      if (!userManualLock) {
-        sectionAccordions.forEach(function (acc) {
-          acc.classList.add('open');
-          var hdr = acc.querySelector('.article-section-accordion-header');
-          var icon = acc.querySelector('.section-accordion-icon');
-          if (hdr) hdr.setAttribute('aria-expanded', 'true');
-          if (icon) icon.textContent = '−';
-        });
-      }
-      if (!sidebarManualLock) {
-        sidebarWidgets.forEach(function (w) {
-          w.classList.add('open');
-          var hdr = w.querySelector('.sidebar-accordion-header');
-          var icon = w.querySelector('.sidebar-accordion-icon');
-          if (hdr) hdr.setAttribute('aria-expanded', 'true');
-          if (icon) icon.textContent = '−';
-        });
-      }
-      return;
-    }
-
-    // When scrolling down past 80px:
-    // A. Auto-close Column 1 except the single active reading section
-    if (!userManualLock && sectionAccordions.length > 0) {
-      var activeAcc = null;
-      var smallestDist = Infinity;
-      var targetReadingLine = 220;
-
-      sectionAccordions.forEach(function (acc) {
-        var rect = acc.getBoundingClientRect();
-        var dist = Math.abs(rect.top - targetReadingLine);
-        if (rect.top <= (window.innerHeight * 0.75) && rect.bottom >= 80) {
-          if (dist < smallestDist) {
-            smallestDist = dist;
-            activeAcc = acc;
-          }
-        }
-      });
-
-      if (activeAcc) {
-        sectionAccordions.forEach(function (acc) {
-          var hdr = acc.querySelector('.article-section-accordion-header');
-          var icon = acc.querySelector('.section-accordion-icon');
-          if (acc === activeAcc) {
-            if (!acc.classList.contains('open')) {
-              acc.classList.add('open');
-              if (hdr) hdr.setAttribute('aria-expanded', 'true');
-              if (icon) icon.textContent = '−';
-            }
-          } else {
-            if (acc.classList.contains('open')) {
-              acc.classList.remove('open');
-              if (hdr) hdr.setAttribute('aria-expanded', 'false');
-              if (icon) icon.textContent = '+';
-            }
-          }
-        });
-      }
-    }
-
-    // B. Auto-close Column 2 widgets so the sticky Assessment Card is prominent
-    if (!sidebarManualLock && sidebarWidgets.length > 0) {
-      sidebarWidgets.forEach(function (w) {
-        if (w.classList.contains('open')) {
-          w.classList.remove('open');
-          var hdr = w.querySelector('.sidebar-accordion-header');
-          var icon = w.querySelector('.sidebar-accordion-icon');
-          if (hdr) hdr.setAttribute('aria-expanded', 'false');
-          if (icon) icon.textContent = '+';
-        }
-      });
-    }
-  }
-
-  window.addEventListener('scroll', function () {
-    clearTimeout(scrollDebounce);
-    scrollDebounce = setTimeout(handleScrollSpy, 25);
-  }, { passive: true });
-
-  // 7. Sticky Region Selector Bar on Scroll
-  var stickyTabs = document.getElementById('stickyHeaderStateTabs');
-  if (stickyTabs) {
-    var initialOffset = stickyTabs.offsetTop + 120;
-    window.addEventListener('scroll', function () {
-      if (window.pageYOffset > initialOffset) {
-        stickyTabs.classList.add('is-sticky');
-      } else {
-        stickyTabs.classList.remove('is-sticky');
-      }
-    }, { passive: true });
-  }
-
-  // 8. State Tabs Switching
-  var rawDataEl = document.getElementById('rawStateData');
-  if (rawDataEl) {
-    var stateDataMap = {};
-    try {
-      stateDataMap = JSON.parse(rawDataEl.textContent);
-    } catch (e) {
-      console.error('Failed to parse state data', e);
-    }
-
-    var tabBtns = document.querySelectorAll('[data-state-tab]');
-    var titleEl = document.getElementById('dynamicStateTitle');
-    var badgeEl = document.getElementById('dynamicStateBadge');
-    var bodyEl = document.getElementById('dynamicStateBodyContent');
-    var portalLinkEl = document.getElementById('dynamicStatePortalLink');
-    var hubBox = document.getElementById('dynamicStateHubBox');
-
-    function renderState(stateKey, shouldScroll) {
-      var data = stateDataMap[stateKey] || stateDataMap['General'];
-      if (!data) return;
-
-      tabBtns.forEach(function (b) {
-        if (b.getAttribute('data-state-tab') === stateKey) {
-          b.classList.add('active');
-        } else {
-          b.classList.remove('active');
-        }
-      });
-
-      if (titleEl) titleEl.textContent = data.title;
-      if (badgeEl) badgeEl.textContent = data.badge;
-      if (portalLinkEl) {
-        portalLinkEl.href = data.portalUrl;
-        portalLinkEl.textContent = '🏛️ ' + data.portalName + ' →';
-      }
-
-      if (bodyEl && data.sections) {
-        var html = '';
-        for (var i = 0; i < data.sections.length; i++) {
-          var sec = data.sections[i];
-          html += '<div class="dynamic-state-content-section">' +
-                  '<h4>' + sec.heading + '</h4>' +
-                  sec.content +
-                  '</div>';
-        }
-        bodyEl.innerHTML = html;
-      }
-
-      if (shouldScroll && hubBox) {
-        hubBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }
-    }
-
-    tabBtns.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var targetState = this.getAttribute('data-state-tab');
-        renderState(targetState, true);
-      });
-    });
-
-    renderState('General', false);
-  }
-
-  // 9. 2-Step 360° Review Lead Modal Engine
-  var modal = document.getElementById('ezModalOverlay');
-  var closeBtn = document.getElementById('ezModalClose');
-  var nextBtn = document.getElementById('ezNextBtn');
-  var backBtn = document.getElementById('ezBackBtn');
-  var step1 = document.getElementById('ezStep1');
-  var step2 = document.getElementById('ezStep2');
-  var progressFill = document.getElementById('ezProgressFill');
-  var modalTitle = document.getElementById('ezModalTitle');
-
-  if (modal) {
-
-    // AJAX Lead Form Submission Handler
-    var leadForm = document.getElementById('ezLeadForm');
-    var submitBtn = document.getElementById('ezSubmitBtn');
-
-    if (leadForm) {
-      leadForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        
-        if (submitBtn) {
-          submitBtn.disabled = true;
-          submitBtn.textContent = 'Submitting Assessment...';
-        }
-
-        var formData = {
-          loan_purpose: (document.querySelector('input[name="loan_purpose"]:checked') || {}).value || 'First Home Buyer',
-          estimated_amount: (document.getElementById('ezLoanAmount') || {}).value || '$500,000 – $750,000',
-          full_name: (document.getElementById('ezFullName') || {}).value || '',
-          mobile_number: (document.getElementById('ezMobile') || {}).value || '',
-          email_address: (document.getElementById('ezEmail') || {}).value || '',
-          source_url: window.location.href
-        };
-
-        fetch('/api/leads', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(formData)
-        })
-        .then(function (res) {
-          return res.json().catch(function () { return { ok: true }; });
-        })
-        .then(function () {
-          window.location.href = '/thank-you';
-        })
-        .catch(function () {
-          // Fallback redirect to thank-you even on network glitch
-          window.location.href = '/thank-you';
-        });
-      });
-    }
-
-    var openModal = function (e) {
-      if (e) e.preventDefault();
-      modal.classList.add('active');
-      modal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-    };
-
-    var closeModal = function () {
-      modal.classList.remove('active');
-      modal.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    };
-
-    document.querySelectorAll('.open-ez-modal, a[href="#contact"], a[href="#book-consult"], a[href="#free-review"]').forEach(function (el) {
-      el.addEventListener('click', openModal);
-    });
-
-    if (closeBtn) closeBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', function (e) {
-      if (e.target === modal) closeModal();
-    });
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
-    });
-
-    if (nextBtn) {
-      nextBtn.addEventListener('click', function () {
-        if (step1 && step2) {
-          step1.classList.remove('active');
-          step2.classList.add('active');
-          if (progressFill) progressFill.style.width = '100%';
-          if (modalTitle) modalTitle.textContent = 'Where should we send your borrowing report?';
-          var nameInput = document.getElementById('ezFullName');
-          if (nameInput) nameInput.focus();
-        }
-      });
-    }
-
-    if (backBtn) {
-      backBtn.addEventListener('click', function () {
-        if (step1 && step2) {
-          step2.classList.remove('active');
-          step1.classList.add('active');
-          if (progressFill) progressFill.style.width = '50%';
-          if (modalTitle) modalTitle.textContent = "Let's find your best loan options";
-        }
-      });
-    }
-  }
-
-  // 6. Obligation-Free Assessment Accordion & Scroll Auto-Close
-  var ctaWidget = document.getElementById('sidebarStickyAssessmentCard');
-  var ctaUserClicked = false;
-  var ctaTimeout = null;
-
-  if (ctaWidget) {
-    var ctaHdr = ctaWidget.querySelector('.cta-sidebar-header') || ctaWidget.querySelector('.sidebar-accordion-header');
-    var ctaIcon = ctaWidget.querySelector('.sidebar-accordion-icon');
-
-    // Auto-close on scroll down past 300px
+  if (stickyCtaCard) {
     window.addEventListener('scroll', function () {
       var scrollY = window.pageYOffset || document.documentElement.scrollTop;
-      if (!ctaUserClicked) {
-        if (scrollY > 300) {
-          if (ctaWidget.classList.contains('open')) {
-            ctaWidget.classList.remove('open');
-            if (ctaHdr) ctaHdr.setAttribute('aria-expanded', 'false');
-            if (ctaIcon) ctaIcon.textContent = '+';
-          }
-        } else {
-          if (!ctaWidget.classList.contains('open')) {
-            ctaWidget.classList.add('open');
-            if (ctaHdr) ctaHdr.setAttribute('aria-expanded', 'true');
-            if (ctaIcon) ctaIcon.textContent = '−';
-          }
+      if (scrollY > 300) {
+        if (!isUserManuallyExpanded) {
+          stickyCtaCard.classList.add('is-scrolled-minimized');
+          if (ctaToggleBtn) ctaToggleBtn.textContent = '+';
         }
+      } else {
+        stickyCtaCard.classList.remove('is-scrolled-minimized');
+        stickyCtaCard.classList.remove('user-expanded');
+        isUserManuallyExpanded = false;
+        if (ctaToggleBtn) ctaToggleBtn.textContent = '−';
       }
     }, { passive: true });
 
-    // Manual click toggle
-    if (ctaHdr) {
-      ctaHdr.addEventListener('click', function (e) {
+    if (ctaToggleBtn) {
+      ctaToggleBtn.addEventListener('click', function (e) {
         e.preventDefault();
-        ctaUserClicked = true;
-        clearTimeout(ctaTimeout);
-        ctaTimeout = setTimeout(function () {
-          ctaUserClicked = false;
-        }, 8000);
-
-        var isOpen = ctaWidget.classList.toggle('open');
-        this.setAttribute('aria-expanded', isOpen);
-        if (ctaIcon) ctaIcon.textContent = isOpen ? '−' : '+';
+        e.stopPropagation();
+        var isMin = stickyCtaCard.classList.contains('is-scrolled-minimized');
+        if (isMin) {
+          var isExp = stickyCtaCard.classList.toggle('user-expanded');
+          ctaToggleBtn.textContent = isExp ? '−' : '+';
+          isUserManuallyExpanded = isExp;
+        } else {
+          stickyCtaCard.classList.add('is-scrolled-minimized');
+          ctaToggleBtn.textContent = '+';
+        }
       });
     }
   }
