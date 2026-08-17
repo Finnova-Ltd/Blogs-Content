@@ -412,6 +412,45 @@
       });
     }
   }
+
+  // 6. Scroll-Aware Minimizing Obligation-Free Assessment Card (with smooth animation)
+  var stickyCtaCard = document.getElementById('sidebarStickyAssessmentCard') || document.querySelector('.sidebar-sticky-cta-card');
+  var ctaToggleBtn = document.getElementById('sidebarCtaToggleBtn') || (stickyCtaCard ? stickyCtaCard.querySelector('.sidebar-cta-toggle-btn') : null);
+  var isUserManuallyExpanded = false;
+
+  if (stickyCtaCard) {
+    window.addEventListener('scroll', function () {
+      var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+      if (scrollY > 350) {
+        if (!isUserManuallyExpanded) {
+          stickyCtaCard.classList.add('is-scrolled-minimized');
+          if (ctaToggleBtn) ctaToggleBtn.textContent = '+';
+        }
+      } else {
+        stickyCtaCard.classList.remove('is-scrolled-minimized');
+        stickyCtaCard.classList.remove('user-expanded');
+        isUserManuallyExpanded = false;
+        if (ctaToggleBtn) ctaToggleBtn.textContent = '−';
+      }
+    }, { passive: true });
+
+    if (ctaToggleBtn) {
+      ctaToggleBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var isMin = stickyCtaCard.classList.contains('is-scrolled-minimized');
+        if (isMin) {
+          var isExp = stickyCtaCard.classList.toggle('user-expanded');
+          ctaToggleBtn.textContent = isExp ? '−' : '+';
+          isUserManuallyExpanded = isExp;
+        } else {
+          stickyCtaCard.classList.add('is-scrolled-minimized');
+          ctaToggleBtn.textContent = '+';
+        }
+      });
+    }
+  }
+
 })();
 
 
