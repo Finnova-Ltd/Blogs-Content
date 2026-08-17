@@ -2424,3 +2424,41 @@ document.addEventListener('DOMContentLoaded', () => {
     window.switchLoanTab('personal');
   }
 });
+
+
+// --- SPA Multi-Tab & Sub-Toggle Switcher ---
+window.switchMainLoanTab = function(tabKey) {
+  var tabs = ['home-loans', 'business-loans', 'personal-loans'];
+  tabs.forEach(function(t) {
+    var btn = document.getElementById('tab-btn-' + t);
+    var pnl = document.getElementById('panel-' + t);
+    if (btn && pnl) {
+      if (t === tabKey) {
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+        pnl.style.display = 'block';
+      } else {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-selected', 'false');
+        pnl.style.display = 'none';
+      }
+    }
+  });
+};
+
+window.switchHomeSubToggle = function(subKey) {
+  var subPills = ['first-home', 'refinance', 'new-home', 'investment'];
+  subPills.forEach(function(s) {
+    var pillBtn = document.getElementById('pill-btn-' + s);
+    var subPnl = document.getElementById('sub-panel-' + s);
+    if (pillBtn && subPnl) {
+      if (s === subKey) {
+        pillBtn.classList.add('active');
+        subPnl.style.display = 'block';
+      } else {
+        pillBtn.classList.remove('active');
+        subPnl.style.display = 'none';
+      }
+    }
+  });
+};

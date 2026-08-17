@@ -6123,3 +6123,35 @@ p, .article-main-content p {
     gap: 32px !important;
   }
 }
+
+
+/* =========================================
+   Home Loans Sub-Toggle Filter Pills
+   ========================================= */
+.sub-toggle-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.sub-toggle-pill {
+  background: transparent;
+  border: none;
+  padding: 8px 22px;
+  border-radius: 24px;
+  font-size: 0.94rem;
+  font-weight: 700;
+  color: #1E3A8A;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sub-toggle-pill:hover {
+  background: rgba(191, 219, 254, 0.5);
+  color: #0A2540;
+}
+
+.sub-toggle-pill.active {
+  background: #1D4ED8;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(29, 78, 216, 0.28);
+}
