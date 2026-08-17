@@ -413,3 +413,38 @@
     }
   }
 })();
+
+
+  // 7. Interactive Highlights Timeline Smooth Scroll & Section Pulse
+  document.querySelectorAll('.highlight-timeline-item').forEach(function (item) {
+    item.addEventListener('click', function (e) {
+      e.preventDefault();
+      var targetIdx = this.getAttribute('data-target');
+      var targetSection = document.querySelector('.article-section-accordion[data-accordion-index="' + targetIdx + '"]') ||
+                          document.getElementById('section-' + targetIdx);
+
+      if (targetSection) {
+        // Ensure target section is expanded
+        targetSection.classList.add('open');
+        var hdr = targetSection.querySelector('.article-section-accordion-header');
+        var icon = targetSection.querySelector('.section-accordion-icon');
+        if (hdr) hdr.setAttribute('aria-expanded', 'true');
+        if (icon) icon.textContent = '−';
+
+        // Smooth scroll with fixed header clearance
+        var headerOffset = 95;
+        var elementPos = targetSection.getBoundingClientRect().top;
+        var offsetPos = elementPos + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPos,
+          behavior: 'smooth'
+        });
+
+        // Trigger visual highlight pulse
+        targetSection.classList.remove('section-pulse-highlight');
+        void targetSection.offsetWidth;
+        targetSection.classList.add('section-pulse-highlight');
+      }
+    });
+  });
