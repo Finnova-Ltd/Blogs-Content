@@ -6199,3 +6199,320 @@ header .logo img {
   color: #ffffff !important;
   border-color: #1D4ED8 !important;
 }
+
+
+/* =========================================
+   Universal Modern Data Tables & Accordions
+   ========================================= */
+.article-data-table,
+.comparison-table,
+.blog-table,
+table {
+  width: 100%;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  border: 1.5px solid #CBD5E1 !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  margin: 28px 0 !important;
+  background: #ffffff !important;
+  box-shadow: 0 4px 16px rgba(10, 37, 64, 0.04) !important;
+}
+
+.article-data-table thead,
+.comparison-table thead,
+.blog-table thead,
+table thead {
+  background: #F1F5F9 !important;
+}
+
+.article-data-table th,
+.comparison-table th,
+.blog-table th,
+table th {
+  background: #F1F5F9 !important;
+  color: #0A2540 !important;
+  font-weight: 800 !important;
+  font-size: 0.92rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  padding: 16px 20px !important;
+  border-bottom: 2px solid #CBD5E1 !important;
+  text-align: left !important;
+}
+
+.article-data-table td,
+.comparison-table td,
+.blog-table td,
+table td {
+  padding: 16px 20px !important;
+  border-bottom: 1px solid #E2E8F0 !important;
+  color: #334155 !important;
+  font-size: 0.95rem !important;
+  line-height: 1.6 !important;
+  vertical-align: top !important;
+}
+
+.article-data-table tbody tr:nth-child(even),
+.comparison-table tbody tr:nth-child(even),
+.blog-table tbody tr:nth-child(even),
+table tbody tr:nth-child(even) {
+  background: #F8FAFC !important;
+}
+
+.article-data-table tbody tr:hover,
+.comparison-table tbody tr:hover,
+.blog-table tbody tr:hover,
+table tbody tr:hover {
+  background: #EFF6FF !important;
+}
+
+/* =========================================
+   Modern Clean Accordion Styling
+   ========================================= */
+.section-accordion-item,
+.article-accordion-item,
+.accordion-item {
+  background: #ffffff !important;
+  border: 1.5px solid #E2E8F0 !important;
+  border-radius: 12px !important;
+  margin-bottom: 14px !important;
+  overflow: hidden !important;
+  box-shadow: 0 2px 8px rgba(10, 37, 64, 0.03) !important;
+  transition: all 0.25s ease !important;
+}
+
+.section-accordion-item:hover,
+.article-accordion-item:hover,
+.accordion-item:hover {
+  border-color: #BFDBFE !important;
+  box-shadow: 0 6px 18px rgba(10, 37, 64, 0.06) !important;
+}
+
+.section-accordion-header,
+.article-accordion-header,
+.accordion-header {
+  padding: 16px 22px !important;
+  font-size: 1.02rem !important;
+  font-weight: 700 !important;
+  color: #0A2540 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  cursor: pointer !important;
+  background: #F8FAFC !important;
+  border: none !important;
+  width: 100% !important;
+  text-align: left !important;
+  margin: 0 !important;
+}
+
+.section-accordion-header h3,
+.article-accordion-header h3 {
+  font-size: 1.02rem !important;
+  font-weight: 700 !important;
+  color: #0A2540 !important;
+  margin: 0 !important;
+}
+
+.section-accordion-header:hover,
+.article-accordion-header:hover {
+  background: #EFF6FF !important;
+  color: #1D4ED8 !important;
+}
+
+.accordion-icon {
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  color: #1D4ED8 !important;
+}
+
+.program-card {
+  background: #ffffff !important;
+  border: 1.5px solid #E2E8F0 !important;
+  border-radius: 16px !important;
+  padding: 24px !important;
+  box-shadow: 0 4px 16px rgba(10,37,64,0.04) !important;
+  margin-bottom: 20px !important;
+}
+
+.program-card h3 {
+  font-size: 1.25rem !important;
+  color: #0A2540 !important;
+  font-weight: 800 !important;
+  margin: 10px 0 8px !important;
+}
+
+.program-accordion-btn {
+  background: #EFF6FF !important;
+  border: 1px solid #BFDBFE !important;
+  color: #1E3A8A !important;
+  padding: 10px 18px !important;
+  border-radius: 10px !important;
+  font-size: 0.9rem !important;
+  font-weight: 700 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  width: 100% !important;
+  cursor: pointer !important;
+  margin-top: 16px !important;
+  transition: all 0.2s ease !important;
+}
+
+.program-accordion-btn:hover {
+  background: #DBEAFE !important;
+  color: #1D4ED8 !important;
+}
+
+.program-accordion-content {
+  padding: 14px 12px 6px !important;
+}
+
+.program-accordion-content ul {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+}
+
+.program-accordion-content ul li {
+  position: relative !important;
+  padding-left: 24px !important;
+  color: #334155 !important;
+  font-size: 0.92rem !important;
+  line-height: 1.5 !important;
+}
+
+.program-accordion-content ul li::before {
+  content: '✓' !important;
+  position: absolute !important;
+  left: 0 !important;
+  color: #16A34A !important;
+  font-weight: 800 !important;
+  font-size: 1rem !important;
+}
+
+
+/* =========================================================
+   Polished Article Section Accordions & Content Data Tables
+   ========================================================= */
+.article-section-accordion {
+  background: #ffffff !important;
+  border: 1.5px solid #E2E8F0 !important;
+  border-radius: 14px !important;
+  margin-bottom: 18px !important;
+  overflow: hidden !important;
+  box-shadow: 0 4px 14px rgba(10, 37, 64, 0.03) !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.article-section-accordion:hover {
+  border-color: #BFDBFE !important;
+  box-shadow: 0 8px 24px rgba(10, 37, 64, 0.06) !important;
+}
+
+.article-section-accordion-header {
+  padding: 16px 22px !important;
+  background: #F8FAFC !important;
+  border: none !important;
+  border-bottom: 1px solid transparent !important;
+  width: 100% !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  cursor: pointer !important;
+  text-align: left !important;
+  transition: background 0.2s ease, border-color 0.2s ease !important;
+}
+
+.article-section-accordion.open .article-section-accordion-header {
+  background: #EFF6FF !important;
+  border-bottom: 1px solid #DBEAFE !important;
+}
+
+.article-section-accordion-header h2,
+.article-section-accordion-header h3,
+.article-section-accordion-header h4 {
+  font-size: 1.08rem !important;
+  font-weight: 800 !important;
+  color: #0A2540 !important;
+  margin: 0 !important;
+  line-height: 1.35 !important;
+  letter-spacing: -0.01em !important;
+}
+
+.article-section-accordion-header:hover h2 {
+  color: #1D4ED8 !important;
+}
+
+.section-accordion-icon {
+  font-size: 1.3rem !important;
+  font-weight: 800 !important;
+  color: #1D4ED8 !important;
+  margin-left: 12px !important;
+  flex-shrink: 0 !important;
+}
+
+.article-section-accordion-body {
+  padding: 24px 22px !important;
+  background: #ffffff !important;
+}
+
+/* Polished Content Data Table with Clear Header */
+.content-data-table {
+  width: 100% !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  border: 1.5px solid #CBD5E1 !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  margin: 20px 0 !important;
+  background: #ffffff !important;
+  box-shadow: 0 4px 16px rgba(10, 37, 64, 0.04) !important;
+}
+
+.content-data-table thead {
+  background: #F1F5F9 !important;
+}
+
+.content-data-table th {
+  background: #F1F5F9 !important;
+  color: #0A2540 !important;
+  font-weight: 800 !important;
+  font-size: 0.92rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  padding: 14px 18px !important;
+  border-bottom: 2px solid #CBD5E1 !important;
+  border-right: 1px solid #E2E8F0 !important;
+  text-align: left !important;
+}
+
+.content-data-table th:last-child {
+  border-right: none !important;
+}
+
+.content-data-table td {
+  padding: 14px 18px !important;
+  border-bottom: 1px solid #E2E8F0 !important;
+  border-right: 1px solid #E2E8F0 !important;
+  color: #334155 !important;
+  font-size: 0.94rem !important;
+  line-height: 1.6 !important;
+  vertical-align: top !important;
+}
+
+.content-data-table td:last-child {
+  border-right: none !important;
+}
+
+.content-data-table tbody tr:nth-child(even) {
+  background: #F8FAFC !important;
+}
+
+.content-data-table tbody tr:hover {
+  background: #EFF6FF !important;
+}

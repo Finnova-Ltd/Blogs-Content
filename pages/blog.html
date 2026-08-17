@@ -12,734 +12,783 @@
   <style>
     .blog-page-hero {
       position: relative;
-      background-color: #0f2341;
+      background: linear-gradient(135deg, #0A2540 0%, #0F172A 100%);
       color: #ffffff;
-      padding: 56px 0 48px;
+      padding: 64px 0 54px;
       text-align: center;
       overflow: hidden;
     }
-    .blog-page-hero-bg {
-      position: absolute;
-      inset: -15px;
-      background-image: url('../images/headers/marquee-background-1600x500-1.webp'), url('../images/ez-broker-cover-header.jpg');
-      background-size: cover;
-      background-position: center top;
-      filter: blur(5px) brightness(0.42);
-      transform: scale(1.06);
-      z-index: 1;
-    }
-    .blog-page-hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(0, 0, 0, 0.42) 0%, rgba(23, 52, 95, 0.68) 50%, rgba(15, 35, 65, 0.85) 100%);
-      z-index: 2;
-    }
-    .blog-page-hero-content {
-      position: relative;
-      z-index: 3;
-    }
-    .article-container {
-      max-width: 1420px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
     .blog-hero-pill {
-      display: inline-block;
-      background: rgba(255, 255, 255, 0.18);
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.25);
       color: #ffffff;
       padding: 5px 16px;
       border-radius: 50px;
       font-size: 0.82rem;
       font-weight: 700;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
       letter-spacing: 0.04em;
     }
     .blog-page-hero h1 {
-      color: #ffffff;
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
-      font-family: var(--font-heading);
-      margin-bottom: 10px;
+      color: #ffffff !important;
+      font-size: clamp(2rem, 3.8vw, 2.8rem);
+      font-weight: 900;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
     }
     .blog-page-hero p {
-      color: rgba(255, 255, 255, 0.94);
+      color: rgba(255, 255, 255, 0.92) !important;
       max-width: 680px;
       margin: 0 auto;
-      font-size: 1.05rem;
-      line-height: 1.55;
+      font-size: 1.08rem;
+      line-height: 1.6;
+      font-weight: 400;
     }
     .blog-hero-search {
-      max-width: 600px;
-      margin: 28px auto 0;
+      max-width: 640px;
+      margin: 32px auto 0;
       position: relative;
     }
     .blog-hero-search input {
       width: 100%;
-      padding: 13px 18px 13px 44px;
+      padding: 15px 20px 15px 48px;
       border-radius: 50px;
-      border: 2px solid rgba(255,255,255,0.25);
-      background: rgba(255,255,255,0.98);
-      font-size: 0.95rem;
-      color: #1a1a2e;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+      border: 2px solid rgba(255,255,255,0.3);
+      background: #ffffff;
+      font-size: 1rem;
+      color: #0A2540;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
       transition: all 0.3s ease;
     }
     .blog-hero-search input:focus {
       outline: none;
-      background: #ffffff;
-      border-color: #ffdc4a;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.28);
+      border-color: #3B82F6;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.35);
     }
     .blog-search-icon {
       position: absolute;
-      left: 16px;
+      left: 18px;
       top: 50%;
       transform: translateY(-50%);
-      font-size: 1.05rem;
-      color: #64748b;
+      font-size: 1.15rem;
+      color: #64748B;
       pointer-events: none;
     }
 
-    /* Section Headings */
-    .featured-section-title {
-      font-size: 0.92rem;
+    /* 3-Column Layout */
+    .blog-hub-layout {
+      display: grid;
+      grid-template-columns: 260px 1fr 300px;
+      gap: 32px;
+      margin-top: 36px;
+      align-items: start;
+    }
+
+    @media (max-width: 1200px) {
+      .blog-hub-layout {
+        grid-template-columns: 240px 1fr;
+      }
+      .blog-right-sidebar {
+        display: none;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .blog-hub-layout {
+        grid-template-columns: 1fr;
+      }
+      .blog-left-sidebar {
+        margin-bottom: 24px;
+      }
+    }
+
+    /* Sidebar Cards */
+    .sidebar-block {
+      background: #ffffff;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 16px;
+      padding: 22px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 14px rgba(10,37,64,0.03);
+    }
+
+    .sidebar-block-title {
+      font-size: 0.85rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      font-weight: 900;
-      color: #64748b;
-      margin: 40px 0 20px;
+      font-weight: 800;
+      color: #0A2540;
+      margin: 0 0 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    /* Featured Cards Grid (2 Columns) */
-    .featured-articles-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-      gap: 28px;
-      margin-bottom: 48px;
+    .sidebar-cat-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
     }
 
-    /* Category Filters */
-    .blog-category-filter {
+    .sidebar-cat-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .sidebar-cat-item:hover, .sidebar-cat-item.active {
+      background: #EFF6FF;
+      color: #1D4ED8;
+    }
+
+    .sidebar-cat-count {
+      background: #F1F5F9;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      color: #64748B;
+    }
+
+    .sidebar-cat-item.active .sidebar-cat-count {
+      background: #1D4ED8;
+      color: #ffffff;
+    }
+
+    /* Region / Tag Pills */
+    .filter-pills-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin: 20px 0 32px;
-    }
-    .blog-cat-pill {
-      padding: 7px 16px;
-      border-radius: 50px;
-      border: 1.5px solid #cbd5e1;
-      background: #ffffff;
-      color: #334155;
-      font-size: 0.85rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.25s ease;
-    }
-    .blog-cat-pill:hover,
-    .blog-cat-pill.active {
-      background: var(--brand-blue);
-      color: #ffffff;
-      border-color: var(--brand-blue);
-      box-shadow: 0 4px 12px rgba(34, 74, 145, 0.25);
+      gap: 6px;
     }
 
-    /* Main Cards Grid (3 Columns) */
-    .blog-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 28px;
-      margin-bottom: 60px;
-    }
-    .blog-card {
+    .filter-pill {
+      padding: 5px 12px;
+      border-radius: 20px;
+      border: 1px solid #CBD5E1;
       background: #ffffff;
-      border: 1.5px solid #d9e6f5;
-      border-radius: 14px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #475569;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .filter-pill:hover, .filter-pill.active {
+      background: #0A2540;
+      color: #ffffff;
+      border-color: #0A2540;
+    }
+
+    /* Center Main Feed */
+    .feed-category-tabs {
+      display: flex;
+      gap: 8px;
+      border-bottom: 2px solid #E2E8F0;
+      padding-bottom: 8px;
+      margin-bottom: 18px;
+      overflow-x: auto;
+    }
+
+    .feed-tab-btn {
+      background: transparent;
+      border: none;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #64748B;
+      padding: 8px 14px;
+      cursor: pointer;
+      border-radius: 6px;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .feed-tab-btn.active, .feed-tab-btn:hover {
+      color: #1D4ED8;
+      background: #EFF6FF;
+    }
+
+    .feed-sub-pills {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      align-items: center;
+    }
+
+    .feed-sub-label {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #64748B;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Article Card Grid */
+    .article-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .article-feed-card {
+      background: #ffffff;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 16px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 16px rgba(10,37,64,0.04);
+    }
+
+    .article-feed-card:hover {
+      transform: translateY(-6px);
+      border-color: #93C5FD;
+      box-shadow: 0 16px 36px rgba(10,37,64,0.1);
+    }
+
+    .article-card-thumb {
+      height: 180px;
       position: relative;
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
-    }
-    .blog-card::after {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -60%;
-      width: 40%;
-      height: 200%;
-      background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0) 100%);
-      transform: rotate(25deg);
-      transition: left 0.75s ease-in-out;
-      pointer-events: none;
-      opacity: 0;
-    }
-    .blog-card:hover::after {
-      left: 140%;
-      opacity: 1;
-    }
-    .blog-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 16px 36px rgba(16, 39, 75, 0.12);
-      border-color: var(--brand-blue);
-    }
-    .blog-card-media-wrapper {
-      position: relative;
-      width: 100%;
-      height: 200px;
-      background: #f1f5f9;
+      background: #0A2540;
       overflow: hidden;
     }
-    .blog-card-img-link {
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
-    .blog-card-img {
+
+    .article-card-thumb img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: transform 0.4s ease;
     }
-    .blog-card:hover .blog-card-img {
-      transform: scale(1.04);
+
+    .article-feed-card:hover .article-card-thumb img {
+      transform: scale(1.05);
     }
-    .blog-badge-overlay {
+
+    .article-card-category-badge {
       position: absolute;
       top: 12px;
       left: 12px;
-      background: #009688;
+      background: rgba(10,37,64,0.85);
+      backdrop-filter: blur(6px);
       color: #ffffff;
-      font-weight: 800;
-      padding: 3px 10px;
-      border-radius: 4px;
+      padding: 4px 10px;
+      border-radius: 6px;
       font-size: 0.72rem;
-      text-transform: uppercase;
+      font-weight: 800;
       letter-spacing: 0.04em;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.2);
     }
-    .blog-card-body {
+
+    .article-card-body {
       padding: 20px;
       display: flex;
       flex-direction: column;
-      flex: 1;
-    }
-    .blog-card-meta {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      margin-bottom: 10px;
-      font-size: 0.78rem;
-      color: #64748b;
-      font-weight: 600;
+      flex-grow: 1;
     }
 
-    /* Strict 2-Row Title Constraint */
-    .blog-card-title {
-      font-size: 1.05rem;
-      font-family: var(--font-heading);
-      color: #17345f;
-      margin: 0 0 8px;
-      line-height: 1.35;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-height: 2.7em;
-    }
-    .blog-card-title a {
-      color: inherit;
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
-    .blog-card-title a:hover {
-      color: var(--brand-blue);
-    }
-    .blog-card-summary {
-      color: #475569;
-      font-size: 0.86rem;
-      line-height: 1.5;
-      margin-bottom: 14px;
-      flex: 1;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-    .blog-tags-row {
+    .article-card-meta {
       display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 16px;
-    }
-    .blog-tag-pill {
-      background: #f1f5f9;
-      color: #475569;
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 4px;
-      border: 1px solid #e2e8f0;
-    }
-    .blog-card-footer {
-      display: flex;
-      align-items: center;
       justify-content: space-between;
-      border-top: 1px solid #edf2f7;
-      padding-top: 14px;
-      margin-top: auto;
-    }
-    .blog-author-badge {
-      display: flex;
-      align-items: center;
-      gap: 8px;
       font-size: 0.8rem;
-      color: #17345f;
-      font-weight: 800;
+      color: #64748B;
+      margin-bottom: 8px;
     }
-    .author-avatar-sm {
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      background: #17345f;
-      color: #ffffff;
-      display: grid;
-      place-items: center;
-      font-size: 0.7rem;
+
+    .article-card-title {
+      font-size: 1.08rem;
       font-weight: 800;
+      color: #0A2540;
+      line-height: 1.35;
+      margin: 0 0 10px;
     }
-    .blog-read-link {
-      color: #009688;
+
+    .article-card-title a {
+      color: #0A2540;
+      text-decoration: none;
+    }
+
+    .article-card-title a:hover {
+      color: #1D4ED8;
+    }
+
+    .article-card-excerpt {
+      font-size: 0.88rem;
+      color: #475569;
+      line-height: 1.55;
+      margin: 0 0 16px;
+      flex-grow: 1;
+    }
+
+    .article-card-link {
+      font-size: 0.9rem;
       font-weight: 800;
-      font-size: 0.85rem;
+      color: #1D4ED8;
+      text-decoration: none;
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      text-decoration: none;
     }
-    .blog-read-link:hover {
+
+    .article-card-link:hover {
       text-decoration: underline;
-      color: #00796b;
     }
   </style>
-  <link rel="canonical" href="https://ezmortgagebroker.com.au/pages/blog">
 </head>
 <body>
 
-  <!-- ========== SITE HEADER ========== -->
-  <header class="site-header">
-    <div class="header-top">
-      <div class="container header-top-inner">
-        <div class="breaking-news-ticker" id="breakingNewsTicker">
-          <strong class="breaking-news-badge">⚡ BREAKING NEWS</strong>
-          <a href="https://www.mfaa.com.au/news" target="_blank" rel="noopener noreferrer" class="breaking-news-title" id="breakingNewsTitle">Mortgage brokers settle record 81.0% of all Australian residential home loans</a>
-        </div>
-        <div class="header-contact-group">
-          <span id="headerCurrentDate" class="header-date">📅 Today</span>
-          <span id="headerWeatherWidget" class="header-weather">☀️ Melbourne 18°C</span>
-          <a href="tel:1300050099">📞 1300 050 099</a>
-          <a href="mailto:info@ezmortgagebroker.com.au">✉️ info@ezmortgagebroker.com.au</a>
-          <span>📍 Melbourne, VIC</span>
-        </div>
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-content">
+      <div class="breaking-news">
+        <span class="breaking-news-label">⚡ BREAKING NEWS</span>
+        <a id="breakingNewsTitle" href="#loan-solutions">MFAA quarterly report confirms broker customer satisfaction remains over 90%</a>
+      </div>
+      <div class="top-bar-live-data">
+        <span class="live-date">📅 Tue, 18 Aug</span>
+        <span class="live-weather">☀️ Melbourne 8°C</span>
+        <a href="tel:1300050099" class="phone-link">📞 1300 050 099</a>
+        <a href="mailto:info@ezmortgagebroker.com.au" class="email-link">✉️ info@ezmortgagebroker.com.au</a>
+        <span class="live-location">📍 Melbourne, VIC</span>
       </div>
     </div>
-    <div class="header-main">
-      <div class="container header-inner">
-        <a href="/" class="logo"><img class="brand-logo" src="/images/ez-mortgage-broker.webp" alt="EZ Mortgage Broker" style="max-width:200px; height:auto; display:inline-block;">
-        </a>
-        <nav>
-          <ul class="nav-primary">
-            <li><a href="/">Home</a></li>
-            <li>
-              <a href="buying-a-home.html">Home Loans <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></a>
-              <ul class="nav-dropdown">
-                <li><a href="buying-a-home.html">Buying a Home</a></li>
-                <li><a href="refinancing.html">Refinancing</a></li>
-                <li><a href="investment-loans.html">Investment Loans</a></li>
-                <li><a href="first-home-buyers.html">First Home Buyers</a></li>
-              </ul>
-            </li>
-            <li><a href="business-finance.html">Business</a></li>
-            <li><a href="../calculators.html">Calculators</a></li>
-            <li><a href="blog.html" class="active">Blog & Insights</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
-        </nav>
-        <div class="header-cta">
-          <a href="tel:1300050099" class="btn btn-outline">Call Us</a>
-          <a href="../#contact" class="btn btn-primary">Book Consult</a>
-          <button class="nav-toggle" id="navToggle" aria-label="Open menu"><span></span><span></span><span></span></button>
-        </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header sticky" id="siteHeader">
+    <div class="container header-content">
+      <a href="/" class="logo">
+        <img class="brand-logo" src="/images/ez-mortgage-broker.webp" alt="EZ Mortgage Broker" style="max-width:200px; height:auto; display:inline-block;">
+      </a>
+      <nav class="main-nav" id="mainNav">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/#loan-solutions" class="nav-tab-link" data-tab="home-loans">Home Loans</a></li>
+          <li><a href="/#loan-solutions" class="nav-tab-link" data-tab="business-loans">Business Loans</a></li>
+          <li><a href="/#loan-solutions" class="nav-tab-link" data-tab="personal-loans">Personal Loans</a></li>
+          <li><a href="/calculators.html">Calculators</a></li>
+          <li><a href="/pages/blog.html" class="active">Blog &amp; Insights</a></li>
+          <li><a href="/#about">About</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="header-cta">
+        <a href="tel:1300050099" class="btn btn-outline">Call Us</a>
+        <a href="/#contact" class="btn btn-primary">Book Consult</a>
       </div>
     </div>
   </header>
 
-  <!-- ========== PAGE HERO ========== -->
+  <!-- Blog Page Hero -->
   <section class="blog-page-hero">
-    <div class="blog-page-hero-bg"></div>
-    <div class="blog-page-hero-overlay"></div>
-    <div class="article-container blog-page-hero-content">
-      <div class="blog-hero-pill">● News & Articles</div>
+    <div class="container">
+      <div class="blog-hero-pill">
+        <span>●</span> News &amp; Articles
+      </div>
       <h1>EZ Mortgage Broker Insights Hub</h1>
-      <p>Expert mortgage advice, market updates, and property finance tips from our senior brokers.</p>
+      <p>Expert mortgage advice, market updates, and property finance tips from our senior accredited brokers.</p>
+      
       <div class="blog-hero-search">
         <span class="blog-search-icon">🔍</span>
-        <input type="text" id="blogSearchInput" placeholder="Search articles, topics, tags (FHOG, LMI, Offset)..." aria-label="Search blog posts">
+        <input type="text" id="blogSearchInput" placeholder="Search articles, topics, tags (FHOG, LMI, Offset, Alt-Doc)...">
       </div>
     </div>
   </section>
 
-  <!-- ========== MAIN BLOG CONTAINER ========== -->
-  <main class="article-container">
-    <!-- 1. FEATURED ARTICLES SECTION -->
-    <h2 class="featured-section-title">Featured Articles</h2>
-    <div class="featured-articles-grid">
-      <article class="blog-card blog-card-featured">
-        <div class="blog-card-media-wrapper">
-          <a href="blog/first-home-buyers-grant-2026-guide.html" class="blog-card-img-link" aria-label="Read First Home Buyer&#x27;s Complete Guide to Australian Government Grants (2026 Edition)">
-            <img class="blog-card-img" src="../images/first-home-buyers-hero.jpg" alt="First Home Buyer&#x27;s Complete Guide to Australian Government Grants (2026 Edition)" loading="lazy">
-          </a>
-          <span class="blog-badge-overlay">First Home Buyers</span>
-        </div>
-        <div class="blog-card-body">
-          <div class="blog-card-meta">
-            <span>14-Aug-2026</span>
-            <span>⏱️ 6 min read</span>
-          </div>
-          <h3 class="blog-card-title"><a href="blog/first-home-buyers-grant-2026-guide.html">First Home Buyer&#x27;s Complete Guide to Australian Government Grants (2026 Edition)</a></h3>
-          <p class="blog-card-summary">See if you’re eligible for the $10,000–$30,000 First Home Owner Grant (FHOG), 5% deposit scheme without LMI, and state stamp duty concessions.</p>
-          <div class="blog-tags-row"><span class="blog-tag-pill">FHOG</span><span class="blog-tag-pill">Stamp Duty</span><span class="blog-tag-pill">First Home</span><span class="blog-tag-pill">5% Deposit</span><span class="blog-tag-pill">Housing Australia</span></div>
-          <div class="blog-card-footer">
-            <div class="blog-author-badge">
-              <div class="author-avatar-sm">RB</div>
-              <span>R BAKSHI</span>
-            </div>
-            <a href="blog/first-home-buyers-grant-2026-guide.html" class="blog-read-link">Read Article &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="blog-card blog-card-featured">
-        <div class="blog-card-media-wrapper">
-          <a href="blog/how-to-refinance-mortgage-australia-playbook.html" class="blog-card-img-link" aria-label="Read How to Refinance and Save Thousands: The Complete Australian Mortgage Playbook">
-            <img class="blog-card-img" src="../images/guide-image-2.png" alt="How to Refinance and Save Thousands: The Complete Australian Mortgage Playbook" loading="lazy">
-          </a>
-          <span class="blog-badge-overlay">Refinancing</span>
-        </div>
-        <div class="blog-card-body">
-          <div class="blog-card-meta">
-            <span>12-Aug-2026</span>
-            <span>⏱️ 5 min read</span>
-          </div>
-          <h3 class="blog-card-title"><a href="blog/how-to-refinance-mortgage-australia-playbook.html">How to Refinance and Save Thousands: The Complete Australian Mortgage Playbook</a></h3>
-          <p class="blog-card-summary">Learn how switching lenders can lower your monthly repayments, unlock home equity, and secure cashback incentives.</p>
-          <div class="blog-tags-row"><span class="blog-tag-pill">Refinancing</span><span class="blog-tag-pill">Interest Rates</span><span class="blog-tag-pill">Cashback</span><span class="blog-tag-pill">Home Loan</span><span class="blog-tag-pill">Debt Consolidation</span></div>
-          <div class="blog-card-footer">
-            <div class="blog-author-badge">
-              <div class="author-avatar-sm">RB</div>
-              <span>R BAKSHI</span>
-            </div>
-            <a href="blog/how-to-refinance-mortgage-australia-playbook.html" class="blog-read-link">Read Article &rarr;</a>
-          </div>
-        </div>
-      </article>
-    </div>
+  <!-- Main Section: Featured Articles & 3-Column Feed -->
+  <section class="section-pad" style="background:#F8FAFC; padding-top:40px;">
+    <div class="container">
+      
+      <!-- Tag Only: Featured Articles -->
+      <div style="margin-bottom:24px;">
+        <span class="section-label" style="display:inline-block; padding:4px 14px; background:#EFF6FF; color:#1D4ED8; border-radius:20px; font-weight:800; font-size:0.8rem; letter-spacing:0.08em; border:1px solid #DBEAFE;">FEATURED ARTICLES</span>
+      </div>
 
-    <!-- 2. CATEGORY FILTER CHIPS -->
-    <div class="blog-category-filter" id="blogCatFilter">
-      <button type="button" class="blog-cat-pill active" data-cat="all">All Articles</button>
-      <button type="button" class="blog-cat-pill" data-cat="First Home Buyers">First Home Buyers</button>
-      <button type="button" class="blog-cat-pill" data-cat="Refinancing">Refinancing</button>
-      <button type="button" class="blog-cat-pill" data-cat="Government Schemes">Government Schemes</button>
-      <button type="button" class="blog-cat-pill" data-cat="Calculators & Rates">Interest Rates & Calculators</button>
-      <button type="button" class="blog-cat-pill" data-cat="Investing">Investment Property</button>
-      <button type="button" class="blog-cat-pill" data-cat="Business & Commercial">Tips & Guides</button>
-    </div>
+      <!-- 2 Featured Large Cards -->
+      <div class="featured-articles-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-bottom:52px;">
+        
+        <!-- Featured Card 1 -->
+        <div class="article-feed-card" style="border-radius:20px; box-shadow:0 8px 24px rgba(10,37,64,0.06);">
+          <div class="article-card-thumb" style="height:240px;">
+            <img src="/images/canva/02._blog/article/02._for_home_loans.png" alt="First Home Buyer Guide">
+            <span class="article-card-category-badge">FIRST HOME BUYERS</span>
+          </div>
+          <div class="article-card-body" style="padding:24px;">
+            <div class="article-card-meta">
+              <span>18-Aug-2026</span>
+              <span>⏱️ 6 min read</span>
+            </div>
+            <h3 class="article-card-title" style="font-size:1.25rem;">
+              <a href="/pages/blog/first-home-buyers-grant-2026-guide.html">First Home Buyer's Complete Guide: Step-by-Step Pre-Approval to Settlement</a>
+            </h3>
+            <p class="article-card-excerpt">Navigate borrowing power assessments, suburb valuation reports, and 50+ lender options to secure your first home confidently.</p>
+            <a href="/pages/blog/first-home-buyers-grant-2026-guide.html" class="article-card-link">Read full guide &rarr;</a>
+          </div>
+        </div>
 
-    <!-- 3. ALL ARTICLES GRID -->
-    <div class="blog-grid" id="blogGrid" aria-live="polite">
-      <article class="blog-card" data-category="First Home Buyers" data-tags="FHOG Stamp Duty First Home 5% Deposit Housing Australia">
-        <div class="blog-card-media-wrapper">
-          <a href="blog/first-home-buyers-grant-2026-guide.html" class="blog-card-img-link" aria-label="Read First Home Buyer&#x27;s Complete Guide to Australian Government Grants (2026 Edition)">
-            <img class="blog-card-img" src="../images/first-home-buyers-hero.jpg" alt="First Home Buyer&#x27;s Complete Guide to Australian Government Grants (2026 Edition)" loading="lazy">
-          </a>
-          <span class="blog-badge-overlay">First Home Buyers</span>
-        </div>
-        <div class="blog-card-body">
-          <div class="blog-card-meta">
-            <span>14-Aug-2026</span>
-            <span>⏱️ 6 min read</span>
+        <!-- Featured Card 2 -->
+        <div class="article-feed-card" style="border-radius:20px; box-shadow:0 8px 24px rgba(10,37,64,0.06);">
+          <div class="article-card-thumb" style="height:240px;">
+            <img src="/images/canva/02._blog/article/06._refinance.png" alt="Mortgage Refinancing Playbook">
+            <span class="article-card-category-badge">REFINANCING</span>
           </div>
-          <h3 class="blog-card-title"><a href="blog/first-home-buyers-grant-2026-guide.html">First Home Buyer&#x27;s Complete Guide to Australian Government Grants (2026 Edition)</a></h3>
-          <p class="blog-card-summary">See if you’re eligible for the $10,000–$30,000 First Home Owner Grant (FHOG), 5% deposit scheme without LMI, and state stamp duty concessions.</p>
-          <div class="blog-tags-row"><span class="blog-tag-pill">FHOG</span><span class="blog-tag-pill">Stamp Duty</span><span class="blog-tag-pill">First Home</span><span class="blog-tag-pill">5% Deposit</span><span class="blog-tag-pill">Housing Australia</span></div>
-          <div class="blog-card-footer">
-            <div class="blog-author-badge">
-              <div class="author-avatar-sm">RB</div>
-              <span>R BAKSHI</span>
+          <div class="article-card-body" style="padding:24px;">
+            <div class="article-card-meta">
+              <span>15-Aug-2026</span>
+              <span>⏱️ 5 min read</span>
             </div>
-            <a href="blog/first-home-buyers-grant-2026-guide.html" class="blog-read-link">Read Article &rarr;</a>
+            <h3 class="article-card-title" style="font-size:1.25rem;">
+              <a href="/pages/blog/how-to-refinance-mortgage-australia-playbook.html">How to Refinance and Save Thousands: The Complete Australian Mortgage Playbook</a>
+            </h3>
+            <p class="article-card-excerpt">Learn how switching lenders can lower your monthly repayments, release built-up home equity, and consolidate high-interest debts.</p>
+            <a href="/pages/blog/how-to-refinance-mortgage-australia-playbook.html" class="article-card-link">Read full guide &rarr;</a>
           </div>
         </div>
-      </article>
-      <article class="blog-card" data-category="Refinancing" data-tags="Refinancing Interest Rates Cashback Home Loan Debt Consolidation">
-        <div class="blog-card-media-wrapper">
-          <a href="blog/how-to-refinance-mortgage-australia-playbook.html" class="blog-card-img-link" aria-label="Read How to Refinance and Save Thousands: The Complete Australian Mortgage Playbook">
-            <img class="blog-card-img" src="../images/guide-image-2.png" alt="How to Refinance and Save Thousands: The Complete Australian Mortgage Playbook" loading="lazy">
-          </a>
-          <span class="blog-badge-overlay">Refinancing</span>
-        </div>
-        <div class="blog-card-body">
-          <div class="blog-card-meta">
-            <span>12-Aug-2026</span>
-            <span>⏱️ 5 min read</span>
-          </div>
-          <h3 class="blog-card-title"><a href="blog/how-to-refinance-mortgage-australia-playbook.html">How to Refinance and Save Thousands: The Complete Australian Mortgage Playbook</a></h3>
-          <p class="blog-card-summary">Learn how switching lenders can lower your monthly repayments, unlock home equity, and secure cashback incentives.</p>
-          <div class="blog-tags-row"><span class="blog-tag-pill">Refinancing</span><span class="blog-tag-pill">Interest Rates</span><span class="blog-tag-pill">Cashback</span><span class="blog-tag-pill">Home Loan</span><span class="blog-tag-pill">Debt Consolidation</span></div>
-          <div class="blog-card-footer">
-            <div class="blog-author-badge">
-              <div class="author-avatar-sm">RB</div>
-              <span>R BAKSHI</span>
-            </div>
-            <a href="blog/how-to-refinance-mortgage-australia-playbook.html" class="blog-read-link">Read Article &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="blog-card" data-category="Government Schemes" data-tags="Single Parent Family Home Guarantee 2% Deposit No LMI">
-        <div class="blog-card-media-wrapper">
-          <a href="blog/single-parent-guarantee-guide-2-percent-deposit.html" class="blog-card-img-link" aria-label="Read Understanding the Family Home Guarantee: Buy with Just a 2% Deposit">
-            <img class="blog-card-img" src="../images/guide-image-3.png" alt="Understanding the Family Home Guarantee: Buy with Just a 2% Deposit" loading="lazy">
-          </a>
-          <span class="blog-badge-overlay">Government Schemes</span>
-        </div>
-        <div class="blog-card-body">
-          <div class="blog-card-meta">
-            <span>10-Aug-2026</span>
-            <span>⏱️ 4 min read</span>
-          </div>
-          <h3 class="blog-card-title"><a href="blog/single-parent-guarantee-guide-2-percent-deposit.html">Understanding the Family Home Guarantee: Buy with Just a 2% Deposit</a></h3>
-          <p class="blog-card-summary">Single parents and legal guardians can enter the property market with as little as a 2% deposit without paying Lenders Mortgage Insurance.</p>
-          <div class="blog-tags-row"><span class="blog-tag-pill">Single Parent</span><span class="blog-tag-pill">Family Home Guarantee</span><span class="blog-tag-pill">2% Deposit</span><span class="blog-tag-pill">No LMI</span></div>
-          <div class="blog-card-footer">
-            <div class="blog-author-badge">
-              <div class="author-avatar-sm">RB</div>
-              <span>R BAKSHI</span>
-            </div>
-            <a href="blog/single-parent-guarantee-guide-2-percent-deposit.html" class="blog-read-link">Read Article &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="blog-card" data-category="Calculators & Rates" data-tags="Borrowing Power HEM Benchmark Serviceability Credit Assessment">
-        <div class="blog-card-media-wrapper">
-          <a href="blog/borrowing-power-decoded-bank-assessment-rules.html" class="blog-card-img-link" aria-label="Read Borrowing Power Decoded: How Australian Banks Actually Assess Your Capacity">
-            <img class="blog-card-img" src="../images/guide-image-4.png" alt="Borrowing Power Decoded: How Australian Banks Actually Assess Your Capacity" loading="lazy">
-          </a>
-          <span class="blog-badge-overlay">Calculators & Rates</span>
-        </div>
-        <div class="blog-card-body">
-          <div class="blog-card-meta">
-            <span>08-Aug-2026</span>
-            <span>⏱️ 5 min read</span>
-          </div>
-          <h3 class="blog-card-title"><a href="blog/borrowing-power-decoded-bank-assessment-rules.html">Borrowing Power Decoded: How Australian Banks Actually Assess Your Capacity</a></h3>
-          <p class="blog-card-summary">Why does one bank offer you $650,000 while another offers $800,000? Demystifying HEM benchmarks, interest rate buffers, and debt assessments.</p>
-          <div class="blog-tags-row"><span class="blog-tag-pill">Borrowing Power</span><span class="blog-tag-pill">HEM Benchmark</span><span class="blog-tag-pill">Serviceability</span><span class="blog-tag-pill">Credit Assessment</span></div>
-          <div class="blog-card-footer">
-            <div class="blog-author-badge">
-              <div class="author-avatar-sm">RB</div>
-              <span>R BAKSHI</span>
-            </div>
-            <a href="blog/borrowing-power-decoded-bank-assessment-rules.html" class="blog-read-link">Read Article &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="blog-card" data-category="Calculators & Rates" data-tags="Fixed Rate Variable Rate Split Loan Offset Account">
-        <div class="blog-card-media-wrapper">
-          <a href="blog/fixed-vs-variable-navigating-rba-rate-cycle.html" class="blog-card-img-link" aria-label="Read Fixed vs Variable Home Loans: How to Choose in the Current Economic Cycle">
-            <img class="blog-card-img" src="../images/guide-image-5.png" alt="Fixed vs Variable Home Loans: How to Choose in the Current Economic Cycle" loading="lazy">
-          </a>
-          <span class="blog-badge-overlay">Calculators & Rates</span>
-        </div>
-        <div class="blog-card-body">
-          <div class="blog-card-meta">
-            <span>05-Aug-2026</span>
-            <span>⏱️ 4 min read</span>
-          </div>
-          <h3 class="blog-card-title"><a href="blog/fixed-vs-variable-navigating-rba-rate-cycle.html">Fixed vs Variable Home Loans: How to Choose in the Current Economic Cycle</a></h3>
-          <p class="blog-card-summary">Split loans, 100% offset accounts, and redraw facilities compared: What Australian homeowners need to know.</p>
-          <div class="blog-tags-row"><span class="blog-tag-pill">Fixed Rate</span><span class="blog-tag-pill">Variable Rate</span><span class="blog-tag-pill">Split Loan</span><span class="blog-tag-pill">Offset Account</span></div>
-          <div class="blog-card-footer">
-            <div class="blog-author-badge">
-              <div class="author-avatar-sm">RB</div>
-              <span>R BAKSHI</span>
-            </div>
-            <a href="blog/fixed-vs-variable-navigating-rba-rate-cycle.html" class="blog-read-link">Read Article &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="blog-card" data-category="Business & Commercial" data-tags="Self Employed Alt-Doc Low-Doc Business Finance Contractor">
-        <div class="blog-card-media-wrapper">
-          <a href="blog/self-employed-home-loans-alt-doc-guide.html" class="blog-card-img-link" aria-label="Read Self-Employed Home Loans: The Ultimate Guide to Alt-Doc &amp; Low-Doc Approvals">
-            <img class="blog-card-img" src="../images/guide-image-6.png" alt="Self-Employed Home Loans: The Ultimate Guide to Alt-Doc &amp; Low-Doc Approvals" loading="lazy">
-          </a>
-          <span class="blog-badge-overlay">Business & Commercial</span>
-        </div>
-        <div class="blog-card-body">
-          <div class="blog-card-meta">
-            <span>02-Aug-2026</span>
-            <span>⏱️ 6 min read</span>
-          </div>
-          <h3 class="blog-card-title"><a href="blog/self-employed-home-loans-alt-doc-guide.html">Self-Employed Home Loans: The Ultimate Guide to Alt-Doc &amp; Low-Doc Approvals</a></h3>
-          <p class="blog-card-summary">Sole traders, contractors, and company directors: How to secure competitive home loan approvals without 2 full years of tax returns.</p>
-          <div class="blog-tags-row"><span class="blog-tag-pill">Self Employed</span><span class="blog-tag-pill">Alt-Doc</span><span class="blog-tag-pill">Low-Doc</span><span class="blog-tag-pill">Business Finance</span><span class="blog-tag-pill">Contractor</span></div>
-          <div class="blog-card-footer">
-            <div class="blog-author-badge">
-              <div class="author-avatar-sm">RB</div>
-              <span>R BAKSHI</span>
-            </div>
-            <a href="blog/self-employed-home-loans-alt-doc-guide.html" class="blog-read-link">Read Article &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="blog-card" data-category="Investing" data-tags="SMSF Property Investment Superannuation LRBA Tax Benefits">
-        <div class="blog-card-media-wrapper">
-          <a href="blog/smsf-property-lending-investing-super-guide.html" class="blog-card-img-link" aria-label="Read SMSF Property Lending: How to Buy Residential &amp; Commercial Real Estate Through Super">
-            <img class="blog-card-img" src="../images/first-home-buyers-hero.jpg" alt="SMSF Property Lending: How to Buy Residential &amp; Commercial Real Estate Through Super" loading="lazy">
-          </a>
-          <span class="blog-badge-overlay">Investing</span>
-        </div>
-        <div class="blog-card-body">
-          <div class="blog-card-meta">
-            <span>28-Jul-2026</span>
-            <span>⏱️ 7 min read</span>
-          </div>
-          <h3 class="blog-card-title"><a href="blog/smsf-property-lending-investing-super-guide.html">SMSF Property Lending: How to Buy Residential &amp; Commercial Real Estate Through Super</a></h3>
-          <p class="blog-card-summary">Leverage your superannuation balance to purchase investment property using Limited Recourse Borrowing Arrangements (LRBA).</p>
-          <div class="blog-tags-row"><span class="blog-tag-pill">SMSF</span><span class="blog-tag-pill">Property Investment</span><span class="blog-tag-pill">Superannuation</span><span class="blog-tag-pill">LRBA</span><span class="blog-tag-pill">Tax Benefits</span></div>
-          <div class="blog-card-footer">
-            <div class="blog-author-badge">
-              <div class="author-avatar-sm">RB</div>
-              <span>R BAKSHI</span>
-            </div>
-            <a href="blog/smsf-property-lending-investing-super-guide.html" class="blog-read-link">Read Article &rarr;</a>
-          </div>
-        </div>
-      </article>
-      <article class="blog-card" data-category="Investing" data-tags="Investment Property Equity Release Loan Structuring Cross Collateralisation">
-        <div class="blog-card-media-wrapper">
-          <a href="blog/property-investment-structuring-tax-wealth.html" class="blog-card-img-link" aria-label="Read Property Investment Structuring: Equity Release, Cross-Collateralisation &amp; Interest-Only">
-            <img class="blog-card-img" src="../images/guide-image-2.png" alt="Property Investment Structuring: Equity Release, Cross-Collateralisation &amp; Interest-Only" loading="lazy">
-          </a>
-          <span class="blog-badge-overlay">Investing</span>
-        </div>
-        <div class="blog-card-body">
-          <div class="blog-card-meta">
-            <span>22-Jul-2026</span>
-            <span>⏱️ 5 min read</span>
-          </div>
-          <h3 class="blog-card-title"><a href="blog/property-investment-structuring-tax-wealth.html">Property Investment Structuring: Equity Release, Cross-Collateralisation &amp; Interest-Only</a></h3>
-          <p class="blog-card-summary">Smart loan structuring is what separates successful multi-property investors from those who get stuck after their first purchase.</p>
-          <div class="blog-tags-row"><span class="blog-tag-pill">Investment Property</span><span class="blog-tag-pill">Equity Release</span><span class="blog-tag-pill">Loan Structuring</span><span class="blog-tag-pill">Cross Collateralisation</span></div>
-          <div class="blog-card-footer">
-            <div class="blog-author-badge">
-              <div class="author-avatar-sm">RB</div>
-              <span>R BAKSHI</span>
-            </div>
-            <a href="blog/property-investment-structuring-tax-wealth.html" class="blog-read-link">Read Article &rarr;</a>
-          </div>
-        </div>
-      </article>
-    </div>
-  </main>
 
-  <!-- ========== FOOTER ========== -->
+      </div>
+
+      <!-- 3-COLUMN ALL ARTICLES LAYOUT (as per Image 4) -->
+      <div class="blog-hub-layout">
+        
+        <!-- LEFT SIDEBAR: Search & Filters -->
+        <aside class="blog-left-sidebar">
+          
+          <!-- Category List -->
+          <div class="sidebar-block">
+            <h4 class="sidebar-block-title">
+              <span>Categories</span>
+              <span style="font-size:0.75rem; color:#64748B;">5 topics</span>
+            </h4>
+            <ul class="sidebar-cat-list" id="categoryFilterList">
+              <li class="sidebar-cat-item active" data-cat="all">
+                <span>All News &amp; Insights</span>
+                <span class="sidebar-cat-count">10</span>
+              </li>
+              <li class="sidebar-cat-item" data-cat="home-loans">
+                <span>Home Loans</span>
+                <span class="sidebar-cat-count">4</span>
+              </li>
+              <li class="sidebar-cat-item" data-cat="business-loans">
+                <span>Business Loans</span>
+                <span class="sidebar-cat-count">2</span>
+              </li>
+              <li class="sidebar-cat-item" data-cat="refinancing">
+                <span>Refinancing</span>
+                <span class="sidebar-cat-count">2</span>
+              </li>
+              <li class="sidebar-cat-item" data-cat="investing">
+                <span>SMSF &amp; Investing</span>
+                <span class="sidebar-cat-count">2</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Region / State Filter -->
+          <div class="sidebar-block">
+            <h4 class="sidebar-block-title">Region / State</h4>
+            <div class="filter-pills-row">
+              <span class="filter-pill active" data-filter="all-au">All AU</span>
+              <span class="filter-pill" data-filter="vic">VIC</span>
+              <span class="filter-pill" data-filter="nsw">NSW</span>
+              <span class="filter-pill" data-filter="qld">QLD</span>
+              <span class="filter-pill" data-filter="wa">WA</span>
+              <span class="filter-pill" data-filter="sa">SA</span>
+              <span class="filter-pill" data-filter="act">ACT</span>
+            </div>
+          </div>
+
+          <!-- Topic Tags Filter -->
+          <div class="sidebar-block">
+            <h4 class="sidebar-block-title">Filter by Topic Tags</h4>
+            <div class="filter-pills-row">
+              <span class="filter-pill">#FirstHome</span>
+              <span class="filter-pill">#Refinance</span>
+              <span class="filter-pill">#InterestRates</span>
+              <span class="filter-pill">#Equity</span>
+              <span class="filter-pill">#Commercial</span>
+              <span class="filter-pill">#AltDoc</span>
+              <span class="filter-pill">#SMSF</span>
+              <span class="filter-pill">#Calculators</span>
+            </div>
+          </div>
+
+        </aside>
+
+        <!-- CENTER MAIN COLUMN: Feed & Cards -->
+        <main class="blog-main-feed">
+          
+          <!-- Category Feed Tabs -->
+          <div class="feed-category-tabs">
+            <button class="feed-tab-btn active" data-cat="all">All News &amp; Insights</button>
+            <button class="feed-tab-btn" data-cat="home-loans">Home Loans</button>
+            <button class="feed-tab-btn" data-cat="business-loans">Business Loans</button>
+            <button class="feed-tab-btn" data-cat="refinancing">Refinancing</button>
+            <button class="feed-tab-btn" data-cat="investing">SMSF &amp; Investing</button>
+          </div>
+
+          <!-- Sub Filter Pills -->
+          <div class="feed-sub-pills">
+            <span class="feed-sub-label">FILTER:</span>
+            <span class="filter-pill active">All Sub-Topics</span>
+            <span class="filter-pill">Rate Reductions</span>
+            <span class="filter-pill">Pre-Approval</span>
+            <span class="filter-pill">Alt-Doc Loans</span>
+            <span class="filter-pill">Construction</span>
+            <span class="filter-pill">Offset Accounts</span>
+          </div>
+
+          <!-- Counter Bar -->
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; font-size:0.88rem; color:#64748B;">
+            <span>Showing <strong style="color:#0A2540;">10</strong> articles · Sorted by Newest First</span>
+            <span>Page 1 of 1</span>
+          </div>
+
+          <!-- 3-Column Article Feed Cards -->
+          <div class="article-cards-grid">
+            
+            <!-- Article 1 -->
+            <div class="article-feed-card">
+              <div class="article-card-thumb">
+                <img src="/images/canva/02._blog/article/02._for_home_loans.png" alt="First Home Guide">
+                <span class="article-card-category-badge">HOME LOANS</span>
+              </div>
+              <div class="article-card-body">
+                <div class="article-card-meta"><span>18-Aug-2026</span><span>⏱️ 6 min</span></div>
+                <h4 class="article-card-title"><a href="/pages/blog/first-home-buyers-grant-2026-guide.html">First Home Buyer's Complete Guide</a></h4>
+                <p class="article-card-excerpt">Borrowing power calculation, conditional pre-approval, and finding your first home.</p>
+                <a href="/pages/blog/first-home-buyers-grant-2026-guide.html" class="article-card-link">Read article &rarr;</a>
+              </div>
+            </div>
+
+            <!-- Article 2 -->
+            <div class="article-feed-card">
+              <div class="article-card-thumb">
+                <img src="/images/canva/02._blog/article/06._refinance.png" alt="Refinance Playbook">
+                <span class="article-card-category-badge">REFINANCE</span>
+              </div>
+              <div class="article-card-body">
+                <div class="article-card-meta"><span>15-Aug-2026</span><span>⏱️ 5 min</span></div>
+                <h4 class="article-card-title"><a href="/pages/blog/how-to-refinance-mortgage-australia-playbook.html">How to Refinance &amp; Save Thousands</a></h4>
+                <p class="article-card-excerpt">Switch lenders, cut monthly repayments, and unlock usable home equity.</p>
+                <a href="/pages/blog/how-to-refinance-mortgage-australia-playbook.html" class="article-card-link">Read article &rarr;</a>
+              </div>
+            </div>
+
+            <!-- Article 3 -->
+            <div class="article-feed-card">
+              <div class="article-card-thumb">
+                <img src="/images/canva/02._blog/article/04._business_loan.png" alt="Self Employed Loans">
+                <span class="article-card-category-badge">BUSINESS</span>
+              </div>
+              <div class="article-card-body">
+                <div class="article-card-meta"><span>12-Aug-2026</span><span>⏱️ 6 min</span></div>
+                <h4 class="article-card-title"><a href="/pages/blog/self-employed-home-loans-alt-doc-guide.html">Self-Employed Home Loans &amp; Alt-Doc Guide</a></h4>
+                <p class="article-card-excerpt">Low-doc and alt-doc lending solutions for Australian business owners and contractors.</p>
+                <a href="/pages/blog/self-employed-home-loans-alt-doc-guide.html" class="article-card-link">Read article &rarr;</a>
+              </div>
+            </div>
+
+            <!-- Article 4 -->
+            <div class="article-feed-card">
+              <div class="article-card-thumb">
+                <img src="/images/canva/02._blog/article/08._equity_cashout.png" alt="Borrowing Power Decoded">
+                <span class="article-card-category-badge">HOME LOANS</span>
+              </div>
+              <div class="article-card-body">
+                <div class="article-card-meta"><span>09-Aug-2026</span><span>⏱️ 5 min</span></div>
+                <h4 class="article-card-title"><a href="/pages/blog/borrowing-power-decoded-bank-assessment-rules.html">Borrowing Power Decoded: Bank Rules</a></h4>
+                <p class="article-card-excerpt">Understand HEM benchmarks, interest rate buffers, and how lenders calculate your limit.</p>
+                <a href="/pages/blog/borrowing-power-decoded-bank-assessment-rules.html" class="article-card-link">Read article &rarr;</a>
+              </div>
+            </div>
+
+            <!-- Article 5 -->
+            <div class="article-feed-card">
+              <div class="article-card-thumb">
+                <img src="/images/canva/02._blog/article/03._smsf.png" alt="SMSF Property Lending">
+                <span class="article-card-category-badge">INVESTING</span>
+              </div>
+              <div class="article-card-body">
+                <div class="article-card-meta"><span>05-Aug-2026</span><span>⏱️ 7 min</span></div>
+                <h4 class="article-card-title"><a href="/pages/blog/smsf-property-lending-investing-super-guide.html">SMSF Property Lending &amp; LRBA Guide</a></h4>
+                <p class="article-card-excerpt">Leverage superannuation balance to purchase residential and commercial property.</p>
+                <a href="/pages/blog/smsf-property-lending-investing-super-guide.html" class="article-card-link">Read article &rarr;</a>
+              </div>
+            </div>
+
+            <!-- Article 6 -->
+            <div class="article-feed-card">
+              <div class="article-card-thumb">
+                <img src="/images/canva/03._generic_graphic/01._ez_mortgage_broker.png" alt="Property Investment Structuring">
+                <span class="article-card-category-badge">INVESTING</span>
+              </div>
+              <div class="article-card-body">
+                <div class="article-card-meta"><span>02-Aug-2026</span><span>⏱️ 5 min</span></div>
+                <h4 class="article-card-title"><a href="/pages/blog/property-investment-structuring-tax-wealth.html">Property Investment Structuring &amp; Tax</a></h4>
+                <p class="article-card-excerpt">Interest-only structures, offset accounts, and multi-property portfolio growth.</p>
+                <a href="/pages/blog/property-investment-structuring-tax-wealth.html" class="article-card-link">Read article &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Pagination -->
+          <div style="display:flex; justify-content:center; gap:8px; margin-top:20px;">
+            <button class="filter-pill" style="padding:8px 16px;">&larr; Previous</button>
+            <button class="filter-pill active" style="padding:8px 16px;">1</button>
+            <button class="filter-pill" style="padding:8px 16px;">Next &rarr;</button>
+          </div>
+
+        </main>
+
+        <!-- RIGHT SIDEBAR: Recent & Trending & Advisory -->
+        <aside class="blog-right-sidebar">
+          
+          <!-- Recent Updates -->
+          <div class="sidebar-block">
+            <h4 class="sidebar-block-title">
+              <span>Recent Advisories</span>
+              <span style="color:#16A34A; font-size:1rem;">●</span>
+            </h4>
+            
+            <div style="display:flex; flex-direction:column; gap:16px;">
+              <a href="/pages/blog/fixed-vs-variable-navigating-rba-rate-cycle.html" style="display:flex; gap:12px; text-decoration:none; color:inherit; align-items:center;">
+                <div style="width:54px; height:54px; border-radius:8px; overflow:hidden; flex-shrink:0; background:#0A2540;">
+                  <img src="/images/canva/02._blog/article/06._refinance.png" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div>
+                  <h5 style="font-size:0.88rem; font-weight:700; color:#0A2540; margin:0 0 4px; line-height:1.3;">Fixed vs Variable Rates: 2026 Cycle</h5>
+                  <span style="font-size:0.75rem; color:#64748B;">11 August 2026</span>
+                </div>
+              </a>
+
+              <a href="/pages/blog/self-employed-home-loans-alt-doc-guide.html" style="display:flex; gap:12px; text-decoration:none; color:inherit; align-items:center;">
+                <div style="width:54px; height:54px; border-radius:8px; overflow:hidden; flex-shrink:0; background:#0A2540;">
+                  <img src="/images/canva/02._blog/article/04._business_loan.png" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div>
+                  <h5 style="font-size:0.88rem; font-weight:700; color:#0A2540; margin:0 0 4px; line-height:1.3;">Commercial Alt-Doc Borrowing Rules</h5>
+                  <span style="font-size:0.75rem; color:#64748B;">08 August 2026</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Trending Topics (01, 02, 03) -->
+          <div class="sidebar-block">
+            <h4 class="sidebar-block-title">Trending Topics</h4>
+            
+            <div style="display:flex; flex-direction:column; gap:14px;">
+              <div style="display:flex; gap:12px; align-items:flex-start;">
+                <span style="font-size:1.1rem; font-weight:900; color:#1D4ED8; line-height:1;">01</span>
+                <div>
+                  <h5 style="font-size:0.88rem; font-weight:700; color:#0A2540; margin:0 0 4px; line-height:1.3;">Compare 50+ Australian Lenders</h5>
+                  <span style="font-size:0.72rem; background:#EFF6FF; color:#1D4ED8; padding:2px 8px; border-radius:4px; font-weight:700;">Home Loans</span>
+                </div>
+              </div>
+
+              <div style="display:flex; gap:12px; align-items:flex-start;">
+                <span style="font-size:1.1rem; font-weight:900; color:#1D4ED8; line-height:1;">02</span>
+                <div>
+                  <h5 style="font-size:0.88rem; font-weight:700; color:#0A2540; margin:0 0 4px; line-height:1.3;">How to Cash Out Home Equity</h5>
+                  <span style="font-size:0.72rem; background:#EFF6FF; color:#1D4ED8; padding:2px 8px; border-radius:4px; font-weight:700;">Refinance</span>
+                </div>
+              </div>
+
+              <div style="display:flex; gap:12px; align-items:flex-start;">
+                <span style="font-size:1.1rem; font-weight:900; color:#1D4ED8; line-height:1;">03</span>
+                <div>
+                  <h5 style="font-size:0.88rem; font-weight:700; color:#0A2540; margin:0 0 4px; line-height:1.3;">NDIS &amp; SDA Property Investment</h5>
+                  <span style="font-size:0.72rem; background:#EFF6FF; color:#1D4ED8; padding:2px 8px; border-radius:4px; font-weight:700;">Investing</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Broker Advisory Box -->
+          <div class="sidebar-block" style="background:linear-gradient(135deg, #0A2540 0%, #1E3A8A 100%); color:#ffffff; border:none; text-align:center; padding:28px 20px;">
+            <span style="font-size:0.78rem; text-transform:uppercase; letter-spacing:0.08em; color:#93C5FD; font-weight:800; display:block; margin-bottom:8px;">EZ MORTGAGE ADVISORY</span>
+            <h4 style="color:#ffffff; font-size:1.1rem; font-weight:800; margin:0 0 10px; line-height:1.3;">Need Expert Borrowing Power Advice?</h4>
+            <p style="color:rgba(255,255,255,0.85); font-size:0.88rem; line-height:1.5; margin:0 0 20px;">Speak directly with our senior MFAA accredited credit advisors.</p>
+            <a href="tel:1300050099" style="display:inline-flex; align-items:center; gap:8px; background:#ffffff; color:#0A2540; font-weight:800; padding:12px 20px; border-radius:30px; text-decoration:none; font-size:0.92rem; box-shadow:0 4px 14px rgba(0,0,0,0.2);">
+              📞 Call 1300 050 099
+            </a>
+          </div>
+
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <div class="logo"><span class="logo-name">EZ Mortgage Broker</span></div>
-          <p>EZ Mortgage Broker helps first-home buyers, refinancers, and property investors with practical lending guidance and tailored loan strategies across Australia.</p>
+          <a href="/" class="logo">
+            <img class="brand-logo" src="/images/ez-mortgage-broker.webp" alt="EZ Mortgage Broker" style="max-width:180px; height:auto;">
+          </a>
+          <p style="color:#94a3b8; font-size:0.9rem; line-height:1.6; margin-top:16px;">
+            EZ Mortgage Broker helps Australian homebuyers, refinancers, and property investors with practical lending guidance and access to 50+ lenders nationwide.
+          </p>
         </div>
-        <div class="footer-col">
-          <h4>Quick Links</h4>
-          <div class="footer-links">
-            <a href="/">Home</a>
-            <a href="buying-a-home.html">Home Loans</a>
-            <a href="../calculators.html">Calculators</a>
-            <a href="blog.html">Blog & Guides</a>
-            <a href="about.html">About Us</a>
-          </div>
+
+        <div class="footer-links">
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/#loan-solutions">Home Loans</a></li>
+            <li><a href="/#loan-solutions">Business Finance</a></li>
+            <li><a href="/calculators.html">Calculators</a></li>
+            <li><a href="/pages/blog.html">Blog &amp; Insights</a></li>
+            <li><a href="/#about">About Us</a></li>
+          </ul>
         </div>
-        <div class="footer-col">
-          <h4>Services</h4>
-          <div class="footer-links">
-            <a href="first-home-buyers.html">First Home Buyers</a>
-            <a href="refinancing.html">Refinancing</a>
-            <a href="investment-loans.html">Investment Loans</a>
-            <a href="business-finance.html">Business Finance</a>
-          </div>
+
+        <div class="footer-links">
+          <h4 class="footer-col-title">Lending Solutions</h4>
+          <ul>
+            <li><a href="/#loan-solutions">First Home Buyers</a></li>
+            <li><a href="/#loan-solutions">Mortgage Refinancing</a></li>
+            <li><a href="/#loan-solutions">New Home &amp; Next Property</a></li>
+            <li><a href="/#loan-solutions">Equity Cash Out</a></li>
+            <li><a href="/#loan-solutions">Commercial Finance</a></li>
+          </ul>
         </div>
-        <div class="footer-col">
-          <h4>Contact</h4>
-          <div class="footer-contact-list">
-            <div class="footer-contact-item"><span>📞</span> 1300 050 099</div>
-            <div class="footer-contact-item"><span>✉️</span> info@ezmortgagebroker.com.au</div>
-            <div class="footer-contact-item"><span>📍</span> Melbourne, VIC</div>
-          </div>
+
+        <div class="footer-contact">
+          <h4 class="footer-col-title">Contact Us</h4>
+          <ul>
+            <li><a href="tel:1300050099">📞 1300 050 099</a></li>
+            <li><a href="mailto:info@ezmortgagebroker.com.au">✉️ info@ezmortgagebroker.com.au</a></li>
+            <li><span>📍 Melbourne, Victoria</span></li>
+          </ul>
         </div>
       </div>
-      <div class="footer-bottom">
-        <div class="container footer-bottom-inner">
-          <p>&copy; 2026 EZ Mortgage Broker. All rights reserved.</p>
-        </div>
+
+      <div class="footer-bottom" style="margin-top:40px; padding-top:24px; border-top:1px solid #334155; text-align:center; color:#64748B; font-size:0.85rem;">
+        <p>© 2026 EZ Mortgage Broker. All rights reserved. | <a href="/cookie-policy.html" style="color:#94a3b8;">Cookie Policy</a></p>
       </div>
     </div>
   </footer>
 
-  <script src="../js/main.js"></script>
-  <script>
-    (function () {
-      var searchInput = document.getElementById('blogSearchInput');
-      var catFilters = document.querySelectorAll('.blog-cat-pill');
-      var cards = document.querySelectorAll('#blogGrid .blog-card');
-      var activeCategory = 'all';
-
-      function filterCards() {
-        var query = (searchInput ? searchInput.value : '').toLowerCase().trim();
-
-        cards.forEach(function (card) {
-          var category = (card.getAttribute('data-category') || '').toLowerCase();
-          var tags = (card.getAttribute('data-tags') || '').toLowerCase();
-          var text = card.textContent.toLowerCase();
-
-          var matchCat = (activeCategory === 'all') || (category === activeCategory.toLowerCase());
-          var matchQuery = !query || text.includes(query) || tags.includes(query);
-
-          if (matchCat && matchQuery) {
-            card.style.display = 'flex';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      }
-
-      if (searchInput) {
-        searchInput.addEventListener('input', filterCards);
-      }
-
-      catFilters.forEach(function (pill) {
-        pill.addEventListener('click', function () {
-          catFilters.forEach(function (p) { p.classList.remove('active'); });
-          this.classList.add('active');
-          activeCategory = this.getAttribute('data-cat');
-          filterCards();
-        });
-      });
-    })();
-  </script>
+  <script src="/js/main.js"></script>
 </body>
 </html>
