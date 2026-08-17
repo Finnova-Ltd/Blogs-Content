@@ -1,0 +1,1 @@
+import"./investmentLoans-BvRk9kiK.js";

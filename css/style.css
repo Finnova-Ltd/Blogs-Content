@@ -6155,3 +6155,16 @@ p, .article-main-content p {
   color: #ffffff !important;
   box-shadow: 0 4px 14px rgba(29, 78, 216, 0.28);
 }
+
+
+/* Global Logo Dimension Safeguard */
+.brand-logo,
+.logo img,
+header .logo img {
+  max-width: 220px !important;
+  max-height: 52px !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  display: inline-block !important;
+}

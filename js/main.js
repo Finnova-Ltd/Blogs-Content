@@ -2293,15 +2293,7 @@
       }
 
       // Default Melbourne coordinates (-37.8136, 144.9631)
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          function (pos) { fetchWeather(pos.coords.latitude, pos.coords.longitude, 'Local'); },
-          function () { fetchWeather(-37.8136, 144.9631, 'Melbourne'); },
-          { timeout: 3000 }
-        );
-      } else {
-        fetchWeather(-37.8136, 144.9631, 'Melbourne');
-      }
+      fetchWeather(-37.8136, 144.9631, 'Melbourne');
     }
 
     // 3. MFAA Breaking News Live Rotator
