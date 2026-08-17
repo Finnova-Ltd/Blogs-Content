@@ -327,11 +327,14 @@
             <button class="sub-toggle-pill active" id="pill-btn-first-home" onclick="switchHomeSubToggle('first-home')">
               First Home Buyers
             </button>
+            <button class="sub-toggle-pill" id="pill-btn-new-home" onclick="switchHomeSubToggle('new-home')">
+              New Home Loans
+            </button>
             <button class="sub-toggle-pill" id="pill-btn-refinance" onclick="switchHomeSubToggle('refinance')">
               Refinance
             </button>
-            <button class="sub-toggle-pill" id="pill-btn-new-home" onclick="switchHomeSubToggle('new-home')">
-              New Home &amp; Upgrades
+            <button class="sub-toggle-pill" id="pill-btn-equity-cashout" onclick="switchHomeSubToggle('equity-cashout')">
+              Equity Cash Out
             </button>
             <button class="sub-toggle-pill" id="pill-btn-investment" onclick="switchHomeSubToggle('investment')">
               Property Investment
@@ -339,58 +342,89 @@
           </div>
         </div>
 
-        <!-- Dynamic Sub-Toggle Content Area -->
+                <!-- Dynamic Sub-Toggle Content Area -->
         <div class="sub-toggle-panels-container">
           
-          <!-- Sub-Panel: First Home Buyers -->
+          <!-- Sub-Panel 1: First Home Buyers -->
           <div class="sub-toggle-panel is-active" id="sub-panel-first-home">
             <div class="loan-step-guidance-grid" style="display:grid; grid-template-columns:1fr 1.35fr; gap:56px; align-items:center; margin-bottom:64px;">
               <div class="loan-step-content fade-up">
-                <span class="section-label" style="color:#1D4ED8; font-weight:800; letter-spacing:0.12em; text-transform:uppercase;">FIRST HOME BUYER GUIDANCE</span>
+                <span class="section-label" style="color:#1D4ED8; font-weight:800; letter-spacing:0.12em; text-transform:uppercase;">STEP-BY-STEP HOME BUYING</span>
                 <h2 class="section-title" style="color:#0A2540; font-size:clamp(1.8rem, 3vw, 2.5rem); font-weight:800; line-height:1.25; margin:12px 0 18px;">Step into Your First Home with Confidence</h2>
-                <p class="section-subtitle" style="color:#475569; font-size:1.05rem; line-height:1.65; margin-bottom:24px; text-align:left;">Buying your first property is a huge milestone. We help you navigate government grants, 5% deposit schemes, and compare 50+ lenders to secure the lowest rate possible.</p>
+                <p class="section-subtitle" style="color:#475569; font-size:1.05rem; line-height:1.65; margin-bottom:24px; text-align:left;">Buying your first property is a huge milestone. We guide you step-by-step from calculating your borrowing power and securing conditional pre-approval through to auction bidding, property valuation, and final settlement.</p>
                 
                 <ul class="loan-checklist" style="list-style:none; padding:0; margin:0 0 32px 0; display:flex; flex-direction:column; gap:12px;">
-                  <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Access First Home Guarantee (5% deposit with zero LMI)</li>
-                  <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Claim State First Home Owner Grants (FHOG) and stamp duty waivers</li>
-                  <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Accurate borrowing capacity calculation tailored to your deposit</li>
-                  <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Fast pre-approval so you can make offers with total confidence</li>
-                  <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> 100% free broker service &mdash; the lender pays us, not you</li>
+                  <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Fast conditional pre-approval valid for 90 days so you can shop with certainty</li>
+                  <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Comprehensive calculation of upfront buying costs and maximum borrowing capacity</li>
+                  <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Free comprehensive suburb and property valuation reports before you make an offer</li>
+                  <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Comparison across 50+ Australian banks and non-bank lenders side-by-side</li>
+                  <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> 100% free broker service &mdash; the lender pays our fee, never you</li>
                 </ul>
 
                 <div class="loan-actions" style="display:flex; gap:16px; flex-wrap:wrap;">
-                  <a href="#contact" class="btn btn-primary" style="background:#0A2540; color:#ffffff; font-weight:800; padding:12px 28px; border-radius:8px;">Check First Home Eligibility</a>
+                  <button type="button" class="btn btn-primary open-booking-btn" data-preset="first-home" style="background:#0A2540; color:#ffffff; font-weight:800; padding:12px 28px; border-radius:8px; cursor:pointer;">Start First Home Application</button>
                   <a href="calculators.html#borrowing-power" class="btn btn-outline" style="border:1.5px solid #0A2540; color:#0A2540; font-weight:700; padding:12px 24px; border-radius:8px;">Borrowing Calculator</a>
                 </div>
               </div>
 
               <div class="loan-step-visual fade-up fade-up-delay-1" style="border-radius:24px; overflow:hidden; box-shadow:0 20px 48px rgba(10,37,64,0.16); border:1px solid #CBD5E1; background:#0A2540; position:relative; min-height:480px; height:100%; display:flex; align-items:center;">
-                <img src="images/canva/02._blog/article/02._for_home_loans.png" alt="First Home Buyer Guidance" style="width:100%; height:100%; object-fit:cover; display:block;">
+                <img src="images/canva/02._blog/article/02._for_home_loans.png" alt="First Home Buyer Step-by-Step Guidance" style="width:100%; height:100%; object-fit:cover; display:block;">
                 <div style="position:absolute; bottom:16px; left:16px; right:16px; background:rgba(10,37,64,0.85); backdrop-filter:blur(10px); padding:12px 18px; border-radius:12px; border:1px solid rgba(255,255,255,0.2); color:#ffffff; font-size:0.88rem; text-align:center; font-weight:600;">
-                  First Home Guarantee &amp; Grant Specialists
+                  Over 50+ Australian Lenders Compared Side-by-Side
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Sub-Panel: Refinance -->
+          <!-- Sub-Panel 2: New Home Loans (Buying Next Home, Building) -->
+          <div class="sub-toggle-panel" id="sub-panel-new-home" style="display:none;">
+            <div class="loan-step-guidance-grid" style="display:grid; grid-template-columns:1fr 1.35fr; gap:56px; align-items:center; margin-bottom:64px;">
+              <div class="loan-step-content fade-up">
+                <span class="section-label" style="color:#1D4ED8; font-weight:800; letter-spacing:0.12em; text-transform:uppercase;">NEW HOME &amp; NEXT PROPERTY</span>
+                <h2 class="section-title" style="color:#0A2540; font-size:clamp(1.8rem, 3vw, 2.5rem); font-weight:800; line-height:1.25; margin:12px 0 18px;">Buying Your Next Home or Building New</h2>
+                <p class="section-subtitle" style="color:#475569; font-size:1.05rem; line-height:1.65; margin-bottom:24px; text-align:left;">Ready to purchase your next family home, build from scratch, or buy at auction? We structure bridging finance, construction drawdown schedules, and seamless property transitions across 50+ lenders.</p>
+                
+                <ul class="loan-checklist" style="list-style:none; padding:0; margin:0 0 32px 0; display:flex; flex-direction:column; gap:12px;">
+                  <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Conditional pre-approval arranged in 24-48 hours before auction or private sale</li>
+                  <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Bridging loans &mdash; buy your next property before selling your current home</li>
+                  <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Construction loan structuring with progressive builder drawdown schedules</li>
+                  <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Complimentary property reports and recent comparable sales data</li>
+                  <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Complete coordination with conveyancers, solicitors, and lenders to settlement</li>
+                </ul>
+
+                <div class="loan-actions" style="display:flex; gap:16px; flex-wrap:wrap;">
+                  <button type="button" class="btn btn-primary open-booking-btn" data-preset="new-home" style="background:#0A2540; color:#ffffff; font-weight:800; padding:12px 28px; border-radius:8px; cursor:pointer;">Apply for New Home Loan</button>
+                  <a href="calculators.html#buying-costs" class="btn btn-outline" style="border:1.5px solid #0A2540; color:#0A2540; font-weight:700; padding:12px 24px; border-radius:8px;">Buying Costs Calculator</a>
+                </div>
+              </div>
+
+              <div class="loan-step-visual fade-up fade-up-delay-1" style="border-radius:24px; overflow:hidden; box-shadow:0 20px 48px rgba(10,37,64,0.16); border:1px solid #CBD5E1; background:#0A2540; position:relative; min-height:480px; height:100%; display:flex; align-items:center;">
+                <img src="images/canva/03._generic_graphic/01._ez_mortgage_broker.png" alt="New Home Loans and Property Purchases" style="width:100%; height:100%; object-fit:cover; display:block;">
+                <div style="position:absolute; bottom:16px; left:16px; right:16px; background:rgba(10,37,64,0.85); backdrop-filter:blur(10px); padding:12px 18px; border-radius:12px; border:1px solid rgba(255,255,255,0.2); color:#ffffff; font-size:0.88rem; text-align:center; font-weight:600;">
+                  Next Home &amp; Construction Loan Specialists
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sub-Panel 3: Refinance (Rate Reduction & Switching Lenders) -->
           <div class="sub-toggle-panel" id="sub-panel-refinance" style="display:none;">
             <div class="loan-step-guidance-grid" style="display:grid; grid-template-columns:1fr 1.35fr; gap:56px; align-items:center; margin-bottom:64px;">
               <div class="loan-step-content fade-up">
                 <span class="section-label" style="color:#1D4ED8; font-weight:800; letter-spacing:0.12em; text-transform:uppercase;">REFINANCE &amp; RATE REVIEW</span>
-                <h2 class="section-title" style="color:#0A2540; font-size:clamp(1.8rem, 3vw, 2.5rem); font-weight:800; line-height:1.25; margin:12px 0 18px;">Cut Your Repayments &amp; Unlock Equity</h2>
-                <p class="section-subtitle" style="color:#475569; font-size:1.05rem; line-height:1.65; margin-bottom:24px; text-align:left;">Don't let bank loyalty cost you thousands each year. We review your current rate, compare 50+ lenders, and seamlessly switch you to a lower rate or release usable home equity.</p>
+                <h2 class="section-title" style="color:#0A2540; font-size:clamp(1.8rem, 3vw, 2.5rem); font-weight:800; line-height:1.25; margin:12px 0 18px;">Lower Your Rate &amp; Cut Monthly Repayments</h2>
+                <p class="section-subtitle" style="color:#475569; font-size:1.05rem; line-height:1.65; margin-bottom:24px; text-align:left;">Don't let bank loyalty cost you thousands every year. We conduct a free 10-minute rate review, compare your existing loan against 50+ lenders, and manage the full discharge and refinance process seamlessly.</p>
                 
                 <ul class="loan-checklist" style="list-style:none; padding:0; margin:0 0 32px 0; display:flex; flex-direction:column; gap:12px;">
-                  <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Free health check on your existing home loan rate</li>
-                  <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Save hundreds every month by lowering your interest rate</li>
-                  <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Unlock usable home equity for renovations or investments</li>
-                  <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Consolidate high-interest debts into one manageable repayment</li>
-                  <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Fast paperwork management &mdash; we handle the lender discharge</li>
+                  <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Instant comparison of current market interest rates vs. your existing lender</li>
+                  <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Save hundreds every month by reducing your interest margin</li>
+                  <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Switch from fixed to variable or access split loans with 100% offset accounts</li>
+                  <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Consolidate credit cards, personal loans, and car finance into one low rate</li>
+                  <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Zero paperwork hassle &mdash; we handle the lender discharge from start to finish</li>
                 </ul>
 
                 <div class="loan-actions" style="display:flex; gap:16px; flex-wrap:wrap;">
-                  <a href="#contact" class="btn btn-primary" style="background:#0A2540; color:#ffffff; font-weight:800; padding:12px 28px; border-radius:8px;">Request Free Rate Review</a>
+                  <button type="button" class="btn btn-primary open-booking-btn" data-preset="refinance" style="background:#0A2540; color:#ffffff; font-weight:800; padding:12px 28px; border-radius:8px; cursor:pointer;">Request Free Rate Review</button>
                   <a href="calculators.html#repayments" class="btn btn-outline" style="border:1.5px solid #0A2540; color:#0A2540; font-weight:700; padding:12px 24px; border-radius:8px;">Refinance Calculator</a>
                 </div>
               </div>
@@ -398,61 +432,61 @@
               <div class="loan-step-visual fade-up fade-up-delay-1" style="border-radius:24px; overflow:hidden; box-shadow:0 20px 48px rgba(10,37,64,0.16); border:1px solid #CBD5E1; background:#0A2540; position:relative; min-height:480px; height:100%; display:flex; align-items:center;">
                 <img src="images/canva/02._blog/article/06._refinance.png" alt="Mortgage Refinancing Experts" style="width:100%; height:100%; object-fit:cover; display:block;">
                 <div style="position:absolute; bottom:16px; left:16px; right:16px; background:rgba(10,37,64,0.85); backdrop-filter:blur(10px); padding:12px 18px; border-radius:12px; border:1px solid rgba(255,255,255,0.2); color:#ffffff; font-size:0.88rem; text-align:center; font-weight:600;">
-                  Rate Reduction &amp; Equity Release Specialists
+                  Rate Reduction &amp; Lender Switching Specialists
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Sub-Panel: New Home & Upgrades -->
-          <div class="sub-toggle-panel" id="sub-panel-new-home" style="display:none;">
+          <!-- Sub-Panel 4: Equity Cash Out (Accessing Home Equity) -->
+          <div class="sub-toggle-panel" id="sub-panel-equity-cashout" style="display:none;">
             <div class="loan-step-guidance-grid" style="display:grid; grid-template-columns:1fr 1.35fr; gap:56px; align-items:center; margin-bottom:64px;">
               <div class="loan-step-content fade-up">
-                <span class="section-label" style="color:#1D4ED8; font-weight:800; letter-spacing:0.12em; text-transform:uppercase;">NEXT HOME &amp; UPGRADES</span>
-                <h2 class="section-title" style="color:#0A2540; font-size:clamp(1.8rem, 3vw, 2.5rem); font-weight:800; line-height:1.25; margin:12px 0 18px;">Upgrade to Your Dream Home Seamlessly</h2>
-                <p class="section-subtitle" style="color:#475569; font-size:1.05rem; line-height:1.65; margin-bottom:24px; text-align:left;">Ready to upsize, downsize, or build new? We structure bridging loans, construction drawdowns, and cross-collateralisation strategies to ensure smooth transitions between properties.</p>
+                <span class="section-label" style="color:#1D4ED8; font-weight:800; letter-spacing:0.12em; text-transform:uppercase;">EQUITY RELEASE &amp; CASHOUT</span>
+                <h2 class="section-title" style="color:#0A2540; font-size:clamp(1.8rem, 3vw, 2.5rem); font-weight:800; line-height:1.25; margin:12px 0 18px;">Unlock Usable Equity from Your Property</h2>
+                <p class="section-subtitle" style="color:#475569; font-size:1.05rem; line-height:1.65; margin-bottom:24px; text-align:left;">Your property’s value has likely grown. An equity cash out allows you to access that built-up wealth as low-cost funds for home renovations, investment deposits, business opportunities, or family wealth building.</p>
                 
                 <ul class="loan-checklist" style="list-style:none; padding:0; margin:0 0 32px 0; display:flex; flex-direction:column; gap:12px;">
-                  <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Buy your next home before selling with bridging finance options</li>
-                  <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Leverage accumulated equity to fund your next deposit</li>
-                  <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Construction &amp; renovation loans with progressive drawdowns</li>
-                  <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Seamless coordination with conveyancers and lenders</li>
-                  <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Full borrowing power assessment across 50+ lenders</li>
+                  <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Complimentary automated desktop valuation to establish your usable equity</li>
+                  <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Access cash funds at competitive home loan interest rates (far cheaper than personal loans)</li>
+                  <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Fund major kitchen, bathroom, pool, or solar home renovations</li>
+                  <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Secure the deposit for an investment property without using your cash savings</li>
+                  <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Tax-effective loan structuring to keep personal and investment debt separate</li>
                 </ul>
 
                 <div class="loan-actions" style="display:flex; gap:16px; flex-wrap:wrap;">
-                  <a href="#contact" class="btn btn-primary" style="background:#0A2540; color:#ffffff; font-weight:800; padding:12px 28px; border-radius:8px;">Plan Your Home Upgrade</a>
-                  <a href="calculators.html#buying-costs" class="btn btn-outline" style="border:1.5px solid #0A2540; color:#0A2540; font-weight:700; padding:12px 24px; border-radius:8px;">Buying Costs Calculator</a>
+                  <button type="button" class="btn btn-primary open-booking-btn" data-preset="equity-cashout" style="background:#0A2540; color:#ffffff; font-weight:800; padding:12px 28px; border-radius:8px; cursor:pointer;">Calculate Usable Equity</button>
+                  <a href="calculators.html#loan-comparison" class="btn btn-outline" style="border:1.5px solid #0A2540; color:#0A2540; font-weight:700; padding:12px 24px; border-radius:8px;">Equity Calculator</a>
                 </div>
               </div>
 
               <div class="loan-step-visual fade-up fade-up-delay-1" style="border-radius:24px; overflow:hidden; box-shadow:0 20px 48px rgba(10,37,64,0.16); border:1px solid #CBD5E1; background:#0A2540; position:relative; min-height:480px; height:100%; display:flex; align-items:center;">
-                <img src="images/canva/02._blog/article/08._equity_cashout.png" alt="Home Upgrade and Equity Finance" style="width:100%; height:100%; object-fit:cover; display:block;">
+                <img src="images/canva/02._blog/article/08._equity_cashout.png" alt="Equity Cash Out & Release Specialists" style="width:100%; height:100%; object-fit:cover; display:block;">
                 <div style="position:absolute; bottom:16px; left:16px; right:16px; background:rgba(10,37,64,0.85); backdrop-filter:blur(10px); padding:12px 18px; border-radius:12px; border:1px solid rgba(255,255,255,0.2); color:#ffffff; font-size:0.88rem; text-align:center; font-weight:600;">
-                  Next Home &amp; Upgrade Financing Specialists
+                  Usable Equity Release &amp; Cash Out Specialists
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Sub-Panel: Property Investment -->
+          <!-- Sub-Panel 5: Property Investment -->
           <div class="sub-toggle-panel" id="sub-panel-investment" style="display:none;">
             <div class="loan-step-guidance-grid" style="display:grid; grid-template-columns:1fr 1.35fr; gap:56px; align-items:center; margin-bottom:64px;">
               <div class="loan-step-content fade-up">
                 <span class="section-label" style="color:#1D4ED8; font-weight:800; letter-spacing:0.12em; text-transform:uppercase;">INVESTMENT PORTFOLIO LENDING</span>
                 <h2 class="section-title" style="color:#0A2540; font-size:clamp(1.8rem, 3vw, 2.5rem); font-weight:800; line-height:1.25; margin:12px 0 18px;">Build Wealth with Strategic Investment Loans</h2>
-                <p class="section-subtitle" style="color:#475569; font-size:1.05rem; line-height:1.65; margin-bottom:24px; text-align:left;">Smart property investors know that loan structure is everything. We optimise interest-only terms, offset buffers, and tax-effective lending structures across 50+ lenders.</p>
+                <p class="section-subtitle" style="color:#475569; font-size:1.05rem; line-height:1.65; margin-bottom:24px; text-align:left;">Smart property investors know that loan structure is everything. We optimise interest-only terms, offset buffers, and tax-effective lending structures across 50+ lenders to maximise your returns.</p>
                 
                 <ul class="loan-checklist" style="list-style:none; padding:0; margin:0 0 32px 0; display:flex; flex-direction:column; gap:12px;">
                   <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Structure tax-effective interest-only and principal &amp; interest loans</li>
-                  <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Leverage equity from existing property with zero cash deposit</li>
+                  <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Leverage equity from existing property with zero cash deposit required</li>
                   <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Multiple offset accounts linked for maximum cash-flow efficiency</li>
                   <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Specialist SMSF property loan structuring available</li>
                   <li style="display:flex; align-items:center; gap:12px; font-size:0.98rem; color:#1E293B; font-weight:500;"><span style="color:#16A34A; font-weight:800; font-size:1.1rem;">✓</span> Portfolio expansion strategy with competitive investor rates</li>
                 </ul>
 
                 <div class="loan-actions" style="display:flex; gap:16px; flex-wrap:wrap;">
-                  <a href="#contact" class="btn btn-primary" style="background:#0A2540; color:#ffffff; font-weight:800; padding:12px 28px; border-radius:8px;">Discuss Investment Strategy</a>
+                  <button type="button" class="btn btn-primary open-booking-btn" data-preset="investment" style="background:#0A2540; color:#ffffff; font-weight:800; padding:12px 28px; border-radius:8px; cursor:pointer;">Discuss Investment Strategy</button>
                   <a href="calculators.html#loan-comparison" class="btn btn-outline" style="border:1.5px solid #0A2540; color:#0A2540; font-weight:700; padding:12px 24px; border-radius:8px;">Investment Calculator</a>
                 </div>
               </div>
@@ -1189,7 +1223,7 @@
   </script>
   <script src="https://omni-agent.testcustomer2022.workers.dev/widget.js" defer></script>
 
-    <!-- SPA Loan Tab & Sub-Toggle Switcher Script -->
+      <!-- SPA Loan Tab & Sub-Toggle Switcher + Booking Modal Script -->
   <script>
     window.switchMainLoanTab = function(tabKey) {
       var tabs = ['home-loans', 'business-loans', 'personal-loans'];
@@ -1211,7 +1245,7 @@
     };
 
     window.switchHomeSubToggle = function(subKey) {
-      var subPills = ['first-home', 'refinance', 'new-home', 'investment'];
+      var subPills = ['first-home', 'new-home', 'refinance', 'equity-cashout', 'investment'];
       subPills.forEach(function(s) {
         var pillBtn = document.getElementById('pill-btn-' + s);
         var subPnl = document.getElementById('sub-panel-' + s);
@@ -1227,6 +1261,60 @@
       });
     };
 
+    // --- Booking Modal State Machine ---
+    var bookingData = {
+      firstname: '',
+      lastname: '',
+      phone: '',
+      email: '',
+      postcode: '',
+      goal: '',
+      buyerType: '',
+      incomeSource: '',
+      propertyValue: ''
+    };
+
+    window.openBookingModal = function(preset) {
+      var backdrop = document.getElementById('bookingModalBackdrop');
+      if (backdrop) {
+        backdrop.style.display = 'flex';
+        goToBookingStep(1);
+      }
+    };
+
+    window.closeBookingModal = function() {
+      var backdrop = document.getElementById('bookingModalBackdrop');
+      if (backdrop) {
+        backdrop.style.display = 'none';
+      }
+    };
+
+    window.goToBookingStep = function(stepNum) {
+      for (var i = 1; i <= 6; i++) {
+        var s = document.getElementById('bookingStep' + i);
+        if (s) s.style.display = (i === stepNum) ? 'block' : 'none';
+      }
+      var pBar = document.getElementById('bookingProgressBar');
+      if (pBar) {
+        pBar.style.width = ((stepNum / 5) * 100) + '%';
+      }
+    };
+
+    window.selectBookingGoal = function(goal) {
+      bookingData.goal = goal;
+      goToBookingStep(3);
+    };
+
+    window.selectBuyerType = function(bType) {
+      bookingData.buyerType = bType;
+      goToBookingStep(4);
+    };
+
+    window.selectIncomeSource = function(inc) {
+      bookingData.incomeSource = inc;
+      goToBookingStep(5);
+    };
+
     document.addEventListener('DOMContentLoaded', function() {
       // Main tab buttons
       var homeBtn = document.getElementById('tab-btn-home-loans');
@@ -1238,10 +1326,56 @@
       if (persBtn) persBtn.addEventListener('click', function(e) { e.preventDefault(); window.switchMainLoanTab('personal-loans'); });
 
       // Sub-toggle pills
-      ['first-home', 'refinance', 'new-home', 'investment'].forEach(function(s) {
+      ['first-home', 'new-home', 'refinance', 'equity-cashout', 'investment'].forEach(function(s) {
         var pBtn = document.getElementById('pill-btn-' + s);
         if (pBtn) pBtn.addEventListener('click', function(e) { e.preventDefault(); window.switchHomeSubToggle(s); });
       });
+
+      // Modal open triggers
+      document.querySelectorAll('.open-booking-btn').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          window.openBookingModal();
+        });
+      });
+
+      var closeBtn = document.getElementById('closeBookingModalBtn');
+      if (closeBtn) closeBtn.addEventListener('click', window.closeBookingModal);
+
+      // Modal Step 1 Next
+      var step1Next = document.getElementById('btnStep1Next');
+      if (step1Next) {
+        step1Next.addEventListener('click', function() {
+          var fn = document.getElementById('bFirstname').value.trim();
+          var ln = document.getElementById('bLastname').value.trim();
+          var ph = document.getElementById('bPhone').value.trim();
+          var em = document.getElementById('bEmail').value.trim();
+          var pc = document.getElementById('bPostcode').value.trim();
+
+          if (!fn || !ln || !ph || !em || !pc) {
+            alert('Please fill in all required contact details.');
+            return;
+          }
+
+          bookingData.firstname = fn;
+          bookingData.lastname = ln;
+          bookingData.phone = ph;
+          bookingData.email = em;
+          bookingData.postcode = pc;
+
+          goToBookingStep(2);
+        });
+      }
+
+      // Modal Step 5 Submit
+      var submitBooking = document.getElementById('btnSubmitBooking');
+      if (submitBooking) {
+        submitBooking.addEventListener('click', function() {
+          var pVal = document.getElementById('bPropertyValue').value.trim();
+          bookingData.propertyValue = pVal || 'Not specified';
+          goToBookingStep(6);
+        });
+      }
 
       // Nav Links
       document.querySelectorAll('.nav-tab-link').forEach(function(link) {
@@ -1260,24 +1394,9 @@
           }
         });
       });
-
-      // Check URL Hash
-      var h = window.location.hash;
-      if (h === '#business-finance' || h === '#business-loans' || h === '#business') {
-        window.switchMainLoanTab('business-loans');
-      } else if (h === '#personal-loans' || h === '#car-loans') {
-        window.switchMainLoanTab('personal-loans');
-      } else if (h === '#refinance') {
-        window.switchMainLoanTab('home-loans');
-        window.switchHomeSubToggle('refinance');
-      } else if (h === '#first-home' || h === '#first-home-buyers') {
-        window.switchMainLoanTab('home-loans');
-        window.switchHomeSubToggle('first-home');
-      } else if (h === '#home-loans' || h === '#personal') {
-        window.switchMainLoanTab('home-loans');
-      }
     });
   </script>
 </body>
+
 
 </html>
