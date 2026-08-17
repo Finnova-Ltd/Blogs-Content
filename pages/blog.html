@@ -8,6 +8,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Lato:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Lato:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="/css/style.css">
   <style>
     .blog-page-hero {
@@ -352,44 +356,44 @@
 </head>
 <body>
 
-  <!-- Top Bar -->
-  <div class="top-bar">
-    <div class="container top-bar-content">
-      <div class="breaking-news">
-        <span class="breaking-news-label">⚡ BREAKING NEWS</span>
-        <a id="breakingNewsTitle" href="#loan-solutions">MFAA quarterly report confirms broker customer satisfaction remains over 90%</a>
-      </div>
-      <div class="top-bar-live-data">
-        <span class="live-date">📅 Tue, 18 Aug</span>
-        <span class="live-weather">☀️ Melbourne 8°C</span>
-        <a href="tel:1300050099" class="phone-link">📞 1300 050 099</a>
-        <a href="mailto:info@ezmortgagebroker.com.au" class="email-link">✉️ info@ezmortgagebroker.com.au</a>
-        <span class="live-location">📍 Melbourne, VIC</span>
+    <!-- ========== SITE HEADER ========== -->
+  <header class="site-header">
+    <div class="header-top">
+      <div class="container header-top-inner">
+        <div class="breaking-news-ticker" id="breakingNewsTicker">
+          <strong class="breaking-news-badge">⚡ BREAKING NEWS</strong>
+          <a href="https://www.mfaa.com.au/news" target="_blank" rel="noopener noreferrer" class="breaking-news-title" id="breakingNewsTitle">Mortgage brokers settle record 81.0% of all Australian residential home loans</a>
+        </div>
+        <div class="header-contact-group">
+          <span id="headerCurrentDate" class="header-date">📅 Fri, 14 Aug</span>
+          <span id="headerWeatherWidget" class="header-weather">☀️ Melbourne 18°C</span>
+          <a href="tel:1300050099">📞 1300 050 099</a>
+          <a href="mailto:info@ezmortgagebroker.com.au">✉️ info@ezmortgagebroker.com.au</a>
+          <span>📍 Melbourne, VIC</span>
+        </div>
       </div>
     </div>
-  </div>
-
-  <!-- Header -->
-  <header class="site-header sticky" id="siteHeader">
-    <div class="container header-content">
-      <a href="/" class="logo">
-        <img class="brand-logo" src="/images/ez-mortgage-broker.webp" alt="EZ Mortgage Broker" style="max-width:200px; height:auto; display:inline-block;">
-      </a>
-      <nav class="main-nav" id="mainNav">
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/#loan-solutions" class="nav-tab-link" data-tab="home-loans">Home Loans</a></li>
-          <li><a href="/#loan-solutions" class="nav-tab-link" data-tab="business-loans">Business Loans</a></li>
-          <li><a href="/#loan-solutions" class="nav-tab-link" data-tab="personal-loans">Personal Loans</a></li>
-          <li><a href="/calculators.html">Calculators</a></li>
-          <li><a href="/pages/blog.html" class="active">Blog &amp; Insights</a></li>
-          <li><a href="/#about">About</a></li>
-          <li><a href="/#contact">Contact</a></li>
-        </ul>
-      </nav>
-      <div class="header-cta">
-        <a href="tel:1300050099" class="btn btn-outline">Call Us</a>
-        <a href="/#contact" class="btn btn-primary">Book Consult</a>
+    <div class="header-main">
+      <div class="container">
+        <div class="header-inner">
+          <a href="/" class="logo"><img class="brand-logo" src="/images/ez-mortgage-broker.webp" alt="EZ Mortgage Broker" style="max-width:200px; height:auto; display:inline-block;"></a>
+          <nav>
+            <ul class="nav-primary">
+              <li><a href="/">Home</a></li>
+              <li><a href="/#loan-solutions" class="nav-tab-link" data-tab="home-loans">Home Loans</a></li>
+              <li><a href="/#loan-solutions" class="nav-tab-link" data-tab="business-loans">Business Loans</a></li>
+              <li><a href="/#loan-solutions" class="nav-tab-link" data-tab="personal-loans">Personal Loans</a></li>
+              <li><a href="/calculators.html">Calculators</a></li>
+              <li><a href="/pages/blog.html" class="active">Blog &amp; Insights</a></li>
+              <li><a href="/#about">About</a></li>
+              <li><a href="/#contact">Contact</a></li>
+            </ul>
+          </nav>
+          <div class="header-cta-group" style="display:flex; gap:12px; align-items:center;">
+            <a href="tel:1300050099" class="btn btn-outline" style="padding:8px 18px; font-weight:700; border:1.5px solid #0A2540; color:#0A2540; border-radius:6px; text-decoration:none;">Call Us</a>
+            <a href="/#contact" class="btn btn-primary" style="padding:8px 18px; font-weight:700; background:#0A2540; color:#ffffff; border-radius:6px; text-decoration:none;">Book Consult</a>
+          </div>
+        </div>
       </div>
     </div>
   </header>
