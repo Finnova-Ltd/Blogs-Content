@@ -127,19 +127,13 @@
     if (icon) icon.textContent = '−';
   });
 
-  // Manual Click handler for main content
+  // Clean manual toggle handler (independent accordion sections)
   sectionAccordions.forEach(function (acc) {
     var hdr = acc.querySelector('.article-section-accordion-header');
     if (!hdr) return;
 
     hdr.addEventListener('click', function (e) {
       e.preventDefault();
-      userManualLock = true;
-      clearTimeout(lockTimeout);
-      lockTimeout = setTimeout(function () {
-        userManualLock = false;
-      }, 4000);
-
       var icon = this.querySelector('.section-accordion-icon');
       var isOpen = acc.classList.contains('open');
 
@@ -148,16 +142,6 @@
         this.setAttribute('aria-expanded', 'false');
         if (icon) icon.textContent = '+';
       } else {
-        sectionAccordions.forEach(function (otherAcc) {
-          if (otherAcc !== acc) {
-            otherAcc.classList.remove('open');
-            var otherHdr = otherAcc.querySelector('.article-section-accordion-header');
-            var otherIcon = otherAcc.querySelector('.section-accordion-icon');
-            if (otherHdr) otherHdr.setAttribute('aria-expanded', 'false');
-            if (otherIcon) otherIcon.textContent = '+';
-          }
-        });
-
         acc.classList.add('open');
         this.setAttribute('aria-expanded', 'true');
         if (icon) icon.textContent = '−';
