@@ -504,11 +504,29 @@
 
     <!-- Sidebar Column (Col 2 with Interactive Accordion Widgets) -->
     <aside class="article-sidebar">
-      <!-- Article Highlights Widget -->
-      <div class="article-highlights-widget">
-        <div class="highlights-widget-header">
-          <h3>Highlights</h3>
+      
+
+      <!-- 1. Principal Broker Profile Card -->
+      <div class="author-profile-box">
+        <div class="author-profile-banner"></div>
+        <div class="author-profile-avatar-wrap">
+          <img src="../../images/ez-mortgage-broker.webp" alt="EZ Mortgage Broker Logo" class="author-profile-avatar-img">
         </div>
+        <div class="author-profile-content">
+          <h3 class="author-profile-name">R Bakshi</h3>
+          <p class="author-profile-title">EZ Mortgage Broker</p>
+          <div class="author-rating-stars">★★★★★ <span>(14)</span></div>
+          <div class="author-actions-col">
+            <a href="#book-consult" class="author-action-btn open-ez-modal">💬 Book Appointment</a>
+            <a href="tel:1300050099" class="author-action-btn">📱 Send Message</a>
+            <a href="/#contact" class="author-action-btn">📇 Contact Card</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Article Highlights Widget -->
+      <div class="article-highlights-widget open">
+        <button type="button" class="highlights-widget-header" aria-expanded="true"><h3>Highlights</h3><span class="highlights-accordion-icon">−</span></button>
         <div class="highlights-widget-body">
           <div class="highlights-date-label">— Aug 18, 2026</div>
           <div class="highlights-timeline">
@@ -536,24 +554,6 @@
           </div>
           <div class="highlights-footer-btn-wrap">
             <button type="button" class="btn-more-highlights" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Top of Article ↑</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- 1. Principal Broker Profile Card -->
-      <div class="author-profile-box">
-        <div class="author-profile-banner"></div>
-        <div class="author-profile-avatar-wrap">
-          <img src="../../images/ez-mortgage-broker.webp" alt="EZ Mortgage Broker Logo" class="author-profile-avatar-img">
-        </div>
-        <div class="author-profile-content">
-          <h3 class="author-profile-name">R Bakshi</h3>
-          <p class="author-profile-title">EZ Mortgage Broker</p>
-          <div class="author-rating-stars">★★★★★ <span>(14)</span></div>
-          <div class="author-actions-col">
-            <a href="#book-consult" class="author-action-btn open-ez-modal">💬 Book Appointment</a>
-            <a href="tel:1300050099" class="author-action-btn">📱 Send Message</a>
-            <a href="/#contact" class="author-action-btn">📇 Contact Card</a>
           </div>
         </div>
       </div>

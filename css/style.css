@@ -6752,3 +6752,33 @@ table tbody tr:hover {
 .section-pulse-highlight {
   animation: sectionPulse 1.8s ease-out !important;
 }
+
+
+/* Highlights Accordion Styles */
+.highlights-widget-header {
+  background: #B91C1C !important;
+  padding: 14px 18px !important;
+  width: 100% !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  border: none !important;
+  cursor: pointer !important;
+  text-align: left !important;
+  transition: background 0.2s ease !important;
+}
+
+.highlights-widget-header:hover {
+  background: #991B1B !important;
+}
+
+.highlights-accordion-icon {
+  color: #ffffff !important;
+  font-size: 1.3rem !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+}
+
+.article-highlights-widget:not(.open) .highlights-widget-body {
+  display: none !important;
+}

@@ -448,3 +448,26 @@
       }
     });
   });
+
+
+  // Highlights Widget Accordion Toggle
+  var highlightsWidget = document.querySelector('.article-highlights-widget');
+  if (highlightsWidget) {
+    var hlHeader = highlightsWidget.querySelector('.highlights-widget-header');
+    var hlIcon = highlightsWidget.querySelector('.highlights-accordion-icon');
+    if (hlHeader) {
+      hlHeader.addEventListener('click', function(e) {
+        e.preventDefault();
+        var isOpen = highlightsWidget.classList.contains('open');
+        if (isOpen) {
+          highlightsWidget.classList.remove('open');
+          hlHeader.setAttribute('aria-expanded', 'false');
+          if (hlIcon) hlIcon.textContent = '+';
+        } else {
+          highlightsWidget.classList.add('open');
+          hlHeader.setAttribute('aria-expanded', 'true');
+          if (hlIcon) hlIcon.textContent = '−';
+        }
+      });
+    }
+  }
