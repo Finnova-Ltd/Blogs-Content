@@ -7465,3 +7465,66 @@ table tbody tr:hover {
   font-size: 1.08rem !important;
   margin-bottom: 10px !important;
 }
+
+
+/* ==========================================================================
+   RESPONSIVE ARTICLE LAYOUT & MOBILE HIGHLIGHTS PLACEMENT
+   (Ensures Highlights Widget appears DIRECTLY under Article Header on Mobile)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .article-layout {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 20px 0 60px !important;
+    gap: 20px !important;
+  }
+
+  .article-sidebar {
+    display: contents !important; /* Unwraps sidebar container so children can be ordered with flex */
+  }
+
+  /* 🌟 TOP PRIORITY ON MOBILE: Crimson Highlights Timeline directly below Article Header */
+  .article-highlights-widget {
+    order: -10 !important;
+    margin-top: 0 !important;
+    margin-bottom: 24px !important;
+    width: 100% !important;
+    box-shadow: 0 6px 20px rgba(168, 17, 39, 0.12) !important;
+    border: 2px solid #a81127 !important;
+  }
+
+  /* Main Article Body comes immediately after Highlights */
+  .article-content-body {
+    order: 1 !important;
+    width: 100% !important;
+  }
+
+  /* Author, Reviews, Calculators, Sticky Assessment CTA come after article text */
+  .author-profile-box {
+    order: 2 !important;
+    margin-top: 20px !important;
+    width: 100% !important;
+  }
+
+  .google-reviews-sidebar {
+    order: 3 !important;
+    width: 100% !important;
+  }
+
+  .calculators-sidebar-widget {
+    order: 4 !important;
+    width: 100% !important;
+  }
+
+  .related-guides-sidebar {
+    order: 5 !important;
+    width: 100% !important;
+  }
+
+  .sidebar-sticky-cta-card {
+    order: 6 !important;
+    width: 100% !important;
+    position: static !important;
+    margin-top: 16px !important;
+  }
+}
