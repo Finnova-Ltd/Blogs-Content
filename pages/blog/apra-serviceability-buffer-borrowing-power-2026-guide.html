@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Understand how the APRA 3.0% assessment buffer, Household Expenditure Measure (HEM), and debt-to-income caps determine your maximum borrowing capacity.">
+  <title>APRA 3% Serviceability Buffer Explained: How Banks Calculate Your Borrowing Power | EZ Mortgage Broker</title>
+  <link rel="canonical" href="https://ezmortgagebroker.com.au/pages/blog/apra-serviceability-buffer-borrowing-power-2026-guide">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="APRA 3% Serviceability Buffer Explained: How Banks Calculate Your Borrowing Power">
+  <meta property="og:description" content="Understand how the APRA 3.0% assessment buffer, Household Expenditure Measure (HEM), and debt-to-income caps determine your maximum borrowing capacity.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://ezmortgagebroker.com.au/pages/blog/apra-serviceability-buffer-borrowing-power-2026-guide">
+  <meta property="og:site_name" content="EZ Mortgage Broker">
+  <meta property="og:image" content="https://ezmortgagebroker.com.au/images/assets-ez-mortgage-broker/australian-home-mortgage-approval.jpg">
+
+  <!-- Structured Data JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "APRA 3% Serviceability Buffer Explained: How Banks Calculate Your Borrowing Power",
+    "description": "Understand how the APRA 3.0% assessment buffer, Household Expenditure Measure (HEM), and debt-to-income caps determine your maximum borrowing capacity.",
+    "datePublished": "2026-08-19T06:56:59.600606",
+    "dateModified": "2026-08-19T06:56:59.600606",
+    "author": {
+      "@type": "Person",
+      "name": "R BAKSHI",
+      "jobTitle": "Principal Mortgage Broker",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "EZ Mortgage Broker"
+      }
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "EZ Mortgage Broker",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://ezmortgagebroker.com.au/images/ez-mortgage-broker.webp"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://ezmortgagebroker.com.au/pages/blog/apra-serviceability-buffer-borrowing-power-2026-guide"
+    }
+  }
+  </script>
+
+  <style>
+    .container, .article-container {
+      width: 100%;
+      max-width: 1420px;
+      margin: 0 auto;
+      padding: 0 clamp(16px, 2.5vw, 32px);
+    }
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #ffffff;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    /* Hero Header */
+    .article-header {
+      position: relative;
+      background-color: #0A2540;
+      color: #ffffff !important;
+      padding: 52px 0 44px;
+      overflow: hidden;
+      border-radius: 0 0 16px 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+    }
+    .article-header-bg {
+      position: absolute;
+      top: -15px; left: -15px; right: -15px; bottom: -15px;
+      background-image: url('/images/assets-ez-mortgage-broker/australian-home-mortgage-approval.jpg');
+      background-size: cover;
+      background-position: center 30%;
+      filter: blur(3px) brightness(0.75) saturate(1.1);
+      transform: scale(1.05);
+      z-index: 1;
+    }
+    .article-header-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(180deg, rgba(10, 37, 64, 0.65) 0%, rgba(10, 37, 64, 0.92) 100%);
+      z-index: 2;
+    }
+    .article-header-content {
+      position: relative;
+      z-index: 3;
+    }
+    .article-top-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .article-breadcrumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      color: #E2E8F0 !important;
+      font-weight: 600;
+    }
+    .article-breadcrumb a {
+      color: #93C5FD !important;
+      text-decoration: none;
+    }
+    .article-share-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 5px 12px;
+      border-radius: 50px;
+    }
+    .article-share-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 900;
+      color: #ffffff !important;
+    }
+    .article-header-badge {
+      display: inline-block;
+      background: #00876C;
+      color: #ffffff !important;
+      padding: 5px 14px;
+      border-radius: 6px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .article-header-title {
+      font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+      font-weight: 800;
+      color: #ffffff !important;
+      line-height: 1.25;
+      margin: 0 0 16px;
+    }
+    .article-header-subtitle {
+      font-size: 1.05rem;
+      color: #F1F5F9 !important;
+      line-height: 1.6;
+      max-width: 900px;
+      margin: 0 0 20px;
+    }
+    .article-meta-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 0.85rem;
+      color: #CBD5E1 !important;
+    }
+
+    /* Layout */
+    .article-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 40px;
+      padding: 44px 0 80px;
+    }
+
+    /* Accordions */
+    .article-section-accordion {
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    }
+    .article-section-accordion.open {
+      border-color: #cbd5e1;
+      box-shadow: 0 6px 20px rgba(15, 35, 65, 0.06);
+    }
+    .article-section-accordion-header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 24px;
+      background: #f8fafc;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+    }
+    .article-section-accordion.open .article-section-accordion-header {
+      background: #ffffff;
+      border-bottom: 1.5px solid #f1f5f9;
+    }
+    .article-section-accordion-body {
+      padding: 24px;
+      color: #334155;
+      line-height: 1.7;
+    }
+    .article-section-accordion:not(.open) .article-section-accordion-body {
+      display: none;
+    }
+
+    /* Highlights Widget */
+    .article-highlights-widget {
+      background: #ffffff;
+      border: 2px solid #a81127;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(168, 17, 39, 0.08);
+      margin-bottom: 20px;
+    }
+    .highlights-header {
+      background: #a81127;
+      color: #ffffff;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 800;
+      font-size: 0.95rem;
+    }
+    .highlights-body {
+      padding: 18px;
+    }
+    .highlights-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+      font-size: 0.85rem;
+    }
+    .highlight-bullet {
+      color: #a81127;
+      font-size: 0.9rem;
+      margin-top: 1px;
+    }
+    .highlights-item p {
+      margin: 2px 0 0;
+      color: #64748B;
+      font-size: 0.8rem;
+    }
+
+    /* Data Tables */
+    .article-data-table-wrapper {
+      overflow-x: auto;
+      margin: 18px 0;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+    }
+    .article-data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      text-align: left;
+    }
+    .article-data-table th {
+      background: #0A2540;
+      color: #ffffff;
+      padding: 12px 14px;
+      font-weight: 700;
+    }
+    .article-data-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid #f1f5f9;
+      color: #334155;
+    }
+    .article-checklist-card {
+      background: #F8FAFC;
+      border-left: 4px solid #00876C;
+      padding: 18px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 18px 0;
+    }
+    .article-checklist-list {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0 0;
+    }
+    .article-checklist-list li {
+      padding: 4px 0;
+      font-size: 0.88rem;
+      color: #334155;
+    }
+
+    /* Sidebar Author Card */
+    .author-profile-box {
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 14px;
+      overflow: hidden;
+      text-align: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      margin-bottom: 20px;
+    }
+    .author-profile-banner {
+      height: 80px;
+      background: linear-gradient(135deg, #0A2540 0%, #1E3A8A 100%);
+    }
+    .author-profile-avatar-wrap {
+      width: 68px; height: 68px; border-radius: 50%; background: #ffffff;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.14); margin: -34px auto 8px;
+      display: grid; place-items: center; padding: 4px;
+    }
+    .author-profile-avatar-img { width: 100%; height: 100%; object-fit: contain; }
+    .author-profile-content { padding: 0 16px 18px; }
+    .author-profile-name { font-size: 1.15rem; color: #0A2540; margin: 0 0 2px; font-weight: 800; }
+    .author-profile-title { font-size: 0.82rem; color: #64748b; margin: 0 0 4px; }
+    .author-rating-stars { color: #f59e0b; font-size: 0.88rem; margin-bottom: 14px; font-weight: 700; }
+    .author-actions-col { display: flex; flex-direction: column; gap: 8px; }
+    .author-action-btn {
+      display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%;
+      padding: 10px 14px; border-radius: 6px; font-weight: 700; font-size: 0.85rem;
+      text-decoration: none; background: #0A2540; color: #ffffff !important;
+    }
+
+    /* Sidebar Reviews & Sticky CTA */
+    .sidebar-accordion-widget {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+    .sidebar-sticky-cta-card {
+      position: sticky;
+      top: 96px;
+      background: linear-gradient(135deg, #0A2540 0%, #17345f 100%);
+      border: 1.5px solid rgba(255, 220, 74, 0.4);
+      border-radius: 14px;
+      padding: 22px 18px;
+      color: #ffffff !important;
+    }
+
+    @media (max-width: 1024px) {
+      .article-layout { display: flex !important; flex-direction: column !important; }
+      .article-sidebar { display: contents !important; }
+      .article-highlights-widget { order: -10 !important; margin-bottom: 20px !important; width: 100% !important; }
+      .article-content-body { order: 1 !important; width: 100% !important; }
+      .author-profile-box { order: 2 !important; width: 100% !important; }
+      .sidebar-accordion-widget { order: 3 !important; width: 100% !important; }
+      .sidebar-sticky-cta-card { order: 4 !important; width: 100% !important; position: static !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== SITE HEADER ========== -->
+  <header class="site-header">
+    <div class="header-top">
+      <div class="container header-top-inner">
+        <div class="breaking-news-ticker">
+          <strong class="breaking-news-badge">⚡ MARKET BRIEF</strong>
+          <span class="breaking-news-title">APRA 3% Serviceability Buffer Explained: How Banks Calculate Your Borrowing Power</span>
+        </div>
+        <div class="header-contact-group">
+          <span>📅 19-Aug-2026</span>
+          <a href="tel:1300050099">📞 1300 050 099</a>
+          <a href="mailto:info@ezmortgagebroker.com.au">✉️ info@ezmortgagebroker.com.au</a>
+          <span>📍 Melbourne, VIC</span>
+        </div>
+      </div>
+    </div>
+    <div class="header-main">
+      <div class="container header-inner">
+        <a href="/" class="logo"><img class="brand-logo" src="/images/ez-mortgage-broker.webp" alt="EZ Mortgage Broker" style="height: clamp(68px, 6.5vw, 84px); width: auto; max-width: 300px; display: inline-block;"></a>
+        <nav>
+          <ul class="nav-primary">
+            <li><a href="/">Home</a></li>
+            <li><a href="/pages/buying-a-home.html">Home Loans</a></li>
+            <li><a href="/pages/business-finance.html">Business Loans</a></li>
+            <li><a href="/calculators.html">Calculators</a></li>
+            <li><a href="/pages/blog.html" class="active">Blog &amp; Insights</a></li>
+            <li><a href="/#about">About</a></li>
+            <li><a href="/#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="header-cta">
+          <a href="tel:1300050099" class="btn btn-outline">Call Us</a>
+          <a href="/#contact" class="btn btn-primary">Book Consult</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== ARTICLE HERO HEADER (IMAGE 2 FORMAT) ========== -->
+  <header class="article-header">
+    <div class="article-header-bg"></div>
+    <div class="article-header-overlay"></div>
+    <div class="container article-header-content">
+      <div class="article-top-toolbar">
+        <div class="article-breadcrumb">
+          <a href="/">Home</a> &gt; <a href="/pages/blog.html">Blog &amp; Insights</a> &gt; <span>Home Loans</span>
+        </div>
+        <div class="article-share-pill">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://ezmortgagebroker.com.au/pages/blog/apra-serviceability-buffer-borrowing-power-2026-guide" target="_blank" rel="noopener" class="article-share-btn" style="background:#1877F2;">f</a>
+          <a href="https://twitter.com/intent/tweet?url=https://ezmortgagebroker.com.au/pages/blog/apra-serviceability-buffer-borrowing-power-2026-guide&text=APRA 3% Serviceability Buffer Explained: How Banks Calculate Your Borrowing Power" target="_blank" rel="noopener" class="article-share-btn" style="background:#1DA1F2;">𝕏</a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://ezmortgagebroker.com.au/pages/blog/apra-serviceability-buffer-borrowing-power-2026-guide" target="_blank" rel="noopener" class="article-share-btn" style="background:#0A66C2;">in</a>
+          <a href="https://api.whatsapp.com/send?text=https://ezmortgagebroker.com.au/pages/blog/apra-serviceability-buffer-borrowing-power-2026-guide" target="_blank" rel="noopener" class="article-share-btn" style="background:#25D366;">💬</a>
+        </div>
+      </div>
+
+      <span class="article-header-badge">HOME LOANS</span>
+      <h1 class="article-header-title">APRA 3% Serviceability Buffer Explained: How Banks Calculate Your Borrowing Power</h1>
+      <p class="article-header-subtitle">Understand how the APRA 3.0% assessment buffer, Household Expenditure Measure (HEM), and debt-to-income caps determine your maximum borrowing capacity.</p>
+
+      <div class="article-meta-row">
+        <span>📅 19-Aug-2026</span>
+        <span>⏱️ 5 min read</span>
+        <span>✍️ <strong>R BAKSHI</strong> (Principal Broker)</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== MAIN ARTICLE LAYOUT ========== -->
+  <div class="container article-layout">
+    
+    <!-- LEFT COLUMN: ARTICLE BODY -->
+    <main class="article-content-body">
+      <p class="lead-paragraph" style="font-size:1.1rem; line-height:1.75; color:#1E293B; margin-bottom:28px; font-weight:500;">
+        Understand how the APRA 3.0% assessment buffer, Household Expenditure Measure (HEM), and debt-to-income caps determine your maximum borrowing capacity.
+      </p>
+
+      
+        <section class="article-section-accordion open">
+          <button class="article-section-accordion-header" aria-expanded="true">
+            <h2 style="font-size:1.15rem; font-weight:700; color:#0A2540; margin:0; line-height:1.4;">1. What is the APRA 3% Serviceability Buffer?</h2>
+            <span class="accordion-icon" style="font-size:1.4rem; font-weight:700; color:#1D4ED8;">−</span>
+          </button>
+          <div class="article-section-accordion-body">
+            
+                <p>The Australian Prudential Regulation Authority (APRA) mandates that authorized deposit-taking institutions (ADIs) assess whether prospective borrowers can afford repayments at an interest rate <strong>at least 3.00 percentage points higher</strong> than the actual loan rate.</p>
+                <p>If a bank offers a variable rate of 5.95%, your income and expenses will be stress-tested at <strong>8.95%</strong> across a 30-year principal and interest term.</p>
+                <div class="article-data-table-wrapper">
+                  <table class="article-data-table">
+                    <thead><tr><th>Offered Loan Rate</th><th>APRA Stress-Test Rate</th><th>Assessed Monthly Repayment per $500k</th></tr></thead>
+                    <tbody>
+                      <tr><td><strong>5.75%</strong></td><td>8.75% Assessment Rate</td><td>$3,934 / month assessed</td></tr>
+                      <tr><td><strong>6.00%</strong></td><td>9.00% Assessment Rate</td><td>$4,023 / month assessed</td></tr>
+                      <tr><td><strong>6.25%</strong></td><td>9.25% Assessment Rate</td><td>$4,113 / month assessed</td></tr>
+                      <tr><td><strong>6.50%</strong></td><td>9.50% Assessment Rate</td><td>$4,204 / month assessed</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                
+          </div>
+        </section>
+
+        <section class="article-section-accordion ">
+          <button class="article-section-accordion-header" aria-expanded="false">
+            <h2 style="font-size:1.15rem; font-weight:700; color:#0A2540; margin:0; line-height:1.4;">2. The Household Expenditure Measure (HEM) Explained</h2>
+            <span class="accordion-icon" style="font-size:1.4rem; font-weight:700; color:#1D4ED8;">+</span>
+          </button>
+          <div class="article-section-accordion-body">
+            
+                <p>Lenders calculate living expenses using the greater of your declared living costs or the Melbourne Institute’s Household Expenditure Measure (HEM). Declaring unrealistically low expenses will not inflate borrowing power, as the automated HEM floor is applied automatically.</p>
+                <div class="article-checklist-card">
+                  <h4>💡 What Affects Your HEM Assessment?</h4>
+                  <ul class="article-checklist-list">
+                    <li><strong>Number of Dependants:</strong> Each child reduces borrowing capacity by approximately $40,000 to $65,000.</li>
+                    <li><strong>Single vs Joint Incomes:</strong> Dual-income households benefit from lower combined living expense assumptions.</li>
+                    <li><strong>Private School Fees & Discretionary Debts:</strong> Ongoing non-essential commitments must be declared and factored in.</li>
+                  </ul>
+                </div>
+                
+          </div>
+        </section>
+
+        <section class="article-section-accordion ">
+          <button class="article-section-accordion-header" aria-expanded="false">
+            <h2 style="font-size:1.15rem; font-weight:700; color:#0A2540; margin:0; line-height:1.4;">3. The Hidden Impact of Credit Cards and BNPL</h2>
+            <span class="accordion-icon" style="font-size:1.4rem; font-weight:700; color:#1D4ED8;">+</span>
+          </button>
+          <div class="article-section-accordion-body">
+            
+                <p>Banks assess credit cards based on <strong>the total credit limit, not the balance owed</strong>, assuming a monthly repayment of 3% to 3.8% of the entire limit.</p>
+                <p>A dormant credit card with a $15,000 limit reduces borrowing power by roughly <strong>$60,000 to $70,000</strong>. Reducing limits or closing unused facilities prior to application unlocks immediate capacity.</p>
+                
+          </div>
+        </section>
+
+        <section class="article-section-accordion ">
+          <button class="article-section-accordion-header" aria-expanded="false">
+            <h2 style="font-size:1.15rem; font-weight:700; color:#0A2540; margin:0; line-height:1.4;">4. Overcoming APRA Buffers: Like-for-Like Refinancing &amp; Non-Banks</h2>
+            <span class="accordion-icon" style="font-size:1.4rem; font-weight:700; color:#1D4ED8;">+</span>
+          </button>
+          <div class="article-section-accordion-body">
+            
+                <p>Under APRA exceptions, several major and second-tier lenders offer a <strong>1.0% modified serviceability buffer</strong> for borrowers refinancing dollar-for-dollar without cash out, enabling homeowners in mortgage prison to secure lower rates.</p>
+                
+          </div>
+        </section>
+
+        <section class="article-section-accordion ">
+          <button class="article-section-accordion-header" aria-expanded="false">
+            <h2 style="font-size:1.15rem; font-weight:700; color:#0A2540; margin:0; line-height:1.4;">5. How to Apply with EZ Mortgage Broker</h2>
+            <span class="accordion-icon" style="font-size:1.4rem; font-weight:700; color:#1D4ED8;">+</span>
+          </button>
+          <div class="article-section-accordion-body">
+            
+                <p>Because every lender’s servicing calculator treats bonuses, overtime, rental yields, and self-employed income differently, our brokers compare your scenario across 50+ lenders to identify your maximum borrowing capacity.</p>
+                <p><strong>Speak with R Bakshi and the EZ Mortgage Broker team on 1300 050 099 today.</strong></p>
+                
+          </div>
+        </section>
+    </main>
+
+    <!-- RIGHT COLUMN: SIDEBAR -->
+    <aside class="article-sidebar">
+      
+      <!-- Author Profile Card -->
+      <div class="author-profile-box">
+        <div class="author-profile-banner"></div>
+        <div class="author-profile-avatar-wrap">
+          <img src="/images/ez-mortgage-broker.webp" alt="R Bakshi" class="author-profile-avatar-img">
+        </div>
+        <div class="author-profile-content">
+          <h3 class="author-profile-name">R Bakshi</h3>
+          <p class="author-profile-title">EZ Mortgage Broker</p>
+          <div class="author-rating-stars">★★★★★ (14)</div>
+          <div class="author-actions-col">
+            <a href="/#contact" class="author-action-btn">💬 Book Appointment</a>
+            <a href="tel:1300050099" class="author-action-btn" style="background:#1D4ED8;">📱 Send Message</a>
+            <a href="/#contact" class="author-action-btn" style="background:#0F766E;">📇 Contact Card</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Highlights Widget (Crimson Header) -->
+      <div class="article-highlights-widget" id="articleHighlightsWidget">
+        <div class="highlights-header">
+          <span>Highlights</span>
+          <span style="font-size:1.2rem;">−</span>
+        </div>
+        <div class="highlights-body">
+          <div style="font-size:0.75rem; color:#64748B; margin-bottom:12px; font-weight:700;">— 19-Aug-2026</div>
+          <div class="highlights-item"><span class="highlight-bullet">◉</span><div><strong>APRA 3% Buffer</strong><p>Banks stress-test loan applications at the product rate plus a 3.00% safety margin</p></div></div><div class="highlights-item"><span class="highlight-bullet">◉</span><div><strong>HEM Benchmarks</strong><p>Living expenses benchmarked against family size, postcode, and income tier</p></div></div><div class="highlights-item"><span class="highlight-bullet">◉</span><div><strong>Credit Card Limits</strong><p>Each $10,000 credit card limit reduces borrowing power by ~$45,000</p></div></div><div class="highlights-item"><span class="highlight-bullet">◉</span><div><strong>Lender Variance</strong><p>Borrowing limits vary by up to $150,000 across our 50+ lender panel</p></div></div><div class="highlights-item"><span class="highlight-bullet">◉</span><div><strong>Approval Roadmap</strong><p>Simple steps to optimize liabilities and maximize your borrowing capacity</p></div></div>
+          <div style="text-align:center; margin-top:14px; padding-top:10px; border-top:1px solid #F1F5F9;">
+            <a href="#" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;" style="color:#A81127; font-weight:700; font-size:0.8rem; text-decoration:none;">Top of Article ↑</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Google Reviews Widget -->
+      <div class="sidebar-accordion-widget">
+        <h4 style="font-size:0.82rem; text-transform:uppercase; letter-spacing:0.06em; color:#64748B; margin:0 0 12px; font-weight:800;">Google Reviews</h4>
+        <div style="margin-bottom:12px;">
+          <div style="font-weight:800; font-size:0.85rem; color:#0A2540;">Jaspreet Sidhu</div>
+          <div style="color:#F59E0B; font-size:0.75rem;">★★★★★</div>
+          <p style="font-size:0.78rem; color:#475569; margin:4px 0 0; line-height:1.4;">"EZ Mortgage Broker has helped me since 2018 for all my financial needs. Very professional, honest and reliable."</p>
+        </div>
+        <div>
+          <div style="font-weight:800; font-size:0.85rem; color:#0A2540;">Navtej Singh</div>
+          <div style="color:#F59E0B; font-size:0.75rem;">★★★★★</div>
+          <p style="font-size:0.78rem; color:#475569; margin:4px 0 0; line-height:1.4;">"Second time working with R Bakshi. The journey was smooth from start to finish."</p>
+        </div>
+      </div>
+
+      <!-- Mortgage Calculators Widget -->
+      <div class="sidebar-accordion-widget">
+        <h4 style="font-size:0.82rem; text-transform:uppercase; letter-spacing:0.06em; color:#64748B; margin:0 0 12px; font-weight:800;">Mortgage Calculators</h4>
+        <div style="display:flex; flex-direction:column; gap:8px; font-size:0.85rem; font-weight:700;">
+          <a href="/calculators.html#borrowing-power" style="color:#1D4ED8; text-decoration:none;">→ Borrowing Power Calculator</a>
+          <a href="/calculators.html#repayments" style="color:#1D4ED8; text-decoration:none;">→ Loan Repayment Calculator</a>
+          <a href="/calculators.html#stamp-duty" style="color:#1D4ED8; text-decoration:none;">→ Stamp Duty Calculator</a>
+        </div>
+      </div>
+
+      <!-- Sticky Assessment CTA -->
+      <div class="sidebar-sticky-cta-card">
+        <span style="font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em; color:#FFDC4A; font-weight:800; display:block; margin-bottom:6px;">EZ MORTGAGE ADVISORY</span>
+        <h4 style="color:#ffffff !important; font-size:1.05rem; font-weight:800; margin:0 0 8px;">Need Expert Borrowing Power Advice?</h4>
+        <p style="color:rgba(255,255,255,0.85) !important; font-size:0.82rem; line-height:1.4; margin:0 0 16px;">Speak directly with our senior MFAA accredited credit advisors.</p>
+        <a href="tel:1300050099" style="display:inline-flex; align-items:center; justify-content:center; gap:6px; width:100%; background:#FFDC4A; color:#0A2540 !important; font-weight:800; padding:10px 14px; border-radius:6px; text-decoration:none; font-size:0.88rem;">
+          📞 Call 1300 050 099
+        </a>
+      </div>
+
+    </aside>
+
+  </div>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div style="text-align:center; color:#94A3B8; font-size:0.85rem; padding:24px 0;">
+        <p>© 2026 EZ Mortgage Broker. All rights reserved. | <a href="/cookie-policy.html" style="color:#94a3b8;">Cookie Policy</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const headers = document.querySelectorAll('.article-section-accordion-header');
+      headers.forEach(header => {
+        header.addEventListener('click', function () {
+          const accordion = this.parentElement;
+          const wasOpen = accordion.classList.contains('open');
+          
+          // Toggle
+          accordion.classList.toggle('open');
+          const icon = this.querySelector('.accordion-icon');
+          if (icon) icon.textContent = wasOpen ? '+' : '−';
+          this.setAttribute('aria-expanded', !wasOpen);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
