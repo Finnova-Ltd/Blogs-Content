@@ -4,3 +4,14 @@
 /pages/contact.html /#contact 301
 /about /#about 301
 /contact /#contact 301
+# Targeted Wyndham Suburb Landing Pages
+/mortgage-broker-tarneit /pages/locations/mortgage-broker-tarneit.html 200
+/mortgage-broker-truganina /pages/locations/mortgage-broker-truganina.html 200
+/mortgage-broker-werribee /pages/locations/mortgage-broker-werribee.html 200
+/mortgage-broker-point-cook /pages/locations/mortgage-broker-point-cook.html 200
+/mortgage-broker-williams-landing /pages/locations/mortgage-broker-williams-landing.html 200
+/locations/tarneit /pages/locations/mortgage-broker-tarneit.html 200
+/locations/truganina /pages/locations/mortgage-broker-truganina.html 200
+/locations/werribee /pages/locations/mortgage-broker-werribee.html 200
+/locations/point-cook /pages/locations/mortgage-broker-point-cook.html 200
+/locations/williams-landing /pages/locations/mortgage-broker-williams-landing.html 200
