@@ -529,6 +529,7 @@ def main():
 
     if "--publish" in sys.argv or "--generate" in sys.argv:
         published_count = 0
+        new_posts_to_add = []
         os.makedirs(BLOG_PAGES_DIR, exist_ok=True)
 
         for item in entries:
@@ -543,10 +544,57 @@ def main():
             with open(out_file, 'w', encoding='utf-8') as f:
                 f.write(page_html)
 
+            # Sync with public/pages/blog
+            pub_out_file = os.path.join(PROJECT_DIR, "public", "pages", "blog", f"{slug}.html")
+            os.makedirs(os.path.dirname(pub_out_file), exist_ok=True)
+            with open(pub_out_file, 'w', encoding='utf-8') as f:
+                f.write(page_html)
+
             existing_slugs.add(slug)
             existing_titles.add(norm_title)
             published_count += 1
+
+            # Update posts.json list
+            new_post_obj = {
+                "id": slug,
+                "slug": slug,
+                "title": format_longtail_headline(item['title'], item['category']),
+                "category": item['category'],
+                "badge": item['badge'],
+                "date": datetime.now().strftime("%d-%b-%Y"),
+                "iso_date": datetime.now().isoformat(),
+                "readTime": "2 min read",
+                "author": "R BAKSHI",
+                "authorRole": "Principal Mortgage Broker",
+                "authorImg": "/images/ez-mortgage-broker.webp",
+                "excerpt": item['snippet'][:160] + "...",
+                "snippet": item['snippet'],
+                "image": "/images/assets-ez-mortgage-broker/australian-home-mortgage-approval.jpg",
+                "url": f"/pages/blog/{slug}.html"
+            }
+            new_posts_to_add.append(new_post_obj)
             print(f"  ✨ Published Value-Dense Domain Briefing: [{item['category']}] {item['title']}")
+
+        # Save to posts.json
+        if new_posts_to_add:
+            try:
+                current_posts = []
+                if os.path.exists(POSTS_JSON_PATH):
+                    with open(POSTS_JSON_PATH, 'r', encoding='utf-8') as f:
+                        data = json.load(f)
+                        current_posts = data if isinstance(data, list) else data.get('posts', [])
+                
+                # Prepend newest posts
+                merged_posts = new_posts_to_add + [p for p in current_posts if p.get('slug') not in existing_slugs]
+                with open(POSTS_JSON_PATH, 'w', encoding='utf-8') as f:
+                    json.dump(merged_posts, f, indent=2)
+                
+                pub_posts_json = os.path.join(PROJECT_DIR, "public", "posts.json")
+                with open(pub_posts_json, 'w', encoding='utf-8') as f:
+                    json.dump(merged_posts, f, indent=2)
+                print(f"✅ Synced {len(new_posts_to_add)} new briefings into posts.json!")
+            except Exception as e:
+                print(f"⚠️ Error updating posts.json: {e}")
 
         print(f"\n🎉 Published {published_count} targeted articles with FinancialProduct Schema & Pillar Links!")
     else:
