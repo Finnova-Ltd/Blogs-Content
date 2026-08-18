@@ -6558,10 +6558,9 @@ table tbody tr:hover {
 }
 
 /* Article Headline Scale */
-.article-header h1,
 .article-content h1,
-.blog-post h1 {
-  font-family: var(--font-serif-editorial) !important;
+.blog-post-body h1 {
+  font-family: var(--font-main, 'Inter', sans-serif) !important;
   font-size: var(--fs-h1-mobile) !important;
   line-height: 1.2 !important;
   letter-spacing: -0.02em !important;
@@ -6571,19 +6570,45 @@ table tbody tr:hover {
 }
 
 @media (min-width: 768px) {
-  .article-header h1,
   .article-content h1,
-  .blog-post h1 {
+  .blog-post-body h1 {
     font-size: var(--fs-h1-tablet) !important;
   }
 }
 
 @media (min-width: 1020px) {
-  .article-header h1,
   .article-content h1,
-  .blog-post h1 {
+  .blog-post-body h1 {
     font-size: var(--fs-h1-desktop) !important;
   }
+}
+
+/* 🌟 MAXIMUM CONTRAST FOR ARTICLE HERO HEADERS (IMAGE 2 FORMAT) */
+.article-header,
+.article-header *,
+.article-header h1,
+.article-header-title,
+.article-header .article-title-h1,
+.article-header-content h1,
+.article-header h1 span {
+  color: #ffffff !important;
+}
+
+.article-header h1,
+.article-header-title,
+.article-header .article-title-h1 {
+  color: #ffffff !important;
+  font-family: var(--font-main, 'Inter', sans-serif) !important;
+  font-weight: 800 !important;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6) !important;
+  line-height: 1.25 !important;
+}
+
+.article-header p,
+.article-header-subtitle,
+.article-header .article-lead-summary {
+  color: #F1F5F9 !important;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45) !important;
 }
 
 /* Article Section Subheadings (h2) */
@@ -7527,4 +7552,21 @@ table tbody tr:hover {
     position: static !important;
     margin-top: 16px !important;
   }
+}
+
+
+/* ==========================================================================
+   FINAL OVERRIDE: ENSURE 100% CRISP WHITE TEXT IN ARTICLE HERO BANNERS
+   ========================================================================== */
+.article-header h1,
+.article-header .article-header-title,
+.article-header-content h1,
+.article-header-title {
+  color: #ffffff !important;
+  text-shadow: 0 3px 14px rgba(0, 0, 0, 0.7) !important;
+}
+.article-header .article-header-subtitle,
+.article-header p {
+  color: #F8FAFC !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5) !important;
 }
