@@ -238,6 +238,7 @@ class MakeApiClient:
 # -----------------------------------------------------------------------------
 def main():
     import argparse
+    load_dotenv()
     parser = argparse.ArgumentParser(description="Make.com API v2 CLI Client")
     parser.add_argument("--test", action="store_true", help="Test authentication with Make API")
     parser.add_argument("--list-scenarios", action="store_true", help="List all scenarios in your team")
