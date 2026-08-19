@@ -7879,3 +7879,76 @@ html, body {
     margin-bottom: 24px !important;
   }
 }
+
+
+/* ==========================================================================
+   UNIVERSAL FLOATING BACK-TO-TOP BUTTON
+   ========================================================================== */
+.btn-scroll-to-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0A2540 0%, #1D4ED8 100%);
+  color: #ffffff !important;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 24px rgba(10, 37, 64, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px) scale(0.9);
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s ease,
+              background 0.25s ease;
+  outline: none;
+}
+
+.btn-scroll-to-top svg {
+  width: 22px;
+  height: 22px;
+  fill: #ffffff;
+  stroke: #ffffff;
+  stroke-width: 2.5;
+  transition: transform 0.25s ease;
+}
+
+.btn-scroll-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.btn-scroll-to-top:hover {
+  background: linear-gradient(135deg, #1D4ED8 0%, #00876C 100%);
+  box-shadow: 0 12px 30px rgba(29, 78, 216, 0.45);
+  transform: translateY(-4px) scale(1.05);
+}
+
+.btn-scroll-to-top:hover svg {
+  transform: translateY(-2px);
+}
+
+.btn-scroll-to-top:active {
+  transform: translateY(0) scale(0.95);
+}
+
+@media (max-width: 768px) {
+  .btn-scroll-to-top {
+    bottom: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+  }
+  .btn-scroll-to-top svg {
+    width: 18px;
+    height: 18px;
+  }
+}

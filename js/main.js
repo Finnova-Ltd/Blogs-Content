@@ -2561,3 +2561,50 @@ window.switchHomeSubToggle = function(subKey) {
   } else {
     initSidebarReviewsCarousels();
   }
+
+
+  /* ==========================================================================
+     UNIVERSAL BACK-TO-TOP FLOATING BUTTON
+     ========================================================================== */
+  function initUniversalBackToTop() {
+    if (document.getElementById('btnUniversalScrollTop')) return;
+
+    const btn = document.createElement('button');
+    btn.id = 'btnUniversalScrollTop';
+    btn.className = 'btn-scroll-to-top';
+    btn.setAttribute('aria-label', 'Scroll back to top of page');
+    btn.setAttribute('type', 'button');
+    btn.innerHTML = `
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="19" x2="12" y2="5"></line>
+        <polyline points="5 12 12 5 19 12"></polyline>
+      </svg>
+    `;
+
+    document.body.appendChild(btn);
+
+    const toggleBtnVisibility = function () {
+      if (window.scrollY > 280) {
+        btn.classList.add('visible');
+      } else {
+        btn.classList.remove('visible');
+      }
+    };
+
+    window.addEventListener('scroll', toggleBtnVisibility, { passive: true });
+    toggleBtnVisibility();
+
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initUniversalBackToTop);
+  } else {
+    initUniversalBackToTop();
+  }
