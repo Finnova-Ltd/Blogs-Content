@@ -7717,3 +7717,77 @@ table tbody tr:hover {
   width: 14px;
   border-radius: 10px;
 }
+
+    /* 3-Column Layout: Sticky Fixed Col 1 & Col 3 with Scrolling Center Col 2 */
+    .blog-hub-layout {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr) 320px;
+      gap: 32px;
+      margin-top: 36px;
+      align-items: start;
+    }
+
+    /* Fixed / Sticky Col 1 (Left Sidebar) */
+    .blog-left-sidebar {
+      position: sticky;
+      top: 96px;
+      max-height: calc(100vh - 110px);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+      scrollbar-color: #cbd5e1 transparent;
+      padding-right: 6px;
+    }
+    .blog-left-sidebar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .blog-left-sidebar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+
+    /* Fixed / Sticky Col 3 (Right Sidebar) */
+    .blog-right-sidebar {
+      position: sticky;
+      top: 96px;
+      max-height: calc(100vh - 110px);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+      scrollbar-color: #cbd5e1 transparent;
+      padding-left: 2px;
+      padding-right: 4px;
+    }
+    .blog-right-sidebar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .blog-right-sidebar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+
+    /* Center Feed (Col 2) Scrolls Naturally */
+    .blog-center-content {
+      min-width: 0;
+    }
+
+    @media (max-width: 1200px) {
+      .blog-hub-layout {
+        grid-template-columns: 260px minmax(0, 1fr);
+      }
+      .blog-right-sidebar {
+        display: none;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .blog-hub-layout {
+        grid-template-columns: 1fr;
+      }
+      .blog-left-sidebar {
+        position: static;
+        max-height: none;
+        overflow-y: visible;
+        margin-bottom: 24px;
+      }
+    }
