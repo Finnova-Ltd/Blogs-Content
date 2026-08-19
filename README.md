@@ -6,9 +6,13 @@ Automated markdown syndication repository for PRO CRM blogs, executive regulator
 - **Live Blog**: [https://procrm.com.au/blog](https://procrm.com.au/blog)
 - **Live RSS XML**: [https://procrm.com.au/rss.xml](https://procrm.com.au/rss.xml)
 - **Author**: R BAKSHI
-- **Total Synced Articles**: 27
+- **Total Synced Articles**: 30
 
 ## Articles Index
+- [Defending Against AI-Enabled Cyber Attacks: Practical Guidance for Australian Small Businesses & CRM Platforms](./articles/defending-against-ai-enabled-cyber-attacks-smb-guide.md) — *Security Advisories (2026-08-20)*
+- [MSP Cyber Risk & Supply Chain Governance: Essential Audit Checklist for Australian Enterprises](./articles/msp-cyber-supply-chain-governance-questions-asd.md) — *Security Advisories (2026-08-20)*
+- [Attack Surface Reduction: ASD Secure-by-Design Blueprint for Decommissioning Legacy Digital Assets](./articles/attack-surface-reduction-legacy-decommissioning-asd.md) — *Security Advisories (2026-08-20)*
+- [Automated Browser & OS Patching: ASD Essential Eight Implementation for Distributed Australian Workforces](./articles/automated-browser-os-patching-distributed-teams-essential-eight.md) — *Security Advisories (2026-08-20)*
 - [ASD ISM Guidelines for Cyber Security Incidents: Enterprise Response, Containment & Compliance Blueprint](./articles/cyber-security-incident-response-guidelines-asd-ism.md) — *Security Advisories (2026-08-20)*
 - [What Are the New Direct Care Minutes Compliance Deadlines for Australian Aged Care Operators?](./articles/aged-care-strengthened-standards-digital-care-minutes.md) — *NDIS Updates (2026-08-18)*
 - [How Does NIST CSF 2.0 and Automated Vulnerability Management Modernize Australian CRM Security?](./articles/nist-csf-2-automated-vulnerability-management-enterprise-crm.md) — *Security Advisories (2026-08-18)*
