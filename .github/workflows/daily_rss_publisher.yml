@@ -22,11 +22,23 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
       - name: Extract Google Alerts & Generate Articles
         run: python3 scripts/fetch_google_alerts.py --publish
 
       - name: Generate Updated RSS 2.0 Feed
         run: python3 scripts/generate_rss_feed.py
+
+      - name: Build Production Bundle
+        run: npm run build
 
       - name: Commit and push updates
         run: |
