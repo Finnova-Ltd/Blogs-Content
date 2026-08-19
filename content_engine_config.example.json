@@ -1,0 +1,35 @@
+{
+  "brand": {
+    "name": "EZ Mortgage Broker",
+    "shortName": "EZ Mortgage",
+    "tagline": "Melbourne's Leading Mortgage & Finance Specialists",
+    "domain": "https://ezmortgagebroker.com.au",
+    "phone": "1300 050 099",
+    "email": "info@ezmortgagebroker.com.au",
+    "address": "470 St Kilda Rd, Melbourne VIC 3004",
+    "logo": "/images/ez-mortgage-broker.webp",
+    "primaryColor": "#0A2540",
+    "secondaryColor": "#00876C",
+    "accentColor": "#1D4ED8"
+  },
+  "author": {
+    "name": "R BAKSHI",
+    "role": "Principal Mortgage Broker",
+    "avatar": "/images/ez-mortgage-broker.webp",
+    "rating": 5.0,
+    "reviewCount": 14,
+    "bookingUrl": "/#contact",
+    "phoneUrl": "tel:1300050099"
+  },
+  "syndication": {
+    "rssFeedPath": "/rss.xml",
+    "jsonFeedPath": "/feed.xml",
+    "makeWebhookUrl": "https://hook.eu2.make.com/your-custom-webhook-id",
+    "socialChannels": ["facebook", "linkedin", "google_business"]
+  },
+  "imageProviders": {
+    "pexelsEnabled": true,
+    "pixabayEnabled": true,
+    "unsplashCurated": true
+  }
+}
