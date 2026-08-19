@@ -189,6 +189,51 @@ class MakeApiClient:
             body["responsive"] = True
         return self._request("POST", f"/scenarios/{scenario_id}/run", body=body)
 
+    def get_scenario_blueprint(self, scenario_id: int) -> Dict[str, Any]:
+        """Retrieve the full JSON blueprint of an existing scenario."""
+        res = self._request("GET", f"/scenarios/{scenario_id}/blueprint")
+        return res.get("blueprint", res)
+
+    def create_scenario(
+        self,
+        blueprint: Any,
+        scheduling: Any = '{"type":"indefinitely","interval":900}',
+        team_id: Optional[int] = None,
+        name: Optional[str] = None,
+        folder_id: Optional[int] = None,
+        confirmed: bool = True
+    ) -> Dict[str, Any]:
+        """
+        Create a new scenario via Make API v2.
+        Endpoint: POST /api/v2/scenarios
+        """
+        t_id = team_id or self.team_id
+        if not t_id:
+            teams_res = self.list_teams()
+            teams = teams_res.get("teams", [])
+            if teams:
+                t_id = teams[0].get("id")
+                self.team_id = t_id
+
+        if not t_id:
+            raise ValueError("Team ID is required to create a scenario.")
+
+        bp_str = json.dumps(blueprint) if isinstance(blueprint, dict) else str(blueprint)
+        sched_str = json.dumps(scheduling) if isinstance(scheduling, dict) else str(scheduling)
+
+        body: Dict[str, Any] = {
+            "blueprint": bp_str,
+            "scheduling": sched_str,
+            "teamId": t_id
+        }
+        if folder_id:
+            body["folderId"] = folder_id
+        if name:
+            body["name"] = name
+
+        params = {"confirmed": "true"} if confirmed else None
+        return self._request("POST", "/scenarios", params=params, body=body)
+
     def get_scenario_logs(self, scenario_id: int, limit: int = 10) -> List[Dict[str, Any]]:
         """Get recent execution logs for a scenario."""
         params = {"pg[limit]": limit, "pg[sortDir]": "desc"}
