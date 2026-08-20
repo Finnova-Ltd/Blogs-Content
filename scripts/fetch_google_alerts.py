@@ -42,6 +42,12 @@ BLOG_PAGES_DIR = os.path.join(PROJECT_DIR, "pages", "blog")
 
 TARGET_FEEDS = [
     {
+        "category": "Home Loans",
+        "badge": "MORTGAGE MARKET ALERT",
+        "url": "https://www.google.com/alerts/feeds/14625353401416373956/18413967573759855438",
+        "feed_type": "google_alerts"
+    },
+    {
         "category": "Super & SMSF",
         "badge": "SUPER & SMSF INSIGHT",
         "url": "https://www.google.com/alerts/feeds/14625353401416373956/1200677753741493727",
@@ -595,6 +601,17 @@ def main():
                 print(f"✅ Synced {len(new_posts_to_add)} new briefings into posts.json!")
             except Exception as e:
                 print(f"⚠️ Error updating posts.json: {e}")
+
+        
+        # Auto-syndicate newly published posts to Make.com flow
+        if new_posts_to_add:
+            try:
+                from syndicate_to_make import syndicate_article
+                print(f"\n🚀 Auto-Syndicating {len(new_posts_to_add)} new articles to Make.com flow...")
+                for np in new_posts_to_add:
+                    syndicate_article(np)
+            except Exception as se:
+                print(f"⚠️ Make syndication hook notice: {se}")
 
         print(f"\n🎉 Published {published_count} targeted articles with FinancialProduct Schema & Pillar Links!")
     else:
