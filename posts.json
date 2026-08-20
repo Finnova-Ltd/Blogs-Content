@@ -1,5 +1,22 @@
 [
   {
+    "id": "nist-pqc-digital-signatures-round-3-quantum-cryptography",
+    "slug": "nist-pqc-digital-signatures-round-3-quantum-cryptography",
+    "title": "NIST Advances 9 Candidates in Post-Quantum Digital Signatures (PQC Round 3): The Future of Quantum-Resistant eSignatures",
+    "category": "Security Advisories",
+    "badge": "CRYPTOGRAPHY ADVISORY",
+    "date": "21-Aug-2026",
+    "iso_date": "2026-08-21T05:30:00Z",
+    "readTime": "6 min read",
+    "author": "EZ SIGNATURE RESEARCH",
+    "authorRole": "Cryptographic Architecture & Legal Tech",
+    "authorImg": "/images/ez-mortgage-broker.webp",
+    "excerpt": "NIST announces nine candidate algorithms advancing to the third round of the Additional Digital Signatures for Post-Quantum Cryptography (IR 8610). Here is how quantum-resistant cryptography protects enterprise digital contracts.",
+    "summary": "The U.S. National Institute of Standards and Technology (NIST) has released Internal Report (IR) 8610, selecting nine candidates for Round 3 of the Post-Quantum Cryptography Digital Signature standards. Discover why hybrid cryptographic envelopes and quantum resilience are vital for long-term contract validity.",
+    "image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80",
+    "url": "/pages/blog/nist-pqc-digital-signatures-round-3-quantum-cryptography.html"
+  },
+  {
     "id": "afg-mortgage-demand-cooling-budget-upgraders-property-guide-2026",
     "slug": "afg-mortgage-demand-cooling-budget-upgraders-property-guide-2026",
     "title": "AFG Reports Mortgage Demand Cooled Post-Budget: How Australian Upgraders & First-Home Buyers Navigate 2026 Rates",
