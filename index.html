@@ -1024,7 +1024,7 @@
               </label>
               <label class="consent-checkbox" for="c-privacy">
                 <input type="checkbox" id="c-privacy" name="privacy_consent" required>
-                <span>I agree to the <a href="cookie-policy.html">Privacy Policy</a>.</span>
+                <span>I agree to the <a href="/privacy-policy.html">Privacy Policy</a>.</span>
               </label>
               <label class="consent-checkbox" for="c-cookies">
                 <input type="checkbox" id="c-cookies" name="cookie_consent" required>
@@ -1136,7 +1136,7 @@
         <div class="footer-bottom-inner" style="display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap;">
           <p style="color:#E2E8F0 !important; font-size:0.86rem; margin:0;">© 2026 EZ Mortgage Broker Credit Rep 538522. ACL of NMB, our Aggregator - 391209.</p>
           <div class="footer-legal" style="display:flex; gap:18px; flex-wrap:wrap;">
-            <a href="cookie-policy.html" style="color:#CBD5E1 !important; font-size:0.86rem; font-weight:600; text-decoration:none;">Privacy Policy</a>
+            <a href="/privacy-policy.html" style="color:#CBD5E1 !important; font-size:0.86rem; font-weight:600; text-decoration:none;">Privacy Policy</a>
             <a href="cookie-policy.html" style="color:#CBD5E1 !important; font-size:0.86rem; font-weight:600; text-decoration:none;">Terms of Use</a>
             <a href="cookie-policy.html" style="color:#CBD5E1 !important; font-size:0.86rem; font-weight:600; text-decoration:none;">Credit Guide</a>
             <a href="cookie-policy.html" style="color:#CBD5E1 !important; font-size:0.86rem; font-weight:600; text-decoration:none;">Complaints</a>
@@ -1369,13 +1369,43 @@
         });
       }
 
-      // Modal Step 5 Submit
+      // Modal Step 5 Submit & Email Notification to info@ezmortgagebroker.com.au
       var submitBooking = document.getElementById('btnSubmitBooking');
       if (submitBooking) {
-        submitBooking.addEventListener('click', function() {
+        submitBooking.addEventListener('click', async function() {
           var pVal = document.getElementById('bPropertyValue').value.trim();
           bookingData.propertyValue = pVal || 'Not specified';
+          
+          // Display Step 6 confirmation immediately
           goToBookingStep(6);
+
+          // Dispatch lead payload to serverless endpoint
+          try {
+            var payload = {
+              full_name: (bookingData.firstname + ' ' + bookingData.lastname).trim(),
+              first_name: bookingData.firstname,
+              last_name: bookingData.lastname,
+              mobile_number: bookingData.phone,
+              email_address: bookingData.email,
+              postcode: bookingData.postcode,
+              loan_purpose: bookingData.goal || 'Mortgage Consultation Booking',
+              buyer_type: bookingData.buyerType || '',
+              income_source: bookingData.incomeSource || '',
+              estimated_amount: bookingData.propertyValue,
+              form_name: 'Consultation Booking Multi-Step Modal',
+              source_url: window.location.href,
+              recipient: 'info@ezmortgagebroker.com.au'
+            };
+
+            await fetch('/api/leads', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+            });
+            console.log('✅ Lead successfully captured and routed to info@ezmortgagebroker.com.au');
+          } catch (err) {
+            console.warn('[Lead Dispatch]', err);
+          }
         });
       }
 
