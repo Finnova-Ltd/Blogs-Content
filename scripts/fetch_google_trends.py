@@ -342,7 +342,7 @@ def generate_trend_article_html(topic, context_items):
                 <span class="highlight-timeline-dot"></span>
                 <div class="highlight-item-content">
                   <span class="highlight-item-tag">Actionable Tactics</span>
-                  <p class="highlight-item-summary">Compare 50+ lenders at zero cost</p>
+                  <p class="highlight-item-summary">Compare 30+ accredited lenders at zero cost</p>
                 </div>
               </div>
             </div>

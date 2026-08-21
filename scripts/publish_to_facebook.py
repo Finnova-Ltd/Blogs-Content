@@ -57,7 +57,7 @@ def format_facebook_post(article):
 {snippet}
 
 ✅ What this means for you:
-🔹 Compare 50+ lenders to access discretionary interest rate discounts
+🔹 Compare 30+ accredited lenders to access discretionary interest rate discounts
 🔹 Check borrowing capacity and 3.0% APRA buffer serviceability
 🔹 Fast-track pre-approval with zero broker fees
 

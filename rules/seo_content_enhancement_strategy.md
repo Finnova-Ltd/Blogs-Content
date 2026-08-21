@@ -40,7 +40,7 @@ To prevent Google's *Scaled Content Abuse* or *Thin Content* penalties, articles
 | Parameter | Standard / Constraint | Example |
 | :--- | :--- | :--- |
 | **Title Tag** | 50 – 60 characters (Max 60 chars) | `First Home Buyer Loans Melbourne \| 5% Deposit \| EZ Broker` |
-| **Meta Description** | 140 – 160 characters (Max 160 chars) | `Compare 50+ lenders with Melbourne mortgage brokers. Access 5% deposit schemes, VIC stamp duty exemptions, and fast pre-approvals.` |
+| **Meta Description** | 140 – 160 characters (Max 160 chars) | `Compare 30+ accredited lenders with Melbourne mortgage brokers. Access 5% deposit schemes, VIC stamp duty exemptions, and fast pre-approvals.` |
 | **Primary H1** | Exactly one `<h1>` per page | `First Home Buyer Loans Melbourne` |
 | **Headings H2/H3** | Keyword-rich, answering user intent | `How Does the Australian 5% Deposit Scheme Work?` |
 | **Open Graph** | `og:title`, `og:description`, `og:image`, `og:url`, `og:type="article"` | Included on all pages |

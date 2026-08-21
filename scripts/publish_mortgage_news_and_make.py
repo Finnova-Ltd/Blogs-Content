@@ -42,7 +42,7 @@ new_articles = [
             "Serviceability Buffers: The APRA 3.0% stress-test buffer remains the primary borrowing cap, making broker rate negotiation critical.",
             "First Home Buyer Strategy: Eligible buyers can bridge deposit gaps using the expanded First Home Guarantee (FHG) 5% deposit scheme without paying Lenders Mortgage Insurance (LMI)."
         ],
-        "tip": "If you are planning to upgrade or enter the market, consult an MFAA-accredited broker at EZ Mortgage Broker to compare 50+ Australian lenders and maximize your borrowing capacity.",
+        "tip": "If you are planning to upgrade or enter the market, consult an MFAA-accredited broker at EZ Mortgage Broker to compare 30+ accredited Australian lenders and maximize your borrowing capacity.",
         "sourceUrl": "https://thewest.com.au/business/banking/afg-says-mortgage-demand-has-cooled-since-budget-as-upgraders-stir-but-first-home-buyers-stay-out-c-22748762"
     },
     {
@@ -232,7 +232,7 @@ def generate_html(post):
     <div class="rounded-3xl bg-[#084582] text-white p-8 text-center space-y-4 shadow-md">
       <h3 class="text-xl sm:text-2xl font-black">Want to calculate your exact borrowing power or interest rate savings?</h3>
       <p class="text-sm text-blue-100 max-w-xl mx-auto">
-        Speak with an MFAA-accredited mortgage broker in Melbourne. We compare 50+ lenders to find you the lowest available rate with zero broker fees.
+        Speak with an MFAA-accredited mortgage broker in Melbourne. We compare 30+ accredited lenders to find you the lowest available rate with zero broker fees.
       </p>
       <div class="flex items-center justify-center gap-4 pt-2">
         <a href="/calculators.html#borrowing-power" class="bg-amber-500 hover:bg-amber-400 text-slate-900 text-xs font-black px-6 py-3 rounded-xl transition">

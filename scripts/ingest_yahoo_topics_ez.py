@@ -101,7 +101,7 @@ def rewrite_to_180_words(title, category, source_url):
     bullets = [
         f"Lending Policy Impact: Financial institutions and regulators are recalibrating credit assessment buffers and living expense verification standards across {category}.",
         "Borrower Serviceability: Household cashflow buffers and debt-to-income limits remain paramount for loan pre-approvals and refinancing applications.",
-        "Strategic Rate Negotiation: Accredited mortgage broker access to 50+ lenders provides significant leverage to negotiate unadvertised pricing discounts."
+        "Strategic Rate Negotiation: Accredited mortgage broker access to 30+ accredited lenders provides significant leverage to negotiate unadvertised pricing discounts."
     ]
 
     tip = (

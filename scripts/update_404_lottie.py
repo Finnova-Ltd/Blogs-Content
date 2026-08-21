@@ -481,7 +481,7 @@ html_content = """<!DOCTYPE html>
         </h2>
         
         <p class="desc-404">
-          See how EZ Mortgage Broker, Australia's trusted mortgage brokerage, helps you compare 50+ Australian lenders, eliminate bank loyalty tax, and fast-track your home loan approval with zero broker fees.
+          See how EZ Mortgage Broker, Australia's trusted mortgage brokerage, helps you compare 30+ accredited Australian lenders, eliminate bank loyalty tax, and fast-track your home loan approval with zero broker fees.
         </p>
         
         <div class="hero-ctas">

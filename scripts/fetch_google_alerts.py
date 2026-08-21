@@ -149,7 +149,7 @@ def generate_value_dense_content(headline, snippet, category):
         b1 = "<strong>Borrowing Capacity:</strong> Every 0.25% change shifts average household borrowing limits by approximately 2.5% to 3.0%."
         b2 = "<strong>Monthly Repayments:</strong> On a standard $600,000 mortgage, a 25 bps movement translates to roughly $95–$105 in monthly cash-flow adjustments."
         b3 = "<strong>Lender Pricing Discretion:</strong> Non-bank and second-tier lenders are introducing unadvertised rate discounts to attract quality refinancers."
-        tip = "<strong>Broker Advisory:</strong> We recommend stress-testing your monthly budget with a 3.00% buffer and reviewing discretionary rate discounts across 50+ lenders before your next statement cycle."
+        tip = "<strong>Broker Advisory:</strong> We recommend stress-testing your monthly budget with a 3.00% buffer and reviewing discretionary rate discounts across 30+ accredited lenders before your next statement cycle."
     elif "first home" in headline.lower() or "first home" in category.lower():
         summary = "First home buyers in Victoria and Australia-wide can access the Home Guarantee Scheme (5% deposit with zero Lenders Mortgage Insurance) alongside state-based First Home Owner Grants ($10,000) and stamp duty exemptions under $600,000 thresholds."
         b1 = "<strong>Deposit Multipliers:</strong> Eligible buyers need as little as 5% genuine savings, avoiding tens of thousands in upfront LMI costs."
@@ -222,7 +222,7 @@ def generate_article_html(item):
             {
                 "@type": "FinancialProduct",
                 "name": "Australian Residential Home Loan Assessment",
-                "description": "Comprehensive home loan, refinancing, and first home buyer credit comparison across 50+ Australian lenders.",
+                "description": "Comprehensive home loan, refinancing, and first home buyer credit comparison across 30+ accredited Australian lenders.",
                 "provider": {
                     "@type": "FinancialService",
                     "name": "EZ Mortgage Broker",
@@ -416,7 +416,7 @@ def generate_article_html(item):
                 <span class="highlight-timeline-dot"></span>
                 <div class="highlight-item-content">
                   <span class="highlight-item-tag">Broker Strategy</span>
-                  <p class="highlight-item-summary">Compare 50+ lenders at zero cost to you</p>
+                  <p class="highlight-item-summary">Compare 30+ accredited lenders at zero cost to you</p>
                 </div>
               </div>
             </div>
