@@ -61,7 +61,7 @@ def extract_topic_articles(topic_url, keywords):
         with urllib.request.urlopen(req, timeout=12) as resp:
             content = resp.read().decode("utf-8", errors="ignore")
         
-        matches = re.findall(r'<a\s+[^>]*href=['"]([^'"]+)['"][^>]*>(.*?)</a>', content, re.IGNORECASE | re.DOTALL)
+        matches = re.findall(r"<a\\s+[^>]*href=[\x27\"]([^\x27\"]+)[\x27\"][^>]*>(.*?)</a>", content, re.IGNORECASE | re.DOTALL)
         seen = set()
         for href, text in matches:
             clean_text = re.sub(r'<.*?>', '', text).strip()
