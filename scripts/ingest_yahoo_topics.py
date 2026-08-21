@@ -2,7 +2,7 @@
 """
 Yahoo Finance Australia & Multi-Topic Ingestion Engine
 Fetches the latest Australian financial, housing, and banking news from Yahoo Finance Australia,
-generates high-conversion long-form articles, and updates index.html and posts.json.
+generates high-conversion long-form articles, and updates index.html with the sleek Image 4 card standard.
 """
 
 import os
@@ -108,24 +108,64 @@ def update_homepage_featured_articles(all_posts):
         cat = p.get("category", "Money & Banking")
         img = p.get("heroImage") or "https://images.pexels.com/photos/1181354/pexels-photo-1181354.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
         d_str = p.get("publishedDate") or "22-Aug-2026"
-        read_time = p.get("readTime", "5 min read")
+        read_time = p.get("readTime", "4 min read")
+        views = p.get("baseViews", 1450)
+        likes = p.get("baseLikes", 118)
         exc = p.get("excerpt", "")
+        
+        # Parse day and month for date badge
+        day_val = "22"
+        month_val = "AUG"
+        try:
+            parts = d_str.split("-")
+            if len(parts) >= 2:
+                day_val = parts[0]
+                month_val = parts[1].upper()
+        except Exception:
+            pass
+
         cat_bg = "#1D4ED8" if "Banking" in cat else ("#00876C" if "Property" in cat else "#7C3AED")
         
-        cards_html += f"""        <!-- Featured Article: {html.escape(t[:40])} -->
-        <article class="insight-card fade-up" style="background:#ffffff; border:1.5px solid #E2E8F0; border-radius:14px; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 4px 16px rgba(10,37,64,0.04); transition:all 0.3s ease;">
-          <a href="/pages/blog/{slug}.html" class="insight-img" aria-label="Read {html.escape(t)}" style="position:relative; display:block; height:210px; overflow:hidden;">
-            <img src="{img}" alt="{html.escape(t)}" width="400" height="225" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.5s ease;">
-            <span class="category-tag" style="position:absolute; top:12px; left:12px; background:{cat_bg}; color:#ffffff; font-size:0.75rem; font-weight:800; padding:4px 10px; border-radius:4px; text-transform:uppercase;">{html.escape(cat)}</span>
-          </a>
-          <div class="insight-body" style="padding:22px; display:flex; flex-direction:column; flex-grow:1;">
-            <div class="insight-meta" style="font-size:0.8rem; color:#64748B; margin-bottom:8px; font-weight:600;">📅 {d_str} · ⏱️ {read_time}</div>
-            <h3 style="font-size:1.15rem; font-weight:800; line-height:1.4; margin:0 0 10px;">
-              <a href="/pages/blog/{slug}.html" style="color:#0A2540; text-decoration:none;">{html.escape(t)}</a>
+        cards_html += f"""        <!-- Sleek Image 4 Article Card -->
+        <article class="insight-card fade-up" style="background:#ffffff; border:1.5px solid #E2E8F0; border-radius:16px; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 6px 20px rgba(10,37,64,0.05); transition:transform 0.25s ease, box-shadow 0.25s ease;">
+          <div class="insight-img-wrap" style="position:relative; height:205px; overflow:hidden; background:#0A2540;">
+            <a href="/pages/blog/{slug}.html" aria-label="Read {html.escape(t)}" style="display:block; width:100%; height:100%;">
+              <img src="{img}" alt="{html.escape(t)}" width="400" height="225" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.5s ease;">
+            </a>
+            
+            <!-- Date Badge (Image 4 Style) -->
+            <div style="position:absolute; top:14px; left:14px; background:#ffffff; border-radius:8px; padding:6px 12px; text-align:center; box-shadow:0 4px 14px rgba(0,0,0,0.18); line-height:1.1; pointer-events:none; z-index:3;">
+              <span style="display:block; font-size:1.15rem; font-weight:900; color:#0A2540;">{day_val}</span>
+              <span style="display:block; font-size:0.68rem; font-weight:800; color:#64748B; text-transform:uppercase; letter-spacing:0.05em;">{month_val}</span>
+            </div>
+
+            <!-- Category Pill -->
+            <div style="position:absolute; top:14px; right:14px; background:{cat_bg}; color:#ffffff; font-size:0.72rem; font-weight:800; padding:5px 12px; border-radius:20px; text-transform:uppercase; letter-spacing:0.06em; box-shadow:0 2px 8px rgba(0,0,0,0.2); z-index:3;">
+              {html.escape(cat)}
+            </div>
+          </div>
+
+          <div class="insight-body" style="padding:22px 20px; display:flex; flex-direction:column; flex-grow:1;">
+            <h3 style="font-size:1.12rem; font-weight:800; line-height:1.42; margin:0 0 10px;">
+              <a href="/pages/blog/{slug}.html" style="color:#0A2540; text-decoration:none; transition:color 0.2s ease;">{html.escape(t)}</a>
             </h3>
-            <p style="color:#475569; font-size:0.9rem; line-height:1.6; margin:0 0 18px; flex-grow:1;">{html.escape(exc[:150])}...</p>
-            <div style="margin-top:auto; padding-top:14px; border-top:1px solid #F1F5F9;">
-              <a href="/pages/blog/{slug}.html" class="btn btn-outline" style="display:inline-flex; align-items:center; gap:6px; padding:8px 16px; font-size:0.88rem; font-weight:700; border:1.5px solid #1D4ED8; color:#1D4ED8; border-radius:6px; text-decoration:none;">Read More &rarr;</a>
+            <p style="color:#475569; font-size:0.88rem; line-height:1.58; margin:0 0 16px; flex-grow:1;">{html.escape(exc[:140])}...</p>
+            
+            <!-- Interactive Social & Read Meta -->
+            <div style="display:flex; align-items:center; justify-content:space-between; font-size:0.78rem; color:#64748B; font-weight:600; padding-bottom:12px; margin-bottom:12px; border-bottom:1px solid #F1F5F9;">
+              <div style="display:flex; align-items:center; gap:12px;">
+                <span>👁️ {views:,}</span>
+                <span>❤️ {likes}</span>
+              </div>
+              <div>⏱️ {read_time}</div>
+            </div>
+
+            <!-- Bottom Progress Line & Read Article Button -->
+            <div style="margin-top:auto; display:flex; align-items:center; justify-content:space-between;">
+              <div style="height:3.5px; width:40%; background:linear-gradient(90deg, #1D4ED8, #38BDF8); border-radius:2px;"></div>
+              <a href="/pages/blog/{slug}.html" style="font-size:0.88rem; font-weight:800; color:#1D4ED8; text-decoration:none; display:inline-flex; align-items:center; gap:4px;">
+                Read Article &rarr;
+              </a>
             </div>
           </div>
         </article>\n"""
