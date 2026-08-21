@@ -334,14 +334,29 @@ def generate_complete_article_html(title, summary, source_name, category, cat_co
         </div>
 
         <!-- Accordion 5: Advisory Assistance -->
-        <div class="article-section-accordion">
+        <div class="article-section-accordion open">
           <button class="article-section-accordion-header" onclick="this.parentElement.classList.toggle('open')">
             <span>5. Talk to EZ Mortgage Broker Today</span>
-            <span class="accordion-icon">+</span>
+            <span class="accordion-icon">−</span>
           </button>
           <div class="article-section-accordion-body">
             <p>Our team of licensed Australian mortgage brokers (MFAA / FBAA accredited) provides free loan health checks, borrowing power calculations, and direct rate negotiation across Australia's leading banks and non-bank lenders.</p>
-            <p style="margin-top:12px; font-size:0.88rem; color:#64748B; font-style:italic;">🖋️ Source: {source_name} Official Advisory ({tag}).</p>
+            
+            <div style="margin-top:16px;">
+              <a href="#broker-contact-card" onclick="scrollToContactCard(event)" style="display:inline-flex; align-items:center; gap:8px; padding:12px 22px; background:#0A2540; color:#ffffff !important; border-radius:8px; font-weight:800; font-size:0.92rem; text-decoration:none; box-shadow:0 4px 14px rgba(10,37,64,0.15); transition:all 0.2s ease;">
+                💬 Connect with R Bakshi &amp; Book Free Consultation &rarr;
+              </a>
+            </div>
+
+            <!-- Tags & Keywords -->
+            <div class="article-tags-wrapper" style="margin-top:24px; padding-top:16px; border-top:1px solid #E2E8F0; display:flex; flex-wrap:wrap; align-items:center; gap:8px;">
+              <span style="font-size:0.82rem; font-weight:800; color:#64748B; text-transform:uppercase; letter-spacing:0.05em; margin-right:4px;">🏷️ Tags:</span>
+              <span style="background:#EFF6FF; color:#1D4ED8; font-size:0.8rem; font-weight:700; padding:4px 12px; border-radius:20px; border:1px solid #DBEAFE;">#MortgageAustralia</span>
+              <span style="background:#F0FDF4; color:#16A34A; font-size:0.8rem; font-weight:700; padding:4px 12px; border-radius:20px; border:1px solid #DCFCE7;">#HomeLoans</span>
+              <span style="background:#FDF2F8; color:#BE185D; font-size:0.8rem; font-weight:700; padding:4px 12px; border-radius:20px; border:1px solid #FCE7F3;">#Refinancing</span>
+              <span style="background:#FEF3C7; color:#B45309; font-size:0.8rem; font-weight:700; padding:4px 12px; border-radius:20px; border:1px solid #FDE68A;">#BorrowingPower</span>
+              <span style="background:#F1F5F9; color:#334155; font-size:0.8rem; font-weight:700; padding:4px 12px; border-radius:20px; border:1px solid #E2E8F0;">#EZMortgageBroker</span>
+            </div>
           </div>
         </div>
 
@@ -351,7 +366,7 @@ def generate_complete_article_html(title, summary, source_name, category, cat_co
       <aside class="article-sidebar">
         
         <!-- 1. Broker Profile Card -->
-        <div class="author-profile-box">
+        <div class="author-profile-box" id="broker-contact-card" style="transition:all 0.4s ease;">
           <div class="author-profile-banner"></div>
           <div class="author-profile-avatar-wrap">
             <img src="/images/ez-mortgage-broker.webp" alt="EZ Mortgage Broker Logo" class="author-profile-avatar-img">
@@ -454,6 +469,24 @@ def generate_complete_article_html(title, summary, source_name, category, cat_co
 
     </div>
   </main>
+
+  <script>
+    function scrollToContactCard(e) {{
+      if (e) e.preventDefault();
+      var card = document.getElementById("broker-contact-card");
+      if (card) {{
+        card.scrollIntoView({{ behavior: "smooth", block: "center" }});
+        card.style.outline = "3px solid #1D4ED8";
+        card.style.boxShadow = "0 0 25px rgba(29, 78, 216, 0.4)";
+        card.style.transform = "scale(1.02)";
+        setTimeout(function() {{
+          card.style.outline = "none";
+          card.style.boxShadow = "0 4px 16px rgba(0,0,0,0.06)";
+          card.style.transform = "none";
+        }}, 2200);
+      }}
+    }}
+  </script>
 
   <!-- Footer -->
   <footer style="background:#0A2540; color:#94A3B8; padding:32px 0; border-top:1px solid #1E3A8A; font-size:0.85rem; text-align:center;">
