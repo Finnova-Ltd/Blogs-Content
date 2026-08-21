@@ -44,7 +44,7 @@ for p in [PAGES_BLOG_DIR, PUB_PAGES_BLOG_DIR]:
 AUTHORITY_SOURCES = [
     {"name": "AUSTRAC Regulatory Intelligence", "category": "Compliance & Fraud Prevention", "site_query": "site:austrac.gov.au/news-and-media", "tag": "#AUSTRAC", "cat_color": "#DC2626"},
     {"name": "MFAA Industry Leadership", "category": "Mortgage Broking & Policy", "site_query": "site:mfaa.com.au/news", "tag": "#MFAA", "cat_color": "#0284C7"},
-    {"name": "FBAA Broker Advocacy", "category": "Finance Broking & Rates", "site_query": "site:fbaa.com.au", "tag": "#FBAA", "cat_color": "#16A34A"},
+    {"name": "Finance & Lending Advocacy", "category": "Finance Broking & Rates", "site_query": "site:fbaa.com.au", "tag": "#FBAA", "cat_color": "#16A34A"},
     {"name": "The Adviser Intelligence", "category": "Lending Strategy & Aggregators", "site_query": "site:theadviser.com.au", "tag": "#TheAdviser", "cat_color": "#1D4ED8"},
     {"name": "Australian Broker Breaking", "category": "Bank Policies & Turnarounds", "site_query": "site:brokernews.com.au", "tag": "#AustralianBroker", "cat_color": "#A81127"},
     {"name": "MPA Mag Australia", "category": "Non-Bank & Commercial Lending", "site_query": "site:mpamag.com/au", "tag": "#MPAMag", "cat_color": "#7C3AED"},
@@ -313,6 +313,63 @@ def generate_complete_article_html(title, summary, source_name, category, cat_co
           </div>
         </div>
 
+        <!-- Interactive 5-Stage Process Infographic Component (Image 1 Style) -->
+        <div class="process-infographic-container" style="background:#ffffff; border:1.5px solid #E2E8F0; border-radius:18px; padding:24px 18px; margin:28px 0; box-shadow:0 6px 20px rgba(10,37,64,0.04);">
+          <div style="text-align:center; margin-bottom:20px;">
+            <span style="color:#1D4ED8; font-size:0.75rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; background:#EFF6FF; padding:4px 12px; border-radius:20px; border:1px solid #DBEAFE;">Interactive Roadmap</span>
+            <h3 style="color:#0A2540; font-size:1.2rem; font-weight:800; margin:6px 0 2px;">5-Stage Property Finance &amp; Approval Process</h3>
+            <p style="color:#64748B; font-size:0.85rem; margin:0;">Track every critical milestone from assessment to settlement.</p>
+          </div>
+
+          <!-- Stepper Track -->
+          <div class="infographic-stepper-track" style="display:flex; align-items:center; justify-content:space-between; max-width:700px; margin:0 auto 18px; position:relative; padding:0 16px;">
+            <div style="position:absolute; top:50%; left:30px; right:30px; height:2px; background:#DBEAFE; z-index:1; transform:translateY(-50%);"></div>
+            
+            <div style="position:relative; z-index:2; width:32px; height:32px; border-radius:50%; background:#1D4ED8; color:#ffffff; display:grid; place-items:center; font-weight:800; font-size:0.85rem; box-shadow:0 0 0 4px #ffffff, 0 2px 6px rgba(29,78,216,0.3);">1</div>
+            <span style="position:relative; z-index:2; color:#3B82F6; font-weight:800; font-size:0.85rem;">&rsaquo;</span>
+            
+            <div style="position:relative; z-index:2; width:32px; height:32px; border-radius:50%; background:#1D4ED8; color:#ffffff; display:grid; place-items:center; font-weight:800; font-size:0.85rem; box-shadow:0 0 0 4px #ffffff, 0 2px 6px rgba(29,78,216,0.3);">2</div>
+            <span style="position:relative; z-index:2; color:#3B82F6; font-weight:800; font-size:0.85rem;">&rsaquo;</span>
+            
+            <div style="position:relative; z-index:2; width:32px; height:32px; border-radius:50%; background:#1D4ED8; color:#ffffff; display:grid; place-items:center; font-weight:800; font-size:0.85rem; box-shadow:0 0 0 4px #ffffff, 0 2px 6px rgba(29,78,216,0.3);">3</div>
+            <span style="position:relative; z-index:2; color:#3B82F6; font-weight:800; font-size:0.85rem;">&rsaquo;</span>
+            
+            <div style="position:relative; z-index:2; width:32px; height:32px; border-radius:50%; background:#1D4ED8; color:#ffffff; display:grid; place-items:center; font-weight:800; font-size:0.85rem; box-shadow:0 0 0 4px #ffffff, 0 2px 6px rgba(29,78,216,0.3);">4</div>
+            <span style="position:relative; z-index:2; color:#3B82F6; font-weight:800; font-size:0.85rem;">&rsaquo;</span>
+            
+            <div style="position:relative; z-index:2; width:32px; height:32px; border-radius:50%; background:#1D4ED8; color:#ffffff; display:grid; place-items:center; font-weight:800; font-size:0.85rem; box-shadow:0 0 0 4px #ffffff, 0 2px 6px rgba(29,78,216,0.3);">5</div>
+          </div>
+
+          <!-- Cards Row -->
+          <div class="infographic-cards-row" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(110px, 1fr)); gap:10px;">
+            <div style="background:#F8FAFC; border:1.5px solid #E2E8F0; border-radius:12px; padding:14px 8px; text-align:center;">
+              <div style="width:44px; height:44px; border-radius:50%; background:#EFF6FF; border:1.5px solid #DBEAFE; margin:0 auto 8px; display:grid; place-items:center; font-size:1.2rem;">📊</div>
+              <h4 style="font-size:0.82rem; font-weight:800; color:#0A2540; margin:0 0 6px;">1. Assessment</h4>
+              <div style="border-top:1px solid #E2E8F0; margin-top:6px; padding-top:6px;"><span style="color:#1D4ED8; font-weight:800; font-size:0.88rem;">15 Mins</span></div>
+            </div>
+            <div style="background:#F8FAFC; border:1.5px solid #E2E8F0; border-radius:12px; padding:14px 8px; text-align:center;">
+              <div style="width:44px; height:44px; border-radius:50%; background:#EFF6FF; border:1.5px solid #DBEAFE; margin:0 auto 8px; display:grid; place-items:center; font-size:1.2rem;">🏦</div>
+              <h4 style="font-size:0.82rem; font-weight:800; color:#0A2540; margin:0 0 6px;">2. 50+ Banks</h4>
+              <div style="border-top:1px solid #E2E8F0; margin-top:6px; padding-top:6px;"><span style="color:#1D4ED8; font-weight:800; font-size:0.88rem;">Rate Match</span></div>
+            </div>
+            <div style="background:#F8FAFC; border:1.5px solid #E2E8F0; border-radius:12px; padding:14px 8px; text-align:center;">
+              <div style="width:44px; height:44px; border-radius:50%; background:#EFF6FF; border:1.5px solid #DBEAFE; margin:0 auto 8px; display:grid; place-items:center; font-size:1.2rem;">📑</div>
+              <h4 style="font-size:0.82rem; font-weight:800; color:#0A2540; margin:0 0 6px;">3. Pre-Approve</h4>
+              <div style="border-top:1px solid #E2E8F0; margin-top:6px; padding-top:6px;"><span style="color:#1D4ED8; font-weight:800; font-size:0.88rem;">90 Days</span></div>
+            </div>
+            <div style="background:#F8FAFC; border:1.5px solid #E2E8F0; border-radius:12px; padding:14px 8px; text-align:center;">
+              <div style="width:44px; height:44px; border-radius:50%; background:#EFF6FF; border:1.5px solid #DBEAFE; margin:0 auto 8px; display:grid; place-items:center; font-size:1.2rem;">🔍</div>
+              <h4 style="font-size:0.82rem; font-weight:800; color:#0A2540; margin:0 0 6px;">4. Valuation</h4>
+              <div style="border-top:1px solid #E2E8F0; margin-top:6px; padding-top:6px;"><span style="color:#1D4ED8; font-weight:800; font-size:0.88rem;">Formal</span></div>
+            </div>
+            <div style="background:#F0FDF4; border:1.5px solid #BBF7D0; border-radius:12px; padding:14px 8px; text-align:center;">
+              <div style="width:44px; height:44px; border-radius:50%; background:#DCFCE7; border:1.5px solid #86EFAC; margin:0 auto 8px; display:grid; place-items:center; font-size:1.2rem;">🔑</div>
+              <h4 style="font-size:0.82rem; font-weight:800; color:#16A34A; margin:0 0 6px;">5. Settlement</h4>
+              <div style="border-top:1px solid #BBF7D0; margin-top:6px; padding-top:6px;"><span style="color:#16A34A; font-weight:800; font-size:0.88rem;">Keys &amp; Win</span></div>
+            </div>
+          </div>
+        </div>
+
         <!-- Accordion 4: Action Checklist -->
         <div class="article-section-accordion">
           <button class="article-section-accordion-header" onclick="this.parentElement.classList.toggle('open')">
@@ -340,7 +397,7 @@ def generate_complete_article_html(title, summary, source_name, category, cat_co
             <span class="accordion-icon">−</span>
           </button>
           <div class="article-section-accordion-body">
-            <p>Our team of licensed Australian mortgage brokers (MFAA / FBAA accredited) provides free loan health checks, borrowing power calculations, and direct rate negotiation across Australia's leading banks and non-bank lenders.</p>
+            <p>Our team of licensed Australian mortgage brokers (MFAA accredited) provides free loan health checks, borrowing power calculations, and direct rate negotiation across Australia's leading banks and non-bank lenders.</p>
             
             <div style="margin-top:16px;">
               <a href="#broker-contact-card" onclick="scrollToContactCard(event)" style="display:inline-flex; align-items:center; gap:8px; padding:12px 22px; background:#0A2540; color:#ffffff !important; border-radius:8px; font-weight:800; font-size:0.92rem; text-decoration:none; box-shadow:0 4px 14px rgba(10,37,64,0.15); transition:all 0.2s ease;">

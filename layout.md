@@ -92,3 +92,89 @@ Every article page consists of a **Full-Bleed Header Banner** followed by a **2-
 ## 3. Python Automation Integration Rule
 
 When any content script generates an article (e.g. `ingest_authority_sources.py`, `ingest_yahoo_topics.py`, `ingest_salesforce_news.py`), it must call the standardized helper `generate_complete_article_html(...)` to output this exact structure.
+
+---
+
+## 4. Interactive 5-Stage Process Infographic Component (`.process-infographic-container`)
+
+To boost reader engagement and visually illustrate multi-stage processes (e.g. Construction Progress Draws, 5-Step First Home Roadmaps, Refinancing Milestones), use the **Interactive Process Stepper Infographic**:
+
+```html
+<!-- ========== 5-STAGE PROCESS INFOGRAPHIC ========== -->
+<div class="process-infographic-container" style="background:#ffffff; border:1.5px solid #E2E8F0; border-radius:18px; padding:28px 20px; margin:28px 0; box-shadow:0 6px 20px rgba(10,37,64,0.04);">
+  <div style="text-align:center; margin-bottom:24px;">
+    <span style="color:#1D4ED8; font-size:0.78rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; background:#EFF6FF; padding:4px 12px; border-radius:20px; border:1px solid #DBEAFE;">Interactive Roadmap</span>
+    <h3 style="color:#0A2540; font-size:1.3rem; font-weight:800; margin:8px 0 4px;">5-Stage Lending &amp; Progress Roadmap</h3>
+    <p style="color:#64748B; font-size:0.88rem; margin:0;">Track every key milestone from initial application to final key handover.</p>
+  </div>
+
+  <!-- Stepper Track -->
+  <div class="infographic-stepper-track" style="display:flex; align-items:center; justify-content:space-between; max-width:860px; margin:0 auto 20px; position:relative; padding:0 20px;">
+    <div style="position:absolute; top:50%; left:40px; right:40px; height:2.5px; background:#DBEAFE; z-index:1; transform:translateY(-50%);"></div>
+    
+    <div style="position:relative; z-index:2; width:36px; height:36px; border-radius:50%; background:#1D4ED8; color:#ffffff; display:grid; place-items:center; font-weight:800; font-size:0.9rem; box-shadow:0 0 0 5px #ffffff, 0 2px 8px rgba(29,78,216,0.3);">1</div>
+    <span style="position:relative; z-index:2; color:#3B82F6; font-weight:800; font-size:0.9rem;">&rsaquo;</span>
+    
+    <div style="position:relative; z-index:2; width:36px; height:36px; border-radius:50%; background:#1D4ED8; color:#ffffff; display:grid; place-items:center; font-weight:800; font-size:0.9rem; box-shadow:0 0 0 5px #ffffff, 0 2px 8px rgba(29,78,216,0.3);">2</div>
+    <span style="position:relative; z-index:2; color:#3B82F6; font-weight:800; font-size:0.9rem;">&rsaquo;</span>
+    
+    <div style="position:relative; z-index:2; width:36px; height:36px; border-radius:50%; background:#1D4ED8; color:#ffffff; display:grid; place-items:center; font-weight:800; font-size:0.9rem; box-shadow:0 0 0 5px #ffffff, 0 2px 8px rgba(29,78,216,0.3);">3</div>
+    <span style="position:relative; z-index:2; color:#3B82F6; font-weight:800; font-size:0.9rem;">&rsaquo;</span>
+    
+    <div style="position:relative; z-index:2; width:36px; height:36px; border-radius:50%; background:#1D4ED8; color:#ffffff; display:grid; place-items:center; font-weight:800; font-size:0.9rem; box-shadow:0 0 0 5px #ffffff, 0 2px 8px rgba(29,78,216,0.3);">4</div>
+    <span style="position:relative; z-index:2; color:#3B82F6; font-weight:800; font-size:0.9rem;">&rsaquo;</span>
+    
+    <div style="position:relative; z-index:2; width:36px; height:36px; border-radius:50%; background:#1D4ED8; color:#ffffff; display:grid; place-items:center; font-weight:800; font-size:0.9rem; box-shadow:0 0 0 5px #ffffff, 0 2px 8px rgba(29,78,216,0.3);">5</div>
+  </div>
+
+  <!-- Cards Grid -->
+  <div class="infographic-cards-row" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:12px;">
+    
+    <!-- Stage 1 -->
+    <div style="background:#ffffff; border:1.5px solid #E2E8F0; border-radius:14px; padding:18px 10px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.02); transition:transform 0.2s ease;">
+      <div style="width:54px; height:54px; border-radius:50%; background:#EFF6FF; border:1.5px solid #DBEAFE; margin:0 auto 12px; display:grid; place-items:center; font-size:1.4rem;">🏗️</div>
+      <h4 style="font-size:0.95rem; font-weight:800; color:#0A2540; margin:0 0 8px;">1. Slab / Deposit</h4>
+      <div style="border-top:1px solid #F1F5F9; margin-top:8px; padding-top:8px;">
+        <span style="color:#1D4ED8; font-weight:800; font-size:1.05rem;">20%</span>
+      </div>
+    </div>
+
+    <!-- Stage 2 -->
+    <div style="background:#ffffff; border:1.5px solid #E2E8F0; border-radius:14px; padding:18px 10px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.02); transition:transform 0.2s ease;">
+      <div style="width:54px; height:54px; border-radius:50%; background:#EFF6FF; border:1.5px solid #DBEAFE; margin:0 auto 12px; display:grid; place-items:center; font-size:1.4rem;">🪵</div>
+      <h4 style="font-size:0.95rem; font-weight:800; color:#0A2540; margin:0 0 8px;">2. Frame</h4>
+      <div style="border-top:1px solid #F1F5F9; margin-top:8px; padding-top:8px;">
+        <span style="color:#1D4ED8; font-weight:800; font-size:1.05rem;">20%</span>
+      </div>
+    </div>
+
+    <!-- Stage 3 -->
+    <div style="background:#ffffff; border:1.5px solid #E2E8F0; border-radius:14px; padding:18px 10px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.02); transition:transform 0.2s ease;">
+      <div style="width:54px; height:54px; border-radius:50%; background:#EFF6FF; border:1.5px solid #DBEAFE; margin:0 auto 12px; display:grid; place-items:center; font-size:1.4rem;">🏠</div>
+      <h4 style="font-size:0.95rem; font-weight:800; color:#0A2540; margin:0 0 8px;">3. Lock-Up</h4>
+      <div style="border-top:1px solid #F1F5F9; margin-top:8px; padding-top:8px;">
+        <span style="color:#1D4ED8; font-weight:800; font-size:1.05rem;">20%</span>
+      </div>
+    </div>
+
+    <!-- Stage 4 -->
+    <div style="background:#ffffff; border:1.5px solid #E2E8F0; border-radius:14px; padding:18px 10px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.02); transition:transform 0.2s ease;">
+      <div style="width:54px; height:54px; border-radius:50%; background:#EFF6FF; border:1.5px solid #DBEAFE; margin:0 auto 12px; display:grid; place-items:center; font-size:1.4rem;">🚪</div>
+      <h4 style="font-size:0.95rem; font-weight:800; color:#0A2540; margin:0 0 8px;">4. Fixing</h4>
+      <div style="border-top:1px solid #F1F5F9; margin-top:8px; padding-top:8px;">
+        <span style="color:#1D4ED8; font-weight:800; font-size:1.05rem;">20%</span>
+      </div>
+    </div>
+
+    <!-- Stage 5 -->
+    <div style="background:#ffffff; border:1.5px solid #E2E8F0; border-radius:14px; padding:18px 10px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.02); transition:transform 0.2s ease;">
+      <div style="width:54px; height:54px; border-radius:50%; background:#F0FDF4; border:1.5px solid #BBF7D0; margin:0 auto 12px; display:grid; place-items:center; font-size:1.4rem;">🔑</div>
+      <h4 style="font-size:0.95rem; font-weight:800; color:#16A34A; margin:0 0 8px;">5. Completion</h4>
+      <div style="border-top:1px solid #F1F5F9; margin-top:8px; padding-top:8px;">
+        <span style="color:#16A34A; font-weight:800; font-size:1.05rem;">20%</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+```
