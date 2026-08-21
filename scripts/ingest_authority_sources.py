@@ -1,16 +1,9 @@
 #!/usr/bin/env python3
 """
 EZ Mortgage Broker — Australian Industry Authority News Ingestion Engine
-Fetches and publishes 1 daily high-authority article from:
-1. AUSTRAC Media Releases (https://www.austrac.gov.au/news-and-media/news-and-media-releases)
-2. Business News Australia (https://www.businessnewsaustralia.com)
-3. MFAA News (https://www.mfaa.com.au/news)
-4. FBAA NewsHub (https://www.fbaa.com.au/news-media/newshub/)
-5. Australian Broker (https://www.brokernews.com.au/news/breaking-news/)
-6. The Adviser (https://www.theadviser.com.au/news)
-7. MPA Mag Australia (https://www.mpamag.com/au)
-8. ABC News Mortgages (https://www.abc.net.au/news/topic/mortgages)
-9. Mortgage Choice News (https://www.mortgagechoice.com.au/news/)
+Strictly complies with rules/article_format_standards.md:
+Generates full-bleed header, interactive accordion sections, responsive data table,
+and sticky 5-widget sidebar (Broker profile, Crimson highlights, Google Reviews, Calculators, Call CTA).
 """
 
 import os
@@ -44,78 +37,20 @@ POSTS_JSON = os.path.join(ROOT_DIR, "posts.json")
 PUB_POSTS_JSON = os.path.join(ROOT_DIR, "public", "posts.json")
 PAGES_BLOG_DIR = os.path.join(ROOT_DIR, "pages", "blog")
 PUB_PAGES_BLOG_DIR = os.path.join(ROOT_DIR, "public", "pages", "blog")
-RSS_FILE = os.path.join(ROOT_DIR, "rss.xml")
-FEED_FILE = os.path.join(ROOT_DIR, "feed.xml")
-PUB_RSS_FILE = os.path.join(ROOT_DIR, "public", "rss.xml")
-PUB_FEED_FILE = os.path.join(ROOT_DIR, "public", "feed.xml")
 
 for p in [PAGES_BLOG_DIR, PUB_PAGES_BLOG_DIR]:
     os.makedirs(p, exist_ok=True)
 
 AUTHORITY_SOURCES = [
-    {
-        "name": "AUSTRAC Regulatory Intelligence",
-        "category": "Compliance & Fraud Prevention",
-        "site_query": "site:austrac.gov.au/news-and-media",
-        "tag": "#AUSTRAC",
-        "domain": "austrac.gov.au"
-    },
-    {
-        "name": "MFAA Industry Leadership",
-        "category": "Mortgage Broking & Policy",
-        "site_query": "site:mfaa.com.au/news",
-        "tag": "#MFAA",
-        "domain": "mfaa.com.au"
-    },
-    {
-        "name": "FBAA Broker Advocacy",
-        "category": "Finance Broking & Rates",
-        "site_query": "site:fbaa.com.au",
-        "tag": "#FBAA",
-        "domain": "fbaa.com.au"
-    },
-    {
-        "name": "The Adviser Intelligence",
-        "category": "Lending Strategy & Aggregators",
-        "site_query": "site:theadviser.com.au",
-        "tag": "#TheAdviser",
-        "domain": "theadviser.com.au"
-    },
-    {
-        "name": "Australian Broker Breaking",
-        "category": "Bank Policies & Turnarounds",
-        "site_query": "site:brokernews.com.au",
-        "tag": "#AustralianBroker",
-        "domain": "brokernews.com.au"
-    },
-    {
-        "name": "MPA Mag Australia",
-        "category": "Non-Bank & Commercial Lending",
-        "site_query": "site:mpamag.com/au",
-        "tag": "#MPAMag",
-        "domain": "mpamag.com"
-    },
-    {
-        "name": "ABC News Mortgages",
-        "category": "RBA & Housing Economy",
-        "site_query": "site:abc.net.au/news+mortgages",
-        "tag": "#ABCNews",
-        "domain": "abc.net.au"
-    },
-    {
-        "name": "Business News Australia",
-        "category": "Property Finance & M&A",
-        "site_query": "site:businessnewsaustralia.com",
-        "tag": "#BusinessNewsAU",
-        "domain": "businessnewsaustralia.com"
-    },
-    {
-        "name": "Mortgage Choice Market Insights",
-        "category": "Home Loans & Refinancing",
-        "site_query": "site:mortgagechoice.com.au",
-        "tag": "#MortgageChoice",
-        "domain": "mortgagechoice.com.au"
-    }
+    {"name": "AUSTRAC Regulatory Intelligence", "category": "Compliance & Fraud Prevention", "site_query": "site:austrac.gov.au/news-and-media", "tag": "#AUSTRAC", "cat_color": "#DC2626"},
+    {"name": "MFAA Industry Leadership", "category": "Mortgage Broking & Policy", "site_query": "site:mfaa.com.au/news", "tag": "#MFAA", "cat_color": "#0284C7"},
+    {"name": "FBAA Broker Advocacy", "category": "Finance Broking & Rates", "site_query": "site:fbaa.com.au", "tag": "#FBAA", "cat_color": "#16A34A"},
+    {"name": "The Adviser Intelligence", "category": "Lending Strategy & Aggregators", "site_query": "site:theadviser.com.au", "tag": "#TheAdviser", "cat_color": "#1D4ED8"},
+    {"name": "Australian Broker Breaking", "category": "Bank Policies & Turnarounds", "site_query": "site:brokernews.com.au", "tag": "#AustralianBroker", "cat_color": "#A81127"},
+    {"name": "MPA Mag Australia", "category": "Non-Bank & Commercial Lending", "site_query": "site:mpamag.com/au", "tag": "#MPAMag", "cat_color": "#7C3AED"},
+    {"name": "ABC News Mortgages", "category": "RBA & Housing Economy", "site_query": "site:abc.net.au/news+mortgages", "tag": "#ABCNews", "cat_color": "#00876C"},
+    {"name": "Business News Australia", "category": "Property Finance & M&A", "site_query": "site:businessnewsaustralia.com", "tag": "#BusinessNewsAU", "cat_color": "#0A2540"},
+    {"name": "Mortgage Choice Market Insights", "category": "Home Loans & Refinancing", "site_query": "site:mortgagechoice.com.au", "tag": "#MortgageChoice", "cat_color": "#059669"}
 ]
 
 def slugify(title):
@@ -132,10 +67,7 @@ def clean_html(text):
 def fetch_feed_items(site_query):
     encoded = urllib.parse.quote(site_query)
     feed_url = f"https://news.google.com/rss/search?q={encoded}&hl=en-AU&gl=AU&ceid=AU:en"
-    
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-    }
+    headers = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"}
     items = []
     try:
         req = urllib.request.Request(feed_url, headers=headers)
@@ -146,117 +78,396 @@ def fetch_feed_items(site_query):
                 link = it.find("link").text if it.find("link") is not None else ""
                 desc = it.find("description").text if it.find("description") is not None else ""
                 pub = it.find("pubDate").text if it.find("pubDate") is not None else ""
-                
                 clean_t = re.sub(r'\s*-\s*[^-]+$', '', t).strip()
                 if len(clean_t) > 20 and not any(k in clean_t.lower() for k in ["login", "terms of use", "privacy policy", "contact us"]):
-                    items.append({
-                        "title": clean_t,
-                        "link": link,
-                        "description": clean_html(desc),
-                        "pubDate": pub
-                    })
+                    items.append({"title": clean_t, "link": link, "description": clean_html(desc), "pubDate": pub})
     except Exception as e:
         print(f"⚠️ Feed error ({site_query}): {e}")
     return items
 
-def generate_article_content(title, summary, source_name, category, tag):
-    slug = slugify(title)
+def generate_complete_article_html(title, summary, source_name, category, cat_color, tag, hero_image, date_str, read_time, slug):
+    full_url = f"https://ezmortgagebroker.com.au/pages/blog/{slug}.html"
     
-    content_html = f"""
-    <!-- Executive Summary & Direct Answer Card -->
-    <div id="section-1" style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 14px; padding: 24px; margin-bottom: 32px; scroll-margin-top: 100px;">
-      <div style="color: #15803d; font-weight: 800; font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
-        <span style="font-size: 0.9rem; color: #16a34a;">●</span> EXECUTIVE SUMMARY & DIRECT ANSWER
+    html_page = f"""<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{html.escape(summary[:160])}">
+  <title>{html.escape(title)} | EZ Mortgage Broker</title>
+  <link rel="canonical" href="{full_url}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <meta property="og:title" content="{html.escape(title)}">
+  <meta property="og:description" content="{html.escape(summary[:160])}">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="{full_url}">
+  <meta property="og:site_name" content="EZ Mortgage Broker">
+  <meta property="og:image" content="{hero_image}">
+
+  <style>
+    .container, .article-container {{ width: 100%; max-width: 1420px; margin: 0 auto; padding: 0 clamp(16px, 2.5vw, 32px); }}
+    .site-header {{ position: sticky; top: 0; z-index: 1000; background: #ffffff; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06); }}
+    .article-header {{ position: relative; background-color: #0A2540; color: #ffffff !important; padding: 52px 0 44px; overflow: hidden; border-radius: 0 0 16px 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18); }}
+    .article-header-bg {{ position: absolute; top: -15px; left: -15px; right: -15px; bottom: -15px; background-image: url('{hero_image}'); background-size: cover; background-position: center 30%; filter: blur(3px) brightness(0.75) saturate(1.1); transform: scale(1.05); z-index: 1; }}
+    .article-header-overlay {{ position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(10, 37, 64, 0.65) 0%, rgba(10, 37, 64, 0.92) 100%); z-index: 2; }}
+    .article-header-content {{ position: relative; z-index: 3; }}
+    .article-top-toolbar {{ display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; margin-bottom: 20px; }}
+    .article-breadcrumbs {{ display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: #94A3B8; }}
+    .article-breadcrumbs a {{ color: #CBD5E1; text-decoration: none; font-weight: 500; }}
+    .article-breadcrumbs a:hover {{ color: #ffffff; text-decoration: underline; }}
+    .article-social-share-bar {{ display: flex; align-items: center; gap: 6px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(8px); padding: 5px 12px; border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.15); }}
+    .article-share-btn {{ display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; color: #ffffff; text-decoration: none; font-size: 0.8rem; font-weight: 700; transition: transform 0.2s ease; }}
+    .article-share-btn:hover {{ transform: scale(1.15); }}
+    .article-category-badge {{ display: inline-block; background-color: {cat_color}; color: #ffffff !important; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; padding: 6px 14px; border-radius: 4px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); }}
+    .article-title {{ font-size: clamp(1.8rem, 3.2vw, 2.6rem); font-weight: 900; line-height: 1.25; margin: 0 0 14px; color: #ffffff !important; }}
+    .article-subtitle {{ font-size: clamp(0.98rem, 1.3vw, 1.12rem); line-height: 1.6; color: #E2E8F0; max-width: 900px; margin: 0 0 22px; font-weight: 400; }}
+    .article-meta-row {{ display: flex; align-items: center; flex-wrap: wrap; gap: 16px; font-size: 0.86rem; color: #CBD5E1; border-top: 1px solid rgba(255, 255, 255, 0.15); padding-top: 16px; }}
+    .article-layout {{ display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 40px; padding: 48px 0 80px; align-items: flex-start; }}
+    .article-section-accordion {{ background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 10px; margin-bottom: 16px; overflow: hidden; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03); transition: all 0.2s ease; }}
+    .article-section-accordion-header {{ width: 100%; text-align: left; padding: 18px 24px; background: #F8FAFC; border: none; font-size: 1.15rem; font-weight: 800; color: #0A2540; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }}
+    .article-section-accordion.open .article-section-accordion-header {{ background: #ffffff; border-bottom: 1.5px solid #f1f5f9; }}
+    .article-section-accordion-body {{ padding: 24px; color: #334155; line-height: 1.7; }}
+    .article-section-accordion:not(.open) .article-section-accordion-body {{ display: none; }}
+    .article-highlights-widget {{ background: #ffffff; border: 2px solid #a81127; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 16px rgba(168, 17, 39, 0.08); margin-bottom: 20px; }}
+    .highlights-header {{ background: #a81127; color: #ffffff; padding: 12px 18px; display: flex; align-items: center; justify-content: space-between; font-weight: 800; font-size: 0.95rem; }}
+    .highlights-body {{ padding: 18px; }}
+    .highlights-item {{ display: flex; gap: 10px; align-items: flex-start; margin-bottom: 14px; font-size: 0.85rem; }}
+    .highlight-bullet {{ color: #a81127; font-size: 0.9rem; margin-top: 1px; }}
+    .highlights-item p {{ margin: 2px 0 0; color: #64748B; font-size: 0.8rem; }}
+    .article-data-table-wrapper {{ overflow-x: auto; margin: 18px 0; border-radius: 8px; border: 1px solid #e2e8f0; }}
+    .article-data-table {{ width: 100%; border-collapse: collapse; font-size: 0.85rem; text-align: left; }}
+    .article-data-table th {{ background: #0A2540; color: #ffffff; padding: 12px 14px; font-weight: 700; }}
+    .article-data-table td {{ padding: 12px 14px; border-bottom: 1px solid #f1f5f9; color: #334155; }}
+    .article-checklist-card {{ background: #F8FAFC; border-left: 4px solid #00876C; padding: 18px 20px; border-radius: 0 8px 8px 0; margin: 18px 0; }}
+    .article-checklist-list {{ list-style: none; padding: 0; margin: 10px 0 0; }}
+    .article-checklist-list li {{ padding: 4px 0; font-size: 0.88rem; color: #334155; }}
+    .author-profile-box {{ background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 14px; overflow: hidden; text-align: center; box-shadow: 0 4px 16px rgba(0,0,0,0.06); margin-bottom: 20px; }}
+    .author-profile-banner {{ height: 80px; background: linear-gradient(135deg, #0A2540 0%, #1E3A8A 100%); }}
+    .author-profile-avatar-wrap {{ width: 68px; height: 68px; border-radius: 50%; background: #ffffff; box-shadow: 0 4px 14px rgba(0,0,0,0.14); margin: -34px auto 8px; display: grid; place-items: center; padding: 4px; }}
+    .author-profile-avatar-img {{ width: 100%; height: 100%; object-fit: contain; }}
+    .author-profile-content {{ padding: 0 16px 18px; }}
+    .author-profile-name {{ font-size: 1.15rem; color: #0A2540; margin: 0 0 2px; font-weight: 800; }}
+    .author-profile-title {{ font-size: 0.82rem; color: #64748b; margin: 0 0 4px; }}
+    .author-rating-stars {{ color: #f59e0b; font-size: 0.88rem; margin-bottom: 14px; font-weight: 700; }}
+    .author-actions-col {{ display: flex; flex-direction: column; gap: 8px; }}
+    .author-action-btn {{ display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 10px 14px; border-radius: 6px; font-weight: 700; font-size: 0.85rem; text-decoration: none; background: #0A2540; color: #ffffff !important; }}
+    .sidebar-sticky-cta-card {{ position: sticky; top: 96px; background: linear-gradient(135deg, #0A2540 0%, #17345f 100%); border: 1.5px solid rgba(255, 220, 74, 0.4); border-radius: 14px; padding: 22px 18px; color: #ffffff !important; }}
+    @media (max-width: 1024px) {{
+      .article-layout {{ display: flex !important; flex-direction: column !important; }}
+      .article-sidebar {{ display: contents !important; }}
+      .article-highlights-widget {{ order: -10 !important; margin-bottom: 20px !important; width: 100% !important; }}
+      .article-content-body {{ order: 1 !important; width: 100% !important; }}
+      .author-profile-box {{ order: 2 !important; width: 100% !important; }}
+      .sidebar-reviews-carousel {{ order: 3 !important; width: 100% !important; }}
+      .sidebar-sticky-cta-card {{ order: 4 !important; width: 100% !important; position: static !important; }}
+    }}
+  </style>
+</head>
+<body>
+
+  <!-- Top Header Navigation -->
+  <header class="site-header">
+    <div class="header-top">
+      <div class="container header-top-inner">
+        <div class="breaking-news-ticker">
+          <strong class="breaking-news-badge">⚡ MARKET BRIEF</strong>
+          <span class="breaking-news-title">{html.escape(title)}</span>
+        </div>
+        <div class="header-contact-group">
+          <span>📅 {date_str}</span>
+          <a href="tel:1300050099">📞 1300 050 099</a>
+          <a href="mailto:info@ezmortgagebroker.com.au">✉️ info@ezmortgagebroker.com.au</a>
+          <span>📍 Melbourne, VIC</span>
+        </div>
       </div>
-      <p style="margin: 0; font-size: 1.05rem; line-height: 1.65; color: #1e293b; font-family: Georgia, serif;">
-        {summary if len(summary) > 60 else title + " represents a key development across the Australian mortgage and lending landscape."} In recent industry advisories published by <strong>{source_name}</strong>, Australian mortgage brokers, borrowers, and commercial lenders are navigating critical shifts in credit policy, serviceability benchmarks, and regulatory oversight. For Australian property buyers, home loan refinancers, and commercial investors, understanding these macro changes is essential to locking in optimal borrowing capacity, avoiding lending rejections, and ensuring strict compliance with evolving APRA, ASIC, and AUSTRAC compliance standards.
-      </p>
     </div>
-
-    <!-- Section 1 -->
-    <h2 style="font-size: 1.45rem; font-weight: 800; color: #0f172a; margin: 36px 0 16px 0; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px;">
-      1. Australian Market Context & Lending Insights
-    </h2>
-    <p style="font-size: 1.05rem; line-height: 1.7; color: #334155; margin-bottom: 20px; font-family: Georgia, serif;">
-      Across the Australian property market, changes in bank assessment interest rates (serviceability buffers) and lender turnaround times directly dictate how much everyday Aussies can borrow. In response to recent reports from {source_name}, mortgage brokers are leveraging real-time loan comparison engines to structure multi-tier lending applications across Big 4 banks (CBA, Westpac, NAB, ANZ) and leading non-bank specialist lenders.
-    </p>
-
-    <!-- Key Market Pillars -->
-    <h3 style="font-size: 1.15rem; font-weight: 800; color: #0f172a; margin: 28px 0 14px 0; text-transform: uppercase; letter-spacing: 0.02em;">
-      CORE LENDING & SERVICEABILITY HIGHLIGHTS:
-    </h3>
-    <ul style="list-style: none; padding: 0; margin: 0 0 32px 0; display: flex; flex-direction: column; gap: 14px;">
-      <li style="display: flex; align-items: flex-start; gap: 10px; font-size: 1.02rem; line-height: 1.6; color: #334155; font-family: Georgia, serif;">
-        <span style="color: #0284c7; font-weight: 900; font-size: 1.1rem; line-height: 1.3;">●</span>
-        <span><strong style="color: #0f172a;">Serviceability & Buffer Analysis:</strong> Lenders assess applications with a mandatory +3.00% buffer above standard variable rates to test repayment durability.</span>
-      </li>
-      <li style="display: flex; align-items: flex-start; gap: 10px; font-size: 1.02rem; line-height: 1.6; color: #334155; font-family: Georgia, serif;">
-        <span style="color: #0284c7; font-weight: 900; font-size: 1.1rem; line-height: 1.3;">●</span>
-        <span><strong style="color: #0f172a;">Refinancing & Equity Release Velocity:</strong> Homeowners rolling off fixed rates are finding significant savings by comparing cashback promotions and negotiated discretionary discounts.</span>
-      </li>
-      <li style="display: flex; align-items: flex-start; gap: 10px; font-size: 1.02rem; line-height: 1.6; color: #334155; font-family: Georgia, serif;">
-        <span style="color: #0284c7; font-weight: 900; font-size: 1.1rem; line-height: 1.3;">●</span>
-        <span><strong style="color: #0f172a;">Regulatory Best Interests Duty (BID):</strong> Accredited Australian brokers are legally mandated under BID legislation to prioritize borrower outcomes over bank profitability.</span>
-      </li>
-    </ul>
-
-    <!-- Section 2 -->
-    <h2 id="section-2" style="font-size: 1.45rem; font-weight: 800; color: #0f172a; margin: 36px 0 16px 0; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; scroll-margin-top: 100px;">
-      2. Technical & Policy Deep-Dive ({source_name})
-    </h2>
-    <p style="font-size: 1.05rem; line-height: 1.7; color: #334155; margin-bottom: 20px; font-family: Georgia, serif;">
-      From an underwriting and credit assessment perspective, {source_name} emphasizes rigorous documentation validation, verified payslips, and comprehensive Comprehensive Credit Reporting (CCR) data. Modern digital identity verification (VOI) and Open Banking data sharing now allow pre-approvals to progress within 24–48 hours, significantly minimizing settlement risk for auction bidders and private treaty purchasers.
-    </p>
-
-    <!-- Section 3 -->
-    <h2 id="section-3" style="font-size: 1.45rem; font-weight: 800; color: #0f172a; margin: 36px 0 16px 0; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; scroll-margin-top: 100px;">
-      3. Regulatory Compliance & Consumer Protection
-    </h2>
-    <p style="font-size: 1.05rem; line-height: 1.7; color: #334155; margin-bottom: 20px; font-family: Georgia, serif;">
-      With increased regulatory scrutiny from ASIC, APRA, and AUSTRAC regarding loan integrity and AML/CTF reporting standards, Australian finance brokers implement multi-point identity verification and anti-fraud safeguards. Borrowers benefit from transparent disclosure of commission models, total lifetime interest calculations, and tailored loan structuring (e.g. offset accounts vs. redraw facilities).
-    </p>
-
-    <!-- Section 4 -->
-    <h2 id="section-4" style="font-size: 1.45rem; font-weight: 800; color: #0f172a; margin: 36px 0 16px 0; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; scroll-margin-top: 100px;">
-      4. Implementation Roadmap & Borrower Action Checklist
-    </h2>
-    <p style="font-size: 1.05rem; line-height: 1.7; color: #334155; margin-bottom: 20px; font-family: Georgia, serif;">
-      To maximize loan approval probability and secure top-tier interest rates, mortgage specialists recommend the following structured checklist:
-    </p>
-    <ul style="list-style: none; padding: 0; margin: 0 0 32px 0; display: flex; flex-direction: column; gap: 14px;">
-      <li style="display: flex; align-items: flex-start; gap: 10px; font-size: 1.02rem; line-height: 1.6; color: #334155; font-family: Georgia, serif;">
-        <span style="color: #10b981; font-weight: 900; font-size: 1.1rem; line-height: 1.3;">✓</span>
-        <span><strong style="color: #0f172a;">Credit File & CCR Health Check:</strong> Audit your credit report for default errors or outdated credit cards prior to submitting formal applications.</span>
-      </li>
-      <li style="display: flex; align-items: flex-start; gap: 10px; font-size: 1.02rem; line-height: 1.6; color: #334155; font-family: Georgia, serif;">
-        <span style="color: #10b981; font-weight: 900; font-size: 1.1rem; line-height: 1.3;">✓</span>
-        <span><strong style="color: #0f172a;">Living Expense Harmonization:</strong> Minimize discretionary subscription overheads for 90 days before applying to boost borrowing capacity.</span>
-      </li>
-      <li style="display: flex; align-items: flex-start; gap: 10px; font-size: 1.02rem; line-height: 1.6; color: #334155; font-family: Georgia, serif;">
-        <span style="color: #10b981; font-weight: 900; font-size: 1.1rem; line-height: 1.3;">✓</span>
-        <span><strong style="color: #0f172a;">Multi-Lender Comparison:</strong> Compare over 40+ Australian wholesale & retail lenders through an accredited broker to negotiate fee waivers.</span>
-      </li>
-    </ul>
-
-    <!-- Why It Matters Card -->
-    <div style="background: #f0f7ff; border: 1px solid #bae0ff; border-radius: 14px; padding: 24px; margin-bottom: 28px;">
-      <div style="color: #0050b3; font-weight: 800; font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
-        <span style="font-size: 0.9rem; color: #0176D3;">●</span> WHY IT MATTERS & STRATEGIC ADVISORY
+    <div class="header-main">
+      <div class="container header-inner">
+        <a href="/" class="logo"><img class="brand-logo" src="/images/ez-mortgage-broker.webp" alt="EZ Mortgage Broker" style="height: clamp(68px, 6.5vw, 84px); width: auto; max-width: 300px; display: inline-block;"></a>
+        <nav>
+          <ul class="nav-primary">
+            <li><a href="/">Home</a></li>
+            <li><a href="/pages/loans/first-home-buyer.html">Home Loans</a></li>
+            <li><a href="/pages/loans/business-commercial-loans.html">Business Loans</a></li>
+            <li><a href="/calculators.html">Calculators</a></li>
+            <li><a href="/pages/blog.html" class="active">News</a></li>
+            <li><a href="/#about">About</a></li>
+            <li><a href="/#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="header-actions">
+          <a href="tel:1300050099" class="btn btn-outline">Call Us</a>
+          <a href="/#contact" class="btn btn-primary">Book Consult</a>
+        </div>
       </div>
-      <p style="margin: 0; font-size: 1rem; line-height: 1.65; color: #1e293b; font-family: Georgia, serif;">
-        <strong>How EZ Mortgage Broker Helps:</strong> Our team of licensed Australian mortgage brokers (MFAA / FBAA accredited) provides free loan health checks, borrowing power calculations, and direct rate negotiation across Australia's leading banks and non-bank lenders.
-      </p>
     </div>
+  </header>
 
-    <!-- Source Attribution -->
-    <div style="font-size: 0.86rem; color: #64748b; font-style: italic; margin-bottom: 24px; display: flex; align-items: center; gap: 6px;">
-      <span style="color: #ef4444;">🖋️</span> Source: {source_name} Official Advisory ({tag}).
+  <!-- 1. Full-Bleed Article Header Banner -->
+  <header class="article-header">
+    <div class="article-header-bg"></div>
+    <div class="article-header-overlay"></div>
+    <div class="container article-header-content">
+      <div class="article-top-toolbar">
+        <div class="article-breadcrumbs">
+          <a href="/">Home</a> <span>&gt;</span>
+          <a href="/pages/blog.html">News</a> <span>&gt;</span>
+          <span>{html.escape(category)}</span>
+        </div>
+        <div class="article-social-share-bar">
+          <a href="https://www.facebook.com/sharer/sharer.php?u={urllib.parse.quote(full_url)}" target="_blank" class="article-share-btn" style="background:#1877F2;">f</a>
+          <a href="https://twitter.com/intent/tweet?url={urllib.parse.quote(full_url)}&text={urllib.parse.quote(title)}" target="_blank" class="article-share-btn" style="background:#000000;">𝕏</a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url={urllib.parse.quote(full_url)}" target="_blank" class="article-share-btn" style="background:#0A66C2;">in</a>
+          <a href="https://api.whatsapp.com/send?text={urllib.parse.quote(title + ' ' + full_url)}" target="_blank" class="article-share-btn" style="background:#25D366;">wa</a>
+        </div>
+      </div>
+
+      <span class="article-category-badge">{html.escape(category)}</span>
+      <h1 class="article-title">{html.escape(title)}</h1>
+      <p class="article-subtitle">{html.escape(summary)}</p>
+
+      <div class="article-meta-row">
+        <span>📅 {date_str}</span>
+        <span>⏱️ {read_time}</span>
+        <span>✍️ <strong>R BAKSHI</strong> (Principal Broker)</span>
+      </div>
     </div>
-    """
-    return content_html
+  </header>
+
+  <!-- 2. Main 2-Column Layout -->
+  <main class="container">
+    <div class="article-layout">
+      
+      <!-- LEFT COLUMN: Accordions & Deep Dives -->
+      <div class="article-content-body">
+        
+        <p style="font-size:1.05rem; line-height:1.75; color:#1e293b; margin-bottom:28px; font-family:Georgia, serif;">
+          {html.escape(summary)} In response to recent policy advisories published by <strong>{source_name}</strong>, Australian mortgage brokers, property buyers, and commercial investors are actively navigating critical shifts in bank serviceability benchmarks, assessment buffers, and regulatory compliance standards across the Australian lending market.
+        </p>
+
+        <!-- Accordion 1: Market Overview & Data Matrix -->
+        <div class="article-section-accordion open">
+          <button class="article-section-accordion-header" onclick="this.parentElement.classList.toggle('open')">
+            <span>1. Understanding the Market Context &amp; Lending Impact</span>
+            <span class="accordion-icon">−</span>
+          </button>
+          <div class="article-section-accordion-body">
+            <p>From an underwriting and credit assessment perspective, the latest industry announcements from {source_name} highlight key strategic implications for everyday borrowers and property investors:</p>
+            
+            <div class="article-data-table-wrapper">
+              <table class="article-data-table">
+                <thead>
+                  <tr>
+                    <th>LENDING TIMELINE</th>
+                    <th>ASSESSMENT BUFFER &amp; APPLICABLE RULES</th>
+                    <th>BORROWER BENEFIT &amp; STRATEGY</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Standard Assessment</strong></td>
+                    <td>+3.00% APRA Serviceability Buffer above current rates</td>
+                    <td>Ensures long-term repayment durability across interest rate cycles.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Refinancing Exceptions</strong></td>
+                    <td>1.00% Modified Buffer (Eligible low-risk refinancers)</td>
+                    <td>Unlocks competitive cashback offers and discretionary rate discounts.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Valuation Benchmark</strong></td>
+                    <td>Formal Desktop / Full Physical Appraisal</td>
+                    <td>Establishes accurate Loan-to-Value Ratio (LVR) to eliminate Lenders Mortgage Insurance (LMI).</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p>This means borrowers who review their loan structures proactively with an accredited broker can avoid unnecessary lending constraints and unlock optimal borrowing power.</p>
+          </div>
+        </div>
+
+        <!-- Accordion 2: Technical Deep Dive -->
+        <div class="article-section-accordion">
+          <button class="article-section-accordion-header" onclick="this.parentElement.classList.toggle('open')">
+            <span>2. Technical &amp; Policy Deep-Dive ({source_name})</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="article-section-accordion-body">
+            <p>Under modern credit evaluation standards, lenders require verified payslips, comprehensive Comprehensive Credit Reporting (CCR) validation, and genuine savings verification. Digital identity verification (VOI) and Open Banking data sharing now allow pre-approvals to progress within 24–48 hours, significantly minimizing settlement risk for auction bidders and private treaty purchasers.</p>
+          </div>
+        </div>
+
+        <!-- Accordion 3: Regulatory Compliance & BID -->
+        <div class="article-section-accordion">
+          <button class="article-section-accordion-header" onclick="this.parentElement.classList.toggle('open')">
+            <span>3. Regulatory Compliance &amp; Consumer Protection</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="article-section-accordion-body">
+            <p>With increased regulatory oversight from ASIC, APRA, and AUSTRAC regarding loan integrity and AML/CTF reporting standards, accredited Australian finance brokers operate under the statutory Best Interests Duty (BID). Borrowers receive full transparent disclosure of commission models, total lifetime interest calculations, and tailored loan structuring (e.g. multiple 100% offset accounts vs. redraw facilities).</p>
+          </div>
+        </div>
+
+        <!-- Accordion 4: Action Checklist -->
+        <div class="article-section-accordion">
+          <button class="article-section-accordion-header" onclick="this.parentElement.classList.toggle('open')">
+            <span>4. Pre-Application Borrower Action Checklist</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="article-section-accordion-body">
+            <p>To maximize loan approval probability and secure top-tier interest rates, mortgage specialists recommend the following structured checklist:</p>
+            <div class="article-checklist-card">
+              <strong style="color:#00876C; font-size:0.95rem;">✓ 4-PHASE BROKER HYGIENE CHECKLIST:</strong>
+              <ul class="article-checklist-list">
+                <li><strong>Phase 1:</strong> Audit your credit report for default errors or outdated credit card limits before applying.</li>
+                <li><strong>Phase 2:</strong> Harmonize discretionary living expenses for 90 days prior to formal submission.</li>
+                <li><strong>Phase 3:</strong> Compare over 50+ Australian wholesale &amp; retail lenders to negotiate fee waivers and special pricing.</li>
+                <li><strong>Phase 4:</strong> Secure formal pre-approval with full valuation backing before auction bidding.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion 5: Advisory Assistance -->
+        <div class="article-section-accordion">
+          <button class="article-section-accordion-header" onclick="this.parentElement.classList.toggle('open')">
+            <span>5. Talk to EZ Mortgage Broker Today</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="article-section-accordion-body">
+            <p>Our team of licensed Australian mortgage brokers (MFAA / FBAA accredited) provides free loan health checks, borrowing power calculations, and direct rate negotiation across Australia's leading banks and non-bank lenders.</p>
+            <p style="margin-top:12px; font-size:0.88rem; color:#64748B; font-style:italic;">🖋️ Source: {source_name} Official Advisory ({tag}).</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN: Sticky 5-Widget Sidebar -->
+      <aside class="article-sidebar">
+        
+        <!-- 1. Broker Profile Card -->
+        <div class="author-profile-box">
+          <div class="author-profile-banner"></div>
+          <div class="author-profile-avatar-wrap">
+            <img src="/images/ez-mortgage-broker.webp" alt="EZ Mortgage Broker Logo" class="author-profile-avatar-img">
+          </div>
+          <div class="author-profile-content">
+            <h3 class="author-profile-name">R Bakshi</h3>
+            <p class="author-profile-title">EZ Mortgage Broker</p>
+            <div class="author-rating-stars">★★★★★ <span style="color:#64748b; font-weight:600;">(14)</span></div>
+            <div class="author-actions-col">
+              <a href="/#contact" class="author-action-btn" style="background:#0A2540;">💬 Book Appointment</a>
+              <a href="/#contact" class="author-action-btn" style="background:#1D4ED8;">📱 Send Message</a>
+              <a href="tel:1300050099" class="author-action-btn" style="background:#00876C;">📇 Contact Card</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Highlights Timeline Widget -->
+        <div class="article-highlights-widget" id="highlights">
+          <div class="highlights-header">
+            <span>Highlights</span>
+            <span>−</span>
+          </div>
+          <div class="highlights-body">
+            <div style="font-size:0.75rem; color:#64748B; margin-bottom:12px; font-weight:600;">📅 {date_str}</div>
+            
+            <div class="highlights-item">
+              <span class="highlight-bullet">●</span>
+              <div>
+                <strong style="color:#0A2540;">Market Context</strong>
+                <p>Strategic impact of {title[:40]}... on Australian lending.</p>
+              </div>
+            </div>
+
+            <div class="highlights-item">
+              <span class="highlight-bullet">●</span>
+              <div>
+                <strong style="color:#0A2540;">Policy Deep-Dive</strong>
+                <p>Serviceability buffers, turnaround times, and bank credit policy.</p>
+              </div>
+            </div>
+
+            <div class="highlights-item">
+              <span class="highlight-bullet">●</span>
+              <div>
+                <strong style="color:#0A2540;">Regulatory Compliance</strong>
+                <p>Alignment with ASIC, APRA, and AUSTRAC consumer credit standards.</p>
+              </div>
+            </div>
+
+            <div class="highlights-item">
+              <span class="highlight-bullet">●</span>
+              <div>
+                <strong style="color:#0A2540;">Action Checklist</strong>
+                <p>4-phase roadmap for credit audits and fee negotiations.</p>
+              </div>
+            </div>
+
+            <div style="text-align:center; margin-top:14px; padding-top:10px; border-top:1px solid #f1f5f9;">
+              <a href="#" onclick="window.scrollTo({{top:0, behavior:'smooth'}}); return false;" style="color:#A81127; font-size:0.8rem; font-weight:700; text-decoration:none;">Top of Article ↑</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Google Reviews Card -->
+        <div class="sidebar-reviews-carousel" style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:14px; padding:18px; margin-bottom:20px; box-shadow:0 4px 16px rgba(0,0,0,0.04);">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+            <div style="display:flex; align-items:center; gap:6px;">
+              <span style="font-weight:800; font-size:0.85rem; color:#0A2540;">G GOOGLE REVIEWS</span>
+            </div>
+            <div style="color:#f59e0b; font-weight:800; font-size:0.85rem;">★ 5.0 (14)</div>
+          </div>
+          <div style="font-size:0.88rem; font-weight:700; color:#0A2540; margin-bottom:4px;">Jaspreet Sidhu</div>
+          <div style="color:#f59e0b; font-size:0.8rem; margin-bottom:8px;">★★★★★</div>
+          <p style="font-size:0.82rem; line-height:1.5; color:#475569; margin:0 0 10px;">"EZ Mortgage Broker has been helping me for all my financial needs like first home buyer loan and refinance. Every time they helped me a lot."</p>
+          <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:#94A3B8;">
+            <span>Verified Google Review</span>
+            <span>3 months ago</span>
+          </div>
+        </div>
+
+        <!-- 4. Mortgage Calculators Quick Links -->
+        <div class="sidebar-calculators-widget" style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:14px; padding:18px; margin-bottom:20px; box-shadow:0 4px 16px rgba(0,0,0,0.04);">
+          <span style="display:block; font-size:0.75rem; font-weight:800; color:#64748B; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:12px;">MORTGAGE CALCULATORS</span>
+          <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px;">
+            <li><a href="/calculators.html#borrowing-power" style="color:#1D4ED8; font-weight:700; font-size:0.88rem; text-decoration:none; display:flex; align-items:center; gap:6px;">➔ Borrowing Power Calculator</a></li>
+            <li><a href="/calculators.html#loan-repayment" style="color:#1D4ED8; font-weight:700; font-size:0.88rem; text-decoration:none; display:flex; align-items:center; gap:6px;">➔ Loan Repayment Calculator</a></li>
+            <li><a href="/calculators.html#stamp-duty" style="color:#1D4ED8; font-weight:700; font-size:0.88rem; text-decoration:none; display:flex; align-items:center; gap:6px;">➔ Stamp Duty Calculator</a></li>
+          </ul>
+        </div>
+
+        <!-- 5. Sticky Advisory CTA Card -->
+        <div class="sidebar-sticky-cta-card">
+          <span style="font-size:0.72rem; font-weight:800; color:#FCD34D; text-transform:uppercase; letter-spacing:0.08em; display:block; margin-bottom:6px;">EZ MORTGAGE ADVISORY</span>
+          <h4 style="font-size:1.05rem; font-weight:800; margin:0 0 8px; color:#ffffff;">Need Expert Home Loan Advice?</h4>
+          <p style="font-size:0.82rem; line-height:1.5; color:#E2E8F0; margin:0 0 16px;">Speak directly with our senior MFAA accredited credit advisors.</p>
+          <a href="tel:1300050099" style="display:flex; align-items:center; justify-content:center; gap:8px; background:#FCD34D; color:#0A2540 !important; font-weight:800; font-size:0.92rem; padding:12px 14px; border-radius:8px; text-decoration:none; box-shadow:0 4px 12px rgba(0,0,0,0.2);">📞 Call 1300 050 099</a>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer style="background:#0A2540; color:#94A3B8; padding:32px 0; border-top:1px solid #1E3A8A; font-size:0.85rem; text-align:center;">
+    <div class="container">
+      <p style="margin:0;">© 2026 EZ Mortgage Broker. All rights reserved. | <a href="/pages/privacy-policy.html" style="color:#CBD5E1; text-decoration:none;">Privacy Policy</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>"""
+    return html_page
 
 def run_ingestion():
-    print("🚀 Starting Australian Industry Authority News Ingestion Engine...")
+    print("🚀 Starting Authority News Ingestion Engine (Strict Accordion & 5-Widget Standard)...")
     
     existing_posts = []
     if os.path.exists(POSTS_JSON):
@@ -274,10 +485,10 @@ def run_ingestion():
         cat = src["category"]
         query = src["site_query"]
         tag = src["tag"]
+        cat_color = src["cat_color"]
         
         print(f"📡 Polling {name} ({query})...")
         items = fetch_feed_items(query)
-        print(f"   Found {len(items)} candidates.")
         
         published_for_source = False
         for it in items:
@@ -289,9 +500,10 @@ def run_ingestion():
                 
             summary = it["description"] or f"Latest Australian lending analysis and regulatory updates from {name}."
             image = fetch_pexels_image(f"australia mortgage finance real estate {t}")
+            d_str = datetime.now().strftime("%d-%b-%Y")
+            read_time = "5 min read"
             
-            content_html = generate_article_content(t, summary, name, cat, tag)
-            d_str = datetime.now().strftime("%d %B %Y")
+            page_html = generate_complete_article_html(t, summary, name, cat, cat_color, tag, image, d_str, read_time, slug)
             
             post_obj = {
                 "id": slug,
@@ -300,7 +512,7 @@ def run_ingestion():
                 "excerpt": summary[:160] + "...",
                 "category": cat,
                 "tags": ["#MortgageAustralia", "#HomeLoans", "#PropertyFinance", tag, "#EZMortgageBroker"],
-                "readTime": "5 min read",
+                "readTime": read_time,
                 "timeAgo": "Just now",
                 "publishedDate": d_str,
                 "formattedDate": d_str,
@@ -309,48 +521,16 @@ def run_ingestion():
                 "baseViews": 1150 + len(new_posts) * 35,
                 "baseLikes": 88 + len(new_posts) * 6,
                 "author": {
-                    "name": "EZ MORTGAGE RESEARCH",
-                    "title": "Principal Lending & Credit Strategist"
+                    "name": "R BAKSHI",
+                    "title": "Principal Mortgage Broker"
                 },
                 "heroImage": image,
                 "sourceUrl": it["link"],
                 "sourceName": name,
-                "highlights": [
-                    {"id": "section-1", "time": "9:00 AM", "title": "Market Context & Lending Insights", "text": f"Strategic assessment of {t[:45]}..."},
-                    {"id": "section-2", "time": "8:15 AM", "title": "Technical & Policy Deep-Dive", "text": f"Serviceability buffers, assessment rates, and lender turnaround times from {name}."},
-                    {"id": "section-3", "time": "7:30 AM", "title": "Regulatory Compliance & Best Interests Duty", "text": "Alignment with APRA, ASIC, and AUSTRAC consumer credit standards."},
-                    {"id": "section-4", "time": "6:45 AM", "title": "Borrower Roadmap & Action Checklist", "text": "4-phase checklist for credit file checks, expense audits, and rate negotiation."}
-                ],
-                "toc": [
-                    {"id": "section-1", "title": "1. Australian Market Context"},
-                    {"id": "section-2", "title": f"2. Technical & Policy Deep-Dive ({name})"},
-                    {"id": "section-3", "title": "3. Regulatory Compliance & BID"},
-                    {"id": "section-4", "title": "4. Borrower Action Checklist"}
-                ],
-                "content": content_html,
-                "date": d_str,
-                "url": f"/pages/blog/{slug}.html"
+                "url": f"/pages/blog/{slug}.html",
+                "date": d_str
             }
             
-            page_html = f"""<!DOCTYPE html>
-<html lang="en-AU">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{html.escape(t)} | EZ Mortgage Broker Advisory</title>
-    <meta name="description" content="{html.escape(summary[:160])}">
-    <link rel="canonical" href="https://ezmortgagebroker.com.au/pages/blog/{slug}.html">
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-slate-900 text-slate-100 font-sans antialiased min-h-screen">
-    <main class="max-w-4xl mx-auto px-6 py-12">
-        <h1 class="text-3xl font-bold text-emerald-400 mb-6">{html.escape(t)}</h1>
-        <div class="bg-white text-slate-800 p-8 rounded-xl shadow-lg leading-relaxed">
-            {content_html}
-        </div>
-    </main>
-</body>
-</html>"""
             for d in [PAGES_BLOG_DIR, PUB_PAGES_BLOG_DIR]:
                 with open(os.path.join(d, f"{slug}.html"), "w", encoding="utf-8") as pf:
                     pf.write(page_html)
@@ -358,7 +538,7 @@ def run_ingestion():
             new_posts.append(post_obj)
             existing_slugs.add(slug)
             published_for_source = True
-            print(f"   ✨ Published 1 article from {name}: {t[:60]}...")
+            print(f"   ✨ Published standard accordion article from {name}: {t[:60]}...")
             break
             
         if not published_for_source:
@@ -370,7 +550,7 @@ def run_ingestion():
     with open(PUB_POSTS_JSON, "w", encoding="utf-8") as f:
         json.dump(all_posts, f, indent=2)
         
-    print(f"✅ Ingestion complete. Added {len(new_posts)} new articles. Total catalog: {len(all_posts)} articles.")
+    print(f"✅ Ingestion complete. Added {len(new_posts)} articles adhering strictly to rules/article_format_standards.md!")
 
 if __name__ == "__main__":
     run_ingestion()
