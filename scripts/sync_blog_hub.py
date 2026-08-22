@@ -197,13 +197,12 @@ def main():
       box-sizing: border-box;
     }}
 
-    /* Header Logo Alignment Fix */
+    /* Header Logo Alignment Fix (Shifted 4cm to the right) */
     .site-header .header-main .container {{
       padding: 0 clamp(16px, 1.8vw, 32px);
     }}
     .site-header .logo {{
-      margin-left: 0;
-      padding-left: 0;
+      margin-left: 4cm !important;
       display: flex;
       align-items: center;
     }}
@@ -211,6 +210,11 @@ def main():
       height: 48px;
       width: auto;
       display: block;
+    }}
+    @media (max-width: 992px) {{
+      .site-header .logo {{
+        margin-left: 0 !important;
+      }}
     }}
 
     .blog-page-hero {{

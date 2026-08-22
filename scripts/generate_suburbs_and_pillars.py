@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """
-Generate 91 Melbourne Suburb Location Landing Pages & Hub
-Includes:
-- Complete full site header with breaking news top bar, date, weather, and full navigation menu
-- FinancialService & FAQPage JSON-LD schemas
-- 30+ lenders panel & MFAA accredited broker profile
-- High converting CTA buttons
+Generate 91 Melbourne Suburb Location Landing Pages
+Features:
+- Header logo shifted 4cm (150px) to the right for maximum visibility
+- Full site header with topbar and mega menus
+- Column 3 with:
+  1. MFAA Broker Profile (R Bakshi)
+  2. Nearby Suburb Guides Carousel / Directory
+  3. Latest Market News & Recent Articles Feed
 """
 
 import os
@@ -17,11 +19,20 @@ from datetime import datetime
 TARGET_REPO = "/Users/robinbakshi/Documents/GitHub/ezmortgagebroker"
 LOCATIONS_DIR = os.path.join(TARGET_REPO, "pages", "locations")
 PUB_LOCATIONS_DIR = os.path.join(TARGET_REPO, "public", "pages", "locations")
+POSTS_JSON = os.path.join(TARGET_REPO, "posts.json")
 
 for d in [LOCATIONS_DIR, PUB_LOCATIONS_DIR]:
     os.makedirs(d, exist_ok=True)
 
-# Comprehensive list of 91 Melbourne Suburbs across all key LGAs
+# Load recent posts for the sidebar widget
+recent_posts = []
+if os.path.exists(POSTS_JSON):
+    try:
+        with open(POSTS_JSON, "r", encoding="utf-8") as f:
+            recent_posts = json.load(f)[:3]
+    except Exception:
+        recent_posts = []
+
 MELBOURNE_SUBURBS = [
     # City of Melbourne & Inner
     {"suburb": "Melbourne CBD", "postcode": "3000", "lga": "City of Melbourne", "region": "Central Melbourne", "highlights": "high-density apartment lending, off-the-plan finance, foreign income qualification, and commercial office loans"},
@@ -132,6 +143,33 @@ def generate_suburb_html(sub):
     region = sub["region"]
     highlights = sub["highlights"]
     slug = f"mortgage-broker-{slugify(s_name)}"
+
+    # Generate Nearby Suburbs links (carousel/list)
+    nearby_subs = [s for s in MELBOURNE_SUBURBS if s["suburb"] != s_name][:8]
+    nearby_html = ""
+    for ns in nearby_subs:
+        n_name = ns["suburb"]
+        n_code = ns["postcode"]
+        n_slug = f"mortgage-broker-{slugify(n_name)}.html"
+        nearby_html += f"""            <a href="/pages/locations/{n_slug}" style="display:flex; justify-content:space-between; align-items:center; padding:9px 12px; background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; text-decoration:none; color:#0A2540; font-size:0.85rem; font-weight:700; transition:all 0.2s ease;">
+              <span>📍 {html.escape(n_name)}</span>
+              <span style="font-size:0.75rem; color:#64748B;">({n_code}) &rarr;</span>
+            </a>\n"""
+
+    # Generate Recent Articles widget
+    recent_articles_html = ""
+    for idx, rp in enumerate(recent_posts[:3]):
+        rt = rp.get("title", "")
+        rslug = rp.get("slug", "")
+        rimg = rp.get("heroImage") or "https://images.pexels.com/photos/1181354/pexels-photo-1181354.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+        rurl = f"/pages/blog/{rslug}.html"
+        recent_articles_html += f"""            <a href="{rurl}" style="display:flex; gap:10px; align-items:center; text-decoration:none; padding:8px 0; border-bottom:1px solid #F1F5F9;">
+              <img src="{rimg}" alt="{html.escape(rt)}" style="width:54px; height:44px; object-fit:cover; border-radius:6px; flex-shrink:0;">
+              <div style="min-width:0;">
+                <h5 style="margin:0 0 2px; font-size:0.8rem; font-weight:700; color:#0A2540; line-height:1.3; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{html.escape(rt)}</h5>
+                <span style="font-size:0.7rem; color:#00876C; font-weight:700;">23 Aug 2026</span>
+              </div>
+            </a>\n"""
 
     return f"""<!DOCTYPE html>
 <html lang="en-AU">
@@ -248,6 +286,16 @@ def generate_suburb_html(sub):
       padding: 0 clamp(16px, 1.8vw, 32px);
       box-sizing: border-box;
     }}
+    .site-header .logo {{
+      margin-left: 4cm !important;
+      display: flex;
+      align-items: center;
+    }}
+    .site-header .brand-logo {{
+      height: 48px;
+      width: auto;
+      display: block;
+    }}
     .article-header {{
       position: relative;
       background-color: #0A2540;
@@ -315,13 +363,16 @@ def generate_suburb_html(sub):
     .article-body-grid {{
       display: grid;
       grid-template-columns: minmax(0, 1fr) 340px;
-      gap: 40px;
-      margin-top: 40px;
+      gap: 36px;
+      margin-top: 36px;
       margin-bottom: 60px;
     }}
     @media (max-width: 992px) {{
       .article-body-grid {{
         grid-template-columns: 1fr;
+      }}
+      .site-header .logo {{
+        margin-left: 0 !important;
       }}
     }}
     .article-main-col {{
@@ -423,14 +474,32 @@ def generate_suburb_html(sub):
       font-size: 0.95rem;
       line-height: 1.6;
     }}
+    .sidebar-widget-block {{
+      background: #ffffff;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 6px 18px rgba(10,37,64,0.04);
+    }}
+    .sidebar-widget-title {{
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 800;
+      color: #0A2540;
+      margin: 0 0 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }}
     .broker-sticky-card {{
-      position: sticky;
-      top: 100px;
       background: #ffffff;
       border: 1.5px solid #E2E8F0;
       border-radius: 16px;
       overflow: hidden;
       box-shadow: 0 8px 24px rgba(10,37,64,0.06);
+      margin-bottom: 24px;
     }}
     .broker-cover-header {{
       height: 90px;
@@ -459,7 +528,7 @@ def generate_suburb_html(sub):
 </head>
 <body style="font-family:'Inter',sans-serif; background:#F8FAFC; color:#0A2540; margin:0;">
 
-  <!-- ========== FULL SITE HEADER ========== -->
+  <!-- ========== FULL SITE HEADER (Logo moved 4cm to the right) ========== -->
   <header class="site-header">
     <div class="header-top" style="background:#0A2540; color:#E2E8F0; font-size:0.8rem; padding:6px 0;">
       <div class="container header-top-inner" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
@@ -608,8 +677,10 @@ def generate_suburb_html(sub):
 
       </div>
 
-      <!-- Right Column Sticky Broker Card -->
+      <!-- Right Column (Col 3: Broker Details + Nearby Suburbs Carousel + Recent Articles) -->
       <aside>
+        
+        <!-- 1. Broker Profile Details Card -->
         <div class="broker-sticky-card">
           <div class="broker-cover-header"></div>
           <div class="broker-box-body">
@@ -634,6 +705,30 @@ def generate_suburb_html(sub):
             </a>
           </div>
         </div>
+
+        <!-- 2. Nearby Suburb Guides Quick Navigation -->
+        <div class="sidebar-widget-block">
+          <h4 class="sidebar-widget-title">
+            <span>Nearby Suburb Guides</span>
+            <span style="font-size:0.72rem; color:#1D4ED8; font-weight:700;">VIC Locations</span>
+          </h4>
+          <div style="display:flex; flex-direction:column; gap:6px;">
+{nearby_html}          </div>
+        </div>
+
+        <!-- 3. Latest Market News & Recent Articles -->
+        <div class="sidebar-widget-block">
+          <h4 class="sidebar-widget-title">
+            <span>Recent Market News</span>
+            <span style="font-size:0.72rem; color:#00876C; font-weight:700;">Updated Daily</span>
+          </h4>
+          <div style="display:flex; flex-direction:column;">
+{recent_articles_html}          </div>
+          <a href="/pages/blog.html" style="display:block; text-align:center; margin-top:12px; font-size:0.82rem; font-weight:800; color:#1D4ED8; text-decoration:none;">
+            View All Market News &rarr;
+          </a>
+        </div>
+
       </aside>
 
     </div>
@@ -656,7 +751,7 @@ def generate_suburb_html(sub):
 </html>"""
 
 def main():
-    print(f"🚀 Generating {len(MELBOURNE_SUBURBS)} Melbourne Suburb Landing Pages with Full Site Header...")
+    print(f"🚀 Regenerating {len(MELBOURNE_SUBURBS)} Suburb Pages (Logo moved 4cm right + Col 3 Nearby Suburbs Carousel & Articles)...")
     for sub in MELBOURNE_SUBURBS:
         s_html = generate_suburb_html(sub)
         slug = f"mortgage-broker-{slugify(sub['suburb'])}.html"
@@ -665,7 +760,7 @@ def main():
             with open(os.path.join(d, slug), "w", encoding="utf-8") as f:
                 f.write(s_html)
 
-    print(f"✅ Successfully regenerated {len(MELBOURNE_SUBURBS)} suburb pages with full header across pages/locations/ and public/pages/locations/!")
+    print(f"✅ Successfully regenerated {len(MELBOURNE_SUBURBS)} suburb pages!")
 
 if __name__ == "__main__":
     main()
