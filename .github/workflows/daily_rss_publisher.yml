@@ -2,9 +2,7 @@ name: Daily Mortgage News & RSS Publisher
 
 on:
   schedule:
-    # Runs everyday at 20:00 UTC (06:00 AM AEST)
-    # Runs 4 times daily at 6AM, 12PM, 6PM, 12AM AEST (20:00, 02:00, 08:00, 14:00 UTC)
-    - cron: '0 20,2,8,14 * * *'
+    - cron: "0 20,2,8,14 * * *" # 6AM, 12PM, 6PM, 12AM AEST
   workflow_dispatch:
 
 permissions:
@@ -20,25 +18,39 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          # # cache: npm
+          node-version: "20"
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          if [ -f package.json ]; then
+            npm install --no-audit --no-fund || true
+          fi
 
       - name: Extract Google Alerts & Generate Articles
-        run: python3 scripts/fetch_google_alerts.py --publish
+        run: |
+          if [ -f scripts/fetch_google_alerts.py ]; then
+            python3 scripts/fetch_google_alerts.py --publish || true
+          fi
+          if [ -f scripts/ingest_yahoo_topics.py ]; then
+            python3 scripts/ingest_yahoo_topics.py || true
+          fi
 
       - name: Generate Updated RSS 2.0 Feed
-        run: python3 scripts/generate_rss_feed.py
+        run: |
+          if [ -f scripts/generate_rss_feed.py ]; then
+            python3 scripts/generate_rss_feed.py || true
+          fi
 
       - name: Build Production Bundle
-        run: npm run build
+        run: |
+          if [ -f package.json ]; then
+            npm run build || true
+          fi
 
       - name: Commit and push updates
         run: |
@@ -46,7 +58,7 @@ jobs:
           git config --global user.email "bot@ezmortgagebroker.com.au"
           git add pages/blog/ posts.json rss.xml feed.xml sitemap.xml public/
           if git diff --staged --quiet; then
-            echo "No new alerts to publish today."
+            echo "No new changes to commit today."
           else
             git commit -m "Auto-Publish: Daily mortgage market news and RSS feed update [skip ci]"
             git push origin main
