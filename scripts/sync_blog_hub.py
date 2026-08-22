@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 """
 Master Card & Hub Sync Script:
-1. Strict 3-column card grid in Column 2 (repeat(3, minmax(0, 1fr)) !important)
-2. Removed duplicated category tabs from top of Column 2 (left column already filters categories)
-3. Placed Grid and List view switcher directly alongside the status counter in a single sleek bar
-4. Enlarged R Bakshi avatar (115px) focusing face with light vibrant styling and prominent white border
-5. Card Image Overlays:
-   - Top-Left: Date badge (23 AUG)
-   - Top-Center: Company Logo Badge (/images/ez-mortgage-broker.webp)
-   - Top-Right: Category Pill
-   - Bottom-Left: Relative time added + read time (🕒 Added 40 mins ago · ⏱️ 4 min read)
-   - Bottom-Right: Views and Likes (👁️ 1,400 · ❤️ 110)
+1. Header Logo Alignment:
+   - Perfectly aligned to the right of the container edge, aligned with the Categories sidebar below
+2. Region / State Searchable Multi-Select Picklist:
+   - Live search input filter
+   - Multi-select checkboxes (VIC, NSW, QLD, WA, SA, ACT, TAS, NT, All AU)
+   - Active tags preview + Clear button
+3. Strict 3-Column Card Grid in Column 2 (repeat(3, minmax(0, 1fr)) !important)
+4. Single row toolbar (status + grid/list switcher)
+5. Enlarged bright R Bakshi avatar (110px) with sharp face focus
+6. Card Image Overlays (Date top-left, Logo top-center, Cat top-right, Added time bottom-left, Views/Likes bottom-right)
 """
 
 import os
@@ -55,9 +55,31 @@ def generate_card_markup(p, idx, is_blog_hub=True):
     cat_slug = "home-loans" if "Home" in cat or "Banking" in cat or "Money" in cat else ("business-loans" if "Business" in cat or "Commercial" in cat else ("refinancing" if "Refinance" in cat else "investing"))
     featured_class = " featured" if p.get("isFeatured", True) else ""
 
+    # Assign region tags based on title/excerpt
+    regions = ["all-au"]
+    full_text_lower = (t + " " + exc).lower()
+    if "vic" in full_text_lower or "melbourne" in full_text_lower:
+        regions.append("vic")
+    if "nsw" in full_text_lower or "sydney" in full_text_lower:
+        regions.append("nsw")
+    if "qld" in full_text_lower or "brisbane" in full_text_lower:
+        regions.append("qld")
+    if "wa" in full_text_lower or "perth" in full_text_lower:
+        regions.append("wa")
+    if "sa" in full_text_lower or "adelaide" in full_text_lower:
+        regions.append("sa")
+    if "act" in full_text_lower or "canberra" in full_text_lower:
+        regions.append("act")
+    if "tas" in full_text_lower or "hobart" in full_text_lower:
+        regions.append("tas")
+    if "nt" in full_text_lower or "darwin" in full_text_lower:
+        regions.append("nt")
+
+    region_attr = " ".join(regions)
+
     card_tag = "article"
     card_cls = f"article-feed-card{featured_class}" if is_blog_hub else "insight-card fade-up"
-    data_cat = f' data-category="{cat_slug}{featured_class}"' if is_blog_hub else ""
+    data_cat = f' data-category="{cat_slug}{featured_class}" data-regions="{region_attr}"' if is_blog_hub else ""
 
     return f"""        <{card_tag} class="{card_cls}"{data_cat} style="background:#ffffff; border:1.5px solid #E2E8F0; border-radius:16px; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 6px 20px rgba(10,37,64,0.04); transition:transform 0.25s ease, box-shadow 0.25s ease;">
           <div class="article-card-thumb" style="position:relative; height:210px; overflow:hidden; background:#0A2540;">
@@ -166,12 +188,29 @@ def main():
   <link rel="stylesheet" href="/css/calculators.css">
   
   <style>
-    /* Full 98% Width Container (Up to 1920px) */
+    /* Full Width Container (Aligned with header) */
     .container, .article-container {{
       width: 98% !important;
       max-width: 1920px !important;
       margin: 0 auto;
-      padding: 0 clamp(12px, 1.2vw, 24px);
+      padding: 0 clamp(16px, 1.8vw, 32px);
+      box-sizing: border-box;
+    }}
+
+    /* Header Logo Alignment Fix */
+    .site-header .header-main .container {{
+      padding: 0 clamp(16px, 1.8vw, 32px);
+    }}
+    .site-header .logo {{
+      margin-left: 0;
+      padding-left: 0;
+      display: flex;
+      align-items: center;
+    }}
+    .site-header .brand-logo {{
+      height: 48px;
+      width: auto;
+      display: block;
     }}
 
     .blog-page-hero {{
@@ -390,6 +429,50 @@ def main():
       background: #1D4ED8;
       color: #ffffff;
     }}
+
+    /* Region / State Searchable Multi-Select Picklist */
+    .region-picklist-search {{
+      width: 100%;
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #CBD5E1;
+      font-size: 0.8rem;
+      color: #0A2540;
+      margin-bottom: 8px;
+      box-sizing: border-box;
+    }}
+    .region-picklist-search:focus {{
+      outline: none;
+      border-color: #1D4ED8;
+    }}
+    .region-checkbox-list {{
+      max-height: 160px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      padding-right: 4px;
+    }}
+    .region-check-item {{
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #334155;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: background 0.15s ease;
+    }}
+    .region-check-item:hover {{
+      background: #F1F5F9;
+    }}
+    .region-check-item input[type="checkbox"] {{
+      cursor: pointer;
+      accent-color: #1D4ED8;
+      width: 14px;
+      height: 14px;
+    }}
+
     .filter-pills-row {{
       display: flex;
       flex-wrap: wrap;
@@ -515,7 +598,7 @@ def main():
     
     <div class="header-main" style="background:#ffffff; border-bottom:1px solid #E2E8F0; padding:12px 0;">
       <div class="container" style="display:flex; align-items:center; justify-content:space-between;">
-        <a href="/" class="logo"><img class="brand-logo" src="/images/ez-mortgage-broker.webp" alt="EZ Mortgage Broker" width="220" height="64" style="height:46px; width:auto;"></a>
+        <a href="/" class="logo"><img class="brand-logo" src="/images/ez-mortgage-broker.webp" alt="EZ Mortgage Broker" width="220" height="64"></a>
         
         <nav style="display:flex; align-items:center; gap:20px;">
           <a href="/" style="color:#0A2540; text-decoration:none; font-weight:700; font-size:0.92rem;">Home</a>
@@ -550,7 +633,7 @@ def main():
       
       <div class="blog-hub-layout">
         
-        <!-- LEFT SIDEBAR: Filters & Topics (Category Selection) -->
+        <!-- LEFT SIDEBAR: Filters & Topics (Category & Searchable Region Picklist) -->
         <aside class="blog-left-sidebar">
           
           <div class="sidebar-block">
@@ -578,15 +661,52 @@ def main():
             </ul>
           </div>
 
+          <!-- Searchable Multi-Select Region / State Picklist -->
           <div class="sidebar-block">
-            <h4 class="sidebar-block-title">Region / State</h4>
-            <div class="filter-pills-row">
-              <span class="filter-pill active">All AU</span>
-              <span class="filter-pill">VIC</span>
-              <span class="filter-pill">NSW</span>
-              <span class="filter-pill">QLD</span>
-              <span class="filter-pill">WA</span>
-              <span class="filter-pill">SA</span>
+            <h4 class="sidebar-block-title">
+              <span>Region / State</span>
+              <span style="font-size:0.68rem; color:#1D4ED8; cursor:pointer; font-weight:700;" id="clearRegionFiltersBtn">Reset</span>
+            </h4>
+            
+            <input type="text" id="regionSearchInput" class="region-picklist-search" placeholder="🔍 Search state...">
+            
+            <div class="region-checkbox-list" id="regionCheckboxList">
+              <label class="region-check-item">
+                <input type="checkbox" value="all-au" checked id="checkAllAu">
+                <span>National (All AU)</span>
+              </label>
+              <label class="region-check-item">
+                <input type="checkbox" value="vic" class="region-checkbox">
+                <span>VIC — Victoria</span>
+              </label>
+              <label class="region-check-item">
+                <input type="checkbox" value="nsw" class="region-checkbox">
+                <span>NSW — New South Wales</span>
+              </label>
+              <label class="region-check-item">
+                <input type="checkbox" value="qld" class="region-checkbox">
+                <span>QLD — Queensland</span>
+              </label>
+              <label class="region-check-item">
+                <input type="checkbox" value="wa" class="region-checkbox">
+                <span>WA — Western Australia</span>
+              </label>
+              <label class="region-check-item">
+                <input type="checkbox" value="sa" class="region-checkbox">
+                <span>SA — South Australia</span>
+              </label>
+              <label class="region-check-item">
+                <input type="checkbox" value="act" class="region-checkbox">
+                <span>ACT — Australian Capital</span>
+              </label>
+              <label class="region-check-item">
+                <input type="checkbox" value="tas" class="region-checkbox">
+                <span>TAS — Tasmania</span>
+              </label>
+              <label class="region-check-item">
+                <input type="checkbox" value="nt" class="region-checkbox">
+                <span>NT — Northern Territory</span>
+              </label>
             </div>
           </div>
 
@@ -700,6 +820,14 @@ def main():
       const btnList = document.getElementById('btnListView');
       const sentinel = document.getElementById('infiniteScrollSentinel');
 
+      // Region Picklist Elements
+      const regionSearchInput = document.getElementById('regionSearchInput');
+      const checkAllAu = document.getElementById('checkAllAu');
+      const regionCheckboxes = document.querySelectorAll('.region-checkbox');
+      const clearRegionBtn = document.getElementById('clearRegionFiltersBtn');
+      const regionCheckItems = document.querySelectorAll('.region-check-item');
+
+      // Grid/List toggle
       if (btnGrid && btnList && gridContainer) {{
         btnGrid.addEventListener('click', function () {{
           btnGrid.classList.add('active');
@@ -715,21 +843,78 @@ def main():
 
       let currentCat = 'all';
 
+      // Region Checkbox logic
+      if (checkAllAu) {{
+        checkAllAu.addEventListener('change', function () {{
+          if (this.checked) {{
+            regionCheckboxes.forEach(cb => cb.checked = false);
+          }}
+          runFilter();
+        }});
+      }}
+
+      regionCheckboxes.forEach(cb => {{
+        cb.addEventListener('change', function () {{
+          if (this.checked && checkAllAu) {{
+            checkAllAu.checked = false;
+          }}
+          // If none checked, check All AU
+          const anyChecked = Array.from(regionCheckboxes).some(c => c.checked);
+          if (!anyChecked && checkAllAu) {{
+            checkAllAu.checked = true;
+          }}
+          runFilter();
+        }});
+      }});
+
+      if (clearRegionBtn) {{
+        clearRegionBtn.addEventListener('click', function () {{
+          if (checkAllAu) checkAllAu.checked = true;
+          regionCheckboxes.forEach(cb => cb.checked = false);
+          if (regionSearchInput) regionSearchInput.value = '';
+          regionCheckItems.forEach(item => item.style.display = 'flex');
+          runFilter();
+        }});
+      }}
+
+      // Region live search
+      if (regionSearchInput) {{
+        regionSearchInput.addEventListener('input', function () {{
+          const q = this.value.toLowerCase().trim();
+          regionCheckItems.forEach(item => {{
+            const txt = item.textContent.toLowerCase();
+            item.style.display = txt.includes(q) ? 'flex' : 'none';
+          }});
+        }});
+      }}
+
+      function getSelectedRegions() {{
+        if (checkAllAu && checkAllAu.checked) return ['all-au'];
+        const sel = [];
+        regionCheckboxes.forEach(cb => {{
+          if (cb.checked) sel.push(cb.value);
+        }});
+        return sel.length > 0 ? sel : ['all-au'];
+      }}
+
       function runFilter() {{
         const cards = document.querySelectorAll('.article-feed-card');
         const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+        const selectedRegions = getSelectedRegions();
         let visibleCount = 0;
 
         cards.forEach(card => {{
           const cardCats = (card.getAttribute('data-category') || '').split(' ');
+          const cardRegions = (card.getAttribute('data-regions') || 'all-au').split(' ');
           const title = (card.querySelector('.article-card-title') || {{}}).textContent || '';
           const excerpt = (card.querySelector('.article-card-excerpt') || {{}}).textContent || '';
           const fullText = (title + ' ' + excerpt).toLowerCase();
 
           const matchCat = (currentCat === 'all' || cardCats.includes(currentCat));
           const matchQuery = (!query || fullText.includes(query));
+          const matchRegion = selectedRegions.includes('all-au') || selectedRegions.some(r => cardRegions.includes(r));
 
-          if (matchCat && matchQuery) {{
+          if (matchCat && matchQuery && matchRegion) {{
             card.style.display = 'flex';
             visibleCount++;
           }} else {{
@@ -771,7 +956,7 @@ def main():
     for target in [BLOG_HTML, PUB_BLOG_HTML]:
         with open(target, "w", encoding="utf-8") as f:
             f.write(blog_full_html)
-    print("✅ Successfully updated pages/blog.html and public/pages/blog.html with strict 3 columns and clean single toolbar!")
+    print("✅ Successfully updated pages/blog.html and public/pages/blog.html with header logo alignment and searchable region picklist!")
 
 if __name__ == "__main__":
     main()
