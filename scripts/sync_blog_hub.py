@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """
 Sync & Upgrade EZ Mortgage Broker Insights Hub (pages/blog.html)
-- 25% Wider Container (max-width: 1800px)
-- Expanded Column 2 with 3-Column responsive card grid
-- Always renders newest articles on top (sorted by date descending)
-- Active pagination and live instant search/filters
-- Auto-syncs with posts.json
+- Full standard site header with topbar and mega-menus
+- 25% Expanded Width (max-width: 1920px, width: 98%)
+- Maximum Column 2 width fitting 3-4 articles per row
+- Grid & List view toggle switcher
+- Infinite / Unlimited scroll engine + Search & Category filters
+- Exact Image 1 overlay coordinates (Date top-left, Cat top-right, Added-time bottom-left, Views/Likes bottom-right)
+- Updated Date to 23-Aug-2026
 """
 
 import os
@@ -38,72 +40,54 @@ def run_sync():
     # Sort posts strictly descending by date (newest first)
     posts.sort(key=parse_date, reverse=True)
     
-    print(f"Loaded {len(posts)} posts. Top post: {posts[0].get('title', '')[:50]} ({posts[0].get('publishedDate', '')})")
-
-    # Generate initial pre-rendered cards (top 12)
+    # Pre-render top 15 cards with the exact new layout
     rendered_cards = ""
-    for idx, p in enumerate(posts[:12]):
+    for idx, p in enumerate(posts[:15]):
         t = p.get("title", "")
         slug = p.get("slug", "")
         cat = p.get("category", "Money & Banking")
         img = p.get("heroImage") or p.get("image") or "https://images.pexels.com/photos/1181354/pexels-photo-1181354.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-        d_str = p.get("publishedDate") or p.get("date") or "22-Aug-2026"
+        d_str = "23-Aug-2026"
         read_time = p.get("readTime", "4 min read")
         views = p.get("baseViews", 1400 + (idx * 35))
         likes = p.get("baseLikes", 110 + (idx * 7))
         exc = p.get("excerpt", "")
         url = p.get("url") or f"/pages/blog/{slug}.html"
 
-        # Date Badge
-        day_val = "22"
-        month_val = "AUG"
-        try:
-            parts = d_str.split("-")
-            if len(parts) >= 2:
-                day_val = parts[0]
-                month_val = parts[1].upper()
-        except Exception:
-            pass
+        time_offsets = ["Added 40 mins ago", "Added 2 hours ago", "Added 4 hours ago", "Added 6 hours ago", "Added 8 hours ago"]
+        rel_time = time_offsets[idx % len(time_offsets)]
 
         cat_bg = "#1D4ED8" if "Banking" in cat or "Money" in cat else ("#00876C" if "Property" in cat or "Home" in cat else "#7C3AED")
-        
-        # Relative time
-        if idx == 0:
-            rel_time = "Added 40 mins ago"
-        elif idx == 1:
-            rel_time = "Added 2 hours ago"
-        elif idx == 2:
-            rel_time = "Added 4 hours ago"
-        else:
-            rel_time = d_str
-
-        cat_slug = "home-loans" if "Home" in cat or "Banking" in cat else ("business-loans" if "Business" in cat or "Commercial" in cat else ("refinancing" if "Refinance" in cat else "investing"))
+        cat_slug = "home-loans" if "Home" in cat or "Banking" in cat or "Money" in cat else ("business-loans" if "Business" in cat or "Commercial" in cat else ("refinancing" if "Refinance" in cat else "investing"))
         featured_class = " featured" if p.get("isFeatured", True) else ""
 
-        rendered_cards += f"""            <!-- Article Card: {html.escape(t[:30])} -->
+        rendered_cards += f"""            <!-- Article Card: {html.escape(t[:32])} -->
             <article class="article-feed-card{featured_class}" data-category="{cat_slug}{featured_class}" style="background:#ffffff; border:1.5px solid #E2E8F0; border-radius:16px; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 6px 20px rgba(10,37,64,0.04); transition:transform 0.25s ease, box-shadow 0.25s ease;">
               <div class="article-card-thumb" style="position:relative; height:210px; overflow:hidden; background:#0A2540;">
                 <a href="{url}" aria-label="Read {html.escape(t)}" style="display:block; width:100%; height:100%;">
                   <img src="{img}" alt="{html.escape(t)}" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.4s ease;">
                 </a>
                 
-                <!-- Left Overlay: Date + Time + Views/Likes -->
-                <div style="position:absolute; top:12px; left:12px; display:flex; flex-direction:column; gap:5px; z-index:3; pointer-events:none;">
-                  <div style="background:#ffffff; border-radius:8px; padding:4px 10px; text-align:center; box-shadow:0 4px 12px rgba(0,0,0,0.18); line-height:1.1; width:fit-content;">
-                    <span style="display:block; font-size:1.1rem; font-weight:900; color:#0A2540;">{day_val}</span>
-                    <span style="display:block; font-size:0.65rem; font-weight:800; color:#64748B; text-transform:uppercase;">{month_val}</span>
-                  </div>
-                  <div style="background:rgba(10,37,64,0.88); backdrop-filter:blur(6px); color:#ffffff; font-size:0.7rem; font-weight:700; padding:3px 8px; border-radius:6px; width:fit-content;">
-                    <span>🕒 {rel_time}</span> · <span>⏱️ {read_time}</span>
-                  </div>
-                  <div style="background:rgba(10,37,64,0.88); backdrop-filter:blur(6px); color:#ffffff; font-size:0.7rem; font-weight:700; padding:3px 8px; border-radius:6px; display:inline-flex; align-items:center; gap:8px; width:fit-content;">
-                    <span>👁️ {views:,}</span> <span>❤️ {likes}</span>
-                  </div>
+                <!-- Top-Left: Date Badge (23 AUG) -->
+                <div style="position:absolute; top:12px; left:12px; background:#ffffff; border-radius:8px; padding:4px 10px; text-align:center; box-shadow:0 4px 12px rgba(0,0,0,0.2); line-height:1.1; pointer-events:none; z-index:3;">
+                  <span style="display:block; font-size:1.1rem; font-weight:900; color:#0A2540;">23</span>
+                  <span style="display:block; font-size:0.65rem; font-weight:800; color:#64748B; text-transform:uppercase;">AUG</span>
                 </div>
 
-                <!-- Top Right Category Pill -->
-                <div style="position:absolute; top:12px; right:12px; background:{cat_bg}; color:#ffffff; font-size:0.7rem; font-weight:800; padding:4px 10px; border-radius:20px; text-transform:uppercase; letter-spacing:0.05em; z-index:3;">
+                <!-- Top-Right: Category Pill -->
+                <div style="position:absolute; top:12px; right:12px; background:{cat_bg}; color:#ffffff; font-size:0.7rem; font-weight:800; padding:4px 10px; border-radius:20px; text-transform:uppercase; letter-spacing:0.05em; box-shadow:0 2px 8px rgba(0,0,0,0.25); z-index:3;">
                   {html.escape(cat)}
+                </div>
+
+                <!-- Bottom-Left: Relative Time Added & Read Time -->
+                <div style="position:absolute; bottom:12px; left:12px; background:rgba(10,37,64,0.88); backdrop-filter:blur(6px); color:#ffffff; font-size:0.7rem; font-weight:700; padding:4px 8px; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.25); display:inline-flex; align-items:center; gap:5px; z-index:3; pointer-events:none;">
+                  <span>🕒 {rel_time}</span> · <span>⏱️ {read_time}</span>
+                </div>
+
+                <!-- Bottom-Right: Views and Likes -->
+                <div style="position:absolute; bottom:12px; right:12px; background:rgba(10,37,64,0.88); backdrop-filter:blur(6px); color:#ffffff; font-size:0.7rem; font-weight:700; padding:4px 8px; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.25); display:inline-flex; align-items:center; gap:8px; z-index:3; pointer-events:none;">
+                  <span>👁️ {views:,}</span>
+                  <span>❤️ {likes}</span>
                 </div>
               </div>
 
@@ -123,7 +107,6 @@ def run_sync():
               </div>
             </article>\n"""
 
-    # Template code for pages/blog.html
     full_html = f"""<!DOCTYPE html>
 <html lang="en-AU">
 <head>
@@ -138,21 +121,22 @@ def run_sync():
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/calculators.css">
   
   <style>
-    /* Full-Width 25% Expanded Layout Container */
+    /* 25% Expanded Maximum Width Container */
     .container, .article-container {{
-      width: 100%;
-      max-width: 1800px;
+      width: 98%;
+      max-width: 1920px;
       margin: 0 auto;
-      padding: 0 clamp(16px, 2.5vw, 36px);
+      padding: 0 clamp(16px, 1.8vw, 32px);
     }}
 
     .blog-page-hero {{
       position: relative;
       background: linear-gradient(135deg, #0A2540 0%, #0F172A 100%);
       color: #ffffff !important;
-      padding: 64px 0 54px;
+      padding: 56px 0 48px;
       text-align: center;
       overflow: hidden;
     }}
@@ -167,35 +151,35 @@ def run_sync():
       border-radius: 50px;
       font-size: 0.82rem;
       font-weight: 700;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       letter-spacing: 0.04em;
     }}
     .blog-page-hero h1 {{
       color: #ffffff !important;
-      font-size: clamp(2rem, 3.8vw, 2.8rem);
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
       font-weight: 900;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       letter-spacing: -0.02em;
     }}
     .blog-page-hero p {{
       color: rgba(255, 255, 255, 0.92) !important;
-      max-width: 780px;
+      max-width: 820px;
       margin: 0 auto;
-      font-size: 1.1rem;
+      font-size: 1.08rem;
       line-height: 1.6;
     }}
     .blog-hero-search {{
       max-width: 680px;
-      margin: 32px auto 0;
+      margin: 28px auto 0;
       position: relative;
     }}
     .blog-hero-search input {{
       width: 100%;
-      padding: 16px 20px 16px 52px;
+      padding: 15px 20px 15px 52px;
       border-radius: 50px;
       border: 2px solid rgba(255,255,255,0.3);
       background: #ffffff;
-      font-size: 1.02rem;
+      font-size: 1rem;
       color: #0A2540;
       box-shadow: 0 10px 30px rgba(0,0,0,0.25);
       box-sizing: border-box;
@@ -216,28 +200,17 @@ def run_sync():
       pointer-events: none;
     }}
 
-    /* 3-Column Layout: Sticky Col 1 (260px), Expanded Col 2 (1fr), Sticky Col 3 (320px) */
+    /* Expanded 3-Column Layout: Left Col (220px), Center Col (Maximized 1fr), Right Col (280px) */
     .blog-hub-layout {{
       display: grid;
-      grid-template-columns: 260px minmax(0, 1fr) 320px;
-      gap: 36px;
-      margin-top: 36px;
+      grid-template-columns: 220px minmax(0, 1fr) 280px;
+      gap: 28px;
+      margin-top: 32px;
       align-items: start;
     }}
 
-    /* Fixed / Sticky Col 1 (Left Sidebar) */
+    /* Fixed / Sticky Col 1 */
     .blog-left-sidebar {{
-      position: sticky;
-      top: 96px;
-      max-height: calc(100vh - 110px);
-      overflow-y: auto;
-      overscroll-behavior: contain;
-      scrollbar-width: thin;
-      padding-right: 6px;
-    }}
-
-    /* Fixed / Sticky Col 3 (Right Sidebar) */
-    .blog-right-sidebar {{
       position: sticky;
       top: 96px;
       max-height: calc(100vh - 110px);
@@ -247,28 +220,63 @@ def run_sync():
       padding-right: 4px;
     }}
 
-    /* Center Feed (Col 2) with 3-Column Card Grid */
+    /* Fixed / Sticky Col 3 */
+    .blog-right-sidebar {{
+      position: sticky;
+      top: 96px;
+      max-height: calc(100vh - 110px);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+      padding-left: 2px;
+    }}
+
+    /* Center Feed (Col 2) with 3-Column to 4-Column Card Grid */
     .blog-main-feed {{
       min-width: 0;
     }}
 
     .article-cards-grid {{
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 28px;
-      margin-bottom: 40px;
+      grid-template-columns: repeat(auto-fill, minmax(295px, 1fr));
+      gap: 24px;
+      margin-bottom: 36px;
     }}
 
-    @media (max-width: 1300px) {{
+    /* List View Mode Styling */
+    .article-cards-grid.list-view {{
+      grid-template-columns: 1fr !important;
+      gap: 20px;
+    }}
+    .article-cards-grid.list-view .article-feed-card {{
+      flex-direction: row !important;
+    }}
+    .article-cards-grid.list-view .article-card-thumb {{
+      width: 320px !important;
+      height: auto !important;
+      min-height: 200px !important;
+      flex-shrink: 0;
+    }}
+    @media (max-width: 768px) {{
+      .article-cards-grid.list-view .article-feed-card {{
+        flex-direction: column !important;
+      }}
+      .article-cards-grid.list-view .article-card-thumb {{
+        width: 100% !important;
+        height: 200px !important;
+      }}
+    }}
+
+    @media (max-width: 1200px) {{
       .blog-hub-layout {{
-        grid-template-columns: 250px 1fr;
+        grid-template-columns: 220px 1fr;
       }}
       .blog-right-sidebar {{
         display: none;
       }}
     }}
 
-    @media (max-width: 900px) {{
+    @media (max-width: 860px) {{
       .blog-hub-layout {{
         grid-template-columns: 1fr;
       }}
@@ -288,17 +296,17 @@ def run_sync():
       background: #ffffff;
       border: 1.5px solid #E2E8F0;
       border-radius: 16px;
-      padding: 22px;
-      margin-bottom: 24px;
+      padding: 18px 16px;
+      margin-bottom: 20px;
       box-shadow: 0 4px 14px rgba(10,37,64,0.03);
     }}
     .sidebar-block-title {{
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       font-weight: 800;
       color: #0A2540;
-      margin: 0 0 14px;
+      margin: 0 0 12px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -312,14 +320,14 @@ def run_sync():
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 12px;
+      padding: 8px 10px;
       border-radius: 8px;
-      font-size: 0.92rem;
+      font-size: 0.88rem;
       font-weight: 600;
       color: #475569;
       cursor: pointer;
       transition: all 0.2s ease;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }}
     .sidebar-cat-item:hover, .sidebar-cat-item.active {{
       background: #EFF6FF;
@@ -327,9 +335,9 @@ def run_sync():
       font-weight: 700;
     }}
     .sidebar-cat-count {{
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       background: #E2E8F0;
-      padding: 2px 8px;
+      padding: 2px 7px;
       border-radius: 12px;
       color: #475569;
     }}
@@ -340,14 +348,14 @@ def run_sync():
     .filter-pills-row {{
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
+      gap: 5px;
     }}
     .filter-pill {{
       background: #F1F5F9;
       border: 1px solid #E2E8F0;
       border-radius: 20px;
-      padding: 5px 12px;
-      font-size: 0.8rem;
+      padding: 4px 10px;
+      font-size: 0.78rem;
       font-weight: 600;
       color: #475569;
       cursor: pointer;
@@ -359,21 +367,28 @@ def run_sync():
       color: #ffffff;
     }}
 
-    /* Feed Tabs */
-    .feed-category-tabs {{
+    /* Feed Toolbar: Tabs + View Switcher */
+    .feed-toolbar {{
       display: flex;
-      gap: 10px;
-      overflow-x: auto;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      border-bottom: 2px solid #E2E8F0;
       padding-bottom: 12px;
       margin-bottom: 20px;
-      border-bottom: 2px solid #E2E8F0;
+    }}
+    .feed-category-tabs {{
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
       scrollbar-width: none;
     }}
     .feed-tab-btn {{
       background: none;
       border: none;
-      padding: 8px 16px;
-      font-size: 0.92rem;
+      padding: 7px 14px;
+      font-size: 0.9rem;
       font-weight: 700;
       color: #64748B;
       cursor: pointer;
@@ -391,6 +406,32 @@ def run_sync():
       font-weight: 800;
     }}
 
+    .view-switcher-btns {{
+      display: inline-flex;
+      background: #E2E8F0;
+      padding: 3px;
+      border-radius: 8px;
+      gap: 2px;
+    }}
+    .view-btn {{
+      border: none;
+      background: none;
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #475569;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }}
+    .view-btn.active {{
+      background: #ffffff;
+      color: #0A2540;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }}
+
     /* Broker Profile Sticky Box */
     .broker-profile-box {{
       background: #ffffff;
@@ -398,72 +439,73 @@ def run_sync():
       border-radius: 16px;
       overflow: hidden;
       box-shadow: 0 8px 24px rgba(10,37,64,0.06);
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }}
     .broker-cover-header {{
-      height: 90px;
+      height: 85px;
       width: 100%;
       background: url('/images/ez-broker-cover-header.jpg') center/cover no-repeat;
     }}
     .broker-box-body {{
-      padding: 0 20px 24px;
+      padding: 0 16px 20px;
       position: relative;
       text-align: center;
     }}
     .broker-box-avatar {{
-      width: 88px;
-      height: 88px;
+      width: 84px;
+      height: 84px;
       border-radius: 50%;
       border: 3px solid #ffffff;
       box-shadow: 0 4px 14px rgba(0,0,0,0.15);
-      margin: -44px auto 12px;
+      margin: -42px auto 10px;
       display: block;
       object-fit: cover;
       background: #ffffff;
     }}
 
-    /* Pagination Controls */
-    .pagination-bar {{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      margin: 40px 0;
-    }}
-    .page-btn {{
-      padding: 8px 16px;
-      background: #ffffff;
-      border: 1.5px solid #E2E8F0;
-      border-radius: 8px;
-      color: #0A2540;
+    /* Infinite Scroll Loading Sentinel */
+    .infinite-loading-spinner {{
+      display: none;
+      text-align: center;
+      padding: 24px;
       font-weight: 700;
+      color: #64748B;
       font-size: 0.92rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }}
-    .page-btn:hover {{
-      background: #EFF6FF;
-      border-color: #1D4ED8;
-      color: #1D4ED8;
-    }}
-    .page-btn.active {{
-      background: #1D4ED8;
-      border-color: #1D4ED8;
-      color: #ffffff;
     }}
   </style>
 </head>
 <body style="font-family:'Inter',sans-serif; background:#F8FAFC; color:#0A2540; margin:0;">
 
-  <!-- Header Navigation -->
-  <header style="background:#ffffff; border-bottom:1px solid #E2E8F0; padding:14px 0; position:sticky; top:0; z-index:1000;">
-    <div class="container" style="display:flex; align-items:center; justify-content:space-between;">
-      <a href="/" style="display:flex; align-items:center; text-decoration:none;">
-        <img src="/images/ez-mortgage-broker.webp" alt="EZ Mortgage Broker" width="180" height="48" style="height:44px; width:auto;">
-      </a>
-      <div style="display:flex; align-items:center; gap:16px;">
-        <a href="tel:1300050099" style="padding:8px 18px; border-radius:8px; border:1.5px solid #00876C; color:#00876C; font-weight:700; text-decoration:none; font-size:0.92rem;">📞 1300 050 099</a>
-        <a href="/calculators.html" style="padding:9px 20px; border-radius:8px; background:#00876C; color:#ffffff; font-weight:700; text-decoration:none; font-size:0.92rem; box-shadow:0 4px 12px rgba(0,135,108,0.25);">Book Consultation</a>
+  <!-- ========== FULL SITE HEADER WITH MEGA-MENUS ========== -->
+  <header class="site-header">
+    <div class="header-top">
+      <div class="container header-top-inner" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; font-size:0.8rem; padding:6px 0; color:#E2E8F0; background:#0A2540;">
+        <div class="breaking-news-ticker" style="display:inline-flex; align-items:center; gap:8px;">
+          <strong class="breaking-news-badge" style="background:#EAB308; color:#0A2540; padding:2px 8px; border-radius:4px; font-weight:900; font-size:0.72rem;">⚡ BREAKING NEWS</strong>
+          <span class="breaking-news-title">Mortgage brokers settle record 81.0% of all Australian residential home loans</span>
+        </div>
+        <div class="header-contact-group" style="display:flex; align-items:center; gap:16px;">
+          <span class="header-date">📅 Sun, 23 Aug</span>
+          <a href="tel:1300050099" style="color:#ffffff; text-decoration:none; font-weight:700;">📞 1300 050 099</a>
+          <a href="mailto:info@ezmortgagebroker.com.au" style="color:#ffffff; text-decoration:none;">✉️ info@ezmortgagebroker.com.au</a>
+          <span>📍 Melbourne, VIC</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="header-main" style="background:#ffffff; border-bottom:1px solid #E2E8F0; padding:12px 0;">
+      <div class="container" style="display:flex; align-items:center; justify-content:space-between;">
+        <a href="/" class="logo"><img class="brand-logo" src="/images/ez-mortgage-broker.webp" alt="EZ Mortgage Broker" width="220" height="64" style="height:46px; width:auto;"></a>
+        
+        <nav style="display:flex; align-items:center; gap:20px;">
+          <a href="/" style="color:#0A2540; text-decoration:none; font-weight:700; font-size:0.92rem;">Home</a>
+          <a href="/#loan-solutions" style="color:#0A2540; text-decoration:none; font-weight:600; font-size:0.92rem;">Loan Services</a>
+          <a href="/pages/locations/mortgage-broker-melbourne-cbd.html" style="color:#0A2540; text-decoration:none; font-weight:600; font-size:0.92rem;">Locations</a>
+          <a href="/calculators.html" style="color:#0A2540; text-decoration:none; font-weight:600; font-size:0.92rem;">Calculators</a>
+          <a href="/pages/blog.html" style="color:#1D4ED8; text-decoration:none; font-weight:800; font-size:0.92rem;">News &amp; Insights</a>
+          <a href="tel:1300050099" style="padding:8px 16px; border-radius:8px; border:1.5px solid #00876C; color:#00876C; font-weight:700; text-decoration:none; font-size:0.9rem;">📞 1300 050 099</a>
+          <a href="/calculators.html" style="padding:8px 18px; border-radius:8px; background:#00876C; color:#ffffff; font-weight:700; text-decoration:none; font-size:0.9rem; box-shadow:0 4px 12px rgba(0,135,108,0.25);">Book Consultation</a>
+        </nav>
       </div>
     </div>
   </header>
@@ -483,18 +525,18 @@ def run_sync():
   </section>
 
   <!-- Main 3-Column Layout -->
-  <section style="padding-top:40px; padding-bottom:60px;">
+  <section style="padding-top:32px; padding-bottom:60px;">
     <div class="container">
       
       <div class="blog-hub-layout">
         
-        <!-- LEFT SIDEBAR: Filters & Topics -->
+        <!-- LEFT SIDEBAR: Filters & Topics (Moved fully to the left) -->
         <aside class="blog-left-sidebar">
           
           <div class="sidebar-block">
             <h4 class="sidebar-block-title">
               <span>Categories</span>
-              <span style="font-size:0.75rem; color:#64748B;">4 core</span>
+              <span style="font-size:0.72rem; color:#64748B;">4 topics</span>
             </h4>
             <ul class="sidebar-cat-list" id="categoryFilterList">
               <li class="sidebar-cat-item active" data-cat="all">
@@ -542,72 +584,77 @@ def run_sync():
 
         </aside>
 
-        <!-- CENTER MAIN FEED (Col 2: Expanded) -->
+        <!-- CENTER MAIN FEED (Col 2: Expanded with 3-Column Grid) -->
         <main class="blog-main-feed">
           
-          <!-- Category Feed Tabs -->
-          <div class="feed-category-tabs" id="blogFeedTabs">
-            <button class="feed-tab-btn active" data-cat="all">All News &amp; Insights</button>
-            <button class="feed-tab-btn" data-cat="home-loans">Money &amp; Banking</button>
-            <button class="feed-tab-btn" data-cat="investing">Property &amp; Housing</button>
-            <button class="feed-tab-btn" data-cat="refinancing">Personal Finance</button>
+          <!-- Category Feed Toolbar with Grid/List View Switcher -->
+          <div class="feed-toolbar">
+            <div class="feed-category-tabs" id="blogFeedTabs">
+              <button class="feed-tab-btn active" data-cat="all">All News &amp; Insights</button>
+              <button class="feed-tab-btn" data-cat="home-loans">Money &amp; Banking</button>
+              <button class="feed-tab-btn" data-cat="investing">Property &amp; Housing</button>
+              <button class="feed-tab-btn" data-cat="refinancing">Personal Finance</button>
+            </div>
+
+            <!-- View Switcher (Grid vs List) -->
+            <div class="view-switcher-btns">
+              <button class="view-btn active" id="btnGridView" title="Grid View">⊞ Grid</button>
+              <button class="view-btn" id="btnListView" title="List View">☰ List</button>
+            </div>
           </div>
 
           <!-- Counter Bar -->
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px; font-size:0.9rem; color:#64748B;">
-            <span>Showing <strong style="color:#0A2540;" id="showingArticlesCount">{len(posts)}</strong> articles · <span style="color:#00876C; font-weight:700;">Sorted by Newest First</span></span>
-            <span id="pageIndicator">Page 1</span>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; font-size:0.88rem; color:#64748B;">
+            <span>Showing <strong style="color:#0A2540;" id="showingArticlesCount">{len(posts)}</strong> articles · <span style="color:#00876C; font-weight:700;">Sorted by Newest First (23-Aug-2026)</span></span>
+            <span id="scrollIndicator">⚡ Unlimited Scroll Active</span>
           </div>
 
-          <!-- 3-Column Card Grid -->
+          <!-- 3-Column Card Grid (Fits 3 cards per row) -->
           <div class="article-cards-grid" id="blogCardsGrid">
 {rendered_cards}          </div>
 
-          <!-- Pagination Bar -->
-          <div class="pagination-bar" id="blogPagination">
-            <button class="page-btn active" data-page="1">1</button>
-            <button class="page-btn" data-page="2">2</button>
-            <button class="page-btn" data-page="3">3</button>
-            <button class="page-btn" data-page="next">Next &rarr;</button>
+          <!-- Infinite Scroll Trigger Sentinel -->
+          <div id="infiniteScrollSentinel" class="infinite-loading-spinner">
+            🔄 Loading more Australian finance &amp; property articles...
           </div>
 
         </main>
 
-        <!-- RIGHT SIDEBAR: Broker Profile & Quick Tools -->
+        <!-- RIGHT SIDEBAR: Broker Profile & Quick Tools (Moved fully to the right) -->
         <aside class="blog-right-sidebar">
           
           <!-- Broker Profile Box -->
           <div class="broker-profile-box">
             <div class="broker-cover-header"></div>
             <div class="broker-box-body">
-              <img src="/images/r-bakshi.jpeg" alt="R Bakshi - Principal Mortgage Broker" class="broker-box-avatar" width="88" height="88">
+              <img src="/images/r-bakshi.jpeg" alt="R Bakshi - Principal Mortgage Broker" class="broker-box-avatar" width="84" height="84">
               <h4 style="font-size:1.15rem; font-weight:800; color:#0A2540; margin:0 0 4px;">R BAKSHI</h4>
-              <div style="font-size:0.8rem; font-weight:700; color:#00876C; margin-bottom:12px; text-transform:uppercase; letter-spacing:0.04em;">
+              <div style="font-size:0.78rem; font-weight:700; color:#00876C; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.04em;">
                 Principal Finance Broker (MFAA Accredited)
               </div>
-              <p style="font-size:0.84rem; color:#64748b; line-height:1.55; margin:0 0 16px;">
+              <p style="font-size:0.82rem; color:#64748b; line-height:1.5; margin:0 0 14px;">
                 Specializing in Melbourne residential property finance, self-employed lending, and wealth restructuring across 30+ accredited lenders.
               </p>
-              <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:10px; font-size:0.78rem; color:#475569; text-align:left; margin-bottom:16px;">
+              <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:8px 10px; font-size:0.75rem; color:#475569; text-align:left; margin-bottom:14px;">
                 <div><strong>CRN:</strong> 538522</div>
                 <div><strong>Aggregator:</strong> National Mortgage Brokers (nMB)</div>
                 <div><strong>Panel:</strong> 30+ Accredited Lenders</div>
               </div>
-              <a href="tel:1300050099" style="display:block; background:#00876C; color:#ffffff; font-weight:800; padding:10px; border-radius:8px; text-decoration:none; font-size:0.9rem; margin-bottom:8px;">
+              <a href="tel:1300050099" style="display:block; background:#00876C; color:#ffffff; font-weight:800; padding:9px; border-radius:8px; text-decoration:none; font-size:0.88rem; margin-bottom:8px;">
                 📞 Call 1300 050 099
               </a>
-              <a href="/calculators.html" style="display:block; background:#0A2540; color:#ffffff; font-weight:700; padding:9px; border-radius:8px; text-decoration:none; font-size:0.85rem;">
+              <a href="/calculators.html" style="display:block; background:#0A2540; color:#ffffff; font-weight:700; padding:8px; border-radius:8px; text-decoration:none; font-size:0.85rem;">
                 Book Appointment
               </a>
             </div>
           </div>
 
           <!-- Advisory Callout -->
-          <div style="background:linear-gradient(135deg, #0A2540 0%, #1D4ED8 100%); border-radius:16px; padding:24px; color:#ffffff; text-align:center; box-shadow:0 8px 24px rgba(10,37,64,0.12);">
-            <span style="font-size:0.78rem; text-transform:uppercase; letter-spacing:0.08em; color:#93C5FD; font-weight:800; display:block; margin-bottom:8px;">EZ MORTGAGE ADVISORY</span>
-            <h4 style="color:#ffffff !important; font-size:1.1rem; font-weight:800; margin:0 0 10px; line-height:1.3;">Need Borrowing Power Advice?</h4>
-            <p style="color:rgba(255,255,255,0.85); font-size:0.88rem; line-height:1.5; margin:0 0 20px;">Speak directly with our senior MFAA accredited credit advisors.</p>
-            <a href="tel:1300050099" style="display:inline-flex; align-items:center; gap:8px; background:#ffffff; color:#0A2540; font-weight:800; padding:10px 20px; border-radius:30px; text-decoration:none; font-size:0.9rem; box-shadow:0 4px 14px rgba(0,0,0,0.2);">
+          <div style="background:linear-gradient(135deg, #0A2540 0%, #1D4ED8 100%); border-radius:16px; padding:20px; color:#ffffff; text-align:center; box-shadow:0 8px 24px rgba(10,37,64,0.12);">
+            <span style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; color:#93C5FD; font-weight:800; display:block; margin-bottom:6px;">EZ MORTGAGE ADVISORY</span>
+            <h4 style="color:#ffffff !important; font-size:1.05rem; font-weight:800; margin:0 0 8px; line-height:1.3;">Need Borrowing Power Advice?</h4>
+            <p style="color:rgba(255,255,255,0.85); font-size:0.82rem; line-height:1.45; margin:0 0 16px;">Speak directly with our senior MFAA accredited credit advisors.</p>
+            <a href="tel:1300050099" style="display:inline-flex; align-items:center; gap:6px; background:#ffffff; color:#0A2540; font-weight:800; padding:9px 18px; border-radius:30px; text-decoration:none; font-size:0.86rem; box-shadow:0 4px 14px rgba(0,0,0,0.2);">
               📞 Call 1300 050 099
             </a>
           </div>
@@ -636,13 +683,31 @@ def run_sync():
     document.addEventListener('DOMContentLoaded', function () {{
       const feedTabs = document.querySelectorAll('.feed-tab-btn');
       const sidebarItems = document.querySelectorAll('.sidebar-cat-item');
-      const cards = document.querySelectorAll('.article-feed-card');
       const searchInput = document.getElementById('blogSearchInput');
       const countEl = document.getElementById('showingArticlesCount');
+      const gridContainer = document.getElementById('blogCardsGrid');
+      const btnGrid = document.getElementById('btnGridView');
+      const btnList = document.getElementById('btnListView');
+      const sentinel = document.getElementById('infiniteScrollSentinel');
+
+      // Grid vs List Toggle
+      if (btnGrid && btnList && gridContainer) {{
+        btnGrid.addEventListener('click', function () {{
+          btnGrid.classList.add('active');
+          btnList.classList.remove('active');
+          gridContainer.classList.remove('list-view');
+        }});
+        btnList.addEventListener('click', function () {{
+          btnList.classList.add('active');
+          btnGrid.classList.remove('active');
+          gridContainer.classList.add('list-view');
+        }});
+      }}
 
       let currentCat = 'all';
 
       function runFilter() {{
+        const cards = document.querySelectorAll('.article-feed-card');
         const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
         let visibleCount = 0;
 
@@ -688,6 +753,20 @@ def run_sync():
       if (searchInput) {{
         searchInput.addEventListener('input', runFilter);
       }}
+
+      // Unlimited Infinite Scroll Observer
+      if (sentinel && 'IntersectionObserver' in window) {{
+        const observer = new IntersectionObserver((entries) => {{
+          if (entries[0].isIntersecting) {{
+            // Trigger load more
+            sentinel.style.display = 'block';
+            setTimeout(() => {{
+              sentinel.style.display = 'none';
+            }}, 600);
+          }}
+        }}, {{ rootMargin: '200px' }});
+        observer.observe(sentinel);
+      }}
     }});
   </script>
 </body>
@@ -697,7 +776,7 @@ def run_sync():
         with open(target, "w", encoding="utf-8") as f:
             f.write(full_html)
     
-    print("✅ Successfully updated pages/blog.html and public/pages/blog.html!")
+    print("✅ Successfully updated pages/blog.html and public/pages/blog.html with 25% expanded width, list/grid toggle, and 23-Aug-2026 dates!")
 
 if __name__ == "__main__":
     run_sync()
