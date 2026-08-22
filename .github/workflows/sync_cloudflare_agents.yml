@@ -1,0 +1,34 @@
+name: Auto-Sync Cloudflare Agents Standalone Repo
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'cloudflare/chat-agent/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-to-standalone:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Blogs-Content repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push to Standalone Cloudflare Agents Repository
+        uses: cpina/github-action-push-to-another-repository@v1.7.2
+        env:
+          SSH_DEPLOY_KEY: ${{ secrets.CLOUDFLARE_AGENTS_DEPLOY_KEY }}
+          API_TOKEN_GITHUB: ${{ secrets.AUTO_SYNC_TOKEN || github.token }}
+        with:
+          source-directory: 'cloudflare/chat-agent'
+          destination-github-username: 'Finnova-Ltd'
+          destination-repository-name: 'cloudflare-agents'
+          user-email: 'github-actions[bot]@users.noreply.github.com'
+          target-branch: 'main'
+        continue-on-error: true

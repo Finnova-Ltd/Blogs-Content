@@ -1,0 +1,72 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "omni-agent",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-12",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "ai": {
+    "binding": "AI"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "omni-chat-db",
+      "database_id": "d6bc6d57-4eea-4c8b-8f72-7db2cdfc19d1"
+    }
+  ],
+  "vectorize": [
+    {
+      "binding": "VECTOR_INDEX",
+      "index_name": "omni-knowledge-index"
+    }
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "AGENT_SESSION",
+        "class_name": "AgentSession"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["AgentSession"]
+    }
+  ],
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS"
+  },
+  "env": {
+    "staging": {
+      "name": "omni-agent-staging",
+      "ai": {
+        "binding": "AI"
+      },
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "omni-chat-db",
+          "database_id": "d6bc6d57-4eea-4c8b-8f72-7db2cdfc19d1"
+        }
+      ],
+      "vectorize": [
+        {
+          "binding": "VECTOR_INDEX",
+          "index_name": "omni-knowledge-index"
+        }
+      ],
+      "durable_objects": {
+        "bindings": [
+          {
+            "name": "AGENT_SESSION",
+            "class_name": "AgentSession"
+          }
+        ]
+      }
+    }
+  }
+}

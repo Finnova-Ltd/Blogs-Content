@@ -1,0 +1,24 @@
+{
+  "name": "omni-agent",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Multi-tenant AI Chat Agent powered by Cloudflare Agents SDK, Workers AI, and Durable Objects SQLite",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "cf-typegen": "wrangler types"
+  },
+  "dependencies": {
+    "@cloudflare/ai-chat": "^0.1.9",
+    "agents": "^0.7.6",
+    "workers-ai-provider": "^0.1.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240806.0",
+    "jsdom": "^29.1.1",
+    "typescript": "^5.5.4",
+    "wrangler": "^3.70.0"
+  }
+}

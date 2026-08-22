@@ -1,0 +1,13 @@
+{
+  "release_id": "20260815T085323Z-bc32d81",
+  "git_commit": "bc32d81",
+  "artifact_sha256": "fd5b0d9655e56e554ae8fd1aa356cf364b663b88d43045a0ceb576a29d1b016e",
+  "candidate_staging_version": "95d5516d-15e5-4d95-b76d-44d4e46fb736",
+  "production_version": "d393e494-94f0-4c2e-a4c3-9df0ca9f2d5b",
+  "typescript_status": "PASS",
+  "sanitizer_tests": { "passed": 10, "total": 10 },
+  "tenant_isolation_tests": { "passed": 10, "total": 10 },
+  "ai_guardrail_tests": { "passed": 21, "total": 21 },
+  "production_smoke_gate": "PASS",
+  "timestamp_utc": "2026-08-15T08:53:23Z"
+}
