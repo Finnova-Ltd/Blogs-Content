@@ -1,0 +1,11 @@
+name = "multi-site-content-api"
+main = "index.js"
+compatibility_date = "2026-08-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "multi_site_articles"
+database_id = "multi-site-d1-placeholder" # Replace with actual D1 database ID from Cloudflare dashboard or wrangler d1 create
+
+[vars]
+ENVIRONMENT = "production"
