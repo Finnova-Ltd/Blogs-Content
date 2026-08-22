@@ -1,13 +1,21 @@
 #!/usr/bin/env python3
 """
-Sync & Upgrade EZ Mortgage Broker Insights Hub (pages/blog.html)
-- Full standard site header with topbar and mega-menus
-- 25% Expanded Width (max-width: 1920px, width: 98%)
-- Maximum Column 2 width fitting 3-4 articles per row
-- Grid & List view toggle switcher
-- Infinite / Unlimited scroll engine + Search & Category filters
-- Exact Image 1 overlay coordinates (Date top-left, Cat top-right, Added-time bottom-left, Views/Likes bottom-right)
-- Updated Date to 23-Aug-2026
+Master Card & Hub Sync Script:
+1. Card Image Overlays:
+   - Top-Left: Date badge (23 AUG)
+   - Top-Center: Company Logo (/images/ez-mortgage-broker.webp in sleek frosted/white container)
+   - Top-Right: Category Pill
+   - Bottom-Left: Relative time added + read time (e.g. 🕒 Added 40 mins ago · ⏱️ 4 min read)
+   - Bottom-Right: Views and Likes (e.g. 👁️ 1,400 · ❤️ 110)
+2. Blog Hub (pages/blog.html):
+   - Full site header with breaking news bar (Sun, 23 Aug)
+   - 98% width container (up to 1920px)
+   - Left sidebar (200px) & Right sidebar (260px) pushed to outer edges
+   - Center feed with strict 3-column card grid on desktop: grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+   - Grid / List view toggle
+   - Unlimited Infinite Scroll
+3. Homepage (index.html):
+   - Updates the 3 featured cards with the exact same layout
 """
 
 import os
@@ -17,9 +25,12 @@ import html
 from datetime import datetime
 
 ROOT_DIR = "/Users/robinbakshi/Documents/GitHub/ezmortgagebroker"
+POSTS_JSON = os.path.join(ROOT_DIR, "posts.json")
+PUB_POSTS_JSON = os.path.join(ROOT_DIR, "public", "posts.json")
 BLOG_HTML = os.path.join(ROOT_DIR, "pages", "blog.html")
 PUB_BLOG_HTML = os.path.join(ROOT_DIR, "public", "pages", "blog.html")
-POSTS_JSON = os.path.join(ROOT_DIR, "posts.json")
+INDEX_HTML = os.path.join(ROOT_DIR, "index.html")
+PUB_INDEX_HTML = os.path.join(ROOT_DIR, "public", "index.html")
 
 def parse_date(p):
     d_str = p.get("publishedDate") or p.get("date") or p.get("formattedDate") or "01-Jan-2026"
@@ -31,83 +42,120 @@ def parse_date(p):
         except Exception:
             return datetime(2026, 1, 1)
 
-def run_sync():
+def generate_card_markup(p, idx, is_blog_hub=True):
+    t = p.get("title", "")
+    slug = p.get("slug", "")
+    cat = p.get("category", "Money & Banking")
+    img = p.get("heroImage") or p.get("image") or "https://images.pexels.com/photos/1181354/pexels-photo-1181354.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    read_time = p.get("readTime", "4 min read")
+    views = p.get("baseViews", 1400 + (idx * 35))
+    likes = p.get("baseLikes", 110 + (idx * 7))
+    exc = p.get("excerpt", "")
+    url = f"/pages/blog/{slug}.html"
+
+    time_offsets = ["Added 40 mins ago", "Added 2 hours ago", "Added 4 hours ago", "Added 6 hours ago", "Added 8 hours ago"]
+    rel_time = time_offsets[idx % len(time_offsets)]
+
+    cat_bg = "#1D4ED8" if "Banking" in cat or "Money" in cat else ("#00876C" if "Property" in cat or "Housing" in cat or "Home" in cat else "#7C3AED")
+    cat_slug = "home-loans" if "Home" in cat or "Banking" in cat or "Money" in cat else ("business-loans" if "Business" in cat or "Commercial" in cat else ("refinancing" if "Refinance" in cat else "investing"))
+    featured_class = " featured" if p.get("isFeatured", True) else ""
+
+    card_tag = "article"
+    card_cls = f"article-feed-card{featured_class}" if is_blog_hub else "insight-card fade-up"
+    data_cat = f' data-category="{cat_slug}{featured_class}"' if is_blog_hub else ""
+
+    return f"""        <{card_tag} class="{card_cls}"{data_cat} style="background:#ffffff; border:1.5px solid #E2E8F0; border-radius:16px; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 6px 20px rgba(10,37,64,0.04); transition:transform 0.25s ease, box-shadow 0.25s ease;">
+          <div class="article-card-thumb" style="position:relative; height:215px; overflow:hidden; background:#0A2540;">
+            <a href="{url}" aria-label="Read {html.escape(t)}" style="display:block; width:100%; height:100%;">
+              <img src="{img}" alt="{html.escape(t)}" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.4s ease;">
+            </a>
+            
+            <!-- 1. Top-Left: Date Badge (23 AUG) -->
+            <div style="position:absolute; top:10px; left:10px; background:#ffffff; border-radius:8px; padding:4px 10px; text-align:center; box-shadow:0 4px 12px rgba(0,0,0,0.22); line-height:1.1; pointer-events:none; z-index:3;">
+              <span style="display:block; font-size:1.1rem; font-weight:900; color:#0A2540;">23</span>
+              <span style="display:block; font-size:0.65rem; font-weight:800; color:#64748B; text-transform:uppercase; letter-spacing:0.04em;">AUG</span>
+            </div>
+
+            <!-- 2. Top-Center: Company Logo Badge -->
+            <div style="position:absolute; top:10px; left:50%; transform:translateX(-50%); background:rgba(255,255,255,0.92); backdrop-filter:blur(6px); border-radius:6px; padding:3px 10px; box-shadow:0 3px 10px rgba(0,0,0,0.18); display:flex; align-items:center; justify-content:center; z-index:3; pointer-events:none; border:1px solid rgba(226,232,240,0.8);">
+              <img src="/images/ez-mortgage-broker.webp" alt="EZ Mortgage Broker" style="height:20px; width:auto; display:block;">
+            </div>
+
+            <!-- 3. Top-Right: Category Pill -->
+            <div style="position:absolute; top:10px; right:10px; background:{cat_bg}; color:#ffffff; font-size:0.68rem; font-weight:800; padding:4px 10px; border-radius:20px; text-transform:uppercase; letter-spacing:0.05em; box-shadow:0 2px 8px rgba(0,0,0,0.25); z-index:3;">
+              {html.escape(cat)}
+            </div>
+
+            <!-- 4. Bottom-Left: Relative Time Added & Read Time -->
+            <div style="position:absolute; bottom:10px; left:10px; background:rgba(10,37,64,0.88); backdrop-filter:blur(6px); color:#ffffff; font-size:0.68rem; font-weight:700; padding:4px 8px; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.25); display:inline-flex; align-items:center; gap:5px; z-index:3; pointer-events:none;">
+              <span>🕒 {rel_time}</span> · <span>⏱️ {read_time}</span>
+            </div>
+
+            <!-- 5. Bottom-Right: Views and Likes -->
+            <div style="position:absolute; bottom:10px; right:10px; background:rgba(10,37,64,0.88); backdrop-filter:blur(6px); color:#ffffff; font-size:0.68rem; font-weight:700; padding:4px 8px; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.25); display:inline-flex; align-items:center; gap:6px; z-index:3; pointer-events:none;">
+              <span>👁️ {views:,}</span>
+              <span>❤️ {likes}</span>
+            </div>
+          </div>
+
+          <div class="article-card-body" style="padding:18px 16px; display:flex; flex-direction:column; flex-grow:1;">
+            <h4 class="article-card-title" style="font-size:1.05rem; font-weight:800; line-height:1.4; margin:0 0 10px;">
+              <a href="{url}" style="color:#0A2540; text-decoration:none;">{html.escape(t)}</a>
+            </h4>
+            <p class="article-card-excerpt" style="color:#475569; font-size:0.86rem; line-height:1.55; margin:0 0 16px; flex-grow:1;">
+              {html.escape(exc[:130])}...
+            </p>
+            <div style="margin-top:auto; padding-top:12px; border-top:1px solid #F1F5F9; display:flex; align-items:center; justify-content:space-between;">
+              <div style="height:3px; width:40%; background:linear-gradient(90deg, #1D4ED8, #38BDF8); border-radius:2px;"></div>
+              <a href="{url}" class="article-card-link" style="font-size:0.85rem; font-weight:800; color:#1D4ED8; text-decoration:none; display:inline-flex; align-items:center; gap:4px;">
+                Read Article &rarr;
+              </a>
+            </div>
+          </div>
+        </{card_tag}>\n"""
+
+def main():
     posts = []
     if os.path.exists(POSTS_JSON):
         with open(POSTS_JSON, "r", encoding="utf-8") as f:
             posts = json.load(f)
-    
-    # Sort posts strictly descending by date (newest first)
+
+    # Sort descending by date (newest first)
     posts.sort(key=parse_date, reverse=True)
     
-    # Pre-render top 15 cards with the exact new layout
-    rendered_cards = ""
-    for idx, p in enumerate(posts[:15]):
-        t = p.get("title", "")
-        slug = p.get("slug", "")
-        cat = p.get("category", "Money & Banking")
-        img = p.get("heroImage") or p.get("image") or "https://images.pexels.com/photos/1181354/pexels-photo-1181354.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-        d_str = "23-Aug-2026"
-        read_time = p.get("readTime", "4 min read")
-        views = p.get("baseViews", 1400 + (idx * 35))
-        likes = p.get("baseLikes", 110 + (idx * 7))
-        exc = p.get("excerpt", "")
-        url = p.get("url") or f"/pages/blog/{slug}.html"
+    # Update dates to 23-Aug-2026
+    for p in posts[:25]:
+        p["publishedDate"] = "23-Aug-2026"
+        p["date"] = "23-Aug-2026"
+        p["formattedDate"] = "23-Aug-2026"
 
-        time_offsets = ["Added 40 mins ago", "Added 2 hours ago", "Added 4 hours ago", "Added 6 hours ago", "Added 8 hours ago"]
-        rel_time = time_offsets[idx % len(time_offsets)]
+    with open(POSTS_JSON, "w", encoding="utf-8") as f:
+        json.dump(posts, f, indent=2)
+    with open(PUB_POSTS_JSON, "w", encoding="utf-8") as f:
+        json.dump(posts, f, indent=2)
 
-        cat_bg = "#1D4ED8" if "Banking" in cat or "Money" in cat else ("#00876C" if "Property" in cat or "Home" in cat else "#7C3AED")
-        cat_slug = "home-loans" if "Home" in cat or "Banking" in cat or "Money" in cat else ("business-loans" if "Business" in cat or "Commercial" in cat else ("refinancing" if "Refinance" in cat else "investing"))
-        featured_class = " featured" if p.get("isFeatured", True) else ""
+    # 1. Update Homepage (index.html) Top 3 Featured Cards
+    top3_cards = ""
+    for idx, p in enumerate(posts[:3]):
+        top3_cards += generate_card_markup(p, idx, is_blog_hub=False)
 
-        rendered_cards += f"""            <!-- Article Card: {html.escape(t[:32])} -->
-            <article class="article-feed-card{featured_class}" data-category="{cat_slug}{featured_class}" style="background:#ffffff; border:1.5px solid #E2E8F0; border-radius:16px; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 6px 20px rgba(10,37,64,0.04); transition:transform 0.25s ease, box-shadow 0.25s ease;">
-              <div class="article-card-thumb" style="position:relative; height:210px; overflow:hidden; background:#0A2540;">
-                <a href="{url}" aria-label="Read {html.escape(t)}" style="display:block; width:100%; height:100%;">
-                  <img src="{img}" alt="{html.escape(t)}" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.4s ease;">
-                </a>
-                
-                <!-- Top-Left: Date Badge (23 AUG) -->
-                <div style="position:absolute; top:12px; left:12px; background:#ffffff; border-radius:8px; padding:4px 10px; text-align:center; box-shadow:0 4px 12px rgba(0,0,0,0.2); line-height:1.1; pointer-events:none; z-index:3;">
-                  <span style="display:block; font-size:1.1rem; font-weight:900; color:#0A2540;">23</span>
-                  <span style="display:block; font-size:0.65rem; font-weight:800; color:#64748B; text-transform:uppercase;">AUG</span>
-                </div>
+    for fpath in [INDEX_HTML, PUB_INDEX_HTML]:
+        if os.path.exists(fpath):
+            with open(fpath, "r", encoding="utf-8") as f:
+                c = f.read()
+            # Replace home-insights-grid content
+            grid_html = f'<div id="home-insights-grid" class="insights-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:28px;">\n{top3_cards}      </div>'
+            c = re.sub(r'<div id="home-insights-grid"[^>]*>.*?</div>\s*</div>\s*</section>', f'{grid_html}\n    </div>\n  </section>', c, flags=re.DOTALL)
+            with open(fpath, "w", encoding="utf-8") as f:
+                f.write(c)
+            print(f"✅ Updated featured cards in {os.path.basename(fpath)}")
 
-                <!-- Top-Right: Category Pill -->
-                <div style="position:absolute; top:12px; right:12px; background:{cat_bg}; color:#ffffff; font-size:0.7rem; font-weight:800; padding:4px 10px; border-radius:20px; text-transform:uppercase; letter-spacing:0.05em; box-shadow:0 2px 8px rgba(0,0,0,0.25); z-index:3;">
-                  {html.escape(cat)}
-                </div>
+    # 2. Update Insights Hub (pages/blog.html)
+    rendered_blog_cards = ""
+    for idx, p in enumerate(posts[:18]):
+        rendered_blog_cards += generate_card_markup(p, idx, is_blog_hub=True)
 
-                <!-- Bottom-Left: Relative Time Added & Read Time -->
-                <div style="position:absolute; bottom:12px; left:12px; background:rgba(10,37,64,0.88); backdrop-filter:blur(6px); color:#ffffff; font-size:0.7rem; font-weight:700; padding:4px 8px; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.25); display:inline-flex; align-items:center; gap:5px; z-index:3; pointer-events:none;">
-                  <span>🕒 {rel_time}</span> · <span>⏱️ {read_time}</span>
-                </div>
-
-                <!-- Bottom-Right: Views and Likes -->
-                <div style="position:absolute; bottom:12px; right:12px; background:rgba(10,37,64,0.88); backdrop-filter:blur(6px); color:#ffffff; font-size:0.7rem; font-weight:700; padding:4px 8px; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.25); display:inline-flex; align-items:center; gap:8px; z-index:3; pointer-events:none;">
-                  <span>👁️ {views:,}</span>
-                  <span>❤️ {likes}</span>
-                </div>
-              </div>
-
-              <div class="article-card-body" style="padding:20px; display:flex; flex-direction:column; flex-grow:1;">
-                <h4 class="article-card-title" style="font-size:1.08rem; font-weight:800; line-height:1.42; margin:0 0 10px;">
-                  <a href="{url}" style="color:#0A2540; text-decoration:none;">{html.escape(t)}</a>
-                </h4>
-                <p class="article-card-excerpt" style="color:#475569; font-size:0.88rem; line-height:1.58; margin:0 0 16px; flex-grow:1;">
-                  {html.escape(exc[:135])}...
-                </p>
-                <div style="margin-top:auto; padding-top:12px; border-top:1px solid #F1F5F9; display:flex; align-items:center; justify-content:space-between;">
-                  <div style="height:3px; width:40%; background:linear-gradient(90deg, #1D4ED8, #38BDF8); border-radius:2px;"></div>
-                  <a href="{url}" class="article-card-link" style="font-size:0.86rem; font-weight:800; color:#1D4ED8; text-decoration:none; display:inline-flex; align-items:center; gap:4px;">
-                    Read Article &rarr;
-                  </a>
-                </div>
-              </div>
-            </article>\n"""
-
-    full_html = f"""<!DOCTYPE html>
+    blog_full_html = f"""<!DOCTYPE html>
 <html lang="en-AU">
 <head>
   <link rel="icon" type="image/webp" href="/images/ez-mortgage-broker.webp">
@@ -124,19 +172,19 @@ def run_sync():
   <link rel="stylesheet" href="/css/calculators.css">
   
   <style>
-    /* 25% Expanded Maximum Width Container */
+    /* 98% Expanded Maximum Width Container (Up to 1920px) */
     .container, .article-container {{
       width: 98%;
       max-width: 1920px;
       margin: 0 auto;
-      padding: 0 clamp(16px, 1.8vw, 32px);
+      padding: 0 clamp(14px, 1.5vw, 28px);
     }}
 
     .blog-page-hero {{
       position: relative;
       background: linear-gradient(135deg, #0A2540 0%, #0F172A 100%);
       color: #ffffff !important;
-      padding: 56px 0 48px;
+      padding: 50px 0 42px;
       text-align: center;
       overflow: hidden;
     }}
@@ -151,12 +199,12 @@ def run_sync():
       border-radius: 50px;
       font-size: 0.82rem;
       font-weight: 700;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       letter-spacing: 0.04em;
     }}
     .blog-page-hero h1 {{
       color: #ffffff !important;
-      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-size: clamp(1.9rem, 3.2vw, 2.6rem);
       font-weight: 900;
       margin-bottom: 10px;
       letter-spacing: -0.02em;
@@ -165,21 +213,21 @@ def run_sync():
       color: rgba(255, 255, 255, 0.92) !important;
       max-width: 820px;
       margin: 0 auto;
-      font-size: 1.08rem;
+      font-size: 1.05rem;
       line-height: 1.6;
     }}
     .blog-hero-search {{
       max-width: 680px;
-      margin: 28px auto 0;
+      margin: 24px auto 0;
       position: relative;
     }}
     .blog-hero-search input {{
       width: 100%;
-      padding: 15px 20px 15px 52px;
+      padding: 14px 20px 14px 52px;
       border-radius: 50px;
       border: 2px solid rgba(255,255,255,0.3);
       background: #ffffff;
-      font-size: 1rem;
+      font-size: 0.98rem;
       color: #0A2540;
       box-shadow: 0 10px 30px rgba(0,0,0,0.25);
       box-sizing: border-box;
@@ -195,21 +243,21 @@ def run_sync():
       left: 20px;
       top: 50%;
       transform: translateY(-50%);
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       color: #64748B;
       pointer-events: none;
     }}
 
-    /* Expanded 3-Column Layout: Left Col (220px), Center Col (Maximized 1fr), Right Col (280px) */
+    /* Expanded 3-Column Layout: Left Col (200px), Center Feed (Maximized), Right Col (260px) */
     .blog-hub-layout {{
       display: grid;
-      grid-template-columns: 220px minmax(0, 1fr) 280px;
-      gap: 28px;
-      margin-top: 32px;
+      grid-template-columns: 200px minmax(0, 1fr) 260px;
+      gap: 24px;
+      margin-top: 28px;
       align-items: start;
     }}
 
-    /* Fixed / Sticky Col 1 */
+    /* Fixed / Sticky Col 1 (Far Left) */
     .blog-left-sidebar {{
       position: sticky;
       top: 96px;
@@ -217,10 +265,10 @@ def run_sync():
       overflow-y: auto;
       overscroll-behavior: contain;
       scrollbar-width: thin;
-      padding-right: 4px;
+      padding-right: 2px;
     }}
 
-    /* Fixed / Sticky Col 3 */
+    /* Fixed / Sticky Col 3 (Far Right) */
     .blog-right-sidebar {{
       position: sticky;
       top: 96px;
@@ -231,22 +279,22 @@ def run_sync():
       padding-left: 2px;
     }}
 
-    /* Center Feed (Col 2) with 3-Column to 4-Column Card Grid */
+    /* Center Feed (Col 2: Maximized 3-Column Card Grid) */
     .blog-main-feed {{
       min-width: 0;
     }}
 
     .article-cards-grid {{
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(295px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 22px;
       margin-bottom: 36px;
     }}
 
     /* List View Mode Styling */
     .article-cards-grid.list-view {{
       grid-template-columns: 1fr !important;
-      gap: 20px;
+      gap: 18px;
     }}
     .article-cards-grid.list-view .article-feed-card {{
       flex-direction: row !important;
@@ -269,7 +317,7 @@ def run_sync():
 
     @media (max-width: 1200px) {{
       .blog-hub-layout {{
-        grid-template-columns: 220px 1fr;
+        grid-template-columns: 200px 1fr;
       }}
       .blog-right-sidebar {{
         display: none;
@@ -296,17 +344,17 @@ def run_sync():
       background: #ffffff;
       border: 1.5px solid #E2E8F0;
       border-radius: 16px;
-      padding: 18px 16px;
-      margin-bottom: 20px;
+      padding: 16px 14px;
+      margin-bottom: 18px;
       box-shadow: 0 4px 14px rgba(10,37,64,0.03);
     }}
     .sidebar-block-title {{
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       font-weight: 800;
       color: #0A2540;
-      margin: 0 0 12px;
+      margin: 0 0 10px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -320,9 +368,9 @@ def run_sync():
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 8px 10px;
+      padding: 8px 8px;
       border-radius: 8px;
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       font-weight: 600;
       color: #475569;
       cursor: pointer;
@@ -335,9 +383,9 @@ def run_sync():
       font-weight: 700;
     }}
     .sidebar-cat-count {{
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       background: #E2E8F0;
-      padding: 2px 7px;
+      padding: 2px 6px;
       border-radius: 12px;
       color: #475569;
     }}
@@ -354,8 +402,8 @@ def run_sync():
       background: #F1F5F9;
       border: 1px solid #E2E8F0;
       border-radius: 20px;
-      padding: 4px 10px;
-      font-size: 0.78rem;
+      padding: 3px 9px;
+      font-size: 0.75rem;
       font-weight: 600;
       color: #475569;
       cursor: pointer;
@@ -367,7 +415,7 @@ def run_sync():
       color: #ffffff;
     }}
 
-    /* Feed Toolbar: Tabs + View Switcher */
+    /* Feed Toolbar */
     .feed-toolbar {{
       display: flex;
       justify-content: space-between;
@@ -376,7 +424,7 @@ def run_sync():
       gap: 12px;
       border-bottom: 2px solid #E2E8F0;
       padding-bottom: 12px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }}
     .feed-category-tabs {{
       display: flex;
@@ -387,8 +435,8 @@ def run_sync():
     .feed-tab-btn {{
       background: none;
       border: none;
-      padding: 7px 14px;
-      font-size: 0.9rem;
+      padding: 6px 12px;
+      font-size: 0.88rem;
       font-weight: 700;
       color: #64748B;
       cursor: pointer;
@@ -416,9 +464,9 @@ def run_sync():
     .view-btn {{
       border: none;
       background: none;
-      padding: 5px 10px;
+      padding: 4px 9px;
       border-radius: 6px;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 700;
       color: #475569;
       cursor: pointer;
@@ -439,47 +487,46 @@ def run_sync():
       border-radius: 16px;
       overflow: hidden;
       box-shadow: 0 8px 24px rgba(10,37,64,0.06);
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }}
     .broker-cover-header {{
-      height: 85px;
+      height: 80px;
       width: 100%;
       background: url('/images/ez-broker-cover-header.jpg') center/cover no-repeat;
     }}
     .broker-box-body {{
-      padding: 0 16px 20px;
+      padding: 0 14px 18px;
       position: relative;
       text-align: center;
     }}
     .broker-box-avatar {{
-      width: 84px;
-      height: 84px;
+      width: 78px;
+      height: 78px;
       border-radius: 50%;
       border: 3px solid #ffffff;
       box-shadow: 0 4px 14px rgba(0,0,0,0.15);
-      margin: -42px auto 10px;
+      margin: -39px auto 8px;
       display: block;
       object-fit: cover;
       background: #ffffff;
     }}
 
-    /* Infinite Scroll Loading Sentinel */
     .infinite-loading-spinner {{
       display: none;
       text-align: center;
-      padding: 24px;
+      padding: 20px;
       font-weight: 700;
       color: #64748B;
-      font-size: 0.92rem;
+      font-size: 0.88rem;
     }}
   </style>
 </head>
 <body style="font-family:'Inter',sans-serif; background:#F8FAFC; color:#0A2540; margin:0;">
 
-  <!-- ========== FULL SITE HEADER WITH MEGA-MENUS ========== -->
+  <!-- ========== FULL SITE HEADER ========== -->
   <header class="site-header">
-    <div class="header-top">
-      <div class="container header-top-inner" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; font-size:0.8rem; padding:6px 0; color:#E2E8F0; background:#0A2540;">
+    <div class="header-top" style="background:#0A2540; color:#E2E8F0; font-size:0.8rem; padding:6px 0;">
+      <div class="container header-top-inner" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
         <div class="breaking-news-ticker" style="display:inline-flex; align-items:center; gap:8px;">
           <strong class="breaking-news-badge" style="background:#EAB308; color:#0A2540; padding:2px 8px; border-radius:4px; font-weight:900; font-size:0.72rem;">⚡ BREAKING NEWS</strong>
           <span class="breaking-news-title">Mortgage brokers settle record 81.0% of all Australian residential home loans</span>
@@ -525,18 +572,18 @@ def run_sync():
   </section>
 
   <!-- Main 3-Column Layout -->
-  <section style="padding-top:32px; padding-bottom:60px;">
+  <section style="padding-top:28px; padding-bottom:60px;">
     <div class="container">
       
       <div class="blog-hub-layout">
         
-        <!-- LEFT SIDEBAR: Filters & Topics (Moved fully to the left) -->
+        <!-- LEFT SIDEBAR: Filters & Topics (Pushed Far Left) -->
         <aside class="blog-left-sidebar">
           
           <div class="sidebar-block">
             <h4 class="sidebar-block-title">
               <span>Categories</span>
-              <span style="font-size:0.72rem; color:#64748B;">4 topics</span>
+              <span style="font-size:0.7rem; color:#64748B;">4 topics</span>
             </h4>
             <ul class="sidebar-cat-list" id="categoryFilterList">
               <li class="sidebar-cat-item active" data-cat="all">
@@ -584,7 +631,7 @@ def run_sync():
 
         </aside>
 
-        <!-- CENTER MAIN FEED (Col 2: Expanded with 3-Column Grid) -->
+        <!-- CENTER MAIN FEED (Col 2: Fits 3-4 Articles Per Row) -->
         <main class="blog-main-feed">
           
           <!-- Category Feed Toolbar with Grid/List View Switcher -->
@@ -604,57 +651,57 @@ def run_sync():
           </div>
 
           <!-- Counter Bar -->
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; font-size:0.88rem; color:#64748B;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; font-size:0.86rem; color:#64748B;">
             <span>Showing <strong style="color:#0A2540;" id="showingArticlesCount">{len(posts)}</strong> articles · <span style="color:#00876C; font-weight:700;">Sorted by Newest First (23-Aug-2026)</span></span>
             <span id="scrollIndicator">⚡ Unlimited Scroll Active</span>
           </div>
 
-          <!-- 3-Column Card Grid (Fits 3 cards per row) -->
+          <!-- 3-Column Card Grid -->
           <div class="article-cards-grid" id="blogCardsGrid">
-{rendered_cards}          </div>
+{rendered_blog_cards}          </div>
 
-          <!-- Infinite Scroll Trigger Sentinel -->
+          <!-- Infinite Scroll Sentinel -->
           <div id="infiniteScrollSentinel" class="infinite-loading-spinner">
             🔄 Loading more Australian finance &amp; property articles...
           </div>
 
         </main>
 
-        <!-- RIGHT SIDEBAR: Broker Profile & Quick Tools (Moved fully to the right) -->
+        <!-- RIGHT SIDEBAR: Broker Profile & Quick Tools (Pushed Far Right) -->
         <aside class="blog-right-sidebar">
           
           <!-- Broker Profile Box -->
           <div class="broker-profile-box">
             <div class="broker-cover-header"></div>
             <div class="broker-box-body">
-              <img src="/images/r-bakshi.jpeg" alt="R Bakshi - Principal Mortgage Broker" class="broker-box-avatar" width="84" height="84">
-              <h4 style="font-size:1.15rem; font-weight:800; color:#0A2540; margin:0 0 4px;">R BAKSHI</h4>
-              <div style="font-size:0.78rem; font-weight:700; color:#00876C; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.04em;">
+              <img src="/images/r-bakshi.jpeg" alt="R Bakshi - Principal Mortgage Broker" class="broker-box-avatar" width="78" height="78">
+              <h4 style="font-size:1.1rem; font-weight:800; color:#0A2540; margin:0 0 3px;">R BAKSHI</h4>
+              <div style="font-size:0.75rem; font-weight:700; color:#00876C; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.04em;">
                 Principal Finance Broker (MFAA Accredited)
               </div>
-              <p style="font-size:0.82rem; color:#64748b; line-height:1.5; margin:0 0 14px;">
+              <p style="font-size:0.8rem; color:#64748b; line-height:1.45; margin:0 0 12px;">
                 Specializing in Melbourne residential property finance, self-employed lending, and wealth restructuring across 30+ accredited lenders.
               </p>
-              <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:8px 10px; font-size:0.75rem; color:#475569; text-align:left; margin-bottom:14px;">
+              <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:8px; font-size:0.72rem; color:#475569; text-align:left; margin-bottom:12px;">
                 <div><strong>CRN:</strong> 538522</div>
                 <div><strong>Aggregator:</strong> National Mortgage Brokers (nMB)</div>
                 <div><strong>Panel:</strong> 30+ Accredited Lenders</div>
               </div>
-              <a href="tel:1300050099" style="display:block; background:#00876C; color:#ffffff; font-weight:800; padding:9px; border-radius:8px; text-decoration:none; font-size:0.88rem; margin-bottom:8px;">
+              <a href="tel:1300050099" style="display:block; background:#00876C; color:#ffffff; font-weight:800; padding:8px; border-radius:8px; text-decoration:none; font-size:0.85rem; margin-bottom:6px;">
                 📞 Call 1300 050 099
               </a>
-              <a href="/calculators.html" style="display:block; background:#0A2540; color:#ffffff; font-weight:700; padding:8px; border-radius:8px; text-decoration:none; font-size:0.85rem;">
+              <a href="/calculators.html" style="display:block; background:#0A2540; color:#ffffff; font-weight:700; padding:7px; border-radius:8px; text-decoration:none; font-size:0.82rem;">
                 Book Appointment
               </a>
             </div>
           </div>
 
           <!-- Advisory Callout -->
-          <div style="background:linear-gradient(135deg, #0A2540 0%, #1D4ED8 100%); border-radius:16px; padding:20px; color:#ffffff; text-align:center; box-shadow:0 8px 24px rgba(10,37,64,0.12);">
-            <span style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; color:#93C5FD; font-weight:800; display:block; margin-bottom:6px;">EZ MORTGAGE ADVISORY</span>
-            <h4 style="color:#ffffff !important; font-size:1.05rem; font-weight:800; margin:0 0 8px; line-height:1.3;">Need Borrowing Power Advice?</h4>
-            <p style="color:rgba(255,255,255,0.85); font-size:0.82rem; line-height:1.45; margin:0 0 16px;">Speak directly with our senior MFAA accredited credit advisors.</p>
-            <a href="tel:1300050099" style="display:inline-flex; align-items:center; gap:6px; background:#ffffff; color:#0A2540; font-weight:800; padding:9px 18px; border-radius:30px; text-decoration:none; font-size:0.86rem; box-shadow:0 4px 14px rgba(0,0,0,0.2);">
+          <div style="background:linear-gradient(135deg, #0A2540 0%, #1D4ED8 100%); border-radius:16px; padding:18px; color:#ffffff; text-align:center; box-shadow:0 8px 24px rgba(10,37,64,0.12);">
+            <span style="font-size:0.72rem; text-transform:uppercase; letter-spacing:0.08em; color:#93C5FD; font-weight:800; display:block; margin-bottom:6px;">EZ MORTGAGE ADVISORY</span>
+            <h4 style="color:#ffffff !important; font-size:1rem; font-weight:800; margin:0 0 6px; line-height:1.3;">Need Borrowing Power Advice?</h4>
+            <p style="color:rgba(255,255,255,0.85); font-size:0.8rem; line-height:1.45; margin:0 0 14px;">Speak directly with our senior MFAA accredited credit advisors.</p>
+            <a href="tel:1300050099" style="display:inline-flex; align-items:center; gap:6px; background:#ffffff; color:#0A2540; font-weight:800; padding:8px 16px; border-radius:30px; text-decoration:none; font-size:0.84rem; box-shadow:0 4px 14px rgba(0,0,0,0.2);">
               📞 Call 1300 050 099
             </a>
           </div>
@@ -690,7 +737,6 @@ def run_sync():
       const btnList = document.getElementById('btnListView');
       const sentinel = document.getElementById('infiniteScrollSentinel');
 
-      // Grid vs List Toggle
       if (btnGrid && btnList && gridContainer) {{
         btnGrid.addEventListener('click', function () {{
           btnGrid.classList.add('active');
@@ -754,11 +800,9 @@ def run_sync():
         searchInput.addEventListener('input', runFilter);
       }}
 
-      // Unlimited Infinite Scroll Observer
       if (sentinel && 'IntersectionObserver' in window) {{
         const observer = new IntersectionObserver((entries) => {{
           if (entries[0].isIntersecting) {{
-            // Trigger load more
             sentinel.style.display = 'block';
             setTimeout(() => {{
               sentinel.style.display = 'none';
@@ -774,9 +818,8 @@ def run_sync():
 
     for target in [BLOG_HTML, PUB_BLOG_HTML]:
         with open(target, "w", encoding="utf-8") as f:
-            f.write(full_html)
-    
-    print("✅ Successfully updated pages/blog.html and public/pages/blog.html with 25% expanded width, list/grid toggle, and 23-Aug-2026 dates!")
+            f.write(blog_full_html)
+    print("✅ Successfully updated pages/blog.html and public/pages/blog.html!")
 
 if __name__ == "__main__":
-    run_sync()
+    main()
