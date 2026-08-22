@@ -1,0 +1,252 @@
+{
+  "status": "active",
+  "last_synced": "2026-08-23T08:20:00Z",
+  "total_documents": 6,
+  "folders": {
+    "common": {
+      "name": "Finnova Common & Cyber Security",
+      "description": "Shared Cyber Security, ASD Essential 8, and Compliance Whitepapers",
+      "folder_id": "root",
+      "target_sites": [
+        "procrm",
+        "ezconsultants",
+        "ezmortgagebroker",
+        "ezsignature"
+      ],
+      "sample_docs": [
+        {
+          "id": "cyber-security-incident-response-plan-2026",
+          "title": "ASD Essential 8 Cyber Security Incident Response Plan (2026)",
+          "category": "Cyber Security & Compliance",
+          "description": "Comprehensive 14-page emergency incident response, data breach escalation protocol, and ACSC notification framework.",
+          "file_type": "PDF",
+          "size": "2.4 MB",
+          "pages": 14,
+          "drive_url": "https://drive.google.com/file/d/sample-cyber-security-plan/view?usp=sharing",
+          "direct_download": "/assets/documents/cyber-security-incident-response-plan.pdf",
+          "applicable_sites": [
+            "procrm",
+            "ezconsultants",
+            "ezsignature"
+          ],
+          "folder_category": "common",
+          "html_embed": "\n<div class=\"gdrive-pdf-resource-card\" style=\"background:#ffffff; border:1.5px solid #E2E8F0; border-radius:14px; padding:22px; margin:28px 0; box-shadow:0 4px 18px rgba(10,37,64,0.04); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;\">\n  <div style=\"display:flex; align-items:flex-start; gap:16px; min-width:280px; flex:1;\">\n    <div style=\"width:48px; height:48px; border-radius:10px; background:#EFF6FF; border:1px solid #DBEAFE; display:grid; place-items:center; font-size:1.5rem; flex-shrink:0;\">\n      \ud83d\udcc4\n    </div>\n    <div>\n      <span style=\"font-size:0.72rem; font-weight:800; color:#1D4ED8; text-transform:uppercase; letter-spacing:0.06em; display:block; margin-bottom:2px;\">\n        Cyber Security & Compliance \u00b7 14 Pages (2.4 MB)\n      </span>\n      <h4 style=\"margin:0 0 6px 0; font-size:1.05rem; font-weight:800; color:#0A2540;\">\n        ASD Essential 8 Cyber Security Incident Response Plan (2026)\n      </h4>\n      <p style=\"margin:0; font-size:0.85rem; color:#475569; line-height:1.45;\">\n        Comprehensive 14-page emergency incident response, data breach escalation protocol, and ACSC notification framework.\n      </p>\n    </div>\n  </div>\n  <div style=\"display:flex; align-items:center; gap:10px;\">\n    <a href=\"https://drive.google.com/file/d/sample-cyber-security-plan/view?usp=sharing\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"background:#0A2540; color:#ffffff; font-weight:700; font-size:0.85rem; padding:10px 18px; border-radius:8px; text-decoration:none; white-space:nowrap; box-shadow:0 2px 8px rgba(10,37,64,0.15);\">\n      \ud83d\udc41\ufe0f Preview PDF\n    </a>\n    <a href=\"/assets/documents/cyber-security-incident-response-plan.pdf\" download style=\"background:#00876C; color:#ffffff; font-weight:800; font-size:0.85rem; padding:10px 18px; border-radius:8px; text-decoration:none; white-space:nowrap; box-shadow:0 4px 12px rgba(0,135,108,0.25);\">\n      \ud83d\udce5 Download PDF Guide\n    </a>\n  </div>\n</div>\n"
+        },
+        {
+          "id": "iso-27001-compliance-architecture-brief",
+          "title": "ISO 27001:2022 Enterprise Information Security Architecture",
+          "category": "Security Architecture",
+          "description": "Technical specifications for AES-256 data-at-rest encryption, TLS 1.3 in-transit security, and continuous telemetry monitoring.",
+          "file_type": "PDF",
+          "size": "1.8 MB",
+          "pages": 10,
+          "drive_url": "https://drive.google.com/file/d/sample-iso27001-brief/view?usp=sharing",
+          "direct_download": "/assets/documents/iso-27001-compliance-architecture-brief.pdf",
+          "applicable_sites": [
+            "procrm",
+            "ezsignature",
+            "ezconsultants"
+          ],
+          "folder_category": "common",
+          "html_embed": "\n<div class=\"gdrive-pdf-resource-card\" style=\"background:#ffffff; border:1.5px solid #E2E8F0; border-radius:14px; padding:22px; margin:28px 0; box-shadow:0 4px 18px rgba(10,37,64,0.04); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;\">\n  <div style=\"display:flex; align-items:flex-start; gap:16px; min-width:280px; flex:1;\">\n    <div style=\"width:48px; height:48px; border-radius:10px; background:#EFF6FF; border:1px solid #DBEAFE; display:grid; place-items:center; font-size:1.5rem; flex-shrink:0;\">\n      \ud83d\udcc4\n    </div>\n    <div>\n      <span style=\"font-size:0.72rem; font-weight:800; color:#1D4ED8; text-transform:uppercase; letter-spacing:0.06em; display:block; margin-bottom:2px;\">\n        Security Architecture \u00b7 10 Pages (1.8 MB)\n      </span>\n      <h4 style=\"margin:0 0 6px 0; font-size:1.05rem; font-weight:800; color:#0A2540;\">\n        ISO 27001:2022 Enterprise Information Security Architecture\n      </h4>\n      <p style=\"margin:0; font-size:0.85rem; color:#475569; line-height:1.45;\">\n        Technical specifications for AES-256 data-at-rest encryption, TLS 1.3 in-transit security, and continuous telemetry monitoring.\n      </p>\n    </div>\n  </div>\n  <div style=\"display:flex; align-items:center; gap:10px;\">\n    <a href=\"https://drive.google.com/file/d/sample-iso27001-brief/view?usp=sharing\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"background:#0A2540; color:#ffffff; font-weight:700; font-size:0.85rem; padding:10px 18px; border-radius:8px; text-decoration:none; white-space:nowrap; box-shadow:0 2px 8px rgba(10,37,64,0.15);\">\n      \ud83d\udc41\ufe0f Preview PDF\n    </a>\n    <a href=\"/assets/documents/iso-27001-compliance-architecture-brief.pdf\" download style=\"background:#00876C; color:#ffffff; font-weight:800; font-size:0.85rem; padding:10px 18px; border-radius:8px; text-decoration:none; white-space:nowrap; box-shadow:0 4px 12px rgba(0,135,108,0.25);\">\n      \ud83d\udce5 Download PDF Guide\n    </a>\n  </div>\n</div>\n"
+        }
+      ]
+    },
+    "ezmortgagebroker": {
+      "name": "EZ Mortgage Broker Document Vault",
+      "description": "First Home Buyer Grants, Stamp Duty Concession Guides, and Lending Checklists",
+      "folder_id": "root",
+      "target_sites": [
+        "ezmortgagebroker"
+      ],
+      "sample_docs": [
+        {
+          "id": "first-home-buyers-grant-victoria-2026-guide",
+          "title": "Victoria First Home Buyer Grant & Stamp Duty Concession Guide (2026)",
+          "category": "Home Loans & Grants",
+          "description": "Step-by-step eligibility checklist, SRO calculation formulas, and 5% deposit First Home Guarantee lender rules.",
+          "file_type": "PDF",
+          "size": "3.1 MB",
+          "pages": 12,
+          "drive_url": "https://drive.google.com/file/d/sample-fhog-vic-guide/view?usp=sharing",
+          "direct_download": "/assets/documents/first-home-buyers-grant-victoria-2026.pdf",
+          "applicable_sites": [
+            "ezmortgagebroker"
+          ],
+          "folder_category": "ezmortgagebroker",
+          "html_embed": "\n<div class=\"gdrive-pdf-resource-card\" style=\"background:#ffffff; border:1.5px solid #E2E8F0; border-radius:14px; padding:22px; margin:28px 0; box-shadow:0 4px 18px rgba(10,37,64,0.04); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;\">\n  <div style=\"display:flex; align-items:flex-start; gap:16px; min-width:280px; flex:1;\">\n    <div style=\"width:48px; height:48px; border-radius:10px; background:#EFF6FF; border:1px solid #DBEAFE; display:grid; place-items:center; font-size:1.5rem; flex-shrink:0;\">\n      \ud83d\udcc4\n    </div>\n    <div>\n      <span style=\"font-size:0.72rem; font-weight:800; color:#1D4ED8; text-transform:uppercase; letter-spacing:0.06em; display:block; margin-bottom:2px;\">\n        Home Loans & Grants \u00b7 12 Pages (3.1 MB)\n      </span>\n      <h4 style=\"margin:0 0 6px 0; font-size:1.05rem; font-weight:800; color:#0A2540;\">\n        Victoria First Home Buyer Grant & Stamp Duty Concession Guide (2026)\n      </h4>\n      <p style=\"margin:0; font-size:0.85rem; color:#475569; line-height:1.45;\">\n        Step-by-step eligibility checklist, SRO calculation formulas, and 5% deposit First Home Guarantee lender rules.\n      </p>\n    </div>\n  </div>\n  <div style=\"display:flex; align-items:center; gap:10px;\">\n    <a href=\"https://drive.google.com/file/d/sample-fhog-vic-guide/view?usp=sharing\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"background:#0A2540; color:#ffffff; font-weight:700; font-size:0.85rem; padding:10px 18px; border-radius:8px; text-decoration:none; white-space:nowrap; box-shadow:0 2px 8px rgba(10,37,64,0.15);\">\n      \ud83d\udc41\ufe0f Preview PDF\n    </a>\n    <a href=\"/assets/documents/first-home-buyers-grant-victoria-2026.pdf\" download style=\"background:#00876C; color:#ffffff; font-weight:800; font-size:0.85rem; padding:10px 18px; border-radius:8px; text-decoration:none; white-space:nowrap; box-shadow:0 4px 12px rgba(0,135,108,0.25);\">\n      \ud83d\udce5 Download PDF Guide\n    </a>\n  </div>\n</div>\n"
+        },
+        {
+          "id": "self-employed-alt-doc-lending-matrix",
+          "title": "Self-Employed Alt-Doc & Low-Doc Mortgage Approval Matrix",
+          "category": "Self-Employed Lending",
+          "description": "Lender comparison for 1-year tax returns, 6-month BAS verification, and accountant declaration letters across 30+ lenders.",
+          "file_type": "PDF",
+          "size": "1.5 MB",
+          "pages": 8,
+          "drive_url": "https://drive.google.com/file/d/sample-alt-doc-matrix/view?usp=sharing",
+          "direct_download": "/assets/documents/self-employed-alt-doc-lending-matrix.pdf",
+          "applicable_sites": [
+            "ezmortgagebroker"
+          ],
+          "folder_category": "ezmortgagebroker",
+          "html_embed": "\n<div class=\"gdrive-pdf-resource-card\" style=\"background:#ffffff; border:1.5px solid #E2E8F0; border-radius:14px; padding:22px; margin:28px 0; box-shadow:0 4px 18px rgba(10,37,64,0.04); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;\">\n  <div style=\"display:flex; align-items:flex-start; gap:16px; min-width:280px; flex:1;\">\n    <div style=\"width:48px; height:48px; border-radius:10px; background:#EFF6FF; border:1px solid #DBEAFE; display:grid; place-items:center; font-size:1.5rem; flex-shrink:0;\">\n      \ud83d\udcc4\n    </div>\n    <div>\n      <span style=\"font-size:0.72rem; font-weight:800; color:#1D4ED8; text-transform:uppercase; letter-spacing:0.06em; display:block; margin-bottom:2px;\">\n        Self-Employed Lending \u00b7 8 Pages (1.5 MB)\n      </span>\n      <h4 style=\"margin:0 0 6px 0; font-size:1.05rem; font-weight:800; color:#0A2540;\">\n        Self-Employed Alt-Doc & Low-Doc Mortgage Approval Matrix\n      </h4>\n      <p style=\"margin:0; font-size:0.85rem; color:#475569; line-height:1.45;\">\n        Lender comparison for 1-year tax returns, 6-month BAS verification, and accountant declaration letters across 30+ lenders.\n      </p>\n    </div>\n  </div>\n  <div style=\"display:flex; align-items:center; gap:10px;\">\n    <a href=\"https://drive.google.com/file/d/sample-alt-doc-matrix/view?usp=sharing\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"background:#0A2540; color:#ffffff; font-weight:700; font-size:0.85rem; padding:10px 18px; border-radius:8px; text-decoration:none; white-space:nowrap; box-shadow:0 2px 8px rgba(10,37,64,0.15);\">\n      \ud83d\udc41\ufe0f Preview PDF\n    </a>\n    <a href=\"/assets/documents/self-employed-alt-doc-lending-matrix.pdf\" download style=\"background:#00876C; color:#ffffff; font-weight:800; font-size:0.85rem; padding:10px 18px; border-radius:8px; text-decoration:none; white-space:nowrap; box-shadow:0 4px 12px rgba(0,135,108,0.25);\">\n      \ud83d\udce5 Download PDF Guide\n    </a>\n  </div>\n</div>\n"
+        }
+      ]
+    },
+    "procrm": {
+      "name": "PRO CRM Enterprise Whitepapers",
+      "description": "NDIS Quality & Safeguards Commission Compliance, Healthcare CRM Standards",
+      "folder_id": "root",
+      "target_sites": [
+        "procrm"
+      ],
+      "sample_docs": [
+        {
+          "id": "ndis-quality-safeguards-crm-compliance-playbook",
+          "title": "NDIS Quality & Safeguards Commission: Operational CRM Compliance Playbook",
+          "category": "NDIS Compliance",
+          "description": "Participant record audit standards, PACE API integration protocols, and incident report management workflows.",
+          "file_type": "PDF",
+          "size": "4.2 MB",
+          "pages": 20,
+          "drive_url": "https://drive.google.com/file/d/sample-ndis-playbook/view?usp=sharing",
+          "direct_download": "/assets/documents/ndis-quality-safeguards-crm-compliance.pdf",
+          "applicable_sites": [
+            "procrm"
+          ],
+          "folder_category": "procrm",
+          "html_embed": "\n<div class=\"gdrive-pdf-resource-card\" style=\"background:#ffffff; border:1.5px solid #E2E8F0; border-radius:14px; padding:22px; margin:28px 0; box-shadow:0 4px 18px rgba(10,37,64,0.04); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;\">\n  <div style=\"display:flex; align-items:flex-start; gap:16px; min-width:280px; flex:1;\">\n    <div style=\"width:48px; height:48px; border-radius:10px; background:#EFF6FF; border:1px solid #DBEAFE; display:grid; place-items:center; font-size:1.5rem; flex-shrink:0;\">\n      \ud83d\udcc4\n    </div>\n    <div>\n      <span style=\"font-size:0.72rem; font-weight:800; color:#1D4ED8; text-transform:uppercase; letter-spacing:0.06em; display:block; margin-bottom:2px;\">\n        NDIS Compliance \u00b7 20 Pages (4.2 MB)\n      </span>\n      <h4 style=\"margin:0 0 6px 0; font-size:1.05rem; font-weight:800; color:#0A2540;\">\n        NDIS Quality & Safeguards Commission: Operational CRM Compliance Playbook\n      </h4>\n      <p style=\"margin:0; font-size:0.85rem; color:#475569; line-height:1.45;\">\n        Participant record audit standards, PACE API integration protocols, and incident report management workflows.\n      </p>\n    </div>\n  </div>\n  <div style=\"display:flex; align-items:center; gap:10px;\">\n    <a href=\"https://drive.google.com/file/d/sample-ndis-playbook/view?usp=sharing\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"background:#0A2540; color:#ffffff; font-weight:700; font-size:0.85rem; padding:10px 18px; border-radius:8px; text-decoration:none; white-space:nowrap; box-shadow:0 2px 8px rgba(10,37,64,0.15);\">\n      \ud83d\udc41\ufe0f Preview PDF\n    </a>\n    <a href=\"/assets/documents/ndis-quality-safeguards-crm-compliance.pdf\" download style=\"background:#00876C; color:#ffffff; font-weight:800; font-size:0.85rem; padding:10px 18px; border-radius:8px; text-decoration:none; white-space:nowrap; box-shadow:0 4px 12px rgba(0,135,108,0.25);\">\n      \ud83d\udce5 Download PDF Guide\n    </a>\n  </div>\n</div>\n"
+        }
+      ]
+    },
+    "ezsignature": {
+      "name": "eSignatures Online Legal & Security Vault",
+      "description": "ETA 1999 Legal Admissibility & Digital Certificate Whitepapers",
+      "folder_id": "root",
+      "target_sites": [
+        "ezsignature"
+      ],
+      "sample_docs": [
+        {
+          "id": "eta-1999-electronic-signature-court-admissibility-whitepaper",
+          "title": "Commonwealth Electronic Transactions Act 1999: Legal Admissibility Whitepaper",
+          "category": "Legal Compliance",
+          "description": "Section 10 identity verification requirements, cryptographic SHA-256 seal standards, and court-admissible audit trail evidentiary rules.",
+          "file_type": "PDF",
+          "size": "2.1 MB",
+          "pages": 16,
+          "drive_url": "https://drive.google.com/file/d/sample-eta-whitepaper/view?usp=sharing",
+          "direct_download": "/assets/documents/eta-1999-legal-admissibility-whitepaper.pdf",
+          "applicable_sites": [
+            "ezsignature"
+          ],
+          "folder_category": "ezsignature",
+          "html_embed": "\n<div class=\"gdrive-pdf-resource-card\" style=\"background:#ffffff; border:1.5px solid #E2E8F0; border-radius:14px; padding:22px; margin:28px 0; box-shadow:0 4px 18px rgba(10,37,64,0.04); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;\">\n  <div style=\"display:flex; align-items:flex-start; gap:16px; min-width:280px; flex:1;\">\n    <div style=\"width:48px; height:48px; border-radius:10px; background:#EFF6FF; border:1px solid #DBEAFE; display:grid; place-items:center; font-size:1.5rem; flex-shrink:0;\">\n      \ud83d\udcc4\n    </div>\n    <div>\n      <span style=\"font-size:0.72rem; font-weight:800; color:#1D4ED8; text-transform:uppercase; letter-spacing:0.06em; display:block; margin-bottom:2px;\">\n        Legal Compliance \u00b7 16 Pages (2.1 MB)\n      </span>\n      <h4 style=\"margin:0 0 6px 0; font-size:1.05rem; font-weight:800; color:#0A2540;\">\n        Commonwealth Electronic Transactions Act 1999: Legal Admissibility Whitepaper\n      </h4>\n      <p style=\"margin:0; font-size:0.85rem; color:#475569; line-height:1.45;\">\n        Section 10 identity verification requirements, cryptographic SHA-256 seal standards, and court-admissible audit trail evidentiary rules.\n      </p>\n    </div>\n  </div>\n  <div style=\"display:flex; align-items:center; gap:10px;\">\n    <a href=\"https://drive.google.com/file/d/sample-eta-whitepaper/view?usp=sharing\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"background:#0A2540; color:#ffffff; font-weight:700; font-size:0.85rem; padding:10px 18px; border-radius:8px; text-decoration:none; white-space:nowrap; box-shadow:0 2px 8px rgba(10,37,64,0.15);\">\n      \ud83d\udc41\ufe0f Preview PDF\n    </a>\n    <a href=\"/assets/documents/eta-1999-legal-admissibility-whitepaper.pdf\" download style=\"background:#00876C; color:#ffffff; font-weight:800; font-size:0.85rem; padding:10px 18px; border-radius:8px; text-decoration:none; white-space:nowrap; box-shadow:0 4px 12px rgba(0,135,108,0.25);\">\n      \ud83d\udce5 Download PDF Guide\n    </a>\n  </div>\n</div>\n"
+        }
+      ]
+    }
+  },
+  "documents": [
+    {
+      "id": "cyber-security-incident-response-plan-2026",
+      "title": "ASD Essential 8 Cyber Security Incident Response Plan (2026)",
+      "category": "Cyber Security & Compliance",
+      "description": "Comprehensive 14-page emergency incident response, data breach escalation protocol, and ACSC notification framework.",
+      "file_type": "PDF",
+      "size": "2.4 MB",
+      "pages": 14,
+      "drive_url": "https://drive.google.com/file/d/sample-cyber-security-plan/view?usp=sharing",
+      "direct_download": "/assets/documents/cyber-security-incident-response-plan.pdf",
+      "applicable_sites": [
+        "procrm",
+        "ezconsultants",
+        "ezsignature"
+      ],
+      "folder_category": "common",
+      "html_embed": "\n<div class=\"gdrive-pdf-resource-card\" style=\"background:#ffffff; border:1.5px solid #E2E8F0; border-radius:14px; padding:22px; margin:28px 0; box-shadow:0 4px 18px rgba(10,37,64,0.04); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;\">\n  <div style=\"display:flex; align-items:flex-start; gap:16px; min-width:280px; flex:1;\">\n    <div style=\"width:48px; height:48px; border-radius:10px; background:#EFF6FF; border:1px solid #DBEAFE; display:grid; place-items:center; font-size:1.5rem; flex-shrink:0;\">\n      \ud83d\udcc4\n    </div>\n    <div>\n      <span style=\"font-size:0.72rem; font-weight:800; color:#1D4ED8; text-transform:uppercase; letter-spacing:0.06em; display:block; margin-bottom:2px;\">\n        Cyber Security & Compliance \u00b7 14 Pages (2.4 MB)\n      </span>\n      <h4 style=\"margin:0 0 6px 0; font-size:1.05rem; font-weight:800; color:#0A2540;\">\n        ASD Essential 8 Cyber Security Incident Response Plan (2026)\n      </h4>\n      <p style=\"margin:0; font-size:0.85rem; color:#475569; line-height:1.45;\">\n        Comprehensive 14-page emergency incident response, data breach escalation protocol, and ACSC notification framework.\n      </p>\n    </div>\n  </div>\n  <div style=\"display:flex; align-items:center; gap:10px;\">\n    <a href=\"https://drive.google.com/file/d/sample-cyber-security-plan/view?usp=sharing\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"background:#0A2540; color:#ffffff; font-weight:700; font-size:0.85rem; padding:10px 18px; border-radius:8px; text-decoration:none; white-space:nowrap; box-shadow:0 2px 8px rgba(10,37,64,0.15);\">\n      \ud83d\udc41\ufe0f Preview PDF\n    </a>\n    <a href=\"/assets/documents/cyber-security-incident-response-plan.pdf\" download style=\"background:#00876C; color:#ffffff; font-weight:800; font-size:0.85rem; padding:10px 18px; border-radius:8px; text-decoration:none; white-space:nowrap; box-shadow:0 4px 12px rgba(0,135,108,0.25);\">\n      \ud83d\udce5 Download PDF Guide\n    </a>\n  </div>\n</div>\n"
+    },
+    {
+      "id": "iso-27001-compliance-architecture-brief",
+      "title": "ISO 27001:2022 Enterprise Information Security Architecture",
+      "category": "Security Architecture",
+      "description": "Technical specifications for AES-256 data-at-rest encryption, TLS 1.3 in-transit security, and continuous telemetry monitoring.",
+      "file_type": "PDF",
+      "size": "1.8 MB",
+      "pages": 10,
+      "drive_url": "https://drive.google.com/file/d/sample-iso27001-brief/view?usp=sharing",
+      "direct_download": "/assets/documents/iso-27001-compliance-architecture-brief.pdf",
+      "applicable_sites": [
+        "procrm",
+        "ezsignature",
+        "ezconsultants"
+      ],
+      "folder_category": "common",
+      "html_embed": "\n<div class=\"gdrive-pdf-resource-card\" style=\"background:#ffffff; border:1.5px solid #E2E8F0; border-radius:14px; padding:22px; margin:28px 0; box-shadow:0 4px 18px rgba(10,37,64,0.04); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;\">\n  <div style=\"display:flex; align-items:flex-start; gap:16px; min-width:280px; flex:1;\">\n    <div style=\"width:48px; height:48px; border-radius:10px; background:#EFF6FF; border:1px solid #DBEAFE; display:grid; place-items:center; font-size:1.5rem; flex-shrink:0;\">\n      \ud83d\udcc4\n    </div>\n    <div>\n      <span style=\"font-size:0.72rem; font-weight:800; color:#1D4ED8; text-transform:uppercase; letter-spacing:0.06em; display:block; margin-bottom:2px;\">\n        Security Architecture \u00b7 10 Pages (1.8 MB)\n      </span>\n      <h4 style=\"margin:0 0 6px 0; font-size:1.05rem; font-weight:800; color:#0A2540;\">\n        ISO 27001:2022 Enterprise Information Security Architecture\n      </h4>\n      <p style=\"margin:0; font-size:0.85rem; color:#475569; line-height:1.45;\">\n        Technical specifications for AES-256 data-at-rest encryption, TLS 1.3 in-transit security, and continuous telemetry monitoring.\n      </p>\n    </div>\n  </div>\n  <div style=\"display:flex; align-items:center; gap:10px;\">\n    <a href=\"https://drive.google.com/file/d/sample-iso27001-brief/view?usp=sharing\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"background:#0A2540; color:#ffffff; font-weight:700; font-size:0.85rem; padding:10px 18px; border-radius:8px; text-decoration:none; white-space:nowrap; box-shadow:0 2px 8px rgba(10,37,64,0.15);\">\n      \ud83d\udc41\ufe0f Preview PDF\n    </a>\n    <a href=\"/assets/documents/iso-27001-compliance-architecture-brief.pdf\" download style=\"background:#00876C; color:#ffffff; font-weight:800; font-size:0.85rem; padding:10px 18px; border-radius:8px; text-decoration:none; white-space:nowrap; box-shadow:0 4px 12px rgba(0,135,108,0.25);\">\n      \ud83d\udce5 Download PDF Guide\n    </a>\n  </div>\n</div>\n"
+    },
+    {
+      "id": "first-home-buyers-grant-victoria-2026-guide",
+      "title": "Victoria First Home Buyer Grant & Stamp Duty Concession Guide (2026)",
+      "category": "Home Loans & Grants",
+      "description": "Step-by-step eligibility checklist, SRO calculation formulas, and 5% deposit First Home Guarantee lender rules.",
+      "file_type": "PDF",
+      "size": "3.1 MB",
+      "pages": 12,
+      "drive_url": "https://drive.google.com/file/d/sample-fhog-vic-guide/view?usp=sharing",
+      "direct_download": "/assets/documents/first-home-buyers-grant-victoria-2026.pdf",
+      "applicable_sites": [
+        "ezmortgagebroker"
+      ],
+      "folder_category": "ezmortgagebroker",
+      "html_embed": "\n<div class=\"gdrive-pdf-resource-card\" style=\"background:#ffffff; border:1.5px solid #E2E8F0; border-radius:14px; padding:22px; margin:28px 0; box-shadow:0 4px 18px rgba(10,37,64,0.04); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;\">\n  <div style=\"display:flex; align-items:flex-start; gap:16px; min-width:280px; flex:1;\">\n    <div style=\"width:48px; height:48px; border-radius:10px; background:#EFF6FF; border:1px solid #DBEAFE; display:grid; place-items:center; font-size:1.5rem; flex-shrink:0;\">\n      \ud83d\udcc4\n    </div>\n    <div>\n      <span style=\"font-size:0.72rem; font-weight:800; color:#1D4ED8; text-transform:uppercase; letter-spacing:0.06em; display:block; margin-bottom:2px;\">\n        Home Loans & Grants \u00b7 12 Pages (3.1 MB)\n      </span>\n      <h4 style=\"margin:0 0 6px 0; font-size:1.05rem; font-weight:800; color:#0A2540;\">\n        Victoria First Home Buyer Grant & Stamp Duty Concession Guide (2026)\n      </h4>\n      <p style=\"margin:0; font-size:0.85rem; color:#475569; line-height:1.45;\">\n        Step-by-step eligibility checklist, SRO calculation formulas, and 5% deposit First Home Guarantee lender rules.\n      </p>\n    </div>\n  </div>\n  <div style=\"display:flex; align-items:center; gap:10px;\">\n    <a href=\"https://drive.google.com/file/d/sample-fhog-vic-guide/view?usp=sharing\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"background:#0A2540; color:#ffffff; font-weight:700; font-size:0.85rem; padding:10px 18px; border-radius:8px; text-decoration:none; white-space:nowrap; box-shadow:0 2px 8px rgba(10,37,64,0.15);\">\n      \ud83d\udc41\ufe0f Preview PDF\n    </a>\n    <a href=\"/assets/documents/first-home-buyers-grant-victoria-2026.pdf\" download style=\"background:#00876C; color:#ffffff; font-weight:800; font-size:0.85rem; padding:10px 18px; border-radius:8px; text-decoration:none; white-space:nowrap; box-shadow:0 4px 12px rgba(0,135,108,0.25);\">\n      \ud83d\udce5 Download PDF Guide\n    </a>\n  </div>\n</div>\n"
+    },
+    {
+      "id": "self-employed-alt-doc-lending-matrix",
+      "title": "Self-Employed Alt-Doc & Low-Doc Mortgage Approval Matrix",
+      "category": "Self-Employed Lending",
+      "description": "Lender comparison for 1-year tax returns, 6-month BAS verification, and accountant declaration letters across 30+ lenders.",
+      "file_type": "PDF",
+      "size": "1.5 MB",
+      "pages": 8,
+      "drive_url": "https://drive.google.com/file/d/sample-alt-doc-matrix/view?usp=sharing",
+      "direct_download": "/assets/documents/self-employed-alt-doc-lending-matrix.pdf",
+      "applicable_sites": [
+        "ezmortgagebroker"
+      ],
+      "folder_category": "ezmortgagebroker",
+      "html_embed": "\n<div class=\"gdrive-pdf-resource-card\" style=\"background:#ffffff; border:1.5px solid #E2E8F0; border-radius:14px; padding:22px; margin:28px 0; box-shadow:0 4px 18px rgba(10,37,64,0.04); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;\">\n  <div style=\"display:flex; align-items:flex-start; gap:16px; min-width:280px; flex:1;\">\n    <div style=\"width:48px; height:48px; border-radius:10px; background:#EFF6FF; border:1px solid #DBEAFE; display:grid; place-items:center; font-size:1.5rem; flex-shrink:0;\">\n      \ud83d\udcc4\n    </div>\n    <div>\n      <span style=\"font-size:0.72rem; font-weight:800; color:#1D4ED8; text-transform:uppercase; letter-spacing:0.06em; display:block; margin-bottom:2px;\">\n        Self-Employed Lending \u00b7 8 Pages (1.5 MB)\n      </span>\n      <h4 style=\"margin:0 0 6px 0; font-size:1.05rem; font-weight:800; color:#0A2540;\">\n        Self-Employed Alt-Doc & Low-Doc Mortgage Approval Matrix\n      </h4>\n      <p style=\"margin:0; font-size:0.85rem; color:#475569; line-height:1.45;\">\n        Lender comparison for 1-year tax returns, 6-month BAS verification, and accountant declaration letters across 30+ lenders.\n      </p>\n    </div>\n  </div>\n  <div style=\"display:flex; align-items:center; gap:10px;\">\n    <a href=\"https://drive.google.com/file/d/sample-alt-doc-matrix/view?usp=sharing\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"background:#0A2540; color:#ffffff; font-weight:700; font-size:0.85rem; padding:10px 18px; border-radius:8px; text-decoration:none; white-space:nowrap; box-shadow:0 2px 8px rgba(10,37,64,0.15);\">\n      \ud83d\udc41\ufe0f Preview PDF\n    </a>\n    <a href=\"/assets/documents/self-employed-alt-doc-lending-matrix.pdf\" download style=\"background:#00876C; color:#ffffff; font-weight:800; font-size:0.85rem; padding:10px 18px; border-radius:8px; text-decoration:none; white-space:nowrap; box-shadow:0 4px 12px rgba(0,135,108,0.25);\">\n      \ud83d\udce5 Download PDF Guide\n    </a>\n  </div>\n</div>\n"
+    },
+    {
+      "id": "ndis-quality-safeguards-crm-compliance-playbook",
+      "title": "NDIS Quality & Safeguards Commission: Operational CRM Compliance Playbook",
+      "category": "NDIS Compliance",
+      "description": "Participant record audit standards, PACE API integration protocols, and incident report management workflows.",
+      "file_type": "PDF",
+      "size": "4.2 MB",
+      "pages": 20,
+      "drive_url": "https://drive.google.com/file/d/sample-ndis-playbook/view?usp=sharing",
+      "direct_download": "/assets/documents/ndis-quality-safeguards-crm-compliance.pdf",
+      "applicable_sites": [
+        "procrm"
+      ],
+      "folder_category": "procrm",
+      "html_embed": "\n<div class=\"gdrive-pdf-resource-card\" style=\"background:#ffffff; border:1.5px solid #E2E8F0; border-radius:14px; padding:22px; margin:28px 0; box-shadow:0 4px 18px rgba(10,37,64,0.04); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;\">\n  <div style=\"display:flex; align-items:flex-start; gap:16px; min-width:280px; flex:1;\">\n    <div style=\"width:48px; height:48px; border-radius:10px; background:#EFF6FF; border:1px solid #DBEAFE; display:grid; place-items:center; font-size:1.5rem; flex-shrink:0;\">\n      \ud83d\udcc4\n    </div>\n    <div>\n      <span style=\"font-size:0.72rem; font-weight:800; color:#1D4ED8; text-transform:uppercase; letter-spacing:0.06em; display:block; margin-bottom:2px;\">\n        NDIS Compliance \u00b7 20 Pages (4.2 MB)\n      </span>\n      <h4 style=\"margin:0 0 6px 0; font-size:1.05rem; font-weight:800; color:#0A2540;\">\n        NDIS Quality & Safeguards Commission: Operational CRM Compliance Playbook\n      </h4>\n      <p style=\"margin:0; font-size:0.85rem; color:#475569; line-height:1.45;\">\n        Participant record audit standards, PACE API integration protocols, and incident report management workflows.\n      </p>\n    </div>\n  </div>\n  <div style=\"display:flex; align-items:center; gap:10px;\">\n    <a href=\"https://drive.google.com/file/d/sample-ndis-playbook/view?usp=sharing\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"background:#0A2540; color:#ffffff; font-weight:700; font-size:0.85rem; padding:10px 18px; border-radius:8px; text-decoration:none; white-space:nowrap; box-shadow:0 2px 8px rgba(10,37,64,0.15);\">\n      \ud83d\udc41\ufe0f Preview PDF\n    </a>\n    <a href=\"/assets/documents/ndis-quality-safeguards-crm-compliance.pdf\" download style=\"background:#00876C; color:#ffffff; font-weight:800; font-size:0.85rem; padding:10px 18px; border-radius:8px; text-decoration:none; white-space:nowrap; box-shadow:0 4px 12px rgba(0,135,108,0.25);\">\n      \ud83d\udce5 Download PDF Guide\n    </a>\n  </div>\n</div>\n"
+    },
+    {
+      "id": "eta-1999-electronic-signature-court-admissibility-whitepaper",
+      "title": "Commonwealth Electronic Transactions Act 1999: Legal Admissibility Whitepaper",
+      "category": "Legal Compliance",
+      "description": "Section 10 identity verification requirements, cryptographic SHA-256 seal standards, and court-admissible audit trail evidentiary rules.",
+      "file_type": "PDF",
+      "size": "2.1 MB",
+      "pages": 16,
+      "drive_url": "https://drive.google.com/file/d/sample-eta-whitepaper/view?usp=sharing",
+      "direct_download": "/assets/documents/eta-1999-legal-admissibility-whitepaper.pdf",
+      "applicable_sites": [
+        "ezsignature"
+      ],
+      "folder_category": "ezsignature",
+      "html_embed": "\n<div class=\"gdrive-pdf-resource-card\" style=\"background:#ffffff; border:1.5px solid #E2E8F0; border-radius:14px; padding:22px; margin:28px 0; box-shadow:0 4px 18px rgba(10,37,64,0.04); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;\">\n  <div style=\"display:flex; align-items:flex-start; gap:16px; min-width:280px; flex:1;\">\n    <div style=\"width:48px; height:48px; border-radius:10px; background:#EFF6FF; border:1px solid #DBEAFE; display:grid; place-items:center; font-size:1.5rem; flex-shrink:0;\">\n      \ud83d\udcc4\n    </div>\n    <div>\n      <span style=\"font-size:0.72rem; font-weight:800; color:#1D4ED8; text-transform:uppercase; letter-spacing:0.06em; display:block; margin-bottom:2px;\">\n        Legal Compliance \u00b7 16 Pages (2.1 MB)\n      </span>\n      <h4 style=\"margin:0 0 6px 0; font-size:1.05rem; font-weight:800; color:#0A2540;\">\n        Commonwealth Electronic Transactions Act 1999: Legal Admissibility Whitepaper\n      </h4>\n      <p style=\"margin:0; font-size:0.85rem; color:#475569; line-height:1.45;\">\n        Section 10 identity verification requirements, cryptographic SHA-256 seal standards, and court-admissible audit trail evidentiary rules.\n      </p>\n    </div>\n  </div>\n  <div style=\"display:flex; align-items:center; gap:10px;\">\n    <a href=\"https://drive.google.com/file/d/sample-eta-whitepaper/view?usp=sharing\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"background:#0A2540; color:#ffffff; font-weight:700; font-size:0.85rem; padding:10px 18px; border-radius:8px; text-decoration:none; white-space:nowrap; box-shadow:0 2px 8px rgba(10,37,64,0.15);\">\n      \ud83d\udc41\ufe0f Preview PDF\n    </a>\n    <a href=\"/assets/documents/eta-1999-legal-admissibility-whitepaper.pdf\" download style=\"background:#00876C; color:#ffffff; font-weight:800; font-size:0.85rem; padding:10px 18px; border-radius:8px; text-decoration:none; white-space:nowrap; box-shadow:0 4px 12px rgba(0,135,108,0.25);\">\n      \ud83d\udce5 Download PDF Guide\n    </a>\n  </div>\n</div>\n"
+    }
+  ]
+}
