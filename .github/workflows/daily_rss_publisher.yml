@@ -1,19 +1,21 @@
-name: Daily Mortgage News & RSS Publisher
+name: Master Multi-Site News, Content & Auto-RAG Publisher
 
 on:
   schedule:
-    - cron: "0 20,2,8,14 * * *" # 6AM, 12PM, 6PM, 12AM AEST
+    - cron: "0 20,2,8,14 * * *" # 6AM, 12PM, 6PM, 12AM AEST (4x daily)
   workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  publish-daily-articles:
+  publish-all-sites:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -27,39 +29,53 @@ jobs:
 
       - name: Install dependencies
         run: |
+          pip install --upgrade requests feedparser || true
           if [ -f package.json ]; then
             npm install --no-audit --no-fund || true
           fi
 
-      - name: Extract Google Alerts & Generate Articles
+      - name: Ingest Multi-Topic Mortgage News & Australian Lending
         run: |
-          if [ -f scripts/fetch_google_alerts.py ]; then
-            python3 scripts/fetch_google_alerts.py --publish || true
-          fi
-          if [ -f scripts/ingest_yahoo_topics.py ]; then
-            python3 scripts/ingest_yahoo_topics.py || true
-          fi
+          python3 scripts/ingest_yahoo_topics.py || true
+          python3 scripts/sync_blog_hub.py || true
 
-      - name: Generate Updated RSS 2.0 Feed
+      - name: Generate 91 Suburb Location Landing Pages
         run: |
-          if [ -f scripts/generate_rss_feed.py ]; then
-            python3 scripts/generate_rss_feed.py || true
-          fi
+          python3 scripts/generate_suburbs_and_pillars.py || true
 
-      - name: Build Production Bundle
+      - name: Validate & Enforce Light-Colored Photography
+        run: |
+          python3 scripts/replace_dark_images.py || true
+
+      - name: Auto-RAG Vectorize Articles into Cloudflare Vectorize
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          python3 scripts/embed_articles_to_vectorize.py || true
+
+      - name: Build Production Bundle (if applicable)
         run: |
           if [ -f package.json ]; then
             npm run build || true
           fi
 
-      - name: Commit and push updates
+      - name: Commit and push updates to Blogs-Content
         run: |
-          git config --global user.name "EZ Broker Automated Publisher"
-          git config --global user.email "bot@ezmortgagebroker.com.au"
-          git add pages/blog/ posts.json rss.xml feed.xml sitemap.xml public/
+          git config --global user.name "Finnova Multi-Site Publisher"
+          git config --global user.email "bot@finnova.com.au"
+          git add -A
           if git diff --staged --quiet; then
-            echo "No new changes to commit today."
+            echo "No new updates to commit."
           else
-            git commit -m "Auto-Publish: Daily mortgage market news and RSS feed update [skip ci]"
+            git commit -m "Auto-Publish: Daily mortgage news, 91 suburb landing pages & vector cache [skip ci]"
+            git pull --rebase origin main 2>/dev/null || true
             git push origin main
           fi
+
+      - name: Notify on Automation Failure (Zero-Failure Monitor)
+        if: failure()
+        env:
+          ALERT_WEBHOOK_URL: ${{ secrets.ALERT_WEBHOOK_URL }}
+        run: |
+          python3 scripts/notify_failure.py "Daily Multi-Site Publisher workflow failed on Finnova-Ltd/Blogs-Content"

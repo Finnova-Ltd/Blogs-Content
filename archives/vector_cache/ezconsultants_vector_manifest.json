@@ -1,0 +1,12 @@
+{
+  "site_id": "ezconsultants",
+  "vector_count": 20,
+  "index_name": "omni-knowledge-index",
+  "sample_vector_ids": [
+    "ezconsultants:5-reasons-salesforce-professionals-distrust-ai",
+    "ezconsultants:dreamforce-2026-has-one-job-prove-agentforce-actually-works",
+    "ezconsultants:complete-guide-to-salesforce-api-version-maintenance-and-retirement",
+    "ezconsultants:data-theft-campaign-targets-salesforce-and-servicenow-with-560k-attacks",
+    "ezconsultants:salesforce-s-hiring-boomerang-why-are-ex-employees-coming-back-now"
+  ]
+}
