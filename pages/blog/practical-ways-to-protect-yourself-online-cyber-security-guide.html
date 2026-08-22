@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Take control of your digital security and neutralize cyber attacks before they disrupt your business. Discover the 5 fundamental pillars of zero-trust defe">
+  <title>Practical Ways to Protect Yourself Online: The 5 Essential Pillars of Modern Cyber Defence | Finnova &amp; PRO CRM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #F8FAFC;
+      color: #0A2540;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Reading Scroll Progress Bar */
+    #readingProgressBar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3.5px;
+      width: 0%;
+      background: linear-gradient(90deg, #0176D3 0%, #00C49F 100%);
+      z-index: 99999;
+      box-shadow: 0 0 10px rgba(1, 118, 211, 0.7);
+      transition: width 0.1s ease-out;
+    }
+
+    .container {
+      max-width: 1380px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header Hero Section with Background Carousel */
+    .article-hero-header {
+      position: relative;
+      background: #0A2540;
+      color: #ffffff;
+      padding: 48px 0 40px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+    .hero-slide {
+      position: absolute;
+      top: -20px; left: -20px; right: -20px; bottom: -20px;
+      background-size: cover;
+      background-position: center 30%;
+      filter: blur(3px) brightness(0.6) saturate(1.1);
+      transform: scale(1.04);
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
+      z-index: 1;
+    }
+    .hero-slide.active {
+      opacity: 1;
+    }
+    .hero-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(180deg, rgba(10,37,64,0.82) 0%, rgba(10,37,64,0.96) 100%);
+      z-index: 2;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 3;
+    }
+
+    /* Roboto Typography Scale */
+    h1.article-h1 {
+      font-family: 'Roboto', sans-serif;
+      font-size: clamp(22px, 2.4vw, 28px);
+      font-weight: 700;
+      line-height: 1.3;
+      margin: 0 0 12px;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+    }
+    .article-lead-p {
+      font-size: 1rem;
+      color: #E2E8F0;
+      line-height: 1.55;
+      max-width: 980px;
+      margin: 0 0 18px;
+    }
+
+    .article-body-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 370px;
+      gap: 36px;
+      margin-top: 36px;
+      margin-bottom: 60px;
+      align-items: start;
+    }
+    @media (max-width: 992px) {
+      .article-body-grid {
+        grid-template-columns: 1fr;
+      }
+      .article-sidebar-col {
+        position: static !important;
+        max-height: none !important;
+      }
+    }
+
+    /* Main Article Column */
+    .article-main-card {
+      background: #ffffff;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 16px;
+      padding: 36px 40px;
+      box-shadow: 0 4px 18px rgba(15, 23, 42, 0.03);
+      font-size: 15.5px;
+      line-height: 1.65;
+      color: #334155;
+    }
+    .article-main-card h2 {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.35;
+      color: #0A2540;
+      margin: 32px 0 14px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid #E2E8F0;
+    }
+    .article-main-card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #0A2540;
+      margin: 24px 0 10px;
+    }
+    .article-main-card p, .article-main-card li {
+      font-size: 15.5px;
+      line-height: 1.65;
+      color: #334155;
+      margin-bottom: 16px;
+    }
+
+    /* Permanently Fixed / Sticky Sidebar (Col 2) */
+    .article-sidebar-col {
+      position: sticky;
+      top: 80px;
+      max-height: calc(100vh - 95px);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding-right: 2px;
+    }
+    .article-sidebar-col::-webkit-scrollbar {
+      width: 4px;
+    }
+    .article-sidebar-col::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+
+    /* Interactive Flip Card Styles */
+    .cyber-flip-card.flipped .cyber-flip-inner {
+      transform: rotateY(180deg);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Reading Progress Bar -->
+  <div id="readingProgressBar"></div>
+
+  <!-- Site Header -->
+  <header style="background:#ffffff; border-bottom:1px solid #E2E8F0; padding:12px 0; position:sticky; top:0; z-index:1000;">
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
+      <a href="/" style="text-decoration:none; font-weight:900; font-size:1.3rem; color:#0A2540; display:flex; align-items:center; gap:8px;">
+        <span style="background:#0176D3; color:#ffffff; padding:4px 8px; border-radius:6px; font-size:0.9rem;">🛡️ PRO CRM</span>
+        <span style="color:#64748B; font-weight:400; font-size:1.1rem;">·</span>
+        <span>Finnova Security</span>
+      </a>
+      <div style="display:flex; align-items:center; gap:16px;">
+        <span style="font-size:0.84rem; color:#16A34A; font-weight:700; display:flex; align-items:center; gap:6px;">
+          ● SOC 24/7 Monitoring Active
+        </span>
+        <a href="tel:1300050099" style="background:#00876C; color:#ffffff; font-weight:800; font-size:0.85rem; padding:8px 16px; border-radius:8px; text-decoration:none; box-shadow:0 2px 8px rgba(0,135,108,0.25);">
+          📞 1300 050 099
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Header with Background Image Carousel -->
+  <section class="article-hero-header">
+    <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1600&q=80');"></div>
+    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1600&q=80');"></div>
+    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1600&q=80');"></div>
+    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=80');"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="container hero-content">
+      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-bottom:14px;">
+        <span style="background:#0176D3; color:#ffffff; padding:4px 12px; border-radius:4px; font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em;">
+          CYBER THREAT DEFENCE
+        </span>
+        <span style="font-size:0.82rem; color:#CBD5E1;">
+          📅 23-Aug-2026 · ⏱️ 6 min read · ✍️ Finnova Cyber Threat Intelligence Desk
+        </span>
+      </div>
+
+      <h1 class="article-h1">Practical Ways to Protect Yourself Online: The 5 Essential Pillars of Modern Cyber Defence</h1>
+      <p class="article-lead-p">Take control of your digital security and neutralize cyber attacks before they disrupt your business. Discover the 5 fundamental pillars of zero-trust defense: automatic patching, immutable cloud backups, phishing detection, MFA, and passphrases.</p>
+    </div>
+  </section>
+
+  <!-- Main Content Grid -->
+  <main class="container">
+    <div class="article-body-grid">
+      
+      <!-- Col 1: Article Main Content -->
+      <article class="article-main-card">
+        
+          <p class="article-lead">Cyber threats are no longer isolated to large financial institutions. Today, automated bots, ransomware gangs, and sophisticated social engineering networks target small-to-midmarket enterprises and individuals daily. Building a resilient cyber defense does not require complex military-grade infrastructure—it requires disciplined execution of five foundational security practices.</p>
+
+          <h2 id="threat-landscape">1. The Anatomy of Modern Cyber Attacks</h2>
+          <p>Over 88% of data breaches begin with a single preventable weakness: an unpatched application, an employee reusing a compromised password, or a fraudulent email attachment bypassing basic filters. Once inside, malicious payloads execute silently, exfiltrating customer records and encrypting local file servers.</p>
+
+          <div class="article-data-table-wrapper" style="overflow-x:auto; margin:20px 0;">
+            <table class="article-data-table" style="width:100%; border-collapse:collapse; text-align:left;">
+              <thead>
+                <tr style="background:#0A2540; color:#ffffff;">
+                  <th style="padding:12px 14px; white-space:nowrap;">Attack Vector</th>
+                  <th style="padding:12px 14px; white-space:nowrap;">Primary Vulnerability</th>
+                  <th style="padding:12px 14px; white-space:nowrap;">Core Defence Measure</th>
+                  <th style="padding:12px 14px;">Mitigation Impact</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="padding:12px 14px; border-bottom:1px solid #e2e8f0; font-weight:600;">Ransomware Intrusion</td>
+                  <td style="padding:12px 14px; border-bottom:1px solid #e2e8f0;">Unpatched Operating Systems</td>
+                  <td style="padding:12px 14px; border-bottom:1px solid #e2e8f0; font-weight:700; color:#16a34a;">Automated OS &amp; App Patching</td>
+                  <td style="padding:12px 14px; border-bottom:1px solid #e2e8f0;">Closes 90%+ of known exploit pathways</td>
+                </tr>
+                <tr>
+                  <td style="padding:12px 14px; border-bottom:1px solid #e2e8f0; font-weight:600;">Credential Stuffing</td>
+                  <td style="padding:12px 14px; border-bottom:1px solid #e2e8f0;">Reused Single-Factor Passwords</td>
+                  <td style="padding:12px 14px; border-bottom:1px solid #e2e8f0; font-weight:700; color:#16a34a;">FIDO2 Multi-Factor Auth (MFA)</td>
+                  <td style="padding:12px 14px; border-bottom:1px solid #e2e8f0;">Blocks 99.9% of automated account takeover bots</td>
+                </tr>
+                <tr>
+                  <td style="padding:12px 14px; border-bottom:1px solid #e2e8f0; font-weight:600;">Invoice Redirection Fraud</td>
+                  <td style="padding:12px 14px; border-bottom:1px solid #e2e8f0;">Email Sender Spoofing</td>
+                  <td style="padding:12px 14px; border-bottom:1px solid #e2e8f0; font-weight:700; color:#16a34a;">Out-of-Band Phone Verification</td>
+                  <td style="padding:12px 14px; border-bottom:1px solid #e2e8f0;">Eliminates payment rerouting losses completely</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="device-patching">2. Automatic Updates: Closing Vulnerability Windows</h2>
+          <p>Software developers continuously release security patches to repair newly identified flaws. When an update notification appears, cybercriminals immediately reverse-engineer the patch to attack systems that have not yet updated.</p>
+          <ul>
+            <li><strong>Enable Universal Automatic Updates:</strong> Configure operating systems (macOS, Windows, iOS, Android) to download and install security fixes overnight automatically.</li>
+            <li><strong>Third-Party Browser &amp; App Hygiene:</strong> Regularly update web browsers, PDF readers, and office productivity suites.</li>
+            <li><strong>Retire End-of-Life Hardware:</strong> Devices that no longer receive manufacturer security support must be isolated or decommissioned.</li>
+          </ul>
+
+          <h2 id="immutable-backups">3. The 3-2-1 Backup Strategy for Ransomware Immunity</h2>
+          <p>A reliable backup is your ultimate guarantee against data extortion. Following the industry-standard <strong>3-2-1 Rule</strong> ensures operational continuity:</p>
+          <div style="background:#EFF6FF; border-left:4px solid #1D4ED8; padding:18px 20px; border-radius:0 10px 10px 0; margin:20px 0;">
+            <strong style="display:block; color:#1E3A8A; font-size:0.95rem; margin-bottom:6px;">📦 The 3-2-1 Data Preservation Standard</strong>
+            <ul style="margin:0; padding-left:20px; color:#1E293B; font-size:0.92rem; line-height:1.6;">
+              <li><strong>3 Copies of Data:</strong> Maintain your primary working dataset plus two distinct backup copies.</li>
+              <li><strong>2 Different Media Types:</strong> Store data across different mediums (e.g., local encrypted SSD + secure cloud bucket).</li>
+              <li><strong>1 Offsite &amp; Immutable Copy:</strong> Maintain an air-gapped or write-once-read-many (WORM) cloud copy that cannot be altered or deleted by ransomware.</li>
+            </ul>
+          </div>
+
+          <h2 id="zero-trust-mfa">4. Multi-Factor Authentication &amp; Passphrase Architecture</h2>
+          <p>Traditional single passwords such as <code>Company2025!</code> are easily cracked by automated dictionaries in seconds. Implementing multi-layered identity assurance stops unauthorized intrusions cold:</p>
+          <ul>
+            <li><strong>Deploy Multi-Factor Authentication (MFA):</strong> Require an authenticator app (Google Authenticator, Microsoft Authenticator) or physical FIDO2 hardware key (YubiKey) on all email, CRM, and banking portals.</li>
+            <li><strong>Transition to 4-Word Passphrases:</strong> Strings of four unpredictable words (e.g. <code>crystal-onion-clay-pretzel</code>) provide 15+ characters of cryptographic strength while remaining effortless for human recall.</li>
+          </ul>
+
+          <h2 id="phishing-defense">5. Spotting Social Engineering &amp; Invoice Spoofing</h2>
+          <p>Social engineering relies on psychological triggers—urgency, authority, fear, and curiosity—to bypass technical controls:</p>
+          <blockquote>
+            <p><strong>Golden Security Rule:</strong> Never verify banking details, transfer requests, or password resets using contact details provided inside an unverified email or SMS. Always navigate directly to official websites or call pre-saved phone numbers.</p>
+          </blockquote>
+
+          <h2 id="incident-response">6. Emergency Response Protocol &amp; Rapid Recovery</h2>
+          <p>If you discover suspicious activity on your device or network, immediately disconnect the affected machine from Wi-Fi and ethernet to prevent lateral spread. Alert your IT security administrator and contact our rapid response hotline on <strong>1300 050 099</strong> for forensic containment.</p>
+        
+      </article>
+
+      <!-- Col 2: Permanently Fixed Sidebar with Interactive 3D Flip Tips & Contact Card -->
+      <aside class="article-sidebar-col">
+        
+        <!-- 1. PRO CRM & Finnova Security Operation Details Card -->
+        <div style="background:#0A2540; border-radius:14px; padding:20px 18px; color:#ffffff; text-align:center; box-shadow:0 6px 20px rgba(10, 37, 64, 0.15);">
+          <div style="font-size:0.72rem; color:#93C5FD; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:4px;">
+            FINNOVA &amp; PRO CRM SECURITY ADVISORY
+          </div>
+          <h4 style="margin:0 0 6px 0; font-size:1.05rem; font-weight:800; color:#ffffff;">
+            Enterprise Cyber &amp; Compliance Team
+          </h4>
+          <p style="font-size:0.8rem; color:#CBD5E1; line-height:1.45; margin:0 0 14px 0;">
+            Specializing in cloud data protection, zero-trust access control, and emergency incident response.
+          </p>
+          <div style="background:rgba(255,255,255,0.08); border-radius:8px; padding:10px; font-size:0.75rem; text-align:left; margin-bottom:14px; border:1px solid rgba(255,255,255,0.12);">
+            <div><strong>Operations:</strong> Melbourne, Victoria</div>
+            <div><strong>Assurance:</strong> ISO 27001 &amp; Tier-1 Data Sovereignty</div>
+            <div><strong>Direct Email:</strong> info@procrm.com.au</div>
+          </div>
+          <a href="tel:1300050099" style="display:block; background:#00876C; color:#ffffff; font-weight:800; font-size:0.88rem; padding:10px; border-radius:8px; text-decoration:none; box-shadow:0 4px 12px rgba(0,135,108,0.3); margin-bottom:8px;">
+            📞 Call 1300 050 099
+          </a>
+          <a href="mailto:info@procrm.com.au" style="display:block; background:#ffffff; color:#0A2540; font-weight:700; font-size:0.82rem; padding:8px; border-radius:8px; text-decoration:none;">
+            ✉️ Request Security Assessment
+          </a>
+        </div>
+
+        <!-- 2. Interactive 3D Flip Card Cyber Security Tips Widget -->
+        <div style="background:#ffffff; border:1.5px solid #E2E8F0; border-radius:14px; padding:18px 16px; box-shadow:0 4px 16px rgba(15, 23, 42, 0.04);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; padding-bottom:8px; border-bottom:1px solid #F1F5F9;">
+            <h4 style="margin:0; font-size:0.84rem; font-weight:800; color:#0A2540; text-transform:uppercase; letter-spacing:0.06em;">
+              Level Up Your Security
+            </h4>
+            <span style="font-size:0.7rem; color:#1D4ED8; font-weight:700;">Interactive Tips</span>
+          </div>
+          <p style="font-size:0.78rem; color:#64748B; margin:0 0 12px 0;">
+            Tap on any tip below to reveal practical action steps:
+          </p>
+
+          
+        <div class="cyber-flip-card" onclick="this.classList.toggle('flipped')" style="perspective:1000px; cursor:pointer; margin-bottom:14px; user-select:none;">
+          <div class="cyber-flip-inner" style="position:relative; width:100%; min-height:115px; text-align:left; transition:transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); transform-style:preserve-3d; border-radius:12px; box-shadow:0 4px 14px rgba(10,37,64,0.06);">
+            <!-- Front Face -->
+            <div class="cyber-flip-front" style="position:absolute; width:100%; height:100%; -webkit-backface-visibility:hidden; backface-visibility:hidden; background:#ffffff; border:1.5px solid #E2E8F0; border-radius:12px; padding:14px 16px; box-sizing:border-box; display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <span style="font-size:0.72rem; font-weight:800; color:#0176D3; text-transform:uppercase; letter-spacing:0.06em;">Tip #1</span>
+                  <span style="font-size:0.72rem; font-weight:700; color:#00876C; background:#ECFDF5; padding:2px 6px; border-radius:10px;">Tap to Flip ↻</span>
+                </div>
+                <h5 style="margin:0 0 4px 0; font-size:0.88rem; font-weight:700; color:#0A2540; line-height:1.35;">Think about what you post online</h5>
+                <p style="margin:0; font-size:0.78rem; color:#64748B; line-height:1.4;">Be mindful about what information you share online and who can access it.</p>
+              </div>
+            </div>
+            <!-- Back Face -->
+            <div class="cyber-flip-back" style="position:absolute; width:100%; height:100%; -webkit-backface-visibility:hidden; backface-visibility:hidden; background:#0A2540; color:#ffffff; border:1.5px solid #0A2540; border-radius:12px; padding:14px 16px; box-sizing:border-box; transform:rotateY(180deg); display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <span style="font-size:0.72rem; font-weight:800; color:#38BDF8; text-transform:uppercase; letter-spacing:0.06em;">⚡ Security Action</span>
+                  <span style="font-size:0.7rem; color:#94A3B8;">Tap to Reset ↺</span>
+                </div>
+                <p style="margin:0; font-size:0.76rem; color:#E2E8F0; line-height:1.45;">Be mindful about what information you share online and who can access it. Once something is online, it can be nearly impossible to delete. Avoid sharing location tags, ID documents, or workplace badges.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="cyber-flip-card" onclick="this.classList.toggle('flipped')" style="perspective:1000px; cursor:pointer; margin-bottom:14px; user-select:none;">
+          <div class="cyber-flip-inner" style="position:relative; width:100%; min-height:115px; text-align:left; transition:transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); transform-style:preserve-3d; border-radius:12px; box-shadow:0 4px 14px rgba(10,37,64,0.06);">
+            <!-- Front Face -->
+            <div class="cyber-flip-front" style="position:absolute; width:100%; height:100%; -webkit-backface-visibility:hidden; backface-visibility:hidden; background:#ffffff; border:1.5px solid #E2E8F0; border-radius:12px; padding:14px 16px; box-sizing:border-box; display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <span style="font-size:0.72rem; font-weight:800; color:#0176D3; text-transform:uppercase; letter-spacing:0.06em;">Tip #2</span>
+                  <span style="font-size:0.72rem; font-weight:700; color:#00876C; background:#ECFDF5; padding:2px 6px; border-radius:10px;">Tap to Flip ↻</span>
+                </div>
+                <h5 style="margin:0 0 4px 0; font-size:0.88rem; font-weight:700; color:#0A2540; line-height:1.35;">Get alerts on new cyber threats</h5>
+                <p style="margin:0; font-size:0.78rem; color:#64748B; line-height:1.4;">Sign up to our free alert service to stay ahead of active security vulnerabilities.</p>
+              </div>
+            </div>
+            <!-- Back Face -->
+            <div class="cyber-flip-back" style="position:absolute; width:100%; height:100%; -webkit-backface-visibility:hidden; backface-visibility:hidden; background:#0A2540; color:#ffffff; border:1.5px solid #0A2540; border-radius:12px; padding:14px 16px; box-sizing:border-box; transform:rotateY(180deg); display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <span style="font-size:0.72rem; font-weight:800; color:#38BDF8; text-transform:uppercase; letter-spacing:0.06em;">⚡ Security Action</span>
+                  <span style="font-size:0.7rem; color:#94A3B8;">Tap to Reset ↺</span>
+                </div>
+                <p style="margin:0; font-size:0.76rem; color:#E2E8F0; line-height:1.45;">Sign up to our free threat intelligence alert service. You’ll receive an instant security advisory when our security operations center identifies a new vulnerability or active credential attack.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="cyber-flip-card" onclick="this.classList.toggle('flipped')" style="perspective:1000px; cursor:pointer; margin-bottom:14px; user-select:none;">
+          <div class="cyber-flip-inner" style="position:relative; width:100%; min-height:115px; text-align:left; transition:transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); transform-style:preserve-3d; border-radius:12px; box-shadow:0 4px 14px rgba(10,37,64,0.06);">
+            <!-- Front Face -->
+            <div class="cyber-flip-front" style="position:absolute; width:100%; height:100%; -webkit-backface-visibility:hidden; backface-visibility:hidden; background:#ffffff; border:1.5px solid #E2E8F0; border-radius:12px; padding:14px 16px; box-sizing:border-box; display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <span style="font-size:0.72rem; font-weight:800; color:#0176D3; text-transform:uppercase; letter-spacing:0.06em;">Tip #3</span>
+                  <span style="font-size:0.72rem; font-weight:700; color:#00876C; background:#ECFDF5; padding:2px 6px; border-radius:10px;">Tap to Flip ↻</span>
+                </div>
+                <h5 style="margin:0 0 4px 0; font-size:0.88rem; font-weight:700; color:#0A2540; line-height:1.35;">Talk about cyber security with family & staff</h5>
+                <p style="margin:0; font-size:0.78rem; color:#64748B; line-height:1.4;">Upskill your team and protect vulnerable relatives through ongoing dialogue.</p>
+              </div>
+            </div>
+            <!-- Back Face -->
+            <div class="cyber-flip-back" style="position:absolute; width:100%; height:100%; -webkit-backface-visibility:hidden; backface-visibility:hidden; background:#0A2540; color:#ffffff; border:1.5px solid #0A2540; border-radius:12px; padding:14px 16px; box-sizing:border-box; transform:rotateY(180deg); display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <span style="font-size:0.72rem; font-weight:800; color:#38BDF8; text-transform:uppercase; letter-spacing:0.06em;">⚡ Security Action</span>
+                  <span style="font-size:0.7rem; color:#94A3B8;">Tap to Reset ↺</span>
+                </div>
+                <p style="margin:0; font-size:0.76rem; color:#E2E8F0; line-height:1.45;">Be generous and assist older relatives with secure device setups. If you manage a business, continuously upskill your staff with simulated phishing training and zero-trust data handling policies.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="cyber-flip-card" onclick="this.classList.toggle('flipped')" style="perspective:1000px; cursor:pointer; margin-bottom:14px; user-select:none;">
+          <div class="cyber-flip-inner" style="position:relative; width:100%; min-height:115px; text-align:left; transition:transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); transform-style:preserve-3d; border-radius:12px; box-shadow:0 4px 14px rgba(10,37,64,0.06);">
+            <!-- Front Face -->
+            <div class="cyber-flip-front" style="position:absolute; width:100%; height:100%; -webkit-backface-visibility:hidden; backface-visibility:hidden; background:#ffffff; border:1.5px solid #E2E8F0; border-radius:12px; padding:14px 16px; box-sizing:border-box; display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <span style="font-size:0.72rem; font-weight:800; color:#0176D3; text-transform:uppercase; letter-spacing:0.06em;">Tip #4</span>
+                  <span style="font-size:0.72rem; font-weight:700; color:#00876C; background:#ECFDF5; padding:2px 6px; border-radius:10px;">Tap to Flip ↻</span>
+                </div>
+                <h5 style="margin:0 0 4px 0; font-size:0.88rem; font-weight:700; color:#0A2540; line-height:1.35;">Avoid public Wi-Fi for banking & transactions</h5>
+                <p style="margin:0; font-size:0.78rem; color:#64748B; line-height:1.4;">Unsecured wireless hotspots expose financial logins and payment tokens.</p>
+              </div>
+            </div>
+            <!-- Back Face -->
+            <div class="cyber-flip-back" style="position:absolute; width:100%; height:100%; -webkit-backface-visibility:hidden; backface-visibility:hidden; background:#0A2540; color:#ffffff; border:1.5px solid #0A2540; border-radius:12px; padding:14px 16px; box-sizing:border-box; transform:rotateY(180deg); display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <span style="font-size:0.72rem; font-weight:800; color:#38BDF8; text-transform:uppercase; letter-spacing:0.06em;">⚡ Security Action</span>
+                  <span style="font-size:0.7rem; color:#94A3B8;">Tap to Reset ↺</span>
+                </div>
+                <p style="margin:0; font-size:0.76rem; color:#E2E8F0; line-height:1.45;">If you are purchasing items or transferring funds online, never connect via public Wi-Fi. Use only a secure, encrypted home network, trusted enterprise VPN, or mobile cellular data.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="cyber-flip-card" onclick="this.classList.toggle('flipped')" style="perspective:1000px; cursor:pointer; margin-bottom:14px; user-select:none;">
+          <div class="cyber-flip-inner" style="position:relative; width:100%; min-height:115px; text-align:left; transition:transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); transform-style:preserve-3d; border-radius:12px; box-shadow:0 4px 14px rgba(10,37,64,0.06);">
+            <!-- Front Face -->
+            <div class="cyber-flip-front" style="position:absolute; width:100%; height:100%; -webkit-backface-visibility:hidden; backface-visibility:hidden; background:#ffffff; border:1.5px solid #E2E8F0; border-radius:12px; padding:14px 16px; box-sizing:border-box; display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <span style="font-size:0.72rem; font-weight:800; color:#0176D3; text-transform:uppercase; letter-spacing:0.06em;">Tip #5</span>
+                  <span style="font-size:0.72rem; font-weight:700; color:#00876C; background:#ECFDF5; padding:2px 6px; border-radius:10px;">Tap to Flip ↻</span>
+                </div>
+                <h5 style="margin:0 0 4px 0; font-size:0.88rem; font-weight:700; color:#0A2540; line-height:1.35;">Report cyber attacks & security incidents immediately</h5>
+                <p style="margin:0; font-size:0.78rem; color:#64748B; line-height:1.4;">Rapid containment prevents lateral movement and widespread data loss.</p>
+              </div>
+            </div>
+            <!-- Back Face -->
+            <div class="cyber-flip-back" style="position:absolute; width:100%; height:100%; -webkit-backface-visibility:hidden; backface-visibility:hidden; background:#0A2540; color:#ffffff; border:1.5px solid #0A2540; border-radius:12px; padding:14px 16px; box-sizing:border-box; transform:rotateY(180deg); display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <span style="font-size:0.72rem; font-weight:800; color:#38BDF8; text-transform:uppercase; letter-spacing:0.06em;">⚡ Security Action</span>
+                  <span style="font-size:0.7rem; color:#94A3B8;">Tap to Reset ↺</span>
+                </div>
+                <p style="margin:0; font-size:0.76rem; color:#E2E8F0; line-height:1.45;">If you suspect an account compromise, unauthorized funds transfer, or malware intrusion, report it immediately to your incident response team or call our 24/7 hotline on 1300 050 099.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="cyber-flip-card" onclick="this.classList.toggle('flipped')" style="perspective:1000px; cursor:pointer; margin-bottom:14px; user-select:none;">
+          <div class="cyber-flip-inner" style="position:relative; width:100%; min-height:115px; text-align:left; transition:transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); transform-style:preserve-3d; border-radius:12px; box-shadow:0 4px 14px rgba(10,37,64,0.06);">
+            <!-- Front Face -->
+            <div class="cyber-flip-front" style="position:absolute; width:100%; height:100%; -webkit-backface-visibility:hidden; backface-visibility:hidden; background:#ffffff; border:1.5px solid #E2E8F0; border-radius:12px; padding:14px 16px; box-sizing:border-box; display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <span style="font-size:0.72rem; font-weight:800; color:#0176D3; text-transform:uppercase; letter-spacing:0.06em;">Tip #6</span>
+                  <span style="font-size:0.72rem; font-weight:700; color:#00876C; background:#ECFDF5; padding:2px 6px; border-radius:10px;">Tap to Flip ↻</span>
+                </div>
+                <h5 style="margin:0 0 4px 0; font-size:0.88rem; font-weight:700; color:#0A2540; line-height:1.35;">Check sender display name against actual email</h5>
+                <p style="margin:0; font-size:0.78rem; color:#64748B; line-height:1.4;">Scammers frequently spoof executive names with fraudulent domains.</p>
+              </div>
+            </div>
+            <!-- Back Face -->
+            <div class="cyber-flip-back" style="position:absolute; width:100%; height:100%; -webkit-backface-visibility:hidden; backface-visibility:hidden; background:#0A2540; color:#ffffff; border:1.5px solid #0A2540; border-radius:12px; padding:14px 16px; box-sizing:border-box; transform:rotateY(180deg); display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <span style="font-size:0.72rem; font-weight:800; color:#38BDF8; text-transform:uppercase; letter-spacing:0.06em;">⚡ Security Action</span>
+                  <span style="font-size:0.7rem; color:#94A3B8;">Tap to Reset ↺</span>
+                </div>
+                <p style="margin:0; font-size:0.76rem; color:#E2E8F0; line-height:1.45;">Phishing emails often disguise their display name as a trusted colleague or vendor. Always inspect the underlying domain headers. If the sender email address doesn't match the company domain, report and delete.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        </div>
+
+        <!-- 3. Table of Contents -->
+        <div style="background:#ffffff; border:1.5px solid #E2E8F0; border-radius:14px; padding:16px 18px; box-shadow:0 4px 16px rgba(15, 23, 42, 0.04);">
+          <div style="font-size:0.82rem; font-weight:800; color:#0A2540; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:10px;">
+            📑 Table of Contents
+          </div>
+          <div style="display:flex; flex-direction:column; gap:6px;">
+            <a href="#threat-landscape" style="font-size:0.84rem; color:#0176D3; text-decoration:none; font-weight:500; padding:4px 0; border-bottom:1px dashed #f1f5f9;">1. The Anatomy of Modern Cyber Attacks</a><a href="#device-patching" style="font-size:0.84rem; color:#0176D3; text-decoration:none; font-weight:500; padding:4px 0; border-bottom:1px dashed #f1f5f9;">2. Automatic Updates: Closing Vulnerability Windows</a><a href="#immutable-backups" style="font-size:0.84rem; color:#0176D3; text-decoration:none; font-weight:500; padding:4px 0; border-bottom:1px dashed #f1f5f9;">3. The 3-2-1 Backup Strategy for Ransomware Immunity</a><a href="#zero-trust-mfa" style="font-size:0.84rem; color:#0176D3; text-decoration:none; font-weight:500; padding:4px 0; border-bottom:1px dashed #f1f5f9;">4. Multi-Factor Authentication & Passphrase Architecture</a><a href="#phishing-defense" style="font-size:0.84rem; color:#0176D3; text-decoration:none; font-weight:500; padding:4px 0; border-bottom:1px dashed #f1f5f9;">5. Spotting Social Engineering & Invoice Spoofing</a><a href="#incident-response" style="font-size:0.84rem; color:#0176D3; text-decoration:none; font-weight:500; padding:4px 0; border-bottom:1px dashed #f1f5f9;">6. Emergency Response Protocol & Rapid Recovery</a>
+          </div>
+        </div>
+
+        <!-- 4. Recent Security Advisories -->
+        <div style="background:#ffffff; border:1.5px solid #E2E8F0; border-radius:14px; padding:16px 18px; box-shadow:0 4px 16px rgba(15, 23, 42, 0.04);">
+          <div style="font-size:0.82rem; font-weight:800; color:#0A2540; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:10px;">
+            🛡️ Recent Advisories
+          </div>
+          <div style="display:flex; flex-direction:column;">
+            
+        <a href="/pages/blog/practical-ways-to-protect-yourself-online-cyber-security-guide.html" style="display:flex; gap:12px; text-decoration:none; align-items:center; padding:8px 0; border-bottom:1px solid #f1f5f9;">
+          <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80" alt="Practical Ways to Protect Yourself Online: The 5 Essential Pillars of Modern Cyber Defence" style="width:52px; height:42px; border-radius:6px; object-fit:cover; flex-shrink:0;">
+          <div style="min-width:0;">
+            <div style="font-size:0.82rem; font-weight:600; color:#0A2540; line-height:1.3; overflow:hidden; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;">Practical Ways to Protect Yourself Online: The 5 Essential Pillars of Modern Cyber Defence</div>
+            <div style="font-size:0.72rem; color:#94A3B8; margin-top:2px;">23-Aug-2026</div>
+          </div>
+        </a>
+        
+        <a href="/pages/blog/automated-device-updates-patch-management-guide.html" style="display:flex; gap:12px; text-decoration:none; align-items:center; padding:8px 0; border-bottom:1px solid #f1f5f9;">
+          <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80" alt="Automated Patch Management: Why Outdated Devices Are Hacker Magnets" style="width:52px; height:42px; border-radius:6px; object-fit:cover; flex-shrink:0;">
+          <div style="min-width:0;">
+            <div style="font-size:0.82rem; font-weight:600; color:#0A2540; line-height:1.3; overflow:hidden; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;">Automated Patch Management: Why Outdated Devices Are Hacker Magnets</div>
+            <div style="font-size:0.72rem; color:#94A3B8; margin-top:2px;">23-Aug-2026</div>
+          </div>
+        </a>
+        
+        <a href="/pages/blog/cloud-backups-immutable-storage-ransomware-protection.html" style="display:flex; gap:12px; text-decoration:none; align-items:center; padding:8px 0; border-bottom:1px solid #f1f5f9;">
+          <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80" alt="The 3-2-1 Cloud Backup Strategy: Protecting Critical Data from Ransomware" style="width:52px; height:42px; border-radius:6px; object-fit:cover; flex-shrink:0;">
+          <div style="min-width:0;">
+            <div style="font-size:0.82rem; font-weight:600; color:#0A2540; line-height:1.3; overflow:hidden; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;">The 3-2-1 Cloud Backup Strategy: Protecting Critical Data from Ransomware</div>
+            <div style="font-size:0.72rem; color:#94A3B8; margin-top:2px;">23-Aug-2026</div>
+          </div>
+        </a>
+        
+        <a href="/pages/blog/multi-factor-authentication-fido2-passkeys-guide.html" style="display:flex; gap:12px; text-decoration:none; align-items:center; padding:8px 0; border-bottom:1px solid #f1f5f9;">
+          <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80" alt="Multi-Factor Authentication (MFA) & Passkeys: Eliminating Password Risk" style="width:52px; height:42px; border-radius:6px; object-fit:cover; flex-shrink:0;">
+          <div style="min-width:0;">
+            <div style="font-size:0.82rem; font-weight:600; color:#0A2540; line-height:1.3; overflow:hidden; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;">Multi-Factor Authentication (MFA) & Passkeys: Eliminating Password Risk</div>
+            <div style="font-size:0.72rem; color:#94A3B8; margin-top:2px;">23-Aug-2026</div>
+          </div>
+        </a>
+        
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- Interactive JavaScript for Carousel & Scroll Progress -->
+  <script>
+    // 1. Scroll Progress Bar
+    window.addEventListener('scroll', function() {
+      var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      var scrolled = (winScroll / height) * 100;
+      document.getElementById('readingProgressBar').style.width = scrolled + '%';
+    });
+
+    // 2. Auto-cycling Hero Background Carousel
+    var slides = document.querySelectorAll('.hero-slide');
+    var currentSlide = 0;
+    setInterval(function() {
+      if (slides.length > 0) {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+      }
+    }, 6000);
+  </script>
+
+</body>
+</html>
