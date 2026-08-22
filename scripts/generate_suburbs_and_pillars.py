@@ -362,10 +362,11 @@ def generate_suburb_html(sub):
     }}
     .article-body-grid {{
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 340px;
+      grid-template-columns: minmax(0, 1fr) 350px;
       gap: 36px;
       margin-top: 36px;
       margin-bottom: 60px;
+      align-items: start;
     }}
     @media (max-width: 992px) {{
       .article-body-grid {{
@@ -374,6 +375,14 @@ def generate_suburb_html(sub):
       .site-header .logo {{
         margin-left: 0 !important;
       }}
+      .article-sidebar-col {{
+        position: static !important;
+      }}
+    }}
+    .article-sidebar-col {{
+      position: sticky;
+      top: 24px;
+      align-self: start;
     }}
     .article-main-col {{
       min-width: 0;
@@ -479,7 +488,7 @@ def generate_suburb_html(sub):
       border: 1.5px solid #E2E8F0;
       border-radius: 16px;
       padding: 20px;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       box-shadow: 0 6px 18px rgba(10,37,64,0.04);
     }}
     .sidebar-widget-title {{
@@ -499,30 +508,38 @@ def generate_suburb_html(sub):
       border-radius: 16px;
       overflow: hidden;
       box-shadow: 0 8px 24px rgba(10,37,64,0.06);
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }}
     .broker-cover-header {{
-      height: 90px;
+      height: 105px;
       width: 100%;
-      background: linear-gradient(135deg, #0A2540 0%, #1D4ED8 100%);
+      background-image: url('/images/headers/marquee-background-1600x500-1.webp');
+      background-size: cover;
+      background-position: center;
     }}
     .broker-box-body {{
       padding: 0 20px 24px;
       position: relative;
       text-align: center;
     }}
-    .broker-box-avatar {{
-      width: 110px;
-      height: 110px;
+    .broker-avatar-wrapper {{
+      width: 116px;
+      height: 116px;
       border-radius: 50%;
       border: 4px solid #ffffff;
       box-shadow: 0 6px 20px rgba(0,135,108,0.25);
-      margin: -55px auto 12px;
+      margin: -58px auto 10px;
+      overflow: hidden;
+      background: #ffffff;
+    }}
+    .broker-box-avatar {{
+      width: 100%;
+      height: 100%;
       display: block;
       object-fit: cover;
-      object-position: center 15%;
-      background: #ffffff;
-      filter: brightness(1.08) contrast(1.04);
+      object-position: center 20%;
+      transform: scale(1.22);
+      filter: brightness(1.14) contrast(1.06);
     }}
   </style>
 </head>
@@ -550,9 +567,9 @@ def generate_suburb_html(sub):
         <a href="/" class="logo"><img class="brand-logo" src="/images/ez-mortgage-broker.webp" alt="EZ Mortgage Broker" width="220" height="64" style="height:46px; width:auto;"></a>
         
         <nav style="display:flex; align-items:center; gap:20px;">
-          <a href="/" style="color:#0A2540; text-decoration:none; font-weight:700; font-size:0.92rem;">Home</a>
+          <a href="/" style="color:#0A2540; text-decoration:none; font-weight:600; font-size:0.92rem;">Home</a>
           <a href="/#loan-solutions" style="color:#0A2540; text-decoration:none; font-weight:600; font-size:0.92rem;">Loan Services</a>
-          <a href="/pages/locations/mortgage-broker-melbourne-cbd.html" style="color:#1D4ED8; text-decoration:none; font-weight:800; font-size:0.92rem;">Locations</a>
+          <a href="/locations.html" style="color:#1D4ED8; text-decoration:none; font-weight:800; font-size:0.92rem;">Locations</a>
           <a href="/calculators.html" style="color:#0A2540; text-decoration:none; font-weight:600; font-size:0.92rem;">Calculators</a>
           <a href="/pages/blog.html" style="color:#0A2540; text-decoration:none; font-weight:600; font-size:0.92rem;">News &amp; Insights</a>
           <a href="tel:1300050099" style="padding:8px 16px; border-radius:8px; border:1.5px solid #00876C; color:#00876C; font-weight:700; text-decoration:none; font-size:0.9rem;">📞 1300 050 099</a>
@@ -677,22 +694,27 @@ def generate_suburb_html(sub):
 
       </div>
 
-      <!-- Right Column (Col 3: Broker Details + Nearby Suburbs Carousel + Recent Articles) -->
-      <aside>
+      <!-- Right Column (Col 2 Fixed/Sticky: Broker Details + Recent Articles + Collapsible Nearby Suburbs Accordion) -->
+      <aside class="article-sidebar-col">
         
         <!-- 1. Broker Profile Details Card -->
         <div class="broker-sticky-card">
           <div class="broker-cover-header"></div>
           <div class="broker-box-body">
-            <img src="/images/r-bakshi.jpeg" alt="R Bakshi - Principal Mortgage Broker" class="broker-box-avatar" width="110" height="110">
-            <h4 style="font-size:1.15rem; font-weight:800; color:#0A2540; margin:0 0 4px;">R BAKSHI</h4>
-            <div style="font-size:0.75rem; font-weight:700; color:#00876C; margin-bottom:12px; text-transform:uppercase; letter-spacing:0.04em;">
-              Principal Finance Broker (MFAA Accredited)
+            <div class="broker-avatar-wrapper">
+              <img src="/images/r-bakshi.jpeg" alt="R Bakshi - Principal Mortgage Broker" class="broker-box-avatar" width="116" height="116">
             </div>
-            <p style="font-size:0.82rem; color:#64748b; line-height:1.55; margin:0 0 16px;">
+            <h4 style="font-size:1.15rem; font-weight:800; color:#0A2540; margin:0 0 2px;">R BAKSHI</h4>
+            <div style="font-size:0.75rem; font-weight:700; color:#00876C; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.04em;">
+              Principal Finance Broker (MFAA ACCREDITED)
+            </div>
+            <div style="color:#EAB308; font-size:0.85rem; font-weight:800; margin-bottom:10px;">
+              ★★★★★ <span style="color:#64748B; font-size:0.75rem; font-weight:600;">(14 Google Reviews)</span>
+            </div>
+            <p style="font-size:0.82rem; color:#64748b; line-height:1.55; margin:0 0 14px;">
               Specializing in Melbourne residential property finance, self-employed lending, and wealth restructuring across 30+ accredited lenders.
             </p>
-            <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:10px; font-size:0.75rem; color:#475569; text-align:left; margin-bottom:16px;">
+            <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:10px; font-size:0.75rem; color:#475569; text-align:left; margin-bottom:14px;">
               <div><strong>CRN:</strong> 538522</div>
               <div><strong>Aggregator:</strong> National Mortgage Brokers (nMB)</div>
               <div><strong>Panel:</strong> 30+ Accredited Lenders</div>
@@ -706,17 +728,7 @@ def generate_suburb_html(sub):
           </div>
         </div>
 
-        <!-- 2. Nearby Suburb Guides Quick Navigation -->
-        <div class="sidebar-widget-block">
-          <h4 class="sidebar-widget-title">
-            <span>Nearby Suburb Guides</span>
-            <span style="font-size:0.72rem; color:#1D4ED8; font-weight:700;">VIC Locations</span>
-          </h4>
-          <div style="display:flex; flex-direction:column; gap:6px;">
-{nearby_html}          </div>
-        </div>
-
-        <!-- 3. Latest Market News & Recent Articles -->
+        <!-- 2. Latest Market News & Recent Articles (Moved ABOVE Suburb list) -->
         <div class="sidebar-widget-block">
           <h4 class="sidebar-widget-title">
             <span>Recent Market News</span>
@@ -728,6 +740,19 @@ def generate_suburb_html(sub):
             View All Market News &rarr;
           </a>
         </div>
+
+        <!-- 3. Nearby Suburb Guides (Collapsed Accordion below Recent News) -->
+        <details style="background:#ffffff; border:1.5px solid #E2E8F0; border-radius:16px; padding:16px; margin-bottom:20px; box-shadow:0 6px 18px rgba(10,37,64,0.04);">
+          <summary style="font-size:0.85rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:800; color:#0A2540; cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center; user-select:none;">
+            <span>📍 Nearby Suburb Guides</span>
+            <span style="font-size:0.75rem; color:#1D4ED8; font-weight:700; background:#EFF6FF; padding:3px 8px; border-radius:12px;">+ View Suburbs</span>
+          </summary>
+          <div style="display:flex; flex-direction:column; gap:6px; margin-top:14px;">
+{nearby_html}          </div>
+          <a href="/locations.html" style="display:block; text-align:center; margin-top:10px; font-size:0.8rem; font-weight:700; color:#00876C; text-decoration:none;">
+            Browse All 91 Suburbs &rarr;
+          </a>
+        </details>
 
       </aside>
 
