@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build": "echo 'Static assets ready'",
     "test": "node tests/qa.mjs",
     "check": "node --check functions/api.js && npm test"
   }

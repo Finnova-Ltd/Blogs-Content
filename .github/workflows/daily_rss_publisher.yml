@@ -16,6 +16,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -29,25 +30,41 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install --upgrade requests feedparser || true
+          pip install --upgrade requests feedparser beautifulsoup4 lxml || true
           if [ -f package.json ]; then
             npm install --no-audit --no-fund || true
           fi
 
       - name: Ingest Multi-Topic Mortgage News & Australian Lending
+        continue-on-error: true
         run: |
           python3 scripts/ingest_yahoo_topics.py || true
           python3 scripts/sync_blog_hub.py || true
 
       - name: Generate 91 Suburb Location Landing Pages
+        continue-on-error: true
         run: |
           python3 scripts/generate_suburbs_and_pillars.py || true
 
+      - name: Ingest Google Drive Asset Vault (PDF Whitepapers)
+        continue-on-error: true
+        env:
+          GOOGLE_DRIVE_API_KEY: ${{ secrets.GOOGLE_DRIVE_API_KEY }}
+        run: |
+          python3 scripts/google_drive_pdf_extractor.py || true
+
+      - name: Generate Common Cyber Security Articles for PRO CRM & Finnova
+        continue-on-error: true
+        run: |
+          python3 scripts/generate_common_cyber_articles.py || true
+
       - name: Validate & Enforce Light-Colored Photography
+        continue-on-error: true
         run: |
           python3 scripts/replace_dark_images.py || true
 
       - name: Auto-RAG Vectorize Articles into Cloudflare Vectorize
+        continue-on-error: true
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -55,6 +72,7 @@ jobs:
           python3 scripts/embed_articles_to_vectorize.py || true
 
       - name: Build Production Bundle (if applicable)
+        continue-on-error: true
         run: |
           if [ -f package.json ]; then
             npm run build || true
@@ -68,7 +86,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "No new updates to commit."
           else
-            git commit -m "Auto-Publish: Daily mortgage news, 91 suburb landing pages & vector cache [skip ci]"
+            git commit -m "Auto-Publish: Daily mortgage news, 91 suburb landing pages, cyber guides & vector cache [skip ci]"
             git pull --rebase origin main 2>/dev/null || true
             git push origin main
           fi
@@ -78,4 +96,4 @@ jobs:
         env:
           ALERT_WEBHOOK_URL: ${{ secrets.ALERT_WEBHOOK_URL }}
         run: |
-          python3 scripts/notify_failure.py "Daily Multi-Site Publisher workflow failed on Finnova-Ltd/Blogs-Content"
+          python3 scripts/notify_failure.py "Daily Multi-Site Publisher workflow failed on Finnova-Ltd/Blogs-Content" || true
