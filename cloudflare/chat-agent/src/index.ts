@@ -2779,7 +2779,7 @@ const PROMO_BANNER_SCRIPT = `
       if (headerEl) {
         const comp = window.getComputedStyle(headerEl);
         const parentNode = headerEl.parentNode;
-        const parentComp = parentNode && parentNode.nodeType === 1 ? window.getComputedStyle(parentNode as Element) : ({} as CSSStyleDeclaration);
+        const parentComp = parentNode && parentNode.nodeType === 1 ? window.getComputedStyle(parentNode) : {};
         
         const isSticky = comp.position === 'fixed' || comp.position === 'sticky' || 
                          parentComp.position === 'fixed' || parentComp.position === 'sticky' ||
