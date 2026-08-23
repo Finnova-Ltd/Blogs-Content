@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Generate Standalone HTML Page for Agentforce Speed & Fraction of Cost Article
+Generate Standalone HTML Page for Agentforce Infographic Article
 """
 
 import os
@@ -14,7 +14,7 @@ os.makedirs(PUB_PAGES_DIR, exist_ok=True)
 
 SLUG = "agentforce-rapid-integration-fraction-of-cost-guide"
 TITLE = "Agentforce at Lightning Speed: How We Deploy Enterprise Autonomous AI at a Fraction of Big Consulting Costs"
-EXCERPT = "Discover how agile Salesforce architects deploy autonomous Agentforce AI agents in under 4 weeks—delivering 93% faster project outcomes and 96% lower management costs compared to traditional consulting houses."
+EXCERPT = "Deploy autonomous Agentforce AI in 4 weeks—delivering 93% faster project outcomes and 96% lower management costs compared to traditional consulting houses."
 
 PAGE_HTML = f"""<!DOCTYPE html>
 <html lang="en-AU">
@@ -107,11 +107,11 @@ PAGE_HTML = f"""<!DOCTYPE html>
     <section class="bg-gradient-to-b from-[#07182c] to-[#0d233a] text-white py-12 lg:py-16 px-4 sm:px-6">
         <div class="max-w-7xl mx-auto space-y-6">
             <div class="flex items-center gap-3 text-xs font-semibold uppercase tracking-wider text-cyan-400">
-                <span class="bg-cyan-500/10 border border-cyan-400/30 px-3 py-1 rounded-full">Enterprise AI &amp; Cloud</span>
+                <span class="bg-cyan-500/10 border border-cyan-400/30 px-3 py-1 rounded-full">⚡ 4-Week Rapid Sprint</span>
                 <span>•</span>
                 <span class="text-slate-300">24 August 2026</span>
                 <span>•</span>
-                <span class="text-slate-300">6 min read</span>
+                <span class="text-slate-300">4 min read</span>
             </div>
 
             <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight font-heading max-w-5xl">
@@ -123,7 +123,7 @@ PAGE_HTML = f"""<!DOCTYPE html>
             </p>
 
             <div class="flex items-center gap-3 text-xs text-slate-300 pt-2">
-                <span>By <strong class="text-white">Robin Bakshi</strong> (Principal Salesforce Architect)</span>
+                <span>By <strong class="text-white">Robin Bakshi</strong> (Principal Salesforce Architect &amp; Founder)</span>
                 <span>•</span>
                 <span>ISO 27001:2022 Certified &amp; buy.nsw Approved</span>
             </div>
@@ -132,84 +132,212 @@ PAGE_HTML = f"""<!DOCTYPE html>
 
     <!-- Main Content (2-Column Grid) -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 py-12 grid grid-cols-1 lg:grid-cols-12 gap-10">
-        <!-- Col 1: Article Content -->
-        <article class="lg:col-span-8 bg-white p-6 sm:p-10 rounded-2xl border border-slate-200 shadow-sm space-y-8">
+        <!-- Col 1: Article Content with Visual Infographics -->
+        <article class="lg:col-span-8 bg-white p-6 sm:p-10 rounded-2xl border border-slate-200 shadow-sm space-y-10">
             
-            <!-- Metric Cards -->
-            <div class="p-6 rounded-2xl bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200/80 text-slate-800">
-                <h3 class="text-xs font-black uppercase tracking-wider text-[#084582] mb-3">Enterprise Acceleration Benchmarks</h3>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
-                    <div class="p-3 bg-white rounded-xl shadow-xs border border-blue-100">
-                        <div class="text-3xl font-black text-[#084582] font-heading">93%</div>
-                        <div class="text-xs font-bold text-slate-600 mt-1">Faster Time to Outcome</div>
+            <!-- 1. EXECUTIVE METRIC INFOGRAPHIC HERO CARDS -->
+            <div id="sec-metrics" class="bg-gradient-to-br from-slate-900 via-[#084582] to-[#042444] rounded-3xl p-6 sm:p-8 text-white shadow-xl border border-blue-800/60 relative overflow-hidden">
+                <div class="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-cyan-300 mb-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse"></span>
+                    Key Performance Benchmarks
+                </div>
+                <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight mb-3 font-heading">
+                    Why Enterprise Leaders Choose Our Agile Agentforce Squad Over Traditional Retainers
+                </h2>
+                <p class="text-xs sm:text-sm text-blue-100/90 leading-relaxed max-w-3xl mb-6">
+                    Traditional Tier-1 consulting firms routinely quote $250,000+ and 6 to 9-month timelines for enterprise AI integrations. By contrast, our specialized engineering methodology deploys fully grounded, compliant Agentforce autonomous agents into production in <strong>under 4 weeks</strong> at up to <strong>70% lower upfront investment</strong> and <strong>96% reduced ongoing overhead</strong>.
+                </p>
+                
+                <!-- 3 Key Metric Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-blue-500/30">
+                    <div class="p-5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 text-center transform hover:-translate-y-1 transition duration-300">
+                        <div class="text-4xl sm:text-5xl font-black text-white tracking-tight font-heading">93<span class="text-cyan-300">%</span></div>
+                        <div class="text-xs font-black uppercase text-cyan-200 tracking-wider mt-1">Reduced Time</div>
+                        <p class="text-[11px] text-blue-100/80 mt-1">To reach initial live project outcomes in production</p>
                     </div>
-                    <div class="p-3 bg-white rounded-xl shadow-xs border border-blue-100">
-                        <div class="text-3xl font-black text-emerald-600 font-heading">96%</div>
-                        <div class="text-xs font-bold text-slate-600 mt-1">Lower Long-Term Costs</div>
+                    <div class="p-5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 text-center transform hover:-translate-y-1 transition duration-300">
+                        <div class="text-4xl sm:text-5xl font-black text-emerald-400 tracking-tight font-heading">96<span class="text-white">%</span></div>
+                        <div class="text-xs font-black uppercase text-emerald-200 tracking-wider mt-1">Reduced Costs</div>
+                        <p class="text-[11px] text-blue-100/80 mt-1">For long-term ongoing operation &amp; management</p>
                     </div>
-                    <div class="p-3 bg-white rounded-xl shadow-xs border border-blue-100">
-                        <div class="text-3xl font-black text-cyan-600 font-heading">58%</div>
-                        <div class="text-xs font-bold text-slate-600 mt-1">Accelerated Business ROI</div>
+                    <div class="p-5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 text-center transform hover:-translate-y-1 transition duration-300">
+                        <div class="text-4xl sm:text-5xl font-black text-cyan-300 tracking-tight font-heading">58<span class="text-white">%</span></div>
+                        <div class="text-xs font-black uppercase text-cyan-100 tracking-wider mt-1">Accelerated Time</div>
+                        <p class="text-[11px] text-blue-100/80 mt-1">To realize measurable, board-level business ROI</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Content Sections -->
-            <section id="sec-1" class="space-y-4">
-                <h2 class="text-2xl font-bold text-slate-900 border-b border-slate-200 pb-2 font-heading">1. The Traditional Consulting Trap vs. Agile Agentic AI</h2>
-                <p class="text-slate-700 leading-relaxed text-base">
-                    Traditional Tier-1 consulting firms routinely quote $250,000+ and 6 to 9-month timelines for enterprise AI integrations. By contrast, our specialized engineering methodology deploys fully grounded, compliant Agentforce autonomous agents into production in <strong>under 4 weeks</strong> at up to <strong>70% lower upfront investment</strong> and <strong>96% reduced ongoing overhead</strong>.
-                </p>
-                <p class="text-slate-700 leading-relaxed text-base">
-                    Because Agentforce is built directly into Salesforce Core, the heavy lifting of security, data residency, and identity management is already handled natively by the Einstein Trust Layer. Rather than building fragile custom LLM wrappers, forward-thinking organizations engage elite architects who wire deterministic Flow actions and ground topics in days.
-                </p>
-            </section>
-
-            <section id="sec-2" class="space-y-4">
-                <h2 class="text-2xl font-bold text-slate-900 border-b border-slate-200 pb-2 font-heading">2. The 3-Step Rapid Integration Blueprint (Live in 4 Weeks)</h2>
-                <p class="text-slate-700 leading-relaxed text-base">
-                    We eliminate project paralysis with a strict 3-phase accelerator schedule:
+            <!-- 2. THE 3-STEP INTEGRATION PROCESS INFOGRAPHIC -->
+            <section id="sec-1" class="space-y-6">
+                <div class="flex items-center gap-3">
+                    <span class="w-8 h-8 rounded-full bg-[#084582] text-white flex items-center justify-center font-black text-sm">1</span>
+                    <h2 class="text-2xl font-black text-slate-900 tracking-tight font-heading">
+                        Here’s How It Works: The 3-Phase Sprint Model
+                    </h2>
+                </div>
+                <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                    We start with a detailed analysis of your business to pinpoint exactly where agentic AI can make the biggest difference right away. While we build your first agent, we create a scalable blueprint for a team of AI agents that work together seamlessly.
                 </p>
 
-                <div class="space-y-4 my-4">
-                    <div class="p-5 rounded-xl bg-slate-50 border border-slate-200">
-                        <div class="text-xs font-black uppercase text-blue-700 tracking-wider mb-1">Week 1: ROI-Driven Roadmap &amp; Opportunity Pinpointing</div>
-                        <h3 class="text-base font-bold text-slate-900 mb-1">Target High-Containment Inbound Workflows</h3>
-                        <p class="text-xs text-slate-600">We analyze case categories, CRM records, and customer interaction logs to pinpoint the highest-ROI tasks (e.g. self-service quote requests, booking rescheduling, warranty triage) that deliver immediate 70%+ containment.</p>
+                <!-- 3 Step Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                    <div class="p-6 rounded-2xl bg-white border-2 border-blue-100 hover:border-blue-300 hover:shadow-lg transition flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 bg-blue-100 text-[#084582] rounded-full text-[11px] font-black uppercase tracking-wider">Week 1</span>
+                                <span class="text-2xl">🎯</span>
+                            </div>
+                            <h3 class="text-base font-bold text-slate-900 leading-snug mb-2 font-heading">
+                                Create an ROI-driven roadmap with expert guidance.
+                            </h3>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                Determine how to accomplish your business goals with an agentic experience. We audit case logs and CRM touchpoints to prioritize agents that drive measurable containment fast.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center gap-1 text-[11px] font-bold text-[#084582]">
+                            <span>✓ High-Impact Use Cases Locked</span>
+                        </div>
                     </div>
 
-                    <div class="p-5 rounded-xl bg-slate-50 border border-slate-200">
-                        <div class="text-xs font-black uppercase text-blue-700 tracking-wider mb-1">Weeks 2–3: Sandboxing &amp; Atlas Reasoning Engine Wiring</div>
-                        <h3 class="text-base font-bold text-slate-900 mb-1">Data Cloud Vector Search &amp; Flow Automation Topics</h3>
-                        <p class="text-xs text-slate-600">We connect your knowledge base, federate warehouse data via Zero-Copy, configure Agentforce Topics, and wire deterministic Flow Automations with strict Einstein Trust Layer toxicity and security masking.</p>
+                    <div class="p-6 rounded-2xl bg-white border-2 border-cyan-100 hover:border-cyan-300 hover:shadow-lg transition flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-[11px] font-black uppercase tracking-wider">Weeks 2–3</span>
+                                <span class="text-2xl">⚡</span>
+                            </div>
+                            <h3 class="text-base font-bold text-slate-900 leading-snug mb-2 font-heading">
+                                See value fast with your agent deployed in just 4 weeks.
+                            </h3>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                Our Principal Architects configure Data Cloud Zero-Copy vector grounding, wire Atlas Reasoning Topics, and connect deterministic Flow Automations with Einstein Trust Layer security.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center gap-1 text-[11px] font-bold text-cyan-700">
+                            <span>✓ Sandbox Validated &amp; Ready</span>
+                        </div>
                     </div>
 
-                    <div class="p-5 rounded-xl bg-slate-50 border border-slate-200">
-                        <div class="text-xs font-black uppercase text-blue-700 tracking-wider mb-1">Week 4: Canary Go-Live &amp; Predictable Growth Model</div>
-                        <h3 class="text-base font-bold text-slate-900 mb-1">Production Rollout, Telemetry &amp; Usage Forecasting</h3>
-                        <p class="text-xs text-slate-600">We deploy to a 10% live canary traffic segment, validating autonomous accuracy before scaling to 100%. We provide transparent telemetry dashboards to forecast token usage and guarantee predictable budgeting.</p>
+                    <div class="p-6 rounded-2xl bg-white border-2 border-emerald-100 hover:border-emerald-300 hover:shadow-lg transition flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full text-[11px] font-black uppercase tracking-wider">Week 4+</span>
+                                <span class="text-2xl">📈</span>
+                            </div>
+                            <h3 class="text-base font-bold text-slate-900 leading-snug mb-2 font-heading">
+                                Plan your agent usage for confident, predictable growth.
+                            </h3>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                We partner with you to forecast agent usage and build a growth model that aligns with your budget. Real-time telemetry dashboards ensure you stay in complete control as demand scales.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center gap-1 text-[11px] font-bold text-emerald-700">
+                            <span>✓ Full Telemetry &amp; Predictable Cost</span>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <section id="sec-3" class="space-y-4">
-                <h2 class="text-2xl font-bold text-slate-900 border-b border-slate-200 pb-2 font-heading">3. Why We Cost a Fraction of Big Consulting Houses</h2>
-                <ul class="list-disc pl-6 space-y-2 text-slate-700 text-base leading-relaxed">
-                    <li><strong>Direct Senior Architect Access:</strong> Zero junior billable analysts learning on your project invoice.</li>
-                    <li><strong>No Proprietary Lock-In:</strong> Built 100% on native Salesforce Flow, Apex, and standard Data Cloud connectors that your team owns completely.</li>
-                    <li><strong>Zero-Copy Data Virtualization:</strong> Connect Snowflake or BigQuery without paying $50,000+ for third-party ETL pipeline licenses.</li>
-                    <li><strong>Pre-Engineered Governance Kits:</strong> Fast-track approvals with pre-built ISO 27001 and APRA CPS 234 compliance checklists.</li>
-                </ul>
+            <!-- 3. VISUAL ARCHITECTURE FLOW DIAGRAM (INFOGRAPHIC) -->
+            <section id="sec-2" class="p-6 sm:p-8 rounded-3xl bg-slate-900 text-white space-y-6">
+                <div class="flex items-center gap-3">
+                    <span class="w-8 h-8 rounded-full bg-cyan-500 text-slate-900 flex items-center justify-center font-black text-sm">2</span>
+                    <div>
+                        <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight font-heading">
+                            Technical Architecture: Enterprise-Grade &amp; Zero-Copy
+                        </h2>
+                        <p class="text-xs text-slate-400">Native Salesforce Core with Einstein Trust Layer Security Boundaries</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 text-center text-xs">
+                    <div class="p-4 rounded-xl bg-slate-800/80 border border-slate-700 space-y-2">
+                        <div class="text-2xl">💬</div>
+                        <div class="font-bold text-cyan-400">1. Omnichannel Input</div>
+                        <p class="text-[11px] text-slate-300">Web, Mobile, WhatsApp, Voice, Email &amp; In-App Messaging</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-slate-800/80 border border-slate-700 space-y-2">
+                        <div class="text-2xl">🛡️</div>
+                        <div class="font-bold text-emerald-400">2. Einstein Trust Layer</div>
+                        <p class="text-[11px] text-slate-300">PII Masking, Toxicity Filters, Zero-Retention LLM Gateway</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-slate-800/80 border border-slate-700 space-y-2">
+                        <div class="text-2xl">🧠</div>
+                        <div class="font-bold text-indigo-400">3. Atlas Reasoning</div>
+                        <p class="text-[11px] text-slate-300">Autonomous Intent Recognition, Topic Routing &amp; Plan Formulation</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-slate-800/80 border border-slate-700 space-y-2">
+                        <div class="text-2xl">⚡</div>
+                        <div class="font-bold text-amber-400">4. Action Execution</div>
+                        <p class="text-[11px] text-slate-300">Salesforce Flow, Apex, ERP Integration &amp; Real-Time Updates</p>
+                    </div>
+                </div>
             </section>
 
-            <div class="mt-8 p-6 rounded-2xl bg-gradient-to-r from-[#07182c] to-[#0d233a] text-white flex flex-col sm:flex-row items-center justify-between gap-6">
-                <div>
-                    <div class="text-xs uppercase text-cyan-300 font-bold tracking-wider mb-1">GET STARTED TODAY</div>
-                    <h3 class="text-xl font-bold mb-1 font-heading">Schedule an Agentforce Architecture Review</h3>
-                    <p class="text-xs text-slate-300">Complimentary 30-min discovery session with our Principal Salesforce &amp; AI Architects.</p>
+            <!-- 4. SIDE-BY-SIDE COMPARISON MATRIX TABLE -->
+            <section id="sec-3" class="space-y-6">
+                <div class="flex items-center gap-3">
+                    <span class="w-8 h-8 rounded-full bg-[#084582] text-white flex items-center justify-center font-black text-sm">3</span>
+                    <h2 class="text-2xl font-black text-slate-900 tracking-tight font-heading">
+                        Comparison Matrix: Big 4 Consulting vs. Our Agile Squad
+                    </h2>
                 </div>
-                <a href="mailto:info@procrm.com.au?subject=Agentforce%20Rapid%20Deployment" class="bg-[#0052FF] hover:bg-blue-600 text-white font-bold px-6 py-3 rounded-xl transition whitespace-nowrap text-sm shadow-md">
-                    Book Discovery Call →
+
+                <div class="overflow-x-auto rounded-2xl border border-slate-200 shadow-xs">
+                    <table class="w-full text-left text-xs sm:text-sm">
+                        <thead class="bg-slate-100 border-b border-slate-200 text-slate-900 uppercase font-black tracking-wider text-[11px]">
+                            <tr>
+                                <th class="p-4">Key Criteria</th>
+                                <th class="p-4 text-rose-700 bg-rose-50/50">Traditional Big 4 Consulting</th>
+                                <th class="p-4 text-[#084582] bg-blue-50/60 font-black">Our Agile Squad</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 text-slate-700">
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-4 font-bold text-slate-900">Deployment Timeline</td>
+                                <td class="p-4 text-rose-700 bg-rose-50/20">6 to 9 Months (Prolonged discovery)</td>
+                                <td class="p-4 font-bold text-[#084582] bg-blue-50/30">Under 4 Weeks (Production live)</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-4 font-bold text-slate-900">Project Cost</td>
+                                <td class="p-4 text-rose-700 bg-rose-50/20">$250,000 to $500,000+</td>
+                                <td class="p-4 font-bold text-emerald-700 bg-blue-50/30">Fraction of Cost (Fixed sprint pricing)</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-4 font-bold text-slate-900">Consultant Seniority</td>
+                                <td class="p-4 text-rose-700 bg-rose-50/20">Junior analysts learning on your invoice</td>
+                                <td class="p-4 font-bold text-[#084582] bg-blue-50/30">100% Certified Principal Architects</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-4 font-bold text-slate-900">Architecture</td>
+                                <td class="p-4 text-rose-700 bg-rose-50/20">Complex custom code &amp; proprietary wrappers</td>
+                                <td class="p-4 font-bold text-[#084582] bg-blue-50/30">Native Salesforce Flow &amp; Standard Connectors</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-4 font-bold text-slate-900">Vendor Lock-In</td>
+                                <td class="p-4 text-rose-700 bg-rose-50/20">High (Requires ongoing agency retainers)</td>
+                                <td class="p-4 font-bold text-emerald-700 bg-blue-50/30">Zero (Full internal team ownership)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 5. HIGH-CONVERTING CTA BANNER -->
+            <div id="sec-4" class="p-8 rounded-3xl bg-gradient-to-r from-[#084582] via-[#0a325a] to-slate-950 text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xl">
+                <div class="space-y-2">
+                    <span class="px-3 py-1 bg-cyan-400/20 text-cyan-300 rounded-full text-[11px] font-black uppercase tracking-wider border border-cyan-400/30">
+                        LIMITED ARCHITECTURE SLOTS
+                    </span>
+                    <h3 class="text-xl sm:text-2xl font-black text-white tracking-tight font-heading">
+                        Ready to Deploy Agentforce in Under 4 Weeks?
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-300 max-w-xl">
+                        Get a direct 30-minute Architecture Blueprint Session with our Principal Salesforce &amp; AI Architects. No sales pitch, just practical engineering guidance.
+                    </p>
+                </div>
+                <a href="mailto:info@procrm.com.au?subject=Agentforce%20Rapid%20Integration%20Review" class="px-6 py-3.5 rounded-2xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-black text-sm transition shadow-lg whitespace-nowrap">
+                    Book Architecture Review →
                 </a>
             </div>
 
@@ -228,23 +356,29 @@ PAGE_HTML = f"""<!DOCTYPE html>
                     <div class="p-5 space-y-4 text-xs font-sans">
                         <div class="text-slate-500 font-semibold">— 24 August 2026</div>
                         <div class="hl-spine space-y-4">
-                            <div class="relative cursor-pointer" onclick="document.getElementById('sec-1').scrollIntoView({{behavior:'smooth'}})">
+                            <div class="relative cursor-pointer" onclick="document.getElementById('sec-metrics').scrollIntoView({{behavior:'smooth'}})">
                                 <span class="hl-dot"></span>
                                 <div class="text-[10px] font-bold text-[#990000] uppercase">10:00 AM</div>
-                                <div class="font-bold text-slate-900 leading-snug">Traditional Consulting Trap</div>
-                                <p class="text-slate-500 text-[11px] mt-0.5">Why $250k+ legacy retainers fail in modern AI.</p>
+                                <div class="font-bold text-slate-900 leading-snug">Key Performance Metrics</div>
+                                <p class="text-slate-500 text-[11px] mt-0.5">93% faster outcomes, 96% lower costs, 58% faster ROI.</p>
+                            </div>
+                            <div class="relative cursor-pointer" onclick="document.getElementById('sec-1').scrollIntoView({{behavior:'smooth'}})">
+                                <span class="hl-dot"></span>
+                                <div class="text-[10px] font-bold text-[#990000] uppercase">09:30 AM</div>
+                                <div class="font-bold text-slate-900 leading-snug">3-Phase Sprint Model</div>
+                                <p class="text-slate-500 text-[11px] mt-0.5">Scoping in Wk 1, Wiring in Wks 2–3, Go-Live in Wk 4.</p>
                             </div>
                             <div class="relative cursor-pointer" onclick="document.getElementById('sec-2').scrollIntoView({{behavior:'smooth'}})">
                                 <span class="hl-dot"></span>
-                                <div class="text-[10px] font-bold text-[#990000] uppercase">09:30 AM</div>
-                                <div class="font-bold text-slate-900 leading-snug">4-Week Rapid Integration</div>
-                                <p class="text-slate-500 text-[11px] mt-0.5">3-phase sprint from sandbox to live deployment.</p>
+                                <div class="text-[10px] font-bold text-[#990000] uppercase">09:00 AM</div>
+                                <div class="font-bold text-slate-900 leading-snug">Technical Architecture</div>
+                                <p class="text-slate-500 text-[11px] mt-0.5">Zero-Copy Data Cloud and Einstein Trust Layer.</p>
                             </div>
                             <div class="relative cursor-pointer" onclick="document.getElementById('sec-3').scrollIntoView({{behavior:'smooth'}})">
                                 <span class="hl-dot"></span>
-                                <div class="text-[10px] font-bold text-[#990000] uppercase">09:00 AM</div>
-                                <div class="font-bold text-slate-900 leading-snug">Fraction of Cost Blueprint</div>
-                                <p class="text-slate-500 text-[11px] mt-0.5">93% faster outcomes and 96% lower long-term costs.</p>
+                                <div class="text-[10px] font-bold text-[#990000] uppercase">08:30 AM</div>
+                                <div class="font-bold text-slate-900 leading-snug">Comparison Matrix</div>
+                                <p class="text-slate-500 text-[11px] mt-0.5">Big 4 $250k+ 9-month retainers vs. our 4-week sprint.</p>
                             </div>
                         </div>
                     </div>
@@ -292,4 +426,4 @@ with open(page_path, "w", encoding="utf-8") as f:
 with open(pub_page_path, "w", encoding="utf-8") as f:
     f.write(PAGE_HTML)
 
-print(f"✅ Created standalone HTML page: {page_path}")
+print(f"✅ Created rich infographic standalone HTML page: {page_path}")
