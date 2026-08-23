@@ -1,67 +1,29 @@
-<!DOCTYPE html>
-<html lang="en-AU">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agentforce at Lightning Speed: How We Deploy Enterprise Autonomous AI at a Fraction of Big Consulting Costs | PRO CRM Australia &amp; EZ Consultants</title>
-    <meta name="description" content="Discover how agile Salesforce architects deploy autonomous Agentforce AI agents in under 4 weeks—delivering 93% faster project outcomes and 96% lower management costs compared to traditional consulting houses.">
-    <link rel="canonical" href="https://procrm.com.au/blog/agentforce-rapid-integration-fraction-of-cost-guide">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,400&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body { font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif; background-color: #f8fafc; color: #1e293b; }
-        h1, h2, h3, h4, .font-heading { font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif; }
-        .hl-spine { position: relative; padding-left: 20px; border-left: 2px solid #e2e8f0; }
-        .hl-dot { position: absolute; left: -25px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: #990000; box-shadow: 0 0 0 2px #fff, 0 0 0 4px #fee2e2; }
-    </style>
-</head>
-<body class="min-h-screen flex flex-col justify-between">
-    <header class="bg-[#07182c] border-b border-slate-800 text-white sticky top-0 z-50 shadow-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-            <a href="/" class="flex items-center gap-2">
-                <span class="text-xl font-black tracking-tight text-white font-heading">PRO<span class="text-cyan-400">CRM</span></span>
-                <span class="text-xs bg-blue-600/30 text-cyan-300 px-2 py-0.5 rounded-full border border-blue-500/30 font-bold">Enterprise AI</span>
-            </a>
-            <div class="flex items-center gap-4 text-xs font-semibold">
-                <a href="tel:1300050099" class="hidden sm:inline-flex items-center gap-1.5 text-slate-300 hover:text-white">
-                    <span>📞 1300 050 099</span>
-                </a>
-                <a href="mailto:info@procrm.com.au" class="bg-[#0052FF] hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-bold transition">
-                    Book Discovery Call
-                </a>
-            </div>
-        </div>
-    </header>
+#!/usr/bin/env python3
+"""
+Light Theme Overhaul & Clean Highlights Refinement:
+1. Replace all dark background boxes with crisp, premium light-theme cards.
+2. Remove timestamps from Highlights widget (replace with clean Step/Takeaway badges).
+3. Remove inner scrollbar from sidebar (clean sticky layout without cramped scrollbars).
+4. Update across procrm-app, ezconsultants.com.au, and Blogs-Content.
+"""
 
-    <section class="bg-gradient-to-b from-[#07182c] to-[#0d233a] text-white py-12 lg:py-16 px-4 sm:px-6">
-        <div class="max-w-7xl mx-auto space-y-6">
-            <div class="flex items-center gap-3 text-xs font-semibold uppercase tracking-wider text-cyan-400">
-                <span class="bg-cyan-500/10 border border-cyan-400/30 px-3 py-1 rounded-full">⚡ 4-Week Rapid Sprint</span>
-                <span>•</span>
-                <span class="text-slate-300">24 August 2026</span>
-                <span>•</span>
-                <span class="text-slate-300">6 min read</span>
-            </div>
-            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight font-heading max-w-5xl">
-                Agentforce at Lightning Speed: How We Deploy Enterprise Autonomous AI at a Fraction of Big Consulting Costs
-            </h1>
-            <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-4xl font-normal">
-                Discover how agile Salesforce architects deploy autonomous Agentforce AI agents in under 4 weeks—delivering 93% faster project outcomes and 96% lower management costs compared to traditional consulting houses.
-            </p>
-            <div class="flex items-center gap-3 text-xs text-slate-300 pt-2">
-                <span>By <strong class="text-white">Robin Bakshi</strong> (Principal Salesforce Architect &amp; Founder)</span>
-                <span>•</span>
-                <span>ISO 27001:2022 Certified &amp; buy.nsw Approved</span>
-            </div>
-        </div>
-    </section>
+import os
+import json
+import re
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-12 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-        <article class="lg:col-span-8 bg-white p-6 sm:p-10 rounded-3xl border border-slate-200 shadow-sm">
-            
+PROCRM_DIR = "/Users/robinbakshi/Documents/Imprtant Repos/procrm-app"
+EZ_DIR = "/Users/robinbakshi/Documents/GitHub/ezconsultants.com.au"
+BLOGS_DIR = "/Users/robinbakshi/Documents/GitHub/Blogs-Content"
+
+SLUG = "agentforce-rapid-integration-fraction-of-cost-guide"
+TITLE = "Agentforce at Lightning Speed: How We Deploy Enterprise Autonomous AI at a Fraction of Big Consulting Costs"
+EXCERPT = "Discover how agile Salesforce architects deploy autonomous Agentforce AI agents in under 4 weeks—delivering 93% faster project outcomes and 96% lower management costs compared to traditional consulting houses."
+HERO_IMAGE = "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1600&q=80"
+TODAY_DATE = "2026-08-24"
+
+# 1. Generate 100% Light Theme Rich HTML (No dark boxes)
+def generate_light_theme_article_html(site_brand="PRO CRM Australia", contact_phone="1300 050 099", contact_email="info@procrm.com.au"):
+    return f"""
 <div class="agentforce-light-article space-y-10 font-sans text-slate-800 leading-relaxed text-base">
     
     <!-- 1. EXECUTIVE METRIC HERO INFOGRAPHIC (100% Crisp Light Theme) -->
@@ -241,7 +203,7 @@
                     <tr>
                         <th class="p-4">Key Criteria</th>
                         <th class="p-4 text-rose-700 bg-rose-50/50">Traditional Big 4 Consulting</th>
-                        <th class="p-4 text-[#084582] bg-blue-50/60 font-black">Our Agile Squad (PRO CRM Australia)</th>
+                        <th class="p-4 text-[#084582] bg-blue-50/60 font-black">Our Agile Squad ({site_brand})</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-200 text-slate-700">
@@ -281,7 +243,7 @@
             5. Governance, ISO 27001 &amp; Australian Compliance Standards
         </h2>
         <p class="text-slate-700 leading-relaxed">
-            Speed never compromises security. Every Agentforce solution architected by PRO CRM Australia adheres to stringent Australian data sovereignty and regulatory guidelines:
+            Speed never compromises security. Every Agentforce solution architected by {site_brand} adheres to stringent Australian data sovereignty and regulatory guidelines:
         </p>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
             <div class="p-5 rounded-2xl bg-blue-50/70 border border-blue-200 text-slate-800 space-y-2">
@@ -300,7 +262,308 @@
     </section>
 
 </div>
+"""
 
+# Clean Highlights Definition without fake timestamps
+HIGHLIGHTS_DATA = [
+    { "id": "sec-metrics", "badge": "01. METRICS", "title": "Key Performance Metrics", "text": "93% reduced time to outcomes, 96% lower management costs, and 58% faster time to value." },
+    { "id": "sec-1", "badge": "02. CONTEXT", "title": "Traditional Consulting Trap", "text": "Why $250k+ legacy retainers fail in the rapidly evolving AI landscape." },
+    { "id": "sec-2", "badge": "03. ROADMAP", "title": "3-Phase Sprint Model", "text": "Scoping in Week 1, Atlas Engine & Flow wiring in Weeks 2-3, and Canary Go-Live in Week 4." },
+    { "id": "sec-3", "badge": "04. ARCHITECTURE", "title": "Technical Architecture", "text": "Zero-Copy Data Cloud lakehouse grounding with strict Einstein Trust Layer security guardrails." },
+    { "id": "sec-4", "badge": "05. COMPARISON", "title": "Comparison Matrix", "text": "Big 4 $250k+ 9-month retainers vs. our agile squad deployed in under 4 weeks." }
+]
+
+def patch_procrm_blog_jsx():
+    print("🛠️ Updating procrm-app Blog.jsx (clean highlights, no timestamps, no inner scrollbar)...")
+    blog_jsx_path = os.path.join(PROCRM_DIR, "src", "pages", "Blog.jsx")
+    with open(blog_jsx_path, "r", encoding="utf-8") as f:
+        code = f.read()
+
+    # 1. Update articleHighlights parsing to use item.badge (or clean fallback, NO fake timestamps)
+    hl_logic_target = """  const articleHighlights = useMemo(() => {
+    if (post.highlights && Array.isArray(post.highlights) && post.highlights.length > 0) {
+      return post.highlights.map((hl, i) => ({
+        time: hl.time || "9:00 AM",
+        date: post.date || "Aug 24, 2026",
+        title: hl.title || `Key Takeaway ${i + 1}`,
+        summary: hl.text || hl.summary || "",
+        sectionId: hl.id || `article-section-${i}`,
+      }));
+    }
+    const defaultTimes = ["9:00 AM", "8:15 AM", "7:30 AM", "6:45 AM", "6:00 AM"];
+    return (post.body || []).map((para, i) => {"""
+
+    hl_logic_replacement = """  const articleHighlights = useMemo(() => {
+    if (post.highlights && Array.isArray(post.highlights) && post.highlights.length > 0) {
+      return post.highlights.map((hl, i) => ({
+        badge: hl.badge || `0${i + 1}. KEY POINT`,
+        date: post.date || "Aug 24, 2026",
+        title: hl.title || `Key Point ${i + 1}`,
+        summary: hl.text || hl.summary || "",
+        sectionId: hl.id || `article-section-${i}`,
+      }));
+    }
+    return (post.body || []).map((para, i) => ({
+      badge: `0${i + 1}. SUMMARY`,
+      date: post.date || "Aug 24, 2026",
+      title: i === 0 ? "Executive Overview" : `Key Takeaway ${i + 1}`,
+      summary: para.slice(0, 110) + "...",
+      sectionId: `article-section-${i}`,
+    }));"""
+
+    if hl_logic_target in code:
+        code = code.replace(hl_logic_target, hl_logic_replacement)
+
+    # 2. Update Aside to be cleanly sticky WITHOUT inner max-h scrollbar
+    code = re.sub(
+        r'<aside className="lg:col-span-4 space-y-6 lg:sticky.*?>',
+        '<aside className="lg:col-span-4 space-y-6 lg:sticky lg:top-[90px] self-start">',
+        code
+    )
+
+    # 3. Update Highlights Timeline widget JSX (use item.badge instead of red item.time)
+    old_hl_widget_jsx = """                      {/* Timestamp in Red */}
+                      <div className="text-[11px] font-black text-[#990000] leading-none mb-1">
+                        {item.time}
+                      </div>"""
+
+    new_hl_widget_jsx = """                      {/* Category Badge Pill (No fake timestamps) */}
+                      <div className="text-[10px] font-black text-[#990000] uppercase tracking-wider mb-1">
+                        {item.badge || item.time}
+                      </div>"""
+
+    if old_hl_widget_jsx in code:
+        code = code.replace(old_hl_widget_jsx, new_hl_widget_jsx)
+
+    with open(blog_jsx_path, "w", encoding="utf-8") as f:
+        f.write(code)
+    print("✅ Patched Blog.jsx cleanly!")
+
+def update_procrm_site_js():
+    print("📝 Updating procrm-app/src/data/site.js with Light Theme HTML & Clean Highlights...")
+    site_js_path = os.path.join(PROCRM_DIR, "src", "data", "site.js")
+    with open(site_js_path, "r", encoding="utf-8") as f:
+        content = f.read()
+
+    pattern = r'  {\s*slug: "agentforce-rapid-integration-fraction-of-cost-guide",.*?},\n'
+    content = re.sub(pattern, "", content, flags=re.DOTALL)
+
+    rich_html = generate_light_theme_article_html("PRO CRM Australia", "1300 050 099", "info@procrm.com.au")
+
+    post_item = f"""  {{
+    slug: "{SLUG}",
+    title: "{TITLE}",
+    date: "{TODAY_DATE}",
+    author: "Robin Bakshi (Principal Architect)",
+    category: "Enterprise AI & Cloud",
+    subCategory: "Agentforce Integration",
+    region: "National",
+    readTime: "6 min read",
+    isNew: true,
+    badge: "⚡ 4-Week Rapid Sprint",
+    tags: ["Agentforce", "Salesforce Consulting", "Enterprise AI", "Cost Optimization", "Australia"],
+    image: "{HERO_IMAGE}",
+    excerpt: "{EXCERPT}",
+    highlights: [
+      {{ id: "sec-metrics", badge: "01. METRICS", title: "Key Performance Metrics", text: "93% reduced time to outcomes, 96% lower management costs, and 58% faster time to value." }},
+      {{ id: "sec-1", badge: "02. CONTEXT", title: "Traditional Consulting Trap", text: "Why $250k+ legacy retainers fail in the rapidly evolving AI landscape." }},
+      {{ id: "sec-2", badge: "03. ROADMAP", title: "3-Phase Sprint Model", text: "Scoping in Week 1, Atlas Engine & Flow wiring in Weeks 2-3, and Canary Go-Live in Week 4." }},
+      {{ id: "sec-3", badge: "04. ARCHITECTURE", title: "Technical Architecture", text: "Zero-Copy Data Cloud lakehouse grounding with strict Einstein Trust Layer security guardrails." }},
+      {{ id: "sec-4", badge: "05. COMPARISON", title: "Comparison Matrix", text: "Big 4 $250k+ 9-month retainers vs. our agile squad deployed in under 4 weeks." }}
+    ],
+    bullets: [
+      "93% Reduced Time: Agile 4-week sprint delivery eliminating bloated multi-month discovery phases.",
+      "96% Reduced Long-Term Costs: Direct senior architect access with zero vendor lock-in.",
+      "Atlas Reasoning Engine: Deterministic topic configuration and Einstein Trust Layer data grounding.",
+      "Zero-Copy Federation: Real-time Data Cloud lakehouse integration without ETL software licenses."
+    ],
+    body: [
+      "Traditional Tier-1 consulting firms routinely quote $250,000+ and 6 to 9-month timelines for enterprise AI integrations. By contrast, our specialized engineering methodology deploys fully grounded, compliant Agentforce autonomous agents into production in under 4 weeks at up to 70% lower upfront investment and 96% reduced ongoing overhead.",
+      "Here is how it works: Week 1 (ROI-Driven Roadmap), Weeks 2–3 (Atlas Reasoning & Flow Automation Wiring), and Week 4 (Canary Go-Live & Usage Forecasting).",
+      "Why We Cost a Fraction of Big Consulting Houses: 100% Senior Certified Principal Architects with zero junior trainees billing on your invoice.",
+      "Source: PRO CRM Enterprise AI Solutions & Australian Cloud Architecture Desk."
+    ],
+    htmlContent: `{rich_html.replace('`', '\\`')}`
+  }},
+"""
+    content = content.replace("export const POSTS = [", f"export const POSTS = [\n{post_item}", 1)
+    with open(site_js_path, "w", encoding="utf-8") as f:
+        f.write(content)
+    print("✅ Updated procrm-app site.js!")
+
+def update_ezconsultants_repo():
+    print("📝 Updating ezconsultants.com.au...")
+    posts_json_path = os.path.join(EZ_DIR, "posts.json")
+    pub_posts_json_path = os.path.join(EZ_DIR, "public", "posts.json")
+    blog_posts_js_path = os.path.join(EZ_DIR, "src", "data", "blogPosts.js")
+
+    with open(posts_json_path, "r", encoding="utf-8") as f:
+        posts = json.load(f)
+
+    rich_html = generate_light_theme_article_html("EZ Consultants Australia", "1300 050 099", "info@ezconsultants.com.au")
+
+    new_post_ez = {
+        "id": SLUG,
+        "slug": SLUG,
+        "title": TITLE,
+        "category": "Enterprise AI & Cloud",
+        "date": "24-Aug-2026",
+        "formattedDate": "24 August 2026",
+        "iso_date": "2026-08-24T08:00:00Z",
+        "readTime": "6 min read",
+        "author": {
+            "name": "Robin Bakshi",
+            "title": "Principal Salesforce Architect & Founder",
+            "image": "/images/author-robin-bakshi.webp"
+        },
+        "authorRole": "Principal Salesforce Architect",
+        "excerpt": EXCERPT,
+        "heroImage": HERO_IMAGE,
+        "image": HERO_IMAGE,
+        "url": f"/blog/{SLUG}",
+        "publishDate": "Mon, 24 Aug 2026 08:00:00 +1000",
+        "views": 2580,
+        "likes": 224,
+        "tags": ["Agentforce", "Salesforce AI", "Atlas Engine", "Cost Reduction", "Enterprise Architecture", "buy.nsw"],
+        "highlights": HIGHLIGHTS_DATA,
+        "content": rich_html
+    }
+
+    filtered = [p for p in posts if p.get("slug") != SLUG]
+    final_posts = [new_post_ez] + filtered
+
+    with open(posts_json_path, "w", encoding="utf-8") as f:
+        json.dump(final_posts, f, indent=2)
+    with open(pub_posts_json_path, "w", encoding="utf-8") as f:
+        json.dump(final_posts, f, indent=2)
+
+    blog_posts_js_content = """// Automatically synchronized from posts.json (Latest 24-Aug-2026)
+export const BLOG_POSTS = """ + json.dumps(final_posts, indent=2) + """;
+
+export function getAllPosts() {
+  return BLOG_POSTS;
+}
+
+export function getPostBySlug(slug) {
+  const clean = slug ? slug.replace(/\\.html$/, '') : '';
+  return BLOG_POSTS.find((p) => p.slug === clean || p.id === clean);
+}
+
+export function getRelatedPosts(currentSlug, category, limit = 3) {
+  const clean = currentSlug ? currentSlug.replace(/\\.html$/, '') : '';
+  return BLOG_POSTS
+    .filter((p) => p.slug !== clean && (!category || p.category === category))
+    .slice(0, limit);
+}
+
+export function getArticleStats(slug) {
+  try {
+    const raw = localStorage.getItem("ez_article_stats_" + slug);
+    if (raw) return JSON.parse(raw);
+  } catch (e) {}
+  return { views: 2580, likes: 224, userLiked: false };
+}
+
+export function incrementArticleView(slug) {
+  try {
+    const stats = getArticleStats(slug);
+    stats.views += 1;
+    localStorage.setItem("ez_article_stats_" + slug, JSON.stringify(stats));
+    return stats;
+  } catch (e) {
+    return { views: 2581, likes: 224, userLiked: false };
+  }
+}
+
+export function toggleArticleLike(slug) {
+  try {
+    const stats = getArticleStats(slug);
+    stats.userLiked = !stats.userLiked;
+    stats.likes += stats.userLiked ? 1 : -1;
+    localStorage.setItem("ez_article_stats_" + slug, JSON.stringify(stats));
+    return { views: stats.views, likes: stats.likes, isLiked: stats.userLiked, delta: stats.userLiked ? 1 : -1 };
+  } catch (e) {
+    return { views: 2580, likes: 225, isLiked: true, delta: 1 };
+  }
+}
+"""
+    with open(blog_posts_js_path, "w", encoding="utf-8") as f:
+        f.write(blog_posts_js_content)
+    print("✅ Updated ezconsultants blogPosts.js & posts.json!")
+
+def update_standalone_html():
+    print("📝 Updating standalone HTML in Blogs-Content...")
+    pages_dir = os.path.join(BLOGS_DIR, "pages", "blog")
+    pub_pages_dir = os.path.join(BLOGS_DIR, "public", "pages", "blog")
+    os.makedirs(pages_dir, exist_ok=True)
+    os.makedirs(pub_pages_dir, exist_ok=True)
+
+    rich_content = generate_light_theme_article_html("PRO CRM Australia", "1300 050 099", "info@procrm.com.au")
+
+    page_html = f"""<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{TITLE} | PRO CRM Australia &amp; EZ Consultants</title>
+    <meta name="description" content="{EXCERPT}">
+    <link rel="canonical" href="https://procrm.com.au/blog/{SLUG}">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {{ font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif; background-color: #f8fafc; color: #1e293b; }}
+        h1, h2, h3, h4, .font-heading {{ font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif; }}
+        .hl-spine {{ position: relative; padding-left: 20px; border-left: 2px solid #e2e8f0; }}
+        .hl-dot {{ position: absolute; left: -25px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: #990000; box-shadow: 0 0 0 2px #fff, 0 0 0 4px #fee2e2; }}
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+    <header class="bg-[#07182c] border-b border-slate-800 text-white sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-2">
+                <span class="text-xl font-black tracking-tight text-white font-heading">PRO<span class="text-cyan-400">CRM</span></span>
+                <span class="text-xs bg-blue-600/30 text-cyan-300 px-2 py-0.5 rounded-full border border-blue-500/30 font-bold">Enterprise AI</span>
+            </a>
+            <div class="flex items-center gap-4 text-xs font-semibold">
+                <a href="tel:1300050099" class="hidden sm:inline-flex items-center gap-1.5 text-slate-300 hover:text-white">
+                    <span>📞 1300 050 099</span>
+                </a>
+                <a href="mailto:info@procrm.com.au" class="bg-[#0052FF] hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-bold transition">
+                    Book Discovery Call
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="bg-gradient-to-b from-[#07182c] to-[#0d233a] text-white py-12 lg:py-16 px-4 sm:px-6">
+        <div class="max-w-7xl mx-auto space-y-6">
+            <div class="flex items-center gap-3 text-xs font-semibold uppercase tracking-wider text-cyan-400">
+                <span class="bg-cyan-500/10 border border-cyan-400/30 px-3 py-1 rounded-full">⚡ 4-Week Rapid Sprint</span>
+                <span>•</span>
+                <span class="text-slate-300">24 August 2026</span>
+                <span>•</span>
+                <span class="text-slate-300">6 min read</span>
+            </div>
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight font-heading max-w-5xl">
+                {TITLE}
+            </h1>
+            <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-4xl font-normal">
+                {EXCERPT}
+            </p>
+            <div class="flex items-center gap-3 text-xs text-slate-300 pt-2">
+                <span>By <strong class="text-white">Robin Bakshi</strong> (Principal Salesforce Architect &amp; Founder)</span>
+                <span>•</span>
+                <span>ISO 27001:2022 Certified &amp; buy.nsw Approved</span>
+            </div>
+        </div>
+    </section>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-12 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <article class="lg:col-span-8 bg-white p-6 sm:p-10 rounded-3xl border border-slate-200 shadow-sm">
+            {rich_content}
         </article>
 
         <aside class="lg:col-span-4 space-y-6 lg:sticky lg:top-[90px] self-start">
@@ -312,31 +575,31 @@
                 <div class="p-5 space-y-4 text-xs font-sans">
                     <div class="text-slate-500 font-semibold">— 24 August 2026</div>
                     <div class="hl-spine space-y-4">
-                        <div class="relative cursor-pointer" onclick="document.getElementById('sec-metrics').scrollIntoView({behavior:'smooth'})">
+                        <div class="relative cursor-pointer" onclick="document.getElementById('sec-metrics').scrollIntoView({{behavior:'smooth'}})">
                             <span class="hl-dot"></span>
                             <div class="text-[10px] font-bold text-[#990000] uppercase">01. METRICS</div>
                             <div class="font-bold text-slate-900 leading-snug">Key Performance Metrics</div>
                             <p class="text-slate-500 text-[11px] mt-0.5">93% faster outcomes, 96% lower costs, 58% faster ROI.</p>
                         </div>
-                        <div class="relative cursor-pointer" onclick="document.getElementById('sec-1').scrollIntoView({behavior:'smooth'})">
+                        <div class="relative cursor-pointer" onclick="document.getElementById('sec-1').scrollIntoView({{behavior:'smooth'}})">
                             <span class="hl-dot"></span>
                             <div class="text-[10px] font-bold text-[#990000] uppercase">02. CONTEXT</div>
                             <div class="font-bold text-slate-900 leading-snug">Traditional Consulting Trap</div>
                             <p class="text-slate-500 text-[11px] mt-0.5">Why $250k+ legacy retainers fail in modern AI.</p>
                         </div>
-                        <div class="relative cursor-pointer" onclick="document.getElementById('sec-2').scrollIntoView({behavior:'smooth'})">
+                        <div class="relative cursor-pointer" onclick="document.getElementById('sec-2').scrollIntoView({{behavior:'smooth'}})">
                             <span class="hl-dot"></span>
                             <div class="text-[10px] font-bold text-[#990000] uppercase">03. ROADMAP</div>
                             <div class="font-bold text-slate-900 leading-snug">3-Phase Sprint Model</div>
                             <p class="text-slate-500 text-[11px] mt-0.5">Scoping in Wk 1, Wiring in Wks 2–3, Go-Live in Wk 4.</p>
                         </div>
-                        <div class="relative cursor-pointer" onclick="document.getElementById('sec-3').scrollIntoView({behavior:'smooth'})">
+                        <div class="relative cursor-pointer" onclick="document.getElementById('sec-3').scrollIntoView({{behavior:'smooth'}})">
                             <span class="hl-dot"></span>
                             <div class="text-[10px] font-bold text-[#990000] uppercase">04. ARCHITECTURE</div>
                             <div class="font-bold text-slate-900 leading-snug">Technical Architecture</div>
                             <p class="text-slate-500 text-[11px] mt-0.5">Zero-Copy Data Cloud and Einstein Trust Layer.</p>
                         </div>
-                        <div class="relative cursor-pointer" onclick="document.getElementById('sec-4').scrollIntoView({behavior:'smooth'})">
+                        <div class="relative cursor-pointer" onclick="document.getElementById('sec-4').scrollIntoView({{behavior:'smooth'}})">
                             <span class="hl-dot"></span>
                             <div class="text-[10px] font-bold text-[#990000] uppercase">05. COMPARISON</div>
                             <div class="font-bold text-slate-900 leading-snug">Comparison Matrix</div>
@@ -363,4 +626,20 @@
         <p>&copy; 2026 PRO CRM Australia &amp; EZ Consultants. All rights reserved. · <a href="/rss.xml" class="text-cyan-400 hover:underline">RSS Feed</a></p>
     </footer>
 </body>
-</html>
+</html>"""
+
+    with open(os.path.join(pages_dir, f"{SLUG}.html"), "w", encoding="utf-8") as f:
+        f.write(page_html)
+    with open(os.path.join(pub_pages_dir, f"{SLUG}.html"), "w", encoding="utf-8") as f:
+        f.write(page_html)
+    print("✅ Updated standalone HTML files!")
+
+def main():
+    patch_procrm_blog_jsx()
+    update_procrm_site_js()
+    update_ezconsultants_repo()
+    update_standalone_html()
+    print("🎉 All light-theme and highlights updates completed!")
+
+if __name__ == "__main__":
+    main()
