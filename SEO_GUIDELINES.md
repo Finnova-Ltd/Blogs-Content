@@ -5,6 +5,7 @@ This comprehensive engineering specification codifies official guidelines from *
 * `ezconsultants.com.au` (Cloud & Salesforce Engineering Advisory)
 * `finnova.org.au` (Fintech & Digital Transformation)
 * `ezmortgagebroker.com.au` (Property Finance & Mortgage Advisory)
+* `ezsignature.com` (Digital Signatures, NIST Cryptography & Contract Intelligence)
 
 ---
 
@@ -238,7 +239,7 @@ We actively monitor and adopt emerging standards developed by the **IETF (Intern
 
 ---
 
-## 💡 12. Direct Benefits to Finnova, PRO CRM, EZ Consultants & EZ Mortgage Broker
+## 💡 12. Direct Benefits to Finnova, PRO CRM, EZ Consultants, EZ Mortgage Broker & EZ Signature
 
 ```
 ┌───────────────────────────────────────────────┬────────────────────────────────────────────────────────┐

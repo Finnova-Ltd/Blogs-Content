@@ -80,6 +80,20 @@ All workflows execute **6 times daily** aligned with Australian Eastern Standard
 
 ---
 
+### 5. ✍️ EZ Signature Online (`ezsignature.com`)
+* **Live URL**: [`https://ezsignature.com/blog`](https://ezsignature.com/blog)
+* **Local Repo Path**: `/Users/robinbakshi/Documents/GitHub/eSignaturesonline/frontend`
+* **Content Pillars**:
+  * **Post-Quantum Cryptography & NIST PQC**: Kyber/Dilithium algorithms, long-term non-repudiation, tamper-evident audit trails.
+  * **eIDAS & Electronic Transactions Act**: Legal validity under Australian Electronic Transactions Act 1999, Section 10 compliance, court-admissible audit logs.
+  * **DocuSign & PandaDoc Alternative**: Fair usage pricing, zero per-envelope surcharges, native Salesforce LWC integration.
+  * **Developer API & Webhooks**: HMAC SHA-256 signature verification, embedded signing iframes, zero-retention privacy mode.
+* **Format & UI Rules**:
+  * Clean modern SaaS layout, developer documentation links, interactive pricing calculator, and high-contrast light theme.
+
+
+---
+
 ## 🛡️ Mandatory Content Quality & Design Standards
 
 Every published article must strictly satisfy the following criteria:

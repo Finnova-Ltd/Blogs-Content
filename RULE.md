@@ -1,6 +1,6 @@
 # 📜 Finnova Ecosystem Master Publishing Rules & Editorial Standards (`RULE.md`)
 
-This document establishes the **strict, mandatory editorial and frontend architecture standards** that must be checked and enforced for **every single article** across all Finnova platforms (`procrm.com.au`, `ezconsultants.com.au`, `ezmortgagebroker.com.au`, `finnova.org.au`).
+This document establishes the **strict, mandatory editorial and frontend architecture standards** that must be checked and enforced for **every single article** across all Finnova platforms (`procrm.com.au`, `ezconsultants.com.au`, `ezmortgagebroker.com.au`, `finnova.org.au`, `ezsignature.com`).
 
 ---
 

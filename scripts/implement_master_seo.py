@@ -80,6 +80,24 @@ SITES_CONFIG = {
             {"path": "/contact", "priority": "0.8", "changefreq": "monthly"},
             {"path": "/services", "priority": "0.8", "changefreq": "weekly"},
         ]
+    },
+    "ezsignature": {
+        "domain": "https://ezsignature.com",
+        "name": "EZ Signature Online",
+        "repo_dir": "/Users/robinbakshi/Documents/GitHub/eSignaturesonline/frontend",
+        "public_dirs": ["public", "dist", ""],
+        "posts_json": "/Users/robinbakshi/Documents/GitHub/eSignaturesonline/frontend/public/posts.json",
+        "static_routes": [
+            {"path": "/", "priority": "1.0", "changefreq": "daily"},
+            {"path": "/blog", "priority": "0.9", "changefreq": "daily"},
+            {"path": "/pricing", "priority": "0.9", "changefreq": "weekly"},
+            {"path": "/developer", "priority": "0.8", "changefreq": "weekly"},
+            {"path": "/integrations", "priority": "0.8", "changefreq": "monthly"},
+            {"path": "/audit-trail", "priority": "0.8", "changefreq": "monthly"},
+            {"path": "/docusign-alternative", "priority": "0.8", "changefreq": "monthly"},
+            {"path": "/pandadoc-alternative", "priority": "0.8", "changefreq": "monthly"},
+            {"path": "/about", "priority": "0.7", "changefreq": "monthly"},
+        ]
     }
 }
 
