@@ -320,4 +320,41 @@ Search engines like Google factor page speed into rankings. Fast sites rank high
 * **Verified Good Bots**: Cloudflare's automated allowlist guarantees zero false-positive blocks for verified search crawlers (`Googlebot`, `Bingbot`, `Baiduspider`, `DuckDuckBot`, `YandexBot`).
 * **AI Crawler Policy**: Distinguishes between search indexing crawlers and bulk AI training scrapers (`GPTBot`, `ClaudeBot`, `Meta-ExternalAgent`), enabling granular control via `robots.txt` and Cloudflare WAF rules without impacting search indexing.
 
+---
+
+## 📄 15. Adobe & Google PDF Document SEO & Accessibility Architecture
+
+Google indexes and ranks standalone PDF documents just like web pages. To maximize search rankings, indexability, and user experience for downloadable whitepapers, templates, credit guides, and certificates, all PDF assets must follow these standards:
+
+```
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                        PDF SEARCH & ACCESSIBILITY OPTIMIZATION                         │
+├────────────────────────────┬─────────────────────────────┬─────────────────────────────┤
+│ 1. Document Properties     │ 2. Tagged Structure (WCAG)  │ 3. Fast Web View (Stream)   │
+├────────────────────────────┼─────────────────────────────┼─────────────────────────────┤
+│ • Keyword-optimized Title  │ • Screen-reader tags (/H1)  │ • Byte-serving linearized   │
+│ • Action-verb Description  │ • Image Alt-text embedded   │ • Sub-second page 1 render  │
+│ • Brand/Org author field   │ • Selectable OCR text layer │ • Embedded subset fonts     │
+└────────────────────────────┴─────────────────────────────┴─────────────────────────────┘
+```
+
+### A. Core PDF SEO Requirements
+1. **Document Metadata (File > Properties / XMP Info)**:
+   * **Title**: Keyword-optimized title matching the primary search intent (e.g., `Australian Mortgage Credit Guide & Privacy Disclosure 2026`).
+   * **Author**: Set to the brand entity (e.g., `EZ Mortgage Broker Compliance Desk`, `PRO CRM Intelligence`, `EZ Signature Legal`). Avoid personal employee names.
+   * **Subject / Description**: Concise summary starting with an action verb (*Discover*, *Explore*, *Learn*, *Download*).
+   * **Keywords**: Comma-separated list of 5–8 high-intent search keywords.
+2. **Fast Web View (Linearization & Compression)**:
+   * Enable **Fast Web View** (Linearized PDF structure) to allow browsers and crawlers to stream, view, and index page 1 immediately without waiting for the full multi-megabyte file to download.
+   * Compress color profiles to **sRGB** and embed subset vector fonts to minimize payload size.
+3. **Accessibility & Tagged PDF Hierarchy**:
+   * Tag headings (`/H1`, `/H2`, `/H3`), paragraphs (`/P`), lists, and tables for screen-reader compatibility and Googlebot structural parsing.
+   * All figures and charts must include embedded **Alternate Text** with descriptive keywords.
+   * Ensure OCR selectable text layer is present—never publish flat rasterized scanned images.
+4. **Keyword-Rich Filename & URL Slug**:
+   * Use clean, lowercase, hyphen-separated filenames without stop words or special characters (e.g., `/docs/ndis-cyber-compliance-evidence-package-2026.pdf`).
+5. **Security & Search Crawlability**:
+   * When applying document protection, **always leave text access enabled** for screen readers and search crawlers (`Changes Allowed: None`, `Text Access: Enabled`). Never lock indexable public PDFs with password encryption.
+
+
 
