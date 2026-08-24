@@ -257,7 +257,8 @@ def render_ultimate_video(
         "-filter_complex", filter_complex,
         "-map", "[outv]", "-map", "4:a",
         "-c:v", "libx264", "-preset", "veryfast",
-        "-c:a", "aac", "-b:a", "256k", "-ar", "48000", "-ac", "2", "-af", "volume=2.0",
+        "-c:a", "aac", "-b:a", "256k", "-ar", "44100", "-ac", "2", "-af", "volume=2.5",
+        "-movflags", "+faststart",
         "-pix_fmt", "yuv420p", "-shortest",
         output_mp4
     ]
@@ -269,6 +270,7 @@ def render_ultimate_video(
     desktop_copy = "/Users/robinbakshi/Desktop/Latest_YouTube_Short.mp4"
     import shutil
     shutil.copy2(output_mp4, desktop_copy)
+    shutil.copy2(output_mp4, "/Users/robinbakshi/Desktop/Test_With_Sound.mp4")
     print(f"🖥️ Video copied directly to your Desktop: {desktop_copy}")
     
     size_mb = os.path.getsize(output_mp4) / (1024 * 1024)
