@@ -595,7 +595,7 @@ def main():
           <span class="breaking-news-title">Mortgage brokers settle record 81.0% of all Australian residential home loans</span>
         </div>
         <div class="header-contact-group" style="display:flex; align-items:center; gap:16px;">
-          <span class="header-date">📅 Sun, 23 Aug</span>
+          <span class="header-date">📅 Mon, 24 Aug</span>
           <a href="tel:1300050099" style="color:#ffffff; text-decoration:none; font-weight:700;">📞 1300 050 099</a>
           <a href="mailto:info@ezmortgagebroker.com.au" style="color:#ffffff; text-decoration:none;">✉️ info@ezmortgagebroker.com.au</a>
           <span>📍 Melbourne, VIC</span>
@@ -737,7 +737,7 @@ def main():
           <!-- Single Toolbar Row: Counter on Left + Grid/List Switcher on Right -->
           <div class="feed-toolbar">
             <div style="font-size:0.92rem; color:#64748B;">
-              Showing <strong style="color:#0A2540;" id="showingArticlesCount">{len(posts)}</strong> articles · <span style="color:#00876C; font-weight:700;">Sorted by Newest First (23-Aug-2026)</span>
+              Showing <strong style="color:#0A2540;" id="showingArticlesCount">{len(posts)}</strong> articles · <span style="color:#00876C; font-weight:700;">Sorted by Newest First (24-Aug-2026)</span>
             </div>
 
             <!-- View Switcher (Grid vs List) -->
