@@ -73,10 +73,11 @@ When creating or synthesizing an article, use this brief:
 
 ---
 
-## 🌐 Exclusive Salesforce & Enterprise Tech Ingestion Sources (`procrm.com.au` & `ezconsultants.com.au` only)
+## 🌐 4. Authoritative Ingestion Sources by Domain
 
-The automated publisher monitors and extracts from these 8 authoritative sources on the **6x daily schedule** (**4 AM, 8 AM, 12 PM, 4 PM, 8 PM, 12 AM AEST**):
+All automated pipelines poll and synthesize from these verified source endpoints on our **6x daily schedule** (**4 AM, 8 AM, 12 PM, 4 PM, 8 PM, 12 AM AEST**):
 
+### A. Salesforce & Enterprise Cloud Sources (`procrm.com.au` & `ezconsultants.com.au` only)
 1. `https://www.salesforce.com/news/` (Official Salesforce Newsroom)
 2. `https://www.salesforce.com/blog/` (Salesforce 360 Blog)
 3. `https://adm-blog-prod.herokuapp.com/blog` (Salesforce Admins Official Blog)
@@ -85,3 +86,10 @@ The automated publisher monitors and extracts from these 8 authoritative sources
 6. `https://salesforcedevops.net/index.php/posts/` (Salesforce DevOps & CI/CD)
 7. `https://techcrunch.com/tag/salesforce/` (TechCrunch Enterprise Cloud)
 8. `https://www.reuters.com/technology/` (Reuters Global Technology Desk)
+
+### B. Cybersecurity & Threat Intelligence Sources (`procrm.com.au`, `ezconsultants.com.au`, `finnova.org.au`)
+1. `https://thehackernews.com/` (The Hacker News — Global Zero-Days & Exploit Telemetry)
+2. `https://www.itnews.com.au/technology/security` (iTnews Australia — Enterprise Security & Government Tech)
+3. `https://www.cyber.gov.au/` (Australian Signals Directorate / ASD ACSC Official Advisories)
+4. `https://www.cyberdaily.au/` (Cyber Daily Australia — National Threat Reports & Data Breaches)
+5. `https://www.securityweek.com/` (SecurityWeek — Enterprise Cyber Defence & ICS/SCADA Security)
