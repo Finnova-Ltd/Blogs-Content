@@ -38,6 +38,9 @@ def parse_date(p):
             return datetime(2026, 1, 1)
 
 def generate_card_markup(p, idx, is_blog_hub=True):
+    p_date = parse_date(p)
+    day_str = p_date.strftime("%d")
+    month_str = p_date.strftime("%b").upper()
     t = p.get("title", "")
     slug = p.get("slug", "")
     cat = p.get("category", "Money & Banking")
@@ -87,10 +90,10 @@ def generate_card_markup(p, idx, is_blog_hub=True):
               <img src="{img}" alt="{html.escape(t)}" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.4s ease;">
             </a>
             
-            <!-- 1. Top-Left: Date Badge (23 AUG) -->
+            <!-- 1. Top-Left: Dynamic Date Badge -->
             <div style="position:absolute; top:10px; left:10px; background:#ffffff; border-radius:8px; padding:4px 10px; text-align:center; box-shadow:0 4px 12px rgba(0,0,0,0.22); line-height:1.1; pointer-events:none; z-index:3;">
-              <span style="display:block; font-size:1.1rem; font-weight:900; color:#0A2540;">23</span>
-              <span style="display:block; font-size:0.65rem; font-weight:800; color:#64748B; text-transform:uppercase; letter-spacing:0.04em;">AUG</span>
+              <span style="display:block; font-size:1.1rem; font-weight:900; color:#0A2540;">{day_str}</span>
+              <span style="display:block; font-size:0.65rem; font-weight:800; color:#64748B; text-transform:uppercase; letter-spacing:0.04em;">{month_str}</span>
             </div>
 
             <!-- 2. Top-Center: Company Logo Badge -->
