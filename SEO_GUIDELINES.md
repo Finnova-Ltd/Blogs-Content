@@ -1,6 +1,6 @@
 # 🔍 Master Technical SEO, Crawling & Indexing Specification (`SEO_GUIDELINES.md`)
 
-This comprehensive engineering specification codifies official guidelines from **Google Search Central** (Search Essentials, Crawler Infrastructure, URL Structure, Link Architecture, Multi-Sitemaps, HTTP Status Handling, E-E-A-T Framework, and Generative AI Search Optimization) across all Finnova digital properties:
+This comprehensive engineering specification codifies official guidelines from **Google Search Central** (Search Essentials, Robots Exclusion Protocol RFC 9309, Crawl Budget Optimization, Multi-Sitemaps, URL Structure, Generative AI Search Optimization, User-Agent Taxonomy, and Web Bot Authentication) across all Finnova digital properties:
 * `procrm.com.au` (Enterprise CRM & Cybersecurity Intelligence)
 * `ezconsultants.com.au` (Cloud & Salesforce Engineering Advisory)
 * `finnova.org.au` (Fintech & Digital Transformation)
@@ -25,9 +25,87 @@ This comprehensive engineering specification codifies official guidelines from *
 
 ---
 
-## 🔗 2. URL Structure Standards (IETF STD 66 / RFC 3986)
+## 📜 2. Robots Exclusion Protocol (REP / RFC 9309) & Rule Engine
 
-To ensure Googlebot crawls our sites efficiently without runaway crawl loops or parameter explosions:
+Google's automated crawlers strictly obey the **Robots Exclusion Protocol (RFC 9309)**:
+
+### A. Technical Constraints & File Properties
+* **File Location**: Must reside at the website root (`https://domain.com/robots.txt`).
+* **Encoding & Size**: UTF-8 plain text with a strict **500 KiB maximum file size limit**.
+* **Caching Duration**: Google caches `robots.txt` for up to **24 hours**. In emergency cache updates, use Search Console's *Robots.txt Report*.
+
+### B. HTTP Response Behavior for `robots.txt`
+* **`2xx Success`**: Processed and enforced.
+* **`3xx Redirection`**: Follows up to 5 hops; if redirects continue, treated as a `404` (all crawling allowed).
+* **`4xx Client Errors`** (except 429): Treated as non-existent file; all crawling is permitted.
+* **`5xx Server Errors`**: Crawling is halted immediately for 12 hours. If errors persist up to 30 days, Google falls back to the last cached version.
+
+### C. Rule Precedence & Wildcards (`*` and `$`)
+* **Most Specific Rule Wins**: The directive with the longest matching character length takes precedence (e.g., `allow: /folder/sub` overrides `disallow: /folder`).
+* **Equal Length Conflicts**: In a tie between `allow` and `disallow` of identical length, **`allow` (least restrictive) wins**.
+* **Wildcards**:
+  * `*` matches 0 or more characters (e.g. `disallow: /*?*filter=`).
+  * `$` designates the end of the URL string (e.g. `disallow: /*.xls$`).
+* **Unsupported Directives**: Google completely ignores non-standard rules like `crawl-delay`.
+
+---
+
+## 📊 3. Crawl Budget Theory: Capacity Limit vs. Crawl Demand
+
+Crawl budget is determined by two distinct factors:
+
+```
+                  ┌────────────────────────────────────────────────────────┐
+                  │              GOOGLE CRAWL BUDGET EQUATION              │
+                  ├────────────────────────────┬───────────────────────────┤
+                  │    CRAWL CAPACITY LIMIT    │       CRAWL DEMAND        │
+                  │   (Server Hostload Limit)  │     (Popularity & Value)  │
+                  ├────────────────────────────┼───────────────────────────┤
+                  │ • Server response time     │ • Overall page quality    │
+                  │ • TTFB & network latency   │ • Update frequency        │
+                  │ • Error rates (5xx, 429)   │ • Real-time user demand   │
+                  │ • Resource rendering load  │ • Canonical consolidation │
+                  └────────────────────────────┴───────────────────────────┘
+```
+
+### Crawl Budget Myths vs. Facts
+* ❌ **Myth**: Compressing sitemaps (`.gz`) gives more crawl budget. (Fact: Googlebot still has to fetch and unpack the file).
+* ❌ **Myth**: Trivial date updates make content "fresh" for higher crawl rates. (Fact: Quality and true editorial changes determine priority).
+* ❌ **Myth**: `noindex` saves crawl budget. (Fact: Google must crawl the page first to find the `noindex` tag; use `robots.txt` to prevent crawling entirely).
+* ❌ **Myth**: `4xx` status codes waste crawl budget. (Fact: `404` and `410` status codes are immediately dropped and not recrawled).
+
+---
+
+## 🔍 4. Complete Google User-Agent & Fetcher Taxonomy
+
+Google operates distinct categories of user agents across automated spiders, ad bots, and user-triggered AI fetchers:
+
+### A. Common Search Crawlers (Obey `robots.txt` by Default)
+* **`Googlebot`**: Primary mobile (`Googlebot Smartphone`) and desktop indexing crawler.
+* **`Googlebot-News`**: Dedicated crawler for Google News aggregation.
+* **`Googlebot-Image`**: Image indexing and visual search.
+* **`Googlebot-Video`**: Video indexing and structured duration parsing.
+* **`Storebot-Google`**: Google Shopping and merchant product surface analysis.
+* **`Google-InspectionTool`**: Search Console URL Inspection and Rich Results live rendering.
+* **`GoogleOther` / `GoogleOther-Image` / `GoogleOther-Video`**: Internal research and R&D crawls.
+
+### B. Special-Case Crawlers & Control Tokens
+* **`Google-Extended`**: Product token in `robots.txt` enabling site owners to control whether content is used to train Gemini AI models or ground Vertex AI search without affecting Google Search ranking.
+* **`Mediapartners-Google`**: Google AdSense contextual targeting crawler.
+* **`AdsBot-Google` / `AdsBot-Google-Mobile`**: Ad landing page quality verifier.
+* **`Google-Safety`**: Automated abuse and malware scanning (ignores `robots.txt`).
+
+### C. User-Triggered Fetchers (Human-Initiated / Ignore `robots.txt`)
+* **`Google-Agent`**: Autonomous AI agent operating on Google infrastructure upon direct user instruction (supports **Web Bot Auth RFC 9421**).
+* **`Google-GeminiNotebook`**: Fetches source URLs referenced by users in Gemini Notebook.
+* **`FeedFetcher-Google`**: Fetches RSS/Atom feeds for Google News and WebSub.
+* **`Google-Read-Aloud`**: Text-to-speech page reader (Opt out via `<meta name="google" content="nopagereadaloud">`).
+* **`GoogleMessages`**: Generates rich link previews in chat messages.
+* **`Google Site Verifier`**: Fetches Search Console verification meta tokens.
+
+---
+
+## 🔗 5. URL Structure Standards (IETF STD 66 / RFC 3986)
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────────────┐
@@ -52,47 +130,24 @@ To ensure Googlebot crawls our sites efficiently without runaway crawl loops or 
 
 ---
 
-## ⚓ 3. Crawlable Link Architecture & Anchor Text Standards
+## 🗂️ 6. Managing Faceted Navigation & Infinite URL Spaces
 
-Google uses hyperlinks as the primary signal for topical relevancy and new page discovery:
+Faceted search and multi-parameter filtering create exponential URL permutations that exhaust crawl bandwidth:
 
-### A. Crawlable Anchor Elements
-* **Always use valid HTML `<a>` tags with `href` attributes**:
-  * ✅ `<a href="/blog/rba-rate-decision">Read RBA Analysis</a>`
-  * ❌ `<span href="...">`, `<a routerLink="...">`, or `<a onclick="goTo('...')">`
-* **Dynamic JavaScript Links**: When inserting links via JS, always inject true `<a href="...">` elements into the live DOM.
-
-### B. Anchor Text Best Practices
-* **Descriptive & Contextual**: State clearly what the destination page contains (e.g. *"explore our [First Home Guarantee Eligibility Guide](file:///...)"*).
-* **Zero Generic Anchor Text**: Never use vague phrases like *"click here"*, *"read more"*, *"article"*, or *"website"*.
-* **Image Links as Fallbacks**: When linking via an image, Google uses the image's `alt` attribute as anchor text. Always populate `alt="Detailed descriptive text"`.
-* **Outbound Link Qualification (`rel`)**:
-  * `rel="nofollow"`: For unverified external sources or paid mentions.
-  * `rel="sponsored"`: For commercial affiliate or partner links.
-  * `rel="ugc"`: For user-generated comments or community contributions.
-  * `rel="noopener noreferrer"`: For all target `_blank` external tabs.
+1. **Disallow Combinations in `robots.txt`**:
+   ```
+   User-agent: Googlebot
+   Disallow: /*?*filter=
+   Disallow: /*?*sort=
+   Disallow: /*?*size=
+   Allow: /*?category=
+   ```
+2. **Use URL Fragments for UI Filtering**: Filtering via hash fragments (`/#/color=blue`) does not trigger server requests or crawl consumption.
+3. **Serve True 404s on Empty Filters**: If a filter combination has zero items, return HTTP `404 Not Found` rather than an empty `200 OK` page.
 
 ---
 
-## 📁 4. Supported & Indexable File Formats
-
-Google indexes both plain-text markup and parsed binary formats:
-* **Flat Text Files**: HTML (`.html`), XML (`.xml`), CSV (`.csv`), TXT (`.txt`), SVG (`.svg`), and source code (`.py`, `.js`, `.ts`, `.cs`, `.java`).
-* **Encoded Documents**: Adobe PDF (`.pdf` up to 64MB), Microsoft Office (`.docx`, `.xlsx`, `.pptx`), Rich Text (`.rtf`), EPUB (`.epub`).
-* **Visual & Media Formats**: WebP, AVIF, PNG, JPEG, GIF, SVG, BMP, and MP4/WebM videos.
-* **Search Operator**: Use `filetype:pdf` or `filetype:docx` in Google to audit indexed document assets.
-
----
-
-## 🗺️ 5. Multi-Sitemap Architecture & Combining Extensions
-
-### A. Specifications & Boundaries
-* **Limits**: Maximum **50,000 URLs** and **50 MB** (uncompressed) per individual sitemap.
-* **Sitemap Index (`sitemapindex`)**: Used to orchestrate up to 500 sub-sitemaps in Search Console.
-* **`<lastmod>` Rule of Truth**: Must use W3C Datetime format (`YYYY-MM-DDThh:mm:ss+TZD`). Only update on substantive editorial or schema changes (never for simple copyright footer updates).
-
-### B. Combined Extensions Syntax Example
-Google allows combining News, Image, Video, and `hreflang` namespaces inside a single `<url>` container:
+## 🗺️ 7. Combined Multi-Sitemap Architecture (50k URLs / 50MB Limit)
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -139,7 +194,7 @@ Google allows combining News, Image, Video, and `hreflang` namespaces inside a s
 
 ---
 
-## 🚦 6. HTTP Status Code Handling & Crawl Behaviors
+## 🚦 8. HTTP Status Codes & Soft 404 Remediation
 
 | HTTP Status Code | Classification | Googlebot & Search Indexing Behavior | Engineering Requirement |
 | :--- | :--- | :--- | :--- |
@@ -153,56 +208,14 @@ Google allows combining News, Image, Video, and `hreflang` namespaces inside a s
 
 ---
 
-## 🔌 7. Network, DNS & Firewall Resilience
-
-Network timeouts, connection resets (`RST`), and DNS failures are treated identically to `5xx` server errors, causing immediate crawling slowdowns and index de-listing within days.
-
-### Diagnostic Checklist:
-1. **Firewall Rules**: Ensure edge firewalls (Cloudflare, AWS WAF, NGINX) never block [Google published IP ranges](https://developers.google.com/static/crawling/ipranges/common-crawlers.json). Allow both `UDP` and `TCP` for DNS and HTTP traffic.
-2. **DNS Health**: Validate `A`, `CNAME`, and `NS` records using `dig +nocmd example.com a +noall +answer`.
-3. **DNS Cache Flush**: After DNS record migrations, purge [Google Public DNS Cache](https://developers.google.com/speed/public-dns/faq#update_cache) to accelerate global propagation.
-
----
-
-## 🤖 8. Google Crawlers & Cryptographic Web Bot Auth (RFC 9421)
-
-| Crawler Type | Description | Reverse DNS Mask | Published IP List |
-| :--- | :--- | :--- | :--- |
-| **Common Crawlers** | Search indexing spiders (`Googlebot Smartphone`, `Googlebot Desktop`). Obeys `robots.txt`. | `crawl-***.googlebot.com`<br>`geo-crawl-***.geo.googlebot.com` | [`common-crawlers.json`](https://developers.google.com/static/crawling/ipranges/common-crawlers.json) |
-| **Special-Case Crawlers** | Product-specific crawlers (`AdsBot`, abuse verification). | `rate-limited-proxy-***.google.com` | [`special-crawlers.json`](https://developers.google.com/static/crawling/ipranges/special-crawlers.json) |
-| **User-Triggered Fetchers** | On-demand tools (`Google Site Verifier`, `Google-Agent`, `Google-GeminiNotebook`). | `***.gae.googleusercontent.com`<br>`google-proxy-***.google.com` | [`user-triggered-fetchers.json`](https://developers.google.com/static/crawling/ipranges/user-triggered-fetchers.json)<br>[`user-triggered-agents.json`](https://developers.google.com/static/crawling/ipranges/user-triggered-agents.json) |
-
-* **Cryptographic Verification**: AI agent requests include `Signature-Agent: g="https://agent.bot.goog"`. Public keys are retrieved from `https://agent.bot.goog/.well-known/http-message-signatures-directory` and validated per [RFC 9421](https://datatracker.ietf.org/doc/html/rfc9421).
-* **Weekly Changelog Audits**: Maintain weekly monitoring of the [Google Crawling Changelog](https://developers.google.com/crawling/docs/changelog) to adapt to new user agents and IP blocks.
-
----
-
-## 🧠 9. Generative AI Search & AI Overviews Optimization
+## 🧠 9. Generative AI Search & AI Overviews Optimization (RAG & Fan-Out)
 
 Google Search grounds generative AI features (AI Overviews, AI Mode) using **Retrieval-Augmented Generation (RAG)** and **Query Fan-Out**.
 
-```
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│               GENERATIVE AI SEARCH OPTIMIZATION (RAG & QUERY FAN-OUT)                  │
-├──────────────────────────────────────┬─────────────────────────────────────────────────┤
-│ Core Google Strategy                 │ Technical Implementation in Our Blogs           │
-├──────────────────────────────────────┼─────────────────────────────────────────────────┤
-│ • Retrieval-Augmented Gen (RAG)      │ Ground answers in hard data, official ASD alerts,│
-│                                      │ RBA monetary statistics, and CVE patch guides   │
-│ • Query Fan-Out Matching             │ Structure articles to answer primary + multi-   │
-│                                      │ dimension secondary questions (3 punchy points) │
-│ • Non-Commodity Content              │ Provide proprietary engineering fixes & broker  │
-│                                      │ strategies rather than generic recycled advice   │
-│ • Semantic Accessibility Tree        │ Clean semantic HTML (`<article>`, `<header>`,   │
-│                                      │ `<section>`) readable by autonomous AI agents   │
-└──────────────────────────────────────┴─────────────────────────────────────────────────┘
-```
-
-> [!IMPORTANT]
-> **Mythbusting AI Optimization (Things We Ignore)**:
-> * ❌ **No `llms.txt` files**: Google Search ignores `llms.txt` files for search indexing.
-> * ❌ **No Artificial Chunking**: Do not chop content into awkward micro-snippets; write natural, structured sections.
-> * ❌ **No "AEO/GEO" Hacks**: Generative visibility is rooted entirely in foundational, high-quality technical SEO.
+* **Retrieval-Augmented Generation (RAG)**: Grounding articles in hard data (ASD ACSC CVE IDs, RBA monetary statistics, APRA reports).
+* **Query Fan-Out Matching**: Structuring content to answer primary search intent + multi-dimensional secondary questions using punchy 3-bullet value lists.
+* **Non-Commodity Content**: Writing original, actionable engineering and broker solutions rather than generic 101 advice.
+* **Mythbusting AI Hacks**: Zero reliance on gimmicks like `llms.txt` (which Google Search ignores) or artificial micro-chunking.
 
 ---
 
@@ -216,7 +229,7 @@ Especially critical for **YMYL (Your Money or Your Life)** domains like Cybersec
 
 ---
 
-## 🌐 11. IETF Internet Standards Early Adoption Policy (Competitive Edge)
+## 🌐 11. IETF Internet Standards Early Adoption Policy (RFC 9421)
 
 We actively monitor and adopt emerging standards developed by the **IETF (Internet Engineering Task Force)**—specifically from working groups like `webbotauth`, `httpbis`, and `aipref`—to maintain a strategic, technical advantage over competitors.
 
@@ -243,7 +256,7 @@ We actively monitor and adopt emerging standards developed by the **IETF (Intern
 │ 4. Combined Multi-Sitemaps (News, Image, Vid) │ Immediate indexing for breaking news (<48h) and media  │
 │                                               │ rich snippets across Google News & Video carousels.    │
 ├───────────────────────────────────────────────┼────────────────────────────────────────────────────────┤
-│ 5. IETF Standards Early Adoption (RFC 9421)   │ Delivers a 6–18 month architectural head start over    │
-│                                               │ industry competitors in indexation speed and trust.    │
+│ 5. Full User-Agent & REP RFC 9309 Management  │ Complete control over Vertex AI & Gemini AI model      │
+│                                               │ training (`Google-Extended`) while maximizing search.  │
 └───────────────────────────────────────────────┴────────────────────────────────────────────────────────┘
 ```
