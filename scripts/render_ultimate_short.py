@@ -246,7 +246,7 @@ def render_ultimate_video(
         f"drawtext=fontfile='{font_file}':text='Visit {domain}':fontcolor=0xffffff:fontsize=42:x=(w-text_w)/2:y=1680:box=1:boxcolor=0x2563eb@0.95:boxborderw=24[outv]"
     )
     
-    print("🎬 2. Compositing ultimate 1080x1920 Short with flashing orange badge...")
+    print("🎬 2. Compositing ultimate 1080x1920 Short with loud 48kHz stereo audio...")
     cmd = [
         ffmpeg_exe, "-y",
         "-loop", "1", "-t", f"{t_scene}", "-i", img1,
@@ -256,7 +256,8 @@ def render_ultimate_video(
         "-i", output_audio,
         "-filter_complex", filter_complex,
         "-map", "[outv]", "-map", "4:a",
-        "-c:v", "libx264", "-preset", "veryfast", "-c:a", "aac", "-b:a", "192k",
+        "-c:v", "libx264", "-preset", "veryfast",
+        "-c:a", "aac", "-b:a", "256k", "-ar", "48000", "-ac", "2", "-af", "volume=2.0",
         "-pix_fmt", "yuv420p", "-shortest",
         output_mp4
     ]
