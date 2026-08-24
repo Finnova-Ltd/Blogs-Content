@@ -78,24 +78,30 @@ When creating or synthesizing an article, use this brief:
 All automated pipelines poll and synthesize from these verified source endpoints on our **6x daily schedule** (**4 AM, 8 AM, 12 PM, 4 PM, 8 PM, 12 AM AEST**):
 
 ### A. Salesforce & Enterprise Cloud Sources (`procrm.com.au` & `ezconsultants.com.au` only)
-1. `https://www.salesforce.com/news/` (Official Salesforce Newsroom)
-2. `https://www.salesforce.com/blog/` (Salesforce 360 Blog)
-3. `https://adm-blog-prod.herokuapp.com/blog` (Salesforce Admins Official Blog)
-4. `https://developer.salesforce.com/blogs` (Salesforce Developer Blog)
-5. `https://www.salesforceben.com/category/news/` (Salesforce Ben Ecosystem News)
-6. `https://salesforcedevops.net/index.php/posts/` (Salesforce DevOps & CI/CD)
-7. `https://techcrunch.com/tag/salesforce/` (TechCrunch Enterprise Cloud)
-8. `https://www.reuters.com/technology/` (Reuters Global Technology Desk)
+1. `https://finance.yahoo.com/technology/enterprise-cloud/` (Yahoo Finance Enterprise Cloud Intelligence)
+2. `https://www.salesforce.com/news/` (Official Salesforce Newsroom)
+3. `https://www.salesforce.com/blog/` (Salesforce 360 Blog)
+4. `https://adm-blog-prod.herokuapp.com/blog` (Salesforce Admins Official Blog)
+5. `https://developer.salesforce.com/blogs` (Salesforce Developer Blog)
+6. `https://www.salesforceben.com/category/news/` (Salesforce Ben Ecosystem News)
+7. `https://salesforcedevops.net/index.php/posts/` (Salesforce DevOps & CI/CD)
+8. `https://techcrunch.com/tag/salesforce/` (TechCrunch Enterprise Cloud)
+9. `https://www.reuters.com/technology/` (Reuters Global Technology Desk)
 
-### B. Cybersecurity & Threat Intelligence Sources (`procrm.com.au`, `ezconsultants.com.au`, `finnova.org.au`)
+### B. Cybersecurity & Threat Intelligence Sources (`procrm.com.au`, `ezconsultants.com.au`, `finnova.org.au`, `ezsignature.com`)
 1. `https://thehackernews.com/` (The Hacker News — Global Zero-Days & Exploit Telemetry)
 2. `https://www.itnews.com.au/technology/security` (iTnews Australia — Enterprise Security & Government Tech)
 3. `https://www.cyber.gov.au/` (Australian Signals Directorate / ASD ACSC Official Advisories)
 4. `https://www.cyberdaily.au/` (Cyber Daily Australia — National Threat Reports & Data Breaches)
 5. `https://www.securityweek.com/` (SecurityWeek — Enterprise Cyber Defence & ICS/SCADA Security)
 
+### C. Digital Signatures, Cryptography & Contract Intelligence (`ezsignature.com`)
+1. `https://www.google.com/alerts/feeds/14625353401416373956/10453586164507399562` (Google Alert - digital signatures)
+2. `https://csrc.nist.gov/projects/post-quantum-cryptography` (NIST Post-Quantum Cryptography Standardization)
+3. `https://www.ag.gov.au/` (Australian Attorney-General's Department — Electronic Transactions Act 1999)
+4. `https://www.docusign.com/blog` & `https://www.pandadoc.com/blog/` (Competitor Benchmarking & Fair-Pricing Analysis)
 
-### C. Australian Property Finance & Mortgage Ingestion Sources (`ezmortgagebroker.com.au`)
+### D. Australian Property Finance & Mortgage Ingestion Sources (`ezmortgagebroker.com.au`)
 1. `https://www.rba.gov.au/` (Reserve Bank of Australia — Cash Rate Decisions & Economic Indicators)
 2. `https://www.afr.com/companies/financial-services` (Australian Financial Review — Financial Services & Banking)
 3. `https://www.savings.com.au/news/` (Savings.com.au — Home Loans & Rate Movements)
@@ -104,8 +110,9 @@ All automated pipelines poll and synthesize from these verified source endpoints
 6. `https://www.apra.gov.au/news-and-publications` (APRA — Macroprudential Lending Buffers & Bank Scrutiny)
 7. `https://www.abc.net.au/news/lifestyle#anchor-102961872` (ABC News — Consumer Finance, Housing & Lifestyle)
 
-### D. Google Search Central & Web Engineering Intelligence (All Domains)
+### E. Google Search Central & Web Engineering Intelligence (All Domains)
 1. `https://feeds.feedburner.com/blogspot/amDG` (Google Search Central Official Blog RSS Feed)
 2. `https://developers.google.com/search/blog/` (Google Search Central Official Blog)
 3. `https://developers.google.com/crawling/docs/changelog` (Google Crawling Infrastructure Changelog)
+
 
