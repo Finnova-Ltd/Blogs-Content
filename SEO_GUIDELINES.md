@@ -279,3 +279,45 @@ All engineering teams must continuously ingest updates from the **Google Search 
 * **Zero Browser History Manipulation**: Never trap users or block the browser's back button via malicious `history.pushState()` loops or forced redirect traps.
 * **Penalty Prevention**: Google treats back button hijacking as a severe violation of its *Malicious Practices Spam Policy*, resulting in manual algorithmic demotion or de-indexing.
 
+---
+
+## ⚡ 14. Cloudflare Performance, Core Web Vitals (CWV) & Image Optimization Architecture
+
+Search engines like Google factor page speed into rankings. Fast sites rank higher, maintain lower bounce rates, and convert better (Google data shows **53% of mobile visits are abandoned if a page takes longer than 3 seconds to load**).
+
+```
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                        CORE WEB VITALS (CWV) THRESHOLD BENCHMARKS                      │
+├────────────────────────────┬─────────────────────────────┬─────────────────────────────┤
+│ Largest Contentful Paint   │ Interaction to Next Paint   │ Cumulative Layout Shift     │
+│ (LCP) — Loading Speed      │ (INP / FID) — Interactivity │ (CLS) — Visual Stability    │
+├────────────────────────────┼─────────────────────────────┼─────────────────────────────┤
+│ 🎯 Target: < 2.5 seconds   │ 🎯 Target: < 100 ms         │ 🎯 Target: < 0.1            │
+│ • WebP / AVIF compression  │ • Minified JavaScript (Vite)│ • Explicit width & height   │
+│ • Cloudflare CDN caching   │ • Minimal main-thread blocks│ • CSS aspect-ratio boxes    │
+│ • High-priority hero load  │ • Pre-rendered static HTML  │ • Zero layout shift on load │
+└────────────────────────────┴─────────────────────────────┴─────────────────────────────┘
+```
+
+### A. Core Web Vitals (CWV) Implementation Checklist
+1. **LCP Optimization (< 2.5s)**:
+   * Serve all images in modern **WebP / AVIF** formats.
+   * Add `fetchpriority="high"` on above-the-fold hero images; defer below-the-fold images via `loading="lazy"`.
+   * Distribute static bundles through Cloudflare's global edge network across 335+ cities.
+2. **INP & FID Optimization (< 100ms)**:
+   * Use Vite / Rollup production tree-shaking and minification for JS & CSS.
+   * Pre-render static HTML (`SSG`) for instant First Contentful Paint (`FCP`) and sub-second Time to Interactive (`TTI`).
+3. **CLS Prevention (< 0.1)**:
+   * Always declare explicit `width` and `height` attributes or CSS `aspect-ratio` on all `<img>`, `<svg>`, and video containers.
+   * Reserve placeholder dimensions for dynamic widgets to eliminate visual jump during load.
+
+### B. Cloudflare Images & Media Pipeline
+* **Automatic Format Negotiation**: Cloudflare edge dynamically detects client browser capabilities and serves **AVIF** or **WebP** on-the-fly.
+* **Flexible Variants**: URL-based transformations (`w=800,format=auto,quality=85`) to serve device-appropriate resolutions to mobile, tablet, and 4K desktop screens.
+* **Lossy vs. Lossless Standards**: Photographic assets compressed with lossy algorithms for 70%+ file size reduction without visible perceptual degradation.
+
+### C. Cloudflare Bot Management vs. Search Spiders
+* **Verified Good Bots**: Cloudflare's automated allowlist guarantees zero false-positive blocks for verified search crawlers (`Googlebot`, `Bingbot`, `Baiduspider`, `DuckDuckBot`, `YandexBot`).
+* **AI Crawler Policy**: Distinguishes between search indexing crawlers and bulk AI training scrapers (`GPTBot`, `ClaudeBot`, `Meta-ExternalAgent`), enabling granular control via `robots.txt` and Cloudflare WAF rules without impacting search indexing.
+
+
