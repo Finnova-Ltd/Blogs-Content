@@ -103,3 +103,9 @@ All automated pipelines poll and synthesize from these verified source endpoints
 5. `https://www.cotality.com/au/insights` (Cotality — Real Estate & Property Market Insights)
 6. `https://www.apra.gov.au/news-and-publications` (APRA — Macroprudential Lending Buffers & Bank Scrutiny)
 7. `https://www.abc.net.au/news/lifestyle#anchor-102961872` (ABC News — Consumer Finance, Housing & Lifestyle)
+
+### D. Google Search Central & Web Engineering Intelligence (All Domains)
+1. `https://feeds.feedburner.com/blogspot/amDG` (Google Search Central Official Blog RSS Feed)
+2. `https://developers.google.com/search/blog/` (Google Search Central Official Blog)
+3. `https://developers.google.com/crawling/docs/changelog` (Google Crawling Infrastructure Changelog)
+

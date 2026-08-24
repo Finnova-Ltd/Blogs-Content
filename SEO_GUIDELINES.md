@@ -260,3 +260,21 @@ We actively monitor and adopt emerging standards developed by the **IETF (Intern
 │                                               │ training (`Google-Extended`) while maximizing search.  │
 └───────────────────────────────────────────────┴────────────────────────────────────────────────────────┘
 ```
+
+---
+
+## 📢 13. Google Search Central Official Intelligence & 2026 Policy Enforcement
+
+All engineering teams must continuously ingest updates from the **Google Search Central Official Blog Feed** (`https://feeds.feedburner.com/blogspot/amDG`):
+
+### A. Search Console Platform Properties
+* Enables consolidated tracking of external brand reach on **YouTube, TikTok, Instagram, and X** inside Search Console.
+* Monitors how social and video assets perform across **Google Search, Discover, and Google News**.
+
+### B. Search Generative AI Performance Reports
+* Dedicated analytics dashboard in Search Console tracking brand impressions, click-through rates, and citations inside **Google AI Overviews**.
+
+### C. Anti-"Back Button Hijacking" Spam Policy Compliance
+* **Zero Browser History Manipulation**: Never trap users or block the browser's back button via malicious `history.pushState()` loops or forced redirect traps.
+* **Penalty Prevention**: Google treats back button hijacking as a severe violation of its *Malicious Practices Spam Policy*, resulting in manual algorithmic demotion or de-indexing.
+
