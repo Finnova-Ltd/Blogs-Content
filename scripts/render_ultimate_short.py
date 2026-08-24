@@ -226,8 +226,9 @@ def render_ultimate_video(
     # - Top-Left: Google 5-Star Review Badge
     # - Top-Right: Transparent Brand Logo
     # - Center: Typing Animated Subtitles
-    # - Bottom 1: 1300 050 099 — Contact Us Today
+    # - Bottom 1: Flashing Light Orange Badge with Black Text: Call 1300 050 099 - Contact Us Today
     # - Bottom 2: Visit Domain
+    # Flashing effect using enable='lt(mod(t,0.8),0.6)'
     t_scene = duration / 3.0
     filter_complex = (
         f"[0:v]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920[v0];"
@@ -241,11 +242,11 @@ def render_ultimate_video(
         f"[3:v]scale=220:-1[logo_scaled];"
         f"[with_title][logo_scaled]overlay=W-w-60:60[with_logo];"
         f"[with_logo]subtitles={rel_ass},"
-        f"drawtext=fontfile='{font_file}':text='Call {phone}  -  Contact Us Today':fontcolor=0x10b981:fontsize=38:x=(w-text_w)/2:y=1550:box=1:boxcolor=0x0f172a@0.95:boxborderw=20,"
+        f"drawtext=fontfile='{font_file}':text='Call {phone}  -  Contact Us Today':fontcolor=0x000000:fontsize=40:x=(w-text_w)/2:y=1540:box=1:boxcolor=0xfb923c@0.95:boxborderw=20:enable='lt(mod(t\\,0.8)\\,0.65)',"
         f"drawtext=fontfile='{font_file}':text='Visit {domain}':fontcolor=0xffffff:fontsize=42:x=(w-text_w)/2:y=1680:box=1:boxcolor=0x2563eb@0.95:boxborderw=24[outv]"
     )
     
-    print("🎬 2. Compositing ultimate 1080x1920 Short with transparent logo and typing text...")
+    print("🎬 2. Compositing ultimate 1080x1920 Short with flashing orange badge...")
     cmd = [
         ffmpeg_exe, "-y",
         "-loop", "1", "-t", f"{t_scene}", "-i", img1,
@@ -262,6 +263,16 @@ def render_ultimate_video(
     subprocess.run(cmd, check=True)
     if os.path.exists(rel_ass):
         os.remove(rel_ass)
+        
+    # Copy to Desktop for instant 1-click playing
+    desktop_copy = "/Users/robinbakshi/Desktop/Latest_YouTube_Short.mp4"
+    import shutil
+    shutil.copy2(output_mp4, desktop_copy)
+    print(f"🖥️ Video copied directly to your Desktop: {desktop_copy}")
+    
+    size_mb = os.path.getsize(output_mp4) / (1024 * 1024)
+    print(f"✅ Ultimate Video Rendered: {output_mp4} ({size_mb:.2f} MB)")
+    return output_mp4
         
     size_mb = os.path.getsize(output_mp4) / (1024 * 1024)
     print(f"✅ Ultimate Video Rendered: {output_mp4} ({size_mb:.2f} MB)")
