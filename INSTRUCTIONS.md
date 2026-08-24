@@ -93,3 +93,13 @@ All automated pipelines poll and synthesize from these verified source endpoints
 3. `https://www.cyber.gov.au/` (Australian Signals Directorate / ASD ACSC Official Advisories)
 4. `https://www.cyberdaily.au/` (Cyber Daily Australia — National Threat Reports & Data Breaches)
 5. `https://www.securityweek.com/` (SecurityWeek — Enterprise Cyber Defence & ICS/SCADA Security)
+
+
+### C. Australian Property Finance & Mortgage Ingestion Sources (`ezmortgagebroker.com.au`)
+1. `https://www.rba.gov.au/` (Reserve Bank of Australia — Cash Rate Decisions & Economic Indicators)
+2. `https://www.afr.com/companies/financial-services` (Australian Financial Review — Financial Services & Banking)
+3. `https://www.savings.com.au/news/` (Savings.com.au — Home Loans & Rate Movements)
+4. `https://www.canstar.com.au/media/` (Canstar Media — Mortgage Market Releases & Product Comparisons)
+5. `https://www.cotality.com/au/insights` (Cotality — Real Estate & Property Market Insights)
+6. `https://www.apra.gov.au/news-and-publications` (APRA — Macroprudential Lending Buffers & Bank Scrutiny)
+7. `https://www.abc.net.au/news/lifestyle#anchor-102961872` (ABC News — Consumer Finance, Housing & Lifestyle)
