@@ -1,6 +1,6 @@
 # 🔍 Google Search Essentials & Master Technical SEO Specification (`SEO_GUIDELINES.md`)
 
-This comprehensive engineering specification codifies official guidelines from **Google Search Central** (Search Essentials, Webmaster Guidelines, Crawler Infrastructure, and Sitemap Protocols) across all Finnova digital properties:
+This comprehensive engineering specification codifies official guidelines from **Google Search Central** (Search Essentials, Webmaster Guidelines, Crawler Infrastructure, Web Bot Authentication, and Sitemap Protocols) across all Finnova digital properties:
 * `procrm.com.au`
 * `ezconsultants.com.au`
 * `finnova.org.au`
@@ -42,12 +42,35 @@ This comprehensive engineering specification codifies official guidelines from *
 * **Transfer Protocols & Compression**:
   * Googlebot supports **HTTP/1.1** and **HTTP/2**.
   * Supported encodings: `Brotli (br)`, `gzip`, and `deflate`.
-* **Verification**:
-  * Verified via reverse DNS lookup matching `*.googlebot.com` or official Google IP CIDR ranges.
 
 ---
 
-## ⚡ 3. Crawl Efficiency, Server Load & HTTP Caching Protocol
+## 🛡️ 3. Google Crawler Verification & Cryptographic Web Bot Auth
+
+To prevent malicious scrapers from impersonating Google crawlers while ensuring legitimate AI agents and search spiders have seamless access, our infrastructure adheres to Google's multi-layered verification framework:
+
+### A. The 3 Google Crawler Categories & Reverse DNS Masks
+
+| Crawler Type | Description | Reverse DNS Mask | Published IP List |
+| :--- | :--- | :--- | :--- |
+| **Common Crawlers** | Search indexing spiders (`Googlebot`). Strictly obeys `robots.txt`. | `crawl-***.googlebot.com`<br>`geo-crawl-***.geo.googlebot.com` | [`common-crawlers.json`](https://developers.google.com/static/crawling/ipranges/common-crawlers.json) |
+| **Special-Case Crawlers** | Product-specific crawlers (`AdsBot`, abuse verification). | `rate-limited-proxy-***.google.com` | [`special-crawlers.json`](https://developers.google.com/static/crawling/ipranges/special-crawlers.json) |
+| **User-Triggered Fetchers** | On-demand tools (e.g. `Google Site Verifier`, Cloud RSS fetchers). | `***.gae.googleusercontent.com`<br>`google-proxy-***.google.com` | [`user-triggered-fetchers.json`](https://developers.google.com/static/crawling/ipranges/user-triggered-fetchers.json)<br>[`user-triggered-agents.json`](https://developers.google.com/static/crawling/ipranges/user-triggered-agents.json) |
+
+### B. Two-Way DNS Verification Protocol (CLI / Edge Firewalls)
+Legitimate Googlebot requests are verified via 2-way forward-confirmed reverse DNS (FCrDNS):
+1. **Reverse DNS Lookup**: Run `host <IP>` on the visiting IP; must resolve to `*.googlebot.com`, `*.google.com`, or `*.googleusercontent.com`.
+2. **Forward DNS Verification**: Run `host <hostname>` on the domain from Step 1; must resolve back to the exact initial IP.
+
+### C. Experimental Cryptographic Web Bot Auth (IETF RFC 9421)
+Google is rolling out cryptographic request signing via the IETF **Web Bot Auth (WBA)** standard:
+* **Signature Header**: Inbound AI agent requests include `Signature-Agent: g="https://agent.bot.goog"`.
+* **Public Key Directory**: Public keys are retrieved from `https://agent.bot.goog/.well-known/http-message-signatures-directory` and cached based on standard `Cache-Control` headers.
+* **Signature Verification**: Verified against HTTP Message Signatures standard ([RFC 9421](https://datatracker.ietf.org/doc/html/rfc9421)) with automatic fallback to IP/DNS verification.
+
+---
+
+## ⚡ 4. Crawl Efficiency, Server Load & HTTP Caching Protocol
 
 ### A. HTTP Caching Headers (`ETag` & `Last-Modified`)
 Googlebot supports heuristic HTTP caching to minimize unnecessary server bandwidth:
@@ -65,7 +88,7 @@ Googlebot supports heuristic HTTP caching to minimize unnecessary server bandwid
 
 ---
 
-## 🗺️ 4. Multi-Sitemap Architecture & Protocols
+## 🗺️ 5. Multi-Sitemap Architecture & Protocols
 
 Google accepts standard XML sitemaps, sitemap index files, and domain-specific extensions up to **50,000 URLs / 50 MB** per uncompressed file.
 
@@ -117,7 +140,7 @@ Used for articles published within the last 48 hours:
 
 ---
 
-## 💎 5. On-Page Content, Link Architecture & Structure
+## 💎 6. On-Page Content, Link Architecture & Structure
 
 1. **People-First Helpful Content**:
    * Solve genuine user problems with clear engineering and advisory solutions.
@@ -134,7 +157,7 @@ Used for articles published within the last 48 hours:
 
 ---
 
-## 🏷️ 6. Rich Results & Schema.org JSON-LD
+## 🏷️ 7. Rich Results & Schema.org JSON-LD
 
 Every blog post, advisory, and market insight must inject complete JSON-LD:
 ```html
@@ -174,7 +197,7 @@ Every blog post, advisory, and market insight must inject complete JSON-LD:
 
 ---
 
-## 🚫 7. Google Spam Policy Compliance (Zero Tolerance)
+## 🚫 8. Google Spam Policy Compliance (Zero Tolerance)
 
 1. **No Scraped Content**: All articles must be written in our own words with original engineering analysis.
 2. **No Deceptive Cloaking**: What Googlebot renders must match 100% of human user viewports.
