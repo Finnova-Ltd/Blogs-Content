@@ -25,10 +25,11 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 os.makedirs(CACHE_DIR, exist_ok=True)
 
 BRAND_LOGOS = {
-    "ezmortgage": "/Users/robinbakshi/Documents/GitHub/ezmortgagebroker/dist/jm-loans-logo-transparent.png",
-    "ezsignature": "/Users/robinbakshi/Documents/GitHub/eSignaturesonline/frontend/public/brand/ezsignature-au-logo.png",
-    "procrm": "/Users/robinbakshi/Documents/Imprtant Repos/procrm-app/dist/assets/procrm-logo.png",
-    "finnova": "/Users/robinbakshi/Documents/Imprtant Repos/Finnova/images/finnova-logo-cropped.png"
+    "ezmortgage": "/Users/robinbakshi/Documents/GitHub/Blogs-Content/assets/logos/ezmortgagebroker-logo.png",
+    "ezsignature": "/Users/robinbakshi/Documents/GitHub/Blogs-Content/assets/logos/ezsignature-logo.png",
+    "procrm": "/Users/robinbakshi/Documents/GitHub/Blogs-Content/assets/logos/procrm-logo.png",
+    "finnova": "/Users/robinbakshi/Documents/GitHub/Blogs-Content/assets/logos/finnova-logo.png",
+    "ezconsultants": "/Users/robinbakshi/Documents/GitHub/Blogs-Content/assets/logos/ezconsultants-logo.png"
 }
 
 # High-resolution bright, sunlit modern architecture and business photos
