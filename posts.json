@@ -1,5 +1,22 @@
 [
   {
+    "id": "asd-acsc-alert-software-platform-exploitation-2026",
+    "slug": "asd-acsc-alert-software-platform-exploitation-2026",
+    "title": "ASD ACSC Alert: Active Exploitation of Software Platforms in Australia \u2014 How Local Businesses & Non-Profits Can Stay Protected",
+    "category": "Cyber Safety & Scams",
+    "badge": "ASD ACSC HIGH ALERT",
+    "date": "25-Aug-2026",
+    "iso_date": "2026-08-25T08:00:00Z",
+    "readTime": "5 min read",
+    "author": "Cyber Safety Taskforce",
+    "authorRole": "Cyber Threat Intelligence Desk",
+    "authorImg": "/images/ez-mortgage-broker.webp",
+    "excerpt": "The Australian Cyber Security Centre (ASD's ACSC) has issued an urgent high alert regarding active exploitation of software development platforms. Finnova outlines simple, actionable steps for SMEs and community organizations to patch systems and protect data.",
+    "snippet": "The Australian Cyber Security Centre (ASD's ACSC) has issued an urgent high alert regarding active exploitation of software development platforms. Finnova outlines simple, actionable steps for SMEs and community organizations to patch systems and protect data.",
+    "image": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80",
+    "url": "/pages/blog/asd-acsc-alert-software-platform-exploitation-2026.html"
+  },
+  {
     "id": "ai-voice-scams-senior-cyber-defense-2026",
     "slug": "ai-voice-scams-senior-cyber-defense-2026",
     "title": "AI-Powered Voice & SMS Scams Surge in Victoria: Finnova Launches Free Senior Cyber Defense Workshops",
