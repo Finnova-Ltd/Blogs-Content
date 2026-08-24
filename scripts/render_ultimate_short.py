@@ -180,15 +180,23 @@ def render_ultimate_video(
     print(f"📄 Title: {title}")
     print(f"=======================================================")
     
-    # 1. Australian Voiceover
-    print("🎙️ 1. Synthesizing voiceover...")
+    # 1. Australian Voiceover (High Quality William Voice)
+    print("🎙️ 1. Synthesizing broadcast Australian voiceover...")
     full_text = " ".join(sentences)
-    asyncio.run(edge_tts.Communicate(full_text, "en-AU-NatashaNeural").save(output_audio))
+    temp_wav = os.path.join(CACHE_DIR, f"{slug}_loud.wav")
+    asyncio.run(edge_tts.Communicate(full_text, "en-AU-WilliamNeural").save(output_audio))
+    
+    # Normalize and convert to loud 44.1kHz Stereo WAV
+    subprocess.run([
+        ffmpeg_exe, "-y", "-i", output_audio,
+        "-ar", "44100", "-ac", "2", "-af", "volume=3.5",
+        temp_wav
+    ], check=True)
     
     # 2. Audio Duration
-    probe_cmd = [ffmpeg_exe, "-i", output_audio]
+    probe_cmd = [ffmpeg_exe, "-i", temp_wav]
     res = subprocess.run(probe_cmd, capture_output=True, text=True)
-    duration = 18.0
+    duration = 16.0
     for line in res.stderr.splitlines():
         if "Duration:" in line:
             try:
@@ -222,13 +230,6 @@ def render_ultimate_video(
     phone = cfg["phone"]
     reviews_badge = "5.0 Star Google Reviews (Verified)"
     
-    # 6. Filter Complex with:
-    # - Top-Left: Google 5-Star Review Badge
-    # - Top-Right: Transparent Brand Logo
-    # - Center: Typing Animated Subtitles
-    # - Bottom 1: Flashing Light Orange Badge with Black Text: Call 1300 050 099 - Contact Us Today
-    # - Bottom 2: Visit Domain
-    # Flashing effect using enable='lt(mod(t,0.8),0.6)'
     t_scene = duration / 3.0
     filter_complex = (
         f"[0:v]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920[v0];"
@@ -246,18 +247,18 @@ def render_ultimate_video(
         f"drawtext=fontfile='{font_file}':text='Visit {domain}':fontcolor=0xffffff:fontsize=42:x=(w-text_w)/2:y=1680:box=1:boxcolor=0x2563eb@0.95:boxborderw=24[outv]"
     )
     
-    print("🎬 2. Compositing ultimate 1080x1920 Short with loud 48kHz stereo audio...")
+    print("🎬 2. Compositing ultimate 1080x1920 Short with loud broadcast audio...")
     cmd = [
         ffmpeg_exe, "-y",
         "-loop", "1", "-t", f"{t_scene}", "-i", img1,
         "-loop", "1", "-t", f"{t_scene}", "-i", img2,
         "-loop", "1", "-t", f"{t_scene+1}", "-i", img3,
         "-i", logo_trans,
-        "-i", output_audio,
+        "-i", temp_wav,
         "-filter_complex", filter_complex,
         "-map", "[outv]", "-map", "4:a",
         "-c:v", "libx264", "-preset", "veryfast",
-        "-c:a", "aac", "-b:a", "256k", "-ar", "44100", "-ac", "2", "-af", "volume=2.5",
+        "-c:a", "aac", "-b:a", "256k", "-ar", "44100", "-ac", "2",
         "-movflags", "+faststart",
         "-pix_fmt", "yuv420p", "-shortest",
         output_mp4
@@ -266,12 +267,12 @@ def render_ultimate_video(
     if os.path.exists(rel_ass):
         os.remove(rel_ass)
         
-    # Copy to Desktop for instant 1-click playing
     desktop_copy = "/Users/robinbakshi/Desktop/Latest_YouTube_Short.mp4"
     import shutil
     shutil.copy2(output_mp4, desktop_copy)
-    shutil.copy2(output_mp4, "/Users/robinbakshi/Desktop/Test_With_Sound.mp4")
+    shutil.copy2(temp_wav, "/Users/robinbakshi/Desktop/Latest_Voice_Audio.wav")
     print(f"🖥️ Video copied directly to your Desktop: {desktop_copy}")
+    print(f"🎧 Audio WAV copied directly to your Desktop: /Users/robinbakshi/Desktop/Latest_Voice_Audio.wav")
     
     size_mb = os.path.getsize(output_mp4) / (1024 * 1024)
     print(f"✅ Ultimate Video Rendered: {output_mp4} ({size_mb:.2f} MB)")
