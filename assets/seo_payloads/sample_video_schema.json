@@ -1,0 +1,50 @@
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "RBA Rate Decision Breakdown: Refinancing & First Home Grants...",
+  "description": "Comprehensive guide by EZ Mortgage Broker exploring Australian rates, strategies, and industry insights.",
+  "thumbnailUrl": [
+    "https://img.youtube.com/vi/YOUR_YOUTUBE_ID/maxresdefault.jpg"
+  ],
+  "uploadDate": "2026-08-25T10:25:57.821021",
+  "duration": "PT8M45S",
+  "embedUrl": "https://www.youtube.com/embed/YOUR_YOUTUBE_ID",
+  "publisher": {
+    "@type": "Organization",
+    "name": "EZ Mortgage Broker",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://ezmortgagebroker.com.au/images/ez-mortgage-broker.webp"
+    }
+  },
+  "hasPart": [
+    {
+      "@type": "Clip",
+      "name": "RBA Cash Rate Outlook 2026",
+      "startOffset": 30,
+      "endOffset": 150,
+      "url": "https://www.youtube.com/watch?v=YOUR_YOUTUBE_ID&t=30s"
+    },
+    {
+      "@type": "Clip",
+      "name": "Fixed vs Variable Refinancing Guide",
+      "startOffset": 150,
+      "endOffset": 270,
+      "url": "https://www.youtube.com/watch?v=YOUR_YOUTUBE_ID&t=150s"
+    },
+    {
+      "@type": "Clip",
+      "name": "First Home Buyer Grants NSW & VIC",
+      "startOffset": 270,
+      "endOffset": 390,
+      "url": "https://www.youtube.com/watch?v=YOUR_YOUTUBE_ID&t=270s"
+    },
+    {
+      "@type": "Clip",
+      "name": "Broker vs Bank Borrowing Power",
+      "startOffset": 390,
+      "endOffset": 510,
+      "url": "https://www.youtube.com/watch?v=YOUR_YOUTUBE_ID&t=390s"
+    }
+  ]
+}
