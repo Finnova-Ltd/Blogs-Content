@@ -1,0 +1,6 @@
+file '/Users/robinbakshi/Documents/GitHub/Blogs-Content/scripts/asset_cache/masterclass_compilation_ezmortgage_intro.wav'
+file '/Users/robinbakshi/Documents/GitHub/Blogs-Content/scripts/asset_cache/masterclass_compilation_ezmortgage_ch1.wav'
+file '/Users/robinbakshi/Documents/GitHub/Blogs-Content/scripts/asset_cache/masterclass_compilation_ezmortgage_ch2.wav'
+file '/Users/robinbakshi/Documents/GitHub/Blogs-Content/scripts/asset_cache/masterclass_compilation_ezmortgage_ch3.wav'
+file '/Users/robinbakshi/Documents/GitHub/Blogs-Content/scripts/asset_cache/masterclass_compilation_ezmortgage_ch4.wav'
+file '/Users/robinbakshi/Documents/GitHub/Blogs-Content/scripts/asset_cache/masterclass_compilation_ezmortgage_outro.wav'
