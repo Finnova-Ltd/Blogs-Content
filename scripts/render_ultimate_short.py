@@ -58,6 +58,14 @@ BRAND_CONFIG = {
         "logo_transparent": os.path.join(ASSETS_DIR, "logos/procrm-logo.png"),
         "rating": "5.0 Star ISO 27001 Reviews"
     },
+    "ezconsultants": {
+        "name": "EZ Consultants",
+        "phone": "1300 050 099",
+        "cta_domain": "ezconsultants.com.au",
+        "logo_raw": os.path.join(ASSETS_DIR, "logos/ezconsultants-logo.png"),
+        "logo_transparent": os.path.join(ASSETS_DIR, "logos/ezconsultants-logo.png"),
+        "rating": "5.0 Star Google Reviews (Verified)"
+    },
     "finnova": {
         "name": "Finnova Hub",
         "phone": "1300 050 099",
