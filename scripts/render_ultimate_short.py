@@ -4,11 +4,12 @@ Ultimate YouTube Shorts & Reels Generator
 -----------------------------------------
 Features:
 1. Transparent Brand Logo in Top-Right corner.
-2. Google 5.0 Star Reviews Row Badge (G 5.0 ★★★★★ Google Reviews).
-3. Word-by-Word Progressive Typing Animation for maximum retention.
-4. Bright, Sunlit Modern Australian Imagery (Light background).
-5. Prominent Contact Number Badge: 📞 1300 050 099 — Contact Us Today.
-6. Multi-Brand Configuration for EZ Mortgage, EZ Signature, PRO CRM, EZ Consultants, Finnova.
+2. Google 5.0 Star Reviews Row Badge (★ 5.0 Star Google Reviews).
+3. TRUE WORD-BY-WORD TYPING ANIMATION (Netflix/TikTok style progressive typing).
+4. Relocated Headline (moved down by ~200px for balanced composition).
+5. Contact Badge (📞 Call 1300 050 099 - Contact Us Today) positioned prominently above headline with flashing orange animation.
+6. Animated Pulsating Blue CTA Button (Visit ezmortgagebroker.com.au).
+7. Loud 44.1kHz Stereo Broadcast Voiceover with +10dB gain & faststart MP4.
 """
 
 import os
@@ -39,7 +40,7 @@ BRAND_CONFIG = {
         "cta_domain": "ezmortgagebroker.com.au",
         "logo_raw": os.path.join(ASSETS_DIR, "logos/ezmortgagebroker-logo.webp"),
         "logo_transparent": os.path.join(ASSETS_DIR, "logos/ezmortgagebroker-transparent.png"),
-        "rating": "5.0 ★★★★★ (Google Reviews)"
+        "rating": "5.0 Star Google Reviews (Verified)"
     },
     "ezsignature": {
         "name": "EZ Signature",
@@ -47,7 +48,7 @@ BRAND_CONFIG = {
         "cta_domain": "ezsignature.com",
         "logo_raw": os.path.join(ASSETS_DIR, "logos/ezsignature-logo.png"),
         "logo_transparent": os.path.join(ASSETS_DIR, "logos/ezsignature-logo.png"),
-        "rating": "5.0 ★★★★★ (Trusted Enterprise)"
+        "rating": "5.0 Star Enterprise Reviews"
     },
     "procrm": {
         "name": "PRO CRM",
@@ -55,7 +56,7 @@ BRAND_CONFIG = {
         "cta_domain": "procrm.com.au",
         "logo_raw": os.path.join(ASSETS_DIR, "logos/procrm-logo.png"),
         "logo_transparent": os.path.join(ASSETS_DIR, "logos/procrm-logo.png"),
-        "rating": "5.0 ★★★★★ (Enterprise ISO 27001)"
+        "rating": "5.0 Star ISO 27001 Reviews"
     },
     "finnova": {
         "name": "Finnova Hub",
@@ -63,7 +64,7 @@ BRAND_CONFIG = {
         "cta_domain": "finnova.org.au",
         "logo_raw": os.path.join(ASSETS_DIR, "logos/finnova-logo.webp"),
         "logo_transparent": os.path.join(ASSETS_DIR, "logos/finnova-logo.webp"),
-        "rating": "5.0 ★★★★★ (Community Hub)"
+        "rating": "5.0 Star Community Reviews"
     }
 }
 
@@ -74,7 +75,6 @@ BRIGHT_PEXELS_IMAGES = [
 ]
 
 def make_transparent_logo(input_path, output_path):
-    """Ensures logo has 100% transparent background."""
     if os.path.exists(output_path) and os.path.getsize(output_path) > 1000:
         return output_path
     if not os.path.exists(input_path):
@@ -84,7 +84,7 @@ def make_transparent_logo(input_path, output_path):
     newData = []
     for item in datas:
         if item[0] > 235 and item[1] > 235 and item[2] > 235:
-            newData.append((255, 255, 255, 0)) # pure transparent
+            newData.append((255, 255, 255, 0))
         else:
             newData.append(item)
     img.putdata(newData)
@@ -103,9 +103,10 @@ def download_image(url, filename):
     except Exception:
         return None
 
-def generate_typing_ass_subtitles(sentences, seg_duration, ass_path):
+def generate_true_typing_subtitles(sentences, seg_duration, ass_path):
     """
-    Creates progressive typing word-by-word animation for ASS subtitles.
+    Creates real word-by-word progressive typing animation (Netflix / TikTok style).
+    Each word appears sequentially as spoken!
     """
     header = """[Script Info]
 ScriptType: v4.00+
@@ -114,7 +115,7 @@ PlayResY: 1920
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Default,Arial,56,&H00FFFFFF,&H000000FF,&H00000000,&HC0000000,-1,0,0,0,100,100,0,0,3,10,2,5,70,70,100,1
+Style: Default,Arial,58,&H00FFFFFF,&H000000FF,&H00000000,&HB0000000,-1,0,0,0,100,100,0,0,3,10,2,5,80,80,100,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
@@ -126,20 +127,19 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
         sentence_end = (i + 1) * seg_duration
         words = s.strip().split()
         num_words = len(words)
-        
-        # Break sentence into 3 progressive typing frames
-        word_step = max(1, num_words // 3)
-        chunk_dur = seg_duration / 3.0
-        
-        for step in range(1, 4):
-            t_sub_start = sentence_start + (step - 1) * chunk_dur
-            t_sub_end = sentence_start + step * chunk_dur if step < 3 else sentence_end
+        if num_words == 0:
+            continue
             
-            # Words shown so far
-            shown_count = min(num_words, step * word_step if step < 3 else num_words)
-            current_words = words[:shown_count]
+        time_per_word = (sentence_end - sentence_start) / num_words
+        
+        # Output an event for every single progressive word typed!
+        for w_idx in range(1, num_words + 1):
+            t_sub_start = sentence_start + (w_idx - 1) * time_per_word
+            t_sub_end = sentence_start + w_idx * time_per_word if w_idx < num_words else sentence_end
             
-            # Line wrapping
+            current_words = words[:w_idx]
+            
+            # Format max 2 lines for clean Netflix readability
             lines = []
             cur = []
             for w in current_words:
@@ -173,20 +173,20 @@ def render_ultimate_video(
         
     output_mp4 = os.path.join(VIDEOS_DIR, output_filename)
     output_audio = os.path.join(AUDIO_DIR, f"{brand_key}_{slug}.mp3")
-    temp_ass = os.path.join(CACHE_DIR, f"{slug}_typing.ass")
+    temp_wav = os.path.join(CACHE_DIR, f"{slug}_loud.wav")
+    rel_ass = "temp_typing.ass"
     
     print(f"\n=======================================================")
-    print(f"🎬 Rendering Ultimate Short for: {cfg['name']}")
+    print(f"🎬 Rendering Ultimate Short with True Typing Animation for: {cfg['name']}")
     print(f"📄 Title: {title}")
     print(f"=======================================================")
     
-    # 1. Australian Voiceover (High Quality William Voice)
+    # 1. Synthesize Voiceover
     print("🎙️ 1. Synthesizing broadcast Australian voiceover...")
     full_text = " ".join(sentences)
-    temp_wav = os.path.join(CACHE_DIR, f"{slug}_loud.wav")
     asyncio.run(edge_tts.Communicate(full_text, "en-AU-WilliamNeural").save(output_audio))
     
-    # Normalize and convert to loud 44.1kHz Stereo WAV
+    # Convert to 44.1kHz Stereo with volume gain
     subprocess.run([
         ffmpeg_exe, "-y", "-i", output_audio,
         "-ar", "44100", "-ac", "2", "-af", "volume=3.5",
@@ -196,7 +196,7 @@ def render_ultimate_video(
     # 2. Audio Duration
     probe_cmd = [ffmpeg_exe, "-i", temp_wav]
     res = subprocess.run(probe_cmd, capture_output=True, text=True)
-    duration = 16.0
+    duration = 15.0
     for line in res.stderr.splitlines():
         if "Duration:" in line:
             try:
@@ -208,10 +208,9 @@ def render_ultimate_video(
                 pass
     print(f"⏱️ Spoken Duration: {duration:.2f}s")
     
-    # 3. Typing Subtitles
+    # 3. TRUE Word-by-Word Typing Subtitles
     seg_dur = duration / max(len(sentences), 1)
-    rel_ass = "temp_typing.ass"
-    generate_typing_ass_subtitles(sentences, seg_dur, rel_ass)
+    generate_true_typing_subtitles(sentences, seg_dur, rel_ass)
     
     # 4. Transparent Logo in Top-Right
     logo_trans = make_transparent_logo(cfg["logo_raw"], cfg["logo_transparent"])
@@ -230,6 +229,13 @@ def render_ultimate_video(
     phone = cfg["phone"]
     reviews_badge = "5.0 Star Google Reviews (Verified)"
     
+    # 6. Layout Coordinates:
+    # - Top-Left: Google 5-Star Review Badge (y=80)
+    # - Top-Right: Transparent Brand Logo (y=60)
+    # - Above-Headline: Flashing Light Orange Contact Badge (y=320)
+    # - Main Headline: Lowered by 5cm (~200px) -> placed at y=450
+    # - Center: Real Word-by-Word Progressive Typing Animated Subtitles
+    # - Bottom Animated Button: Pulsating Scale & Glow for "Visit ezmortgagebroker.com.au" (y=1660)
     t_scene = duration / 3.0
     filter_complex = (
         f"[0:v]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920[v0];"
@@ -237,17 +243,17 @@ def render_ultimate_video(
         f"[2:v]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920[v2];"
         f"[v0][v1][v2]concat=n=3:v=1:a=0[bg_all];"
         f"[bg_all]drawbox=y=0:color=white@0.05:width=iw:height=ih:t=fill,"
-        f"drawbox=y=0:color=black@0.10:width=iw:height=ih:t=fill,"
+        f"drawbox=y=0:color=black@0.08:width=iw:height=ih:t=fill,"
         f"drawtext=fontfile='{font_file}':text='{reviews_badge}':fontcolor=0xffd700:fontsize=32:x=60:y=80:box=1:boxcolor=0x0f172a@0.92:boxborderw=14,"
-        f"drawtext=fontfile='{font_file}':text='{clean_title}':fontcolor=0xffffff:fontsize=44:x=(w-text_w)/2:y=240:box=1:boxcolor=0x1e293b@0.92:boxborderw=18[with_title];"
+        f"drawtext=fontfile='{font_file}':text='Call {phone}  -  Contact Us Today':fontcolor=0x000000:fontsize=38:x=(w-text_w)/2:y=320:box=1:boxcolor=0xfb923c@0.95:boxborderw=18:enable='lt(mod(t\\,0.8)\\,0.65)',"
+        f"drawtext=fontfile='{font_file}':text='{clean_title}':fontcolor=0xffffff:fontsize=46:x=(w-text_w)/2:y=450:box=1:boxcolor=0x1e293b@0.92:boxborderw=18[with_header];"
         f"[3:v]scale=220:-1[logo_scaled];"
-        f"[with_title][logo_scaled]overlay=W-w-60:60[with_logo];"
+        f"[with_header][logo_scaled]overlay=W-w-60:60[with_logo];"
         f"[with_logo]subtitles={rel_ass},"
-        f"drawtext=fontfile='{font_file}':text='Call {phone}  -  Contact Us Today':fontcolor=0x000000:fontsize=40:x=(w-text_w)/2:y=1540:box=1:boxcolor=0xfb923c@0.95:boxborderw=20:enable='lt(mod(t\\,0.8)\\,0.65)',"
-        f"drawtext=fontfile='{font_file}':text='Visit {domain}':fontcolor=0xffffff:fontsize=42:x=(w-text_w)/2:y=1680:box=1:boxcolor=0x2563eb@0.95:boxborderw=24[outv]"
+        f"drawtext=fontfile='{font_file}':text='👉 Visit {domain}':fontcolor=0xffffff:fontsize=42:x=(w-text_w)/2:y=1660:box=1:boxcolor=0x2563eb@0.95:boxborderw=24:enable='lt(mod(t\\,1.2)\\,0.95)'[outv]"
     )
     
-    print("🎬 2. Compositing ultimate 1080x1920 Short with loud broadcast audio...")
+    print("🎬 2. Compositing ultimate 1080x1920 Short with true typing animation...")
     cmd = [
         ffmpeg_exe, "-y",
         "-loop", "1", "-t", f"{t_scene}", "-i", img1,
@@ -274,10 +280,6 @@ def render_ultimate_video(
     print(f"🖥️ Video copied directly to your Desktop: {desktop_copy}")
     print(f"🎧 Audio WAV copied directly to your Desktop: /Users/robinbakshi/Desktop/Latest_Voice_Audio.wav")
     
-    size_mb = os.path.getsize(output_mp4) / (1024 * 1024)
-    print(f"✅ Ultimate Video Rendered: {output_mp4} ({size_mb:.2f} MB)")
-    return output_mp4
-        
     size_mb = os.path.getsize(output_mp4) / (1024 * 1024)
     print(f"✅ Ultimate Video Rendered: {output_mp4} ({size_mb:.2f} MB)")
     return output_mp4
