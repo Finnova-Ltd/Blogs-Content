@@ -224,7 +224,20 @@ def render_ultimate_video(
     if not os.path.exists(font_file):
         font_file = "/System/Library/Fonts/Helvetica.ttc"
         
-    clean_title = title.replace("'", "").replace(":", " -")[:32]
+    # Clean and wrap title gracefully on word boundaries without cutting words
+    clean_title = title.replace("'", "").replace(":", " -").strip()
+    words = clean_title.split()
+    lines = []
+    cur = []
+    for w in words:
+        cur.append(w)
+        if len(" ".join(cur)) > 26:
+            lines.append(" ".join(cur))
+            cur = []
+    if cur:
+        lines.append(" ".join(cur))
+    title_text = "\\\n".join(lines[:2])
+    
     domain = cfg["cta_domain"]
     phone = cfg["phone"]
     reviews_badge = "5.0 Star Google Reviews (Verified)"
@@ -233,9 +246,9 @@ def render_ultimate_video(
     # - Top-Left: Google 5-Star Review Badge (y=80)
     # - Top-Right: Transparent Brand Logo (y=60)
     # - Above-Headline: Flashing Light Orange Contact Badge (y=320)
-    # - Main Headline: Lowered by 5cm (~200px) -> placed at y=450
+    # - Main Headline: Lowered with full intact words (y=440)
     # - Center: Real Word-by-Word Progressive Typing Animated Subtitles
-    # - Bottom Animated Button: Pulsating Scale & Glow for "Visit ezmortgagebroker.com.au" (y=1660)
+    # - Bottom Animated Button: Pulsating Scale & Glow for Visit Domain (y=1660)
     t_scene = duration / 3.0
     filter_complex = (
         f"[0:v]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920[v0];"
@@ -246,7 +259,7 @@ def render_ultimate_video(
         f"drawbox=y=0:color=black@0.08:width=iw:height=ih:t=fill,"
         f"drawtext=fontfile='{font_file}':text='{reviews_badge}':fontcolor=0xffd700:fontsize=32:x=60:y=80:box=1:boxcolor=0x0f172a@0.92:boxborderw=14,"
         f"drawtext=fontfile='{font_file}':text='Call {phone}  -  Contact Us Today':fontcolor=0x000000:fontsize=38:x=(w-text_w)/2:y=320:box=1:boxcolor=0xfb923c@0.95:boxborderw=18:enable='lt(mod(t\\,0.8)\\,0.65)',"
-        f"drawtext=fontfile='{font_file}':text='{clean_title}':fontcolor=0xffffff:fontsize=46:x=(w-text_w)/2:y=450:box=1:boxcolor=0x1e293b@0.92:boxborderw=18[with_header];"
+        f"drawtext=fontfile='{font_file}':text='{clean_title}':fontcolor=0xffffff:fontsize=42:x=(w-text_w)/2:y=440:box=1:boxcolor=0x1e293b@0.92:boxborderw=18[with_header];"
         f"[3:v]scale=220:-1[logo_scaled];"
         f"[with_header][logo_scaled]overlay=W-w-60:60[with_logo];"
         f"[with_logo]subtitles={rel_ass},"
