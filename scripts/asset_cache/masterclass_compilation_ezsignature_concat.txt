@@ -1,0 +1,6 @@
+file '/Users/robinbakshi/Documents/GitHub/Blogs-Content/scripts/asset_cache/masterclass_compilation_ezsignature_intro.wav'
+file '/Users/robinbakshi/Documents/GitHub/Blogs-Content/scripts/asset_cache/masterclass_compilation_ezsignature_ch1.wav'
+file '/Users/robinbakshi/Documents/GitHub/Blogs-Content/scripts/asset_cache/masterclass_compilation_ezsignature_ch2.wav'
+file '/Users/robinbakshi/Documents/GitHub/Blogs-Content/scripts/asset_cache/masterclass_compilation_ezsignature_ch3.wav'
+file '/Users/robinbakshi/Documents/GitHub/Blogs-Content/scripts/asset_cache/masterclass_compilation_ezsignature_ch4.wav'
+file '/Users/robinbakshi/Documents/GitHub/Blogs-Content/scripts/asset_cache/masterclass_compilation_ezsignature_outro.wav'

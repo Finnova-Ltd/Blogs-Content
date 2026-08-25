@@ -64,6 +64,17 @@ BRAND_PROFILES = {
         "primary_color": "0x7c3aed",
         "badge": "5.0 Star Enterprise CRM (ISO 27001)"
     },
+    "ezsignature": {
+        "name": "EZ Signature",
+        "phone": "1300 050 099",
+        "domain": "ezsignature.com",
+        "logo_raw": os.path.join(ASSETS_DIR, "logos/ezsignature-logo.png"),
+        "logo_trans": os.path.join(ASSETS_DIR, "logos/ezsignature-logo.png"),
+        "voice": "en-AU-WilliamNeural",
+        "channel_id": os.getenv("YOUTUBE_CHANNEL_EZ_SIGNATURE", "UCxxxEZSignature"),
+        "primary_color": "0x0284c7",
+        "badge": "5.0 Star Enterprise Reviews (Verified)"
+    },
     "finnova": {
         "name": "Finnova Hub",
         "phone": "1300 050 099",
