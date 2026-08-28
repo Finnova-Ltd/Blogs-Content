@@ -371,10 +371,10 @@ def render_image3_html(slug, title, category, badge, date_str, read_time, author
     <!-- RIGHT COLUMN: Sticky Sidebar (Col 2 - 4 cols / 32% - Image 3 Exact Standard) -->
     <aside style="position:sticky; top:96px; display:flex; flex-direction:column; gap:18px;">
       
-      <!-- 1. R BAKSHI Broker Profile Card (Image 3 Signature) -->
+      <!-- 1. R BAKSHI Broker Profile Card (Image 3 Signature with Melbourne Streetscape Cover Header) -->
       <div class="broker-profile-box" style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:18px; overflow:hidden; box-shadow:0 4px 14px rgba(10,37,64,0.06); text-align:center;">
-        <div style="background:#084582; height:70px; position:relative; display:flex; justify-content:center;">
-          <div style="position:absolute; bottom:-34px; width:68px; height:68px; border-radius:50%; border:3px solid #FFFFFF; overflow:hidden; background:#FFFFFF; box-shadow:0 4px 10px rgba(0,0,0,0.15);">
+        <div style="background: linear-gradient(135deg, rgba(8, 69, 130, 0.35) 0%, rgba(6, 40, 77, 0.55) 100%), url('/images/melbourne-bourke-street-header.webp') center/cover no-repeat; height:90px; position:relative; display:flex; justify-content:center;">
+          <div style="position:absolute; bottom:-34px; width:68px; height:68px; border-radius:50%; border:3px solid #FFFFFF; overflow:hidden; background:#FFFFFF; box-shadow:0 4px 10px rgba(0,0,0,0.2);">
             <img src="/images/r-bakshi.jpeg" alt="R Bakshi" style="width:100%; height:100%; object-fit:cover;">
           </div>
         </div>
@@ -584,6 +584,17 @@ def update_blog_hub_page():
       padding: 56px 0 44px;
       text-align: center;
       overflow: hidden;
+    }""",
+        content
+    )
+    
+    # Update Broker Profile Box Cover Header to include Melbourne Street background
+    content = re.sub(
+        r'\.broker-cover-header\s*\{[^}]*\}',
+        """.broker-cover-header {
+      height: 95px;
+      width: 100%;
+      background: linear-gradient(135deg, rgba(8, 69, 130, 0.35) 0%, rgba(6, 40, 77, 0.55) 100%), url('/images/melbourne-bourke-street-header.webp') center/cover no-repeat;
     }""",
         content
     )
