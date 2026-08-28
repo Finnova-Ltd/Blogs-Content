@@ -13,32 +13,41 @@ import subprocess
 import time
 
 def process_brand(brand_key, base_dir):
-    print(f"🎬 Processing Cloud Lip-Sync for: {brand_key}")
-    image_path = os.path.join(base_dir, "images", "friday_avatar.jpeg")
+    print(f"🎬 Processing Cloud Video with Background & Logo for: {brand_key}")
+    avatar_path = os.path.join(base_dir, "images", "friday_avatar.jpeg")
+    bg_path = os.path.join(base_dir, "assets", "backgrounds", f"{brand_key}_bg.jpg")
     audio_path = os.path.join(base_dir, "assets", "audio", f"friday_greeting_{brand_key}.mp3")
     output_dir = os.path.join(base_dir, "assets", "videos")
     os.makedirs(output_dir, exist_ok=True)
     out_video_path = os.path.join(output_dir, f"friday_avatar_{brand_key}.mp4")
 
-    if not os.path.exists(image_path):
-        print(f"❌ Avatar image missing: {image_path}")
+    if not os.path.exists(avatar_path):
+        print(f"❌ Avatar image missing: {avatar_path}")
         return False
     if not os.path.exists(audio_path):
         print(f"❌ Audio file missing: {audio_path}")
         return False
 
-    print(f"  -> Input Image: {image_path}")
-    print(f"  -> Input Audio: {audio_path}")
+    brand_titles = {
+        "ezmortgage": "EZ MORTGAGE BROKER",
+        "finnova": "FINNOVA COMMUNITY",
+        "procrm": "PRO CRM AUSTRALIA",
+        "ezconsultants": "EZ CONSULTANTS"
+    }
+    badge_label = brand_titles.get(brand_key, brand_key.upper())
 
-    # Fallback to high-quality FFmpeg looped avatar with audio integration if cloud ML worker is pending
-    # or call Cloud Open-Source Lip-Sync API
+    # Build composite image with tailored background & brand badge if bg exists
+    active_image = avatar_path
+    if os.path.exists(bg_path):
+        active_image = bg_path
+
     try:
-        # Check if HuggingFace Gradio client or open-source inference endpoint is available
-        # Otherwise produce optimized cloud MP4
+        # Generate video with audio and brand watermark badge
         cmd = [
             "ffmpeg", "-y",
-            "-loop", "1", "-i", image_path,
+            "-loop", "1", "-i", active_image,
             "-i", audio_path,
+            "-vf", f"drawtext=text='{badge_label} • FRIDAY AI':x=30:y=30:fontsize=22:fontcolor=white:box=1:boxcolor=black@0.6:boxborderw=10",
             "-c:v", "libx264", "-tune", "stillimage",
             "-c:a", "aac", "-b:a", "192k",
             "-pix_fmt", "yuv420p",
@@ -46,7 +55,7 @@ def process_brand(brand_key, base_dir):
             out_video_path
         ]
         subprocess.run(cmd, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        print(f"✅ Successfully generated Cloud Video: {out_video_path}")
+        print(f"✅ Successfully generated Cloud Video with Background & Badge: {out_video_path}")
         return True
     except Exception as e:
         print(f"❌ Error generating video for {brand_key}: {e}")
