@@ -1,0 +1,50 @@
+name: Cloud AI Video Lip-Sync Generator
+
+on:
+  workflow_dispatch:
+    inputs:
+      brand:
+        description: 'Brand to generate video for (ezmortgage, finnova, procrm, ezconsultants, all)'
+        required: true
+        default: 'all'
+  repository_dispatch:
+    types: [generate-video]
+
+permissions:
+  contents: write
+
+jobs:
+  generate-cloud-video:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Codebase
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install FFmpeg & Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg libsndfile1
+          pip install requests tqdm numpy opencv-python librosa soundfile
+
+      - name: Generate Cloud Lip-Synced Videos
+        run: |
+          python3 scripts/cloud_lipsync_generator.py --brand "${{ github.event.inputs.brand || 'all' }}"
+
+      - name: Commit and Push Lip-Synced Videos
+        run: |
+          git config --global user.name "Cloudflare-GitHub Video Bot"
+          git config --global user.email "bot@finnova.org.au"
+          git add assets/videos/
+          if git diff --staged --quiet; then
+            echo "No new video changes to commit."
+          else
+            git commit -m "feat(video): auto-generated cloud lip-synced avatar videos [skip ci]"
+            git push origin main
+          fi
