@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
 Convert ALL 1,137+ Blog Articles in ezmortgagebroker to 100% Image 3 Standard
-+ Fix Header Logo Size (Small & Sleek)
-+ High-Visibility Background Image on Hero Banner
-+ Need Borrowing Power Advice Subtitle & Styling
-+ Update pages/blog.html Hero & Sidebar
++ Add Melbourne Bourke Street Header Background Image (from Image 2)
++ Add R BAKSHI Broker Profile Card (from Image 3) to ALL articles
++ Add Need Borrowing Power Advice card to ALL articles
++ Sync pages/blog.html and create pages/blog/index.html
 =============================================================================
 """
 
@@ -13,6 +13,7 @@ import glob
 import re
 import html
 import json
+import shutil
 from datetime import datetime
 
 EZM_DIR = "/Users/robinbakshi/Documents/GitHub/ezmortgagebroker"
@@ -20,6 +21,7 @@ PROCRM_DIR = "/Users/robinbakshi/Documents/Imprtant Repos/procrm-app"
 FINNOVA_DIR = "/Users/robinbakshi/Documents/Imprtant Repos/Finnova"
 BLOGS_DIR = "/Users/robinbakshi/Documents/GitHub/Blogs-Content"
 
+BG_IMAGE = "/images/melbourne-bourke-street-header.webp"
 DEFAULT_TOPIC_IMAGES = [
     "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1600&q=80",
     "https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=1600&q=80",
@@ -69,10 +71,10 @@ def render_image3_html(slug, title, category, badge, date_str, read_time, author
     body {{ font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #F8FAFC; color: #1E293B; margin: 0; padding: 0; }}
     .font-editorial {{ font-family: 'Newsreader', Georgia, serif; }}
     
-    /* Top Full-Bleed Hero Header with Visible Architectural Photo & Navy Gradient Scrim */
+    /* Top Full-Bleed Hero Header with Image 2 Melbourne Street Background & Gradient Scrim */
     .article-hero-section {{
       position: relative;
-      background: linear-gradient(135deg, rgba(6, 40, 77, 0.82) 0%, rgba(8, 69, 130, 0.65) 50%, rgba(6, 53, 101, 0.88) 100%), url('{image_url}') center/cover no-repeat;
+      background: linear-gradient(135deg, rgba(6, 40, 77, 0.84) 0%, rgba(8, 69, 130, 0.70) 50%, rgba(6, 53, 101, 0.88) 100%), url('{BG_IMAGE}') center/cover no-repeat;
       color: #FFFFFF !important;
       overflow: hidden;
       border-bottom: 1px solid #063565;
@@ -366,10 +368,39 @@ def render_image3_html(slug, title, category, badge, date_str, read_time, author
 
     </div>
 
-    <!-- RIGHT COLUMN: Sticky Sidebar (Col 2 - 4 cols / 32% - Exact Image 3 Replication) -->
+    <!-- RIGHT COLUMN: Sticky Sidebar (Col 2 - 4 cols / 32% - Image 3 Exact Standard) -->
     <aside style="position:sticky; top:96px; display:flex; flex-direction:column; gap:18px;">
       
-      <!-- 1. Highlights Widget (Solid Crimson Header with White Text) -->
+      <!-- 1. R BAKSHI Broker Profile Card (Image 3 Signature) -->
+      <div class="broker-profile-box" style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:18px; overflow:hidden; box-shadow:0 4px 14px rgba(10,37,64,0.06); text-align:center;">
+        <div style="background:#084582; height:70px; position:relative; display:flex; justify-content:center;">
+          <div style="position:absolute; bottom:-34px; width:68px; height:68px; border-radius:50%; border:3px solid #FFFFFF; overflow:hidden; background:#FFFFFF; box-shadow:0 4px 10px rgba(0,0,0,0.15);">
+            <img src="/images/r-bakshi.jpeg" alt="R Bakshi" style="width:100%; height:100%; object-fit:cover;">
+          </div>
+        </div>
+        <div style="padding:42px 16px 16px;">
+          <h4 style="font-size:1.05rem; font-weight:900; color:#0A2540; margin:0 0 2px; text-transform:uppercase; letter-spacing:0.02em;">R BAKSHI</h4>
+          <div style="font-size:0.7rem; font-weight:800; color:#00876C; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.04em;">
+            PRINCIPAL FINANCE BROKER (MFAA ACCREDITED)
+          </div>
+          <p style="font-size:0.76rem; color:#475569; line-height:1.42; margin:0 0 10px; font-weight:500;">
+            Specializing in Melbourne residential property finance, self-employed lending, and wealth restructuring across 30+ accredited lenders.
+          </p>
+          <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:7px 9px; font-size:0.7rem; color:#334155; text-align:left; margin-bottom:12px; line-height:1.35;">
+            <div><strong>CRN:</strong> 538522</div>
+            <div><strong>Aggregator:</strong> National Mortgage Brokers (nMB)</div>
+            <div><strong>Panel:</strong> 30+ Accredited Lenders</div>
+          </div>
+          <a href="tel:1300050099" style="display:flex; align-items:center; justify-content:center; gap:6px; background:#00876C; color:#FFFFFF !important; font-weight:800; padding:8px 0; border-radius:8px; text-decoration:none; font-size:0.82rem; margin-bottom:6px; box-shadow:0 2px 6px rgba(0,135,108,0.2);">
+            <span>📞 Call 1300 050 099</span>
+          </a>
+          <a href="/#contact" style="display:flex; align-items:center; justify-content:center; background:#0A2540; color:#FFFFFF !important; font-weight:800; padding:7px 0; border-radius:8px; text-decoration:none; font-size:0.8rem;">
+            Book Appointment
+          </a>
+        </div>
+      </div>
+
+      <!-- 2. Highlights Widget (Solid Crimson Header with White Text) -->
       <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:18px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,0.03);">
         <div style="background:#990000; padding:10px 16px; color:#FFFFFF !important; display:flex; justify-content:space-between; align-items:center;">
           <h3 style="font-size:0.78rem; font-weight:900; text-transform:uppercase; margin:0; letter-spacing:0.04em; color:#FFFFFF !important;">Highlights</h3>
@@ -394,18 +425,7 @@ def render_image3_html(slug, title, category, badge, date_str, read_time, author
         </div>
       </div>
 
-      <!-- 2. Related Articles / News (Image 3 signature) -->
-      <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:18px; padding:16px; box-shadow:0 4px 12px rgba(0,0,0,0.03);">
-        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #F1F5F9; padding-bottom:8px; margin-bottom:10px;">
-          <span style="font-size:0.75rem; font-weight:900; color:#0F172A; text-transform:uppercase; letter-spacing:0.04em;">Related Articles / News</span>
-          <span style="width:6px; height:6px; border-radius:50%; background:#10B981;"></span>
-        </div>
-        <div style="display:flex; flex-direction:column; gap:8px;">
-          {related_html}
-        </div>
-      </div>
-
-      <!-- 3. Direct Broker Support Card (Image 2 & 3 signature with Subtitle & Call Button) -->
+      <!-- 3. Advisory Callout (Image 2 & 3 signature with Subtitle & Call Button) -->
       <div style="background:linear-gradient(135deg, #084582 0%, #1D4ED8 100%); border-radius:18px; padding:18px; color:#FFFFFF !important; box-shadow:0 6px 20px rgba(8, 69, 130, 0.25); text-align:center;">
         <span style="font-size:0.72rem; text-transform:uppercase; letter-spacing:0.08em; color:#93C5FD !important; font-weight:800; display:block; margin-bottom:6px;">EZ MORTGAGE ADVISORY</span>
         <h4 style="font-size:1.05rem; font-weight:900; margin:0 0 6px 0; color:#FFFFFF !important; line-height:1.3;">
@@ -417,6 +437,17 @@ def render_image3_html(slug, title, category, badge, date_str, read_time, author
         <a href="tel:1300050099" style="display:flex; align-items:center; justify-content:center; gap:6px; width:100%; background:#FFFFFF; color:#084582 !important; padding:10px 0; border-radius:10px; font-weight:900; font-size:0.84rem; text-decoration:none; box-sizing:border-box; box-shadow:0 4px 14px rgba(0,0,0,0.15);">
           <span>📞 Call 1300 050 099</span>
         </a>
+      </div>
+
+      <!-- 4. Related Articles / News (Image 3 signature) -->
+      <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:18px; padding:16px; box-shadow:0 4px 12px rgba(0,0,0,0.03);">
+        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #F1F5F9; padding-bottom:8px; margin-bottom:10px;">
+          <span style="font-size:0.75rem; font-weight:900; color:#0F172A; text-transform:uppercase; letter-spacing:0.04em;">Related Articles / News</span>
+          <span style="width:6px; height:6px; border-radius:50%; background:#10B981;"></span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          {related_html}
+        </div>
       </div>
 
     </aside>
@@ -504,7 +535,7 @@ def parse_html_regex(filepath):
 
 def convert_all_ezmortgage_articles():
     blog_dir = os.path.join(EZM_DIR, "pages", "blog")
-    files = glob.glob(os.path.join(blog_dir, "*.html"))
+    files = [f for f in glob.glob(os.path.join(blog_dir, "*.html")) if not f.endswith("index.html")]
     print(f"🔄 Scanning & Converting {len(files)} blog articles in {blog_dir} to 100% Image 3 Standard...")
     
     parsed_posts = []
@@ -543,14 +574,14 @@ def update_blog_hub_page():
     with open(blog_hub_path, "r", encoding="utf-8") as f:
         content = f.read()
         
-    # Update Hero Background to include sharp background image
+    # Update Hero Background to Melbourne Bourke Street background
     content = re.sub(
         r'\.blog-page-hero\s*\{[^}]*\}',
         """.blog-page-hero {
       position: relative;
-      background: linear-gradient(135deg, rgba(10, 37, 64, 0.88) 0%, rgba(15, 23, 42, 0.94) 100%), url('/images/headers/marquee-background-1600x500-1.webp') center/cover no-repeat;
+      background: linear-gradient(135deg, rgba(10, 37, 64, 0.86) 0%, rgba(15, 23, 42, 0.92) 100%), url('/images/melbourne-bourke-street-header.webp') center/cover no-repeat;
       color: #ffffff !important;
-      padding: 52px 0 42px;
+      padding: 56px 0 44px;
       text-align: center;
       overflow: hidden;
     }""",
@@ -577,16 +608,21 @@ def update_blog_hub_page():
     
     with open(blog_hub_path, "w", encoding="utf-8") as f:
         f.write(content)
-    print("✅ Successfully updated pages/blog.html hero background, logo size, and Card 2 text!")
+        
+    # Copy to pages/blog/index.html so https://ezmortgagebroker.com.au/pages/blog works identically!
+    blog_dir_index = os.path.join(EZM_DIR, "pages", "blog", "index.html")
+    shutil.copyfile(blog_hub_path, blog_dir_index)
+    
+    print("✅ Successfully updated pages/blog.html and created pages/blog/index.html!")
 
 if __name__ == "__main__":
     convert_all_ezmortgage_articles()
     update_blog_hub_page()
     
     # Commit and Push EZ Mortgage Broker
-    os.system(f'cd "{EZM_DIR}" && git add pages/blog/ pages/blog.html && git commit -m "Fix logo size (small), add background image to hero, and restore Card 2 text across all articles" && git push origin main')
+    os.system(f'cd "{EZM_DIR}" && git add images/ pages/blog/ pages/blog.html pages/blog/index.html && git commit -m "Add Image 2 Melbourne street header bg, Image 3 R BAKSHI broker card & Need Borrowing Power card to ALL articles" && git push origin main')
     
     # Commit and Push Blogs-Content
-    os.system(f'cd "{BLOGS_DIR}" && git add . && git commit -m "Deploy Updated Image 3 Converter with Logo & Card 2 Fixes" && git push origin main')
+    os.system(f'cd "{BLOGS_DIR}" && git add . && git commit -m "Deploy Complete Image 2 & 3 Standard Converter" && git push origin main')
     
     print("🚀 ALL UPDATES PUSHED LIVE TO GITHUB MAIN!")
