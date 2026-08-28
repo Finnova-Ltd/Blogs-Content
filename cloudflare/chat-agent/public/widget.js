@@ -374,18 +374,44 @@
       };
     });
 
-    // Speak with Piper Button (Audio unmute or speech prompt)
+    // Speak with Friday Button (Authentic ElevenLabs synthesized voice playback)
+    let brandAudioKey = 'ezmortgage';
+    if (isFinnova) brandAudioKey = 'finnova';
+    else if (isProCrm) brandAudioKey = 'procrm';
+    else if (isEzConsultants) brandAudioKey = 'ezconsultants';
+
+    let fridayAudioPlayer = null;
     const speakBtn = document.getElementById('piperSpeakBtn');
     if (speakBtn) {
       speakBtn.onclick = () => {
         const video = document.getElementById('piper-hero-video');
         if (video) {
-          video.muted = false;
-          video.currentTime = 0;
+          video.muted = true; // Always keep video muted so placeholder audio is never heard
           video.play().catch(() => {});
-          speakBtn.innerHTML = '🔊 Listening to Friday';
-          setTimeout(() => { speakBtn.innerHTML = '🎙️ Speak with Friday'; }, 4000);
         }
+
+        if (fridayAudioPlayer && !fridayAudioPlayer.paused) {
+          fridayAudioPlayer.pause();
+          fridayAudioPlayer.currentTime = 0;
+          speakBtn.innerHTML = '🎙️ Speak with Friday';
+          return;
+        }
+
+        const primarySrc = `/assets/audio/friday_greeting_${brandAudioKey}.mp3`;
+        const cdnSrc = `https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/audio/friday_greeting_${brandAudioKey}.mp3`;
+
+        fridayAudioPlayer = new Audio(primarySrc);
+        fridayAudioPlayer.onerror = () => {
+          fridayAudioPlayer = new Audio(cdnSrc);
+          fridayAudioPlayer.play();
+        };
+
+        speakBtn.innerHTML = '🔊 Friday is speaking...';
+        fridayAudioPlayer.play().catch(e => console.log('Audio autoplay note:', e));
+
+        fridayAudioPlayer.onended = () => {
+          speakBtn.innerHTML = '🎙️ Speak with Friday';
+        };
       };
     }
 
