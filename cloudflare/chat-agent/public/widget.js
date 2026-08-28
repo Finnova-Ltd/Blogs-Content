@@ -278,6 +278,11 @@
       brandCtaText = "Request Cyber Advisory Call &rarr;";
     }
 
+    let brandKey = "ezmortgage";
+    if (isFinnova) brandKey = "finnova";
+    else if (isProCrm) brandKey = "procrm";
+    else if (isEzConsultants) brandKey = "ezconsultants";
+
     const win = document.createElement('div');
     win.id = 'omni-chat-window';
     win.innerHTML = `
@@ -295,6 +300,7 @@
       <div class="piper-hero-card">
         <div class="piper-hero-video-stage">
           <video id="piper-hero-video" playsinline loop muted preload="auto" poster="/images/friday_avatar.jpeg">
+            <source src="/assets/videos/friday_avatar_${brandKey}.mp4" type="video/mp4">
             <source src="/assets/videos/friday_avatar.mp4" type="video/mp4">
             <source src="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar.mp4" type="video/mp4">
           </video>
