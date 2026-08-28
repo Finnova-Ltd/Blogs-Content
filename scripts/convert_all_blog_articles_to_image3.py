@@ -368,8 +368,8 @@ def render_image3_html(slug, title, category, badge, date_str, read_time, author
 
     </div>
 
-    <!-- RIGHT COLUMN: Sticky Sidebar (Col 2 - 4 cols / 32% - Image 3 Exact Standard) -->
-    <aside style="position:sticky; top:96px; display:flex; flex-direction:column; gap:18px;">
+    <!-- RIGHT COLUMN: Sticky Fixed Sidebar (Col 2 - 4 cols / 32% - Image 3 Exact Standard) -->
+    <aside style="position:sticky; top:96px; max-height:calc(100vh - 110px); overflow-y:auto; overscroll-behavior:contain; scrollbar-width:thin; padding-right:2px; display:flex; flex-direction:column; gap:18px;">
       
       <!-- 1. R BAKSHI Broker Profile Card (Image 3 Signature with Melbourne Streetscape Cover Header) -->
       <div class="broker-profile-box" style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:18px; overflow:hidden; box-shadow:0 4px 14px rgba(10,37,64,0.06); text-align:center;">
