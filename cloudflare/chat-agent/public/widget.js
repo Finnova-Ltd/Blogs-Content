@@ -179,35 +179,54 @@
 
     const style = document.createElement('style');
     style.innerHTML = `
-      #omni-chat-bubble { position: fixed; bottom: 24px; right: 24px; width: 60px; height: 60px; background: ${primaryColor}; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 8px 24px rgba(0,82,255,0.35); z-index: 999999; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; transition: transform 0.2s; }
+      #omni-chat-bubble { position: fixed; bottom: 24px; right: 24px; width: 60px; height: 60px; background: ${primaryColor}; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 8px 24px rgba(0,82,255,0.35); z-index: 999999; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; transition: transform 0.2s; animation: omniPulse 3s infinite; }
       #omni-chat-bubble:hover { transform: scale(1.06); }
       #omni-chat-bubble svg { width: 28px; height: 28px; fill: #fff; }
-      #omni-chat-window { position: fixed; bottom: 96px; right: 24px; width: 390px; height: 560px; max-width: calc(100vw - 32px); max-height: calc(100vh - 110px); background: ${winBg} !important; color: ${winText} !important; border-radius: 16px; box-shadow: 0 12px 35px -5px rgba(0,0,0,0.15); display: none; flex-direction: column; overflow: hidden; z-index: 999999; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; border: 1px solid ${winBorder}; }
-      #omni-chat-header { background: ${primaryColor} !important; color: #ffffff !important; padding: 14px 16px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
-      #omni-chat-header span.title { font-size: 15px; color: #ffffff; }
-      #omni-chat-header span.sub { font-size: 11px; color: rgba(255,255,255,0.8); font-weight: normal; display: block; }
+      @keyframes omniPulse { 0%, 100% { box-shadow: 0 8px 24px rgba(0,82,255,0.35); } 50% { box-shadow: 0 0 0 8px rgba(0,82,255,0.18), 0 12px 28px rgba(0,82,255,0.4); } }
+      #omni-chat-window { position: fixed; bottom: 96px; right: 24px; width: 410px; height: 620px; max-width: calc(100vw - 32px); max-height: calc(100vh - 110px); background: ${winBg} !important; color: ${winText} !important; border-radius: 20px; box-shadow: 0 20px 45px -5px rgba(0,0,0,0.22); display: none; flex-direction: column; overflow: hidden; z-index: 999999; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; border: 1px solid ${winBorder}; }
+      #omni-chat-header { background: #ffffff !important; color: #0f172a !important; padding: 12px 16px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid ${winBorder}; }
+      #omni-chat-header .title-wrap { display: flex; align-items: center; gap: 8px; }
+      #omni-chat-header span.title { font-size: 15px; font-weight: 800; color: #0A2540; }
+      #omni-chat-header span.badge { font-size: 11px; color: #64748b; font-weight: 600; background: #F1F5F9; padding: 2px 8px; border-radius: 999px; }
       .omni-hdr-actions { display: flex; gap: 8px; align-items: center; }
-      .omni-btn-endchat { background: rgba(255,255,255,0.2); color: #fff; border: none; padding: 4px 8px; border-radius: 6px; font-size: 11px; cursor: pointer; font-weight: 600; }
-      .omni-btn-endchat:hover { background: rgba(255,255,255,0.3); }
-      #omni-chat-messages { flex: 1; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; font-size: 14px; background: ${msgAreaBg} !important; }
-      .omni-msg { padding: 12px 14px; border-radius: 12px; max-width: 88%; word-break: break-word; line-height: 1.5; }
+      .omni-btn-endchat { background: #F1F5F9; color: #475569; border: 1px solid #E2E8F0; padding: 4px 8px; border-radius: 6px; font-size: 11px; cursor: pointer; font-weight: 600; }
+      .omni-btn-endchat:hover { background: #E2E8F0; color: #0f172a; }
+      
+      /* Salesforce Piper Style Hero Card */
+      .piper-hero-card { margin: 12px 14px 4px; border-radius: 16px; overflow: hidden; background: linear-gradient(180deg, #E0F2FE 0%, #FFFFFF 100%); border: 1px solid #BAE6FD; position: relative; box-shadow: 0 4px 14px rgba(0, 82, 255, 0.06); }
+      .piper-hero-video-stage { position: relative; width: 100%; aspect-ratio: 16/9; background: #0A2540; overflow: hidden; }
+      .piper-hero-video-stage video { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .piper-speak-badge-btn { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); background: #0052FF; color: #ffffff; border: none; padding: 6px 14px; border-radius: 999px; font-size: 12px; font-weight: 700; display: flex; align-items: center; gap: 6px; cursor: pointer; box-shadow: 0 4px 12px rgba(0, 82, 255, 0.4); z-index: 5; transition: all 0.2s; }
+      .piper-speak-badge-btn:hover { background: #003ECC; transform: translateX(-50%) scale(1.04); }
+      .piper-hero-intro { padding: 12px 14px; font-size: 13.5px; color: #1E293B; line-height: 1.45; font-weight: 500; }
+      .piper-prompts-box { margin: 0 14px 10px; padding: 10px 12px; background: #F8FAFC; border-radius: 12px; border: 1px solid #E2E8F0; font-size: 12px; }
+      .piper-prompts-title { font-weight: 700; color: #64748B; margin-bottom: 6px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; }
+      .piper-prompt-item { padding: 5px 8px; margin: 4px 0; background: #ffffff; border: 1px solid #CBD5E1; border-radius: 6px; color: #0A2540; font-weight: 600; cursor: pointer; transition: all 0.15s; display: flex; align-items: center; justify-content: space-between; }
+      .piper-prompt-item:hover { background: #EFF6FF; border-color: #93C5FD; color: #0052FF; transform: translateX(2px); }
+      .piper-cta-row { margin: 0 14px 12px; }
+      .piper-connect-btn { width: 100%; background: #0052FF; color: #ffffff; border: none; padding: 9px 14px; border-radius: 8px; font-weight: 700; font-size: 13px; cursor: pointer; transition: background 0.2s; }
+      .piper-connect-btn:hover { background: #003ECC; }
+
+      #omni-chat-messages { flex: 1; padding: 12px 14px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; font-size: 13.5px; background: ${msgAreaBg} !important; }
+      .omni-msg { padding: 10px 14px; border-radius: 12px; max-width: 88%; word-break: break-word; line-height: 1.5; }
       .omni-msg.user { background: ${primaryColor} !important; color: #ffffff !important; align-self: flex-end; border-bottom-right-radius: 3px; }
       .omni-msg.assistant { background: ${assistantBg} !important; color: ${assistantText} !important; align-self: flex-start; border-bottom-left-radius: 3px; border: 1px solid ${assistantBorder}; }
       .omni-msg.loading { color: #64748b; font-style: italic; }
       .omni-msg-actions { display: flex; gap: 8px; margin-top: 6px; font-size: 12px; opacity: 0.8; }
       .omni-action-btn { cursor: pointer; user-select: none; transition: transform 0.1s; }
       .omni-action-btn:hover { transform: scale(1.2); }
-      .omni-quote-btn { cursor: pointer; font-size: 11px; color: #64748b; margin-left: 6px; }
-      .omni-lead-card { background: rgba(0, 82, 255, 0.05); border: 1px solid ${primaryColor}; border-radius: 12px; padding: 12px; font-size: 13px; margin: 8px 0; }
-      .omni-lead-card input { width: 100%; box-sizing: border-box; background: ${inputBg}; border: 1px solid ${inputBorder}; border-radius: 6px; padding: 6px 10px; color: ${inputText}; margin-bottom: 6px; font-size: 13px; }
-      .omni-lead-card button { background: ${primaryColor}; color: #fff; border: none; padding: 8px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%; }
+      
       #omni-image-preview-bar { display: none; padding: 6px 12px; background: ${inputContainerBg}; border-top: 1px solid ${winBorder}; align-items: center; gap: 8px; font-size: 12px; }
       #omni-image-preview-bar img { height: 36px; border-radius: 4px; border: 1px solid ${inputBorder}; }
       #omni-chat-input-container { display: flex; border-top: 1px solid ${winBorder}; padding: 10px 12px; background: ${inputContainerBg} !important; gap: 6px; align-items: center; }
-      #omni-chat-input { flex: 1; background: ${inputBg} !important; border: 1px solid ${inputBorder} !important; border-radius: 8px; padding: 10px 12px; outline: none; color: ${inputText} !important; font-size: 14px; }
+      #omni-chat-input { flex: 1; background: ${inputBg} !important; border: 1px solid ${inputBorder} !important; border-radius: 8px; padding: 10px 12px; outline: none; color: ${inputText} !important; font-size: 13.5px; }
       #omni-chat-input:focus { border-color: ${primaryColor} !important; }
       .omni-attach-btn { background: transparent; border: none; color: #64748b; font-size: 18px; cursor: pointer; padding: 4px; }
-      #omni-chat-send { background: ${primaryColor} !important; color: #ffffff !important; border: none; border-radius: 8px; padding: 10px 16px; cursor: pointer; font-weight: 600; font-size: 14px; }
+      .omni-mic-btn { background: transparent; border: none; color: #64748b; font-size: 16px; cursor: pointer; padding: 4px; }
+      .omni-mic-btn.active { color: #ef4444; animation: omniMicPulse 1s infinite; }
+      @keyframes omniMicPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
+      #omni-chat-send { background: ${primaryColor} !important; color: #ffffff !important; border: none; border-radius: 8px; padding: 10px 14px; cursor: pointer; font-weight: 700; font-size: 13.5px; }
+      .omni-disclaimer-footer { padding: 6px 12px; font-size: 10.5px; color: #94A3B8; text-align: center; background: ${inputContainerBg}; border-top: 1px solid rgba(226,232,240,0.5); }
     `;
     document.head.appendChild(style);
 
@@ -220,17 +239,41 @@
     win.id = 'omni-chat-window';
     win.innerHTML = `
       <div id="omni-chat-header">
-        <div>
-          <span class="title">${customTitle}</span>
-          <span class="sub">Category: ${config.category || "GENERAL"}</span>
+        <div class="title-wrap">
+          <span class="title">Piper</span>
+          <span class="badge">AI Mortgage Specialist</span>
         </div>
         <div class="omni-hdr-actions">
-          <button class="omni-btn-endchat" id="omniEndChat">✉️ End & Email</button>
-          <span id="omni-close" style="cursor:pointer; font-size: 18px; color: rgba(255,255,255,0.8);">✕</span>
+          <button class="omni-btn-endchat" id="omniEndChat">✉️ Email Chat</button>
+          <span id="omni-close" style="cursor:pointer; font-size: 18px; color: #64748b; padding: 2px 6px;">✕</span>
         </div>
       </div>
+
+      <div class="piper-hero-card">
+        <div class="piper-hero-video-stage">
+          <video id="piper-hero-video" playsinline loop muted preload="metadata" poster="/images/ez-mortgage-broker.webp">
+            <source src="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4" type="video/mp4">
+          </video>
+          <button type="button" class="piper-speak-badge-btn" id="piperSpeakBtn">
+            🎙️ Speak with Piper
+          </button>
+        </div>
+        <div class="piper-hero-intro">
+          Hi, I'm Piper from <strong>EZ Mortgage Broker</strong>! Ready to see how our AI compares 50+ lenders to unlock lower rates & boost borrowing power?
+        </div>
+        <div class="piper-prompts-box">
+          <div class="piper-prompts-title">Ask me things like:</div>
+          <div class="piper-prompt-item" data-prompt="How much can I borrow on my salary?">Calculate my borrowing power <span>&rarr;</span></div>
+          <div class="piper-prompt-item" data-prompt="Compare lowest 2-year fixed rates across Australian banks">Compare 50+ bank rates <span>&rarr;</span></div>
+          <div class="piper-prompt-item" data-prompt="What are the current RBA interest rate forecasts?">Latest RBA cash rate update <span>&rarr;</span></div>
+        </div>
+        <div class="piper-cta-row">
+          <button type="button" class="piper-connect-btn" id="piperConnectRep">Connect me with a licensed broker &rarr;</button>
+        </div>
+      </div>
+
       <div id="omni-chat-messages">
-        <div class="omni-msg assistant">${parseMarkdown(welcomeMsg, primaryColor)}</div>
+        <!-- Messages stream here -->
       </div>
       <div id="omni-image-preview-bar">
         <img id="omniPreviewImg" src="" alt="preview" />
@@ -240,19 +283,106 @@
       <div id="omni-chat-input-container">
         <input type="file" id="omniFileInput" accept="image/*" style="display:none;" />
         ${config.features?.imageUpload !== false ? '<button class="omni-attach-btn" id="omniAttachBtn" title="Attach/Paste Image">📎</button>' : ''}
-        <input type="text" id="omni-chat-input" placeholder="Ask a question..." />
-        <button id="omni-chat-send">Send</button>
+        <button class="omni-mic-btn" id="omniMicBtn" title="Voice Input">🎙️</button>
+        <input type="text" id="omni-chat-input" placeholder="Ask Piper a question..." />
+        <button id="omni-chat-send">&rarr;</button>
+      </div>
+      <div class="omni-disclaimer-footer">
+        Piper is an AI mortgage assistant and can make mistakes. Please verify loan specifics with our accredited broker team.
       </div>
     `;
     appendToBody(win);
+
+    // 10-Second Salesforce Piper Auto-Open Timer
+    setTimeout(() => {
+      if (!sessionStorage.getItem('piper_chat_dismissed')) {
+        win.style.display = 'flex';
+        const video = document.getElementById('piper-hero-video');
+        if (video) video.play().catch(() => {});
+      }
+    }, 10000);
 
     if (getLeadScoreFromCookie() >= 35 && !window.__OMNI_PROACTIVE_TRIGGERED__) {
       window.__OMNI_PROACTIVE_TRIGGERED__ = true;
       win.style.display = 'flex';
     }
 
-    bubble.onclick = () => win.style.display = win.style.display === 'flex' ? 'none' : 'flex';
-    document.getElementById('omni-close').onclick = () => win.style.display = 'none';
+    bubble.onclick = () => {
+      const isOpening = win.style.display !== 'flex';
+      win.style.display = isOpening ? 'flex' : 'none';
+      if (isOpening) {
+        const video = document.getElementById('piper-hero-video');
+        if (video) video.play().catch(() => {});
+      }
+    };
+    document.getElementById('omni-close').onclick = () => {
+      win.style.display = 'none';
+      sessionStorage.setItem('piper_chat_dismissed', 'true');
+    };
+
+    // Piper Interactive Prompt Pills
+    document.querySelectorAll('.piper-prompt-item').forEach(item => {
+      item.onclick = () => {
+        const promptText = item.getAttribute('data-prompt');
+        const input = document.getElementById('omni-chat-input');
+        if (input && promptText) {
+          input.value = promptText;
+          document.getElementById('omni-chat-send').click();
+        }
+      };
+    });
+
+    // Speak with Piper Button (Audio unmute or speech prompt)
+    const speakBtn = document.getElementById('piperSpeakBtn');
+    if (speakBtn) {
+      speakBtn.onclick = () => {
+        const video = document.getElementById('piper-hero-video');
+        if (video) {
+          video.muted = false;
+          video.currentTime = 0;
+          video.play().catch(() => {});
+          speakBtn.innerHTML = '🔊 Listening to Piper';
+          setTimeout(() => { speakBtn.innerHTML = '🎙️ Speak with Piper'; }, 4000);
+        }
+      };
+    }
+
+    // Connect with Broker Button
+    const connectBtn = document.getElementById('piperConnectRep');
+    if (connectBtn) {
+      connectBtn.onclick = () => {
+        const input = document.getElementById('omni-chat-input');
+        if (input) {
+          input.value = "I'd like to connect directly with a licensed mortgage broker for a consultation.";
+          document.getElementById('omni-chat-send').click();
+        }
+      };
+    }
+
+    // Voice Input via Web Speech Recognition API
+    const micBtn = document.getElementById('omniMicBtn');
+    if (micBtn && ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const recognition = new SpeechRecognition();
+      recognition.continuous = false;
+      recognition.interimResults = false;
+      recognition.lang = 'en-AU';
+
+      recognition.onstart = () => { micBtn.classList.add('active'); };
+      recognition.onend = () => { micBtn.classList.remove('active'); };
+      recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        const input = document.getElementById('omni-chat-input');
+        if (input && transcript) {
+          input.value = transcript;
+          document.getElementById('omni-chat-send').click();
+        }
+      };
+
+      micBtn.onclick = () => {
+        try { recognition.start(); } catch (e) { recognition.stop(); }
+      };
+    }
 
     const fileInput = document.getElementById('omniFileInput');
     const attachBtn = document.getElementById('omniAttachBtn');
