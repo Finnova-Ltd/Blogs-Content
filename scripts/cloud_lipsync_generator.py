@@ -13,16 +13,16 @@ import subprocess
 import time
 
 def process_brand(brand_key, base_dir):
-    print(f"🎬 Processing Cloud Video with Background & Logo for: {brand_key}")
+    print(f"🎬 Processing Dynamic Cloud Motion Video for: {brand_key}")
+    avatar_video = os.path.join(base_dir, "assets", "videos", "friday_avatar.mp4")
     avatar_path = os.path.join(base_dir, "images", "friday_avatar.jpeg")
-    bg_path = os.path.join(base_dir, "assets", "backgrounds", f"{brand_key}_bg.jpg")
     audio_path = os.path.join(base_dir, "assets", "audio", f"friday_greeting_{brand_key}.mp3")
     output_dir = os.path.join(base_dir, "assets", "videos")
     os.makedirs(output_dir, exist_ok=True)
     out_video_path = os.path.join(output_dir, f"friday_avatar_{brand_key}.mp4")
 
-    if not os.path.exists(avatar_path):
-        print(f"❌ Avatar image missing: {avatar_path}")
+    if not os.path.exists(avatar_video) and not os.path.exists(avatar_path):
+        print(f"❌ Avatar video/image missing: {avatar_video}")
         return False
     if not os.path.exists(audio_path):
         print(f"❌ Audio file missing: {audio_path}")
@@ -36,26 +36,37 @@ def process_brand(brand_key, base_dir):
     }
     badge_label = brand_titles.get(brand_key, brand_key.upper())
 
-    # Build composite image with tailored background & brand badge if bg exists
-    active_image = avatar_path
-    if os.path.exists(bg_path):
-        active_image = bg_path
-
     try:
-        # Generate video with audio and brand watermark badge
-        cmd = [
-            "ffmpeg", "-y",
-            "-loop", "1", "-i", active_image,
-            "-i", audio_path,
-            "-vf", f"drawtext=text='{badge_label} • FRIDAY AI':x=30:y=30:fontsize=22:fontcolor=white:box=1:boxcolor=black@0.6:boxborderw=10",
-            "-c:v", "libx264", "-tune", "stillimage",
-            "-c:a", "aac", "-b:a", "192k",
-            "-pix_fmt", "yuv420p",
-            "-shortest",
-            out_video_path
-        ]
+        if os.path.exists(avatar_video):
+            # Dynamic Video Mode: Stream loop the moving MP4 with natural blinking & head movement
+            print(f"  -> Using MOVING Video Source: {avatar_video}")
+            cmd = [
+                "ffmpeg", "-y",
+                "-stream_loop", "-1", "-i", avatar_video,
+                "-i", audio_path,
+                "-vf", f"drawtext=text='{badge_label} • FRIDAY AI':x=30:y=30:fontsize=22:fontcolor=white:box=1:boxcolor=black@0.6:boxborderw=10",
+                "-c:v", "libx264", "-preset", "fast", "-crf", "20",
+                "-c:a", "aac", "-b:a", "192k",
+                "-pix_fmt", "yuv420p",
+                "-shortest",
+                out_video_path
+            ]
+        else:
+            # Fallback still image
+            cmd = [
+                "ffmpeg", "-y",
+                "-loop", "1", "-i", avatar_path,
+                "-i", audio_path,
+                "-vf", f"drawtext=text='{badge_label} • FRIDAY AI':x=30:y=30:fontsize=22:fontcolor=white:box=1:boxcolor=black@0.6:boxborderw=10",
+                "-c:v", "libx264", "-tune", "stillimage",
+                "-c:a", "aac", "-b:a", "192k",
+                "-pix_fmt", "yuv420p",
+                "-shortest",
+                out_video_path
+            ]
+
         subprocess.run(cmd, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        print(f"✅ Successfully generated Cloud Video with Background & Badge: {out_video_path}")
+        print(f"✅ Successfully generated Dynamic Moving Video: {out_video_path}")
         return True
     except Exception as e:
         print(f"❌ Error generating video for {brand_key}: {e}")
