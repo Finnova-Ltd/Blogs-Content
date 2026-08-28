@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """
-Convert ALL 1,026+ Blog Articles in ezmortgagebroker to 100% Image 3 Standard
-+ Run Fresh 29 August 2026 Morning Publisher
+Convert ALL 1,137+ Blog Articles in ezmortgagebroker to 100% Image 3 Standard
++ Fix Header Logo Size (Small & Sleek)
++ High-Visibility Background Image on Hero Banner
++ Need Borrowing Power Advice Subtitle & Styling
++ Update pages/blog.html Hero & Sidebar
 =============================================================================
-Uses Pure Python Standard Library (re, html, json, glob) for maximum speed & zero external dependencies.
 """
 
 import os
@@ -67,36 +69,20 @@ def render_image3_html(slug, title, category, badge, date_str, read_time, author
     body {{ font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #F8FAFC; color: #1E293B; margin: 0; padding: 0; }}
     .font-editorial {{ font-family: 'Newsreader', Georgia, serif; }}
     
-    /* Top Full-Bleed Hero Header */
+    /* Top Full-Bleed Hero Header with Visible Architectural Photo & Navy Gradient Scrim */
     .article-hero-section {{
       position: relative;
-      background-color: #084582;
+      background: linear-gradient(135deg, rgba(6, 40, 77, 0.82) 0%, rgba(8, 69, 130, 0.65) 50%, rgba(6, 53, 101, 0.88) 100%), url('{image_url}') center/cover no-repeat;
       color: #FFFFFF !important;
       overflow: hidden;
       border-bottom: 1px solid #063565;
-    }}
-    .article-hero-bg-img {{
-      position: absolute;
-      inset: 0;
-      background-image: url('{image_url}');
-      background-size: cover;
-      background-position: center;
-      opacity: 0.25;
-      transform: scale(1.02);
-      pointer-events: none;
-    }}
-    .article-hero-scrim {{
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(6, 40, 77, 0.88) 0%, rgba(8, 69, 130, 0.72) 50%, rgba(6, 53, 101, 0.92) 100%);
-      pointer-events: none;
     }}
     .article-hero-inner {{
       position: relative;
       z-index: 2;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 40px 20px 48px;
+      padding: 44px 20px 52px;
     }}
     .article-hero-title {{
       font-family: 'Newsreader', Georgia, serif;
@@ -106,7 +92,7 @@ def render_image3_html(slug, title, category, badge, date_str, read_time, author
       line-height: 1.22;
       margin: 16px 0 12px 0;
       max-width: 1050px;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+      text-shadow: 0 2px 8px rgba(0,0,0,0.45);
     }}
     .article-hero-subtitle {{
       font-family: 'Newsreader', Georgia, serif;
@@ -116,6 +102,7 @@ def render_image3_html(slug, title, category, badge, date_str, read_time, author
       line-height: 1.6;
       max-width: 950px;
       margin: 0 0 20px 0;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.3);
     }}
     
     /* Layout Grid */
@@ -158,7 +145,7 @@ def render_image3_html(slug, title, category, badge, date_str, read_time, author
 </head>
 <body>
 
-  <!-- Top Header Navigation -->
+  <!-- Top Header Navigation (Small & Sleek Logo) -->
   <header class="site-header" style="background:#ffffff; border-bottom:1px solid #E2E8F0;">
     <div class="header-top" style="background:#084582; padding:6px 0; color:#ffffff; font-size:0.8rem; font-weight:700;">
       <div style="max-width:1200px; margin:0 auto; padding:0 20px; display:flex; justify-content:space-between; align-items:center;">
@@ -173,8 +160,8 @@ def render_image3_html(slug, title, category, badge, date_str, read_time, author
         </div>
       </div>
     </div>
-    <div style="max-width:1200px; margin:0 auto; padding:12px 20px; display:flex; justify-content:space-between; align-items:center;">
-      <a href="/"><img src="/images/ez-mortgage-broker.webp" alt="EZ Mortgage Broker" style="max-width:190px; height:auto;"></a>
+    <div style="max-width:1200px; margin:0 auto; padding:10px 20px; display:flex; justify-content:space-between; align-items:center;">
+      <a href="/"><img src="/images/ez-mortgage-broker.webp" alt="EZ Mortgage Broker" style="height:40px; width:auto; max-width:160px; object-fit:contain; display:block;"></a>
       <nav style="display:flex; gap:22px; font-size:0.9rem; font-weight:700;">
         <a href="/" style="color:#0A2540; text-decoration:none;">Home</a>
         <a href="/#loan-solutions" style="color:#0A2540; text-decoration:none;">Home Loans</a>
@@ -185,8 +172,8 @@ def render_image3_html(slug, title, category, badge, date_str, read_time, author
         <a href="/#contact" style="color:#0A2540; text-decoration:none;">Contact</a>
       </nav>
       <div style="display:flex; gap:10px;">
-        <a href="tel:1300050099" style="padding:8px 16px; border:1.5px solid #0A2540; color:#0A2540; border-radius:6px; font-weight:700; text-decoration:none; font-size:0.85rem;">Call Us</a>
-        <a href="/#contact" style="padding:8px 18px; background:#1D4ED8; color:#ffffff; border-radius:6px; font-weight:700; text-decoration:none; font-size:0.85rem;">Book Consult</a>
+        <a href="tel:1300050099" style="padding:7px 15px; border:1.5px solid #0A2540; color:#0A2540; border-radius:6px; font-weight:700; text-decoration:none; font-size:0.82rem;">Call Us</a>
+        <a href="/#contact" style="padding:7px 16px; background:#1D4ED8; color:#ffffff; border-radius:6px; font-weight:700; text-decoration:none; font-size:0.82rem;">Book Consult</a>
       </div>
     </div>
   </header>
@@ -195,8 +182,6 @@ def render_image3_html(slug, title, category, badge, date_str, read_time, author
        1. FULL-BLEED HERO BANNER (EXACT IMAGE 3 REPLICATION)
        ========================================================================= -->
   <section class="article-hero-section">
-    <div class="article-hero-bg-img"></div>
-    <div class="article-hero-scrim"></div>
     <div class="article-hero-inner">
       
       <!-- Breadcrumbs -->
@@ -384,7 +369,7 @@ def render_image3_html(slug, title, category, badge, date_str, read_time, author
     <!-- RIGHT COLUMN: Sticky Sidebar (Col 2 - 4 cols / 32% - Exact Image 3 Replication) -->
     <aside style="position:sticky; top:96px; display:flex; flex-direction:column; gap:18px;">
       
-      <!-- 1. Highlights Widget (Solid Crimson Header) -->
+      <!-- 1. Highlights Widget (Solid Crimson Header with White Text) -->
       <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:18px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,0.03);">
         <div style="background:#990000; padding:10px 16px; color:#FFFFFF !important; display:flex; justify-content:space-between; align-items:center;">
           <h3 style="font-size:0.78rem; font-weight:900; text-transform:uppercase; margin:0; letter-spacing:0.04em; color:#FFFFFF !important;">Highlights</h3>
@@ -420,16 +405,16 @@ def render_image3_html(slug, title, category, badge, date_str, read_time, author
         </div>
       </div>
 
-      <!-- 3. Direct Broker Support Card (Image 3 signature) -->
-      <div style="background:#084582; border-radius:18px; padding:18px; color:#FFFFFF; box-shadow:0 6px 20px rgba(8, 69, 130, 0.25);">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-          <span style="font-size:0.68rem; font-weight:900; text-transform:uppercase; letter-spacing:0.06em; color:#93C5FD;">Direct Broker Support</span>
-          <span style="font-size:0.65rem; font-weight:800; background:rgba(30, 58, 138, 0.6); padding:2px 6px; border-radius:4px; color:#67E8F9;">Melbourne</span>
-        </div>
-        <h3 style="font-size:0.95rem; font-weight:900; margin:0 0 12px 0; color:#FFFFFF; line-height:1.3;">
-          Speak with our Principal Broker
-        </h3>
-        <a href="tel:1300050099" style="display:flex; align-items:center; justify-content:center; gap:6px; width:100%; background:#FFFFFF; color:#084582; padding:10px 0; border-radius:10px; font-weight:900; font-size:0.84rem; text-decoration:none; box-sizing:border-box;">
+      <!-- 3. Direct Broker Support Card (Image 2 & 3 signature with Subtitle & Call Button) -->
+      <div style="background:linear-gradient(135deg, #084582 0%, #1D4ED8 100%); border-radius:18px; padding:18px; color:#FFFFFF !important; box-shadow:0 6px 20px rgba(8, 69, 130, 0.25); text-align:center;">
+        <span style="font-size:0.72rem; text-transform:uppercase; letter-spacing:0.08em; color:#93C5FD !important; font-weight:800; display:block; margin-bottom:6px;">EZ MORTGAGE ADVISORY</span>
+        <h4 style="font-size:1.05rem; font-weight:900; margin:0 0 6px 0; color:#FFFFFF !important; line-height:1.3;">
+          Need Borrowing Power Advice?
+        </h4>
+        <p style="font-size:0.8rem; color:#E2E8F0 !important; line-height:1.45; margin:0 0 14px 0;">
+          Speak directly with our senior MFAA accredited credit advisors across Australia.
+        </p>
+        <a href="tel:1300050099" style="display:flex; align-items:center; justify-content:center; gap:6px; width:100%; background:#FFFFFF; color:#084582 !important; padding:10px 0; border-radius:10px; font-weight:900; font-size:0.84rem; text-decoration:none; box-sizing:border-box; box-shadow:0 4px 14px rgba(0,0,0,0.15);">
           <span>📞 Call 1300 050 099</span>
         </a>
       </div>
@@ -551,112 +536,57 @@ def convert_all_ezmortgage_articles():
         
     print(f"✅ Successfully converted ALL {converted_count} blog articles in ezmortgagebroker to 100% Image 3 Standard!")
 
-def publish_fresh_aug29_articles():
-    today_str = "29 August 2026"
-    today_iso = "2026-08-29"
-    
-    # 1. PRO CRM FRESH ARTICLES
-    site_js = os.path.join(PROCRM_DIR, "src", "data", "site.js")
-    if os.path.exists(site_js):
-        with open(site_js, "r", encoding="utf-8") as f:
-            content = f.read()
-            
-        new_procrm_post = f"""  {{
-    slug: "agentforce-rag-zero-copy-lakehouse-aug29-2026",
-    title: "Enterprise Autonomous Lakehouse AI: Zero-Copy RAG Reasoning Chains on Snowflake & Databricks",
-    date: "{today_iso}",
-    author: "Robin Bakshi (Principal AI Architect)",
-    category: "AI & Innovation",
-    subCategory: "Enterprise AI Architecture",
-    region: "National",
-    readTime: "6 min read",
-    isNew: true,
-    badge: "⚡ Zero-Copy AI",
-    tags: ["#Agentforce", "#DataCloud", "#EnterpriseAI", "#Snowflake", "#Databricks", "#APRA", "#ISO27001"],
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
-    videoUrl: "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/procrm_latest_studio_short.mp4",
-    excerpt: "Enterprise data teams are eliminating fragile batch ETL pipelines by virtualizing lakehouse queries across Snowflake, Databricks, and Google BigQuery directly into Agentforce autonomous reasoning chains.",
-    highlights: [
-      {{ id: "sec-1", badge: "01. ZERO-COPY", title: "Lakehouse Federation", text: "Query Iceberg and Delta tables natively at the metadata layer without duplication." }},
-      {{ id: "sec-2", badge: "02. TRUST LAYER", title: "Deterministic Guardrails", text: "Enforce cryptographic audit logs, PII masking, and APRA CPS 234 sovereign encryption." }}
-    ],
-    bullets: [
-      "Zero-Copy Virtualization: Query Apache Iceberg and Delta Lake tables in real time without creating shadow data lakes.",
-      "APRA CPS 234 Compliance: Enforce sovereign cryptographic access boundaries within Australian data centers.",
-      "Deterministic Reasoning: Combine LLM reasoning chains with deterministic Salesforce Flow rules to prevent hallucinations."
-    ],
-    body: [
-      "Enterprise AI adoption has reached an inflection point where traditional batch ETL pipelines and disconnected point solutions create unmanageable operational fragility. For Australian financial services, healthcare providers, and high-volume commercial enterprises, extracting actionable intelligence from fragmented data lakes often results in synchronization delays, data governance violations, and exorbitant cloud egress costs.",
-      "Salesforce Agentforce paired with Data Cloud Zero-Copy architecture fundamentally redefines enterprise AI delivery. Instead of moving petabytes of proprietary records into secondary vector databases, Data Cloud virtualizes data in place across Snowflake, Databricks, and Google BigQuery. Autonomous Agentforce reasoning engines query structured operational metrics and unstructured documents at the metadata layer, guaranteeing zero data duplication and instantaneous context retrieval.",
-      "Security and regulatory adherence form the bedrock of this architecture. In accordance with APRA CPS 234, the Australian Privacy Principles (APPs), and ISO 27001 standards, the Einstein Trust Layer enforces real-time PII tokenization, strict sovereign perimeter boundaries, and immutable audit logs. Every prompt, retrieval augmented generation (RAG) vector calculation, and automated API execution is cryptographically recorded, providing enterprise risk committees with complete auditability.",
-      "PRO CRM's Principal AI Architects deliver end-to-end Agentforce implementation sprints in under 4 weeks. By coupling semantic retrieval networks with deterministic Salesforce Flow automation, our clients achieve up to a 93% reduction in resolution times and a 70% decrease in manual administrative overhead while maintaining absolute data sovereignty.",
-      "Source: PRO CRM Enterprise AI Practice & Architecture Review."
-    ]
-  }},
-"""
-        if "agentforce-rag-zero-copy-lakehouse-aug29-2026" not in content:
-            content = content.replace("export const POSTS = [", f"export const POSTS = [\n{new_procrm_post}")
-            with open(site_js, "w", encoding="utf-8") as f:
-                f.write(content)
-            print("✅ Added fresh 29 August 2026 article to PRO CRM!")
-
-    # 2. EZ MORTGAGE BROKER FRESH ARTICLE
-    ezm_posts_file = os.path.join(EZM_DIR, "posts.json")
-    if os.path.exists(ezm_posts_file):
-        with open(ezm_posts_file, "r", encoding="utf-8") as f:
-            ezm_posts = json.load(f)
-            
-        new_ezm_post = {
-            "slug": "rba-rate-spread-variable-discounts-aug29-2026",
-            "title": "RBA Rate Decision & 2026 Home Loan Discount Spreads: How Borrowers Can Save Over $5,200 Annually",
-            "date": today_str,
-            "category": "Home Loans",
-            "badge": "MORTGAGE ALERT",
-            "readTime": "5 min read",
-            "author": "Robin Bakshi (Principal Broker)",
-            "image": DEFAULT_TOPIC_IMAGES[0],
-            "excerpt": "Australian mortgage market dynamics are presenting renewed opportunities for homeowners with over 20% equity to negotiate sharp interest rate discounts and eliminate loyalty taxes.",
-            "body": [
-                "In response to the latest monetary policy commentary from the Reserve Bank of Australia (RBA) and macroeconomic lending data, Australian mortgage holders, property investors, and first home buyers are evaluating key shifts in interest rate pricing, serviceability buffers, and bank competition.",
-                "Current market conditions indicate that borrowers with over 20% home equity (LVR under 80%) are in a prime position to negotiate substantial discretionary rate discounts off published standard variable rates, eliminating the uncompetitive loyalty tax charged by major retail banks.",
-                "Why It Matters & Strategic Advisory: With APRA's serviceability assessment buffer maintained at 3.00% above actual borrowing rates, engaging an MFAA-accredited broker to compare borrowing power across 30+ wholesale and bank lenders can unlock $3,600 to $5,400+ in annual interest savings while structuring flexible offset accounts.",
-                "Source: EZ Mortgage Broker Senior Credit & Research Review."
-            ]
-        }
+def update_blog_hub_page():
+    blog_hub_path = os.path.join(EZM_DIR, "pages", "blog.html")
+    if not os.path.exists(blog_hub_path):
+        return
+    with open(blog_hub_path, "r", encoding="utf-8") as f:
+        content = f.read()
         
-        if not any(p.get("slug") == new_ezm_post["slug"] for p in ezm_posts):
-            ezm_posts.insert(0, new_ezm_post)
-            with open(ezm_posts_file, "w", encoding="utf-8") as f:
-                json.dump(ezm_posts, f, indent=2)
-                
-            new_html = render_image3_html(
-                slug=new_ezm_post["slug"],
-                title=new_ezm_post["title"],
-                category=new_ezm_post["category"],
-                badge=new_ezm_post["badge"],
-                date_str=new_ezm_post["date"],
-                read_time=new_ezm_post["readTime"],
-                author=new_ezm_post["author"],
-                excerpt=new_ezm_post["excerpt"],
-                paragraphs=new_ezm_post["body"],
-                image_url=new_ezm_post["image"],
-                recent_posts=ezm_posts[1:4]
-            )
-            with open(os.path.join(EZM_DIR, "pages", "blog", f"{new_ezm_post['slug']}.html"), "w", encoding="utf-8") as f:
-                f.write(new_html)
-            print("✅ Added fresh 29 August 2026 article to EZ Mortgage Broker!")
+    # Update Hero Background to include sharp background image
+    content = re.sub(
+        r'\.blog-page-hero\s*\{[^}]*\}',
+        """.blog-page-hero {
+      position: relative;
+      background: linear-gradient(135deg, rgba(10, 37, 64, 0.88) 0%, rgba(15, 23, 42, 0.94) 100%), url('/images/headers/marquee-background-1600x500-1.webp') center/cover no-repeat;
+      color: #ffffff !important;
+      padding: 52px 0 42px;
+      text-align: center;
+      overflow: hidden;
+    }""",
+        content
+    )
+    
+    # Ensure logo in header is clean 40px height
+    content = re.sub(
+        r'\.site-header\s+\.brand-logo\s*\{[^}]*\}',
+        """.site-header .brand-logo {
+      height: 40px;
+      width: auto;
+      max-width: 160px;
+      object-fit: contain;
+      display: block;
+    }""",
+        content
+    )
+    
+    # Update Card 2 text in sidebar
+    old_card2 = r'<h4[^>]*>Need Borrowing Power Advice\?</h4>\s*<p[^>]*>.*?</p>'
+    new_card2 = '<h4 style="color:#ffffff !important; font-size:1.05rem; font-weight:900; margin:0 0 6px; line-height:1.3;">Need Borrowing Power Advice?</h4>\n            <p style="color:#E2E8F0 !important; font-size:0.8rem; line-height:1.45; margin:0 0 14px;">Speak directly with our senior MFAA accredited credit advisors across Australia.</p>'
+    content = re.sub(old_card2, new_card2, content, flags=re.DOTALL | re.IGNORECASE)
+    
+    with open(blog_hub_path, "w", encoding="utf-8") as f:
+        f.write(content)
+    print("✅ Successfully updated pages/blog.html hero background, logo size, and Card 2 text!")
 
 if __name__ == "__main__":
     convert_all_ezmortgage_articles()
-    publish_fresh_aug29_articles()
+    update_blog_hub_page()
     
     # Commit and Push EZ Mortgage Broker
-    os.system(f'cd "{EZM_DIR}" && git add pages/blog/ posts.json && git commit -m "Convert ALL 1026+ blog pages to 100% Image 3 layout + Publish Aug 29 2026 Article" && git push origin main')
-    
-    # Commit and Push PRO CRM
-    os.system(f'cd "{PROCRM_DIR}" && git commit -am "Publish fresh 29 August 2026 Enterprise AI article" && git push origin main')
+    os.system(f'cd "{EZM_DIR}" && git add pages/blog/ pages/blog.html && git commit -m "Fix logo size (small), add background image to hero, and restore Card 2 text across all articles" && git push origin main')
     
     # Commit and Push Blogs-Content
-    os.system(f'cd "{BLOGS_DIR}" && git add . && git commit -m "Deploy Complete Image 3 Standard Converter & Fresh Publisher" && git push origin main')
+    os.system(f'cd "{BLOGS_DIR}" && git add . && git commit -m "Deploy Updated Image 3 Converter with Logo & Card 2 Fixes" && git push origin main')
     
-    print("🚀 ALL 1,026+ ARTICLES CONVERTED TO IMAGE 3 AND FRESH 29 AUG ARTICLES PUBLISHED LIVE!")
+    print("🚀 ALL UPDATES PUSHED LIVE TO GITHUB MAIN!")
