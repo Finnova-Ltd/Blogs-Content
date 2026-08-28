@@ -1,0 +1,309 @@
+/* ==========================================================================
+   Salesforce Piper-Style 10-Second Interactive Floating Video Greeting Widget
+   Responsive, glassmorphic floating avatar greeting for EZ Mortgage, Finnova, PRO CRM
+   ========================================================================== */
+
+:root {
+  --piper-primary: #0A2540;
+  --piper-accent: #2563EB;
+  --piper-gold: #F59E0B;
+  --piper-green: #10B981;
+  --piper-radius: 16px;
+  --piper-shadow: 0 20px 40px rgba(10, 37, 64, 0.22), 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* Floating Avatar Trigger Bubble (Collapsed State) */
+#piper-bubble-trigger {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  background: #ffffff;
+  padding: 6px 16px 6px 6px;
+  border-radius: 999px;
+  box-shadow: var(--piper-shadow);
+  border: 2px solid rgba(37, 99, 235, 0.25);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: piperPulseGlow 3s infinite;
+}
+
+#piper-bubble-trigger:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 24px 48px rgba(10, 37, 64, 0.3), 0 10px 20px rgba(37, 99, 235, 0.2);
+  border-color: var(--piper-accent);
+}
+
+.piper-avatar-thumb {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #2563EB;
+  flex-shrink: 0;
+  background: #0A2540;
+}
+
+.piper-avatar-thumb img,
+.piper-avatar-thumb video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.piper-online-dot {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 12px;
+  height: 12px;
+  background: #10B981;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+}
+
+.piper-trigger-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.piper-trigger-title {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #0A2540;
+  line-height: 1.2;
+}
+
+.piper-trigger-sub {
+  font-size: 0.72rem;
+  color: #64748B;
+  font-weight: 600;
+}
+
+/* Expanded Piper Video Card */
+#piper-video-card {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 340px;
+  max-width: calc(100vw - 32px);
+  background: #ffffff;
+  border-radius: var(--piper-radius);
+  box-shadow: var(--piper-shadow);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  z-index: 9999;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(30px) scale(0.92);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: inherit;
+}
+
+#piper-video-card.piper-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+/* Header */
+.piper-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  background: #0A2540;
+  color: #ffffff;
+}
+
+.piper-header-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.piper-badge-live {
+  background: #EF4444;
+  color: #ffffff;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.piper-header-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.piper-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.piper-icon-btn {
+  background: rgba(255, 255, 255, 0.12);
+  border: none;
+  color: #ffffff;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  transition: background 0.2s;
+}
+
+.piper-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Video Stage */
+.piper-video-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000000;
+  overflow: hidden;
+}
+
+.piper-video-stage video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.piper-unmute-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 37, 64, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.piper-unmute-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.piper-unmute-btn {
+  background: #2563EB;
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+}
+
+/* Speech & Subtitle Box */
+.piper-speech-box {
+  padding: 14px 16px;
+  background: #F8FAFC;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.piper-speech-text {
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: #1E293B;
+  margin: 0;
+  font-weight: 500;
+}
+
+.piper-speech-text strong {
+  color: #0A2540;
+}
+
+/* Action Quick Links */
+.piper-action-pills {
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #ffffff;
+}
+
+.piper-pill-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #F1F5F9;
+  color: #0A2540;
+  text-decoration: none;
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.piper-pill-btn:hover {
+  background: #EFF6FF;
+  border-color: #93C5FD;
+  color: #1D4ED8;
+  transform: translateX(3px);
+}
+
+.piper-pill-btn.primary {
+  background: #0A2540;
+  color: #ffffff;
+}
+
+.piper-pill-btn.primary:hover {
+  background: #1E3A8A;
+  color: #ffffff;
+}
+
+/* Keyframes */
+@keyframes piperPulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4), 0 20px 40px rgba(10, 37, 64, 0.22);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(37, 99, 235, 0), 0 24px 48px rgba(10, 37, 64, 0.3);
+  }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 480px) {
+  #piper-video-card {
+    right: 12px;
+    bottom: 12px;
+    width: calc(100vw - 24px);
+  }
+  #piper-bubble-trigger {
+    right: 16px;
+    bottom: 16px;
+    padding: 4px 12px 4px 4px;
+  }
+  .piper-avatar-thumb {
+    width: 44px;
+    height: 44px;
+  }
+}
