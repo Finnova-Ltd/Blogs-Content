@@ -386,9 +386,9 @@ def render_image3_html(slug, title, category, badge, date_str, read_time, author
       
       <!-- 1. Highlights Widget (Solid Crimson Header) -->
       <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:18px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,0.03);">
-        <div style="background:#990000; padding:10px 16px; color:#FFFFFF; display:flex; justify-content:space-between; align-items:center;">
-          <h3 style="font-size:0.78rem; font-weight:900; text-transform:uppercase; margin:0; letter-spacing:0.04em;">Highlights</h3>
-          <span style="font-size:0.68rem; font-weight:700; color:#FEE2E2; text-transform:uppercase; letter-spacing:0.06em;">In this article</span>
+        <div style="background:#990000; padding:10px 16px; color:#FFFFFF !important; display:flex; justify-content:space-between; align-items:center;">
+          <h3 style="font-size:0.78rem; font-weight:900; text-transform:uppercase; margin:0; letter-spacing:0.04em; color:#FFFFFF !important;">Highlights</h3>
+          <span style="font-size:0.68rem; font-weight:700; color:#FEE2E2 !important; text-transform:uppercase; letter-spacing:0.06em;">In this article</span>
         </div>
         <div style="padding:16px;">
           <div style="font-size:0.72rem; font-weight:700; color:#64748B; margin-bottom:12px;">— {date_str}</div>
