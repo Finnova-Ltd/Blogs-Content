@@ -107,6 +107,10 @@ def render_image3_html(slug, title, category, badge, date_str, read_time, author
       text-shadow: 0 1px 4px rgba(0,0,0,0.3);
     }}
     
+    html, body {{
+      overflow-x: visible !important;
+    }}
+    
     /* Layout Grid */
     .article-layout-grid {{
       display: grid;
@@ -115,10 +119,25 @@ def render_image3_html(slug, title, category, badge, date_str, read_time, author
       max-width: 1200px;
       margin: 0 auto;
       padding: 40px 20px 80px;
-      align-items: start;
+      align-items: start !important;
     }}
     @media (max-width: 992px) {{
       .article-layout-grid {{ grid-template-columns: 1fr; gap: 32px; }}
+    }}
+    
+    .article-sticky-sidebar {{
+      position: -webkit-sticky !important;
+      position: sticky !important;
+      top: 24px !important;
+      max-height: calc(100vh - 48px) !important;
+      overflow-y: auto !important;
+      overscroll-behavior: contain !important;
+      scrollbar-width: thin !important;
+      padding-right: 2px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      align-self: start !important;
     }}
     
     /* Card Styles */
@@ -369,7 +388,7 @@ def render_image3_html(slug, title, category, badge, date_str, read_time, author
     </div>
 
     <!-- RIGHT COLUMN: Sticky Fixed Sidebar (Col 2 - 4 cols / 32% - Image 3 Exact Standard) -->
-    <aside style="position:sticky; top:96px; max-height:calc(100vh - 110px); overflow-y:auto; overscroll-behavior:contain; scrollbar-width:thin; padding-right:2px; display:flex; flex-direction:column; gap:18px;">
+    <aside class="article-sticky-sidebar">
       
       <!-- 1. R BAKSHI Broker Profile Card (Image 3 Signature with Melbourne Streetscape Cover Header) -->
       <div class="broker-profile-box" style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:18px; overflow:hidden; box-shadow:0 4px 14px rgba(10,37,64,0.06); text-align:center;">
