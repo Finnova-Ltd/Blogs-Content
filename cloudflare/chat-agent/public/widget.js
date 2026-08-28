@@ -240,8 +240,8 @@
     const isProCrm = /procrm/.test(currentDomain);
     const isEzConsultants = /ezconsultants/.test(currentDomain);
 
-    let brandSpecialistTitle = "AI Mortgage Specialist";
-    let brandIntro = "Hi, I'm Friday from <strong>EZ Mortgage Broker</strong>! Ready to see how our AI compares 50+ lenders to unlock lower rates & boost borrowing power?";
+    let brandSpecialistTitle = "AI Lending Specialist";
+    let brandIntro = "G'day! I'm Friday, your AI Lending Specialist at <strong>EZ Mortgage Broker</strong>. I compare over 50 accredited Australian lenders to find lower interest rates, maximize your borrowing capacity, and secure fast loan approvals. How can I help you with your mortgage today?";
     let brandPrompts = [
       { text: "Calculate my borrowing power", prompt: "How much can I borrow on my salary?" },
       { text: "Compare 50+ bank rates", prompt: "Compare lowest 2-year fixed rates across Australian banks" },
@@ -251,7 +251,7 @@
 
     if (isFinnova) {
       brandSpecialistTitle = "AI Community Guide";
-      brandIntro = "Hi, I'm Friday from <strong>Finnova</strong>! I can guide you through our free refurbished digital devices, senior cyber safety workshops, and ACNC community programs.";
+      brandIntro = "Hello and welcome! I'm Friday, your AI Community Guide at <strong>Finnova</strong>. We are an Australian ACNC-registered charity providing free refurbished computers, digital literacy classes, and senior cyber safety workshops. How can our team support you today?";
       brandPrompts = [
         { text: "Request free refurbished tech", prompt: "How can seniors or students request refurbished digital hardware?" },
         { text: "Senior cyber defense workshops", prompt: "When are the upcoming free cyber safety workshops?" },
@@ -260,7 +260,7 @@
       brandCtaText = "Contact Finnova Community Team &rarr;";
     } else if (isProCrm) {
       brandSpecialistTitle = "AI Enterprise Architect";
-      brandIntro = "Hi, I'm Friday from <strong>PRO CRM</strong>! Ready to explore how Salesforce Agentforce & Zero-ETL Data Cloud can automate your enterprise workflows?";
+      brandIntro = "Hi there! I'm Friday, your AI Enterprise Architect at <strong>PRO CRM Australia</strong>. We deliver Salesforce Agentforce, Zero-ETL Data Cloud integrations, and sovereign enterprise automation. What can we build for you today?";
       brandPrompts = [
         { text: "Agentforce Autonomous AI", prompt: "How does Salesforce Agentforce differ from basic chatbots?" },
         { text: "Zero-ETL Data Cloud sync", prompt: "Explain Zero-Copy federation across Snowflake and BigQuery." },
@@ -269,7 +269,7 @@
       brandCtaText = "Book Enterprise AI Consultation &rarr;";
     } else if (isEzConsultants) {
       brandSpecialistTitle = "AI Cyber & Cloud Advisor";
-      brandIntro = "Hi, I'm Friday from <strong>EZ Consultants</strong>! I provide rapid intelligence on ACSC cybersecurity alerts, DevSecOps, and NDIS compliance frameworks.";
+      brandIntro = "Welcome! I'm Friday, your Cyber and Cloud Advisor at <strong>EZ Consultants</strong>. We provide rapid ASD ACSC threat intelligence, NDIS quality audit defense, and DevSecOps architecture. How can I assist you today?";
       brandPrompts = [
         { text: "ACSC Threat Advisory", prompt: "What are the critical ASD ACSC vulnerability advisories today?" },
         { text: "NDIS Provider Audit Defense", prompt: "How do we prepare for mid-term NDIS Quality Commission audits?" },
@@ -299,10 +299,10 @@
 
       <div class="piper-hero-card">
         <div class="piper-hero-video-stage">
-          <video id="piper-hero-video" playsinline loop muted preload="auto" poster="/images/friday_avatar.jpeg">
+          <video id="piper-hero-video" playsinline loop muted preload="auto" poster="/assets/backgrounds/${brandKey}_bg.jpg">
             <source src="/assets/videos/friday_avatar_${brandKey}.mp4" type="video/mp4">
             <source src="/assets/videos/friday_avatar.mp4" type="video/mp4">
-            <source src="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar.mp4" type="video/mp4">
+            <source src="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_${brandKey}.mp4" type="video/mp4">
           </video>
           <button type="button" class="piper-speak-badge-btn" id="piperSpeakBtn">
             🎙️ Speak with Friday
