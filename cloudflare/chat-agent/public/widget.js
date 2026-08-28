@@ -235,13 +235,56 @@
     bubble.innerHTML = '<svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>';
     appendToBody(bubble);
 
+    // Multi-Brand Dynamic Config Resolution
+    const isFinnova = /finnova/.test(currentDomain);
+    const isProCrm = /procrm/.test(currentDomain);
+    const isEzConsultants = /ezconsultants/.test(currentDomain);
+
+    let brandSpecialistTitle = "AI Mortgage Specialist";
+    let brandIntro = "Hi, I'm Friday from <strong>EZ Mortgage Broker</strong>! Ready to see how our AI compares 50+ lenders to unlock lower rates & boost borrowing power?";
+    let brandPrompts = [
+      { text: "Calculate my borrowing power", prompt: "How much can I borrow on my salary?" },
+      { text: "Compare 50+ bank rates", prompt: "Compare lowest 2-year fixed rates across Australian banks" },
+      { text: "Latest RBA cash rate update", prompt: "What are the current RBA interest rate forecasts?" }
+    ];
+    let brandCtaText = "Connect me with a licensed broker &rarr;";
+
+    if (isFinnova) {
+      brandSpecialistTitle = "AI Community Guide";
+      brandIntro = "Hi, I'm Friday from <strong>Finnova</strong>! I can guide you through our free refurbished digital devices, senior cyber safety workshops, and ACNC community programs.";
+      brandPrompts = [
+        { text: "Request free refurbished tech", prompt: "How can seniors or students request refurbished digital hardware?" },
+        { text: "Senior cyber defense workshops", prompt: "When are the upcoming free cyber safety workshops?" },
+        { text: "Donate tech / e-waste pickup", prompt: "How does our company donate corporate laptops and computers?" }
+      ];
+      brandCtaText = "Contact Finnova Community Team &rarr;";
+    } else if (isProCrm) {
+      brandSpecialistTitle = "AI Enterprise Architect";
+      brandIntro = "Hi, I'm Friday from <strong>PRO CRM</strong>! Ready to explore how Salesforce Agentforce & Zero-ETL Data Cloud can automate your enterprise workflows?";
+      brandPrompts = [
+        { text: "Agentforce Autonomous AI", prompt: "How does Salesforce Agentforce differ from basic chatbots?" },
+        { text: "Zero-ETL Data Cloud sync", prompt: "Explain Zero-Copy federation across Snowflake and BigQuery." },
+        { text: "APRA CPS 234 Compliance", prompt: "How do you enforce security and sovereign data boundaries?" }
+      ];
+      brandCtaText = "Book Enterprise AI Consultation &rarr;";
+    } else if (isEzConsultants) {
+      brandSpecialistTitle = "AI Cyber & Cloud Advisor";
+      brandIntro = "Hi, I'm Friday from <strong>EZ Consultants</strong>! I provide rapid intelligence on ACSC cybersecurity alerts, DevSecOps, and NDIS compliance frameworks.";
+      brandPrompts = [
+        { text: "ACSC Threat Advisory", prompt: "What are the critical ASD ACSC vulnerability advisories today?" },
+        { text: "NDIS Provider Audit Defense", prompt: "How do we prepare for mid-term NDIS Quality Commission audits?" },
+        { text: "Cloud Security Architecture", prompt: "How do you secure multi-cloud Kubernetes & AWS workloads?" }
+      ];
+      brandCtaText = "Request Cyber Advisory Call &rarr;";
+    }
+
     const win = document.createElement('div');
     win.id = 'omni-chat-window';
     win.innerHTML = `
       <div id="omni-chat-header">
         <div class="title-wrap">
-          <span class="title">Piper</span>
-          <span class="badge">AI Mortgage Specialist</span>
+          <span class="title">Friday</span>
+          <span class="badge">${brandSpecialistTitle}</span>
         </div>
         <div class="omni-hdr-actions">
           <button class="omni-btn-endchat" id="omniEndChat">✉️ Email Chat</button>
@@ -251,24 +294,23 @@
 
       <div class="piper-hero-card">
         <div class="piper-hero-video-stage">
-          <video id="piper-hero-video" playsinline loop muted preload="metadata" poster="/images/ez-mortgage-broker.webp">
-            <source src="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4" type="video/mp4">
+          <video id="piper-hero-video" playsinline loop muted preload="auto" poster="/images/friday_avatar.jpeg">
+            <source src="/assets/videos/friday_avatar.mp4" type="video/mp4">
+            <source src="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar.mp4" type="video/mp4">
           </video>
           <button type="button" class="piper-speak-badge-btn" id="piperSpeakBtn">
-            🎙️ Speak with Piper
+            🎙️ Speak with Friday
           </button>
         </div>
         <div class="piper-hero-intro">
-          Hi, I'm Piper from <strong>EZ Mortgage Broker</strong>! Ready to see how our AI compares 50+ lenders to unlock lower rates & boost borrowing power?
+          ${brandIntro}
         </div>
         <div class="piper-prompts-box">
           <div class="piper-prompts-title">Ask me things like:</div>
-          <div class="piper-prompt-item" data-prompt="How much can I borrow on my salary?">Calculate my borrowing power <span>&rarr;</span></div>
-          <div class="piper-prompt-item" data-prompt="Compare lowest 2-year fixed rates across Australian banks">Compare 50+ bank rates <span>&rarr;</span></div>
-          <div class="piper-prompt-item" data-prompt="What are the current RBA interest rate forecasts?">Latest RBA cash rate update <span>&rarr;</span></div>
+          ${brandPrompts.map(p => `<div class="piper-prompt-item" data-prompt="${p.prompt}">${p.text} <span>&rarr;</span></div>`).join('')}
         </div>
         <div class="piper-cta-row">
-          <button type="button" class="piper-connect-btn" id="piperConnectRep">Connect me with a licensed broker &rarr;</button>
+          <button type="button" class="piper-connect-btn" id="piperConnectRep">${brandCtaText}</button>
         </div>
       </div>
 
@@ -284,11 +326,11 @@
         <input type="file" id="omniFileInput" accept="image/*" style="display:none;" />
         ${config.features?.imageUpload !== false ? '<button class="omni-attach-btn" id="omniAttachBtn" title="Attach/Paste Image">📎</button>' : ''}
         <button class="omni-mic-btn" id="omniMicBtn" title="Voice Input">🎙️</button>
-        <input type="text" id="omni-chat-input" placeholder="Ask Piper a question..." />
+        <input type="text" id="omni-chat-input" placeholder="Ask Friday a question..." />
         <button id="omni-chat-send">&rarr;</button>
       </div>
       <div class="omni-disclaimer-footer">
-        Piper is an AI mortgage assistant and can make mistakes. Please verify loan specifics with our accredited broker team.
+        Friday is an AI intelligence assistant and can make mistakes. Please verify important terms with our accredited team.
       </div>
     `;
     appendToBody(win);
@@ -341,8 +383,8 @@
           video.muted = false;
           video.currentTime = 0;
           video.play().catch(() => {});
-          speakBtn.innerHTML = '🔊 Listening to Piper';
-          setTimeout(() => { speakBtn.innerHTML = '🎙️ Speak with Piper'; }, 4000);
+          speakBtn.innerHTML = '🔊 Listening to Friday';
+          setTimeout(() => { speakBtn.innerHTML = '🎙️ Speak with Friday'; }, 4000);
         }
       };
     }
