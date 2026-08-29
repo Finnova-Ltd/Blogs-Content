@@ -299,10 +299,10 @@
 
       <div class="piper-hero-card">
         <div class="piper-hero-video-stage">
-          <video id="piper-hero-video" playsinline loop muted preload="auto" poster="/assets/backgrounds/${brandKey}_bg.jpg">
+          <video id="piper-hero-video" playsinline loop muted preload="auto" poster="/images/friday_avatar.jpeg">
             <source src="/assets/videos/friday_avatar_${brandKey}.mp4" type="video/mp4">
             <source src="/assets/videos/friday_avatar.mp4" type="video/mp4">
-            <source src="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_${brandKey}.mp4" type="video/mp4">
+            <source src="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar.mp4" type="video/mp4">
           </video>
           <button type="button" class="piper-speak-badge-btn" id="piperSpeakBtn">
             🎙️ Speak with Friday
