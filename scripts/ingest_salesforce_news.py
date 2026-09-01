@@ -66,6 +66,14 @@ def clean_html(raw_html):
     clean = re.sub(r"<.*?>", "", raw_html)
     return html.unescape(clean).strip()
 
+def sanitize_title(title, max_len=80):
+    t = clean_html(title)
+    t = re.sub(r"\s+", " ", t).strip()
+    if len(t) <= max_len:
+        return t
+    truncated = t[:max_len].rsplit(" ", 1)[0]
+    return truncated.rstrip(" :-—,|&")
+
 def fetch_feed_items(feed_url):
     items = []
     try:
@@ -220,7 +228,7 @@ def run_ingestion():
         for it in items:
             if count >= feed_target:
                 break
-            it_title = it["title"]
+            it_title = sanitize_title(it["title"])
             slug = slugify(it_title)
             if not slug or slug in existing_slugs:
                 continue
@@ -270,7 +278,7 @@ def run_ingestion():
 
     rss_items = []
     for p in all_posts[:50]:
-        t = html.escape(p.get("title", ""))
+        t = html.escape(sanitize_title(p.get("title", "")))
         sl = p.get("slug", "")
         link = f"https://ezconsultants.com.au/pages/blog/{sl}.html"
         desc = html.escape(p.get("excerpt", ""))
