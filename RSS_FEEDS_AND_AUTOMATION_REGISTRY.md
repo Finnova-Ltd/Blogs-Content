@@ -35,9 +35,10 @@ Comprehensive documentation of all active RSS feeds, Google Alerts, data scraper
 | **Google Alerts — Home Loans** | Atom / RSS | `https://www.google.com/alerts/feeds/14625353401416373956/10202701407179381699` | Daily (4x / day) |
 | **Google Alerts — Super & SMSF** | Atom / RSS | `https://www.google.com/alerts/feeds/14625353401416373956/1200677753741493727` | Daily (4x / day) |
 | **Yahoo Finance Australia** | RSS / Scraper | `https://au.finance.yahoo.com/news/` (Topics: mortgages, banking, property) | Every 30 mins |
-| **Australian Broker News** | Scraper | `https://www.brokernews.com.au/news/breaking-news/` | Daily |
 | **Google News AU — RBA** | RSS | `https://news.google.com/rss/search?q=RBA+cash+rate+decision+OR+interest+rates+Australia&hl=en-AU&gl=AU&ceid=AU:en` | 4x / day |
 | **Google News AU — First Home** | RSS | `https://news.google.com/rss/search?q=first+home+buyer+grant+Victoria+OR+stamp+duty+changes&hl=en-AU&gl=AU&ceid=AU:en` | 4x / day |
+| **Nine News Finance** | Topic RSS | `https://www.nine.com.au/topic/finance-5x8` (via Google News topic feed) | 4x / day |
+| **Australian Financial Review (AFR)** | Direct RSS | `https://www.afr.com/rss/property` & `https://www.afr.com/rss/banking-and-finance` | 4x / day |
 
 ### Automated GitHub Actions Workflow
 * **Workflow File**: [`.github/workflows/daily_rss_publisher.yml`](file:///Users/robinbakshi/Documents/GitHub/Blogs-Content/.github/workflows/daily_rss_publisher.yml)
