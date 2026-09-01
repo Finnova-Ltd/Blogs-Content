@@ -87,7 +87,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "No new updates to commit."
           else
-            git commit -m "Auto-Publish: Daily mortgage news, 91 suburb landing pages, cyber guides & vector cache [skip ci]"
+            git commit -m "Auto-Publish: Daily mortgage news, 91 suburb landing pages, cyber guides & vector cache"
             git pull --rebase origin main 2>/dev/null || true
             git push origin main
           fi
