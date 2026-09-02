@@ -403,17 +403,17 @@ def generate_article_html(item):
   <!-- 1. Full-Bleed Article Header Banner (100% Width with Crossfading Blurred Image Carousel) -->
   <header class="article-header" style="position:relative; background-color:#0A2540; color:#ffffff !important; padding:52px 0 46px; overflow:hidden; border-bottom:2px solid rgba(0, 137, 123, 0.4);">
     <style>
-      @keyframes headerCrossfade {
-        0% { opacity: 0; transform: scale(1.05); }
-        8% { opacity: 1; }
-        25% { opacity: 1; }
-        33% { opacity: 0; transform: scale(1.12); }
-        100% { opacity: 0; transform: scale(1.05); }
-      }
-      .article-header-carousel .slide-1 { animation: headerCrossfade 16s infinite 0s ease-in-out; }
-      .article-header-carousel .slide-2 { animation: headerCrossfade 16s infinite 4s ease-in-out; }
-      .article-header-carousel .slide-3 { animation: headerCrossfade 16s infinite 8s ease-in-out; }
-      .article-header-carousel .slide-4 { animation: headerCrossfade 16s infinite 12s ease-in-out; }
+      @keyframes headerCrossfade {{
+        0% {{ opacity: 0; transform: scale(1.05); }}
+        8% {{ opacity: 1; }}
+        25% {{ opacity: 1; }}
+        33% {{ opacity: 0; transform: scale(1.12); }}
+        100% {{ opacity: 0; transform: scale(1.05); }}
+      }}
+      .article-header-carousel .slide-1 {{ animation: headerCrossfade 16s infinite 0s ease-in-out; }}
+      .article-header-carousel .slide-2 {{ animation: headerCrossfade 16s infinite 4s ease-in-out; }}
+      .article-header-carousel .slide-3 {{ animation: headerCrossfade 16s infinite 8s ease-in-out; }}
+      .article-header-carousel .slide-4 {{ animation: headerCrossfade 16s infinite 12s ease-in-out; }}
     </style>
     <div class="article-header-carousel" style="position:absolute; inset:-20px; z-index:1; overflow:hidden; pointer-events:none;">
       <div class="header-slide slide-1" style="position:absolute; inset:0; background-image:url('/images/melbourne-bourke-street-header.webp'); background-size:cover; background-position:center 35%; filter:blur(4px) brightness(0.72) saturate(1.15); opacity:0;"></div>
@@ -635,7 +635,7 @@ def generate_article_html(item):
               <p style="margin:6px 0 0; color:#475569; font-size:0.8rem; line-height:1.5;">Principal Broker R Bakshi provides comprehensive borrowing capacity assessments across 30+ lenders at zero cost.</p>
             </details>
 
-            <a href="#" onclick="window.scrollTo({top:0, behavior:smooth}); return false;" style="display:block; text-align:center; font-size:0.78rem; font-weight:800; color:#a81127; text-decoration:none; margin-top:8px; border-top:1px solid #f1f5f9; padding-top:8px;">
+            <a href="#" onclick="window.scrollTo({{top:0, behavior:'smooth'}}); return false;" style="display:block; text-align:center; font-size:0.78rem; font-weight:800; color:#a81127; text-decoration:none; margin-top:8px; border-top:1px solid #f1f5f9; padding-top:8px;">
               Top of Article ↑
             </a>
           </div>

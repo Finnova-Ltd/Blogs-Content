@@ -250,6 +250,8 @@
       { text: "Latest RBA cash rate update", prompt: "What are the current RBA interest rate forecasts?" }
     ];
     let brandCtaText = "Connect me with a licensed broker &rarr;";
+    let brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/backgrounds/ezmortgage_bg.jpg";
+    let brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_ezmortgage.mp4";
 
     if (isFinnova) {
       brandSpecialistTitle = "AI Community Guide";
@@ -260,6 +262,8 @@
         { text: "Donate tech / e-waste pickup", prompt: "How does our company donate corporate laptops and computers?" }
       ];
       brandCtaText = "Contact Finnova Community Team &rarr;";
+      brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/finnova-avatar-2026.jpeg";
+      brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/finnova-avatar-2026.mp4";
     } else if (isProCrm) {
       brandSpecialistTitle = "AI Enterprise Architect";
       brandIntro = "Hi there! I'm Friday, your AI Enterprise Architect at <strong>PRO CRM Australia</strong>. We deliver Salesforce Agentforce, Zero-ETL Data Cloud integrations, and sovereign enterprise automation. What can we build for you today?";
@@ -269,6 +273,8 @@
         { text: "APRA CPS 234 Compliance", prompt: "How do you enforce security and sovereign data boundaries?" }
       ];
       brandCtaText = "Book Enterprise AI Consultation &rarr;";
+      brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/backgrounds/procrm_bg.jpg";
+      brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_procrm.mp4";
     } else if (isEzConsultants) {
       brandSpecialistTitle = "AI Cyber & Cloud Advisor";
       brandIntro = "Welcome! I'm Friday, your Cyber and Cloud Advisor at <strong>EZ Consultants</strong>. We provide rapid ASD ACSC threat intelligence, NDIS quality audit defense, and DevSecOps architecture. How can I assist you today?";
@@ -278,6 +284,8 @@
         { text: "Cloud Security Architecture", prompt: "How do you secure multi-cloud Kubernetes & AWS workloads?" }
       ];
       brandCtaText = "Request Cyber Advisory Call &rarr;";
+      brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/backgrounds/ezconsultants_bg.jpg";
+      brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_ezconsultants.mp4";
     }
 
     let brandKey = "ezmortgage";
@@ -301,10 +309,8 @@
 
       <div class="piper-hero-card">
         <div class="piper-hero-video-stage">
-          <video id="piper-hero-video" playsinline muted preload="auto" poster="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/finnova-avatar-2026.jpeg">
-            <source src="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/finnova-avatar-2026.mp4" type="video/mp4">
-            <source src="/assets/videos/finnova-avatar-2026.mp4" type="video/mp4">
-            <source src="/images/finnova-avatar-2026.mp4" type="video/mp4">
+          <video id="piper-hero-video" playsinline muted preload="auto" poster="${brandPoster}">
+            <source src="${brandVideo}" type="video/mp4">
           </video>
           <button type="button" class="piper-speak-badge-btn" id="piperSpeakBtn">
             🎙️ Speak with Friday
