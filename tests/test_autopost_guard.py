@@ -7,7 +7,8 @@ import pytest
 TARGET_SCRIPTS = [
     "scripts/fetch_google_alerts.py",
     "scripts/ingest_authority_sources.py",
-    "scripts/generate_rss_feed.py"
+    "scripts/generate_rss_feed.py",
+    "scripts/ingest_salesforce_news.py"
 ]
 
 @pytest.mark.parametrize("script_path", TARGET_SCRIPTS)
