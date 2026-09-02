@@ -246,40 +246,82 @@ def generate_article_html(item):
     content = generate_value_dense_content(headline, item['snippet'], category)
 
     # Injects FinancialProduct + FAQPage + NewsArticle JSON-LD Schema
+    # 1. Advanced Connected Schema Entity Graph (@graph)
     json_ld = {
         "@context": "https://schema.org",
         "@graph": [
             {
+                "@type": "WebSite",
+                "@id": f"{SITE_URL}/#website",
+                "url": SITE_URL,
+                "name": "EZ Mortgage Broker",
+                "description": "Accredited Australian mortgage broker and credit advisory service.",
+                "publisher": {"@id": f"{SITE_URL}/#organization"}
+            },
+            {
+                "@type": "FinancialService",
+                "@id": f"{SITE_URL}/#organization",
+                "name": "EZ Mortgage Broker",
+                "url": SITE_URL,
+                "logo": {
+                    "@type": "ImageObject",
+                    "@id": f"{SITE_URL}/#logo",
+                    "url": f"{SITE_URL}/images/ez-mortgage-broker.webp"
+                },
+                "telephone": "1300 050 099",
+                "priceRange": "$$",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Melbourne",
+                    "addressRegion": "VIC",
+                    "addressCountry": "AU"
+                }
+            },
+            {
+                "@type": "Person",
+                "@id": f"{SITE_URL}/#author-rbakshi",
+                "name": "R Bakshi",
+                "jobTitle": "Principal Mortgage Broker (MFAA)",
+                "worksFor": {"@id": f"{SITE_URL}/#organization"},
+                "url": f"{SITE_URL}/#about"
+            },
+            {
+                "@type": "WebPage",
+                "@id": f"{canonical_url}#webpage",
+                "url": canonical_url,
+                "name": headline,
+                "isPartOf": {"@id": f"{SITE_URL}/#website"},
+                "breadcrumb": {"@id": f"{canonical_url}#breadcrumb"}
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": f"{canonical_url}#breadcrumb",
+                "itemListElement": [
+                    {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL},
+                    {"@type": "ListItem", "position": 2, "name": "News & Insights", "item": f"{SITE_URL}/pages/blog.html"},
+                    {"@type": "ListItem", "position": 3, "name": category, "item": f"{SITE_URL}/pages/blog.html#{category.lower().replace(' ', '-')}"},
+                    {"@type": "ListItem", "position": 4, "name": headline, "item": canonical_url}
+                ]
+            },
+            {
                 "@type": "NewsArticle",
+                "@id": f"{canonical_url}#article",
+                "isPartOf": {"@id": f"{canonical_url}#webpage"},
                 "headline": headline,
                 "description": content["summary"][:155],
                 "datePublished": iso_date,
                 "dateModified": iso_date,
                 "mainEntityOfPage": canonical_url,
-                "author": {
-                    "@type": "Organization",
-                    "name": "EZ Mortgage Broker Research Desk",
-                    "url": SITE_URL
-                },
-                "publisher": {
-                    "@type": "Organization",
-                    "name": "EZ Mortgage Broker",
-                    "logo": {
-                        "@type": "ImageObject",
-                        "url": f"{SITE_URL}/images/ez-mortgage-broker.webp"
-                    }
-                }
+                "author": {"@id": f"{SITE_URL}/#author-rbakshi"},
+                "publisher": {"@id": f"{SITE_URL}/#organization"},
+                "image": f"{SITE_URL}/images/assets-ez-mortgage-broker/australian-home-mortgage-approval.jpg"
             },
             {
                 "@type": "FinancialProduct",
+                "@id": f"{SITE_URL}/#mortgage-advisory",
                 "name": "Australian Residential Home Loan Assessment",
                 "description": "Comprehensive home loan, refinancing, and first home buyer credit comparison across 30+ accredited Australian lenders.",
-                "provider": {
-                    "@type": "FinancialService",
-                    "name": "EZ Mortgage Broker",
-                    "telephone": "1300 050 099",
-                    "url": SITE_URL
-                }
+                "provider": {"@id": f"{SITE_URL}/#organization"}
             },
             {
                 "@type": "FAQPage",
@@ -336,7 +378,7 @@ def generate_article_html(item):
     <div class="header-main">
       <div class="container">
         <div class="header-inner">
-          <a href="/" class="logo"><img class="brand-logo" src="/images/ez-mortgage-broker.webp" alt="EZ Mortgage Broker" style="max-width:200px; height:auto; display:inline-block;"></a>
+          <a href="/" class="logo" style="margin-left:clamp(16px, 3.5vw, 60px); display:inline-flex; align-items:center;"><img class="brand-logo" src="/images/ez-mortgage-broker.webp" alt="EZ Mortgage Broker" style="width:auto; height:clamp(52px, 5.5vw, 68px); max-width:260px; object-fit:contain; display:block;"></a><img class="brand-logo" src="/images/ez-mortgage-broker.webp" alt="EZ Mortgage Broker" style="max-width:200px; height:auto; display:inline-block;"></a>
           <nav>
             <ul class="nav-primary">
               <li><a href="/">Home</a></li>
@@ -349,20 +391,38 @@ def generate_article_html(item):
               <li><a href="/#contact">Contact</a></li>
             </ul>
           </nav>
-          <div class="header-cta-group">
-            <a href="tel:1300050099" class="btn btn-outline">Call Us</a>
-            <a href="/#contact" class="btn btn-primary">Book Consult</a>
+          <div class="header-cta-group" style="display:flex; flex-direction:row; align-items:center; gap:10px; flex-wrap:nowrap; flex-shrink:0;">
+            <a href="tel:1300050099" class="btn btn-outline" style="white-space:nowrap; padding:8px 16px; border:1.5px solid #1D4ED8; color:#1D4ED8; border-radius:6px; font-weight:700; text-decoration:none;">Call Us</a>
+            <a href="/#contact" class="btn btn-primary" style="white-space:nowrap; padding:8px 16px; background:#1D4ED8; color:#ffffff; border-radius:6px; font-weight:700; text-decoration:none;">Book Consult</a>
           </div>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- 1. Full-Bleed Article Header Banner (100% Width Gold Standard) -->
-  <header class="article-header" style="position:relative; background:#0A2540; color:#ffffff !important; padding:48px 0 44px; overflow:hidden;">
-    <div class="article-header-bg" style="position:absolute; inset:0; background-image:url('/images/assets-ez-mortgage-broker/australian-home-mortgage-approval.jpg'); background-size:cover; background-position:center; filter:blur(3px) brightness(0.35);"></div>
-    <div class="article-header-overlay" style="position:absolute; inset:0; background:linear-gradient(135deg, rgba(10,37,64,0.92) 0%, rgba(10,37,64,0.97) 100%);"></div>
-    <div class="container article-header-content" style="position:relative; z-index:2; max-width:1200px; margin:0 auto; padding:0 20px;">
+  <!-- 1. Full-Bleed Article Header Banner (100% Width with Crossfading Blurred Image Carousel) -->
+  <header class="article-header" style="position:relative; background-color:#0A2540; color:#ffffff !important; padding:52px 0 46px; overflow:hidden; border-bottom:2px solid rgba(0, 137, 123, 0.4);">
+    <style>
+      @keyframes headerCrossfade {
+        0% { opacity: 0; transform: scale(1.05); }
+        8% { opacity: 1; }
+        25% { opacity: 1; }
+        33% { opacity: 0; transform: scale(1.12); }
+        100% { opacity: 0; transform: scale(1.05); }
+      }
+      .article-header-carousel .slide-1 { animation: headerCrossfade 16s infinite 0s ease-in-out; }
+      .article-header-carousel .slide-2 { animation: headerCrossfade 16s infinite 4s ease-in-out; }
+      .article-header-carousel .slide-3 { animation: headerCrossfade 16s infinite 8s ease-in-out; }
+      .article-header-carousel .slide-4 { animation: headerCrossfade 16s infinite 12s ease-in-out; }
+    </style>
+    <div class="article-header-carousel" style="position:absolute; inset:-20px; z-index:1; overflow:hidden; pointer-events:none;">
+      <div class="header-slide slide-1" style="position:absolute; inset:0; background-image:url('/images/melbourne-bourke-street-header.webp'); background-size:cover; background-position:center 35%; filter:blur(4px) brightness(0.72) saturate(1.15); opacity:0;"></div>
+      <div class="header-slide slide-2" style="position:absolute; inset:0; background-image:url('/images/assets-ez-mortgage-broker/melbourne-suburb-property-valuation.jpg'); background-size:cover; background-position:center 40%; filter:blur(4px) brightness(0.72) saturate(1.15); opacity:0;"></div>
+      <div class="header-slide slide-3" style="position:absolute; inset:0; background-image:url('/images/assets-ez-mortgage-broker/australian-home-mortgage-approval.jpg'); background-size:cover; background-position:center; filter:blur(4px) brightness(0.72) saturate(1.15); opacity:0;"></div>
+      <div class="header-slide slide-4" style="position:absolute; inset:0; background-image:url('/images/assets-ez-mortgage-broker/rba-cash-rate-banking-analysis.jpg'); background-size:cover; background-position:center 25%; filter:blur(4px) brightness(0.72) saturate(1.15); opacity:0;"></div>
+    </div>
+    <div class="article-header-overlay" style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(10, 37, 64, 0.62) 0%, rgba(10, 37, 64, 0.88) 100%); z-index:2;"></div>
+    <div class="container article-header-content" style="position:relative; z-index:3; max-width:1200px; margin:0 auto; padding:0 20px;">
       <div class="article-top-toolbar" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:20px;">
         <div class="article-breadcrumbs" style="font-size:0.85rem; color:#94A3B8; font-weight:600;">
           <a href="/" style="color:#60A5FA; text-decoration:none;">Home</a> <span>&gt;</span>
@@ -442,14 +502,20 @@ def generate_article_html(item):
           </div>
         </div>
 
-        <!-- Accordion 2: Technical & Policy Deep-Dive -->
+        <!-- Accordion 2: Local Melbourne & Suburb Corridor Analysis -->
         <div class="article-section-accordion" style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:10px; margin-bottom:16px; overflow:hidden;">
           <button class="article-section-accordion-header" onclick="this.parentElement.classList.toggle('open')" style="width:100%; text-align:left; padding:18px 24px; background:#F8FAFC; border:none; font-size:1.15rem; font-weight:800; color:#0A2540; display:flex; justify-content:space-between; align-items:center; cursor:pointer;">
-            <span>2. Technical Underwriting &amp; Valuation Deep-Dive</span>
+            <span>2. Melbourne &amp; Victorian Suburb Lending Dynamics</span>
             <span class="accordion-icon">+</span>
           </button>
           <div class="article-section-accordion-body" style="padding:24px; color:#334155; line-height:1.7;">
-            <p>Under modern digital credit evaluation frameworks, Australian Tier 1 banks and non-bank lenders utilize automated valuation models (AVMs) and Open Banking data sharing to expedite loan approvals within 24 to 48 hours. Genuine savings criteria, Comprehensive Credit Reporting (CCR) verification, and living expense harmonization remain decisive factors in determining borrowing capacity.</p>
+            <p>Property market conditions and equity growth vary significantly across Melbourne's core metropolitan growth corridors and established inner suburbs:</p>
+            <ul style="padding-left:20px; margin-bottom:14px; display:flex; flex-direction:column; gap:8px;">
+              <li><strong>Western Melbourne Growth Corridors:</strong> In high-demand pockets like <strong>Tarneit</strong>, <strong>Truganina</strong>, <strong>Point Cook</strong>, <strong>Werribee</strong>, <strong>Williams Landing</strong>, and <strong>Caroline Springs</strong>, first home buyers and families are actively leveraging Victorian stamp duty exemptions (sub-$600k) and Home Guarantee Scheme allocations.</li>
+              <li><strong>Northern Melbourne Corridors:</strong> Suburbs including <strong>Craigieburn</strong>, <strong>Wollert</strong>, <strong>South Morang</strong>, <strong>Mernda</strong>, <strong>Bundoora</strong>, and <strong>Preston</strong> are seeing robust refinancing activity as borrowers exit fixed rates and access streamlined bank valuations.</li>
+              <li><strong>Eastern &amp; Inner Suburbs:</strong> Established areas such as <strong>Camberwell</strong>, <strong>Balwyn</strong>, <strong>Glen Waverley</strong>, <strong>Mount Waverley</strong>, <strong>Richmond</strong>, and <strong>Melbourne CBD</strong> retain substantial equity buffers, enabling cash-out facilities for investment diversification.</li>
+              <li><strong>Bayside &amp; South-Eastern:</strong> In <strong>Brighton</strong>, <strong>Sandringham</strong>, <strong>Cheltenham</strong>, and <strong>Frankston</strong>, homeowners are negotiating bespoke tier-1 rate discounts based on pristine Loan-to-Value Ratios (&lt;60% LVR).</li>
+            </ul>
             <p>{content["tip"]}</p>
           </div>
         </div>
@@ -513,8 +579,8 @@ def generate_article_html(item):
           <div class="author-profile-banner" style="height:84px; overflow:hidden;">
             <img src="/images/ez-broker-cover-header.jpg" alt="EZ Mortgage Broker Header" style="width:100%; height:100%; object-fit:cover; display:block;">
           </div>
-          <div class="author-profile-avatar-wrap" style="width:78px; height:78px; border-radius:50%; background:#ffffff; box-shadow:0 4px 14px rgba(0,0,0,0.14); margin:-39px auto 10px; display:flex; align-items:center; justify-content:center; padding:6px; overflow:hidden; border:3px solid #ffffff;">
-            <img src="/images/ez-mortgage-broker.webp" alt="EZ Mortgage Broker Logo" class="author-profile-avatar-img" style="width:100%; height:100%; object-fit:contain; display:block;">
+          <div class="author-profile-avatar-wrap" style="width:78px; height:78px; border-radius:50%; background:#ffffff; box-shadow:0 4px 14px rgba(0,0,0,0.14); margin:-39px auto 10px; display:flex; align-items:center; justify-content:center; padding:4px; overflow:hidden; border:3px solid #ffffff;">
+            <img src="/images/ez-icon-circle.webp" alt="EZ Mortgage Broker" class="author-profile-avatar-img" style="width:92%; height:92%; object-fit:contain; display:block;">
           </div>
           <div class="author-profile-content" style="padding:0 18px 20px;">
             <h3 class="author-profile-name" style="font-size:1.2rem; color:#0A2540; margin:0 0 2px; font-weight:800;">R Bakshi</h3>
@@ -531,26 +597,45 @@ def generate_article_html(item):
         <!-- 2. Crimson Highlights Widget (#a81127 Standard) -->
         <div class="article-highlights-widget" id="articleHighlightsWidget" style="background:#ffffff; border:2px solid #a81127; border-radius:12px; overflow:hidden; box-shadow:0 4px 16px rgba(168, 17, 39, 0.08); margin-bottom:20px;">
           <div class="highlights-header" style="background:#a81127; color:#ffffff !important; padding:12px 18px; display:flex; align-items:center; justify-content:space-between; font-weight:800; font-size:0.95rem;">
-            <span>Highlights</span>
-            <span style="font-weight:900;">−</span>
+            <span>Executive Highlights &amp; Insights</span>
+            <span style="font-weight:900;">⚡</span>
           </div>
-          <div class="highlights-body" style="padding:18px;">
-            <div style="font-size:0.75rem; font-weight:800; color:#a81127; text-transform:uppercase; margin-bottom:10px;">— {date}</div>
-            <div class="highlights-item" style="display:flex; gap:10px; align-items:flex-start; margin-bottom:14px; font-size:0.85rem;">
-              <span class="highlight-bullet" style="color:#a81127; font-size:0.9rem; margin-top:1px;">●</span>
-              <div>
-                <strong style="color:#0A2540; font-size:0.85rem;">Rate Policy Spread</strong>
-                <p style="margin:2px 0 0; color:#64748B; font-size:0.8rem;">Key serviceability buffers &amp; discount margins</p>
-              </div>
-            </div>
-            <div class="highlights-item" style="display:flex; gap:10px; align-items:flex-start; margin-bottom:14px; font-size:0.85rem;">
-              <span class="highlight-bullet" style="color:#a81127; font-size:0.9rem; margin-top:1px;">●</span>
-              <div>
-                <strong style="color:#0A2540; font-size:0.85rem;">Broker Strategy</strong>
-                <p style="margin:2px 0 0; color:#64748B; font-size:0.8rem;">Audit 30+ lenders at zero cost to borrower</p>
-              </div>
-            </div>
-            <a href="#" onclick="window.scrollTo({{top:0, behavior:'smooth'}}); return false;" style="display:block; text-align:center; font-size:0.78rem; font-weight:800; color:#a81127; text-decoration:none; margin-top:10px; border-top:1px solid #f1f5f9; padding-top:8px;">
+          <div class="highlights-body" style="padding:16px;">
+            <div style="font-size:0.75rem; font-weight:800; color:#a81127; text-transform:uppercase; margin-bottom:12px;">— {date} · Advisory Takeaways</div>
+            
+            <details class="highlight-accordion-item" open style="border-bottom:1px solid #f1f5f9; padding-bottom:10px; margin-bottom:10px; cursor:pointer;">
+              <summary style="font-weight:800; color:#0A2540; font-size:0.86rem; list-style:none; display:flex; justify-content:space-between; align-items:center;">
+                <span>1. Rate Policy &amp; APRA Buffer</span>
+                <span style="color:#a81127; font-size:0.8rem;">▼</span>
+              </summary>
+              <p style="margin:6px 0 0; color:#475569; font-size:0.8rem; line-height:1.5;">APRA +3.00% serviceability test applies across major banks, while select non-bank lenders offer 1.00% buffer exceptions for low LVR borrowers (&lt;80%).</p>
+            </details>
+
+            <details class="highlight-accordion-item" open style="border-bottom:1px solid #f1f5f9; padding-bottom:10px; margin-bottom:10px; cursor:pointer;">
+              <summary style="font-weight:800; color:#0A2540; font-size:0.86rem; list-style:none; display:flex; justify-content:space-between; align-items:center;">
+                <span>2. Melbourne &amp; Suburb Corridor Impact</span>
+                <span style="color:#a81127; font-size:0.8rem;">▼</span>
+              </summary>
+              <p style="margin:6px 0 0; color:#475569; font-size:0.8rem; line-height:1.5;">High equity reserves in Eastern &amp; Bayside suburbs (Camberwell, Balwyn, Brighton) contrast with high-demand Western &amp; Northern growth corridors (Tarneit, Point Cook, Craigieburn).</p>
+            </details>
+
+            <details class="highlight-accordion-item" style="border-bottom:1px solid #f1f5f9; padding-bottom:10px; margin-bottom:10px; cursor:pointer;">
+              <summary style="font-weight:800; color:#0A2540; font-size:0.86rem; list-style:none; display:flex; justify-content:space-between; align-items:center;">
+                <span>3. Refinance Cash Flow &amp; Loyalty Tax</span>
+                <span style="color:#a81127; font-size:0.8rem;">▼</span>
+              </summary>
+              <p style="margin:6px 0 0; color:#475569; font-size:0.8rem; line-height:1.5;">Switching from back-book bank pricing saves $3,400+ per $600k loan. Debt consolidation reduces revolving credit interest significantly.</p>
+            </details>
+
+            <details class="highlight-accordion-item" style="padding-bottom:4px; margin-bottom:6px; cursor:pointer;">
+              <summary style="font-weight:800; color:#0A2540; font-size:0.86rem; list-style:none; display:flex; justify-content:space-between; align-items:center;">
+                <span>4. Free 30+ Lender Broker Audit</span>
+                <span style="color:#a81127; font-size:0.8rem;">▼</span>
+              </summary>
+              <p style="margin:6px 0 0; color:#475569; font-size:0.8rem; line-height:1.5;">Principal Broker R Bakshi provides comprehensive borrowing capacity assessments across 30+ lenders at zero cost.</p>
+            </details>
+
+            <a href="#" onclick="window.scrollTo({top:0, behavior:smooth}); return false;" style="display:block; text-align:center; font-size:0.78rem; font-weight:800; color:#a81127; text-decoration:none; margin-top:8px; border-top:1px solid #f1f5f9; padding-top:8px;">
               Top of Article ↑
             </a>
           </div>

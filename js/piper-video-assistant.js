@@ -16,9 +16,9 @@
       delayMs: 10000, // 10-second timer matching Salesforce Piper
       brandName: 'EZ Mortgage Broker',
       avatarName: 'R Bakshi • AI Mortgage Specialist',
-      posterImg: '/images/ez-mortgage-broker.webp',
+      posterImg: '/images/finnova-avatar.jpeg',
       // High-resolution video generated from ElevenLabs / Cloudflare
-      videoSrc: 'https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4',
+      videoSrc: '/images/finnova-avatar.mp4',
       greetingText: 'G\'day! I\'m your AI Lending Specialist at <strong>EZ Mortgage Broker</strong>. I compare 50+ Australian banks to unlock lower rates & boost your borrowing power.',
       actions: [
         { label: '📊 Calculate Borrowing Power', href: '/calculators.html#borrowing-power', primary: true },
