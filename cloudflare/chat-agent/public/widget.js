@@ -196,7 +196,9 @@
       .piper-hero-card { margin: 12px 14px 4px; border-radius: 16px; overflow: hidden; background: linear-gradient(180deg, #E0F2FE 0%, #FFFFFF 100%); border: 1px solid #BAE6FD; position: relative; box-shadow: 0 4px 14px rgba(0, 82, 255, 0.06); }
       .piper-hero-video-stage { position: relative; width: 100%; aspect-ratio: 16/9; background: #0A2540; overflow: hidden; }
       .piper-hero-video-stage video { width: 100%; height: 100%; object-fit: cover; display: block; }
-      .piper-speak-badge-btn { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); background: #0052FF; color: #ffffff; border: none; padding: 6px 14px; border-radius: 999px; font-size: 12px; font-weight: 700; display: flex; align-items: center; gap: 6px; cursor: pointer; box-shadow: 0 4px 12px rgba(0, 82, 255, 0.4); z-index: 5; transition: all 0.2s; }
+      .piper-speak-badge-btn { position: absolute; bottom: 8px; right: 8px; background: rgba(0, 82, 255, 0.9); backdrop-filter: blur(6px); color: #ffffff; border: 1px solid rgba(255,255,255,0.4); padding: 5px 10px; border-radius: 16px; font-size: 11px; font-weight: 700; display: flex; align-items: center; gap: 4px; cursor: pointer; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); z-index: 10; transition: all 0.2s; }
+      .piper-speak-badge-btn:hover { background: #003ECC; transform: scale(1.05); }
+      .piper-speak-badge-btn.speaking { background: rgba(16, 185, 129, 0.95); border-color: #34d399; }
       .piper-speak-badge-btn:hover { background: #003ECC; transform: translateX(-50%) scale(1.04); }
       .piper-hero-intro { padding: 12px 14px; font-size: 13.5px; color: #1E293B; line-height: 1.45; font-weight: 500; }
       .piper-prompts-box { margin: 0 14px 10px; padding: 10px 12px; background: #F8FAFC; border-radius: 12px; border: 1px solid #E2E8F0; font-size: 12px; }
@@ -299,7 +301,7 @@
 
       <div class="piper-hero-card">
         <div class="piper-hero-video-stage">
-          <video id="piper-hero-video" playsinline loop muted preload="auto" poster="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/finnova-avatar-2026.jpeg">
+          <video id="piper-hero-video" playsinline muted preload="auto" poster="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/finnova-avatar-2026.jpeg">
             <source src="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/finnova-avatar-2026.mp4" type="video/mp4">
             <source src="/assets/videos/finnova-avatar-2026.mp4" type="video/mp4">
             <source src="/images/finnova-avatar-2026.mp4" type="video/mp4">
@@ -368,56 +370,55 @@
       sessionStorage.setItem('piper_chat_dismissed', 'true');
     };
 
-    // Piper Interactive Prompt Pills
-    document.querySelectorAll('.piper-prompt-item').forEach(item => {
-      item.onclick = () => {
-        const promptText = item.getAttribute('data-prompt');
-        const input = document.getElementById('omni-chat-input');
+    // Piper Interactive Prompt Pills (Click to instantly query AI)
+    document.querySelectorAll(".piper-prompt-item").forEach(item => {
+      item.onclick = (e) => {
+        e.preventDefault();
+        const promptText = item.getAttribute("data-prompt");
+        const input = document.getElementById("omni-chat-input");
         if (input && promptText) {
           input.value = promptText;
-          document.getElementById('omni-chat-send').click();
+          sendMessage();
         }
       };
     });
 
-    // Speak with Friday Button (Plays the native 100% lip-synced audio directly from the video)
-    let fridayAudioPlayer = null;
-    const speakBtn = document.getElementById('piperSpeakBtn');
-    if (speakBtn) {
-      speakBtn.onclick = () => {
-        const video = document.getElementById('piper-hero-video');
-        if (video) {
-          if (!video.paused && !video.muted) {
-            video.pause();
-            video.muted = true;
-            speakBtn.innerHTML = '🎙️ Speak with Friday';
-            return;
-          }
+    // Speak with Friday Button (Plays native lip-synced video once, then stops cleanly)
+    const speakBtn = document.getElementById("piperSpeakBtn");
+    const video = document.getElementById("piper-hero-video");
+    
+    if (speakBtn && video) {
+      video.loop = false; // Never loop infinitely; play greeting once then stop
+      
+      video.onended = () => {
+        video.pause();
+        video.currentTime = 0;
+        video.muted = true;
+        speakBtn.classList.remove("speaking");
+        speakBtn.innerHTML = "🎙️ Speak with Friday";
+      };
 
-          video.muted = false;
-          video.currentTime = 0;
-          speakBtn.innerHTML = '🔊 Friday is speaking...';
-          
-          video.play().then(() => {
-            video.onended = () => {
-              speakBtn.innerHTML = '🎙️ Speak with Friday';
-              video.muted = true;
-            };
-          }).catch(err => {
-            console.log('Native audio play exception, attempting unmute fallback:', err);
-            const primarySrc = '/assets/videos/finnova-avatar-2026.mp4';
-            const cdnSrc = 'https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/finnova-avatar-2026.mp4';
-            fridayAudioPlayer = new Audio(primarySrc);
-            fridayAudioPlayer.onerror = () => {
-              fridayAudioPlayer = new Audio(cdnSrc);
-              fridayAudioPlayer.play().catch(() => {});
-            };
-            fridayAudioPlayer.play().catch(() => {});
-            fridayAudioPlayer.onended = () => {
-              speakBtn.innerHTML = '🎙️ Speak with Friday';
-            };
-          });
+      speakBtn.onclick = () => {
+        if (!video.paused && !video.muted) {
+          // Pause if already speaking
+          video.pause();
+          video.muted = true;
+          speakBtn.classList.remove("speaking");
+          speakBtn.innerHTML = "🎙️ Speak with Friday";
+          return;
         }
+
+        // Start playback once with synced audio
+        video.muted = false;
+        video.currentTime = 0;
+        speakBtn.classList.add("speaking");
+        speakBtn.innerHTML = "🔊 Speaking...";
+        
+        video.play().catch(err => {
+          console.log("Video audio play note:", err);
+          speakBtn.classList.remove("speaking");
+          speakBtn.innerHTML = "🎙️ Speak with Friday";
+        });
       };
     }
 
@@ -433,28 +434,67 @@
       };
     }
 
-    // Voice Input via Web Speech Recognition API
-    const micBtn = document.getElementById('omniMicBtn');
-    if (micBtn && ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      const recognition = new SpeechRecognition();
-      recognition.continuous = false;
-      recognition.interimResults = false;
-      recognition.lang = 'en-AU';
+    // Voice Input via Web Speech Recognition API (Rock Solid Cross-Browser Voice Typing)
+    const micBtn = document.getElementById("omniMicBtn");
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    let recognition = null;
+    let isListening = false;
 
-      recognition.onstart = () => { micBtn.classList.add('active'); };
-      recognition.onend = () => { micBtn.classList.remove('active'); };
-      recognition.onresult = (event) => {
-        const transcript = event.results[0][0].transcript;
-        const input = document.getElementById('omni-chat-input');
-        if (input && transcript) {
-          input.value = transcript;
-          document.getElementById('omni-chat-send').click();
-        }
-      };
+    if (SpeechRecognition && micBtn) {
+      try {
+        recognition = new SpeechRecognition();
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.lang = "en-AU";
 
+        recognition.onstart = () => {
+          isListening = true;
+          micBtn.classList.add("active");
+          const input = document.getElementById("omni-chat-input");
+          if (input) input.placeholder = "🎙️ Listening... speak now";
+        };
+
+        recognition.onend = () => {
+          isListening = false;
+          micBtn.classList.remove("active");
+          const input = document.getElementById("omni-chat-input");
+          if (input) input.placeholder = "Ask Friday a question...";
+        };
+
+        recognition.onerror = (e) => {
+          console.log("Speech recognition error:", e);
+          isListening = false;
+          micBtn.classList.remove("active");
+          const input = document.getElementById("omni-chat-input");
+          if (input) input.placeholder = "Ask Friday a question...";
+        };
+
+        recognition.onresult = (event) => {
+          const transcript = event.results[0][0].transcript;
+          const input = document.getElementById("omni-chat-input");
+          if (input && transcript) {
+            input.value = transcript;
+            sendMessage();
+          }
+        };
+
+        micBtn.onclick = () => {
+          if (isListening) {
+            recognition.stop();
+          } else {
+            try {
+              recognition.start();
+            } catch (err) {
+              console.log("Recognition restart:", err);
+            }
+          }
+        };
+      } catch (err) {
+        console.log("Web Speech Init:", err);
+      }
+    } else if (micBtn) {
       micBtn.onclick = () => {
-        try { recognition.start(); } catch (e) { recognition.stop(); }
+        alert("Voice speech recognition is supported in Chrome, Edge, and Safari on desktop and mobile.");
       };
     }
 
