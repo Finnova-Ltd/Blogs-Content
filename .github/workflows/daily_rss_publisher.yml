@@ -31,10 +31,29 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install --upgrade requests feedparser beautifulsoup4 lxml || true
+          pip install --upgrade requests feedparser beautifulsoup4 lxml pytest || true
           if [ -f package.json ]; then
             npm install --no-audit --no-fund || true
           fi
+
+      - name: Pre-Flight Autopost Guard (Pytest Gatekeeper)
+        id: test-guard
+        run: |
+          pytest tests/test_autopost_guard.py
+        continue-on-error: true
+
+      - name: Trigger Jules Autonomous Healing on Failure
+        if: steps.test-guard.outcome == failure
+        uses: google-labs-code/jules-action@v1
+        continue-on-error: true
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          jules_token: ${{ secrets.JULES_TOKEN }}
+          prompt: |
+            The pytest autopost guard failed on Blogs-Content.
+            Analyze all Python scripts inside the scripts/ directory.
+            Ensure there are no Python syntax errors, unescaped curly braces in f-strings containing CSS rules, or timezone ambiguities.
+            Fix any code style or formatting errors, run pytest tests/test_autopost_guard.py to verify it passes cleanly, and open a PR with the corrected code.
 
       - name: Ingest Multi-Topic Mortgage News & Australian Lending
         continue-on-error: true

@@ -5,7 +5,7 @@ for EZ Mortgage Broker.
 """
 
 import json, os, html
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 POSTS_PATH = os.path.join(PROJECT_DIR, "posts.json")
@@ -27,7 +27,7 @@ def build_rss():
         slug = p.get('slug', '')
         link = f"{SITE_URL}/pages/blog/{slug}.html" if slug else f"{SITE_URL}/pages/blog.html"
         desc = html.escape(p.get('excerpt', p.get('metaDescription', '')))
-        pub_date = p.get('publishDate', datetime.now().strftime("%a, %d %b %Y 00:00:00 +1000"))
+        pub_date = p.get('publishDate', datetime.now(timezone(timedelta(hours=10))).strftime("%a, %d %b %Y 00:00:00 +1000"))
         category = html.escape(p.get('category', 'Home Loans'))
 
         item_xml = f"""    <item>
@@ -40,7 +40,7 @@ def build_rss():
     </item>"""
         rss_items.append(item_xml)
 
-    now_rfc = datetime.now().strftime("%a, %d %b %Y %H:%M:%S +1000")
+    now_rfc = datetime.now(timezone(timedelta(hours=10))).strftime("%a, %d %b %Y %H:%M:%S +1000")
 
     full_rss = f"""<?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">

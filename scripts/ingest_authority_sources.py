@@ -18,7 +18,7 @@ import html
 import urllib.request
 import urllib.parse
 import xml.etree.ElementTree as ET
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 if SCRIPT_DIR not in sys.path:
@@ -140,8 +140,8 @@ def generate_complete_article_html(title, summary, source_name, category, cat_co
         "@type": "NewsArticle",
         "headline": "{html.escape(title)}",
         "description": "{html.escape(summary[:160])}",
-        "datePublished": "{datetime.now().isoformat()}",
-        "dateModified": "{datetime.now().isoformat()}",
+        "datePublished": "{datetime.now(timezone(timedelta(hours=10))).isoformat()}",
+        "dateModified": "{datetime.now(timezone(timedelta(hours=10))).isoformat()}",
         "author": {{
           "@type": "Person",
           "name": "R BAKSHI",
@@ -633,7 +633,7 @@ def run_ingestion():
                 
             summary = it["description"] or f"Latest Australian lending analysis and regulatory updates from {name}."
             image = fetch_pexels_image(f"australia mortgage finance real estate {t}")
-            d_str = datetime.now().strftime("%d-%b-%Y")
+            d_str = datetime.now(timezone(timedelta(hours=10))).strftime("%d-%b-%Y")
             read_time = "5 min read"
             
             page_html = generate_complete_article_html(t, summary, name, cat, cat_color, tag, image, d_str, read_time, slug)
