@@ -299,10 +299,10 @@
 
       <div class="piper-hero-card">
         <div class="piper-hero-video-stage">
-          <video id="piper-hero-video" playsinline loop muted preload="auto" poster="/images/friday_avatar.jpeg?v=20260902_v2">
-            <source src="/assets/videos/friday_avatar_${brandKey}.mp4?v=20260902_v2" type="video/mp4">
-            <source src="/assets/videos/friday_avatar.mp4?v=20260902_v2" type="video/mp4">
-            <source src="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar.mp4?v=20260902_v2" type="video/mp4">
+          <video id="piper-hero-video" playsinline loop muted preload="auto" poster="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/finnova-avatar-2026.jpeg">
+            <source src="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/finnova-avatar-2026.mp4" type="video/mp4">
+            <source src="/assets/videos/finnova-avatar-2026.mp4" type="video/mp4">
+            <source src="/images/finnova-avatar-2026.mp4" type="video/mp4">
           </video>
           <button type="button" class="piper-speak-badge-btn" id="piperSpeakBtn">
             🎙️ Speak with Friday
