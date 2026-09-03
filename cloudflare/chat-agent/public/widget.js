@@ -297,8 +297,8 @@
       .piper-speak-now-btn:hover { background: #0052cc; transform: translateX(-50%) scale(1.05); }
       .piper-speak-now-btn.speaking { background: #10B981; }
 
-      /* Video Call Controls Bar (Image 2 & 3) */
-      .piper-call-bar { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); padding: 4px 10px; border-radius: 999px; display: none; align-items: center; gap: 8px; z-index: 10; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35); }
+      /* Video Call Controls Bar (Image 2 & 3) - Floating top-right HUD so video captions are 100% visible */
+      .piper-call-bar { position: absolute; top: 10px; right: 12px; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); padding: 4px 10px; border-radius: 999px; display: none; align-items: center; gap: 8px; z-index: 10; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35); }
       .piper-ctrl-btn { background: transparent; border: none; color: #ffffff; font-size: 15px; padding: 4px 6px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: color 0.15s; }
       .piper-ctrl-btn.active { color: #10B981; animation: omniMicPulse 1.5s infinite; }
       .piper-ctrl-btn.muted { color: #ef4444; }
@@ -312,13 +312,14 @@
       .piper-connect-btn-full:hover { background: #0052cc; }
 
       /* Conversation Mode Toggling */
-      #omni-chat-window.is-conversing .piper-card-welcome { display: none; }
+      #omni-chat-window.is-conversing .piper-card-welcome { display: none !important; }
       #omni-chat-window.is-conversing #omni-chat-messages { display: flex !important; }
       #omni-chat-window.is-conversing .piper-prompts-tray { display: block !important; }
       #omni-chat-window.is-conversing .piper-speak-now-btn { display: none !important; }
       #omni-chat-window.is-conversing .piper-call-bar { display: flex !important; }
+      #omni-chat-window.is-conversing #piperConnectRepSub { display: none !important; }
 
-      #omni-chat-messages { flex: 1; padding: 10px 14px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; background: ${msgAreaBg} !important; }
+      #omni-chat-messages { flex: 1; padding: 10px 14px; overflow-y: auto; display: none; flex-direction: column; gap: 8px; font-size: 13.5px; background: ${msgAreaBg} !important; min-height: 140px; }
       .omni-msg { padding: 9px 13px; border-radius: 12px; max-width: 88%; word-break: break-word; line-height: 1.48; }
       .omni-msg.user { background: ${primaryColor} !important; color: #ffffff !important; align-self: flex-end; border-bottom-right-radius: 3px; }
       .omni-msg.assistant { background: ${assistantBg} !important; color: ${assistantText} !important; align-self: flex-start; border-bottom-left-radius: 3px; border: 1px solid ${assistantBorder}; }
@@ -328,10 +329,10 @@
       .omni-action-btn:hover { transform: scale(1.2); }
 
       /* Prompts Tray (Image 2 & 3) */
-      .piper-prompts-tray { padding: 4px 14px 8px; font-size: 12px; }
-      .piper-prompts-title { font-weight: 700; color: #64748B; margin-bottom: 6px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; }
-      .piper-prompts-list { display: flex; flex-direction: column; gap: 4px; }
-      .piper-prompt-item { padding: 5px 8px; background: #ffffff; border: 1px solid #CBD5E1; border-radius: 6px; color: #0A2540; font-weight: 600; cursor: pointer; transition: all 0.15s; display: flex; align-items: center; justify-content: space-between; font-size: 12px; }
+      .piper-prompts-tray { padding: 4px 14px 6px; font-size: 12px; }
+      .piper-prompts-title { font-weight: 700; color: #64748B; margin-bottom: 4px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; }
+      .piper-prompts-list { display: flex; flex-direction: column; gap: 4px; max-height: 90px; overflow-y: auto; }
+      .piper-prompt-item { padding: 5px 8px; background: #ffffff; border: 1px solid #CBD5E1; border-radius: 6px; color: #0A2540; font-weight: 600; cursor: pointer; transition: all 0.15s; display: flex; align-items: center; justify-content: space-between; font-size: 11.5px; }
       .piper-prompt-item:hover { background: #EFF6FF; border-color: #93C5FD; color: #0052FF; transform: translateX(2px); }
       .piper-connect-btn-sub { width: 100%; background: #0066f5; color: #ffffff; border: none; padding: 7px 12px; border-radius: 6px; font-weight: 700; font-size: 12px; cursor: pointer; margin-top: 6px; transition: background 0.15s; }
       .piper-connect-btn-sub:hover { background: #0052cc; }
@@ -461,7 +462,11 @@
       if (bubble) bubble.classList.add('is-open');
       if (greetingPill) greetingPill.style.display = 'none';
       const video = document.getElementById('piper-hero-video');
-      if (video) video.play().catch(() => {});
+      if (video) {
+        video.muted = true;
+        video.defaultMuted = true;
+        video.volume = 0;
+      }
     }
 
     function closeChat() {
@@ -538,6 +543,18 @@
     const endBtn = document.getElementById("piperEndBtn");
     const micBtn = document.getElementById("omniMicBtn");
 
+    if (video) {
+      video.muted = true;
+      video.defaultMuted = true;
+      video.volume = 0;
+      video.addEventListener('volumechange', () => {
+        if (!video.muted || video.volume > 0) {
+          video.muted = true;
+          video.volume = 0;
+        }
+      });
+    }
+
     function getAuVoice() {
       if (!('speechSynthesis' in window)) return null;
       const voices = window.speechSynthesis.getVoices();
@@ -552,9 +569,33 @@
     }
 
     let currentVoiceAudio = null;
+    let currentSpeechId = 0;
 
-    function fallbackBrowserSpeech(cleanText, onComplete) {
-      if (!('speechSynthesis' in window)) {
+    function stopSpeaking() {
+      currentSpeechId++;
+      isSpeaking = false;
+      if (currentVoiceAudio) {
+        try {
+          currentVoiceAudio.onended = null;
+          currentVoiceAudio.onerror = null;
+          currentVoiceAudio.pause();
+          currentVoiceAudio.currentTime = 0;
+          currentVoiceAudio.src = "";
+        } catch(e) {}
+        currentVoiceAudio = null;
+      }
+      if ('speechSynthesis' in window) {
+        try { window.speechSynthesis.cancel(); } catch(e) {}
+      }
+      if (video) {
+        video.loop = false;
+        video.pause();
+        video.currentTime = 0;
+      }
+    }
+
+    function fallbackBrowserSpeech(cleanText, onComplete, speechId) {
+      if (!('speechSynthesis' in window) || (speechId !== undefined && speechId !== currentSpeechId)) {
         if (onComplete) onComplete();
         return;
       }
@@ -567,11 +608,15 @@
       
       if (video) {
         video.muted = true;
+        video.defaultMuted = true;
+        video.volume = 0;
+        video.currentTime = 0;
         video.loop = true;
         video.play().catch(() => {});
       }
 
       utter.onend = () => {
+        if (speechId !== undefined && speechId !== currentSpeechId) return;
         isSpeaking = false;
         if (video) {
           video.loop = false;
@@ -581,6 +626,7 @@
         if (onComplete) onComplete();
       };
       utter.onerror = () => {
+        if (speechId !== undefined && speechId !== currentSpeechId) return;
         isSpeaking = false;
         if (video) {
           video.loop = false;
@@ -606,13 +652,7 @@
     }
 
     async function speakFriday(text, onComplete, isGreeting = false) {
-      if (currentVoiceAudio) {
-        try { currentVoiceAudio.pause(); } catch(e) {}
-        currentVoiceAudio = null;
-      }
-      if ('speechSynthesis' in window) {
-        try { window.speechSynthesis.cancel(); } catch(e) {}
-      }
+      stopSpeaking();
 
       const clean = text
         .replace(/<[^>]+>/g, ' ')
@@ -626,14 +666,19 @@
         return;
       }
 
+      const speechId = currentSpeechId;
       isSpeaking = true;
       if (video) {
         video.muted = true;
+        video.defaultMuted = true;
+        video.volume = 0;
+        video.currentTime = 0;
         video.loop = true; // Actively move lips and head throughout speech
         video.play().catch(() => {});
       }
 
       const handleSpeechEnd = () => {
+        if (speechId !== currentSpeechId) return;
         isSpeaking = false;
         if (video) {
           video.loop = false;
@@ -652,20 +697,25 @@
             currentVoiceAudio = new Audio(cachedGreetingUrl);
             currentVoiceAudio.onended = handleSpeechEnd;
             currentVoiceAudio.onerror = () => {
-              fetchTtsAndPlay(clean, onComplete);
+              if (speechId === currentSpeechId) {
+                fetchTtsAndPlay(clean, onComplete, speechId);
+              }
             };
             await currentVoiceAudio.play();
             return;
           } catch (err) {
             console.log("Cached greeting playback note:", err);
+            // DO NOT fall through to fetchTtsAndPlay if user aborted/paused
+            return;
           }
         }
       }
 
-      await fetchTtsAndPlay(clean, onComplete);
+      await fetchTtsAndPlay(clean, onComplete, speechId);
     }
 
-    async function fetchTtsAndPlay(cleanText, onComplete) {
+    async function fetchTtsAndPlay(cleanText, onComplete, speechId) {
+      if (speechId !== currentSpeechId) return;
       // Dynamic High-Fidelity Ultra-Realistic ElevenLabs Neural Voice
       try {
         const res = await fetch(`${backendUrl}/api/tts`, {
@@ -674,12 +724,17 @@
           body: JSON.stringify({ text: cleanText })
         });
 
+        if (speechId !== currentSpeechId) return;
+
         if (res.ok) {
           const blob = await res.blob();
+          if (speechId !== currentSpeechId) return;
+
           const audioUrl = URL.createObjectURL(blob);
           currentVoiceAudio = new Audio(audioUrl);
 
           currentVoiceAudio.onended = () => {
+            if (speechId !== currentSpeechId) return;
             isSpeaking = false;
             if (video) {
               video.loop = false;
@@ -690,6 +745,7 @@
           };
 
           currentVoiceAudio.onerror = () => {
+            if (speechId !== currentSpeechId) return;
             isSpeaking = false;
             if (video) {
               video.loop = false;
@@ -706,22 +762,39 @@
         console.log("ElevenLabs audio streaming note:", err);
       }
 
-      // Fallback to browser synthesis only if ElevenLabs API is unreachable
-      fallbackBrowserSpeech(cleanText, onComplete);
+      // Fallback to browser synthesis only if this speech is still the active one
+      if (speechId === currentSpeechId) {
+        fallbackBrowserSpeech(cleanText, onComplete, speechId);
+      }
     }
 
     function startListening() {
-      if (!isVoiceActive || isSpeaking || !recognition || isListening) return;
+      if (!recognition) return;
+      if (isSpeaking) {
+        stopSpeaking();
+      }
+      isVoiceActive = true;
+      if (isListening) return;
       try {
         recognition.start();
       } catch (err) {
-        // Recognition already running
+        console.log("Speech recognition start note:", err);
       }
     }
 
     function stopListening() {
       if (recognition && isListening) {
         try { recognition.stop(); } catch(e) {}
+      }
+      isListening = false;
+      if (micBtn) micBtn.classList.remove("active");
+      if (micToggle) {
+        micToggle.classList.remove("active");
+        micToggle.classList.add("muted");
+      }
+      const input = document.getElementById("omni-chat-input");
+      if (input && input.placeholder.includes("Listening")) {
+        input.placeholder = "Ask Friday a question";
       }
     }
 
@@ -737,6 +810,7 @@
         greetDiv.className = 'omni-msg assistant';
         greetDiv.innerHTML = brandIntro;
         msgContainer.appendChild(greetDiv);
+        msgContainer.scrollTop = 0;
       }
 
       // Play exact brand greeting aloud with animated lipsync (isGreeting = true)
@@ -748,19 +822,7 @@
     function endVoiceConversation() {
       isVoiceActive = false;
       stopListening();
-      if (currentVoiceAudio) {
-        try { currentVoiceAudio.pause(); } catch(e) {}
-        currentVoiceAudio = null;
-      }
-      if ('speechSynthesis' in window) {
-        try { window.speechSynthesis.cancel(); } catch(e) {}
-      }
-      if (video) {
-        video.loop = false;
-        video.pause();
-        video.muted = true;
-        video.currentTime = 0;
-      }
+      stopSpeaking();
       win.classList.remove('is-conversing');
     }
 
@@ -773,12 +835,11 @@
       micToggle.onclick = () => {
         if (isListening) {
           stopListening();
-          micToggle.classList.remove('active');
-          micToggle.classList.add('muted');
         } else {
+          isVoiceActive = true;
+          win.classList.add('is-conversing');
+          stopSpeaking();
           startListening();
-          micToggle.classList.remove('muted');
-          micToggle.classList.add('active');
         }
       };
     }
@@ -810,7 +871,10 @@
         recognition.onstart = () => {
           isListening = true;
           if (micBtn) micBtn.classList.add("active");
-          if (micToggle) micToggle.classList.add("active");
+          if (micToggle) {
+            micToggle.classList.remove("muted");
+            micToggle.classList.add("active");
+          }
           const input = document.getElementById("omni-chat-input");
           if (input) input.placeholder = "🎙️ Listening... speak now";
         };
@@ -818,16 +882,24 @@
         recognition.onend = () => {
           isListening = false;
           if (micBtn) micBtn.classList.remove("active");
-          if (micToggle) micToggle.classList.remove("active");
+          if (micToggle) {
+            micToggle.classList.remove("active");
+            micToggle.classList.add("muted");
+          }
           const input = document.getElementById("omni-chat-input");
-          if (input) input.placeholder = "Ask Friday a question";
+          if (input && input.placeholder.includes("Listening")) {
+            input.placeholder = "Ask Friday a question";
+          }
         };
 
         recognition.onerror = (e) => {
           console.log("Speech recognition note:", e);
           isListening = false;
           if (micBtn) micBtn.classList.remove("active");
-          if (micToggle) micToggle.classList.remove("active");
+          if (micToggle) {
+            micToggle.classList.remove("active");
+            micToggle.classList.add("muted");
+          }
           const input = document.getElementById("omni-chat-input");
           if (input) input.placeholder = "Ask Friday a question";
         };
@@ -849,6 +921,7 @@
             } else {
               isVoiceActive = true;
               win.classList.add('is-conversing');
+              stopSpeaking();
               startListening();
             }
           };
@@ -929,19 +1002,7 @@
 
     async function sendMessage() {
       // Immediately stop any active audio, speech synthesis, or speaking state so questions never overlap with greetings
-      if (currentVoiceAudio) {
-        try { currentVoiceAudio.pause(); } catch(e) {}
-        currentVoiceAudio = null;
-      }
-      if ('speechSynthesis' in window) {
-        try { window.speechSynthesis.cancel(); } catch(e) {}
-      }
-      if (video) {
-        video.loop = false;
-        video.pause();
-        video.currentTime = 0;
-      }
-      isSpeaking = false;
+      stopSpeaking();
       stopListening();
 
       const msg = chatInput.value.trim();
