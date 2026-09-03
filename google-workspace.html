@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Google Workspace Partner | 10% Discount First Year - Finnova</title>
-  <meta name="description" content="Finnova is an official Google Workspace Partner. Claim an exclusive 10% discount on your first year of Google Workspace for business email, cloud storage, and Gemini AI.">
+  <title>Google Workspace Partner | Exclusive 10% Discount - Finnova Ltd</title>
+  <meta name="description" content="Finnova is an official Google Workspace Referral Partner. Claim an exclusive 10% discount on your first year of Google Workspace for business email, cloud storage, and Gemini AI.">
   <link rel="canonical" href="https://finnova.org.au/google-workspace.html">
   <link rel="icon" href="/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,8 +13,9 @@
   <style>
     :root {
       --primary: #1E40AF;
-      --primary-dark: #0A2540;
+      --primary-dark: #07152B;
       --accent: #2563EB;
+      --accent-cyan: #06B6D4;
       --google-blue: #4285F4;
       --google-green: #34A853;
       --google-yellow: #FBBC05;
@@ -26,113 +27,497 @@
       --border: #E2E8F0;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
       font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
     .container {
-      max-width: 1180px;
+      max-width: 1240px;
       margin: 0 auto;
       padding: 0 24px;
     }
+
+    /* Keyframe Animations */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(1deg); }
+    }
+    @keyframes floatReverse {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(12px) rotate(-1deg); }
+    }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 20px rgba(66, 133, 244, 0.35); }
+      50% { box-shadow: 0 0 35px rgba(66, 133, 244, 0.65); }
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.3); }
+    }
+
+    /* Header */
     header {
-      background: var(--card-bg);
+      background: rgba(255, 255, 255, 0.95);
       border-bottom: 1px solid var(--border);
-      padding: 18px 0;
+      padding: 14px 0;
       position: sticky;
       top: 0;
-      z-index: 100;
-      backdrop-filter: blur(8px);
+      z-index: 1000;
+      backdrop-filter: blur(12px);
+      transition: all 0.3s ease;
     }
     .header-inner {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 20px;
     }
-    .logo-wrap {
+    .brand-lockup {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
       text-decoration: none;
-      color: var(--text);
     }
-    .logo-badge {
-      background: #EFF6FF;
-      color: var(--primary);
-      font-size: 11px;
-      font-weight: 800;
+    .brand-logo-img {
+      height: 38px;
+      width: auto;
+      object-fit: contain;
+    }
+    .lockup-divider {
+      width: 1px;
+      height: 24px;
+      background: #CBD5E1;
+    }
+    .google-partner-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #F1F5F9;
       padding: 4px 10px;
       border-radius: 20px;
-      border: 1px solid #BFDBFE;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #334155;
+      border: 1px solid #E2E8F0;
     }
+    .google-dots {
+      display: inline-flex;
+      gap: 3px;
+    }
+    .g-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+    .g-blue { background: var(--google-blue); }
+    .g-red { background: var(--google-red); }
+    .g-yellow { background: var(--google-yellow); }
+    .g-green { background: var(--google-green); }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .header-nav a {
+      color: #475569;
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+    .header-nav a:hover {
+      color: var(--primary);
+    }
+    .header-cta-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .header-cta-group img {
+      height: 36px;
+      width: auto;
+      border-radius: 4px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .header-cta-group img:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(66, 133, 244, 0.25);
+    }
+
+    /* Hero Section */
     .hero {
-      background: linear-gradient(135deg, #0A2540 0%, #1E3A8A 60%, #0F172A 100%);
+      background: radial-gradient(circle at 80% 20%, rgba(37, 99, 235, 0.25) 0%, transparent 50%),
+                  radial-gradient(circle at 20% 80%, rgba(6, 182, 212, 0.18) 0%, transparent 45%),
+                  linear-gradient(135deg, #07152B 0%, #0D2346 50%, #0A192F 100%);
       color: #FFFFFF;
-      padding: 72px 0 64px;
-      text-align: center;
+      padding: 72px 0 80px;
       position: relative;
       overflow: hidden;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -50%; left: -50%; width: 200%; height: 200%;
-      background: radial-gradient(circle at center, rgba(66, 133, 244, 0.15) 0%, transparent 60%);
-      pointer-events: none;
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 48px;
+      position: relative;
+      z-index: 2;
     }
-    .partner-pill {
+    .hero-pill {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
       padding: 6px 16px;
       border-radius: 30px;
-      font-size: 12.5px;
+      font-size: 12px;
       font-weight: 800;
       color: #93C5FD;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       text-transform: uppercase;
       letter-spacing: 0.06em;
     }
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: #38BDF8;
+      border-radius: 50%;
+      animation: pulseDot 2s infinite ease-in-out;
+    }
     .hero h1 {
-      font-size: clamp(32px, 4.5vw, 48px);
+      font-size: clamp(34px, 4.2vw, 52px);
       font-weight: 900;
-      line-height: 1.2;
+      line-height: 1.18;
       margin-bottom: 18px;
-      max-width: 820px;
-      margin-left: auto;
-      margin-right: auto;
+      color: #FFFFFF;
+      letter-spacing: -0.02em;
     }
-    .hero p {
-      font-size: clamp(16px, 2vw, 19px);
-      color: #E2E8F0;
-      max-width: 720px;
-      margin: 0 auto 36px;
+    .gradient-text {
+      background: linear-gradient(135deg, #60A5FA 0%, #38BDF8 50%, #A7F3D0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
     }
-    .cta-button-wrap {
-      display: inline-flex;
-      flex-direction: column;
+    .hero-lead {
+      font-size: clamp(15.5px, 1.8vw, 18px);
+      color: #CBD5E1;
+      line-height: 1.65;
+      margin-bottom: 28px;
+      max-width: 620px;
+    }
+
+    /* Google App Icons Strip */
+    .app-strip {
+      display: flex;
+      flex-wrap: wrap;
       align-items: center;
       gap: 12px;
+      margin-bottom: 32px;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      width: fit-content;
     }
-    .cta-button-wrap img {
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-      border-radius: 8px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    .app-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #E2E8F0;
+      transition: transform 0.2s ease, color 0.2s ease;
     }
-    .cta-button-wrap img:hover {
+    .app-item:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(66, 133, 244, 0.4);
+      color: #FFFFFF;
     }
-    .pricing-section {
+    .app-icon-badge {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    /* Hero CTA Group */
+    .hero-cta-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .btn-digital-glow {
+      display: inline-block;
+      transition: transform 0.25s ease, filter 0.25s ease;
+      filter: drop-shadow(0 6px 18px rgba(66, 133, 244, 0.45));
+    }
+    .btn-digital-glow:hover {
+      transform: translateY(-3px) scale(1.02);
+      filter: drop-shadow(0 10px 24px rgba(66, 133, 244, 0.7));
+    }
+    .btn-calc-jump {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #FFFFFF;
+      padding: 12px 22px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+    .btn-calc-jump:hover {
+      background: rgba(255, 255, 255, 0.18);
+      border-color: #93C5FD;
+      color: #93C5FD;
+    }
+    .trust-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: 12.5px;
+      color: #94A3B8;
+      font-weight: 600;
+    }
+    .trust-badges span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .trust-badges span::before {
+      content: '✓';
+      color: #34D399;
+      font-weight: 900;
+    }
+
+    /* Hero Visual Showcase with Floating Cards */
+    .hero-visual-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .showcase-chassis {
+      position: relative;
+      border-radius: 24px;
+      padding: 10px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.03) 100%);
+      border: 1.5px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(59, 130, 246, 0.25);
+      backdrop-filter: blur(16px);
+      width: 100%;
+      max-width: 520px;
+    }
+    .showcase-chassis img {
+      width: 100%;
+      height: auto;
+      border-radius: 18px;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .showcase-chassis:hover img {
+      transform: scale(1.02);
+    }
+
+    /* Floating Glass Cards */
+    .float-card {
+      position: absolute;
+      background: rgba(15, 23, 42, 0.82);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 16px;
+      padding: 12px 18px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #FFFFFF;
+      z-index: 10;
+      pointer-events: none;
+    }
+    .float-card-1 {
+      top: -20px;
+      left: -20px;
+      animation: floatSlow 5s ease-in-out infinite;
+    }
+    .float-card-2 {
+      bottom: -24px;
+      right: -20px;
+      animation: floatReverse 6s ease-in-out infinite;
+    }
+    .float-card-3 {
+      top: 40%;
+      right: -32px;
+      animation: pulseGlow 4s ease-in-out infinite;
+      border-color: rgba(56, 189, 248, 0.5);
+    }
+    .float-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .icon-gemini { background: linear-gradient(135deg, #8B5CF6, #EC4899); }
+    .icon-storage { background: linear-gradient(135deg, #10B981, #059669); }
+    .icon-discount { background: linear-gradient(135deg, #0284C7, #2563EB); }
+    .float-meta strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+    .float-meta span {
+      font-size: 11px;
+      color: #94A3B8;
+    }
+
+    /* Interactive 10% Savings Calculator Section */
+    .calculator-section {
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--border);
       padding: 64px 0;
+    }
+    .calc-box {
+      background: linear-gradient(135deg, #F8FAFC 0%, #EFF6FF 100%);
+      border: 1.5px solid #BFDBFE;
+      border-radius: 24px;
+      padding: 40px 36px;
+      box-shadow: 0 10px 30px rgba(30, 64, 175, 0.05);
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .calc-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .calc-header h2 {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--primary-dark);
+      margin-bottom: 8px;
+    }
+    .calc-header p {
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+    .calc-controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+    .calc-plan-pills {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .plan-pill-btn {
+      flex: 1;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1.5px solid #CBD5E1;
+      background: #FFFFFF;
+      font-size: 13px;
+      font-weight: 700;
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .plan-pill-btn.active {
+      background: var(--primary);
+      color: #FFFFFF;
+      border-color: var(--primary);
+      box-shadow: 0 4px 12px rgba(30, 64, 175, 0.25);
+    }
+    .slider-wrap {
+      margin-bottom: 20px;
+    }
+    .slider-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .slider-val-badge {
+      background: var(--primary);
+      color: #FFFFFF;
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: 13px;
+    }
+    .seats-slider {
+      width: 100%;
+      height: 8px;
+      border-radius: 4px;
+      background: #CBD5E1;
+      outline: none;
+      cursor: pointer;
+      accent-color: var(--primary);
+    }
+    .calc-results-card {
+      background: #FFFFFF;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+      text-align: center;
+    }
+    .calc-stat-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #F1F5F9;
+      font-size: 13.5px;
+      color: #475569;
+    }
+    .calc-stat-row.total-row {
+      border-bottom: none;
+      padding-top: 16px;
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .saving-highlight {
+      color: #15803D;
+      font-weight: 800;
+    }
+    .total-price-val {
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--primary);
+      display: block;
+      margin: 8px 0 16px;
+    }
+
+    /* Pricing Section */
+    .pricing-section {
+      padding: 72px 0;
     }
     .section-title {
       text-align: center;
@@ -152,7 +537,7 @@
     }
     .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 24px;
       margin-bottom: 48px;
     }
@@ -268,6 +653,8 @@
     .featured .btn-plan:hover {
       background: #1D4ED8;
     }
+
+    /* FAQ */
     .faq-section {
       background: white;
       border-top: 1px solid var(--border);
@@ -296,31 +683,8 @@
       color: #475569;
       line-height: 1.6;
     }
-    .charity-banner {
-      background: #EFF6FF;
-      border: 1.5px solid #BFDBFE;
-      border-radius: 20px;
-      padding: 32px;
-      margin: 48px 0;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-    .charity-content {
-      max-width: 680px;
-    }
-    .charity-content h3 {
-      font-size: 20px;
-      font-weight: 900;
-      color: var(--primary);
-      margin-bottom: 8px;
-    }
-    .charity-content p {
-      font-size: 14px;
-      color: #334155;
-    }
+
+    /* Footer */
     footer {
       background: var(--primary-dark);
       color: #94A3B8;
@@ -329,6 +693,37 @@
       border-top: 1px solid #1E293B;
     }
     footer a { color: #CBD5E1; text-decoration: none; }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .hero-lead {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .app-strip {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .hero-cta-wrap {
+        justify-content: center;
+      }
+      .trust-badges {
+        justify-content: center;
+      }
+      .calc-controls {
+        grid-template-columns: 1fr;
+      }
+      .header-nav {
+        display: none;
+      }
+      .float-card-3 {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -336,41 +731,206 @@
   <!-- Header -->
   <header>
     <div class="container header-inner">
-      <a href="/" class="logo-wrap">
-        <strong style="font-size:20px; font-weight:900; color:#0A2540;">Finnova</strong>
-        <span class="logo-badge">Official Google Partner</span>
+      <a href="/" class="brand-lockup">
+        <img src="images/finnova-logo-stars.webp" alt="Finnova Limited Logo" class="brand-logo-img" />
+        <div class="lockup-divider"></div>
+        <div class="google-partner-tag">
+          <span class="google-dots">
+            <span class="g-dot g-blue"></span>
+            <span class="g-dot g-red"></span>
+            <span class="g-dot g-yellow"></span>
+            <span class="g-dot g-green"></span>
+          </span>
+          <span>Google Workspace Referral Partner</span>
+        </div>
       </a>
-      <a href="https://referworkspace.app.goo.gl/9gmN" target="_blank" rel="noopener noreferrer">
-        <img src="https://storage.googleapis.com/referworkspace-asset/img/digitalbuttons/digital_button_en.png" alt="Get Google Workspace" style="height:36px; width:auto; border-radius:4px;" />
-      </a>
+
+      <nav class="header-nav">
+        <a href="#calculator">10% Savings Calculator</a>
+        <a href="#plans">Plans &amp; Pricing</a>
+        <a href="#faqs">FAQs</a>
+        <a href="/">← Return to Finnova</a>
+      </nav>
+
+      <div class="header-cta-group">
+        <a href="https://referworkspace.app.goo.gl/9gmN" target="_blank" rel="noopener noreferrer">
+          <img src="https://storage.googleapis.com/referworkspace-asset/img/digitalbuttons/digital_button_en.png" alt="Get Google Workspace with Finnova" />
+        </a>
+      </div>
     </div>
   </header>
 
   <!-- Hero -->
   <section class="hero">
     <div class="container">
-      <div class="partner-pill">
-        <span>Google Workspace Referral Partner</span> · <span>Exclusive 10% Discount</span>
-      </div>
-      <h1>Power Your Business &amp; Non-Profit with Google Workspace</h1>
-      <p>
-        Get custom business email (<span style="color:#93C5FD;">you@yourbusiness.com.au</span>), cloud storage, Google Meet, and Gemini AI. Sign up through Finnova to receive <strong>10% off your entire first year</strong>.
-      </p>
-      <div class="cta-button-wrap">
-        <a href="https://referworkspace.app.goo.gl/9gmN" target="_blank" rel="noopener noreferrer">
-          <img src="https://storage.googleapis.com/referworkspace-asset/img/digitalbuttons/digital_button_en.png" alt="Start Google Workspace 14-Day Free Trial" style="height:48px; width:auto;" />
-        </a>
-        <span style="font-size:12px; color:#CBD5E1;">Includes 14-Day Free Trial · No credit card commitment · 10% code applied</span>
+      <div class="hero-grid">
+        
+        <!-- Left Content Column -->
+        <div class="hero-left">
+          <div class="hero-pill">
+            <span class="pulse-dot"></span>
+            <span>Official Google Partner · Exclusive 10% Discount</span>
+          </div>
+          <h1>
+            Power Your Organisation with <span class="gradient-text">Google Workspace</span>
+          </h1>
+          <p class="hero-lead">
+            Equip your Australian business, community group, or non-profit with custom business email (<span style="color:#93C5FD; font-weight:700;">you@yourbusiness.com.au</span>), up to 5 TB cloud storage, Google Meet, and Gemini AI. Claim an exclusive <strong>10% discount on your entire first year</strong>.
+          </p>
+
+          <!-- Animated Google Workspace Apps Strip -->
+          <div class="app-strip">
+            <div class="app-item">
+              <span class="app-icon-badge" style="color:#EA4335;">✉️</span>
+              <span>Gmail</span>
+            </div>
+            <div class="app-item">
+              <span class="app-icon-badge" style="color:#4285F4;">📁</span>
+              <span>Drive</span>
+            </div>
+            <div class="app-item">
+              <span class="app-icon-badge" style="color:#34A853;">📹</span>
+              <span>Meet</span>
+            </div>
+            <div class="app-item">
+              <span class="app-icon-badge" style="color:#4285F4;">📅</span>
+              <span>Calendar</span>
+            </div>
+            <div class="app-item">
+              <span class="app-icon-badge" style="color:#4285F4;">📄</span>
+              <span>Docs</span>
+            </div>
+            <div class="app-item">
+              <span class="app-icon-badge" style="color:#A855F7;">✨</span>
+              <span>Gemini AI</span>
+            </div>
+          </div>
+
+          <!-- Hero CTAs -->
+          <div class="hero-cta-wrap">
+            <a href="https://referworkspace.app.goo.gl/9gmN" target="_blank" rel="noopener noreferrer" class="btn-digital-glow">
+              <img src="https://storage.googleapis.com/referworkspace-asset/img/digitalbuttons/digital_button_en.png" alt="Start Google Workspace 14-Day Free Trial" style="height:48px; width:auto; border-radius:6px; display:block;" />
+            </a>
+            <a href="#calculator" class="btn-calc-jump">
+              <span>Calculate 10% Savings</span>
+              <span>↓</span>
+            </a>
+          </div>
+
+          <!-- Trust Badges -->
+          <div class="trust-badges">
+            <span>14-Day Free Trial</span>
+            <span>No Lock-in Contracts</span>
+            <span>Official Google 24/7 Support</span>
+            <span>AUD Currency Billing</span>
+          </div>
+        </div>
+
+        <!-- Right Visual Showcase with Floating Animated Badges -->
+        <div class="hero-visual-wrap">
+          
+          <!-- Floating Badge 1: Gemini AI -->
+          <div class="float-card float-card-1">
+            <div class="float-icon icon-gemini">✨</div>
+            <div class="float-meta">
+              <strong>Gemini AI Assistance</strong>
+              <span>Drafts emails &amp; grants 10x faster</span>
+            </div>
+          </div>
+
+          <!-- Floating Badge 2: Cloud Storage -->
+          <div class="float-card float-card-2">
+            <div class="float-icon icon-storage">🔒</div>
+            <div class="float-meta">
+              <strong>2 TB to 5 TB Cloud Storage</strong>
+              <span>Bank-grade encryption &amp; 99.9% uptime</span>
+            </div>
+          </div>
+
+          <!-- Floating Badge 3: 10% Off Tag -->
+          <div class="float-card float-card-3">
+            <div class="float-icon icon-discount">⚡</div>
+            <div class="float-meta">
+              <strong>10% First Year Discount</strong>
+              <span>Auto-applied via Finnova Link</span>
+            </div>
+          </div>
+
+          <!-- Main 3D Showcase Image -->
+          <div class="showcase-chassis">
+            <img src="images/google-workspace-hero.jpg" alt="Google Workspace Cloud Collaboration Suite with Gemini AI" />
+          </div>
+
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Pricing -->
-  <section class="pricing-section">
+  <!-- Interactive 10% Savings Calculator -->
+  <section class="calculator-section" id="calculator">
+    <div class="container">
+      <div class="calc-box">
+        <div class="calc-header">
+          <h2>Interactive 10% Savings Calculator</h2>
+          <p>Estimate how much your organisation saves in your first year by subscribing through Finnova.</p>
+        </div>
+
+        <div class="calc-controls">
+          <div>
+            <label style="font-size:13px; font-weight:700; color:#475569; margin-bottom:8px; display:block;">1. Select Google Workspace Plan:</label>
+            <div class="calc-plan-pills">
+              <button type="button" class="plan-pill-btn" onclick="selectCalcPlan('starter', 9.90, this)">Starter ($9.90)</button>
+              <button type="button" class="plan-pill-btn active" onclick="selectCalcPlan('standard', 19.80, this)">Standard ($19.80)</button>
+              <button type="button" class="plan-pill-btn" onclick="selectCalcPlan('plus', 30.90, this)">Plus ($30.90)</button>
+            </div>
+
+            <div class="slider-wrap">
+              <div class="slider-label">
+                <span>2. Number of Users / Email Accounts:</span>
+                <span class="slider-val-badge" id="seatDisplay">5 Users</span>
+              </div>
+              <input type="range" min="1" max="50" value="5" id="seatSlider" class="seats-slider" oninput="updateCalculation()" />
+              <div style="display:flex; justify-content:space-between; font-size:11px; color:#94A3B8; margin-top:6px;">
+                <span>1 User (Solo)</span>
+                <span>25 Users (Growing Team)</span>
+                <span>50 Users (Mid-Size)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Calculation Results -->
+          <div class="calc-results-card">
+            <div class="calc-stat-row">
+              <span>Standard 12-Month Price:</span>
+              <span id="standardPriceText">$1,188.00 AUD</span>
+            </div>
+            <div class="calc-stat-row">
+              <span class="saving-highlight">Finnova 10% Partner Savings:</span>
+              <span class="saving-highlight" id="discountSavedText">- $118.80 AUD</span>
+            </div>
+            <div class="calc-stat-row total-row">
+              <span>Your First Year Cost:</span>
+            </div>
+            <div class="total-price-val" id="finalPriceText">$1,069.20 AUD</div>
+            <p style="font-size:12px; color:#64748B; margin-bottom:16px;">
+              Pay $0.00 today with an initial 14-day free trial. Cancel anytime.
+            </p>
+            <a href="https://referworkspace.app.goo.gl/9gmN" target="_blank" rel="noopener noreferrer" style="display:inline-block;">
+              <img src="https://storage.googleapis.com/referworkspace-asset/img/digitalbuttons/digital_button_en.png" alt="Claim 10% Discount Now" style="height:44px; width:auto; border-radius:6px; box-shadow:0 4px 14px rgba(66, 133, 244, 0.35);" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Plans Section -->
+  <section class="pricing-section" id="plans">
     <div class="container">
       <div class="section-title">
-        <h2>Choose the Right Plan for Your Team</h2>
-        <p>All plans include a 14-day free trial, guaranteed 99.9% uptime SLA, and Australian currency billing.</p>
+        <h2>Transparent Australian Pricing</h2>
+        <p>Choose the plan that matches your team size. All plans include 10% off for 12 months.</p>
       </div>
 
       <div class="pricing-grid">
@@ -392,7 +952,7 @@
             <li>Standard security and management controls</li>
           </ul>
           <a href="https://referworkspace.app.goo.gl/9gmN" target="_blank" rel="noopener noreferrer" class="btn-plan">
-            Start 14-Day Trial &rarr;
+            Start 14-Day Free Trial &rarr;
           </a>
         </div>
 
@@ -415,7 +975,7 @@
             <li>eSignatures with Docs and PDFs</li>
           </ul>
           <a href="https://referworkspace.app.goo.gl/9gmN" target="_blank" rel="noopener noreferrer" class="btn-plan">
-            Start 14-Day Trial &rarr;
+            Start 14-Day Free Trial &rarr;
           </a>
         </div>
 
@@ -436,30 +996,16 @@
             <li>Enhanced security and LDAP integration</li>
           </ul>
           <a href="https://referworkspace.app.goo.gl/9gmN" target="_blank" rel="noopener noreferrer" class="btn-plan">
-            Start 14-Day Trial &rarr;
+            Start 14-Day Free Trial &rarr;
           </a>
         </div>
 
       </div>
-
-      <!-- Charity Impact Banner -->
-      <div class="charity-banner">
-        <div class="charity-content">
-          <h3>Empowering Community Through Technology</h3>
-          <p>
-            Finnova Ltd is an Australian ACNC-registered charity dedicated to closing the digital divide. By signing up for Google Workspace via Finnova's official partner link, you help support our community digital literacy programs, senior cyber safety workshops, and free refurbished computer initiatives across Victoria.
-          </p>
-        </div>
-        <a href="https://referworkspace.app.goo.gl/9gmN" target="_blank" rel="noopener noreferrer">
-          <img src="https://storage.googleapis.com/referworkspace-asset/img/digitalbuttons/digital_button_en.png" alt="Get Google Workspace with Finnova" style="height:44px; width:auto; border-radius:6px;" />
-        </a>
-      </div>
-
     </div>
   </section>
 
   <!-- FAQ Section -->
-  <section class="faq-section">
+  <section class="faq-section" id="faqs">
     <div class="container">
       <div class="section-title">
         <h2>Frequently Asked Questions</h2>
@@ -468,33 +1014,33 @@
 
       <div class="faq-grid">
         <div class="faq-card">
-          <h4>How do I receive the 10% discount?</h4>
-          <p>Click our partner link (<a href="https://referworkspace.app.goo.gl/9gmN" target="_blank" rel="noopener" style="color:var(--accent); font-weight:bold;">referworkspace.app.goo.gl/9gmN</a>) when creating your account. The 10% promotion is automatically applied to your customer billing console for your entire first year.</p>
+          <h4>How is the 10% discount applied?</h4>
+          <p>By signing up through our partner link (<a href="https://referworkspace.app.goo.gl/9gmN" target="_blank" rel="noopener" style="color:var(--accent); font-weight:bold;">referworkspace.app.goo.gl/9gmN</a>), your 10% promotional credit is automatically mapped to your billing account for your entire first 12 months.</p>
         </div>
 
         <div class="faq-card">
-          <h4>Can I keep my existing email address and domain?</h4>
-          <p>Yes. Google Workspace connects directly to your existing domain name (e.g. yourbusiness.com.au). Google provides simple DNS setup wizards, and your previous emails can be migrated seamlessly.</p>
+          <h4>Can I keep my current business email address?</h4>
+          <p>Yes. Google Workspace connects directly to your existing custom domain (e.g. yourname@company.com.au). Google provides an easy step-by-step setup wizard to transfer your email without downtime.</p>
         </div>
 
         <div class="faq-card">
-          <h4>Is there a free trial period?</h4>
-          <p>Yes. Every new account receives a full 14-day free trial to test Gmail, Drive, Calendar, Docs, and Meet before any billing begins.</p>
+          <h4>How does the 14-day free trial work?</h4>
+          <p>You can test Gmail, Google Drive, Docs, and Meet with your team for 14 days without paying anything upfront. If you cancel before day 14, you will never be charged.</p>
         </div>
 
         <div class="faq-card">
-          <h4>What makes Google Workspace better than free webmail?</h4>
-          <p>A custom domain email instantly builds customer trust. Furthermore, Google Workspace eliminates server crashes, spam, and storage bottlenecks with 99.9% guaranteed uptime and bank-grade data security.</p>
+          <h4>Why should I switch from free Gmail or webmail?</h4>
+          <p>A custom domain email builds immediate trust with customers and suppliers. Additionally, Google Workspace gives you 30 GB to 5 TB of secure cloud storage, spam filtering, and a 99.9% uptime SLA backed by Google.</p>
         </div>
 
         <div class="faq-card">
-          <h4>Can my remote team collaborate simultaneously?</h4>
-          <p>Yes. Real-time document co-authoring in Docs, Sheets, and Slides allows multiple team members to edit simultaneously without ever emailing attachments back and forth.</p>
+          <h4>How does Gemini AI help our team?</h4>
+          <p>Gemini is integrated directly into Gmail, Docs, and Slides. It helps you draft professional emails, summarize long meeting transcripts, write grant applications, and create presentations in seconds.</p>
         </div>
 
         <div class="faq-card">
-          <h4>What support does Google provide?</h4>
-          <p>All Google Workspace accounts include 24/7 official Google support by phone, email, and live chat.</p>
+          <h4>How does this support Finnova's charity mission?</h4>
+          <p>Finnova Ltd is an Australian ACNC-registered charity. As an authorized Google Workspace referrer, referral proceeds directly fund our community digital literacy hubs, senior cyber defense workshops, and free refurbished laptops for digitally excluded families.</p>
         </div>
       </div>
     </div>
@@ -504,13 +1050,41 @@
   <footer>
     <div class="container" style="text-align:center;">
       <p style="margin-bottom:8px;">
-        <strong>Finnova Ltd</strong> — ACNC-Registered Australian Charity (ABN: Registered 2026).
+        <strong>Finnova Ltd</strong> — ACNC-Registered Australian Charity (ABN: 55 687 130 767).
       </p>
       <p style="max-width:800px; margin:0 auto; line-height:1.6; color:#64748B;">
-        Disclaimer: Finnova is an official referrer in the Google Workspace Referral Program. Google Workspace, Gmail, Google Drive, Google Meet, and Gemini are trademarks of Google LLC. Discount offer valid for new Google Workspace customers during their first 12 months.
+        Disclaimer: Finnova Ltd is an official referrer in the Google Workspace Referral Program. Google Workspace, Gmail, Google Drive, Google Meet, Google Calendar, and Gemini are trademarks of Google LLC. Discount offer valid for new Google Workspace customer domains during their first 12 months.
       </p>
     </div>
   </footer>
+
+  <!-- Calculator Interactive Script -->
+  <script>
+    let currentRatePerMonth = 19.80; // Default to Standard
+
+    function selectCalcPlan(plan, rate, el) {
+      currentRatePerMonth = rate;
+      document.querySelectorAll('.plan-pill-btn').forEach(btn => btn.classList.remove('active'));
+      el.classList.add('active');
+      updateCalculation();
+    }
+
+    function updateCalculation() {
+      const seats = parseInt(document.getElementById('seatSlider').value, 10);
+      document.getElementById('seatDisplay').innerText = seats + (seats === 1 ? ' User' : ' Users');
+
+      const standardAnnual = seats * currentRatePerMonth * 12;
+      const discountSaved = standardAnnual * 0.10;
+      const finalPrice = standardAnnual - discountSaved;
+
+      document.getElementById('standardPriceText').innerText = '$' + standardAnnual.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' AUD';
+      document.getElementById('discountSavedText').innerText = '- $' + discountSaved.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' AUD';
+      document.getElementById('finalPriceText').innerText = '$' + finalPrice.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' AUD';
+    }
+
+    // Initialize on load
+    document.addEventListener('DOMContentLoaded', updateCalculation);
+  </script>
 
 </body>
 </html>
