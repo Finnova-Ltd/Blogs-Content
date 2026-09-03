@@ -259,7 +259,10 @@
       #omni-chat-bubble.is-open { box-shadow: 0 8px 24px rgba(15, 23, 42, 0.35); }
       @media (max-width: 640px) { .omni-avatar-greeting-pill { display: none !important; } #omni-chat-bubble { width: 58px; height: 58px; } #omni-chat-trigger-group { bottom: 16px; right: 16px; } }
 
-      #omni-chat-window { position: fixed; bottom: 96px; right: 24px; width: 410px; height: 620px; max-width: calc(100vw - 32px); max-height: calc(100vh - 110px); background: ${winBg} !important; color: ${winText} !important; border-radius: 20px; box-shadow: 0 20px 45px -5px rgba(0,0,0,0.22); display: none; flex-direction: column; overflow: hidden; z-index: 999999; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; border: 1px solid ${winBorder}; }
+      #omni-chat-window { position: fixed; bottom: 96px; right: 24px; width: 395px; height: auto; min-height: 480px; max-height: calc(100vh - 110px); background: ${winBg} !important; color: ${winText} !important; border-radius: 20px; box-shadow: 0 20px 50px -5px rgba(0,0,0,0.22); display: none; flex-direction: column; overflow: hidden; z-index: 999999; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; border: 1px solid ${winBorder}; transition: width 0.3s ease, height 0.3s ease; }
+      #omni-chat-window.is-conversing { height: 640px; }
+      #omni-chat-window.is-expanded { width: 490px; }
+      
       #omni-chat-header { background: #ffffff !important; color: #0f172a !important; padding: 12px 16px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid ${winBorder}; }
       #omni-chat-header .title-wrap { display: flex; align-items: center; gap: 8px; }
       #omni-chat-header span.title { font-size: 15px; font-weight: 800; color: #0A2540; }
@@ -267,44 +270,70 @@
       .omni-hdr-actions { display: flex; gap: 8px; align-items: center; }
       .omni-btn-endchat { background: #F1F5F9; color: #475569; border: 1px solid #E2E8F0; padding: 4px 8px; border-radius: 6px; font-size: 11px; cursor: pointer; font-weight: 600; }
       .omni-btn-endchat:hover { background: #E2E8F0; color: #0f172a; }
-      
-      /* Salesforce Piper Style Hero Card */
-      .piper-hero-card { margin: 12px 14px 4px; border-radius: 16px; overflow: hidden; background: linear-gradient(180deg, #E0F2FE 0%, #FFFFFF 100%); border: 1px solid #BAE6FD; position: relative; box-shadow: 0 4px 14px rgba(0, 82, 255, 0.06); }
-      .piper-hero-video-stage { position: relative; width: 100%; aspect-ratio: 16/9; background: #0A2540; overflow: hidden; }
-      .piper-hero-video-stage video { width: 100%; height: 100%; object-fit: cover; display: block; }
-      .piper-speak-badge-btn { position: absolute; bottom: 8px; right: 8px; background: rgba(0, 82, 255, 0.9); backdrop-filter: blur(6px); color: #ffffff; border: 1px solid rgba(255,255,255,0.4); padding: 5px 10px; border-radius: 16px; font-size: 11px; font-weight: 700; display: flex; align-items: center; gap: 4px; cursor: pointer; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); z-index: 10; transition: all 0.2s; }
-      .piper-speak-badge-btn:hover { background: #003ECC; transform: scale(1.05); }
-      .piper-speak-badge-btn.speaking { background: rgba(16, 185, 129, 0.95); border-color: #34d399; }
-      .piper-speak-badge-btn:hover { background: #003ECC; transform: translateX(-50%) scale(1.04); }
-      .piper-hero-intro { padding: 12px 14px; font-size: 13.5px; color: #1E293B; line-height: 1.45; font-weight: 500; }
-      .piper-prompts-box { margin: 0 14px 10px; padding: 10px 12px; background: #F8FAFC; border-radius: 12px; border: 1px solid #E2E8F0; font-size: 12px; }
-      .piper-prompts-title { font-weight: 700; color: #64748B; margin-bottom: 6px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; }
-      .piper-prompt-item { padding: 5px 8px; margin: 4px 0; background: #ffffff; border: 1px solid #CBD5E1; border-radius: 6px; color: #0A2540; font-weight: 600; cursor: pointer; transition: all 0.15s; display: flex; align-items: center; justify-content: space-between; }
-      .piper-prompt-item:hover { background: #EFF6FF; border-color: #93C5FD; color: #0052FF; transform: translateX(2px); }
-      .piper-cta-row { margin: 0 14px 12px; }
-      .piper-connect-btn { width: 100%; background: #0052FF; color: #ffffff; border: none; padding: 9px 14px; border-radius: 8px; font-weight: 700; font-size: 13px; cursor: pointer; transition: background 0.2s; }
-      .piper-connect-btn:hover { background: #003ECC; }
 
-      #omni-chat-messages { flex: 1; padding: 12px 14px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; font-size: 13.5px; background: ${msgAreaBg} !important; }
-      .omni-msg { padding: 10px 14px; border-radius: 12px; max-width: 88%; word-break: break-word; line-height: 1.5; }
+      /* Salesforce Piper Avatar Card matching Image 1 */
+      .piper-hero-card { margin: 12px 14px 6px; border-radius: 16px; overflow: hidden; background: #ffffff; position: relative; }
+      .piper-hero-video-stage { position: relative; width: 100%; height: 210px; background: #0A2540; border-radius: 14px; overflow: hidden; transition: height 0.3s ease; }
+      #omni-chat-window.is-expanded .piper-hero-video-stage { height: 275px; }
+      .piper-hero-video-stage video { width: 100%; height: 100%; object-fit: cover; display: block; }
+      
+      /* Centered Prominent Speak Now Pill Button (Image 1) */
+      .piper-speak-now-btn { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); background: #0066f5; color: #ffffff; font-size: 13.5px; font-weight: 700; padding: 7px 20px; border-radius: 999px; border: none; cursor: pointer; box-shadow: 0 4px 14px rgba(0, 102, 245, 0.45); display: flex; align-items: center; gap: 6px; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); z-index: 10; white-space: nowrap; }
+      .piper-speak-now-btn:hover { background: #0052cc; transform: translateX(-50%) scale(1.05); }
+      .piper-speak-now-btn.speaking { background: #10B981; }
+
+      /* Video Call Controls Bar (Image 2 & 3) */
+      .piper-call-bar { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); padding: 4px 10px; border-radius: 999px; display: none; align-items: center; gap: 8px; z-index: 10; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35); }
+      .piper-ctrl-btn { background: transparent; border: none; color: #ffffff; font-size: 15px; padding: 4px 6px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: color 0.15s; }
+      .piper-ctrl-btn.active { color: #10B981; animation: omniMicPulse 1.5s infinite; }
+      .piper-ctrl-btn.muted { color: #ef4444; }
+      .piper-ctrl-end { background: #ef4444; color: #ffffff; font-size: 11.5px; font-weight: 700; padding: 4px 10px; border-radius: 999px; border: none; cursor: pointer; margin-left: 2px; transition: background 0.15s; }
+      .piper-ctrl-end:hover { background: #dc2626; }
+
+      /* Welcome Card Text & Full-Width CTA (Image 1) */
+      .piper-card-welcome { padding: 14px 4px 4px; }
+      .piper-card-intro { font-size: 13.5px; color: #1E293B; line-height: 1.48; font-weight: 500; margin: 0 0 14px; }
+      .piper-connect-btn-full { width: 100%; background: #0066f5; color: #ffffff; border: none; padding: 11px 16px; border-radius: 8px; font-weight: 700; font-size: 13.5px; cursor: pointer; transition: background 0.2s; box-shadow: 0 2px 6px rgba(0, 102, 245, 0.25); margin-bottom: 8px; }
+      .piper-connect-btn-full:hover { background: #0052cc; }
+
+      /* Conversation Mode Toggling */
+      #omni-chat-window.is-conversing .piper-card-welcome { display: none; }
+      #omni-chat-window.is-conversing #omni-chat-messages { display: flex !important; }
+      #omni-chat-window.is-conversing .piper-prompts-tray { display: block !important; }
+      #omni-chat-window.is-conversing .piper-speak-now-btn { display: none !important; }
+      #omni-chat-window.is-conversing .piper-call-bar { display: flex !important; }
+
+      #omni-chat-messages { flex: 1; padding: 10px 14px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; background: ${msgAreaBg} !important; }
+      .omni-msg { padding: 9px 13px; border-radius: 12px; max-width: 88%; word-break: break-word; line-height: 1.48; }
       .omni-msg.user { background: ${primaryColor} !important; color: #ffffff !important; align-self: flex-end; border-bottom-right-radius: 3px; }
       .omni-msg.assistant { background: ${assistantBg} !important; color: ${assistantText} !important; align-self: flex-start; border-bottom-left-radius: 3px; border: 1px solid ${assistantBorder}; }
       .omni-msg.loading { color: #64748b; font-style: italic; }
       .omni-msg-actions { display: flex; gap: 8px; margin-top: 6px; font-size: 12px; opacity: 0.8; }
       .omni-action-btn { cursor: pointer; user-select: none; transition: transform 0.1s; }
       .omni-action-btn:hover { transform: scale(1.2); }
-      
+
+      /* Prompts Tray (Image 2 & 3) */
+      .piper-prompts-tray { padding: 4px 14px 8px; font-size: 12px; }
+      .piper-prompts-title { font-weight: 700; color: #64748B; margin-bottom: 6px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; }
+      .piper-prompts-list { display: flex; flex-direction: column; gap: 4px; }
+      .piper-prompt-item { padding: 5px 8px; background: #ffffff; border: 1px solid #CBD5E1; border-radius: 6px; color: #0A2540; font-weight: 600; cursor: pointer; transition: all 0.15s; display: flex; align-items: center; justify-content: space-between; font-size: 12px; }
+      .piper-prompt-item:hover { background: #EFF6FF; border-color: #93C5FD; color: #0052FF; transform: translateX(2px); }
+      .piper-connect-btn-sub { width: 100%; background: #0066f5; color: #ffffff; border: none; padding: 7px 12px; border-radius: 6px; font-weight: 700; font-size: 12px; cursor: pointer; margin-top: 6px; transition: background 0.15s; }
+      .piper-connect-btn-sub:hover { background: #0052cc; }
+
       #omni-image-preview-bar { display: none; padding: 6px 12px; background: ${inputContainerBg}; border-top: 1px solid ${winBorder}; align-items: center; gap: 8px; font-size: 12px; }
       #omni-image-preview-bar img { height: 36px; border-radius: 4px; border: 1px solid ${inputBorder}; }
-      #omni-chat-input-container { display: flex; border-top: 1px solid ${winBorder}; padding: 10px 12px; background: ${inputContainerBg} !important; gap: 6px; align-items: center; }
-      #omni-chat-input { flex: 1; background: ${inputBg} !important; border: 1px solid ${inputBorder} !important; border-radius: 8px; padding: 10px 12px; outline: none; color: ${inputText} !important; font-size: 13.5px; }
-      #omni-chat-input:focus { border-color: ${primaryColor} !important; }
-      .omni-attach-btn { background: transparent; border: none; color: #64748b; font-size: 18px; cursor: pointer; padding: 4px; }
-      .omni-mic-btn { background: transparent; border: none; color: #64748b; font-size: 16px; cursor: pointer; padding: 4px; }
+      
+      /* Input Box Container (Matching Image 1) */
+      #omni-chat-input-container { display: flex; border: 1px solid #CBD5E1; border-radius: 8px; margin: 4px 14px 8px; padding: 3px 6px; background: #ffffff !important; gap: 4px; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+      #omni-chat-input { flex: 1; background: transparent !important; border: none !important; padding: 8px 6px; outline: none; color: #0f172a !important; font-size: 13.5px; }
+      .omni-attach-btn { background: transparent; border: none; color: #64748b; font-size: 17px; cursor: pointer; padding: 3px; }
+      .omni-mic-btn { background: transparent; border: none; color: #64748b; font-size: 16px; cursor: pointer; padding: 3px; transition: transform 0.2s; }
       .omni-mic-btn.active { color: #ef4444; animation: omniMicPulse 1s infinite; }
       @keyframes omniMicPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
-      #omni-chat-send { background: ${primaryColor} !important; color: #ffffff !important; border: none; border-radius: 8px; padding: 10px 14px; cursor: pointer; font-weight: 700; font-size: 13.5px; }
-      .omni-disclaimer-footer { padding: 6px 12px; font-size: 10.5px; color: #94A3B8; text-align: center; background: ${inputContainerBg}; border-top: 1px solid rgba(226,232,240,0.5); }
+      #omni-chat-send { background: #f1f5f9; color: #64748b; border: 1px solid #e2e8f0; border-radius: 6px; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: 700; font-size: 14px; transition: all 0.15s; }
+      #omni-chat-send:hover { background: #0066f5; color: #ffffff; border-color: #0066f5; }
+      .omni-disclaimer-footer { padding: 6px 14px 12px; font-size: 10.5px; color: #94A3B8; text-align: center; line-height: 1.4; }
     `;
     document.head.appendChild(style);
 
@@ -338,49 +367,68 @@
           <span class="badge">${brandSpecialistTitle}</span>
         </div>
         <div class="omni-hdr-actions">
-          <button class="omni-btn-endchat" id="omniEndChat">✉️ Email Chat</button>
+          <button class="omni-btn-endchat" id="omniEndChat" title="Email Transcript">✉️ Email</button>
           <span id="omni-close" style="cursor:pointer; font-size: 18px; color: #64748b; padding: 2px 6px;">✕</span>
         </div>
       </div>
 
       <div class="piper-hero-card">
-        <div class="piper-hero-video-stage">
+        <div class="piper-hero-video-stage" id="piperVideoStage">
           <video id="piper-hero-video" playsinline muted preload="auto" poster="${brandPoster}">
             <source src="${brandVideo}" type="video/mp4">
           </video>
-          <button type="button" class="piper-speak-badge-btn" id="piperSpeakBtn">
-            🎙️ Speak with Friday
+          <!-- Prominent Centered Speak Now Button (Image 1) -->
+          <button type="button" class="piper-speak-now-btn" id="piperSpeakBtn">
+            <span>🎙️</span> Speak now
           </button>
+          <!-- Video Call Controls Bar (Image 2 & 3) -->
+          <div class="piper-call-bar" id="piperCallBar">
+            <button type="button" class="piper-ctrl-btn" id="piperMicToggle" title="Microphone Mute/Unmute">🎙️</button>
+            <button type="button" class="piper-ctrl-btn" id="piperExpandBtn" title="Expand Stage">⤢</button>
+            <button type="button" class="piper-ctrl-end" id="piperEndBtn" title="End Voice Conversation">End</button>
+          </div>
         </div>
-        <div class="piper-hero-intro">
-          ${brandIntro}
-        </div>
-        <div class="piper-prompts-box">
-          <div class="piper-prompts-title">Ask me things like:</div>
-          ${brandPrompts.map(p => `<div class="piper-prompt-item" data-prompt="${p.prompt}">${p.text} <span>&rarr;</span></div>`).join('')}
-        </div>
-        <div class="piper-cta-row">
-          <button type="button" class="piper-connect-btn" id="piperConnectRep">${brandCtaText}</button>
+
+        <!-- Initial Welcome Card Body (Image 1) -->
+        <div class="piper-card-welcome" id="piperCardWelcome">
+          <div class="piper-card-intro">
+            ${brandIntro}
+          </div>
+          <button type="button" class="piper-connect-btn-full" id="piperConnectRep">${brandCtaText}</button>
         </div>
       </div>
 
+      <!-- Dialogue Message Stream (Image 2 & 3) -->
       <div id="omni-chat-messages">
         <!-- Messages stream here -->
       </div>
+
+      <!-- Prompts Tray (Image 2 & 3) -->
+      <div class="piper-prompts-tray" id="piperPromptsTray">
+        <div class="piper-prompts-title">Ask me things like:</div>
+        <div class="piper-prompts-list">
+          ${brandPrompts.map(p => `<div class="piper-prompt-item" data-prompt="${p.prompt}">${p.text} <span>&rarr;</span></div>`).join('')}
+        </div>
+        <button type="button" class="piper-connect-btn-sub" id="piperConnectRepSub">${brandCtaText}</button>
+      </div>
+
       <div id="omni-image-preview-bar">
         <img id="omniPreviewImg" src="" alt="preview" />
         <span>Attached image ready</span>
         <span id="omniRemoveImg" style="cursor:pointer; color:#ef4444; font-weight:bold; margin-left:auto;">✕</span>
       </div>
+
+      <!-- Unified Ask Input Box (Matching Image 1) -->
       <div id="omni-chat-input-container">
         <input type="file" id="omniFileInput" accept="image/*" style="display:none;" />
-        ${config.features?.imageUpload !== false ? '<button class="omni-attach-btn" id="omniAttachBtn" title="Attach/Paste Image">📎</button>' : ''}
-        <button class="omni-mic-btn" id="omniMicBtn" title="Voice Input">🎙️</button>
-        <input type="text" id="omni-chat-input" placeholder="Ask Friday a question..." />
-        <button id="omni-chat-send">&rarr;</button>
+        ${config.features?.imageUpload !== false ? '<button class="omni-attach-btn" id="omniAttachBtn" title="Attach Image">📎</button>' : ''}
+        <input type="text" id="omni-chat-input" placeholder="Ask Friday a question" />
+        <button class="omni-mic-btn" id="omniMicBtn" title="Speak with Friday">🎙️</button>
+        <button id="omni-chat-send" title="Send message">&rarr;</button>
       </div>
+
       <div class="omni-disclaimer-footer">
-        Friday is an AI intelligence assistant and can make mistakes. Please verify important terms with our accredited team.
+        Friday is an AI and can make mistakes. Please note, by continuing, you agree to the terms of our privacy policy. This conversation will be recorded.
       </div>
     `;
     appendToBody(win);
@@ -452,64 +500,172 @@
       };
     });
 
-    // Speak with Friday Button (Plays native lip-synced video once, then stops cleanly)
-    const speakBtn = document.getElementById("piperSpeakBtn");
-    const video = document.getElementById("piper-hero-video");
-    
-    if (speakBtn && video) {
-      video.loop = false; // Never loop infinitely; play greeting once then stop
-      
-      video.onended = () => {
-        video.pause();
-        video.currentTime = 0;
-        video.muted = true;
-        speakBtn.classList.remove("speaking");
-        speakBtn.innerHTML = "🎙️ Speak with Friday";
-      };
-
-      speakBtn.onclick = () => {
-        if (!video.paused && !video.muted) {
-          // Pause if already speaking
-          video.pause();
-          video.muted = true;
-          speakBtn.classList.remove("speaking");
-          speakBtn.innerHTML = "🎙️ Speak with Friday";
-          return;
-        }
-
-        // Start playback once with synced audio
-        video.muted = false;
-        video.currentTime = 0;
-        speakBtn.classList.add("speaking");
-        speakBtn.innerHTML = "🔊 Speaking...";
-        
-        video.play().catch(err => {
-          console.log("Video audio play note:", err);
-          speakBtn.classList.remove("speaking");
-          speakBtn.innerHTML = "🎙️ Speak with Friday";
-        });
-      };
-    }
-
-    // Connect with Broker Button
-    const connectBtn = document.getElementById('piperConnectRep');
-    if (connectBtn) {
-      connectBtn.onclick = () => {
-        const input = document.getElementById('omni-chat-input');
-        if (input) {
-          input.value = "I'd like to connect directly with a licensed mortgage broker for a consultation.";
-          document.getElementById('omni-chat-send').click();
-        }
-      };
-    }
-
-    // Voice Input via Web Speech Recognition API (Rock Solid Cross-Browser Voice Typing)
-    const micBtn = document.getElementById("omniMicBtn");
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    // Voice & Conversational AI Engine (Salesforce Piper Parity)
+    let isVoiceActive = false;
+    let isSpeaking = false;
     let recognition = null;
     let isListening = false;
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-    if (SpeechRecognition && micBtn) {
+    const speakBtn = document.getElementById("piperSpeakBtn");
+    const video = document.getElementById("piper-hero-video");
+    const callBar = document.getElementById("piperCallBar");
+    const micToggle = document.getElementById("piperMicToggle");
+    const expandBtn = document.getElementById("piperExpandBtn");
+    const endBtn = document.getElementById("piperEndBtn");
+    const micBtn = document.getElementById("omniMicBtn");
+
+    function getAuVoice() {
+      if (!('speechSynthesis' in window)) return null;
+      const voices = window.speechSynthesis.getVoices();
+      return voices.find(v => v.lang === 'en-AU' && (v.name.includes('Natural') || v.name.includes('Russell') || v.name.includes('Lee')))
+        || voices.find(v => v.lang === 'en-AU')
+        || voices.find(v => v.lang.startsWith('en') && v.name.includes('Natural'))
+        || voices.find(v => v.lang.startsWith('en')) || null;
+    }
+
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.onvoiceschanged = () => getAuVoice();
+    }
+
+    function speakFriday(text, onComplete) {
+      if (!('speechSynthesis' in window)) {
+        if (onComplete) onComplete();
+        return;
+      }
+      try { window.speechSynthesis.cancel(); } catch(e) {}
+      
+      const clean = text
+        .replace(/<[^>]+>/g, ' ')
+        .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+        .replace(/[*_#`~]/g, '')
+        .replace(/PRO CRM/gi, 'Pro CRM')
+        .trim();
+
+      const utter = new SpeechSynthesisUtterance(clean);
+      utter.rate = 1.05;
+      utter.pitch = 1.0;
+      const voice = getAuVoice();
+      if (voice) utter.voice = voice;
+
+      isSpeaking = true;
+      if (video) {
+        video.muted = true;
+        video.play().catch(() => {});
+      }
+
+      utter.onend = () => {
+        isSpeaking = false;
+        if (video) video.pause();
+        if (onComplete) onComplete();
+      };
+      utter.onerror = () => {
+        isSpeaking = false;
+        if (video) video.pause();
+        if (onComplete) onComplete();
+      };
+
+      window.speechSynthesis.speak(utter);
+    }
+
+    function startListening() {
+      if (!isVoiceActive || isSpeaking || !recognition || isListening) return;
+      try {
+        recognition.start();
+      } catch (err) {
+        // Recognition already running
+      }
+    }
+
+    function stopListening() {
+      if (recognition && isListening) {
+        try { recognition.stop(); } catch(e) {}
+      }
+    }
+
+    function startVoiceConversation() {
+      isVoiceActive = true;
+      win.classList.add('is-conversing');
+      
+      const msgContainer = document.getElementById('omni-chat-messages');
+      if (msgContainer && msgContainer.children.length === 0) {
+        const greetDiv = document.createElement('div');
+        greetDiv.className = 'omni-msg assistant';
+        greetDiv.innerHTML = "Hi! How can I help you?";
+        msgContainer.appendChild(greetDiv);
+      }
+
+      // Play video with native unmuted speech track
+      if (video) {
+        video.currentTime = 0;
+        video.muted = false;
+        video.play().catch(() => {
+          speakFriday("Hi! How can I help you?", () => {
+            startListening();
+          });
+        });
+        video.onended = () => {
+          video.pause();
+          startListening();
+        };
+      } else {
+        speakFriday("Hi! How can I help you?", () => {
+          startListening();
+        });
+      }
+    }
+
+    function endVoiceConversation() {
+      isVoiceActive = false;
+      stopListening();
+      if ('speechSynthesis' in window) {
+        try { window.speechSynthesis.cancel(); } catch(e) {}
+      }
+      if (video) {
+        video.pause();
+        video.muted = true;
+        video.currentTime = 0;
+      }
+      win.classList.remove('is-conversing');
+    }
+
+    if (speakBtn) speakBtn.onclick = startVoiceConversation;
+    if (endBtn) endBtn.onclick = endVoiceConversation;
+    if (expandBtn) {
+      expandBtn.onclick = () => win.classList.toggle('is-expanded');
+    }
+    if (micToggle) {
+      micToggle.onclick = () => {
+        if (isListening) {
+          stopListening();
+          micToggle.classList.remove('active');
+          micToggle.classList.add('muted');
+        } else {
+          startListening();
+          micToggle.classList.remove('muted');
+          micToggle.classList.add('active');
+        }
+      };
+    }
+
+    // Connect with Sales Rep / Broker Buttons
+    const handleConnectClick = () => {
+      const input = document.getElementById('omni-chat-input');
+      if (input) {
+        win.classList.add('is-conversing');
+        input.value = isProCrm 
+          ? "I'd like to book an enterprise consultation with a Pro CRM architect." 
+          : "I'd like to connect directly with a licensed specialist for a consultation.";
+        document.getElementById('omni-chat-send').click();
+      }
+    };
+    const connectBtn = document.getElementById('piperConnectRep');
+    if (connectBtn) connectBtn.onclick = handleConnectClick;
+    const connectBtnSub = document.getElementById('piperConnectRepSub');
+    if (connectBtnSub) connectBtnSub.onclick = handleConnectClick;
+
+    // Web Speech Recognition Initialization
+    if (SpeechRecognition) {
       try {
         recognition = new SpeechRecognition();
         recognition.continuous = false;
@@ -518,52 +674,56 @@
 
         recognition.onstart = () => {
           isListening = true;
-          micBtn.classList.add("active");
+          if (micBtn) micBtn.classList.add("active");
+          if (micToggle) micToggle.classList.add("active");
           const input = document.getElementById("omni-chat-input");
           if (input) input.placeholder = "🎙️ Listening... speak now";
         };
 
         recognition.onend = () => {
           isListening = false;
-          micBtn.classList.remove("active");
+          if (micBtn) micBtn.classList.remove("active");
+          if (micToggle) micToggle.classList.remove("active");
           const input = document.getElementById("omni-chat-input");
-          if (input) input.placeholder = "Ask Friday a question...";
+          if (input) input.placeholder = "Ask Friday a question";
         };
 
         recognition.onerror = (e) => {
-          console.log("Speech recognition error:", e);
+          console.log("Speech recognition note:", e);
           isListening = false;
-          micBtn.classList.remove("active");
+          if (micBtn) micBtn.classList.remove("active");
+          if (micToggle) micToggle.classList.remove("active");
           const input = document.getElementById("omni-chat-input");
-          if (input) input.placeholder = "Ask Friday a question...";
+          if (input) input.placeholder = "Ask Friday a question";
         };
 
         recognition.onresult = (event) => {
           const transcript = event.results[0][0].transcript;
           const input = document.getElementById("omni-chat-input");
           if (input && transcript) {
+            win.classList.add('is-conversing');
             input.value = transcript;
             sendMessage();
           }
         };
 
-        micBtn.onclick = () => {
-          if (isListening) {
-            recognition.stop();
-          } else {
-            try {
-              recognition.start();
-            } catch (err) {
-              console.log("Recognition restart:", err);
+        if (micBtn) {
+          micBtn.onclick = () => {
+            if (isListening) {
+              stopListening();
+            } else {
+              isVoiceActive = true;
+              win.classList.add('is-conversing');
+              startListening();
             }
-          }
-        };
+          };
+        }
       } catch (err) {
-        console.log("Web Speech Init:", err);
+        console.log("Speech setup note:", err);
       }
     } else if (micBtn) {
       micBtn.onclick = () => {
-        alert("Voice speech recognition is supported in Chrome, Edge, and Safari on desktop and mobile.");
+        alert("Voice speech recognition is supported in Chrome, Safari, and Edge.");
       };
     }
 
@@ -704,12 +864,25 @@
 
         loadingMsg.appendChild(actionsDiv);
 
+        if (isVoiceActive) {
+          speakFriday(replyRaw, () => {
+            if (isVoiceActive) {
+              startListening();
+            }
+          });
+        }
+
         if (config.features?.leadCapture !== false && /(demo|pricing|quote|consultation|contact sales|call me|help|booking|census|mygov)/i.test(msg)) {
           renderLeadCard(msgContainer, config);
         }
       } catch (err) {
         loadingMsg.classList.remove('loading');
         loadingMsg.textContent = "Unable to connect to AI assistant service.";
+        if (isVoiceActive) {
+          speakFriday("I'm sorry, I'm having trouble connecting right now. Please feel free to try again.", () => {
+            if (isVoiceActive) startListening();
+          });
+        }
       }
 
       msgContainer.scrollTop = msgContainer.scrollHeight;
