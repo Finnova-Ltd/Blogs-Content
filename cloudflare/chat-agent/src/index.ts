@@ -1623,8 +1623,7 @@ return new Response(JSON.stringify({ error: err.message || "Vision AI processing
 };
 
 // Universal Standalone Widget JavaScript (with Cookie-Based Lead Scoring & Proactive AI)
-const WIDGET_SCRIPT = `
-(function () {
+const WIDGET_SCRIPT = `(function () {
   if (window.__OMNI_AGENT_INITIALIZED__) return;
   window.__OMNI_AGENT_INITIALIZED__ = true;
 
@@ -1658,7 +1657,7 @@ const WIDGET_SCRIPT = `
     const days = 30;
     const date = new Date();
     date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-    document.cookie = `lead_score=${val}; expires=${date.toUTCString()}; path=/; SameSite=Lax`;
+    document.cookie = \`lead_score=\${val}; expires=\${date.toUTCString()}; path=/; SameSite=Lax\`;
     try { localStorage.setItem('lead_score', val.toString()); } catch (e) {}
   }
 
@@ -1702,11 +1701,11 @@ const WIDGET_SCRIPT = `
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;");
     
-    html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-    html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
-    html = html.replace(/^\s*[\*\-]\s+(.*)$/gm, '<div style="display:flex;gap:6px;margin:4px 0;"><span style="color:' + (primaryColor||"#0052FF") + '">•</span><span>$1</span></div>');
-    html = html.replace(/^\s*(\d+)\.\s+(.*)$/gm, '<div style="display:flex;gap:6px;margin:4px 0;"><strong style="color:' + (primaryColor||"#0052FF") + '">$1.</strong><span>$2</span></div>');
-    html = html.replace(/\n\n/g, '<br/><br/>').replace(/\n/g, '<br/>');
+    html = html.replace(/\\*\\*(.*?)\\*\\*/g, '<strong>$1</strong>');
+    html = html.replace(/\`([^\`]+)\`/g, '<code>$1</code>');
+    html = html.replace(/^\\s*[\\*\\-]\\s+(.*)$/gm, '<div style="display:flex;gap:6px;margin:4px 0;"><span style="color:' + (primaryColor||"#0052FF") + '">•</span><span>$1</span></div>');
+    html = html.replace(/^\\s*(\\d+)\\.\\s+(.*)$/gm, '<div style="display:flex;gap:6px;margin:4px 0;"><strong style="color:' + (primaryColor||"#0052FF") + '">$1.</strong><span>$2</span></div>');
+    html = html.replace(/\\n\\n/g, '<br/><br/>').replace(/\\n/g, '<br/>');
     return html;
   }
 
@@ -1761,7 +1760,7 @@ const WIDGET_SCRIPT = `
 
   const clientConfig = window.OMNI_CHAT_CONFIG || {};
 
-  fetch(`${backendUrl}/api/config?domain=${currentDomain}`)
+  fetch(\`\${backendUrl}/api/config?domain=\${currentDomain}\`)
     .then(r => r.json())
     .catch(() => ({
       category: "DEFAULT",
@@ -1864,7 +1863,7 @@ const WIDGET_SCRIPT = `
     else if (isEzConsultants) brandKey = "ezconsultants";
 
     const style = document.createElement('style');
-    style.innerHTML = `
+    style.innerHTML = \`
       #omni-chat-trigger-group { position: fixed; bottom: 24px; right: 24px; display: flex; align-items: center; gap: 12px; z-index: 999999; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
       .omni-avatar-greeting-pill { background: #ffffff; color: #0f172a; padding: 8px 14px; border-radius: 24px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.06); border: 1px solid rgba(0, 82, 255, 0.18); font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; cursor: pointer; animation: omniPillSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1); transition: transform 0.2s, box-shadow 0.2s; white-space: nowrap; user-select: none; }
       .omni-avatar-greeting-pill:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0, 82, 255, 0.2); }
@@ -1885,8 +1884,8 @@ const WIDGET_SCRIPT = `
       #omni-chat-bubble.is-open { box-shadow: 0 8px 24px rgba(15, 23, 42, 0.35); }
       @media (max-width: 640px) { .omni-avatar-greeting-pill { display: none !important; } #omni-chat-bubble { width: 58px; height: 58px; } #omni-chat-trigger-group { bottom: 16px; right: 16px; } }
 
-      #omni-chat-window { position: fixed; bottom: 96px; right: 24px; width: 410px; height: 620px; max-width: calc(100vw - 32px); max-height: calc(100vh - 110px); background: ${winBg} !important; color: ${winText} !important; border-radius: 20px; box-shadow: 0 20px 45px -5px rgba(0,0,0,0.22); display: none; flex-direction: column; overflow: hidden; z-index: 999999; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; border: 1px solid ${winBorder}; }
-      #omni-chat-header { background: #ffffff !important; color: #0f172a !important; padding: 12px 16px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid ${winBorder}; }
+      #omni-chat-window { position: fixed; bottom: 96px; right: 24px; width: 410px; height: 620px; max-width: calc(100vw - 32px); max-height: calc(100vh - 110px); background: \${winBg} !important; color: \${winText} !important; border-radius: 20px; box-shadow: 0 20px 45px -5px rgba(0,0,0,0.22); display: none; flex-direction: column; overflow: hidden; z-index: 999999; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; border: 1px solid \${winBorder}; }
+      #omni-chat-header { background: #ffffff !important; color: #0f172a !important; padding: 12px 16px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid \${winBorder}; }
       #omni-chat-header .title-wrap { display: flex; align-items: center; gap: 8px; }
       #omni-chat-header span.title { font-size: 15px; font-weight: 800; color: #0A2540; }
       #omni-chat-header span.badge { font-size: 11px; color: #64748b; font-weight: 600; background: #F1F5F9; padding: 2px 8px; border-radius: 999px; }
@@ -1911,57 +1910,57 @@ const WIDGET_SCRIPT = `
       .piper-connect-btn { width: 100%; background: #0052FF; color: #ffffff; border: none; padding: 9px 14px; border-radius: 8px; font-weight: 700; font-size: 13px; cursor: pointer; transition: background 0.2s; }
       .piper-connect-btn:hover { background: #003ECC; }
 
-      #omni-chat-messages { flex: 1; padding: 12px 14px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; font-size: 13.5px; background: ${msgAreaBg} !important; }
+      #omni-chat-messages { flex: 1; padding: 12px 14px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; font-size: 13.5px; background: \${msgAreaBg} !important; }
       .omni-msg { padding: 10px 14px; border-radius: 12px; max-width: 88%; word-break: break-word; line-height: 1.5; }
-      .omni-msg.user { background: ${primaryColor} !important; color: #ffffff !important; align-self: flex-end; border-bottom-right-radius: 3px; }
-      .omni-msg.assistant { background: ${assistantBg} !important; color: ${assistantText} !important; align-self: flex-start; border-bottom-left-radius: 3px; border: 1px solid ${assistantBorder}; }
+      .omni-msg.user { background: \${primaryColor} !important; color: #ffffff !important; align-self: flex-end; border-bottom-right-radius: 3px; }
+      .omni-msg.assistant { background: \${assistantBg} !important; color: \${assistantText} !important; align-self: flex-start; border-bottom-left-radius: 3px; border: 1px solid \${assistantBorder}; }
       .omni-msg.loading { color: #64748b; font-style: italic; }
       .omni-msg-actions { display: flex; gap: 8px; margin-top: 6px; font-size: 12px; opacity: 0.8; }
       .omni-action-btn { cursor: pointer; user-select: none; transition: transform 0.1s; }
       .omni-action-btn:hover { transform: scale(1.2); }
       
-      #omni-image-preview-bar { display: none; padding: 6px 12px; background: ${inputContainerBg}; border-top: 1px solid ${winBorder}; align-items: center; gap: 8px; font-size: 12px; }
-      #omni-image-preview-bar img { height: 36px; border-radius: 4px; border: 1px solid ${inputBorder}; }
-      #omni-chat-input-container { display: flex; border-top: 1px solid ${winBorder}; padding: 10px 12px; background: ${inputContainerBg} !important; gap: 6px; align-items: center; }
-      #omni-chat-input { flex: 1; background: ${inputBg} !important; border: 1px solid ${inputBorder} !important; border-radius: 8px; padding: 10px 12px; outline: none; color: ${inputText} !important; font-size: 13.5px; }
-      #omni-chat-input:focus { border-color: ${primaryColor} !important; }
+      #omni-image-preview-bar { display: none; padding: 6px 12px; background: \${inputContainerBg}; border-top: 1px solid \${winBorder}; align-items: center; gap: 8px; font-size: 12px; }
+      #omni-image-preview-bar img { height: 36px; border-radius: 4px; border: 1px solid \${inputBorder}; }
+      #omni-chat-input-container { display: flex; border-top: 1px solid \${winBorder}; padding: 10px 12px; background: \${inputContainerBg} !important; gap: 6px; align-items: center; }
+      #omni-chat-input { flex: 1; background: \${inputBg} !important; border: 1px solid \${inputBorder} !important; border-radius: 8px; padding: 10px 12px; outline: none; color: \${inputText} !important; font-size: 13.5px; }
+      #omni-chat-input:focus { border-color: \${primaryColor} !important; }
       .omni-attach-btn { background: transparent; border: none; color: #64748b; font-size: 18px; cursor: pointer; padding: 4px; }
       .omni-mic-btn { background: transparent; border: none; color: #64748b; font-size: 16px; cursor: pointer; padding: 4px; }
       .omni-mic-btn.active { color: #ef4444; animation: omniMicPulse 1s infinite; }
       @keyframes omniMicPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
-      #omni-chat-send { background: ${primaryColor} !important; color: #ffffff !important; border: none; border-radius: 8px; padding: 10px 14px; cursor: pointer; font-weight: 700; font-size: 13.5px; }
-      .omni-disclaimer-footer { padding: 6px 12px; font-size: 10.5px; color: #94A3B8; text-align: center; background: ${inputContainerBg}; border-top: 1px solid rgba(226,232,240,0.5); }
-    `;
+      #omni-chat-send { background: \${primaryColor} !important; color: #ffffff !important; border: none; border-radius: 8px; padding: 10px 14px; cursor: pointer; font-weight: 700; font-size: 13.5px; }
+      .omni-disclaimer-footer { padding: 6px 12px; font-size: 10.5px; color: #94A3B8; text-align: center; background: \${inputContainerBg}; border-top: 1px solid rgba(226,232,240,0.5); }
+    \`;
     document.head.appendChild(style);
 
     const triggerGroup = document.createElement('div');
     triggerGroup.id = 'omni-chat-trigger-group';
-    triggerGroup.innerHTML = `
+    triggerGroup.innerHTML = \`
       <div id="omni-chat-greeting-pill" class="omni-avatar-greeting-pill">
         <span class="omni-pill-wave">👋</span>
-        <span class="omni-pill-text">${brandPillGreeting}</span>
+        <span class="omni-pill-text">\${brandPillGreeting}</span>
         <span class="omni-pill-close" id="omniPillClose" title="Dismiss">✕</span>
       </div>
       <div id="omni-chat-bubble" class="omni-avatar-trigger" title="Chat with Friday">
         <div class="omni-avatar-disc">
-          <img src="${brandPoster}" alt="Friday AI Avatar" class="omni-avatar-face" />
+          <img src="\${brandPoster}" alt="Friday AI Avatar" class="omni-avatar-face" />
           <span class="omni-avatar-online-dot"></span>
           <span class="omni-avatar-wave-badge">👋</span>
         </div>
         <div class="omni-avatar-close-icon">✕</div>
       </div>
-    `;
+    \`;
     appendToBody(triggerGroup);
     const bubble = document.getElementById('omni-chat-bubble');
     const greetingPill = document.getElementById('omni-chat-greeting-pill');
 
     const win = document.createElement('div');
     win.id = 'omni-chat-window';
-    win.innerHTML = `
+    win.innerHTML = \`
       <div id="omni-chat-header">
         <div class="title-wrap">
           <span class="title">Friday</span>
-          <span class="badge">${brandSpecialistTitle}</span>
+          <span class="badge">\${brandSpecialistTitle}</span>
         </div>
         <div class="omni-hdr-actions">
           <button class="omni-btn-endchat" id="omniEndChat">✉️ Email Chat</button>
@@ -1971,22 +1970,22 @@ const WIDGET_SCRIPT = `
 
       <div class="piper-hero-card">
         <div class="piper-hero-video-stage">
-          <video id="piper-hero-video" playsinline muted preload="auto" poster="${brandPoster}">
-            <source src="${brandVideo}" type="video/mp4">
+          <video id="piper-hero-video" playsinline muted preload="auto" poster="\${brandPoster}">
+            <source src="\${brandVideo}" type="video/mp4">
           </video>
           <button type="button" class="piper-speak-badge-btn" id="piperSpeakBtn">
             🎙️ Speak with Friday
           </button>
         </div>
         <div class="piper-hero-intro">
-          ${brandIntro}
+          \${brandIntro}
         </div>
         <div class="piper-prompts-box">
           <div class="piper-prompts-title">Ask me things like:</div>
-          ${brandPrompts.map(p => `<div class="piper-prompt-item" data-prompt="${p.prompt}">${p.text} <span>&rarr;</span></div>`).join('')}
+          \${brandPrompts.map(p => \`<div class="piper-prompt-item" data-prompt="\${p.prompt}">\${p.text} <span>&rarr;</span></div>\`).join('')}
         </div>
         <div class="piper-cta-row">
-          <button type="button" class="piper-connect-btn" id="piperConnectRep">${brandCtaText}</button>
+          <button type="button" class="piper-connect-btn" id="piperConnectRep">\${brandCtaText}</button>
         </div>
       </div>
 
@@ -2000,7 +1999,7 @@ const WIDGET_SCRIPT = `
       </div>
       <div id="omni-chat-input-container">
         <input type="file" id="omniFileInput" accept="image/*" style="display:none;" />
-        ${config.features?.imageUpload !== false ? '<button class="omni-attach-btn" id="omniAttachBtn" title="Attach/Paste Image">📎</button>' : ''}
+        \${config.features?.imageUpload !== false ? '<button class="omni-attach-btn" id="omniAttachBtn" title="Attach/Paste Image">📎</button>' : ''}
         <button class="omni-mic-btn" id="omniMicBtn" title="Voice Input">🎙️</button>
         <input type="text" id="omni-chat-input" placeholder="Ask Friday a question..." />
         <button id="omni-chat-send">&rarr;</button>
@@ -2008,7 +2007,7 @@ const WIDGET_SCRIPT = `
       <div class="omni-disclaimer-footer">
         Friday is an AI intelligence assistant and can make mistakes. Please verify important terms with our accredited team.
       </div>
-    `;
+    \`;
     appendToBody(win);
 
     function openChat() {
@@ -2241,7 +2240,7 @@ const WIDGET_SCRIPT = `
       if (!userEmail || !userEmail.includes("@")) return;
 
       try {
-        await fetch(`${backendUrl}/api/email-transcript`, {
+        await fetch(\`\${backendUrl}/api/email-transcript\`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -2250,7 +2249,7 @@ const WIDGET_SCRIPT = `
             domain: currentDomain
           })
         });
-        alert(`Transcript successfully queued for ${userEmail}!`);
+        alert(\`Transcript successfully queued for \${userEmail}!\`);
         sessionId = 'sess_' + Math.random().toString(36).substring(2, 9);
         localStorage.setItem('omni_chat_session', sessionId);
       } catch (err) {
@@ -2268,7 +2267,7 @@ const WIDGET_SCRIPT = `
       
       let userHtml = parseMarkdown(msg, primaryColor);
       if (attachedImageBase64) {
-        userHtml += `<br/><img src="${attachedImageBase64}" style="max-width:180px; border-radius:6px; margin-top:6px;" />`;
+        userHtml += \`<br/><img src="\${attachedImageBase64}" style="max-width:180px; border-radius:6px; margin-top:6px;" />\`;
       }
 
       const userMsgDiv = document.createElement('div');
@@ -2289,7 +2288,7 @@ const WIDGET_SCRIPT = `
       msgContainer.scrollTop = msgContainer.scrollHeight;
 
       try {
-        const response = await fetch(`${backendUrl}/api/chat`, {
+        const response = await fetch(\`\${backendUrl}/api/chat\`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -2309,15 +2308,15 @@ const WIDGET_SCRIPT = `
 
         const actionsDiv = document.createElement('div');
         actionsDiv.className = 'omni-msg-actions';
-        actionsDiv.innerHTML = `
+        actionsDiv.innerHTML = \`
           <span class="omni-action-btn" title="Thumbs Up">👍</span>
           <span class="omni-action-btn" title="Thumbs Down">👎</span>
           <span class="omni-action-btn" title="Smiley">😊</span>
           <span class="omni-quote-btn" title="Quote reply">💬 Quote</span>
-        `;
+        \`;
         
         actionsDiv.querySelector('.omni-quote-btn').onclick = () => {
-          chatInput.value = '> "' + replyRaw.substring(0, 80).replace(/\n/g, ' ') + '..."\n';
+          chatInput.value = '> "' + replyRaw.substring(0, 80).replace(/\\n/g, ' ') + '..."\\n';
           chatInput.focus();
         };
 
@@ -2347,13 +2346,13 @@ const WIDGET_SCRIPT = `
       card.id = 'omni-lead-form';
       card.className = 'omni-lead-card';
       const score = getLeadScoreFromCookie();
-      card.innerHTML = `
-        <p style="margin:0 0 8px 0; font-weight:600; color:${primaryColor};">📬 Contact / Booking Request (Lead Score: ${score})</p>
+      card.innerHTML = \`
+        <p style="margin:0 0 8px 0; font-weight:600; color:\${primaryColor};">📬 Contact / Booking Request (Lead Score: \${score})</p>
         <input type="text" id="leadName" placeholder="Your Name" />
         <input type="email" id="leadEmail" placeholder="Your Email" />
         <input type="tel" id="leadPhone" placeholder="Phone Number (Optional)" />
         <button id="submitLead">Submit Contact Request</button>
-      `;
+      \`;
       container.appendChild(card);
       container.scrollTop = container.scrollHeight;
 
@@ -2366,7 +2365,7 @@ const WIDGET_SCRIPT = `
           return;
         }
 
-        await fetch(`${backendUrl}/api/lead`, {
+        await fetch(\`\${backendUrl}/api/lead\`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
