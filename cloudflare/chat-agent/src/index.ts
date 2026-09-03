@@ -1624,7 +1624,7 @@ return new Response(JSON.stringify({ error: err.message || "Vision AI processing
 
 // Universal Standalone Widget JavaScript (with Cookie-Based Lead Scoring & Proactive AI)
 const WIDGET_SCRIPT = `
-(function() {
+(function () {
   if (window.__OMNI_AGENT_INITIALIZED__) return;
   window.__OMNI_AGENT_INITIALIZED__ = true;
 
@@ -1648,19 +1648,17 @@ const WIDGET_SCRIPT = `
 
   let attachedImageBase64 = "";
 
-  // Helper: Read lead_score cookie
   function getLeadScoreFromCookie() {
     const match = document.cookie.match(/(?:^|; )lead_score=([^;]*)/);
     if (match) return parseInt(decodeURIComponent(match[1]), 10) || 0;
     return parseInt(localStorage.getItem('lead_score') || "0", 10) || 0;
   }
 
-  // Helper: Set lead_score cookie
   function setLeadScoreCookie(val) {
     const days = 30;
     const date = new Date();
     date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-    document.cookie = 'lead_score=' + val + '; expires=' + date.toUTCString() + '; path=/; SameSite=Lax';
+    document.cookie = `lead_score=${val}; expires=${date.toUTCString()}; path=/; SameSite=Lax`;
     try { localStorage.setItem('lead_score', val.toString()); } catch (e) {}
   }
 
@@ -1669,7 +1667,6 @@ const WIDGET_SCRIPT = `
     const newScore = current + points;
     setLeadScoreCookie(newScore);
 
-    // Trigger Proactive AI qualification when score >= 35
     if (newScore >= 35 && !window.__OMNI_PROACTIVE_TRIGGERED__) {
       window.__OMNI_PROACTIVE_TRIGGERED__ = true;
       const win = document.getElementById('omni-chat-window');
@@ -1698,49 +1695,6 @@ const WIDGET_SCRIPT = `
   let sessionId = localStorage.getItem('omni_chat_session') || 'sess_' + Math.random().toString(36).substring(2, 9);
   localStorage.setItem('omni_chat_session', sessionId);
 
-  function sanitizeHTML(dirty) {
-    if (!dirty) return "";
-    try {
-      var doc = new DOMParser().parseFromString(dirty, 'text/html');
-      var allowedTags = ['DIV','SPAN','P','BR','STRONG','EM','CODE','PRE','UL','OL','LI','A','H1','H2','H3','H4','H5','H6'];
-      
-      function cleanNode(node) {
-        var children = Array.from(node.childNodes);
-        for (var i = 0; i < children.length; i++) {
-          var child = children[i];
-          if (child.nodeType === 1) {
-            if (allowedTags.indexOf(child.nodeName) === -1) {
-              var textNode = document.createTextNode(child.textContent);
-              node.replaceChild(textNode, child);
-            } else {
-              var attrs = Array.from(child.attributes);
-              for (var j = 0; j < attrs.length; j++) {
-                var attrName = attrs[j].name.toLowerCase();
-                if (attrName === 'href') {
-                  var hrefVal = attrs[j].value.replace(/[\s\x00-\x1F]/g, '').toLowerCase();
-                  if (!/^https?:\/\//.test(hrefVal) && hrefVal.indexOf('/') !== 0) {
-                    child.removeAttribute(attrs[j].name);
-                  }
-                } else if (attrName === 'target') {
-                  if (attrs[j].value === '_blank') {
-                    child.setAttribute('rel', 'noopener noreferrer');
-                  }
-                } else if (attrName !== 'rel' && attrName !== 'class') {
-                  child.removeAttribute(attrs[j].name);
-                }
-              }
-              cleanNode(child);
-            }
-          }
-        }
-      }
-      cleanNode(doc.body);
-      return doc.body.innerHTML;
-    } catch (e) {
-      return dirty.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    }
-  }
-
   function parseMarkdown(text, primaryColor) {
     if (!text) return "";
     let html = text
@@ -1748,110 +1702,43 @@ const WIDGET_SCRIPT = `
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;");
     
-    // Bold **text**
     html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-    // Italic *text*
-    html = html.replace(/\*([^\*]+)\*/g, '<em>$1</em>');
-    // Inline code
-    html = html.replace(/\`([^\`]+)\`/g, '<code>$1</code>');
-    // Markdown Links [Text](URL) - Strictly allow http/https
-    html = html.replace(/\[([^\]]+)\]\(((?:https?:\/\/|\/)[^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" style="color:' + (primaryColor || "#0052FF") + ';font-weight:600;">$1</a>');
-    
-    // Numbered lists: 1. **Title**: description
-    html = html.replace(/(?:^|\n)\s*(\d+)\.\s+(.*)/g, '<div style="display:flex;gap:6px;margin:6px 0;"><strong style="color:' + (primaryColor || "#0052FF") + ';min-width:18px;">$1.</strong><span>$2</span></div>');
-    // Bullet lists: - item or * item
-    html = html.replace(/(?:^|\n)\s*[\*\-]\s+(.*)/g, '<div style="display:flex;gap:6px;margin:4px 0;"><span style="color:' + (primaryColor || "#0052FF") + '">•</span><span>$1</span></div>');
-
-    // Paragraph breaks
-    html = html.replace(/\n\n/g, '<div style="height:8px;"></div>');
-    html = html.replace(/\n/g, '<br/>');
-
-    return sanitizeHTML(html);
+    html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+    html = html.replace(/^\s*[\*\-]\s+(.*)$/gm, '<div style="display:flex;gap:6px;margin:4px 0;"><span style="color:' + (primaryColor||"#0052FF") + '">•</span><span>$1</span></div>');
+    html = html.replace(/^\s*(\d+)\.\s+(.*)$/gm, '<div style="display:flex;gap:6px;margin:4px 0;"><strong style="color:' + (primaryColor||"#0052FF") + '">$1.</strong><span>$2</span></div>');
+    html = html.replace(/\n\n/g, '<br/><br/>').replace(/\n/g, '<br/>');
+    return html;
   }
-
-  const INSTANT_TAG_ANSWERS = {
-    "How does signing work?": "Executing documents with **EZ Signature** is fast, secure, and legally binding:\n\n1. **Upload Document**: Upload your PDF or contract template.\n2. **Add Signers**: Enter signer email addresses & optional SMS 2FA.\n3. **Send & Track**: Signers receive an instant link to sign on any device with full AATL audit trails.",
-    "Which plan is right for me?": "We offer flexible tiers tailored to your needs:\n\n1. **Starter**: Ideal for individuals & small teams signing up to 20 documents/mo.\n2. **Pro Business**: Unlimited signers, custom branding, and team templates.\n3. **Enterprise**: Dedicated API access, Salesforce integration, and SLA support.",
-    "Calculate borrowing capacity": "Calculating your home loan borrowing capacity depends on your income, living expenses, and current interest rates.\n\nWe compare **30+ top Australian lenders** to find your maximum borrowing capacity and exclusive broker discounts!",
-    "What services do you offer?": "We provide end-to-end digital solutions and consulting:\n\n1. **Salesforce Implementation & Agentforce AI**\n2. **MuleSoft API Integration**\n3. **Cloud Transformation & Managed Services**",
-    "Is my data secure?": "Yes! All documents and communications are encrypted with **AES-256 encryption at rest** and **TLS 1.3 in transit**, fully compliant with ISO 27001 and Australian Privacy Principles."
-  };
 
   function getBrowserScreenContext() {
     const mainHeading = document.querySelector('h1')?.innerText || document.querySelector('h2')?.innerText || "";
     const selectedText = window.getSelection ? window.getSelection().toString() : "";
-    
-    let pageText = "";
-    try {
-      const articleContainer = document.querySelector('article, main, .post-content, .blog-content, .entry-content, .news-content, #content, .content, .blog-post, .article-body');
-      if (articleContainer) {
-        pageText = articleContainer.innerText || "";
-      } else {
-        const ps = Array.from(document.querySelectorAll('p')).map(p => p.innerText).filter(t => t && t.length > 20);
-        pageText = ps.join('\n');
-      }
-    } catch(e) {}
-
     return {
       title: document.title,
       url: window.location.href,
       heading: mainHeading.substring(0, 150),
-      selectedText: selectedText.substring(0, 250),
-      pageText: (pageText || "").substring(0, 2000).replace(/\s+/g, ' ')
+      selectedText: selectedText.substring(0, 200)
     };
   }
 
-  function trackEngagementAndScore() {
-    const currentPath = (window.location.pathname + window.location.search).toLowerCase();
-    const sessionKey = 'scored_' + currentPath;
+  const currentPath = window.location.pathname.toLowerCase();
+  const sessionKey = 'scored_' + currentPath;
 
-    if (!sessionStorage.getItem(sessionKey)) {
-      if (/(careers|jobs|job-board)/.test(currentPath)) {
-        updateLeadScore(-10, "Job Seeker");
-      } else if (/(pricing|quote|request-demo|demo|consultation|calculators|apply)/.test(currentPath)) {
-        updateLeadScore(30, "High Intent Pricing");
-      } else if (/(services|solutions|features)/.test(currentPath)) {
-        updateLeadScore(20, "Services");
-      } else if (/(case-studies|portfolio|testimonials)/.test(currentPath)) {
-        updateLeadScore(15, "Case Studies");
-      } else if (/(blog|articles|news|guides)/.test(currentPath)) {
-        updateLeadScore(5, "Content View");
-      }
-      sessionStorage.setItem(sessionKey, "true");
+  if (!sessionStorage.getItem(sessionKey)) {
+    if (/(careers|jobs|job-board)/.test(currentPath)) {
+      updateLeadScore(-10, "Job Seeker");
+    } else if (/(pricing|quote|request-demo|demo|consultation)/.test(currentPath)) {
+      updateLeadScore(30, "High Intent Pricing");
+    } else if (/(services|solutions)/.test(currentPath)) {
+      updateLeadScore(20, "Services");
+    } else if (/(case-studies|portfolio)/.test(currentPath)) {
+      updateLeadScore(15, "Case Studies");
+    } else if (/(blog|articles)/.test(currentPath)) {
+      updateLeadScore(5, "Content View");
     }
-
-    // Persistent Chat Icon Check: Ensure bubble & window are always attached to document.body
-    const bubble = document.getElementById('omni-chat-bubble');
-    if (bubble && bubble.parentNode !== document.body) {
-      document.body.appendChild(bubble);
-    }
-    const win = document.getElementById('omni-chat-window');
-    if (win && win.parentNode !== document.body) {
-      document.body.appendChild(win);
-    }
+    sessionStorage.setItem(sessionKey, "true");
   }
 
-  trackEngagementAndScore();
-
-  // Listen for SPA Route Changes (History PushState / ReplaceState / PopState / HashChange)
-  const origPushState = history.pushState;
-  if (origPushState) {
-    history.pushState = function() {
-      origPushState.apply(this, arguments);
-      setTimeout(trackEngagementAndScore, 100);
-    };
-  }
-  const origReplaceState = history.replaceState;
-  if (origReplaceState) {
-    history.replaceState = function() {
-      origReplaceState.apply(this, arguments);
-      setTimeout(trackEngagementAndScore, 100);
-    };
-  }
-  window.addEventListener('popstate', trackEngagementAndScore);
-  window.addEventListener('hashchange', trackEngagementAndScore);
-
-  // Track Scroll Depth (>70%) for Lead Score
   window.addEventListener('scroll', function scrollHandler() {
     const scrollPercent = (window.scrollY + window.innerHeight) / document.body.scrollHeight;
     if (scrollPercent > 0.7) {
@@ -1860,26 +1747,41 @@ const WIDGET_SCRIPT = `
     }
   });
 
-  fetch(backendUrl + '/api/config?domain=' + currentDomain)
+  function appendToBody(el) {
+    if (document.body) {
+      document.body.appendChild(el);
+    } else {
+      document.addEventListener('DOMContentLoaded', () => {
+        if (document.body && !document.getElementById(el.id)) {
+          document.body.appendChild(el);
+        }
+      });
+    }
+  }
+
+  const clientConfig = window.OMNI_CHAT_CONFIG || {};
+
+  fetch(`${backendUrl}/api/config?domain=${currentDomain}`)
     .then(r => r.json())
     .catch(() => ({
       category: "DEFAULT",
       businessName: currentDomain,
       primaryColor: "#0052FF",
       theme: "light",
-      proactiveGreeting: "Hey! I am Friday, your AI Assistant. Who have I got today? How can I help you out?",
+      proactiveGreeting: "Hello! How can I assist you today?",
       features: { rag: true, leadCapture: true, imageUpload: true, screenAwareness: true, leadScoring: true }
     }))
-    .then(config => {
+    .then(apiConfig => {
+      const config = {
+        ...apiConfig,
+        ...clientConfig,
+        category: clientConfig.category || apiConfig.category || "DEFAULT",
+        businessName: clientConfig.businessInfo?.businessName || apiConfig.businessName || currentDomain,
+        email: clientConfig.businessInfo?.email || apiConfig.email,
+        phone: clientConfig.businessInfo?.phone || apiConfig.phone,
+        primaryColor: clientConfig.primaryColor || apiConfig.primaryColor || "#0052FF"
+      };
       initWidget(config);
-      // Persistent Watchdog Loop: Ensure chat bubble displays on 100% of pages, subpaths, and routes across all client sites
-      setInterval(function() {
-        if (document.body && !document.getElementById('omni-chat-bubble')) {
-          initWidget(config);
-        } else {
-          trackEngagementAndScore();
-        }
-      }, 3000);
     });
 
   function initWidget(config) {
@@ -1887,7 +1789,7 @@ const WIDGET_SCRIPT = `
     const isDark = themeMode === 'dark';
     const primaryColor = config.primaryColor || "#0052FF";
     const customTitle = config.businessName ? (config.businessName + " AI Assistant") : (currentDomain + " AI");
-    const welcomeMsg = config.proactiveGreeting || "Hey! I am Friday, your AI Assistant. Who have I got today? How can I help you out?";
+    const welcomeMsg = config.proactiveGreeting || ("Hello! Welcome to " + config.businessName + ". How can I help you today?");
 
     const winBg = isDark ? "#12141d" : "#ffffff";
     const winText = isDark ? "#f8fafc" : "#0f172a";
@@ -1901,235 +1803,395 @@ const WIDGET_SCRIPT = `
     const inputText = isDark ? "#ffffff" : "#0f172a";
     const inputBorder = isDark ? "rgba(255,255,255,0.15)" : "#cbd5e1";
 
+    // Multi-Brand Dynamic Config Resolution
+    const isFinnova = /finnova/.test(currentDomain);
+    const isProCrm = /procrm/.test(currentDomain);
+    const isEzConsultants = /ezconsultants/.test(currentDomain);
+
+    let brandSpecialistTitle = "AI Lending Specialist";
+    let brandIntro = "G'day! I'm Friday, your AI Lending Specialist at <strong>EZ Mortgage Broker</strong>. I compare over 50 accredited Australian lenders to find lower interest rates, maximize your borrowing capacity, and secure fast loan approvals. How can I help you with your mortgage today?";
+    let brandPillGreeting = "G'day! I'm Friday 👋 Ask me anything";
+    let brandPrompts = [
+      { text: "Calculate my borrowing power", prompt: "How much can I borrow on my salary?" },
+      { text: "Compare 50+ bank rates", prompt: "Compare lowest 2-year fixed rates across Australian banks" },
+      { text: "Latest RBA cash rate update", prompt: "What are the current RBA interest rate forecasts?" }
+    ];
+    let brandCtaText = "Connect me with a licensed broker &rarr;";
+    let brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/backgrounds/ezmortgage_bg.jpg";
+    let brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_ezmortgage.mp4";
+
+    if (isFinnova) {
+      brandSpecialistTitle = "AI Community Guide";
+      brandIntro = "Hello and welcome! I'm Friday, your AI Community Guide at <strong>Finnova</strong>. We are an Australian ACNC-registered charity providing free refurbished computers, digital literacy classes, and senior cyber safety workshops. How can our team support you today?";
+      brandPillGreeting = "Hi! I'm Friday 👋 How can Finnova help you?";
+      brandPrompts = [
+        { text: "Request free refurbished tech", prompt: "How can seniors or students request refurbished digital hardware?" },
+        { text: "Senior cyber defense workshops", prompt: "When are the upcoming free cyber safety workshops?" },
+        { text: "Donate tech / e-waste pickup", prompt: "How does our company donate corporate laptops and computers?" }
+      ];
+      brandCtaText = "Contact Finnova Community Team &rarr;";
+      brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/finnova-avatar-2026.jpeg";
+      brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/finnova-avatar-2026.mp4";
+    } else if (isProCrm) {
+      brandSpecialistTitle = "AI Enterprise Architect";
+      brandIntro = "Hi there! I'm Friday, your AI Enterprise Architect at <strong>Pro CRM Australia</strong>. We deliver Salesforce Agentforce, Zero-ETL Data Cloud integrations, and sovereign enterprise automation. What can we build for you today?";
+      brandPillGreeting = "Hi there! I'm Friday 👋 Ask me about Pro CRM";
+      brandPrompts = [
+        { text: "Agentforce Autonomous AI", prompt: "How does Salesforce Agentforce differ from basic chatbots?" },
+        { text: "Zero-ETL Data Cloud sync", prompt: "Explain Zero-Copy federation across Snowflake and BigQuery." },
+        { text: "APRA CPS 234 Compliance", prompt: "How do you enforce security and sovereign data boundaries?" }
+      ];
+      brandCtaText = "Book Enterprise AI Consultation &rarr;";
+      brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/backgrounds/procrm_bg.jpg";
+      brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_procrm.mp4";
+    } else if (isEzConsultants) {
+      brandSpecialistTitle = "AI Cyber & Cloud Advisor";
+      brandIntro = "Welcome! I'm Friday, your Cyber and Cloud Advisor at <strong>EZ Consultants</strong>. We provide rapid ASD ACSC threat intelligence, NDIS quality audit defense, and DevSecOps architecture. How can I assist you today?";
+      brandPillGreeting = "Welcome! I'm Friday 👋 Ask about cyber & cloud defense";
+      brandPrompts = [
+        { text: "ACSC Threat Advisory", prompt: "What are the critical ASD ACSC vulnerability advisories today?" },
+        { text: "NDIS Provider Audit Defense", prompt: "How do we prepare for mid-term NDIS Quality Commission audits?" },
+        { text: "Cloud Security Architecture", prompt: "How do you secure multi-cloud Kubernetes & AWS workloads?" }
+      ];
+      brandCtaText = "Request Cyber Advisory Call &rarr;";
+      brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/backgrounds/ezconsultants_bg.jpg";
+      brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_ezconsultants.mp4";
+    }
+
+    let brandKey = "ezmortgage";
+    if (isFinnova) brandKey = "finnova";
+    else if (isProCrm) brandKey = "procrm";
+    else if (isEzConsultants) brandKey = "ezconsultants";
+
     const style = document.createElement('style');
-    style.innerHTML = \`
-      #omni-chat-bubble { position: fixed; bottom: 24px; right: 24px; width: 60px; height: 60px; background: \${primaryColor}; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 8px 24px rgba(0,82,255,0.35); z-index: 10000000 !important; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; transition: transform 0.2s; }
-      #omni-chat-bubble:hover { transform: scale(1.06); }
-      #omni-chat-bubble svg { width: 28px; height: 28px; fill: #fff; }
-      #omni-chat-window { position: fixed; bottom: 88px; right: 24px; width: 400px; height: 590px; max-width: calc(100vw - 32px); max-height: calc(100vh - 96px); background: \${winBg} !important; color: \${winText} !important; border-radius: 16px; box-shadow: 0 16px 40px -5px rgba(0,0,0,0.22); display: none; flex-direction: column; overflow: hidden; z-index: 10000000 !important; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; border: 1px solid \${winBorder}; }
-      #omni-chat-header { background: \${primaryColor} !important; color: #ffffff !important; padding: 14px 16px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
-      #omni-chat-header span.title { font-size: 15px; color: #ffffff; }
-      #omni-chat-header span.sub { font-size: 11px; color: rgba(255,255,255,0.8); font-weight: normal; display: block; }
+    style.innerHTML = `
+      #omni-chat-trigger-group { position: fixed; bottom: 24px; right: 24px; display: flex; align-items: center; gap: 12px; z-index: 999999; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+      .omni-avatar-greeting-pill { background: #ffffff; color: #0f172a; padding: 8px 14px; border-radius: 24px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.06); border: 1px solid rgba(0, 82, 255, 0.18); font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; cursor: pointer; animation: omniPillSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1); transition: transform 0.2s, box-shadow 0.2s; white-space: nowrap; user-select: none; }
+      .omni-avatar-greeting-pill:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0, 82, 255, 0.2); }
+      .omni-pill-wave { font-size: 16px; display: inline-block; animation: omniWaveHand 2.2s infinite ease-in-out; transform-origin: 70% 70%; }
+      .omni-pill-close { color: #94a3b8; font-size: 12px; padding: 2px 4px; border-radius: 50%; transition: color 0.15s; margin-left: 2px; }
+      .omni-pill-close:hover { color: #ef4444; }
+      #omni-chat-bubble { position: relative; width: 66px; height: 66px; border-radius: 50%; cursor: pointer; box-shadow: 0 10px 28px rgba(0, 82, 255, 0.35); transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1); user-select: none; }
+      #omni-chat-bubble:hover { transform: scale(1.08); }
+      .omni-avatar-disc { width: 100%; height: 100%; border-radius: 50%; position: relative; overflow: visible; }
+      .omni-avatar-face { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid #ffffff; box-sizing: border-box; display: block; background: #0A2540; }
+      .omni-avatar-online-dot { position: absolute; bottom: 2px; right: 2px; width: 14px; height: 14px; background: #10B981; border: 2.5px solid #ffffff; border-radius: 50%; box-shadow: 0 0 8px rgba(16, 185, 129, 0.8); }
+      .omni-avatar-wave-badge { position: absolute; top: -4px; right: -4px; width: 24px; height: 24px; background: #ffffff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18); animation: omniWaveHand 2.2s infinite ease-in-out; transform-origin: 70% 70%; }
+      @keyframes omniWaveHand { 0%, 100% { transform: rotate(0deg); } 15% { transform: rotate(18deg) scale(1.15); } 30% { transform: rotate(-14deg) scale(1.15); } 45% { transform: rotate(14deg) scale(1.15); } 60% { transform: rotate(-8deg) scale(1.15); } 75% { transform: rotate(10deg) scale(1.1); } }
+      @keyframes omniPillSlideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+      .omni-avatar-close-icon { display: none; width: 100%; height: 100%; border-radius: 50%; background: #0f172a; color: #ffffff; font-size: 22px; align-items: center; justify-content: center; border: 3px solid #ffffff; box-sizing: border-box; }
+      #omni-chat-bubble.is-open .omni-avatar-disc { display: none; }
+      #omni-chat-bubble.is-open .omni-avatar-close-icon { display: flex; }
+      #omni-chat-bubble.is-open { box-shadow: 0 8px 24px rgba(15, 23, 42, 0.35); }
+      @media (max-width: 640px) { .omni-avatar-greeting-pill { display: none !important; } #omni-chat-bubble { width: 58px; height: 58px; } #omni-chat-trigger-group { bottom: 16px; right: 16px; } }
+
+      #omni-chat-window { position: fixed; bottom: 96px; right: 24px; width: 410px; height: 620px; max-width: calc(100vw - 32px); max-height: calc(100vh - 110px); background: ${winBg} !important; color: ${winText} !important; border-radius: 20px; box-shadow: 0 20px 45px -5px rgba(0,0,0,0.22); display: none; flex-direction: column; overflow: hidden; z-index: 999999; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; border: 1px solid ${winBorder}; }
+      #omni-chat-header { background: #ffffff !important; color: #0f172a !important; padding: 12px 16px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid ${winBorder}; }
+      #omni-chat-header .title-wrap { display: flex; align-items: center; gap: 8px; }
+      #omni-chat-header span.title { font-size: 15px; font-weight: 800; color: #0A2540; }
+      #omni-chat-header span.badge { font-size: 11px; color: #64748b; font-weight: 600; background: #F1F5F9; padding: 2px 8px; border-radius: 999px; }
       .omni-hdr-actions { display: flex; gap: 8px; align-items: center; }
-      .omni-btn-endchat { background: rgba(255,255,255,0.2); color: #fff; border: none; padding: 4px 8px; border-radius: 6px; font-size: 11px; cursor: pointer; font-weight: 600; }
-      .omni-btn-endchat:hover { background: rgba(255,255,255,0.3); }
-      #omni-chat-messages { flex: 1; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; font-size: 14px; background: \${msgAreaBg} !important; }
-      .omni-msg { padding: 12px 14px; border-radius: 12px; max-width: 88%; word-break: break-word; line-height: 1.55; }
-      .omni-msg.user { background: \${primaryColor} !important; color: #ffffff !important; align-self: flex-end; border-bottom-right-radius: 3px; }
-      .omni-msg.assistant { background: \${assistantBg} !important; color: \${assistantText} !important; align-self: flex-start; border-bottom-left-radius: 3px; border: 1px solid \${assistantBorder}; }
+      .omni-btn-endchat { background: #F1F5F9; color: #475569; border: 1px solid #E2E8F0; padding: 4px 8px; border-radius: 6px; font-size: 11px; cursor: pointer; font-weight: 600; }
+      .omni-btn-endchat:hover { background: #E2E8F0; color: #0f172a; }
+      
+      /* Salesforce Piper Style Hero Card */
+      .piper-hero-card { margin: 12px 14px 4px; border-radius: 16px; overflow: hidden; background: linear-gradient(180deg, #E0F2FE 0%, #FFFFFF 100%); border: 1px solid #BAE6FD; position: relative; box-shadow: 0 4px 14px rgba(0, 82, 255, 0.06); }
+      .piper-hero-video-stage { position: relative; width: 100%; aspect-ratio: 16/9; background: #0A2540; overflow: hidden; }
+      .piper-hero-video-stage video { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .piper-speak-badge-btn { position: absolute; bottom: 8px; right: 8px; background: rgba(0, 82, 255, 0.9); backdrop-filter: blur(6px); color: #ffffff; border: 1px solid rgba(255,255,255,0.4); padding: 5px 10px; border-radius: 16px; font-size: 11px; font-weight: 700; display: flex; align-items: center; gap: 4px; cursor: pointer; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); z-index: 10; transition: all 0.2s; }
+      .piper-speak-badge-btn:hover { background: #003ECC; transform: scale(1.05); }
+      .piper-speak-badge-btn.speaking { background: rgba(16, 185, 129, 0.95); border-color: #34d399; }
+      .piper-speak-badge-btn:hover { background: #003ECC; transform: translateX(-50%) scale(1.04); }
+      .piper-hero-intro { padding: 12px 14px; font-size: 13.5px; color: #1E293B; line-height: 1.45; font-weight: 500; }
+      .piper-prompts-box { margin: 0 14px 10px; padding: 10px 12px; background: #F8FAFC; border-radius: 12px; border: 1px solid #E2E8F0; font-size: 12px; }
+      .piper-prompts-title { font-weight: 700; color: #64748B; margin-bottom: 6px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; }
+      .piper-prompt-item { padding: 5px 8px; margin: 4px 0; background: #ffffff; border: 1px solid #CBD5E1; border-radius: 6px; color: #0A2540; font-weight: 600; cursor: pointer; transition: all 0.15s; display: flex; align-items: center; justify-content: space-between; }
+      .piper-prompt-item:hover { background: #EFF6FF; border-color: #93C5FD; color: #0052FF; transform: translateX(2px); }
+      .piper-cta-row { margin: 0 14px 12px; }
+      .piper-connect-btn { width: 100%; background: #0052FF; color: #ffffff; border: none; padding: 9px 14px; border-radius: 8px; font-weight: 700; font-size: 13px; cursor: pointer; transition: background 0.2s; }
+      .piper-connect-btn:hover { background: #003ECC; }
+
+      #omni-chat-messages { flex: 1; padding: 12px 14px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; font-size: 13.5px; background: ${msgAreaBg} !important; }
+      .omni-msg { padding: 10px 14px; border-radius: 12px; max-width: 88%; word-break: break-word; line-height: 1.5; }
+      .omni-msg.user { background: ${primaryColor} !important; color: #ffffff !important; align-self: flex-end; border-bottom-right-radius: 3px; }
+      .omni-msg.assistant { background: ${assistantBg} !important; color: ${assistantText} !important; align-self: flex-start; border-bottom-left-radius: 3px; border: 1px solid ${assistantBorder}; }
       .omni-msg.loading { color: #64748b; font-style: italic; }
-      .omni-thinking-box { display: flex; flex-direction: column; gap: 6px; }
-      .omni-thinking-dots { display: inline-flex; gap: 4px; align-items: center; }
-      .omni-thinking-dot { width: 5px; height: 5px; background: \${primaryColor}; border-radius: 50%; display: inline-block; animation: omniBounce 1.4s infinite ease-in-out both; }
-      .omni-thinking-dot:nth-child(1) { animation-delay: -0.32s; }
-      .omni-thinking-dot:nth-child(2) { animation-delay: -0.16s; }
-      .omni-thinking-phrase { font-size: 12px; color: #64748b; font-style: italic; transition: opacity 0.2s; }
-      @keyframes omniBounce { 0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; } 40% { transform: scale(1.2); opacity: 1; } }
       .omni-msg-actions { display: flex; gap: 8px; margin-top: 6px; font-size: 12px; opacity: 0.8; }
       .omni-action-btn { cursor: pointer; user-select: none; transition: transform 0.1s; }
       .omni-action-btn:hover { transform: scale(1.2); }
-      .omni-quote-btn { cursor: pointer; font-size: 11px; color: #64748b; margin-left: 6px; }
-      .omni-lead-card { background: rgba(0, 82, 255, 0.05); border: 1px solid \${primaryColor}; border-radius: 12px; padding: 12px; font-size: 13px; margin: 8px 0; }
-      .omni-lead-card input { width: 100%; box-sizing: border-box; background: \${inputBg}; border: 1px solid \${inputBorder}; border-radius: 6px; padding: 6px 10px; color: \${inputText}; margin-bottom: 6px; font-size: 13px; }
-      .omni-lead-card button { background: \${primaryColor}; color: #fff; border: none; padding: 8px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%; }
-      #omni-image-preview-bar img { height: 36px; border-radius: 4px; border: 1px solid \${inputBorder}; }
-      #omni-chat-input-container { display: flex; border-top: 1px solid \${winBorder}; padding: 10px 12px; background: \${inputContainerBg} !important; gap: 6px; align-items: center; }
-      #omni-chat-input { flex: 1; background: \${inputBg} !important; border: 1px solid \${inputBorder} !important; border-radius: 8px; padding: 10px 12px; outline: none; color: \${inputText} !important; font-size: 14px; }
-      #omni-chat-input:focus { border-color: \${primaryColor} !important; }
+      
+      #omni-image-preview-bar { display: none; padding: 6px 12px; background: ${inputContainerBg}; border-top: 1px solid ${winBorder}; align-items: center; gap: 8px; font-size: 12px; }
+      #omni-image-preview-bar img { height: 36px; border-radius: 4px; border: 1px solid ${inputBorder}; }
+      #omni-chat-input-container { display: flex; border-top: 1px solid ${winBorder}; padding: 10px 12px; background: ${inputContainerBg} !important; gap: 6px; align-items: center; }
+      #omni-chat-input { flex: 1; background: ${inputBg} !important; border: 1px solid ${inputBorder} !important; border-radius: 8px; padding: 10px 12px; outline: none; color: ${inputText} !important; font-size: 13.5px; }
+      #omni-chat-input:focus { border-color: ${primaryColor} !important; }
       .omni-attach-btn { background: transparent; border: none; color: #64748b; font-size: 18px; cursor: pointer; padding: 4px; }
-      #omni-chat-send { background: \${primaryColor} !important; color: #ffffff !important; border: none; border-radius: 8px; padding: 10px 16px; cursor: pointer; font-weight: 600; font-size: 14px; }
-      #omni-chat-bubble:focus-visible, #omni-close:focus-visible, .omni-btn-endchat:focus-visible, #omni-chat-send:focus-visible, #omni-chat-input:focus-visible, .omni-action-btn:focus-visible { outline: 2px solid \${primaryColor} !important; outline-offset: 2px !important; }
-      @media (prefers-reduced-motion: reduce) {
-        .omni-thinking-dot { animation: none !important; }
-        #omni-chat-bubble { transition: none !important; }
-      }
-    \`;
+      .omni-mic-btn { background: transparent; border: none; color: #64748b; font-size: 16px; cursor: pointer; padding: 4px; }
+      .omni-mic-btn.active { color: #ef4444; animation: omniMicPulse 1s infinite; }
+      @keyframes omniMicPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
+      #omni-chat-send { background: ${primaryColor} !important; color: #ffffff !important; border: none; border-radius: 8px; padding: 10px 14px; cursor: pointer; font-weight: 700; font-size: 13.5px; }
+      .omni-disclaimer-footer { padding: 6px 12px; font-size: 10.5px; color: #94A3B8; text-align: center; background: ${inputContainerBg}; border-top: 1px solid rgba(226,232,240,0.5); }
+    `;
     document.head.appendChild(style);
 
-    const bubble = document.createElement('div');
-    bubble.id = 'omni-chat-bubble';
-    bubble.setAttribute('role', 'button');
-    bubble.setAttribute('aria-label', 'Open AI Support Chat Assistant');
-    bubble.setAttribute('tabindex', '0');
-    bubble.innerHTML = '<svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>';
-    document.body.appendChild(bubble);
+    const triggerGroup = document.createElement('div');
+    triggerGroup.id = 'omni-chat-trigger-group';
+    triggerGroup.innerHTML = `
+      <div id="omni-chat-greeting-pill" class="omni-avatar-greeting-pill">
+        <span class="omni-pill-wave">👋</span>
+        <span class="omni-pill-text">${brandPillGreeting}</span>
+        <span class="omni-pill-close" id="omniPillClose" title="Dismiss">✕</span>
+      </div>
+      <div id="omni-chat-bubble" class="omni-avatar-trigger" title="Chat with Friday">
+        <div class="omni-avatar-disc">
+          <img src="${brandPoster}" alt="Friday AI Avatar" class="omni-avatar-face" />
+          <span class="omni-avatar-online-dot"></span>
+          <span class="omni-avatar-wave-badge">👋</span>
+        </div>
+        <div class="omni-avatar-close-icon">✕</div>
+      </div>
+    `;
+    appendToBody(triggerGroup);
+    const bubble = document.getElementById('omni-chat-bubble');
+    const greetingPill = document.getElementById('omni-chat-greeting-pill');
 
     const win = document.createElement('div');
     win.id = 'omni-chat-window';
-    win.setAttribute('role', 'dialog');
-    win.setAttribute('aria-label', customTitle);
-    win.setAttribute('aria-hidden', 'true');
-    win.innerHTML = '<div id="omni-chat-header">' +
-        '<div><span class="title">' + customTitle + '</span><span class="sub">Category: ' + (config.category || "GENERAL") + '</span></div>' +
-        '<div class="omni-hdr-actions"><button class="omni-btn-endchat" id="omniEndChat" aria-label="End chat and email transcript">✉️ End & Email</button><span id="omni-close" role="button" aria-label="Close Chat Window" style="cursor:pointer; font-size: 18px; color: rgba(255,255,255,0.8);">✕</span></div>' +
-      '</div>' +
-      '<div id="omni-chat-messages" aria-live="polite" aria-relevant="additions">' +
-        '<div class="omni-msg assistant">' + parseMarkdown(welcomeMsg, primaryColor) + '</div>' +
-      '</div>' +
-      '<div id="omni-image-preview-bar">' +
-        '<img id="omniPreviewImg" src="" alt="preview" />' +
-        '<span>Attached image ready</span>' +
-        '<span id="omniRemoveImg" style="cursor:pointer; color:#ef4444; font-weight:bold; margin-left:auto;">✕</span>' +
-      '</div>' +
-      '<div id="omni-chat-input-container">' +
-        '<input type="file" id="omniFileInput" accept="image/*" style="display:none;" />' +
-        (config.features?.imageUpload !== false ? '<button class="omni-attach-btn" id="omniAttachBtn" title="Attach/Paste Image" aria-label="Attach Screenshot or Image">📎</button>' : '') +
-        '<input type="text" id="omni-chat-input" placeholder="Ask a question..." aria-label="Type your message" />' +
-        '<button id="omni-chat-send" aria-label="Send Message">Send</button>' +
-      '</div>';
-    document.body.appendChild(win);
+    win.innerHTML = `
+      <div id="omni-chat-header">
+        <div class="title-wrap">
+          <span class="title">Friday</span>
+          <span class="badge">${brandSpecialistTitle}</span>
+        </div>
+        <div class="omni-hdr-actions">
+          <button class="omni-btn-endchat" id="omniEndChat">✉️ Email Chat</button>
+          <span id="omni-close" style="cursor:pointer; font-size: 18px; color: #64748b; padding: 2px 6px;">✕</span>
+        </div>
+      </div>
 
-    // Render Category-Specific Popular Question Chips Inside Message Area
-    const categoryChips: Record<string, string[]> = {
-      "CRM_PLATFORM": [
-        "How does pipeline automation work?",
-        "Which CRM plan is right for me?",
-        "Schedule a live demonstration",
-        "Integrate with Salesforce",
-        "Is my CRM data secure?"
-      ],
-      "ESIGNATURE": [
-        "How does signing work?",
-        "Which plan is right for me?",
-        "Are digital signatures legally binding?",
-        "Calculate document savings",
-        "Is my document data secure?"
-      ],
-      "MORTGAGE_BROKER": [
-        "Calculate borrowing capacity",
-        "Compare home loan rates",
-        "Refinancing options",
-        "First Home Buyer grants",
-        "Connect with a mortgage specialist"
-      ],
-      "SALESFORCE_CONSULTING": [
-        "What services do you offer?",
-        "Salesforce & MuleSoft consulting",
-        "Cloud transformation services",
-        "Book a strategy consultation",
-        "Who have I got today?"
-      ],
-      "CHARITY_DIGITAL_INCLUSION": [
-        "How does free assistance work?",
-        "Help setting up myGov or Medicare",
-        "Census 2026 form guidance",
-        "Is assistance 100% free?",
-        "Contact a digital mentor"
-      ]
-    };
+      <div class="piper-hero-card">
+        <div class="piper-hero-video-stage">
+          <video id="piper-hero-video" playsinline muted preload="auto" poster="${brandPoster}">
+            <source src="${brandVideo}" type="video/mp4">
+          </video>
+          <button type="button" class="piper-speak-badge-btn" id="piperSpeakBtn">
+            🎙️ Speak with Friday
+          </button>
+        </div>
+        <div class="piper-hero-intro">
+          ${brandIntro}
+        </div>
+        <div class="piper-prompts-box">
+          <div class="piper-prompts-title">Ask me things like:</div>
+          ${brandPrompts.map(p => `<div class="piper-prompt-item" data-prompt="${p.prompt}">${p.text} <span>&rarr;</span></div>`).join('')}
+        </div>
+        <div class="piper-cta-row">
+          <button type="button" class="piper-connect-btn" id="piperConnectRep">${brandCtaText}</button>
+        </div>
+      </div>
 
-    const activeCategory = (config.category || "").toUpperCase();
-    const defaultChips = categoryChips[activeCategory] || [
-      "What services do you offer?",
-      "Which plan is right for me?",
-      "How can I contact support?",
-      "Is my data secure?"
-    ];
+      <div id="omni-chat-messages">
+        <!-- Messages stream here -->
+      </div>
+      <div id="omni-image-preview-bar">
+        <img id="omniPreviewImg" src="" alt="preview" />
+        <span>Attached image ready</span>
+        <span id="omniRemoveImg" style="cursor:pointer; color:#ef4444; font-weight:bold; margin-left:auto;">✕</span>
+      </div>
+      <div id="omni-chat-input-container">
+        <input type="file" id="omniFileInput" accept="image/*" style="display:none;" />
+        ${config.features?.imageUpload !== false ? '<button class="omni-attach-btn" id="omniAttachBtn" title="Attach/Paste Image">📎</button>' : ''}
+        <button class="omni-mic-btn" id="omniMicBtn" title="Voice Input">🎙️</button>
+        <input type="text" id="omni-chat-input" placeholder="Ask Friday a question..." />
+        <button id="omni-chat-send">&rarr;</button>
+      </div>
+      <div class="omni-disclaimer-footer">
+        Friday is an AI intelligence assistant and can make mistakes. Please verify important terms with our accredited team.
+      </div>
+    `;
+    appendToBody(win);
 
-    function renderQuickChips(chips: string[]) {
-      if (!chips || !chips.length) return;
-      const msgContainer = document.getElementById('omni-chat-messages');
-      if (!msgContainer) return;
-      
-      let chipsEl = document.getElementById('omni-quick-chips');
-      if (!chipsEl) {
-        chipsEl = document.createElement('div');
-        chipsEl.id = 'omni-quick-chips';
-        chipsEl.style.cssText = 'margin: 6px 0 12px 0; display: flex; flex-direction: column; gap: 8px;';
-        msgContainer.appendChild(chipsEl);
-      }
-      
-      const titleText = '<div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: ' + (isDark ? '#94a3b8' : '#64748b') + '; margin-bottom: 2px; display: flex; align-items: center; gap: 4px;"><span>⚡ Popular Questions</span></div>';
-      const pillsMarkup = chips.map(function(c) {
-        return '<button class="omni-chip" aria-label="' + c + '" style="background: ' + (isDark ? "#1e293b" : "#f1f5f9") + '; color: ' + (isDark ? "#38bdf8" : "#0284c7") + '; border: 1px solid ' + (isDark ? "rgba(255,255,255,0.1)" : "#cbd5e1") + '; border-radius: 18px; padding: 6px 14px; font-size: 12px; font-weight: 600; cursor: pointer; text-align: left; transition: all 0.15s; display: inline-block;">' + c + '</button>';
-      }).join('');
-      
-      chipsEl.innerHTML = titleText + '<div style="display: flex; flex-wrap: wrap; gap: 6px;">' + pillsMarkup + '</div>';
-      
-      chipsEl.querySelectorAll('.omni-chip').forEach((btn: any) => {
-        btn.onclick = () => {
-          const text = btn.textContent;
-          const input = document.getElementById('omni-chat-input') as HTMLInputElement;
-          if (input) input.value = text;
-          sendMessage();
-        };
-      });
-    }
-
-    renderQuickChips(defaultChips);
-
-    // 24-Hour Dismissal Cookie Suppression & Proactive Open
-    const isDismissed = document.cookie.includes('omni_chat_dismissed=true');
-    if (getLeadScoreFromCookie() >= 35 && !window.__OMNI_PROACTIVE_TRIGGERED__ && !isDismissed) {
-      window.__OMNI_PROACTIVE_TRIGGERED__ = true;
+    function openChat() {
       win.style.display = 'flex';
-      win.setAttribute('aria-hidden', 'false');
+      if (bubble) bubble.classList.add('is-open');
+      if (greetingPill) greetingPill.style.display = 'none';
+      const video = document.getElementById('piper-hero-video');
+      if (video) video.play().catch(() => {});
     }
 
-    var lastActiveElement = null;
+    function closeChat() {
+      win.style.display = 'none';
+      if (bubble) bubble.classList.remove('is-open');
+      sessionStorage.setItem('piper_chat_dismissed', 'true');
+      if (greetingPill && !sessionStorage.getItem('omni_pill_dismissed')) {
+        greetingPill.style.display = 'flex';
+      }
+    }
 
-    function trapFocus(e) {
-      if (win.style.display !== 'flex') return;
-      var focusables = win.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-      if (focusables.length === 0) return;
-      var first = focusables[0];
-      var last = focusables[focusables.length - 1];
+    // 10-Second Salesforce Piper Auto-Open Timer
+    setTimeout(() => {
+      if (!sessionStorage.getItem('piper_chat_dismissed')) {
+        openChat();
+      }
+    }, 10000);
 
-      if (e.key === 'Tab') {
-        if (e.shiftKey) {
-          if (document.activeElement === first) {
-            last.focus();
-            e.preventDefault();
-          }
+    if (getLeadScoreFromCookie() >= 35 && !window.__OMNI_PROACTIVE_TRIGGERED__) {
+      window.__OMNI_PROACTIVE_TRIGGERED__ = true;
+      openChat();
+    }
+
+    if (bubble) {
+      bubble.onclick = () => {
+        if (win.style.display !== 'flex') {
+          openChat();
         } else {
-          if (document.activeElement === last) {
-            first.focus();
-            e.preventDefault();
-          }
+          closeChat();
         }
-      }
+      };
     }
 
-    win.addEventListener('keydown', trapFocus);
-
-    function toggleChatWindow(show) {
-      const isVisible = show !== undefined ? show : win.style.display !== 'flex';
-      if (isVisible) {
-        lastActiveElement = document.activeElement;
-        win.style.display = 'flex';
-        win.setAttribute('aria-hidden', 'false');
-        setTimeout(function() {
-          const input = document.getElementById('omni-chat-input');
-          if (input) input.focus();
-        }, 10);
-      } else {
-        win.setAttribute('aria-hidden', 'true');
-        win.style.display = 'none';
-        if (lastActiveElement && typeof lastActiveElement.focus === 'function') {
-          lastActiveElement.focus();
-        } else if (bubble) {
-          bubble.focus();
+    if (greetingPill) {
+      greetingPill.onclick = (e) => {
+        if (e.target.id === 'omniPillClose') {
+          e.stopPropagation();
+          greetingPill.style.display = 'none';
+          sessionStorage.setItem('omni_pill_dismissed', 'true');
+          return;
         }
-      }
+        openChat();
+      };
     }
 
-    bubble.onclick = () => toggleChatWindow();
-    document.getElementById('omni-close').onclick = () => {
-      toggleChatWindow(false);
-      document.cookie = 'omni_chat_dismissed=true; max-age=86400; path=/; SameSite=Lax';
-    };
+    const closeBtn = document.getElementById('omni-close');
+    if (closeBtn) closeBtn.onclick = closeChat;
 
-    // Keyboard Accessibility: Escape key closes chat window
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && win.style.display === 'flex') {
-        toggleChatWindow(false);
-        if (lastActiveElement && typeof lastActiveElement.focus === 'function') {
-          lastActiveElement.focus();
-        } else {
-          bubble.focus();
+    // Piper Interactive Prompt Pills (Click to instantly query AI)
+    document.querySelectorAll(".piper-prompt-item").forEach(item => {
+      item.onclick = (e) => {
+        e.preventDefault();
+        const promptText = item.getAttribute("data-prompt");
+        const input = document.getElementById("omni-chat-input");
+        if (input && promptText) {
+          input.value = promptText;
+          sendMessage();
         }
-      }
+      };
     });
+
+    // Speak with Friday Button (Plays native lip-synced video once, then stops cleanly)
+    const speakBtn = document.getElementById("piperSpeakBtn");
+    const video = document.getElementById("piper-hero-video");
+    
+    if (speakBtn && video) {
+      video.loop = false; // Never loop infinitely; play greeting once then stop
+      
+      video.onended = () => {
+        video.pause();
+        video.currentTime = 0;
+        video.muted = true;
+        speakBtn.classList.remove("speaking");
+        speakBtn.innerHTML = "🎙️ Speak with Friday";
+      };
+
+      speakBtn.onclick = () => {
+        if (!video.paused && !video.muted) {
+          // Pause if already speaking
+          video.pause();
+          video.muted = true;
+          speakBtn.classList.remove("speaking");
+          speakBtn.innerHTML = "🎙️ Speak with Friday";
+          return;
+        }
+
+        // Start playback once with synced audio
+        video.muted = false;
+        video.currentTime = 0;
+        speakBtn.classList.add("speaking");
+        speakBtn.innerHTML = "🔊 Speaking...";
+        
+        video.play().catch(err => {
+          console.log("Video audio play note:", err);
+          speakBtn.classList.remove("speaking");
+          speakBtn.innerHTML = "🎙️ Speak with Friday";
+        });
+      };
+    }
+
+    // Connect with Broker Button
+    const connectBtn = document.getElementById('piperConnectRep');
+    if (connectBtn) {
+      connectBtn.onclick = () => {
+        const input = document.getElementById('omni-chat-input');
+        if (input) {
+          input.value = "I'd like to connect directly with a licensed mortgage broker for a consultation.";
+          document.getElementById('omni-chat-send').click();
+        }
+      };
+    }
+
+    // Voice Input via Web Speech Recognition API (Rock Solid Cross-Browser Voice Typing)
+    const micBtn = document.getElementById("omniMicBtn");
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    let recognition = null;
+    let isListening = false;
+
+    if (SpeechRecognition && micBtn) {
+      try {
+        recognition = new SpeechRecognition();
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.lang = "en-AU";
+
+        recognition.onstart = () => {
+          isListening = true;
+          micBtn.classList.add("active");
+          const input = document.getElementById("omni-chat-input");
+          if (input) input.placeholder = "🎙️ Listening... speak now";
+        };
+
+        recognition.onend = () => {
+          isListening = false;
+          micBtn.classList.remove("active");
+          const input = document.getElementById("omni-chat-input");
+          if (input) input.placeholder = "Ask Friday a question...";
+        };
+
+        recognition.onerror = (e) => {
+          console.log("Speech recognition error:", e);
+          isListening = false;
+          micBtn.classList.remove("active");
+          const input = document.getElementById("omni-chat-input");
+          if (input) input.placeholder = "Ask Friday a question...";
+        };
+
+        recognition.onresult = (event) => {
+          const transcript = event.results[0][0].transcript;
+          const input = document.getElementById("omni-chat-input");
+          if (input && transcript) {
+            input.value = transcript;
+            sendMessage();
+          }
+        };
+
+        micBtn.onclick = () => {
+          if (isListening) {
+            recognition.stop();
+          } else {
+            try {
+              recognition.start();
+            } catch (err) {
+              console.log("Recognition restart:", err);
+            }
+          }
+        };
+      } catch (err) {
+        console.log("Web Speech Init:", err);
+      }
+    } else if (micBtn) {
+      micBtn.onclick = () => {
+        alert("Voice speech recognition is supported in Chrome, Edge, and Safari on desktop and mobile.");
+      };
+    }
 
     const fileInput = document.getElementById('omniFileInput');
     const attachBtn = document.getElementById('omniAttachBtn');
@@ -2179,7 +2241,7 @@ const WIDGET_SCRIPT = `
       if (!userEmail || !userEmail.includes("@")) return;
 
       try {
-        await fetch(backendUrl + '/api/email-transcript', {
+        await fetch(`${backendUrl}/api/email-transcript`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -2188,7 +2250,7 @@ const WIDGET_SCRIPT = `
             domain: currentDomain
           })
         });
-        alert('Transcript successfully queued for ' + userEmail + '!');
+        alert(`Transcript successfully queued for ${userEmail}!`);
         sessionId = 'sess_' + Math.random().toString(36).substring(2, 9);
         localStorage.setItem('omni_chat_session', sessionId);
       } catch (err) {
@@ -2206,7 +2268,7 @@ const WIDGET_SCRIPT = `
       
       let userHtml = parseMarkdown(msg, primaryColor);
       if (attachedImageBase64) {
-        userHtml += '<br/><img src="' + attachedImageBase64 + '" style="max-width:180px; border-radius:6px; margin-top:6px;" alt="Attached User Screenshot" />';
+        userHtml += `<br/><img src="${attachedImageBase64}" style="max-width:180px; border-radius:6px; margin-top:6px;" />`;
       }
 
       const userMsgDiv = document.createElement('div');
@@ -2220,59 +2282,14 @@ const WIDGET_SCRIPT = `
       previewBar.style.display = 'none';
       msgContainer.scrollTop = msgContainer.scrollHeight;
 
-      if (INSTANT_TAG_ANSWERS[msg]) {
-        const cachedReply = INSTANT_TAG_ANSWERS[msg];
-        const instantMsg = document.createElement('div');
-        instantMsg.className = 'omni-msg assistant';
-        instantMsg.innerHTML = parseMarkdown(cachedReply, primaryColor);
-        msgContainer.appendChild(instantMsg);
-        msgContainer.scrollTop = msgContainer.scrollHeight;
-
-        fetch(backendUrl + '/api/chat', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: msg, sessionId: sessionId, domain: currentDomain })
-        }).catch(() => {});
-        return;
-      }
-
-      const phrases = [
-        "That's a great question, let me check the resources...",
-        "Finding recipe & discovering key ingredients...",
-        "Reviewing security & compliance guidelines...",
-        "Discovering features & preparing options...",
-        "Formulating your tailored response..."
-      ];
-      let phraseIdx = 0;
-
       const loadingMsg = document.createElement('div');
-      loadingMsg.className = 'omni-msg assistant';
-      loadingMsg.innerHTML = '<div class="omni-thinking-box">' +
-          '<div style="display:flex; align-items:center; gap:6px;">' +
-            '<span style="font-size:12px;">✨</span>' +
-            '<div class="omni-thinking-dots">' +
-              '<span class="omni-thinking-dot"></span>' +
-              '<span class="omni-thinking-dot"></span>' +
-              '<span class="omni-thinking-dot"></span>' +
-            '</div>' +
-          '</div>' +
-          '<span class="omni-thinking-phrase" id="omniThinkingText">' + phrases[0] + '</span>' +
-        '</div>';
+      loadingMsg.className = 'omni-msg assistant loading';
+      loadingMsg.textContent = 'Agent is thinking...';
       msgContainer.appendChild(loadingMsg);
       msgContainer.scrollTop = msgContainer.scrollHeight;
 
-      const thinkingTimer = setInterval(() => {
-        phraseIdx = (phraseIdx + 1) % phrases.length;
-        const txtEl = loadingMsg.querySelector('#omniThinkingText');
-        if (txtEl) txtEl.textContent = phrases[phraseIdx];
-      }, 1800);
-
-      // Failure Recovery: 25-second AbortController Timeout (Aligned with LLM P99 cold starts)
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 25000);
-
       try {
-        const response = await fetch(backendUrl + '/api/chat', {
+        const response = await fetch(`${backendUrl}/api/chat`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -2281,12 +2298,9 @@ const WIDGET_SCRIPT = `
             domain: currentDomain,
             pageContext: config.features?.screenAwareness !== false ? getBrowserScreenContext() : {},
             image: sentImage
-          }),
-          signal: controller.signal
+          })
         });
 
-        clearTimeout(timeoutId);
-        clearInterval(thinkingTimer);
         const data = await response.json();
         loadingMsg.classList.remove('loading');
         
@@ -2295,26 +2309,33 @@ const WIDGET_SCRIPT = `
 
         const actionsDiv = document.createElement('div');
         actionsDiv.className = 'omni-msg-actions';
-        actionsDiv.innerHTML = '<span class="omni-action-btn" title="Thumbs Up" role="button" aria-label="Thumbs Up">👍</span>' +
-          '<span class="omni-action-btn" title="Thumbs Down" role="button" aria-label="Thumbs Down">👎</span>' +
-          '<span class="omni-action-btn" title="Smiley" role="button" aria-label="Smiley">😊</span>' +
-          '<span class="omni-quote-btn" title="Quote reply" role="button" aria-label="Quote reply">💬 Quote</span>';
+        actionsDiv.innerHTML = `
+          <span class="omni-action-btn" title="Thumbs Up">👍</span>
+          <span class="omni-action-btn" title="Thumbs Down">👎</span>
+          <span class="omni-action-btn" title="Smiley">😊</span>
+          <span class="omni-quote-btn" title="Quote reply">💬 Quote</span>
+        `;
         
         actionsDiv.querySelector('.omni-quote-btn').onclick = () => {
           chatInput.value = '> "' + replyRaw.substring(0, 80).replace(/\n/g, ' ') + '..."\n';
           chatInput.focus();
         };
 
+        actionsDiv.querySelectorAll('.omni-action-btn').forEach(btn => {
+          btn.onclick = () => {
+            btn.style.transform = 'scale(1.4)';
+            setTimeout(() => btn.style.transform = 'scale(1)', 200);
+          };
+        });
+
         loadingMsg.appendChild(actionsDiv);
 
         if (config.features?.leadCapture !== false && /(demo|pricing|quote|consultation|contact sales|call me|help|booking|census|mygov)/i.test(msg)) {
           renderLeadCard(msgContainer, config);
         }
-      } catch (err: any) {
-        clearTimeout(timeoutId);
-        clearInterval(thinkingTimer);
-        loadingMsg.className = 'omni-msg assistant';
-        loadingMsg.innerHTML = '<div style="color:#ef4444; font-size:13px;">⚠️ Connection timeout or network issue. <button style="background:' + primaryColor + '; color:#fff; border:none; border-radius:4px; padding:2px 8px; font-size:12px; cursor:pointer; margin-left:6px;" onclick="this.closest(\'.omni-msg\').remove();">Retry</button></div>';
+      } catch (err) {
+        loadingMsg.classList.remove('loading');
+        loadingMsg.textContent = "Unable to connect to AI assistant service.";
       }
 
       msgContainer.scrollTop = msgContainer.scrollHeight;
@@ -2326,11 +2347,13 @@ const WIDGET_SCRIPT = `
       card.id = 'omni-lead-form';
       card.className = 'omni-lead-card';
       const score = getLeadScoreFromCookie();
-      card.innerHTML = '<p style="margin:0 0 8px 0; font-weight:600; color:' + primaryColor + ';">📬 Contact / Booking Request (Lead Score: ' + score + ')</p>' +
-        '<input type="text" id="leadName" placeholder="Your Name" />' +
-        '<input type="email" id="leadEmail" placeholder="Your Email" />' +
-        '<input type="tel" id="leadPhone" placeholder="Phone Number (Optional)" />' +
-        '<button id="submitLead">Submit Contact Request</button>';
+      card.innerHTML = `
+        <p style="margin:0 0 8px 0; font-weight:600; color:${primaryColor};">📬 Contact / Booking Request (Lead Score: ${score})</p>
+        <input type="text" id="leadName" placeholder="Your Name" />
+        <input type="email" id="leadEmail" placeholder="Your Email" />
+        <input type="tel" id="leadPhone" placeholder="Phone Number (Optional)" />
+        <button id="submitLead">Submit Contact Request</button>
+      `;
       container.appendChild(card);
       container.scrollTop = container.scrollHeight;
 
@@ -2343,7 +2366,7 @@ const WIDGET_SCRIPT = `
           return;
         }
 
-        await fetch(backendUrl + '/api/lead', {
+        await fetch(`${backendUrl}/api/lead`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({

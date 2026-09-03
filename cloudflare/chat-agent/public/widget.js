@@ -177,12 +177,88 @@
     const inputText = isDark ? "#ffffff" : "#0f172a";
     const inputBorder = isDark ? "rgba(255,255,255,0.15)" : "#cbd5e1";
 
+    // Multi-Brand Dynamic Config Resolution
+    const isFinnova = /finnova/.test(currentDomain);
+    const isProCrm = /procrm/.test(currentDomain);
+    const isEzConsultants = /ezconsultants/.test(currentDomain);
+
+    let brandSpecialistTitle = "AI Lending Specialist";
+    let brandIntro = "G'day! I'm Friday, your AI Lending Specialist at <strong>EZ Mortgage Broker</strong>. I compare over 50 accredited Australian lenders to find lower interest rates, maximize your borrowing capacity, and secure fast loan approvals. How can I help you with your mortgage today?";
+    let brandPillGreeting = "G'day! I'm Friday 👋 Ask me anything";
+    let brandPrompts = [
+      { text: "Calculate my borrowing power", prompt: "How much can I borrow on my salary?" },
+      { text: "Compare 50+ bank rates", prompt: "Compare lowest 2-year fixed rates across Australian banks" },
+      { text: "Latest RBA cash rate update", prompt: "What are the current RBA interest rate forecasts?" }
+    ];
+    let brandCtaText = "Connect me with a licensed broker &rarr;";
+    let brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/backgrounds/ezmortgage_bg.jpg";
+    let brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_ezmortgage.mp4";
+
+    if (isFinnova) {
+      brandSpecialistTitle = "AI Community Guide";
+      brandIntro = "Hello and welcome! I'm Friday, your AI Community Guide at <strong>Finnova</strong>. We are an Australian ACNC-registered charity providing free refurbished computers, digital literacy classes, and senior cyber safety workshops. How can our team support you today?";
+      brandPillGreeting = "Hi! I'm Friday 👋 How can Finnova help you?";
+      brandPrompts = [
+        { text: "Request free refurbished tech", prompt: "How can seniors or students request refurbished digital hardware?" },
+        { text: "Senior cyber defense workshops", prompt: "When are the upcoming free cyber safety workshops?" },
+        { text: "Donate tech / e-waste pickup", prompt: "How does our company donate corporate laptops and computers?" }
+      ];
+      brandCtaText = "Contact Finnova Community Team &rarr;";
+      brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/finnova-avatar-2026.jpeg";
+      brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/finnova-avatar-2026.mp4";
+    } else if (isProCrm) {
+      brandSpecialistTitle = "AI Enterprise Architect";
+      brandIntro = "Hi there! I'm Friday, your AI Enterprise Architect at <strong>Pro CRM Australia</strong>. We deliver Salesforce Agentforce, Zero-ETL Data Cloud integrations, and sovereign enterprise automation. What can we build for you today?";
+      brandPillGreeting = "Hi there! I'm Friday 👋 Ask me about Pro CRM";
+      brandPrompts = [
+        { text: "Agentforce Autonomous AI", prompt: "How does Salesforce Agentforce differ from basic chatbots?" },
+        { text: "Zero-ETL Data Cloud sync", prompt: "Explain Zero-Copy federation across Snowflake and BigQuery." },
+        { text: "APRA CPS 234 Compliance", prompt: "How do you enforce security and sovereign data boundaries?" }
+      ];
+      brandCtaText = "Book Enterprise AI Consultation &rarr;";
+      brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/backgrounds/procrm_bg.jpg";
+      brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_procrm.mp4";
+    } else if (isEzConsultants) {
+      brandSpecialistTitle = "AI Cyber & Cloud Advisor";
+      brandIntro = "Welcome! I'm Friday, your Cyber and Cloud Advisor at <strong>EZ Consultants</strong>. We provide rapid ASD ACSC threat intelligence, NDIS quality audit defense, and DevSecOps architecture. How can I assist you today?";
+      brandPillGreeting = "Welcome! I'm Friday 👋 Ask about cyber & cloud defense";
+      brandPrompts = [
+        { text: "ACSC Threat Advisory", prompt: "What are the critical ASD ACSC vulnerability advisories today?" },
+        { text: "NDIS Provider Audit Defense", prompt: "How do we prepare for mid-term NDIS Quality Commission audits?" },
+        { text: "Cloud Security Architecture", prompt: "How do you secure multi-cloud Kubernetes & AWS workloads?" }
+      ];
+      brandCtaText = "Request Cyber Advisory Call &rarr;";
+      brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/backgrounds/ezconsultants_bg.jpg";
+      brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_ezconsultants.mp4";
+    }
+
+    let brandKey = "ezmortgage";
+    if (isFinnova) brandKey = "finnova";
+    else if (isProCrm) brandKey = "procrm";
+    else if (isEzConsultants) brandKey = "ezconsultants";
+
     const style = document.createElement('style');
     style.innerHTML = `
-      #omni-chat-bubble { position: fixed; bottom: 24px; right: 24px; width: 60px; height: 60px; background: ${primaryColor}; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 8px 24px rgba(0,82,255,0.35); z-index: 999999; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; transition: transform 0.2s; animation: omniPulse 3s infinite; }
-      #omni-chat-bubble:hover { transform: scale(1.06); }
-      #omni-chat-bubble svg { width: 28px; height: 28px; fill: #fff; }
-      @keyframes omniPulse { 0%, 100% { box-shadow: 0 8px 24px rgba(0,82,255,0.35); } 50% { box-shadow: 0 0 0 8px rgba(0,82,255,0.18), 0 12px 28px rgba(0,82,255,0.4); } }
+      #omni-chat-trigger-group { position: fixed; bottom: 24px; right: 24px; display: flex; align-items: center; gap: 12px; z-index: 999999; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+      .omni-avatar-greeting-pill { background: #ffffff; color: #0f172a; padding: 8px 14px; border-radius: 24px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.06); border: 1px solid rgba(0, 82, 255, 0.18); font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; cursor: pointer; animation: omniPillSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1); transition: transform 0.2s, box-shadow 0.2s; white-space: nowrap; user-select: none; }
+      .omni-avatar-greeting-pill:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0, 82, 255, 0.2); }
+      .omni-pill-wave { font-size: 16px; display: inline-block; animation: omniWaveHand 2.2s infinite ease-in-out; transform-origin: 70% 70%; }
+      .omni-pill-close { color: #94a3b8; font-size: 12px; padding: 2px 4px; border-radius: 50%; transition: color 0.15s; margin-left: 2px; }
+      .omni-pill-close:hover { color: #ef4444; }
+      #omni-chat-bubble { position: relative; width: 66px; height: 66px; border-radius: 50%; cursor: pointer; box-shadow: 0 10px 28px rgba(0, 82, 255, 0.35); transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1); user-select: none; }
+      #omni-chat-bubble:hover { transform: scale(1.08); }
+      .omni-avatar-disc { width: 100%; height: 100%; border-radius: 50%; position: relative; overflow: visible; }
+      .omni-avatar-face { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid #ffffff; box-sizing: border-box; display: block; background: #0A2540; }
+      .omni-avatar-online-dot { position: absolute; bottom: 2px; right: 2px; width: 14px; height: 14px; background: #10B981; border: 2.5px solid #ffffff; border-radius: 50%; box-shadow: 0 0 8px rgba(16, 185, 129, 0.8); }
+      .omni-avatar-wave-badge { position: absolute; top: -4px; right: -4px; width: 24px; height: 24px; background: #ffffff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18); animation: omniWaveHand 2.2s infinite ease-in-out; transform-origin: 70% 70%; }
+      @keyframes omniWaveHand { 0%, 100% { transform: rotate(0deg); } 15% { transform: rotate(18deg) scale(1.15); } 30% { transform: rotate(-14deg) scale(1.15); } 45% { transform: rotate(14deg) scale(1.15); } 60% { transform: rotate(-8deg) scale(1.15); } 75% { transform: rotate(10deg) scale(1.1); } }
+      @keyframes omniPillSlideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+      .omni-avatar-close-icon { display: none; width: 100%; height: 100%; border-radius: 50%; background: #0f172a; color: #ffffff; font-size: 22px; align-items: center; justify-content: center; border: 3px solid #ffffff; box-sizing: border-box; }
+      #omni-chat-bubble.is-open .omni-avatar-disc { display: none; }
+      #omni-chat-bubble.is-open .omni-avatar-close-icon { display: flex; }
+      #omni-chat-bubble.is-open { box-shadow: 0 8px 24px rgba(15, 23, 42, 0.35); }
+      @media (max-width: 640px) { .omni-avatar-greeting-pill { display: none !important; } #omni-chat-bubble { width: 58px; height: 58px; } #omni-chat-trigger-group { bottom: 16px; right: 16px; } }
+
       #omni-chat-window { position: fixed; bottom: 96px; right: 24px; width: 410px; height: 620px; max-width: calc(100vw - 32px); max-height: calc(100vh - 110px); background: ${winBg} !important; color: ${winText} !important; border-radius: 20px; box-shadow: 0 20px 45px -5px rgba(0,0,0,0.22); display: none; flex-direction: column; overflow: hidden; z-index: 999999; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; border: 1px solid ${winBorder}; }
       #omni-chat-header { background: #ffffff !important; color: #0f172a !important; padding: 12px 16px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid ${winBorder}; }
       #omni-chat-header .title-wrap { display: flex; align-items: center; gap: 8px; }
@@ -232,66 +308,26 @@
     `;
     document.head.appendChild(style);
 
-    const bubble = document.createElement('div');
-    bubble.id = 'omni-chat-bubble';
-    bubble.innerHTML = '<svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>';
-    appendToBody(bubble);
-
-    // Multi-Brand Dynamic Config Resolution
-    const isFinnova = /finnova/.test(currentDomain);
-    const isProCrm = /procrm/.test(currentDomain);
-    const isEzConsultants = /ezconsultants/.test(currentDomain);
-
-    let brandSpecialistTitle = "AI Lending Specialist";
-    let brandIntro = "G'day! I'm Friday, your AI Lending Specialist at <strong>EZ Mortgage Broker</strong>. I compare over 50 accredited Australian lenders to find lower interest rates, maximize your borrowing capacity, and secure fast loan approvals. How can I help you with your mortgage today?";
-    let brandPrompts = [
-      { text: "Calculate my borrowing power", prompt: "How much can I borrow on my salary?" },
-      { text: "Compare 50+ bank rates", prompt: "Compare lowest 2-year fixed rates across Australian banks" },
-      { text: "Latest RBA cash rate update", prompt: "What are the current RBA interest rate forecasts?" }
-    ];
-    let brandCtaText = "Connect me with a licensed broker &rarr;";
-    let brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/backgrounds/ezmortgage_bg.jpg";
-    let brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_ezmortgage.mp4";
-
-    if (isFinnova) {
-      brandSpecialistTitle = "AI Community Guide";
-      brandIntro = "Hello and welcome! I'm Friday, your AI Community Guide at <strong>Finnova</strong>. We are an Australian ACNC-registered charity providing free refurbished computers, digital literacy classes, and senior cyber safety workshops. How can our team support you today?";
-      brandPrompts = [
-        { text: "Request free refurbished tech", prompt: "How can seniors or students request refurbished digital hardware?" },
-        { text: "Senior cyber defense workshops", prompt: "When are the upcoming free cyber safety workshops?" },
-        { text: "Donate tech / e-waste pickup", prompt: "How does our company donate corporate laptops and computers?" }
-      ];
-      brandCtaText = "Contact Finnova Community Team &rarr;";
-      brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/finnova-avatar-2026.jpeg";
-      brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/finnova-avatar-2026.mp4";
-    } else if (isProCrm) {
-      brandSpecialistTitle = "AI Enterprise Architect";
-      brandIntro = "Hi there! I'm Friday, your AI Enterprise Architect at <strong>PRO CRM Australia</strong>. We deliver Salesforce Agentforce, Zero-ETL Data Cloud integrations, and sovereign enterprise automation. What can we build for you today?";
-      brandPrompts = [
-        { text: "Agentforce Autonomous AI", prompt: "How does Salesforce Agentforce differ from basic chatbots?" },
-        { text: "Zero-ETL Data Cloud sync", prompt: "Explain Zero-Copy federation across Snowflake and BigQuery." },
-        { text: "APRA CPS 234 Compliance", prompt: "How do you enforce security and sovereign data boundaries?" }
-      ];
-      brandCtaText = "Book Enterprise AI Consultation &rarr;";
-      brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/backgrounds/procrm_bg.jpg";
-      brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_procrm.mp4";
-    } else if (isEzConsultants) {
-      brandSpecialistTitle = "AI Cyber & Cloud Advisor";
-      brandIntro = "Welcome! I'm Friday, your Cyber and Cloud Advisor at <strong>EZ Consultants</strong>. We provide rapid ASD ACSC threat intelligence, NDIS quality audit defense, and DevSecOps architecture. How can I assist you today?";
-      brandPrompts = [
-        { text: "ACSC Threat Advisory", prompt: "What are the critical ASD ACSC vulnerability advisories today?" },
-        { text: "NDIS Provider Audit Defense", prompt: "How do we prepare for mid-term NDIS Quality Commission audits?" },
-        { text: "Cloud Security Architecture", prompt: "How do you secure multi-cloud Kubernetes & AWS workloads?" }
-      ];
-      brandCtaText = "Request Cyber Advisory Call &rarr;";
-      brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/backgrounds/ezconsultants_bg.jpg";
-      brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_ezconsultants.mp4";
-    }
-
-    let brandKey = "ezmortgage";
-    if (isFinnova) brandKey = "finnova";
-    else if (isProCrm) brandKey = "procrm";
-    else if (isEzConsultants) brandKey = "ezconsultants";
+    const triggerGroup = document.createElement('div');
+    triggerGroup.id = 'omni-chat-trigger-group';
+    triggerGroup.innerHTML = `
+      <div id="omni-chat-greeting-pill" class="omni-avatar-greeting-pill">
+        <span class="omni-pill-wave">👋</span>
+        <span class="omni-pill-text">${brandPillGreeting}</span>
+        <span class="omni-pill-close" id="omniPillClose" title="Dismiss">✕</span>
+      </div>
+      <div id="omni-chat-bubble" class="omni-avatar-trigger" title="Chat with Friday">
+        <div class="omni-avatar-disc">
+          <img src="${brandPoster}" alt="Friday AI Avatar" class="omni-avatar-face" />
+          <span class="omni-avatar-online-dot"></span>
+          <span class="omni-avatar-wave-badge">👋</span>
+        </div>
+        <div class="omni-avatar-close-icon">✕</div>
+      </div>
+    `;
+    appendToBody(triggerGroup);
+    const bubble = document.getElementById('omni-chat-bubble');
+    const greetingPill = document.getElementById('omni-chat-greeting-pill');
 
     const win = document.createElement('div');
     win.id = 'omni-chat-window';
@@ -349,32 +385,59 @@
     `;
     appendToBody(win);
 
+    function openChat() {
+      win.style.display = 'flex';
+      if (bubble) bubble.classList.add('is-open');
+      if (greetingPill) greetingPill.style.display = 'none';
+      const video = document.getElementById('piper-hero-video');
+      if (video) video.play().catch(() => {});
+    }
+
+    function closeChat() {
+      win.style.display = 'none';
+      if (bubble) bubble.classList.remove('is-open');
+      sessionStorage.setItem('piper_chat_dismissed', 'true');
+      if (greetingPill && !sessionStorage.getItem('omni_pill_dismissed')) {
+        greetingPill.style.display = 'flex';
+      }
+    }
+
     // 10-Second Salesforce Piper Auto-Open Timer
     setTimeout(() => {
       if (!sessionStorage.getItem('piper_chat_dismissed')) {
-        win.style.display = 'flex';
-        const video = document.getElementById('piper-hero-video');
-        if (video) video.play().catch(() => {});
+        openChat();
       }
     }, 10000);
 
     if (getLeadScoreFromCookie() >= 35 && !window.__OMNI_PROACTIVE_TRIGGERED__) {
       window.__OMNI_PROACTIVE_TRIGGERED__ = true;
-      win.style.display = 'flex';
+      openChat();
     }
 
-    bubble.onclick = () => {
-      const isOpening = win.style.display !== 'flex';
-      win.style.display = isOpening ? 'flex' : 'none';
-      if (isOpening) {
-        const video = document.getElementById('piper-hero-video');
-        if (video) video.play().catch(() => {});
-      }
-    };
-    document.getElementById('omni-close').onclick = () => {
-      win.style.display = 'none';
-      sessionStorage.setItem('piper_chat_dismissed', 'true');
-    };
+    if (bubble) {
+      bubble.onclick = () => {
+        if (win.style.display !== 'flex') {
+          openChat();
+        } else {
+          closeChat();
+        }
+      };
+    }
+
+    if (greetingPill) {
+      greetingPill.onclick = (e) => {
+        if (e.target.id === 'omniPillClose') {
+          e.stopPropagation();
+          greetingPill.style.display = 'none';
+          sessionStorage.setItem('omni_pill_dismissed', 'true');
+          return;
+        }
+        openChat();
+      };
+    }
+
+    const closeBtn = document.getElementById('omni-close');
+    if (closeBtn) closeBtn.onclick = closeChat;
 
     // Piper Interactive Prompt Pills (Click to instantly query AI)
     document.querySelectorAll(".piper-prompt-item").forEach(item => {
