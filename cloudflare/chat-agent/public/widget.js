@@ -191,7 +191,7 @@
       { text: "Latest RBA cash rate update", prompt: "What are the current RBA interest rate forecasts?" }
     ];
     let brandCtaText = "Connect me with a licensed broker &rarr;";
-    let brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/backgrounds/ezmortgage_bg.jpg";
+    let brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/friday_avatar.jpeg";
     let brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_ezmortgage.mp4";
 
     if (isFinnova) {
@@ -204,8 +204,8 @@
         { text: "Donate tech / e-waste pickup", prompt: "How does our company donate corporate laptops and computers?" }
       ];
       brandCtaText = "Contact Finnova Community Team &rarr;";
-      brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/finnova-avatar-2026.jpeg";
-      brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/finnova-avatar-2026.mp4";
+      brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/friday_avatar.jpeg";
+      brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_finnova.mp4";
     } else if (isProCrm) {
       brandSpecialistTitle = "AI Enterprise Architect";
       brandIntro = "Hi there! I'm Friday, your AI Enterprise Architect at <strong>Pro CRM Australia</strong>. We deliver Salesforce Agentforce, Zero-ETL Data Cloud integrations, and sovereign enterprise automation. What can we build for you today?";
@@ -216,7 +216,7 @@
         { text: "APRA CPS 234 Compliance", prompt: "How do you enforce security and sovereign data boundaries?" }
       ];
       brandCtaText = "Book Enterprise AI Consultation &rarr;";
-      brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/backgrounds/procrm_bg.jpg";
+      brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/friday_avatar.jpeg";
       brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_procrm.mp4";
     } else if (isEzConsultants) {
       brandSpecialistTitle = "AI Cyber & Cloud Advisor";
@@ -228,7 +228,7 @@
         { text: "Cloud Security Architecture", prompt: "How do you secure multi-cloud Kubernetes & AWS workloads?" }
       ];
       brandCtaText = "Request Cyber Advisory Call &rarr;";
-      brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/backgrounds/ezconsultants_bg.jpg";
+      brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/friday_avatar.jpeg";
       brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_ezconsultants.mp4";
     }
 
@@ -528,32 +528,20 @@
       window.speechSynthesis.onvoiceschanged = () => getAuVoice();
     }
 
-    function speakFriday(text, onComplete) {
+    let currentVoiceAudio = null;
+
+    function fallbackBrowserSpeech(cleanText, onComplete) {
       if (!('speechSynthesis' in window)) {
         if (onComplete) onComplete();
         return;
       }
       try { window.speechSynthesis.cancel(); } catch(e) {}
-      
-      const clean = text
-        .replace(/<[^>]+>/g, ' ')
-        .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
-        .replace(/[*_#`~]/g, '')
-        .replace(/PRO CRM/gi, 'Pro CRM')
-        .trim();
-
-      const utter = new SpeechSynthesisUtterance(clean);
+      const utter = new SpeechSynthesisUtterance(cleanText);
       utter.rate = 1.05;
       utter.pitch = 1.0;
       const voice = getAuVoice();
       if (voice) utter.voice = voice;
-
-      isSpeaking = true;
-      if (video) {
-        video.muted = true;
-        video.play().catch(() => {});
-      }
-
+      
       utter.onend = () => {
         isSpeaking = false;
         if (video) video.pause();
@@ -564,8 +552,65 @@
         if (video) video.pause();
         if (onComplete) onComplete();
       };
-
       window.speechSynthesis.speak(utter);
+    }
+
+    async function speakFriday(text, onComplete) {
+      if (currentVoiceAudio) {
+        try { currentVoiceAudio.pause(); } catch(e) {}
+        currentVoiceAudio = null;
+      }
+      if ('speechSynthesis' in window) {
+        try { window.speechSynthesis.cancel(); } catch(e) {}
+      }
+
+      const clean = text
+        .replace(/<[^>]+>/g, ' ')
+        .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+        .replace(/[*_#`~]/g, '')
+        .replace(/\bPRO\s+CRM\b/gi, 'Pro CRM')
+        .trim();
+
+      isSpeaking = true;
+      if (video) {
+        video.muted = true;
+        video.play().catch(() => {});
+      }
+
+      // High-Fidelity Ultra-Realistic ElevenLabs Neural Voice
+      try {
+        const res = await fetch(`${backendUrl}/api/tts`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text: clean })
+        });
+
+        if (res.ok) {
+          const blob = await res.blob();
+          const audioUrl = URL.createObjectURL(blob);
+          currentVoiceAudio = new Audio(audioUrl);
+
+          currentVoiceAudio.onended = () => {
+            isSpeaking = false;
+            if (video) video.pause();
+            if (onComplete) onComplete();
+          };
+
+          currentVoiceAudio.onerror = () => {
+            isSpeaking = false;
+            if (video) video.pause();
+            if (onComplete) onComplete();
+          };
+
+          await currentVoiceAudio.play();
+          return;
+        }
+      } catch (err) {
+        console.log("ElevenLabs audio streaming note:", err);
+      }
+
+      // Fallback to browser synthesis only if ElevenLabs API is unreachable
+      fallbackBrowserSpeech(clean, onComplete);
     }
 
     function startListening() {
@@ -618,6 +663,10 @@
     function endVoiceConversation() {
       isVoiceActive = false;
       stopListening();
+      if (currentVoiceAudio) {
+        try { currentVoiceAudio.pause(); } catch(e) {}
+        currentVoiceAudio = null;
+      }
       if ('speechSynthesis' in window) {
         try { window.speechSynthesis.cancel(); } catch(e) {}
       }
