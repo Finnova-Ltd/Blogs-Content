@@ -2236,14 +2236,28 @@ const WIDGET_SCRIPT = `(function () {
       const voice = getAuVoice();
       if (voice) utter.voice = voice;
       
+      if (video) {
+        video.muted = true;
+        video.loop = true;
+        video.play().catch(() => {});
+      }
+
       utter.onend = () => {
         isSpeaking = false;
-        if (video) video.pause();
+        if (video) {
+          video.loop = false;
+          video.pause();
+          video.currentTime = 0;
+        }
         if (onComplete) onComplete();
       };
       utter.onerror = () => {
         isSpeaking = false;
-        if (video) video.pause();
+        if (video) {
+          video.loop = false;
+          video.pause();
+          video.currentTime = 0;
+        }
         if (onComplete) onComplete();
       };
       window.speechSynthesis.speak(utter);
@@ -2268,15 +2282,43 @@ const WIDGET_SCRIPT = `(function () {
       isSpeaking = true;
       if (video) {
         video.muted = true;
+        video.loop = true; // Actively move lips and head throughout speech
         video.play().catch(() => {});
       }
 
-      // High-Fidelity Ultra-Realistic ElevenLabs Neural Voice
+      // Fast-path: If playing the Pro CRM greeting, use the instant pre-rendered ElevenLabs track
+      if (clean.includes("Enterprise Architect at Pro CRM") || clean.includes("Pro CRM Australia")) {
+        try {
+          currentVoiceAudio = new Audio("https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/audio/friday_greeting_procrm.mp3");
+          currentVoiceAudio.onended = () => {
+            isSpeaking = false;
+            if (video) {
+              video.loop = false;
+              video.pause();
+              video.currentTime = 0;
+            }
+            if (onComplete) onComplete();
+          };
+          currentVoiceAudio.onerror = () => {
+            fetchTtsAndPlay(clean, onComplete);
+          };
+          await currentVoiceAudio.play();
+          return;
+        } catch (err) {
+          console.log("Cached greeting playback note:", err);
+        }
+      }
+
+      await fetchTtsAndPlay(clean, onComplete);
+    }
+
+    async function fetchTtsAndPlay(cleanText, onComplete) {
+      // Dynamic High-Fidelity Ultra-Realistic ElevenLabs Neural Voice
       try {
         const res = await fetch(\`\${backendUrl}/api/tts\`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ text: clean })
+          body: JSON.stringify({ text: cleanText })
         });
 
         if (res.ok) {
@@ -2286,13 +2328,21 @@ const WIDGET_SCRIPT = `(function () {
 
           currentVoiceAudio.onended = () => {
             isSpeaking = false;
-            if (video) video.pause();
+            if (video) {
+              video.loop = false;
+              video.pause();
+              video.currentTime = 0;
+            }
             if (onComplete) onComplete();
           };
 
           currentVoiceAudio.onerror = () => {
             isSpeaking = false;
-            if (video) video.pause();
+            if (video) {
+              video.loop = false;
+              video.pause();
+              video.currentTime = 0;
+            }
             if (onComplete) onComplete();
           };
 
@@ -2304,7 +2354,7 @@ const WIDGET_SCRIPT = `(function () {
       }
 
       // Fallback to browser synthesis only if ElevenLabs API is unreachable
-      fallbackBrowserSpeech(clean, onComplete);
+      fallbackBrowserSpeech(cleanText, onComplete);
     }
 
     function startListening() {
@@ -2327,31 +2377,19 @@ const WIDGET_SCRIPT = `(function () {
       win.classList.add('is-conversing');
       
       const msgContainer = document.getElementById('omni-chat-messages');
+      const greetingFullText = brandIntro.replace(/<[^>]+>/g, " ").trim();
+
       if (msgContainer && msgContainer.children.length === 0) {
         const greetDiv = document.createElement('div');
         greetDiv.className = 'omni-msg assistant';
-        greetDiv.innerHTML = "Hi! How can I help you?";
+        greetDiv.innerHTML = brandIntro;
         msgContainer.appendChild(greetDiv);
       }
 
-      // Play video with native unmuted speech track
-      if (video) {
-        video.currentTime = 0;
-        video.muted = false;
-        video.play().catch(() => {
-          speakFriday("Hi! How can I help you?", () => {
-            startListening();
-          });
-        });
-        video.onended = () => {
-          video.pause();
-          startListening();
-        };
-      } else {
-        speakFriday("Hi! How can I help you?", () => {
-          startListening();
-        });
-      }
+      // Play exact Pro CRM greeting aloud with animated lipsync
+      speakFriday(greetingFullText, () => {
+        startListening();
+      });
     }
 
     function endVoiceConversation() {
@@ -2365,6 +2403,7 @@ const WIDGET_SCRIPT = `(function () {
         try { window.speechSynthesis.cancel(); } catch(e) {}
       }
       if (video) {
+        video.loop = false;
         video.pause();
         video.muted = true;
         video.currentTime = 0;
