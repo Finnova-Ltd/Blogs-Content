@@ -179,8 +179,10 @@
 
     // Multi-Brand Dynamic Config Resolution
     const isFinnova = /finnova/.test(currentDomain);
-    const isProCrm = /procrm/.test(currentDomain);
+    const isProCrm = /procrm|ecrm/.test(currentDomain);
     const isEzConsultants = /ezconsultants/.test(currentDomain);
+    const isESignature = /esignature|ezsignature/.test(currentDomain);
+    const isEzMortgage = !isFinnova && !isProCrm && !isEzConsultants && !isESignature;
 
     let brandSpecialistTitle = "AI Lending Specialist";
     let brandIntro = "G'day! I'm Friday, your AI Lending Specialist at <strong>EZ Mortgage Broker</strong>. I compare over 50 accredited Australian lenders to find lower interest rates, maximize your borrowing capacity, and secure fast loan approvals. How can I help you with your mortgage today?";
@@ -230,12 +232,25 @@
       brandCtaText = "Request Cyber Advisory Call &rarr;";
       brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/friday_avatar.jpeg";
       brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_ezconsultants.mp4";
+    } else if (isESignature) {
+      brandSpecialistTitle = "AI Document Specialist";
+      brandIntro = "Hi there! I'm Friday, your AI Document & Security Specialist at <strong>EZ Signature</strong>. We provide secure, legally binding electronic signatures compliant with the Australian Electronic Transactions Act 1999. How can I assist your team today?";
+      brandPillGreeting = "Hi there! I'm Friday 👋 Ask about digital signatures";
+      brandPrompts = [
+        { text: "Australian legal validity", prompt: "How do electronic signatures comply with the Australian Electronic Transactions Act 1999?" },
+        { text: "AATL tamper-evident security", prompt: "Explain AES-256 encryption and Adobe Approved Trust List audit trails." },
+        { text: "Compare pricing & plans", prompt: "What are your enterprise and standard signature plan tiers?" }
+      ];
+      brandCtaText = "Start Free Document Trial &rarr;";
+      brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/friday_avatar.jpeg";
+      brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_ezconsultants.mp4";
     }
 
     let brandKey = "ezmortgage";
     if (isFinnova) brandKey = "finnova";
     else if (isProCrm) brandKey = "procrm";
     else if (isEzConsultants) brandKey = "ezconsultants";
+    else if (isESignature) brandKey = "ezsignature";
 
     const style = document.createElement('style');
     style.innerHTML = `
@@ -320,6 +335,14 @@
       .piper-prompt-item:hover { background: #EFF6FF; border-color: #93C5FD; color: #0052FF; transform: translateX(2px); }
       .piper-connect-btn-sub { width: 100%; background: #0066f5; color: #ffffff; border: none; padding: 7px 12px; border-radius: 6px; font-weight: 700; font-size: 12px; cursor: pointer; margin-top: 6px; transition: background 0.15s; }
       .piper-connect-btn-sub:hover { background: #0052cc; }
+
+      /* Lead Form Styling Parity */
+      .omni-lead-card { background: #F8FAFC !important; border: 1px solid #CBD5E1 !important; border-radius: 12px; padding: 12px; margin: 8px 0; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+      .omni-lead-card p { margin: 0 0 2px; font-size: 12px; font-weight: 700; color: #0f172a; }
+      .omni-lead-card input { width: 100%; box-sizing: border-box; padding: 8px 10px; border: 1px solid #CBD5E1; border-radius: 6px; font-size: 12.5px; outline: none; background: #ffffff !important; color: #0f172a !important; }
+      .omni-lead-card input:focus { border-color: #0066f5; }
+      .omni-lead-card button { width: 100%; background: #0066f5; color: #ffffff; border: none; padding: 9px 12px; border-radius: 6px; font-size: 12.5px; font-weight: 700; cursor: pointer; transition: background 0.15s; }
+      .omni-lead-card button:hover { background: #0052cc; }
 
       #omni-image-preview-bar { display: none; padding: 6px 12px; background: ${inputContainerBg}; border-top: 1px solid ${winBorder}; align-items: center; gap: 8px; font-size: 12px; }
       #omni-image-preview-bar img { height: 36px; border-radius: 4px; border: 1px solid ${inputBorder}; }
@@ -569,7 +592,20 @@
       window.speechSynthesis.speak(utter);
     }
 
-    async function speakFriday(text, onComplete) {
+    function getPreRenderedGreetingUrl() {
+      if (isProCrm) {
+        return "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/audio/friday_greeting_procrm.mp3";
+      } else if (isFinnova) {
+        return "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/audio/friday_greeting_finnova.mp3";
+      } else if (isEzConsultants) {
+        return "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/audio/friday_greeting_ezconsultants.mp3";
+      } else if (isEzMortgage) {
+        return "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/audio/friday_greeting_ezmortgage.mp3";
+      }
+      return null;
+    }
+
+    async function speakFriday(text, onComplete, isGreeting = false) {
       if (currentVoiceAudio) {
         try { currentVoiceAudio.pause(); } catch(e) {}
         currentVoiceAudio = null;
@@ -585,6 +621,11 @@
         .replace(/\bPRO\s+CRM\b/gi, 'Pro CRM')
         .trim();
 
+      if (!clean) {
+        if (onComplete) onComplete();
+        return;
+      }
+
       isSpeaking = true;
       if (video) {
         video.muted = true;
@@ -592,26 +633,32 @@
         video.play().catch(() => {});
       }
 
-      // Fast-path: If playing the Pro CRM greeting, use the instant pre-rendered ElevenLabs track
-      if (clean.includes("Enterprise Architect at Pro CRM") || clean.includes("Pro CRM Australia")) {
-        try {
-          currentVoiceAudio = new Audio("https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/audio/friday_greeting_procrm.mp3");
-          currentVoiceAudio.onended = () => {
-            isSpeaking = false;
-            if (video) {
-              video.loop = false;
-              video.pause();
-              video.currentTime = 0;
-            }
-            if (onComplete) onComplete();
-          };
-          currentVoiceAudio.onerror = () => {
-            fetchTtsAndPlay(clean, onComplete);
-          };
-          await currentVoiceAudio.play();
-          return;
-        } catch (err) {
-          console.log("Cached greeting playback note:", err);
+      const handleSpeechEnd = () => {
+        isSpeaking = false;
+        if (video) {
+          video.loop = false;
+          video.pause();
+          video.currentTime = 0;
+        }
+        if (onComplete) onComplete();
+      };
+
+      // FAST-PATH: ONLY play pre-rendered audio for the initial greeting!
+      // NEVER trigger the cached greeting for normal answers to user questions!
+      if (isGreeting) {
+        const cachedGreetingUrl = getPreRenderedGreetingUrl();
+        if (cachedGreetingUrl) {
+          try {
+            currentVoiceAudio = new Audio(cachedGreetingUrl);
+            currentVoiceAudio.onended = handleSpeechEnd;
+            currentVoiceAudio.onerror = () => {
+              fetchTtsAndPlay(clean, onComplete);
+            };
+            await currentVoiceAudio.play();
+            return;
+          } catch (err) {
+            console.log("Cached greeting playback note:", err);
+          }
         }
       }
 
@@ -692,10 +739,10 @@
         msgContainer.appendChild(greetDiv);
       }
 
-      // Play exact Pro CRM greeting aloud with animated lipsync
+      // Play exact brand greeting aloud with animated lipsync (isGreeting = true)
       speakFriday(greetingFullText, () => {
-        startListening();
-      });
+        if (isVoiceActive) startListening();
+      }, true);
     }
 
     function endVoiceConversation() {
@@ -881,6 +928,22 @@
     };
 
     async function sendMessage() {
+      // Immediately stop any active audio, speech synthesis, or speaking state so questions never overlap with greetings
+      if (currentVoiceAudio) {
+        try { currentVoiceAudio.pause(); } catch(e) {}
+        currentVoiceAudio = null;
+      }
+      if ('speechSynthesis' in window) {
+        try { window.speechSynthesis.cancel(); } catch(e) {}
+      }
+      if (video) {
+        video.loop = false;
+        video.pause();
+        video.currentTime = 0;
+      }
+      isSpeaking = false;
+      stopListening();
+
       const msg = chatInput.value.trim();
       if (!msg && !attachedImageBase64) return;
 
@@ -957,7 +1020,7 @@
             if (isVoiceActive) {
               startListening();
             }
-          });
+          }, false);
         }
 
         if (config.features?.leadCapture !== false && /(demo|pricing|quote|consultation|contact sales|call me|help|booking|census|mygov)/i.test(msg)) {
@@ -969,7 +1032,7 @@
         if (isVoiceActive) {
           speakFriday("I'm sorry, I'm having trouble connecting right now. Please feel free to try again.", () => {
             if (isVoiceActive) startListening();
-          });
+          }, false);
         }
       }
 
