@@ -625,7 +625,19 @@ export default {
           .trim();
 
         const elevenApiKey = env.ELEVENLABS_API_KEY || "sk_a82608d664f033a9a05736487f33f173f698874638e4c328";
-        const voiceId = body.voiceId || env.ELEVENLABS_VOICE_ID || "a7QzaYHgLJOQ3by3k3Dk";
+        let voiceId = body.voiceId;
+        if (!voiceId) {
+          const domain = (body.domain || "").toLowerCase();
+          if (domain.includes("procrm") || domain.includes("ecrm")) {
+            voiceId = "cjVigY5qzO86Huf0OWal"; // Eric - Smooth, Trustworthy Enterprise Architect (Standard Premade Voice)
+          } else if (domain.includes("ezmortgage")) {
+            voiceId = "IKne3meq5aSn9XLyUdCD"; // Charlie - Australian Accent, Confident Lending Specialist (Standard Premade Voice)
+          } else if (domain.includes("ezconsultants") || domain.includes("ezsignature")) {
+            voiceId = "IKne3meq5aSn9XLyUdCD"; // Charlie (Standard Premade Voice)
+          } else {
+            voiceId = "pNInz6obpgDQGcFmaJgB"; // Adam (Standard Premade Voice)
+          }
+        }
 
         const ttsRes = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
           method: "POST",
@@ -1884,15 +1896,15 @@ const WIDGET_SCRIPT = `(function () {
     const isEzMortgage = !isFinnova && !isProCrm && !isEzConsultants && !isESignature;
 
     let brandSpecialistTitle = "AI Lending Specialist";
-    let brandIntro = "G'day! I'm Friday, your AI Lending Specialist at <strong>EZ Mortgage Broker</strong>. I compare over 50 accredited Australian lenders to find lower interest rates, maximize your borrowing capacity, and secure fast loan approvals. How can I help you with your mortgage today?";
+    let brandIntro = "G'day! I'm Friday, your AI Lending Specialist at <strong>EZ Mortgage Broker</strong>. I compare 30+ accredited Australian lenders to find lower interest rates, maximize your borrowing capacity, and secure fast loan approvals. How can I help you with your mortgage today?";
     let brandPillGreeting = "G'day! I'm Friday 👋 Ask me anything";
     let brandPrompts = [
       { text: "Calculate my borrowing power", prompt: "How much can I borrow on my salary?" },
-      { text: "Compare 50+ bank rates", prompt: "Compare lowest 2-year fixed rates across Australian banks" },
+      { text: "Compare 30+ bank rates", prompt: "Compare lowest 2-year fixed rates across Australian banks" },
       { text: "Latest RBA cash rate update", prompt: "What are the current RBA interest rate forecasts?" }
     ];
     let brandCtaText = "Connect me with a licensed broker &rarr;";
-    let brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/friday_avatar.jpeg";
+    let brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/friday_avatar_ezmortgage_poster.jpg";
     let brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_ezmortgage.mp4";
 
     if (isFinnova) {
@@ -1917,7 +1929,7 @@ const WIDGET_SCRIPT = `(function () {
         { text: "APRA CPS 234 Compliance", prompt: "How do you enforce security and sovereign data boundaries?" }
       ];
       brandCtaText = "Book Enterprise AI Consultation &rarr;";
-      brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/friday_avatar.jpeg";
+      brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/friday_avatar_procrm_poster.jpg";
       brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_procrm.mp4";
     } else if (isEzConsultants) {
       brandSpecialistTitle = "AI Cyber & Cloud Advisor";
@@ -1929,7 +1941,7 @@ const WIDGET_SCRIPT = `(function () {
         { text: "Cloud Security Architecture", prompt: "How do you secure multi-cloud Kubernetes & AWS workloads?" }
       ];
       brandCtaText = "Request Cyber Advisory Call &rarr;";
-      brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/friday_avatar.jpeg";
+      brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/friday_avatar_ezmortgage_poster.jpg";
       brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_ezconsultants.mp4";
     } else if (isESignature) {
       brandSpecialistTitle = "AI Document Specialist";
@@ -1941,7 +1953,7 @@ const WIDGET_SCRIPT = `(function () {
         { text: "Compare pricing & plans", prompt: "What are your enterprise and standard signature plan tiers?" }
       ];
       brandCtaText = "Start Free Document Trial &rarr;";
-      brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/friday_avatar.jpeg";
+      brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/friday_avatar_ezmortgage_poster.jpg";
       brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_ezconsultants.mp4";
     }
 
@@ -2385,6 +2397,12 @@ const WIDGET_SCRIPT = `(function () {
           video.currentTime = 0;
         }
         if (onComplete) onComplete();
+        // Automatically open mic for user to speak when Friday finishes talking
+        if (isVoiceActive || win.classList.contains('is-conversing')) {
+          setTimeout(() => {
+            if (!isSpeaking) startListening();
+          }, 350);
+        }
       };
 
       // FAST-PATH: ONLY play pre-rendered audio for the initial greeting!
@@ -2420,7 +2438,7 @@ const WIDGET_SCRIPT = `(function () {
         const res = await fetch(\`\${backendUrl}/api/tts\`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ text: cleanText })
+          body: JSON.stringify({ text: cleanText, domain: currentDomain })
         });
 
         if (speechId !== currentSpeechId) return;
@@ -2563,9 +2581,11 @@ const WIDGET_SCRIPT = `(function () {
     if (SpeechRecognition) {
       try {
         recognition = new SpeechRecognition();
-        recognition.continuous = false;
-        recognition.interimResults = false;
+        recognition.continuous = true;
+        recognition.interimResults = true;
         recognition.lang = "en-AU";
+
+        let silenceTimer = null;
 
         recognition.onstart = () => {
           isListening = true;
@@ -2575,7 +2595,7 @@ const WIDGET_SCRIPT = `(function () {
             micToggle.classList.add("active");
           }
           const input = document.getElementById("omni-chat-input");
-          if (input) input.placeholder = "🎙️ Listening... speak now";
+          if (input && !input.value) input.placeholder = "🎙️ Listening... speak now";
         };
 
         recognition.onend = () => {
@@ -2589,27 +2609,60 @@ const WIDGET_SCRIPT = `(function () {
           if (input && input.placeholder.includes("Listening")) {
             input.placeholder = "Ask Friday a question";
           }
+          // Bidirectional voice loop: Auto-restart listening if voice conversation is active and Friday isn't speaking
+          if ((isVoiceActive || win.classList.contains('is-conversing')) && !isSpeaking) {
+            setTimeout(() => {
+              if (!isSpeaking && !isListening && (isVoiceActive || win.classList.contains('is-conversing'))) {
+                startListening();
+              }
+            }, 300);
+          }
         };
 
         recognition.onerror = (e) => {
-          console.log("Speech recognition note:", e);
+          if (e.error === 'no-speech') {
+            // Normal silence timeout while listening, do not crash or log loud error
+            return;
+          }
+          if (e.error === 'not-allowed') {
+            console.warn("Microphone access blocked.");
+            isVoiceActive = false;
+          }
           isListening = false;
           if (micBtn) micBtn.classList.remove("active");
           if (micToggle) {
             micToggle.classList.remove("active");
             micToggle.classList.add("muted");
           }
-          const input = document.getElementById("omni-chat-input");
-          if (input) input.placeholder = "Ask Friday a question";
         };
 
         recognition.onresult = (event) => {
-          const transcript = event.results[0][0].transcript;
+          let interimTranscript = '';
+          let finalTranscript = '';
+
+          for (let i = event.resultIndex; i < event.results.length; ++i) {
+            if (event.results[i].isFinal) {
+              finalTranscript += event.results[i][0].transcript;
+            } else {
+              interimTranscript += event.results[i][0].transcript;
+            }
+          }
+
           const input = document.getElementById("omni-chat-input");
-          if (input && transcript) {
-            win.classList.add('is-conversing');
-            input.value = transcript;
-            sendMessage();
+          const liveText = (finalTranscript || interimTranscript).trim();
+          if (input && liveText) {
+            input.value = liveText;
+          }
+
+          if (finalTranscript.trim()) {
+            clearTimeout(silenceTimer);
+            silenceTimer = setTimeout(() => {
+              if (input && input.value.trim()) {
+                win.classList.add('is-conversing');
+                stopListening();
+                sendMessage();
+              }
+            }, 800);
           }
         };
 
@@ -2775,7 +2828,8 @@ const WIDGET_SCRIPT = `(function () {
 
         loadingMsg.appendChild(actionsDiv);
 
-        if (isVoiceActive) {
+        if (isVoiceActive || win.classList.contains('is-conversing')) {
+          isVoiceActive = true;
           speakFriday(replyRaw, () => {
             if (isVoiceActive) {
               startListening();
@@ -2789,7 +2843,8 @@ const WIDGET_SCRIPT = `(function () {
       } catch (err) {
         loadingMsg.classList.remove('loading');
         loadingMsg.textContent = "Unable to connect to AI assistant service.";
-        if (isVoiceActive) {
+        if (isVoiceActive || win.classList.contains('is-conversing')) {
+          isVoiceActive = true;
           speakFriday("I'm sorry, I'm having trouble connecting right now. Please feel free to try again.", () => {
             if (isVoiceActive) startListening();
           }, false);
