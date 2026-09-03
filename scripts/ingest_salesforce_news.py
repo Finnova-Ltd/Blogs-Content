@@ -15,7 +15,13 @@ import json
 import html
 import urllib.request
 import xml.etree.ElementTree as ET
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
+
+# Australian Timezone Enforcement (AEST UTC+10)
+AEST = timezone(timedelta(hours=10))
+
+def get_aest_now():
+    return datetime.now(AEST)
 
 EZ_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 POSTS_JSON = os.path.join(EZ_DIR, "posts.json")
