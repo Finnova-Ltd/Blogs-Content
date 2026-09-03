@@ -317,26 +317,217 @@
       justify-content: center;
       align-items: center;
     }
-    .showcase-chassis {
+    /* Authentic Google Workspace Mockup Chassis */
+    .workspace-mockup-chassis {
       position: relative;
-      border-radius: 24px;
-      padding: 10px;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.03) 100%);
-      border: 1.5px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(59, 130, 246, 0.25);
-      backdrop-filter: blur(16px);
+      border-radius: 20px;
+      background: #FFFFFF;
+      border: 1.5px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45), 0 0 45px rgba(66, 133, 244, 0.25);
+      overflow: hidden;
       width: 100%;
-      max-width: 520px;
+      max-width: 540px;
+      color: var(--text);
+      text-align: left;
     }
-    .showcase-chassis img {
-      width: 100%;
-      height: auto;
-      border-radius: 18px;
-      display: block;
-      transition: transform 0.4s ease;
+    .mockup-window-header {
+      background: #F1F5F9;
+      border-bottom: 1px solid #E2E8F0;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
-    .showcase-chassis:hover img {
-      transform: scale(1.02);
+    .window-dots {
+      display: flex;
+      gap: 6px;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .dot-red { background: #EF4444; }
+    .dot-yellow { background: #F59E0B; }
+    .dot-green { background: #10B981; }
+    .mockup-address-bar {
+      flex: 1;
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      border-radius: 6px;
+      padding: 4px 12px;
+      font-size: 11.5px;
+      color: #64748B;
+      font-family: monospace;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .mockup-header-icons {
+      color: #64748B;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .mockup-doc-toolbar {
+      background: #FAFAFA;
+      border-bottom: 1px solid #E2E8F0;
+      padding: 10px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .doc-title-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .doc-icon {
+      font-size: 22px;
+      color: #4285F4;
+    }
+    .doc-name {
+      font-size: 13px;
+      font-weight: 800;
+      color: #0F172A;
+      line-height: 1.2;
+    }
+    .doc-status {
+      font-size: 10.5px;
+      color: #64748B;
+      font-weight: 500;
+      margin-top: 2px;
+    }
+    .doc-actions-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .collaborator-avatars {
+      display: flex;
+      align-items: center;
+    }
+    .mockup-avatar {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10.5px;
+      font-weight: 800;
+      color: #FFFFFF;
+      border: 2px solid #FFFFFF;
+      margin-left: -6px;
+    }
+    .mockup-avatar:first-child { margin-left: 0; }
+    .av-blue { background: #2563EB; }
+    .av-green { background: #10B981; }
+    .av-purple { background: #9333EA; }
+    .mockup-share-btn {
+      background: #1A73E8;
+      color: #FFFFFF;
+      border: none;
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 11.5px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .mockup-doc-body {
+      padding: 20px 22px;
+      background: #FFFFFF;
+    }
+    .inline-collaborator-cursor {
+      display: inline-block;
+      position: relative;
+      width: 2px;
+      height: 16px;
+      background: #10B981;
+      vertical-align: middle;
+      margin: 0 2px;
+      animation: pulseDot 1.5s infinite;
+    }
+    .cursor-tag {
+      position: absolute;
+      top: -18px;
+      left: 0;
+      background: #10B981;
+      color: #FFFFFF;
+      font-size: 9.5px;
+      font-weight: 700;
+      padding: 1px 5px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+    .mockup-gemini-card {
+      background: linear-gradient(135deg, #F5F3FF 0%, #EFF6FF 100%);
+      border: 1px solid #DDD6FE;
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 14px;
+    }
+    .gemini-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: #6D28D9;
+      margin-bottom: 6px;
+    }
+    .gemini-tag {
+      background: #EDE9FE;
+      color: #7C3AED;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-left: auto;
+    }
+    .gemini-prompt {
+      font-size: 12px;
+      font-style: italic;
+      color: #4B5563;
+      margin-bottom: 8px;
+    }
+    .gemini-response {
+      font-size: 11.5px;
+      color: #1F2937;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+    .gemini-actions {
+      display: flex;
+      gap: 8px;
+    }
+    .btn-gemini-action {
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-insert { background: #7C3AED; color: #FFFFFF; }
+    .btn-refine { background: #FFFFFF; color: #4B5563; border: 1px solid #D1D5DB; }
+    .mockup-meet-bar {
+      background: #F0FDF4;
+      border: 1px solid #BBF7D0;
+      border-radius: 10px;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11.5px;
+      color: #166534;
+    }
+    .meet-pill {
+      background: #DCFCE7;
+      color: #15803D;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 4px;
     }
 
     /* Floating Glass Cards */
@@ -856,9 +1047,87 @@
             </div>
           </div>
 
-          <!-- Main 3D Showcase Image -->
-          <div class="showcase-chassis">
-            <img src="images/google-workspace-hero.jpg" alt="Google Workspace Cloud Collaboration Suite with Gemini AI" />
+          <!-- Authentic Google Workspace Interactive Collaboration Mockup -->
+          <div class="workspace-mockup-chassis">
+            
+            <!-- Window Title Bar -->
+            <div class="mockup-window-header">
+              <div class="window-dots">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+              </div>
+              <div class="mockup-address-bar">
+                <span style="color:#4285F4; font-weight:bold;">docs.google.com</span>/document/d/finnova-strategic-plan-2026
+              </div>
+              <div class="mockup-header-icons">
+                <span title="Google Apps">⠿</span>
+              </div>
+            </div>
+
+            <!-- Doc Toolbar -->
+            <div class="mockup-doc-toolbar">
+              <div class="doc-title-group">
+                <div class="doc-icon">📄</div>
+                <div>
+                  <div class="doc-name">Community Digital Capability &amp; Grant Strategy 2026</div>
+                  <div class="doc-status">
+                    <span>File</span> · <span>Edit</span> · <span>View</span> · <span style="color:#10B981;">☁️ Saved to Drive (2 TB)</span>
+                  </div>
+                </div>
+              </div>
+              <div class="doc-actions-group">
+                <div class="collaborator-avatars">
+                  <div class="mockup-avatar av-blue" title="Robin Bakshi (Owner)">RB</div>
+                  <div class="mockup-avatar av-green" title="Sarah Chen (Editing)">SC</div>
+                  <div class="mockup-avatar av-purple" title="Gemini AI (Active)">✨</div>
+                </div>
+                <button class="mockup-share-btn">🔒 Share</button>
+              </div>
+            </div>
+
+            <!-- Doc Content Canvas -->
+            <div class="mockup-doc-body">
+              <h3 style="font-size:16px; font-weight:800; color:#0F172A; margin-bottom:8px;">
+                1. Executive Cloud &amp; Productivity Transition
+              </h3>
+              <p style="font-size:12.5px; color:#334155; line-height:1.65; margin-bottom:14px;">
+                Finnova Ltd connects thousands of digitally excluded Australians with refurbished devices and cyber safety training. By standardising on Google Workspace, our teams co-author grant submissions, schedule appointments, and protect donor data with enterprise-grade encryption.
+                <span class="inline-collaborator-cursor">
+                  <span class="cursor-tag">Sarah Chen</span>
+                </span>
+              </p>
+
+              <!-- Embedded Gemini AI Assistant Box -->
+              <div class="mockup-gemini-card">
+                <div class="gemini-header">
+                  <span class="gemini-icon">✨</span>
+                  <strong>Gemini AI in Docs</strong>
+                  <span class="gemini-tag">Google Workspace Assistant</span>
+                </div>
+                <div class="gemini-prompt">
+                  "Summarize key milestones and grant allocation metrics for board review:"
+                </div>
+                <div class="gemini-response">
+                  ✓ Prepared 3-tier delivery roadmap for Melbourne Western &amp; Northern corridors.<br>
+                  ✓ Auto-formatted 12-month budget table saving 4.5 hours of manual reporting.
+                </div>
+                <div class="gemini-actions">
+                  <button class="btn-gemini-action btn-insert">Insert into Doc</button>
+                  <button class="btn-gemini-action btn-refine">Refine Tone</button>
+                </div>
+              </div>
+
+              <!-- Mini Google Meet Live Bar -->
+              <div class="mockup-meet-bar">
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <span style="font-size:15px; color:#34A853;">📹</span>
+                  <strong>Google Meet Active:</strong> Strategy Review (1080p · Noise Cancellation ON)
+                </div>
+                <span class="meet-pill">LIVE · 8 Active</span>
+              </div>
+            </div>
+
           </div>
 
         </div>
