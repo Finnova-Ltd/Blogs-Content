@@ -378,7 +378,7 @@ def generate_article_html(item):
     <div class="header-main">
       <div class="container">
         <div class="header-inner">
-          <a href="/" class="logo" style="margin-left:clamp(16px, 3.5vw, 60px); display:inline-flex; align-items:center;"><img class="brand-logo" src="/images/ez-mortgage-broker.webp" alt="EZ Mortgage Broker" style="width:auto; height:clamp(52px, 5.5vw, 68px); max-width:260px; object-fit:contain; display:block;"></a><img class="brand-logo" src="/images/ez-mortgage-broker.webp" alt="EZ Mortgage Broker" style="max-width:200px; height:auto; display:inline-block;"></a>
+          <a href="/" class="logo" style="margin-left:clamp(16px, 3.5vw, 60px); display:inline-flex; align-items:center;"><img class="brand-logo" src="/images/ez-mortgage-broker.webp" alt="EZ Mortgage Broker" style="width:auto; height:clamp(52px, 5.5vw, 68px); max-width:260px; object-fit:contain; display:block;"></a>
           <nav>
             <ul class="nav-primary">
               <li><a href="/">Home</a></li>
