@@ -626,35 +626,54 @@ export default {
 
         const elevenApiKey = env.ELEVENLABS_API_KEY || "sk_a82608d664f033a9a05736487f33f173f698874638e4c328";
         let voiceId = body.voiceId;
+        const domain = (body.domain || "").toLowerCase();
+        let fallbackVoiceId = "pNInz6obpgDQGcFmaJgB"; // Universal Adam fallback
+
         if (!voiceId) {
-          const domain = (body.domain || "").toLowerCase();
           if (domain.includes("procrm") || domain.includes("ecrm")) {
-            voiceId = "cjVigY5qzO86Huf0OWal"; // Eric - Smooth, Trustworthy Enterprise Architect (Standard Premade Voice)
+            voiceId = "cjVigY5qzO86Huf0OWal"; // Eric - Pro CRM Enterprise Architect
+            fallbackVoiceId = "cjVigY5qzO86Huf0OWal";
           } else if (domain.includes("ezmortgage")) {
-            voiceId = "IKne3meq5aSn9XLyUdCD"; // Charlie - Australian Accent, Confident Lending Specialist (Standard Premade Voice)
+            voiceId = "Dh68koMHNSYl8A1jH9Je"; // EZ Mortgage Broker Voice ID
+            fallbackVoiceId = "IKne3meq5aSn9XLyUdCD"; // Charlie - Australian Lending Specialist
+          } else if (domain.includes("finnova")) {
+            voiceId = "7xOqQceOZC5dhvkaqKtD"; // Finnova Voice ID
+            fallbackVoiceId = "pNInz6obpgDQGcFmaJgB"; // Adam
           } else if (domain.includes("ezconsultants") || domain.includes("ezsignature")) {
-            voiceId = "IKne3meq5aSn9XLyUdCD"; // Charlie (Standard Premade Voice)
+            voiceId = "Dh68koMHNSYl8A1jH9Je"; // EZ Consultants
+            fallbackVoiceId = "IKne3meq5aSn9XLyUdCD";
           } else {
-            voiceId = "pNInz6obpgDQGcFmaJgB"; // Adam (Standard Premade Voice)
+            voiceId = "7xOqQceOZC5dhvkaqKtD";
+            fallbackVoiceId = "pNInz6obpgDQGcFmaJgB";
           }
         }
 
-        const ttsRes = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
-          method: "POST",
-          headers: {
-            "xi-api-key": elevenApiKey,
-            "Content-Type": "application/json",
-            "Accept": "audio/mpeg"
-          },
-          body: JSON.stringify({
-            text: clean,
-            model_id: "eleven_turbo_v2_5",
-            voice_settings: {
-              stability: 0.5,
-              similarity_boost: 0.8
-            }
-          })
-        });
+        async function callElevenLabs(targetVoice: string) {
+          return await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${targetVoice}`, {
+            method: "POST",
+            headers: {
+              "xi-api-key": elevenApiKey,
+              "Content-Type": "application/json",
+              "Accept": "audio/mpeg"
+            },
+            body: JSON.stringify({
+              text: clean,
+              model_id: "eleven_turbo_v2_5",
+              voice_settings: {
+                stability: 0.5,
+                similarity_boost: 0.8
+              }
+            })
+          });
+        }
+
+        let ttsRes = await callElevenLabs(voiceId);
+
+        // If custom/specified voice returns 400 (voice not found on account), fallback gracefully to ensure uninterrupted speech
+        if (!ttsRes.ok && ttsRes.status === 400 && voiceId !== fallbackVoiceId) {
+          console.warn(`ElevenLabs voiceId ${voiceId} not accessible, attempting fallback ${fallbackVoiceId}`);
+          ttsRes = await callElevenLabs(fallbackVoiceId);
+        }
 
         if (!ttsRes.ok) {
           const errText = await ttsRes.text();
@@ -1904,8 +1923,12 @@ const WIDGET_SCRIPT = `(function () {
       { text: "Latest RBA cash rate update", prompt: "What are the current RBA interest rate forecasts?" }
     ];
     let brandCtaText = "Connect me with a licensed broker &rarr;";
-    let brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/friday_avatar_ezmortgage_poster.jpg";
-    let brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_ezmortgage.mp4";
+    let brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/friday_avatar_female_poster.jpg";
+    let brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_female.mp4";
+    let brandBadgeName = "EZ MORTGAGE BROKER";
+    let brandBadgeColor = "#3b82f6";
+    let brandVoiceId = "Dh68koMHNSYl8A1jH9Je";
+    let brandAvatarId = "FCw4vx5Z3LmiTbUCRLS3";
 
     if (isFinnova) {
       brandSpecialistTitle = "AI Community Guide";
@@ -1917,8 +1940,12 @@ const WIDGET_SCRIPT = `(function () {
         { text: "Donate tech / e-waste pickup", prompt: "How does our company donate corporate laptops and computers?" }
       ];
       brandCtaText = "Contact Finnova Community Team &rarr;";
-      brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/friday_avatar.jpeg";
-      brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_finnova.mp4";
+      brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/friday_avatar_female_poster.jpg";
+      brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_female.mp4";
+      brandBadgeName = "FINNOVA CHARITY";
+      brandBadgeColor = "#ec4899";
+      brandVoiceId = "7xOqQceOZC5dhvkaqKtD";
+      brandAvatarId = "j5ck0gcoPY3vyiBPJy6h";
     } else if (isProCrm) {
       brandSpecialistTitle = "AI Enterprise Architect";
       brandIntro = "Hi there! I'm Friday, your AI Enterprise Architect at <strong>Pro CRM Australia</strong>. We deliver Salesforce Agentforce, Zero-ETL Data Cloud integrations, and sovereign enterprise automation. What can we build for you today?";
@@ -1931,6 +1958,10 @@ const WIDGET_SCRIPT = `(function () {
       brandCtaText = "Book Enterprise AI Consultation &rarr;";
       brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/friday_avatar_procrm_poster.jpg";
       brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_procrm.mp4";
+      brandBadgeName = "PRO CRM AUSTRALIA";
+      brandBadgeColor = "#6366f1";
+      brandVoiceId = "cjVigY5qzO86Huf0OWal";
+      brandAvatarId = "procrm-agentforce";
     } else if (isEzConsultants) {
       brandSpecialistTitle = "AI Cyber & Cloud Advisor";
       brandIntro = "Welcome! I'm Friday, your Cyber and Cloud Advisor at <strong>EZ Consultants</strong>. We provide rapid ASD ACSC threat intelligence, NDIS quality audit defense, and DevSecOps architecture. How can I assist you today?";
@@ -1941,8 +1972,12 @@ const WIDGET_SCRIPT = `(function () {
         { text: "Cloud Security Architecture", prompt: "How do you secure multi-cloud Kubernetes & AWS workloads?" }
       ];
       brandCtaText = "Request Cyber Advisory Call &rarr;";
-      brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/friday_avatar_ezmortgage_poster.jpg";
-      brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_ezconsultants.mp4";
+      brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/friday_avatar_female_poster.jpg";
+      brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_female.mp4";
+      brandBadgeName = "EZ CONSULTANTS";
+      brandBadgeColor = "#00afeb";
+      brandVoiceId = "Dh68koMHNSYl8A1jH9Je";
+      brandAvatarId = "ezconsultants-cyber";
     } else if (isESignature) {
       brandSpecialistTitle = "AI Document Specialist";
       brandIntro = "Hi there! I'm Friday, your AI Document & Security Specialist at <strong>EZ Signature</strong>. We provide secure, legally binding electronic signatures compliant with the Australian Electronic Transactions Act 1999. How can I assist your team today?";
@@ -1953,8 +1988,12 @@ const WIDGET_SCRIPT = `(function () {
         { text: "Compare pricing & plans", prompt: "What are your enterprise and standard signature plan tiers?" }
       ];
       brandCtaText = "Start Free Document Trial &rarr;";
-      brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/friday_avatar_ezmortgage_poster.jpg";
-      brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_ezconsultants.mp4";
+      brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/friday_avatar_female_poster.jpg";
+      brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_female.mp4";
+      brandBadgeName = "EZ SIGNATURE";
+      brandBadgeColor = "#2563eb";
+      brandVoiceId = "Dh68koMHNSYl8A1jH9Je";
+      brandAvatarId = "ezsignature-aatl";
     }
 
     let brandKey = "ezmortgage";
@@ -2015,6 +2054,10 @@ const WIDGET_SCRIPT = `(function () {
       .piper-ctrl-btn.muted { color: #ef4444; }
       .piper-ctrl-end { background: #ef4444; color: #ffffff; font-size: 11.5px; font-weight: 700; padding: 4px 10px; border-radius: 999px; border: none; cursor: pointer; margin-left: 2px; transition: background 0.15s; }
       .piper-ctrl-end:hover { background: #dc2626; }
+
+      /* Floating Brand / Project Logo Badge over Avatar Video */
+      .piper-video-logo-badge { position: absolute; top: 10px; left: 12px; display: flex; align-items: center; gap: 6px; background: rgba(15, 23, 42, 0.82); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: #ffffff; padding: 4px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: 0.4px; border: 1px solid rgba(255, 255, 255, 0.18); box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35); z-index: 9; pointer-events: none; }
+      .piper-badge-dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; box-shadow: 0 0 6px currentColor; }
 
       /* Welcome Card Text & Full-Width CTA (Image 1) */
       .piper-card-welcome { padding: 14px 4px 4px; }
@@ -2112,6 +2155,11 @@ const WIDGET_SCRIPT = `(function () {
           <video id="piper-hero-video" playsinline muted preload="auto" poster="\${brandPoster}">
             <source src="\${brandVideo}" type="video/mp4">
           </video>
+          <!-- Floating Brand / Project Logo Badge -->
+          <div class="piper-video-logo-badge" id="piperVideoLogoBadge">
+            <span class="piper-badge-dot" style="background:\${brandBadgeColor};"></span>
+            <span>\${brandBadgeName}</span>
+          </div>
           <!-- Prominent Centered Speak Now Button (Image 1) -->
           <button type="button" class="piper-speak-now-btn" id="piperSpeakBtn">
             <span>🎙️</span> Speak now
@@ -2438,7 +2486,7 @@ const WIDGET_SCRIPT = `(function () {
         const res = await fetch(\`\${backendUrl}/api/tts\`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ text: cleanText, domain: currentDomain })
+          body: JSON.stringify({ text: cleanText, domain: currentDomain, voiceId: brandVoiceId, avatarId: brandAvatarId })
         });
 
         if (speechId !== currentSpeechId) return;
