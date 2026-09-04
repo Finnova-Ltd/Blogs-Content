@@ -1,51 +1,326 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>EZ Mortgage Broker — Australian Mortgage Insights &amp; Market News</title>
     <link>https://ezmortgagebroker.com.au</link>
-    <description>Daily Australian home loan updates, interest rate forecasts, first home buyer schemes, and refinancing guides.</description>
+    <description>Daily Australian home loan updates, interest rate forecasts, YouTube Shorts, and 10-minute masterclasses.</description>
     <language>en-au</language>
-    <lastBuildDate>Sat, 22 Aug 2026 20:12:54 +1000</lastBuildDate>
+    <lastBuildDate>Sat, 05 Sep 2026 06:15:35 +1000</lastBuildDate>
     <atom:link href="https://ezmortgagebroker.com.au/rss.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>What Does Men knocked back for home loans as lenders scrutinise betting accounts - Australian Property Market Mean for Australian Borrowers?</title>
-      <link>https://ezmortgagebroker.com.au/pages/blog/men-knocked-back-for-home-loans-as-lenders-scrutinise-betting-accounts-the-.html</link>
-      <guid isPermaLink="true">https://ezmortgagebroker.com.au/pages/blog/men-knocked-back-for-home-loans-as-lenders-scrutinise-betting-accounts-the-.html</guid>
-      <description>“It&#x27;s part of our training as mortgage brokers to ask those questions and deliver that news ethically.” Hobart resident Mark Kempster, who himself ......</description>
+      <title>Census 2026 Digital Assistance &amp; Multilingual Support: Free In-Person Guidance for Australian Seniors &amp; Migrants</title>
+      <link>https://ezmortgagebroker.com.au/pages/blog/census-2026-digital-assistance-multilingual-support.html</link>
+      <guid isPermaLink="true">https://ezmortgagebroker.com.au/pages/blog/census-2026-digital-assistance-multilingual-support.html</guid>
+      <description>Completing the Australian Census is legally compulsory, but navigating digital authentication can be daunting. Finnova offers 100% free, confidential 1-on-1 assistance across 12+ community languages.
+
+🎬 Watch YouTube Short Breakdown: https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/finnova-avatar-2026.mp4
+📺 Watch Complete 10-Minute Masterclass: https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4
+📞 Call 1300 050 099 — Connect with an Accredited Mortgage Broker at EZ Mortgage Broker</description>
+      <category>Digital Inclusion</category>
+      <pubDate>Sat, 05 Sep 2026 00:00:00 +1000</pubDate>
+      <enclosure url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/finnova-avatar-2026.mp4" length="2621440" type="video/mp4" />
+      <media:content url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/finnova-avatar-2026.mp4" medium="video" type="video/mp4" expression="full" duration="45">
+        <media:title>Census 2026 Digital Assistance &amp; Multilingual Support: Free In-Person Guidance for Australian Seniors &amp; Migrants #Shorts</media:title>
+        <media:description>Completing the Australian Census is legally compulsory, but navigating digital authentication can be daunting. Finnova offers 100% free, confidential 1-on-1 assistance across 12+ community languages.</media:description>
+      </media:content>
+      <media:content url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4" medium="video" type="video/mp4" expression="full" duration="600">
+        <media:title>Census 2026 Digital Assistance &amp; Multilingual Support: Free In-Person Guidance for Australian Seniors &amp; Migrants — 10-Minute Full Masterclass Analysis</media:title>
+        <media:description>Completing the Australian Census is legally compulsory, but navigating digital authentication can be daunting. Finnova offers 100% free, confidential 1-on-1 assistance across 12+ community languages.</media:description>
+      </media:content>
+    </item>
+    <item>
+      <title>Essential Eight Cyber Resilience 2026: Practical Scam &amp; Phishing Defense for Australian Charities &amp; Non-Profits</title>
+      <link>https://ezmortgagebroker.com.au/pages/blog/essential-eight-cyber-resilience-community-non-profits-2026.html</link>
+      <guid isPermaLink="true">https://ezmortgagebroker.com.au/pages/blog/essential-eight-cyber-resilience-community-non-profits-2026.html</guid>
+      <description>Cyber criminals are increasingly targeting community organizations and vulnerable Australians with AI voice cloning and credential harvesting. Learn the essential defense strategies to safeguard your identity.
+
+🎬 Watch YouTube Short Breakdown: https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/finnova-avatar-2026.mp4
+📺 Watch Complete 10-Minute Masterclass: https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4
+📞 Call 1300 050 099 — Connect with an Accredited Mortgage Broker at EZ Mortgage Broker</description>
+      <category>Cyber Security</category>
+      <pubDate>Sat, 05 Sep 2026 00:00:00 +1000</pubDate>
+      <enclosure url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/finnova-avatar-2026.mp4" length="2621440" type="video/mp4" />
+      <media:content url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/finnova-avatar-2026.mp4" medium="video" type="video/mp4" expression="full" duration="45">
+        <media:title>Essential Eight Cyber Resilience 2026: Practical Scam &amp; Phishing Defense for Australian Charities &amp; Non-Profits #Shorts</media:title>
+        <media:description>Cyber criminals are increasingly targeting community organizations and vulnerable Australians with AI voice cloning and credential harvesting. Learn the essential defense strategies to safeguard your identity.</media:description>
+      </media:content>
+      <media:content url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4" medium="video" type="video/mp4" expression="full" duration="600">
+        <media:title>Essential Eight Cyber Resilience 2026: Practical Scam &amp; Phishing Defense for Australian Charities &amp; Non-Profits — 10-Minute Full Masterclass Analysis</media:title>
+        <media:description>Cyber criminals are increasingly targeting community organizations and vulnerable Australians with AI voice cloning and credential harvesting. Learn the essential defense strategies to safeguard your identity.</media:description>
+      </media:content>
+    </item>
+    <item>
+      <title>Free Refurbished Laptops &amp; Digital Hardware: Bridging the Digital Divide Across Western Melbourne &amp; Regional Victoria</title>
+      <link>https://ezmortgagebroker.com.au/pages/blog/free-refurbished-laptops-bridging-digital-divide-2026.html</link>
+      <guid isPermaLink="true">https://ezmortgagebroker.com.au/pages/blog/free-refurbished-laptops-bridging-digital-divide-2026.html</guid>
+      <description>Access to a reliable personal computer is a fundamental necessity for schooling, healthcare, and job seeking. Discover how eligible families, seniors, and students can receive free refurbished devices.
+
+🎬 Watch YouTube Short Breakdown: https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/finnova-avatar-2026.mp4
+📺 Watch Complete 10-Minute Masterclass: https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4
+📞 Call 1300 050 099 — Connect with an Accredited Mortgage Broker at EZ Mortgage Broker</description>
+      <category>Hardware Rehoming</category>
+      <pubDate>Sat, 05 Sep 2026 00:00:00 +1000</pubDate>
+      <enclosure url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/finnova-avatar-2026.mp4" length="2621440" type="video/mp4" />
+      <media:content url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/finnova-avatar-2026.mp4" medium="video" type="video/mp4" expression="full" duration="45">
+        <media:title>Free Refurbished Laptops &amp; Digital Hardware: Bridging the Digital Divide Across Western Melbourne &amp; Regional Victoria #Shorts</media:title>
+        <media:description>Access to a reliable personal computer is a fundamental necessity for schooling, healthcare, and job seeking. Discover how eligible families, seniors, and students can receive free refurbished devices.</media:description>
+      </media:content>
+      <media:content url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4" medium="video" type="video/mp4" expression="full" duration="600">
+        <media:title>Free Refurbished Laptops &amp; Digital Hardware: Bridging the Digital Divide Across Western Melbourne &amp; Regional Victoria — 10-Minute Full Masterclass Analysis</media:title>
+        <media:description>Access to a reliable personal computer is a fundamental necessity for schooling, healthcare, and job seeking. Discover how eligible families, seniors, and students can receive free refurbished devices.</media:description>
+      </media:content>
+    </item>
+    <item>
+      <title>ASD ACSC Alert: Active Exploitation of Software Platforms in Australia — How Local Businesses &amp; Non-Profits Can Stay Protected</title>
+      <link>https://ezmortgagebroker.com.au/pages/blog/asd-acsc-alert-software-platform-exploitation-2026.html</link>
+      <guid isPermaLink="true">https://ezmortgagebroker.com.au/pages/blog/asd-acsc-alert-software-platform-exploitation-2026.html</guid>
+      <description>The Australian Cyber Security Centre (ASD&#x27;s ACSC) has issued an urgent high alert regarding active exploitation of software development platforms. Finnova outlines simple, actionable steps for SMEs and community organizations to patch systems and protect data.
+
+🎬 Watch YouTube Short Breakdown: https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4
+📺 Watch Complete 10-Minute Masterclass: https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4
+📞 Call 1300 050 099 — Connect with an Accredited Mortgage Broker at EZ Mortgage Broker</description>
+      <category>Cyber Safety &amp; Scams</category>
+      <pubDate>Sat, 05 Sep 2026 00:00:00 +1000</pubDate>
+      <enclosure url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4" length="2621440" type="video/mp4" />
+      <media:content url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4" medium="video" type="video/mp4" expression="full" duration="45">
+        <media:title>ASD ACSC Alert: Active Exploitation of Software Platforms in Australia — How Local Businesses &amp; Non-Profits Can Stay Protected #Shorts</media:title>
+        <media:description>The Australian Cyber Security Centre (ASD&#x27;s ACSC) has issued an urgent high alert regarding active exploitation of software development platforms. Finnova outlines simple, actionable steps for SMEs and community organizations to patch systems and protect data.</media:description>
+      </media:content>
+      <media:content url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4" medium="video" type="video/mp4" expression="full" duration="600">
+        <media:title>ASD ACSC Alert: Active Exploitation of Software Platforms in Australia — How Local Businesses &amp; Non-Profits Can Stay Protected — 10-Minute Full Masterclass Analysis</media:title>
+        <media:description>The Australian Cyber Security Centre (ASD&#x27;s ACSC) has issued an urgent high alert regarding active exploitation of software development platforms. Finnova outlines simple, actionable steps for SMEs and community organizations to patch systems and protect data.</media:description>
+      </media:content>
+    </item>
+    <item>
+      <title>AI-Powered Voice &amp; SMS Scams Surge in Victoria: Finnova Launches Free Senior Cyber Defense Workshops</title>
+      <link>https://ezmortgagebroker.com.au/pages/blog/ai-voice-scams-senior-cyber-defense-2026.html</link>
+      <guid isPermaLink="true">https://ezmortgagebroker.com.au/pages/blog/ai-voice-scams-senior-cyber-defense-2026.html</guid>
+      <description>How AI voice cloning and fake government SMS scams are targeting elderly Australians, and how Finnova&#x27;s free community workshops protect local families across Wyndham.
+
+🎬 Watch YouTube Short Breakdown: https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4
+📺 Watch Complete 10-Minute Masterclass: https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4
+📞 Call 1300 050 099 — Connect with an Accredited Mortgage Broker at EZ Mortgage Broker</description>
+      <category>Cyber Safety &amp; Scams</category>
+      <pubDate>Sat, 05 Sep 2026 00:00:00 +1000</pubDate>
+      <enclosure url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4" length="2621440" type="video/mp4" />
+      <media:content url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4" medium="video" type="video/mp4" expression="full" duration="45">
+        <media:title>AI-Powered Voice &amp; SMS Scams Surge in Victoria: Finnova Launches Free Senior Cyber Defense Workshops #Shorts</media:title>
+        <media:description>How AI voice cloning and fake government SMS scams are targeting elderly Australians, and how Finnova&#x27;s free community workshops protect local families across Wyndham.</media:description>
+      </media:content>
+      <media:content url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4" medium="video" type="video/mp4" expression="full" duration="600">
+        <media:title>AI-Powered Voice &amp; SMS Scams Surge in Victoria: Finnova Launches Free Senior Cyber Defense Workshops — 10-Minute Full Masterclass Analysis</media:title>
+        <media:description>How AI voice cloning and fake government SMS scams are targeting elderly Australians, and how Finnova&#x27;s free community workshops protect local families across Wyndham.</media:description>
+      </media:content>
+    </item>
+    <item>
+      <title>Digital Literacy for NDIS Participants: Navigating the My NDIS App &amp; Telehealth Safely</title>
+      <link>https://ezmortgagebroker.com.au/pages/blog/digital-inclusion-ndis-participants-tarneit-2026.html</link>
+      <guid isPermaLink="true">https://ezmortgagebroker.com.au/pages/blog/digital-inclusion-ndis-participants-tarneit-2026.html</guid>
+      <description>How Finnova&#x27;s specialized digital mentoring empowers NDIS participants to track funding budgets, book verified support workers, and access virtual appointments independently.
+
+🎬 Watch YouTube Short Breakdown: https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4
+📺 Watch Complete 10-Minute Masterclass: https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4
+📞 Call 1300 050 099 — Connect with an Accredited Mortgage Broker at EZ Mortgage Broker</description>
+      <category>Digital Inclusion</category>
+      <pubDate>Sat, 05 Sep 2026 00:00:00 +1000</pubDate>
+      <enclosure url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4" length="2621440" type="video/mp4" />
+      <media:content url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4" medium="video" type="video/mp4" expression="full" duration="45">
+        <media:title>Digital Literacy for NDIS Participants: Navigating the My NDIS App &amp; Telehealth Safely #Shorts</media:title>
+        <media:description>How Finnova&#x27;s specialized digital mentoring empowers NDIS participants to track funding budgets, book verified support workers, and access virtual appointments independently.</media:description>
+      </media:content>
+      <media:content url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4" medium="video" type="video/mp4" expression="full" duration="600">
+        <media:title>Digital Literacy for NDIS Participants: Navigating the My NDIS App &amp; Telehealth Safely — 10-Minute Full Masterclass Analysis</media:title>
+        <media:description>How Finnova&#x27;s specialized digital mentoring empowers NDIS participants to track funding budgets, book verified support workers, and access virtual appointments independently.</media:description>
+      </media:content>
+    </item>
+    <item>
+      <title>Wyndham Youth Tech Mentorship: High School Volunteers Bridge the Digital Divide in Western Melbourne</title>
+      <link>https://ezmortgagebroker.com.au/pages/blog/wyndham-youth-tech-mentorship-bridging-divide-2026.html</link>
+      <guid isPermaLink="true">https://ezmortgagebroker.com.au/pages/blog/wyndham-youth-tech-mentorship-bridging-divide-2026.html</guid>
+      <description>Meet the passionate high school and university students dedicating their weekends to teach digital skills, myGov setup, and device security to local elders.
+
+🎬 Watch YouTube Short Breakdown: https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4
+📺 Watch Complete 10-Minute Masterclass: https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4
+📞 Call 1300 050 099 — Connect with an Accredited Mortgage Broker at EZ Mortgage Broker</description>
+      <category>Volunteer Spotlight</category>
+      <pubDate>Sat, 05 Sep 2026 00:00:00 +1000</pubDate>
+      <enclosure url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4" length="2621440" type="video/mp4" />
+      <media:content url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4" medium="video" type="video/mp4" expression="full" duration="45">
+        <media:title>Wyndham Youth Tech Mentorship: High School Volunteers Bridge the Digital Divide in Western Melbourne #Shorts</media:title>
+        <media:description>Meet the passionate high school and university students dedicating their weekends to teach digital skills, myGov setup, and device security to local elders.</media:description>
+      </media:content>
+      <media:content url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4" medium="video" type="video/mp4" expression="full" duration="600">
+        <media:title>Wyndham Youth Tech Mentorship: High School Volunteers Bridge the Digital Divide in Western Melbourne — 10-Minute Full Masterclass Analysis</media:title>
+        <media:description>Meet the passionate high school and university students dedicating their weekends to teach digital skills, myGov setup, and device security to local elders.</media:description>
+      </media:content>
+    </item>
+    <item>
+      <title>Practical Ways to Protect Yourself Online: The 5 Essential Pillars of Modern Cyber Defence</title>
+      <link>https://ezmortgagebroker.com.au/pages/blog/practical-ways-to-protect-yourself-online-cyber-security-guide.html</link>
+      <guid isPermaLink="true">https://ezmortgagebroker.com.au/pages/blog/practical-ways-to-protect-yourself-online-cyber-security-guide.html</guid>
+      <description>Take control of your digital security and neutralize cyber attacks before they disrupt your business. Discover the 5 fundamental pillars of zero-trust defense: automatic patching, immutable cloud backups, phishing detection, MFA, and passphrases.
+
+🎬 Watch YouTube Short Breakdown: https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4
+📺 Watch Complete 10-Minute Masterclass: https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4
+📞 Call 1300 050 099 — Connect with an Accredited Mortgage Broker at EZ Mortgage Broker</description>
+      <category>Cyber Security</category>
+      <pubDate>Sat, 05 Sep 2026 00:00:00 +1000</pubDate>
+      <enclosure url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4" length="2621440" type="video/mp4" />
+      <media:content url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4" medium="video" type="video/mp4" expression="full" duration="45">
+        <media:title>Practical Ways to Protect Yourself Online: The 5 Essential Pillars of Modern Cyber Defence #Shorts</media:title>
+        <media:description>Take control of your digital security and neutralize cyber attacks before they disrupt your business. Discover the 5 fundamental pillars of zero-trust defense: automatic patching, immutable cloud backups, phishing detection, MFA, and passphrases.</media:description>
+      </media:content>
+      <media:content url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4" medium="video" type="video/mp4" expression="full" duration="600">
+        <media:title>Practical Ways to Protect Yourself Online: The 5 Essential Pillars of Modern Cyber Defence — 10-Minute Full Masterclass Analysis</media:title>
+        <media:description>Take control of your digital security and neutralize cyber attacks before they disrupt your business. Discover the 5 fundamental pillars of zero-trust defense: automatic patching, immutable cloud backups, phishing detection, MFA, and passphrases.</media:description>
+      </media:content>
+    </item>
+    <item>
+      <title>Automated Patch Management: Why Outdated Devices Are Hacker Magnets</title>
+      <link>https://ezmortgagebroker.com.au/pages/blog/automated-device-updates-patch-management-guide.html</link>
+      <guid isPermaLink="true">https://ezmortgagebroker.com.au/pages/blog/automated-device-updates-patch-management-guide.html</guid>
+      <description>Discover why software updates are your first and strongest line of cyber defense. Learn how to configure automated patch cycles across Windows, Mac, iOS, and Android to eliminate zero-day vulnerabilities.
+
+🎬 Watch YouTube Short Breakdown: https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4
+📺 Watch Complete 10-Minute Masterclass: https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4
+📞 Call 1300 050 099 — Connect with an Accredited Mortgage Broker at EZ Mortgage Broker</description>
+      <category>Device Security</category>
+      <pubDate>Sat, 05 Sep 2026 00:00:00 +1000</pubDate>
+      <enclosure url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4" length="2621440" type="video/mp4" />
+      <media:content url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4" medium="video" type="video/mp4" expression="full" duration="45">
+        <media:title>Automated Patch Management: Why Outdated Devices Are Hacker Magnets #Shorts</media:title>
+        <media:description>Discover why software updates are your first and strongest line of cyber defense. Learn how to configure automated patch cycles across Windows, Mac, iOS, and Android to eliminate zero-day vulnerabilities.</media:description>
+      </media:content>
+      <media:content url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4" medium="video" type="video/mp4" expression="full" duration="600">
+        <media:title>Automated Patch Management: Why Outdated Devices Are Hacker Magnets — 10-Minute Full Masterclass Analysis</media:title>
+        <media:description>Discover why software updates are your first and strongest line of cyber defense. Learn how to configure automated patch cycles across Windows, Mac, iOS, and Android to eliminate zero-day vulnerabilities.</media:description>
+      </media:content>
+    </item>
+    <item>
+      <title>The 3-2-1 Cloud Backup Strategy: Protecting Critical Data from Ransomware</title>
+      <link>https://ezmortgagebroker.com.au/pages/blog/cloud-backups-immutable-storage-ransomware-protection.html</link>
+      <guid isPermaLink="true">https://ezmortgagebroker.com.au/pages/blog/cloud-backups-immutable-storage-ransomware-protection.html</guid>
+      <description>Never worry about catastrophic data loss again. Implement the 3-2-1 backup standard with encrypted, immutable cloud storage to ensure zero downtime and rapid ransomware recovery.
+
+🎬 Watch YouTube Short Breakdown: https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4
+📺 Watch Complete 10-Minute Masterclass: https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4
+📞 Call 1300 050 099 — Connect with an Accredited Mortgage Broker at EZ Mortgage Broker</description>
+      <category>Data Protection</category>
+      <pubDate>Sat, 05 Sep 2026 00:00:00 +1000</pubDate>
+      <enclosure url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4" length="2621440" type="video/mp4" />
+      <media:content url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4" medium="video" type="video/mp4" expression="full" duration="45">
+        <media:title>The 3-2-1 Cloud Backup Strategy: Protecting Critical Data from Ransomware #Shorts</media:title>
+        <media:description>Never worry about catastrophic data loss again. Implement the 3-2-1 backup standard with encrypted, immutable cloud storage to ensure zero downtime and rapid ransomware recovery.</media:description>
+      </media:content>
+      <media:content url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4" medium="video" type="video/mp4" expression="full" duration="600">
+        <media:title>The 3-2-1 Cloud Backup Strategy: Protecting Critical Data from Ransomware — 10-Minute Full Masterclass Analysis</media:title>
+        <media:description>Never worry about catastrophic data loss again. Implement the 3-2-1 backup standard with encrypted, immutable cloud storage to ensure zero downtime and rapid ransomware recovery.</media:description>
+      </media:content>
+    </item>
+    <item>
+      <title>Multi-Factor Authentication (MFA) &amp; Passkeys: Eliminating Password Risk</title>
+      <link>https://ezmortgagebroker.com.au/pages/blog/multi-factor-authentication-fido2-passkeys-guide.html</link>
+      <guid isPermaLink="true">https://ezmortgagebroker.com.au/pages/blog/multi-factor-authentication-fido2-passkeys-guide.html</guid>
+      <description>Learn how multi-factor authentication (MFA) and biometric passkeys provide impenetrable barriers against credential theft, credential stuffing, and session hijacking across business apps.
+
+🎬 Watch YouTube Short Breakdown: https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4
+📺 Watch Complete 10-Minute Masterclass: https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4
+📞 Call 1300 050 099 — Connect with an Accredited Mortgage Broker at EZ Mortgage Broker</description>
+      <category>Access Management</category>
+      <pubDate>Sat, 05 Sep 2026 00:00:00 +1000</pubDate>
+      <enclosure url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4" length="2621440" type="video/mp4" />
+      <media:content url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4" medium="video" type="video/mp4" expression="full" duration="45">
+        <media:title>Multi-Factor Authentication (MFA) &amp; Passkeys: Eliminating Password Risk #Shorts</media:title>
+        <media:description>Learn how multi-factor authentication (MFA) and biometric passkeys provide impenetrable barriers against credential theft, credential stuffing, and session hijacking across business apps.</media:description>
+      </media:content>
+      <media:content url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4" medium="video" type="video/mp4" expression="full" duration="600">
+        <media:title>Multi-Factor Authentication (MFA) &amp; Passkeys: Eliminating Password Risk — 10-Minute Full Masterclass Analysis</media:title>
+        <media:description>Learn how multi-factor authentication (MFA) and biometric passkeys provide impenetrable barriers against credential theft, credential stuffing, and session hijacking across business apps.</media:description>
+      </media:content>
+    </item>
+    <item>
+      <title>Passphrase Security: Why 4 Random Words Defeat Brute-Force Attacks</title>
+      <link>https://ezmortgagebroker.com.au/pages/blog/secure-passphrases-vs-legacy-passwords-guide.html</link>
+      <guid isPermaLink="true">https://ezmortgagebroker.com.au/pages/blog/secure-passphrases-vs-legacy-passwords-guide.html</guid>
+      <description>Stop struggling with complex, unmemorable passwords. Learn why 4-word passphrases like &#x27;purple-duck-potato-boat&#x27; deliver superior entropy, length, and brute-force resistance.
+
+🎬 Watch YouTube Short Breakdown: https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4
+📺 Watch Complete 10-Minute Masterclass: https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4
+📞 Call 1300 050 099 — Connect with an Accredited Mortgage Broker at EZ Mortgage Broker</description>
+      <category>Password Management</category>
+      <pubDate>Sat, 05 Sep 2026 00:00:00 +1000</pubDate>
+      <enclosure url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4" length="2621440" type="video/mp4" />
+      <media:content url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4" medium="video" type="video/mp4" expression="full" duration="45">
+        <media:title>Passphrase Security: Why 4 Random Words Defeat Brute-Force Attacks #Shorts</media:title>
+        <media:description>Stop struggling with complex, unmemorable passwords. Learn why 4-word passphrases like &#x27;purple-duck-potato-boat&#x27; deliver superior entropy, length, and brute-force resistance.</media:description>
+      </media:content>
+      <media:content url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4" medium="video" type="video/mp4" expression="full" duration="600">
+        <media:title>Passphrase Security: Why 4 Random Words Defeat Brute-Force Attacks — 10-Minute Full Masterclass Analysis</media:title>
+        <media:description>Stop struggling with complex, unmemorable passwords. Learn why 4-word passphrases like &#x27;purple-duck-potato-boat&#x27; deliver superior entropy, length, and brute-force resistance.</media:description>
+      </media:content>
+    </item>
+    <item>
+      <title>Recognising &amp; Defeating Social Engineering: Defending Against Invoice Fraud &amp; Scams</title>
+      <link>https://ezmortgagebroker.com.au/pages/blog/recognise-and-report-scams-phishing-prevention-guide.html</link>
+      <guid isPermaLink="true">https://ezmortgagebroker.com.au/pages/blog/recognise-and-report-scams-phishing-prevention-guide.html</guid>
+      <description>Arm your team against deceptive phishing emails, fake invoice redirects, and phone impersonators. Learn the 4 tell-tale psychological triggers used by scammers to manipulate human behavior.
+
+🎬 Watch YouTube Short Breakdown: https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4
+📺 Watch Complete 10-Minute Masterclass: https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4
+📞 Call 1300 050 099 — Connect with an Accredited Mortgage Broker at EZ Mortgage Broker</description>
+      <category>Threat Awareness</category>
+      <pubDate>Sat, 05 Sep 2026 00:00:00 +1000</pubDate>
+      <enclosure url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4" length="2621440" type="video/mp4" />
+      <media:content url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4" medium="video" type="video/mp4" expression="full" duration="45">
+        <media:title>Recognising &amp; Defeating Social Engineering: Defending Against Invoice Fraud &amp; Scams #Shorts</media:title>
+        <media:description>Arm your team against deceptive phishing emails, fake invoice redirects, and phone impersonators. Learn the 4 tell-tale psychological triggers used by scammers to manipulate human behavior.</media:description>
+      </media:content>
+      <media:content url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4" medium="video" type="video/mp4" expression="full" duration="600">
+        <media:title>Recognising &amp; Defeating Social Engineering: Defending Against Invoice Fraud &amp; Scams — 10-Minute Full Masterclass Analysis</media:title>
+        <media:description>Arm your team against deceptive phishing emails, fake invoice redirects, and phone impersonators. Learn the 4 tell-tale psychological triggers used by scammers to manipulate human behavior.</media:description>
+      </media:content>
+    </item>
+    <item>
+      <title>What Does They rejected the Aussie dream. What they bought instead cost $130,000 | SBS News Mean for Australian Borrowers?</title>
+      <link>https://ezmortgagebroker.com.au/pages/blog/they-rejected-the-aussie-dream-what-they-bought-instead-cost-130000-sbs-new.html</link>
+      <guid isPermaLink="true">https://ezmortgagebroker.com.au/pages/blog/they-rejected-the-aussie-dream-what-they-bought-instead-cost-130000-sbs-new.html</guid>
+      <description>... home loans. He said another &quot;hurdle&quot; is that not all tiny houses follow the same construction codes, so for a long time lenders wouldn&#x27;t take ......
+
+🎬 Watch YouTube Short Breakdown: https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4
+📺 Watch Complete 10-Minute Masterclass: https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4
+📞 Call 1300 050 099 — Connect with an Accredited Mortgage Broker at EZ Mortgage Broker</description>
       <category>Home Loans</category>
-      <pubDate>Sat, 22 Aug 2026 00:00:00 +1000</pubDate>
+      <pubDate>Sat, 05 Sep 2026 00:00:00 +1000</pubDate>
+      <enclosure url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4" length="2621440" type="video/mp4" />
+      <media:content url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4" medium="video" type="video/mp4" expression="full" duration="45">
+        <media:title>What Does They rejected the Aussie dream. What they bought instead cost $130,000 | SBS News Mean for Australian Borrowers? #Shorts</media:title>
+        <media:description>... home loans. He said another &quot;hurdle&quot; is that not all tiny houses follow the same construction codes, so for a long time lenders wouldn&#x27;t take ......</media:description>
+      </media:content>
+      <media:content url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4" medium="video" type="video/mp4" expression="full" duration="600">
+        <media:title>What Does They rejected the Aussie dream. What they bought instead cost $130,000 | SBS News Mean for Australian Borrowers? — 10-Minute Full Masterclass Analysis</media:title>
+        <media:description>... home loans. He said another &quot;hurdle&quot; is that not all tiny houses follow the same construction codes, so for a long time lenders wouldn&#x27;t take ......</media:description>
+      </media:content>
     </item>
     <item>
-      <title>What Does Both major parties are right and wrong in their response to One Nation Mean for Australian Borrowers?</title>
-      <link>https://ezmortgagebroker.com.au/pages/blog/both-major-parties-are-right-and-wrong-in-their-response-to-one-nation.html</link>
-      <guid isPermaLink="true">https://ezmortgagebroker.com.au/pages/blog/both-major-parties-are-right-and-wrong-in-their-response-to-one-nation.html</guid>
-      <description>Pauline Hanson and Andrew Bragg have both spoken out on superannuation this month....</description>
-      <category>Super &amp; SMSF</category>
-      <pubDate>Sat, 22 Aug 2026 00:00:00 +1000</pubDate>
-    </item>
-    <item>
-      <title>What Does the Latest RBA Rate Decision Mean for Variable Home Loans?</title>
-      <link>https://ezmortgagebroker.com.au/pages/blog/split-rba-opted-for-rate-hike-over-war-uncertainty-risk-commbank.html</link>
-      <guid isPermaLink="true">https://ezmortgagebroker.com.au/pages/blog/split-rba-opted-for-rate-hike-over-war-uncertainty-risk-commbank.html</guid>
-      <description>Split RBA opted for rate hike over war uncertainty risk  CommBank...</description>
-      <category>RBA &amp; Rates</category>
-      <pubDate>Sat, 22 Aug 2026 00:00:00 +1000</pubDate>
-    </item>
-    <item>
-      <title>How Does the APRA 3.0% Serviceability Buffer Impact Borrowing Power?</title>
-      <link>https://ezmortgagebroker.com.au/pages/blog/mortgage-serviceability-buffer-unchanged-at-3-apra-savingscomau.html</link>
-      <guid isPermaLink="true">https://ezmortgagebroker.com.au/pages/blog/mortgage-serviceability-buffer-unchanged-at-3-apra-savingscomau.html</guid>
-      <description>Mortgage serviceability buffer unchanged at 3%: APRA  Savings.com.au...</description>
-      <category>APRA &amp; Lending</category>
-      <pubDate>Sat, 22 Aug 2026 00:00:00 +1000</pubDate>
-    </item>
-    <item>
-      <title>What Does 6 Matta Drive, Churchill, Vic 3842 - House for Sale - realestate.com.au Mean for Australian Borrowers?</title>
-      <link>https://ezmortgagebroker.com.au/pages/blog/6-matta-drive-churchill-vic-3842-house-for-sale-realestatecomau.html</link>
-      <guid isPermaLink="true">https://ezmortgagebroker.com.au/pages/blog/6-matta-drive-churchill-vic-3842-house-for-sale-realestatecomau.html</guid>
-      <description>BuyRentSoldShareNew homesFind agentsHome loansNews · Commercial · Buy · VIC ... This magnificent brick and stone home comprise approximately 55 ......</description>
+      <title>What Does Real Estate Open for Inspection in 35 State Route 58, Gladstone Central, QLD 4680 (+1 location ... Mean for Australian Borrowers?</title>
+      <link>https://ezmortgagebroker.com.au/pages/blog/real-estate-open-for-inspection-in-35-state-route-58-gladstone-central-qld-.html</link>
+      <guid isPermaLink="true">https://ezmortgagebroker.com.au/pages/blog/real-estate-open-for-inspection-in-35-state-route-58-gladstone-central-qld-.html</guid>
+      <description>While you search for your new home, we&#x27;ll search for your home loan. Concierge image. We&#x27;re here to help. Home Lending Concierge team....
+
+🎬 Watch YouTube Short Breakdown: https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4
+📺 Watch Complete 10-Minute Masterclass: https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4
+📞 Call 1300 050 099 — Connect with an Accredited Mortgage Broker at EZ Mortgage Broker</description>
       <category>Home Loans</category>
-      <pubDate>Sat, 22 Aug 2026 00:00:00 +1000</pubDate>
+      <pubDate>Sat, 05 Sep 2026 00:00:00 +1000</pubDate>
+      <enclosure url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4" length="2621440" type="video/mp4" />
+      <media:content url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4" medium="video" type="video/mp4" expression="full" duration="45">
+        <media:title>What Does Real Estate Open for Inspection in 35 State Route 58, Gladstone Central, QLD 4680 (+1 location ... Mean for Australian Borrowers? #Shorts</media:title>
+        <media:description>While you search for your new home, we&#x27;ll search for your home loan. Concierge image. We&#x27;re here to help. Home Lending Concierge team....</media:description>
+      </media:content>
+      <media:content url="https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4" medium="video" type="video/mp4" expression="full" duration="600">
+        <media:title>What Does Real Estate Open for Inspection in 35 State Route 58, Gladstone Central, QLD 4680 (+1 location ... Mean for Australian Borrowers? — 10-Minute Full Masterclass Analysis</media:title>
+        <media:description>While you search for your new home, we&#x27;ll search for your home loan. Concierge image. We&#x27;re here to help. Home Lending Concierge team....</media:description>
+      </media:content>
     </item>
   </channel>
 </rss>

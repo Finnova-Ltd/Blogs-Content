@@ -14,7 +14,8 @@
     "excerpt": "Completing the Australian Census is legally compulsory, but navigating digital authentication can be daunting. Finnova offers 100% free, confidential 1-on-1 assistance across 12+ community languages.",
     "image": "https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=1200&q=80",
     "url": "/pages/blog/census-2026-digital-assistance-multilingual-support.html",
-    "videoUrl": "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/finnova-avatar-2026.mp4"
+    "videoUrl": "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/finnova-avatar-2026.mp4",
+    "longVideoUrl": "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4"
   },
   {
     "id": "essential-eight-cyber-resilience-community-non-profits-2026",
@@ -31,7 +32,8 @@
     "excerpt": "Cyber criminals are increasingly targeting community organizations and vulnerable Australians with AI voice cloning and credential harvesting. Learn the essential defense strategies to safeguard your identity.",
     "image": "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80",
     "url": "/pages/blog/essential-eight-cyber-resilience-community-non-profits-2026.html",
-    "videoUrl": "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/finnova-avatar-2026.mp4"
+    "videoUrl": "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/finnova-avatar-2026.mp4",
+    "longVideoUrl": "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4"
   },
   {
     "id": "free-refurbished-laptops-bridging-digital-divide-2026",
@@ -48,12 +50,13 @@
     "excerpt": "Access to a reliable personal computer is a fundamental necessity for schooling, healthcare, and job seeking. Discover how eligible families, seniors, and students can receive free refurbished devices.",
     "image": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=80",
     "url": "/pages/blog/free-refurbished-laptops-bridging-digital-divide-2026.html",
-    "videoUrl": "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/finnova-avatar-2026.mp4"
+    "videoUrl": "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/finnova-avatar-2026.mp4",
+    "longVideoUrl": "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4"
   },
   {
     "id": "asd-acsc-alert-software-platform-exploitation-2026",
     "slug": "asd-acsc-alert-software-platform-exploitation-2026",
-    "title": "ASD ACSC Alert: Active Exploitation of Software Platforms in Australia \u2014 How Local Businesses & Non-Profits Can Stay Protected",
+    "title": "ASD ACSC Alert: Active Exploitation of Software Platforms in Australia — How Local Businesses & Non-Profits Can Stay Protected",
     "category": "Cyber Safety & Scams",
     "badge": "ASD ACSC HIGH ALERT",
     "date": "25-Aug-2026",
@@ -65,7 +68,9 @@
     "excerpt": "The Australian Cyber Security Centre (ASD's ACSC) has issued an urgent high alert regarding active exploitation of software development platforms. Finnova outlines simple, actionable steps for SMEs and community organizations to patch systems and protect data.",
     "snippet": "The Australian Cyber Security Centre (ASD's ACSC) has issued an urgent high alert regarding active exploitation of software development platforms. Finnova outlines simple, actionable steps for SMEs and community organizations to patch systems and protect data.",
     "image": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80",
-    "url": "/pages/blog/asd-acsc-alert-software-platform-exploitation-2026.html"
+    "url": "/pages/blog/asd-acsc-alert-software-platform-exploitation-2026.html",
+    "videoUrl": "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4",
+    "longVideoUrl": "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4"
   },
   {
     "id": "ai-voice-scams-senior-cyber-defense-2026",
@@ -82,7 +87,9 @@
     "excerpt": "How AI voice cloning and fake government SMS scams are targeting elderly Australians, and how Finnova's free community workshops protect local families across Wyndham.",
     "snippet": "How AI voice cloning and fake government SMS scams are targeting elderly Australians, and how Finnova's free community workshops protect local families across Wyndham.",
     "image": "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1200&q=80",
-    "url": "/pages/blog/ai-voice-scams-senior-cyber-defense-2026.html"
+    "url": "/pages/blog/ai-voice-scams-senior-cyber-defense-2026.html",
+    "videoUrl": "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4",
+    "longVideoUrl": "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4"
   },
   {
     "id": "digital-inclusion-ndis-participants-tarneit-2026",
@@ -99,7 +106,9 @@
     "excerpt": "How Finnova's specialized digital mentoring empowers NDIS participants to track funding budgets, book verified support workers, and access virtual appointments independently.",
     "snippet": "How Finnova's specialized digital mentoring empowers NDIS participants to track funding budgets, book verified support workers, and access virtual appointments independently.",
     "image": "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1200&q=80",
-    "url": "/pages/blog/digital-inclusion-ndis-participants-tarneit-2026.html"
+    "url": "/pages/blog/digital-inclusion-ndis-participants-tarneit-2026.html",
+    "videoUrl": "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4",
+    "longVideoUrl": "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4"
   },
   {
     "id": "wyndham-youth-tech-mentorship-bridging-divide-2026",
@@ -116,7 +125,9 @@
     "excerpt": "Meet the passionate high school and university students dedicating their weekends to teach digital skills, myGov setup, and device security to local elders.",
     "snippet": "Meet the passionate high school and university students dedicating their weekends to teach digital skills, myGov setup, and device security to local elders.",
     "image": "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1200&q=80",
-    "url": "/pages/blog/wyndham-youth-tech-mentorship-bridging-divide-2026.html"
+    "url": "/pages/blog/wyndham-youth-tech-mentorship-bridging-divide-2026.html",
+    "videoUrl": "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4",
+    "longVideoUrl": "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4"
   },
   {
     "id": "practical-ways-to-protect-yourself-online-cyber-security-guide",
@@ -133,7 +144,9 @@
     "excerpt": "Take control of your digital security and neutralize cyber attacks before they disrupt your business. Discover the 5 fundamental pillars of zero-trust defense: automatic patching, immutable cloud backups, phishing detection, MFA, and passphrases.",
     "snippet": "Take control of your digital security and neutralize cyber attacks before they disrupt your business. Discover the 5 fundamental pillars of zero-trust defense: automatic patching, immutable cloud backups, phishing detection, MFA, and passphrases.",
     "image": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80",
-    "url": "/pages/blog/practical-ways-to-protect-yourself-online-cyber-security-guide.html"
+    "url": "/pages/blog/practical-ways-to-protect-yourself-online-cyber-security-guide.html",
+    "videoUrl": "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4",
+    "longVideoUrl": "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4"
   },
   {
     "id": "automated-device-updates-patch-management-guide",
@@ -150,7 +163,9 @@
     "excerpt": "Discover why software updates are your first and strongest line of cyber defense. Learn how to configure automated patch cycles across Windows, Mac, iOS, and Android to eliminate zero-day vulnerabilities.",
     "snippet": "Discover why software updates are your first and strongest line of cyber defense. Learn how to configure automated patch cycles across Windows, Mac, iOS, and Android to eliminate zero-day vulnerabilities.",
     "image": "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80",
-    "url": "/pages/blog/automated-device-updates-patch-management-guide.html"
+    "url": "/pages/blog/automated-device-updates-patch-management-guide.html",
+    "videoUrl": "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4",
+    "longVideoUrl": "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4"
   },
   {
     "id": "cloud-backups-immutable-storage-ransomware-protection",
@@ -167,7 +182,9 @@
     "excerpt": "Never worry about catastrophic data loss again. Implement the 3-2-1 backup standard with encrypted, immutable cloud storage to ensure zero downtime and rapid ransomware recovery.",
     "snippet": "Never worry about catastrophic data loss again. Implement the 3-2-1 backup standard with encrypted, immutable cloud storage to ensure zero downtime and rapid ransomware recovery.",
     "image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80",
-    "url": "/pages/blog/cloud-backups-immutable-storage-ransomware-protection.html"
+    "url": "/pages/blog/cloud-backups-immutable-storage-ransomware-protection.html",
+    "videoUrl": "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4",
+    "longVideoUrl": "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4"
   },
   {
     "id": "multi-factor-authentication-fido2-passkeys-guide",
@@ -184,7 +201,9 @@
     "excerpt": "Learn how multi-factor authentication (MFA) and biometric passkeys provide impenetrable barriers against credential theft, credential stuffing, and session hijacking across business apps.",
     "snippet": "Learn how multi-factor authentication (MFA) and biometric passkeys provide impenetrable barriers against credential theft, credential stuffing, and session hijacking across business apps.",
     "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80",
-    "url": "/pages/blog/multi-factor-authentication-fido2-passkeys-guide.html"
+    "url": "/pages/blog/multi-factor-authentication-fido2-passkeys-guide.html",
+    "videoUrl": "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4",
+    "longVideoUrl": "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4"
   },
   {
     "id": "secure-passphrases-vs-legacy-passwords-guide",
@@ -201,7 +220,9 @@
     "excerpt": "Stop struggling with complex, unmemorable passwords. Learn why 4-word passphrases like 'purple-duck-potato-boat' deliver superior entropy, length, and brute-force resistance.",
     "snippet": "Stop struggling with complex, unmemorable passwords. Learn why 4-word passphrases like 'purple-duck-potato-boat' deliver superior entropy, length, and brute-force resistance.",
     "image": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80",
-    "url": "/pages/blog/secure-passphrases-vs-legacy-passwords-guide.html"
+    "url": "/pages/blog/secure-passphrases-vs-legacy-passwords-guide.html",
+    "videoUrl": "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4",
+    "longVideoUrl": "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4"
   },
   {
     "id": "recognise-and-report-scams-phishing-prevention-guide",
@@ -218,7 +239,9 @@
     "excerpt": "Arm your team against deceptive phishing emails, fake invoice redirects, and phone impersonators. Learn the 4 tell-tale psychological triggers used by scammers to manipulate human behavior.",
     "snippet": "Arm your team against deceptive phishing emails, fake invoice redirects, and phone impersonators. Learn the 4 tell-tale psychological triggers used by scammers to manipulate human behavior.",
     "image": "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80",
-    "url": "/pages/blog/recognise-and-report-scams-phishing-prevention-guide.html"
+    "url": "/pages/blog/recognise-and-report-scams-phishing-prevention-guide.html",
+    "videoUrl": "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4",
+    "longVideoUrl": "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4"
   },
   {
     "id": "they-rejected-the-aussie-dream-what-they-bought-instead-cost-130000-sbs-new",
@@ -232,10 +255,12 @@
     "author": "R BAKSHI",
     "authorRole": "Principal Mortgage Broker",
     "authorImg": "/images/ez-mortgage-broker.webp",
-    "excerpt": "... home loans. He said another \"hurdle\" is that not all tiny houses follow the same construction codes, so for a long time lenders wouldn't take\u00a0......",
-    "snippet": "... home loans. He said another \"hurdle\" is that not all tiny houses follow the same construction codes, so for a long time lenders wouldn't take\u00a0...",
+    "excerpt": "... home loans. He said another \"hurdle\" is that not all tiny houses follow the same construction codes, so for a long time lenders wouldn't take ......",
+    "snippet": "... home loans. He said another \"hurdle\" is that not all tiny houses follow the same construction codes, so for a long time lenders wouldn't take ...",
     "image": "/images/assets-ez-mortgage-broker/australian-home-mortgage-approval.jpg",
-    "url": "/pages/blog/they-rejected-the-aussie-dream-what-they-bought-instead-cost-130000-sbs-new.html"
+    "url": "/pages/blog/they-rejected-the-aussie-dream-what-they-bought-instead-cost-130000-sbs-new.html",
+    "videoUrl": "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4",
+    "longVideoUrl": "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4"
   },
   {
     "id": "real-estate-open-for-inspection-in-35-state-route-58-gladstone-central-qld-",
@@ -252,6 +277,8 @@
     "excerpt": "While you search for your new home, we'll search for your home loan. Concierge image. We're here to help. Home Lending Concierge team....",
     "snippet": "While you search for your new home, we'll search for your home loan. Concierge image. We're here to help. Home Lending Concierge team.",
     "image": "/images/assets-ez-mortgage-broker/australian-home-mortgage-approval.jpg",
-    "url": "/pages/blog/real-estate-open-for-inspection-in-35-state-route-58-gladstone-central-qld-.html"
+    "url": "/pages/blog/real-estate-open-for-inspection-in-35-state-route-58-gladstone-central-qld-.html",
+    "videoUrl": "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/ezmortgage_latest_studio_short.mp4",
+    "longVideoUrl": "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/masterclass_ezmortgage_10min.mp4"
   }
 ]

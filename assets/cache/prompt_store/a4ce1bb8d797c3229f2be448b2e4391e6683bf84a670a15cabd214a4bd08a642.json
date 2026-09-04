@@ -1,0 +1,33 @@
+{
+  "title": "RBA Interest Rate Decision & Mortgage Repayments 2026",
+  "brand": "EZ Mortgage Broker",
+  "asset_hash": "a4ce1bb8d797c3229f2be448b2e4391e6683bf84a670a15cabd214a4bd08a642",
+  "cache_hit": false,
+  "created_at": "2026-09-05 06:15:07 AEST",
+  "cinematic_visual_prompt": "Cinematic daylight aerial shot of modern Melbourne suburban homes, golden sunlight, ultra-crisp 4K architectural aesthetic, professional finance broadcast grading, no blur, high contrast.",
+  "storyboard": {
+    "scene_1_hook": {
+      "duration_seconds": 5,
+      "visual": "Fast-paced dynamic aerial push into Melbourne residential corridor",
+      "overlay_text": "🚨 RBA Interest Rate Decision & Mortgage Repayme",
+      "caption_theme": "amber_alert"
+    },
+    "scene_2_insights": {
+      "duration_seconds": 20,
+      "visual": "Layered corporate dashboard card with animated financial metrics",
+      "data_points": [
+        "Compare 30+ Australian Lenders",
+        "81.0% Mortgage Broker Market Share",
+        "Refinancing & Rate Reduction Opportunities"
+      ],
+      "caption_theme": "white_clean"
+    },
+    "scene_3_cta": {
+      "duration_seconds": 10,
+      "visual": "Accredited Principal Broker Robin Bakshi trust card with MFAA credentials",
+      "cta_text": "Connect with an Accredited Broker — Zero Broker Fee",
+      "phone": "1300 050 099",
+      "website": "ezmortgagebroker.com.au"
+    }
+  }
+}
