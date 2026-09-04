@@ -1,0 +1,96 @@
+{
+  "active_campaign": "rba_rate_alert",
+  "bumpers": {
+    "r_bakshi_greeting": {
+      "id": "r_bakshi_greeting",
+      "title": "R Bakshi 5-Second Broker Welcome",
+      "duration": 5.0,
+      "segments": [
+        {
+          "uri": "https://ezmortgagebroker.com.au/assets/videos/bumpers/r_bakshi_greeting_001.ts",
+          "duration": 2.5
+        },
+        {
+          "uri": "https://ezmortgagebroker.com.au/assets/videos/bumpers/r_bakshi_greeting_002.ts",
+          "duration": 2.5
+        }
+      ],
+      "cta_overlay": "Call R Bakshi: 1300 050 099 | CRN 538522",
+      "target_segments": [
+        "general",
+        "all"
+      ]
+    },
+    "rba_rate_alert": {
+      "id": "rba_rate_alert",
+      "title": "RBA Rate Decision Teaser - Sub-5.89% Variable Comparison",
+      "duration": 5.0,
+      "segments": [
+        {
+          "uri": "https://ezmortgagebroker.com.au/assets/videos/bumpers/rba_rate_alert_001.ts",
+          "duration": 2.5
+        },
+        {
+          "uri": "https://ezmortgagebroker.com.au/assets/videos/bumpers/rba_rate_alert_002.ts",
+          "duration": 2.5
+        }
+      ],
+      "cta_overlay": "Is your rate above 6%? Compare 30+ lenders now.",
+      "target_segments": [
+        "refinance_saver",
+        "sub_6_refinance"
+      ]
+    },
+    "melbourne_fhb_grant": {
+      "id": "melbourne_fhb_grant",
+      "title": "Victoria First Home Buyer Grant & Stamp Duty Exemption",
+      "duration": 6.0,
+      "segments": [
+        {
+          "uri": "https://ezmortgagebroker.com.au/assets/videos/bumpers/fhb_grant_001.ts",
+          "duration": 3.0
+        },
+        {
+          "uri": "https://ezmortgagebroker.com.au/assets/videos/bumpers/fhb_grant_002.ts",
+          "duration": 3.0
+        }
+      ],
+      "cta_overlay": "5% Deposit Guarantee & $10k Grant Checklist Available",
+      "target_segments": [
+        "first_home_buyer"
+      ]
+    },
+    "smsf_investor_promo": {
+      "id": "smsf_investor_promo",
+      "title": "Melbourne SMSF Property Borrowing Specialist",
+      "duration": 5.0,
+      "segments": [
+        {
+          "uri": "https://ezmortgagebroker.com.au/assets/videos/bumpers/smsf_promo_001.ts",
+          "duration": 2.5
+        },
+        {
+          "uri": "https://ezmortgagebroker.com.au/assets/videos/bumpers/smsf_promo_002.ts",
+          "duration": 2.5
+        }
+      ],
+      "cta_overlay": "SMSF Residential & Commercial Loans up to 80% LVR",
+      "target_segments": [
+        "smsf_investor"
+      ]
+    }
+  },
+  "post_roll_cta": {
+    "id": "ez_broker_cta",
+    "title": "MFAA Accredited Broker Appointment CTA",
+    "duration": 4.0,
+    "segments": [
+      {
+        "uri": "https://ezmortgagebroker.com.au/assets/videos/bumpers/ez_cta_001.ts",
+        "duration": 4.0
+      }
+    ],
+    "cta_url": "https://ezmortgagebroker.com.au/#contact"
+  },
+  "last_swapped_at_aest": "2026-09-05T07:49:19.553585+10:00"
+}

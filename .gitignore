@@ -9,3 +9,8 @@ dist
 scripts/asset_cache/
 *.wav
 
+
+# Adobe Token Cache
+.adobe_token_cache.json
+.*token_cache.json
+
