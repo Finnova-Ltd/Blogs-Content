@@ -457,7 +457,7 @@ def generate_article_html(item):
       <div class="article-content-body">
         
         <p style="font-size:1.05rem; line-height:1.75; color:#1e293b; margin-bottom:28px; font-family:Georgia, serif;">
-          In response to ongoing monetary policy adjustments by the <strong>Reserve Bank of Australia (RBA)</strong> and macroprudential serviceability updates by <strong>APRA</strong>, Australian mortgage holders, property investors, and first home buyers are actively restructuring their residential and commercial credit facilities. Navigating tiered interest rate pricing across 30+ accredited lenders requires a strategic assessment of loan-to-value ratios (LVR), debt-to-income (DTI) metrics, and genuine equity utilization.
+          In the evolving Australian mortgage and financial landscape, <strong>{headline}</strong> represents a key development for borrowers and property owners. Navigating policy updates and pricing shifts across 30+ accredited lenders requires proactive assessment of borrowing capacity, serviceability buffers, and repayment strategies.
         </p>
 
         <!-- Accordion 1: Market Overview & Data Matrix (Open by Default) -->
@@ -574,23 +574,29 @@ def generate_article_html(item):
       <!-- RIGHT COLUMN: Sticky 4-Widget Sidebar (360px) -->
       <aside class="article-sidebar" style="position: -webkit-sticky !important; position: sticky !important; top: 105px !important; align-self: flex-start !important; max-height: calc(100vh - 120px) !important; overflow-y: auto !important; scrollbar-width: thin !important; display: flex; flex-direction: column; gap: 18px;">
         
-        <!-- 1. Broker Profile Card with Real Portrait & Banner Header -->
-        <div class="author-profile-box" id="broker-contact-card" style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:14px; overflow:hidden; text-align:center; box-shadow:0 4px 16px rgba(0,0,0,0.06); margin-bottom:20px;">
-          <div class="author-profile-banner" style="height:84px; overflow:hidden;">
-            <img src="/images/ez-broker-cover-header.jpg" alt="EZ Mortgage Broker Header" style="width:100%; height:100%; object-fit:cover; display:block;">
-          </div>
-          <div class="author-profile-avatar-wrap" style="width:78px; height:78px; border-radius:50%; background:#ffffff; box-shadow:0 4px 14px rgba(0,0,0,0.14); margin:-39px auto 10px; display:flex; align-items:center; justify-content:center; padding:4px; overflow:hidden; border:3px solid #ffffff;">
-            <img src="/images/ez-icon-circle.webp" alt="EZ Mortgage Broker" class="author-profile-avatar-img" style="width:92%; height:92%; object-fit:contain; display:block;">
-          </div>
-          <div class="author-profile-content" style="padding:0 18px 20px;">
-            <h3 class="author-profile-name" style="font-size:1.2rem; color:#0A2540; margin:0 0 2px; font-weight:800;">R Bakshi</h3>
-            <p class="author-profile-title" style="font-size:0.82rem; color:#64748b; margin:0 0 4px; font-weight:600;">Principal Mortgage Broker</p>
-            <p style="font-size:0.75rem; color:#1D4ED8; font-weight:700; margin:0 0 6px;">MFAA Accredited | CRN: 538522</p>
-            <div class="author-rating-stars" style="color:#f59e0b; font-size:0.88rem; margin-bottom:14px; font-weight:700;">★★★★★ <span>(14 Reviews)</span></div>
-            <div class="author-actions-col" style="display:flex; flex-direction:column; gap:8px;">
-              <a href="tel:1300050099" class="author-action-btn" style="display:flex; align-items:center; justify-content:center; gap:8px; width:100%; padding:10px 14px; border-radius:6px; font-weight:700; font-size:0.85rem; text-decoration:none; background:#1D4ED8; color:#ffffff !important; box-shadow:0 4px 12px rgba(29,78,216,0.25);">📞 Call 1300 050 099</a>
-              <a href="/#contact" class="author-action-btn secondary" style="display:flex; align-items:center; justify-content:center; gap:8px; width:100%; padding:10px 14px; border-radius:6px; font-weight:700; font-size:0.85rem; text-decoration:none; background:#F8FAFC; border:1px solid #CBD5E1; color:#0A2540 !important;">📅 Book Consultation</a>
+        <!-- 1. MFAA-Accredited Principal Broker Profile Card (Image 1 Gold Standard) -->
+        <div class="broker-profile-box" id="broker-contact-card" style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:16px; overflow:hidden; text-align:center; box-shadow:0 4px 16px rgba(0,0,0,0.06); margin-bottom:20px;">
+          <div class="broker-cover-header" style="height:90px; background:url('/images/footer-landscape-bg.webp') center/cover no-repeat;"></div>
+          <div class="broker-box-body" style="padding:0 18px 20px;">
+            <img src="/images/r-bakshi.jpeg" alt="R Bakshi - Principal Mortgage Broker" class="broker-box-avatar" width="100" height="100" style="width:100px; height:100px; border-radius:50%; object-fit:cover; border:4px solid #ffffff; box-shadow:0 4px 14px rgba(0,0,0,0.15); margin:-50px auto 10px; display:block;">
+            <h4 style="font-size:1.15rem; font-weight:800; color:#0A2540; margin:0 0 3px; text-transform:uppercase;">R BAKSHI</h4>
+            <div style="font-size:0.75rem; font-weight:700; color:#00876C; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.04em;">
+              PRINCIPAL FINANCE BROKER (MFAA ACCREDITED)
             </div>
+            <p style="font-size:0.8rem; color:#64748b; line-height:1.45; margin:0 0 12px; text-align:left;">
+              Specializing in Melbourne residential property finance, self-employed lending, and wealth restructuring across 30+ accredited lenders.
+            </p>
+            <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:10px 12px; font-size:0.75rem; color:#475569; text-align:left; margin-bottom:14px; line-height:1.5;">
+              <div><strong>CRN:</strong> 538522</div>
+              <div><strong>Aggregator:</strong> National Mortgage Brokers (nMB)</div>
+              <div><strong>Panel:</strong> 30+ Accredited Lenders</div>
+            </div>
+            <a href="tel:1300050099" style="display:flex; align-items:center; justify-content:center; gap:8px; background:#00876C; color:#ffffff !important; font-weight:800; padding:10px; border-radius:8px; text-decoration:none; font-size:0.85rem; margin-bottom:8px; box-shadow:0 3px 10px rgba(0,135,108,0.25);">
+              📞 Call 1300 050 099
+            </a>
+            <a href="/calculators.html" style="display:flex; align-items:center; justify-content:center; background:#0A2540; color:#ffffff !important; font-weight:700; padding:9px; border-radius:8px; text-decoration:none; font-size:0.82rem;">
+              Book Appointment
+            </a>
           </div>
         </div>
 

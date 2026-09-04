@@ -17,9 +17,14 @@ import os
 import json
 import re
 import html
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 
-ROOT_DIR = "/Users/robinbakshi/Documents/GitHub/ezmortgagebroker"
+AEST = timezone(timedelta(hours=10))
+
+ROOT_DIR = "/Volumes/Samsung SSD 2TB/03. Documents/GitHub/ezmortgagebroker"
+if not os.path.exists(ROOT_DIR):
+    ROOT_DIR = "/Users/robinbakshi/Documents/GitHub/ezmortgagebroker"
+
 POSTS_JSON = os.path.join(ROOT_DIR, "posts.json")
 PUB_POSTS_JSON = os.path.join(ROOT_DIR, "public", "posts.json")
 BLOG_HTML = os.path.join(ROOT_DIR, "pages", "blog.html")
@@ -87,7 +92,7 @@ def generate_card_markup(p, idx, is_blog_hub=True):
     return f"""        <{card_tag} class="{card_cls}"{data_cat} style="background:#ffffff; border:1.5px solid #E2E8F0; border-radius:16px; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 6px 20px rgba(10,37,64,0.04); transition:transform 0.25s ease, box-shadow 0.25s ease;">
           <div class="article-card-thumb" style="position:relative; height:210px; overflow:hidden; background:#0A2540;">
             <a href="{url}" aria-label="Read {html.escape(t)}" style="display:block; width:100%; height:100%;">
-              <img src="{img}" alt="{html.escape(t)}" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.4s ease;">
+              <img src="{img}" alt="{html.escape(t)}" loading="lazy" style="width:100%; height:100%; object-fit:cover; object-position:center 20%; display:block; transition:transform 0.4s ease;">
             </a>
             
             <!-- 1. Top-Left: Dynamic Date Badge -->
@@ -143,20 +148,24 @@ def main():
     # Sort descending by date (newest first)
     posts.sort(key=parse_date, reverse=True)
     
-    # Update dates to 23-Aug-2026
-    for p in posts[:25]:
-        p["publishedDate"] = "23-Aug-2026"
-        p["date"] = "23-Aug-2026"
-        p["formattedDate"] = "23-Aug-2026"
+    # 1. Update Homepage (index.html) Top 3 Featured Cards (Ensure 3 distinct stories & images)
+    seen_titles = set()
+    seen_images = set()
+    top3_posts = []
+    for p in posts:
+        t_key = p.get("title", "").strip().lower()
+        img_key = (p.get("heroImage") or p.get("image") or "").strip().lower()
+        if t_key not in seen_titles and img_key not in seen_images:
+            seen_titles.add(t_key)
+            seen_images.add(img_key)
+            top3_posts.append(p)
+            if len(top3_posts) == 3:
+                break
+    if len(top3_posts) < 3:
+        top3_posts = posts[:3]
 
-    with open(POSTS_JSON, "w", encoding="utf-8") as f:
-        json.dump(posts, f, indent=2)
-    with open(PUB_POSTS_JSON, "w", encoding="utf-8") as f:
-        json.dump(posts, f, indent=2)
-
-    # 1. Update Homepage (index.html) Top 3 Featured Cards
     top3_cards = ""
-    for idx, p in enumerate(posts[:3]):
+    for idx, p in enumerate(top3_posts):
         top3_cards += generate_card_markup(p, idx, is_blog_hub=False)
 
     for fpath in [INDEX_HTML, PUB_INDEX_HTML]:
@@ -171,8 +180,12 @@ def main():
 
     # 2. Update Insights Hub (pages/blog.html)
     rendered_blog_cards = ""
-    for idx, p in enumerate(posts[:18]):
+    for idx, p in enumerate(posts):
         rendered_blog_cards += generate_card_markup(p, idx, is_blog_hub=True)
+
+    now_aest = datetime.now(AEST)
+    header_date_str = now_aest.strftime("%a, %d %b")
+    newest_date_str = posts[0].get("publishedDate") or posts[0].get("date") or now_aest.strftime("%d-%b-%Y")
 
     blog_full_html = f"""<!DOCTYPE html>
 <html lang="en-AU">
@@ -595,7 +608,7 @@ def main():
           <span class="breaking-news-title">Mortgage brokers settle record 81.0% of all Australian residential home loans</span>
         </div>
         <div class="header-contact-group" style="display:flex; align-items:center; gap:16px;">
-          <span class="header-date">📅 Mon, 24 Aug</span>
+          <span class="header-date">📅 {header_date_str}</span>
           <a href="tel:1300050099" style="color:#ffffff; text-decoration:none; font-weight:700;">📞 1300 050 099</a>
           <a href="mailto:info@ezmortgagebroker.com.au" style="color:#ffffff; text-decoration:none;">✉️ info@ezmortgagebroker.com.au</a>
           <span>📍 Melbourne, VIC</span>
@@ -737,7 +750,7 @@ def main():
           <!-- Single Toolbar Row: Counter on Left + Grid/List Switcher on Right -->
           <div class="feed-toolbar">
             <div style="font-size:0.92rem; color:#64748B;">
-              Showing <strong style="color:#0A2540;" id="showingArticlesCount">{len(posts)}</strong> articles · <span style="color:#00876C; font-weight:700;">Sorted by Newest First (24-Aug-2026)</span>
+              Showing <strong style="color:#0A2540;" id="showingArticlesCount">{len(posts)}</strong> articles · <span style="color:#00876C; font-weight:700;">Sorted by Newest First ({newest_date_str})</span>
             </div>
 
             <!-- View Switcher (Grid vs List) -->
