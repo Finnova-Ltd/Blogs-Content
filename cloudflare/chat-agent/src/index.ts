@@ -1925,6 +1925,7 @@ const WIDGET_SCRIPT = `(function () {
     let brandCtaText = "Connect me with a licensed broker &rarr;";
     let brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/friday_avatar_female_poster.jpg";
     let brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_female.mp4";
+    let brandVideoId = "FCw4vx5Z3LmiTbUCRLS3";
     let brandBadgeName = "EZ MORTGAGE BROKER";
     let brandBadgeColor = "#3b82f6";
     let brandVoiceId = "Dh68koMHNSYl8A1jH9Je";
@@ -1942,6 +1943,7 @@ const WIDGET_SCRIPT = `(function () {
       brandCtaText = "Contact Finnova Community Team &rarr;";
       brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/friday_avatar_female_poster.jpg";
       brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_female.mp4";
+      brandVideoId = "j5ck0gcoPY3vyiBPJy6h";
       brandBadgeName = "FINNOVA CHARITY";
       brandBadgeColor = "#ec4899";
       brandVoiceId = "7xOqQceOZC5dhvkaqKtD";
@@ -2152,9 +2154,21 @@ const WIDGET_SCRIPT = `(function () {
 
       <div class="piper-hero-card">
         <div class="piper-hero-video-stage" id="piperVideoStage">
+          \${brandVideoId ? \`
+          <iframe id="piper-hero-iframe" 
+            src="https://app.heygen.com/embeds/\${brandVideoId}?autoplay=0&loop=0" 
+            allow="autoplay; fullscreen; encrypted-media; picture-in-picture" 
+            allowfullscreen 
+            style="width: 100%; height: 100%; border: none; border-radius: 14px; display: block; position: absolute; top: 0; left: 0; z-index: 1;">
+          </iframe>
+          <video id="piper-hero-video" playsinline muted preload="auto" poster="\${brandPoster}" style="display:none;">
+            <source src="\${brandVideo}" type="video/mp4">
+          </video>
+          \` : \`
           <video id="piper-hero-video" playsinline muted preload="auto" poster="\${brandPoster}">
             <source src="\${brandVideo}" type="video/mp4">
           </video>
+          \`}
           <!-- Floating Brand / Project Logo Badge -->
           <div class="piper-video-logo-badge" id="piperVideoLogoBadge">
             <span class="piper-badge-dot" style="background:\${brandBadgeColor};"></span>
