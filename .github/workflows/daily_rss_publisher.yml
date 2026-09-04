@@ -42,6 +42,15 @@ jobs:
           pytest tests/test_autopost_guard.py
         continue-on-error: true
 
+      - name: Monitor Daily ElevenLabs & Cloudflare Credits
+        continue-on-error: true
+        env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          CLOUDFLARE_API_KEY: ${{ secrets.CLOUDFLARE_API_KEY }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          python3 scripts/track_ai_credits.py || true
+
       - name: Trigger Jules Autonomous Healing on Failure
         if: steps.test-guard.outcome == failure
         uses: google-labs-code/jules-action@v1
