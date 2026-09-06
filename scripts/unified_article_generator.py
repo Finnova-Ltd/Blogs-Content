@@ -85,8 +85,12 @@ def query_gemini_flash(prompt: str) -> str:
 def audit_article_with_jules(headline: str, data: dict) -> dict:
     """
     Jules QA Auditor Agent:
-    Inspects generated article content for word count, boilerplate absence,
-    repayment calculations, Melbourne corridors, and Best Interests Duty (BID).
+    Inspects generated article content for:
+    1. Direct Topic Relevance to the Headline (Zero off-topic generic text)
+    2. Substantive Word Count (>= 400 words)
+    3. Absence of repetitive marketing boilerplate
+    4. Accurate financial modeling and local Melbourne context
+    5. Statutory Best Interests Duty (BID) compliance
     """
     combined_text = f"{data.get('summary', '')}\n\n{data.get('market_analysis', '')}\n\n{data.get('rate_repayment_math', '')}\n\n{data.get('strategic_advisory', '')}"
     
@@ -97,17 +101,18 @@ Headline: '{headline}'
 Text:
 \"\"\"{combined_text}\"\"\"
 
-Audit against these 5 strict rules:
-1. Word Count >= 350 words across the sections?
-2. Zero repetitive template boilerplate (e.g. 'streamlined desktop valuations', 'Compare 30+ lenders at zero cost')?
-3. Concrete mathematical rate and repayment differential (e.g. $650k loan at 5.89% vs 6.45%)?
-4. Explicit Melbourne growth corridors (e.g. Tarneit, Point Cook, Craigieburn)?
-5. Clear Best Interests Duty (BID) compliance stated?
+Audit against these 6 strict quality gates:
+1. TOPIC INTEGRITY & RELEVANCE GATE: Does the article directly and thoroughly deliver what the headline promises? (e.g., If the headline promises 'Suburb Rankings Under 600K', does it actually rank specific suburbs with real median prices, commute data, and suburb profiles? If it is just generic interest rate talk without actual rankings, IT MUST FAIL THIS GATE).
+2. Word Count >= 400 words across all sections?
+3. Zero repetitive template boilerplate phrases (e.g., 'streamlined desktop valuations', 'Compare 30+ lenders at zero cost')?
+4. Concrete financial modeling directly relevant to the article's topic?
+5. Clear Melbourne geographic and property market accuracy?
+6. Explicit statutory Best Interests Duty (BID) compliance stated?
 
 Return strictly valid JSON:
 {{
   "passed": true or false,
-  "critique": "Detailed editorial assessment",
+  "critique": "Detailed editorial assessment explaining whether the content directly matches the headline",
   "required_fixes": ["list of items to fix if false"]
 }}
 """
@@ -124,23 +129,24 @@ Return strictly valid JSON:
 
 def generate_article_content(headline: str) -> dict:
     base_prompt = f"""
-You are a senior Australian mortgage analyst and MFAA-accredited finance writer for EZ Mortgage Broker in Melbourne.
-Write an authentic, value-dense 450-word financial analysis article based on this headline:
+You are a senior Australian mortgage broker and MFAA-accredited finance writer for EZ Mortgage Broker in Melbourne.
+Write an authentic, value-dense 500-word financial article that DIRECTLY AND FULLY DELIVERS on this headline:
 '{headline}'
 
-Requirements:
-1. Minimum 400-500 words across 4 distinct sections.
-2. NO generic boilerplate, no empty marketing repetition.
-3. Provide realistic rate calculations on a $650,000 mortgage (e.g. comparing a competitive 5.89% variable rate to a 6.45% major bank rate, saving $238/mo or $2,856/year).
-4. Focus on Melbourne growth corridors (e.g. Western corridor: Tarneit, Point Cook; Northern corridor: Craigieburn; Bayside or Eastern suburbs).
-5. Address Victoria's $10,000 First Home Owner Grant and stamp duty exemptions up to $600,000.
-6. Statutory Best Interests Duty (BID) advisory for prospective buyers and refinancers.
+CRITICAL INSTRUCTIONS FOR TOPIC RELEVANCE:
+- Do NOT output a generic commentary about interest rates unless the headline specifically asks for interest rates.
+- If the headline is about SUBURB RANKINGS / WHERE TO BUY: You MUST provide an actual ranked list of specific Melbourne suburbs with 2026 median prices, property types (houses vs townhouses), transport/commute times, and Victorian stamp duty exemption applicability ($0 duty under $600K).
+- If the headline is about REFINANCING: Focus on bank loyalty taxes, break-even periods, clawbacks, and switching costs.
+- If the headline is about SMSF / PROPERTY INVESTING: Focus on LRBAs, trustee borrowing limits, and rental yields.
+- In all cases: Provide concrete financial numbers, calculations, and Melbourne-specific data.
+- Conclude with broker advice under statutory Best Interests Duty (BID).
+- NO repetitive marketing boilerplate.
 
 Output strictly valid JSON with these keys:
-"summary": "1-2 sentence executive summary (max 35 words)",
-"market_analysis": "2-3 comprehensive paragraphs examining macroeconomic context, RBA policy, and borrower debt serviceability (approx 180 words)",
-"rate_repayment_math": "Mathematical comparison table text and repayment breakdown (approx 120 words)",
-"strategic_advisory": "MFAA Principal Broker recommendations under Best Interests Duty (approx 100 words)"
+"summary": "1-2 sentence executive overview directly answering the headline (max 35 words)",
+"market_analysis": "The main in-depth content directly delivering on the headline (approx 250 words, e.g. the detailed suburb rankings or core topic analysis)",
+"rate_repayment_math": "Numerical financial modeling directly matching the topic (approx 130 words, e.g. price medians, repayments on 5% vs 20% deposit, or interest savings)",
+"strategic_advisory": "MFAA Principal Broker recommendations under Best Interests Duty tailored specifically to this topic (approx 100 words)"
 Do NOT wrap in markdown code blocks. Output JSON only.
 """
     # 1. Initial Draft Generation
@@ -197,11 +203,32 @@ def slugify(text: str) -> str:
     text = re.sub(r'[\s-]+', '-', text).strip('-')
     return text[:75]
 
+def format_editorial_html(text: str) -> str:
+    """Converts markdown subheadings and bullet points into styled editorial HTML."""
+    if not text: return ""
+    # Subheadings
+    text = re.sub(r'###\s+(.*)', r'<h3 style="font-size:1.15rem; font-weight:800; color:#0A2540; margin:20px 0 8px; border-bottom:1.5px solid #E2E8F0; padding-bottom:6px;">\1</h3>', text)
+    text = re.sub(r'##\s+(.*)', r'<h3 style="font-size:1.15rem; font-weight:800; color:#0A2540; margin:20px 0 8px;">\1</h3>', text)
+    # Bold text
+    text = re.sub(r'\*\*(.*?)\*\*', r'<strong>\1</strong>', text)
+    # Bullet points
+    text = re.sub(r'^\*\s+(.*)', r'<li style="margin-bottom:6px; line-height:1.6;">\1</li>', text, flags=re.MULTILINE)
+    text = re.sub(r'(<li.*?>.*?</li>\n?)+', r'<ul style="padding-left:20px; color:#334155; margin:10px 0 16px;">\g<0></ul>', text)
+    # Paragraphs
+    paragraphs = [p.strip() for p in text.split("\n\n") if p.strip()]
+    formatted_paras = []
+    for p in paragraphs:
+        if p.startswith("<h3") or p.startswith("<ul") or p.startswith("<div"):
+            formatted_paras.append(p)
+        else:
+            formatted_paras.append(f'<p class="font-editorial" style="font-size:1.05rem; line-height:1.65; color:#334155; margin:14px 0 0;">{p}</p>')
+    return "\n".join(formatted_paras)
+
 def render_article_html(slug: str, title: str, category: str, date_str: str, data: dict) -> str:
     summary = data.get("summary", "")
-    market_analysis = data.get("market_analysis", "").replace("\n\n", "</p><p class='font-editorial' style='font-size:1.05rem; line-height:1.65; color:#334155; margin:14px 0 0;'>")
-    rate_math = data.get("rate_repayment_math", "")
-    advisory = data.get("strategic_advisory", "")
+    market_analysis = format_editorial_html(data.get("market_analysis", ""))
+    rate_math = format_editorial_html(data.get("rate_repayment_math", ""))
+    advisory = format_editorial_html(data.get("strategic_advisory", ""))
 
     html = f"""<!DOCTYPE html>
 <html lang="en-AU">
@@ -274,25 +301,25 @@ def render_article_html(slug: str, title: str, category: str, date_str: str, dat
     
     <!-- Left Column: Editorial Analysis -->
     <article>
-      <!-- Section 1: Market Analysis -->
+      <!-- Section 1: Core Topic Analysis / Suburb Rankings -->
       <div class="content-box-body">
-        <h2 style="font-size:1.25rem; font-weight:900; color:#0A2540; margin:0 0 14px;">1. Market Landscape &amp; Policy Context</h2>
-        <p class="font-editorial" style="font-size:1.05rem; line-height:1.65; color:#334155; margin:0;">{market_analysis}</p>
+        <h2 style="font-size:1.25rem; font-weight:900; color:#0A2540; margin:0 0 14px;">1. Market Analysis &amp; Comprehensive Overview</h2>
+        {market_analysis}
       </div>
 
-      <!-- Section 2: Rate & Repayment Differential -->
+      <!-- Section 2: Financial Modeling & Repayments -->
       <div class="content-box-body">
-        <h2 style="font-size:1.25rem; font-weight:900; color:#0A2540; margin:0 0 14px;">2. Rate Spread &amp; Repayment Modeling</h2>
-        <p class="font-editorial" style="font-size:1.05rem; line-height:1.65; color:#334155; margin:0 0 16px;">{rate_math}</p>
-        <div style="background:#F8FAFC; border:1px solid #CBD5E1; border-radius:12px; padding:16px; font-size:0.85rem; color:#0F172A;">
-          <strong>💡 Melbourne Borrower Benchmark:</strong> Comparing 30+ lenders frequently reveals variable rate discounts of 0.40% to 0.65% below major bank headline pricing, saving over $2,800 annually on standard $650k loans.
+        <h2 style="font-size:1.25rem; font-weight:900; color:#0A2540; margin:0 0 14px;">2. Pricing, Repayment &amp; Stamp Duty Modeling</h2>
+        {rate_math}
+        <div style="background:#F8FAFC; border:1px solid #CBD5E1; border-radius:12px; padding:16px; font-size:0.85rem; color:#0F172A; margin-top:18px;">
+          <strong>💡 Melbourne Buyer Benchmark:</strong> Victorian buyers purchasing under $600,000 pay $0 in state stamp duty, creating a net saving of up to $31,070 compared to standard thresholds.
         </div>
       </div>
 
       <!-- Section 3: Strategic Broker Advisory -->
       <div class="content-box-advisory">
-        <h2 style="font-size:1.25rem; font-weight:900; color:#1E3A8A; margin:0 0 12px;">3. MFAA Broker Advisory (Best Interests Duty)</h2>
-        <p class="font-editorial" style="font-size:1.05rem; line-height:1.65; color:#1E3A8A; margin:0;">{advisory}</p>
+        <h2 style="font-size:1.25rem; font-weight:900; color:#1E3A8A; margin:0 0 12px;">3. Strategic Broker Advisory (Best Interests Duty)</h2>
+        {advisory}
       </div>
     </article>
 
