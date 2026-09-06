@@ -192,9 +192,9 @@ def render_image3_html(slug, title, category, badge, date_str, read_time, author
         <a href="/#about" style="color:#0A2540; text-decoration:none;">About</a>
         <a href="/#contact" style="color:#0A2540; text-decoration:none;">Contact</a>
       </nav>
-      <div style="display:flex; gap:10px;">
-        <a href="tel:1300050099" style="padding:7px 15px; border:1.5px solid #0A2540; color:#0A2540; border-radius:6px; font-weight:700; text-decoration:none; font-size:0.82rem;">Call Us</a>
-        <a href="/#contact" style="padding:7px 16px; background:#1D4ED8; color:#ffffff; border-radius:6px; font-weight:700; text-decoration:none; font-size:0.82rem;">Book Consult</a>
+      <div style="display:flex; gap:10px; flex-shrink:0; white-space:nowrap;">
+        <a href="tel:1300050099" style="padding:7px 15px; border:1.5px solid #0A2540; color:#0A2540; border-radius:6px; font-weight:700; text-decoration:none; font-size:0.82rem; white-space:nowrap;">Call Us</a>
+        <a href="/#contact" style="padding:7px 16px; background:#1D4ED8; color:#ffffff; border-radius:6px; font-weight:700; text-decoration:none; font-size:0.82rem; white-space:nowrap;">Book Consult</a>
       </div>
     </div>
   </header>
@@ -410,12 +410,14 @@ def render_image3_html(slug, title, category, badge, date_str, read_time, author
             <div><strong>Aggregator:</strong> National Mortgage Brokers (nMB)</div>
             <div><strong>Panel:</strong> 30+ Accredited Lenders</div>
           </div>
-          <a href="tel:1300050099" style="display:flex; align-items:center; justify-content:center; gap:6px; background:#00876C; color:#FFFFFF !important; font-weight:800; padding:8px 0; border-radius:8px; text-decoration:none; font-size:0.82rem; margin-bottom:6px; box-shadow:0 2px 6px rgba(0,135,108,0.2);">
-            <span>📞 Call 1300 050 099</span>
-          </a>
-          <a href="/#contact" style="display:flex; align-items:center; justify-content:center; background:#0A2540; color:#FFFFFF !important; font-weight:800; padding:7px 0; border-radius:8px; text-decoration:none; font-size:0.8rem;">
-            Book Appointment
-          </a>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; width:100%; margin-top:8px;">
+            <a href="tel:1300050099" style="display:flex; align-items:center; justify-content:center; gap:4px; background:#00876C; color:#FFFFFF !important; font-weight:800; padding:9px 4px; border-radius:8px; text-decoration:none; font-size:0.78rem; white-space:nowrap; box-shadow:0 2px 6px rgba(0,135,108,0.2);">
+              <span>📞 Call Us</span>
+            </a>
+            <a href="/#contact" style="display:flex; align-items:center; justify-content:center; background:#0A2540; color:#FFFFFF !important; font-weight:800; padding:9px 4px; border-radius:8px; text-decoration:none; font-size:0.78rem; white-space:nowrap;">
+              📅 Book Consult
+            </a>
+          </div>
         </div>
       </div>
 
