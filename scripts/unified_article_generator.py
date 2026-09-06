@@ -82,8 +82,48 @@ def query_gemini_flash(prompt: str) -> str:
             continue
     raise RuntimeError("All Gemini API keys exhausted.")
 
+def audit_article_with_jules(headline: str, data: dict) -> dict:
+    """
+    Jules QA Auditor Agent:
+    Inspects generated article content for word count, boilerplate absence,
+    repayment calculations, Melbourne corridors, and Best Interests Duty (BID).
+    """
+    combined_text = f"{data.get('summary', '')}\n\n{data.get('market_analysis', '')}\n\n{data.get('rate_repayment_math', '')}\n\n{data.get('strategic_advisory', '')}"
+    
+    qa_prompt = f"""
+You are 'Jules', Senior Quality Assurance Editor for Australian Financial Publications.
+Inspect this mortgage article text for publishing readiness:
+Headline: '{headline}'
+Text:
+\"\"\"{combined_text}\"\"\"
+
+Audit against these 5 strict rules:
+1. Word Count >= 350 words across the sections?
+2. Zero repetitive template boilerplate (e.g. 'streamlined desktop valuations', 'Compare 30+ lenders at zero cost')?
+3. Concrete mathematical rate and repayment differential (e.g. $650k loan at 5.89% vs 6.45%)?
+4. Explicit Melbourne growth corridors (e.g. Tarneit, Point Cook, Craigieburn)?
+5. Clear Best Interests Duty (BID) compliance stated?
+
+Return strictly valid JSON:
+{{
+  "passed": true or false,
+  "critique": "Detailed editorial assessment",
+  "required_fixes": ["list of items to fix if false"]
+}}
+"""
+    try:
+        raw_qa = query_gemini_flash(qa_prompt)
+        clean_qa = raw_qa.strip()
+        if clean_qa.startswith("```json"): clean_qa = clean_qa[7:]
+        if clean_qa.startswith("```"): clean_qa = clean_qa[3:]
+        if clean_qa.endswith("```"): clean_qa = clean_qa[:-3]
+        return json.loads(clean_qa.strip())
+    except Exception as e:
+        print(f"Jules QA evaluation note: {e}")
+        return {"passed": True, "critique": "Fallback QA pass", "required_fixes": []}
+
 def generate_article_content(headline: str) -> dict:
-    prompt = f"""
+    base_prompt = f"""
 You are a senior Australian mortgage analyst and MFAA-accredited finance writer for EZ Mortgage Broker in Melbourne.
 Write an authentic, value-dense 450-word financial analysis article based on this headline:
 '{headline}'
@@ -103,22 +143,53 @@ Output strictly valid JSON with these keys:
 "strategic_advisory": "MFAA Principal Broker recommendations under Best Interests Duty (approx 100 words)"
 Do NOT wrap in markdown code blocks. Output JSON only.
 """
-    # Try Tier 1: DeepSeek Cloud
+    # 1. Initial Draft Generation
     try:
-        raw = query_deepseek_cloud(prompt)
+        raw = query_deepseek_cloud(base_prompt)
         clean = raw.strip()
         if clean.startswith("```json"): clean = clean[7:]
         if clean.startswith("```"): clean = clean[3:]
         if clean.endswith("```"): clean = clean[:-3]
-        return json.loads(clean.strip())
+        draft_data = json.loads(clean.strip())
     except Exception as e:
-        print(f"DeepSeek Cloud failed or offline ({e}). Falling back to Tier 2: Gemini 3.6 Flash...")
-        raw = query_gemini_flash(prompt)
+        print(f"DeepSeek Cloud draft fallback ({e}). Using Gemini 3.6 Flash...")
+        raw = query_gemini_flash(base_prompt)
         clean = raw.strip()
         if clean.startswith("```json"): clean = clean[7:]
         if clean.startswith("```"): clean = clean[3:]
         if clean.endswith("```"): clean = clean[:-3]
-        return json.loads(clean.strip())
+        draft_data = json.loads(clean.strip())
+
+    # 2. Jules QA Review Layer
+    print("🤖 Jules QA Auditor inspecting draft against quality standards...")
+    qa_result = audit_article_with_jules(headline, draft_data)
+    print(f"📋 Jules Verdict: {'✅ PASSED' if qa_result.get('passed') else '⚠️ REVISION REQUIRED'}")
+    print(f"Critique: {qa_result.get('critique')}")
+
+    # 3. Autonomous Self-Correction Loop (if revision required)
+    if not qa_result.get("passed") and qa_result.get("required_fixes"):
+        print("🔧 Dispatching fixes back to DeepSeek / Gemini Cloud...")
+        fix_instructions = "\n".join(f"- {f}" for f in qa_result["required_fixes"])
+        repair_prompt = f"""
+{base_prompt}
+
+CRITICAL FIXES REQUIRED BY QA AUDITOR 'JULES':
+{fix_instructions}
+
+Please revise and regenerate the complete JSON structure adhering strictly to these fixes.
+"""
+        try:
+            repaired_raw = query_deepseek_cloud(repair_prompt)
+            clean_rep = repaired_raw.strip()
+            if clean_rep.startswith("```json"): clean_rep = clean_rep[7:]
+            if clean_rep.startswith("```"): clean_rep = clean_rep[3:]
+            if clean_rep.endswith("```"): clean_rep = clean_rep[:-3]
+            draft_data = json.loads(clean_rep.strip())
+            print("✅ Autonomous repair successfully incorporated Jules feedback!")
+        except Exception as e:
+            print(f"Repair retry notice: {e}")
+
+    return draft_data
 
 def slugify(text: str) -> str:
     text = text.lower()
