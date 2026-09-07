@@ -194,8 +194,8 @@ static_html_content = f"""<!DOCTYPE html>
       margin: 40px auto 60px;
       padding: 0 24px;
       display: grid;
-      grid-template-columns: 1fr 340px;
-      gap: 40px;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 36px;
       align-items: start;
     }}
     @media (max-width: 991px) {{
@@ -208,6 +208,9 @@ static_html_content = f"""<!DOCTYPE html>
       border-radius: 18px;
       padding: 44px 48px;
       box-shadow: 0 4px 16px rgba(10, 37, 64, 0.04);
+      min-width: 0;
+      max-width: 100%;
+      overflow: hidden;
     }}
     @media (max-width: 640px) {{
       .article-a4-sheet {{ padding: 24px 20px; }}
