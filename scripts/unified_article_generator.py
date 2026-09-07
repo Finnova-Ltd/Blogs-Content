@@ -139,8 +139,30 @@ Return strictly valid JSON:
             print(f"Jules QA evaluation note: {e2}")
             return {"passed": True, "critique": "Fallback QA pass", "required_fixes": []}
 
-def generate_article_content(headline: str) -> dict:
-    base_prompt = f"""
+def generate_article_content(headline: str, category: str = "Home Loans") -> dict:
+    is_salesforce = any(k in (headline + " " + category).lower() for k in ["salesforce", "apex", "flow", "mcp", "devops", "agentforce", "cloud", "crm"])
+    
+    if is_salesforce:
+        base_prompt = f"""
+You are a Lead Enterprise Technical Architect and Salesforce Engineering Director at EZ Consultants in Melbourne.
+Write an authentic, highly technical, practitioner-grade engineering guide that DIRECTLY DELIVERS on this headline:
+'{headline}'
+
+CRITICAL ENGINEERING & INFORMATION GAIN RULES:
+1. BAN GENERIC BUZZWORDS: Never use phrases like 'In today’s rapidly evolving landscape', 'fundamental shift', 'hyper-personalized customer touchpoints', or 'revolutionizing enterprise operations'.
+2. FRONT-LOAD INFORMATION GAIN: State the architectural problem, Governor Limits risk, and technical thesis in sentence #1.
+3. CONCRETE ARTIFACTS: Reference real tools (Claude Code, Cursor, MCP Server, Tooling API, Scratch Orgs, sf CLI, PMD Code Analyzer, fflib Enterprise Patterns, APRA CPS 234, ISO 27001).
+4. NATURAL WRITING: Keep transition words natural (8%–15% max). Avoid formulaic connective stuffing.
+
+Output strictly valid JSON with these keys:
+"summary": "1-2 sentence executive overview directly answering the headline (max 35 words)",
+"market_analysis": "The deep-dive technical architecture with code references and operational mechanics (approx 250 words)",
+"rate_repayment_math": "Guardrails, CI/CD pipeline stages, or concrete comparative breakdown (approx 130 words)",
+"strategic_advisory": "Principal Technical Architect recommendations under APRA CPS 234 / enterprise governance (approx 100 words)"
+Do NOT wrap in markdown code blocks. Output JSON only.
+"""
+    else:
+        base_prompt = f"""
 You are a senior Australian mortgage broker and MFAA-accredited finance writer for EZ Mortgage Broker in Melbourne.
 Write an authentic, value-dense 500-word financial article that DIRECTLY AND FULLY DELIVERS on this headline:
 '{headline}'
@@ -151,11 +173,9 @@ CRITICAL INSTRUCTIONS FOR TOPIC RELEVANCE:
 - If the headline is about REFINANCING: Focus on bank loyalty taxes, break-even periods, clawbacks, and switching costs.
 - If the headline is about SMSF / PROPERTY INVESTING: Focus on LRBAs, trustee borrowing limits, and rental yields.
 - In all cases: Provide concrete financial numbers, calculations, and Melbourne-specific data.
-- YOAST READABILITY RULE: Keep sentences crisp and clear (under 20 words). Use natural transition words (furthermore, specifically, consequently, in addition, however, therefore, meanwhile) in at least 25% of sentences.
-- BOLDGRID KEYWORD OPTIMIZATION: Naturally incorporate the primary topic keywords at a 1.2% - 2.0% density without keyword stuffing.
-- ULTIMATE SEO LSI ENRICHMENT: Explicitly mention co-occurring financial terms: LVR, LMI, APRA buffer, stamp duty exemption, and Best Interests Duty (BID).
+- NO repetitive marketing boilerplate or artificial transitional stuffing. Keep prose natural and punchy.
+- Mention statutory lending terms naturally: LVR, LMI, APRA buffer, stamp duty exemption, and Best Interests Duty (BID).
 - Conclude with broker advice under statutory Best Interests Duty (BID).
-- NO repetitive marketing boilerplate.
 
 Output strictly valid JSON with these keys:
 "summary": "1-2 sentence executive overview directly answering the headline (max 35 words)",
@@ -425,7 +445,7 @@ def publish_article(headline: str, category: str = "Home Loans"):
     date_str = get_current_date_str()
     slug = slugify(headline)
     print(f"[{date_str}] Generating rich financial article for: '{headline}'...")
-    data = generate_article_content(headline)
+    data = generate_article_content(headline, category)
     html_content = render_article_html(slug, headline, category, date_str, data)
 
     # Run deterministic SEO engine audit (Yoast + BoldGrid + Ultimate SEO WP)
