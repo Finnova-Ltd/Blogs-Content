@@ -506,6 +506,28 @@ static_html_content = f"""<!DOCTYPE html>
       color: #FFFFFF;
       box-shadow: 0 4px 14px rgba(10,37,64,0.06);
     }}
+    .btn-cta-gold {{
+      display: block !important;
+      text-align: center !important;
+      padding: 12px 18px !important;
+      font-size: 0.85rem !important;
+      font-weight: 800 !important;
+      width: 100% !important;
+      background: linear-gradient(135deg, #0077C8 0%, #005A9C 100%) !important;
+      color: #FFFFFF !important;
+      text-decoration: none !important;
+      border-radius: 10px !important;
+      box-shadow: 0 4px 14px rgba(0, 119, 200, 0.4) !important;
+      border: 1px solid rgba(255, 255, 255, 0.25) !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.03em !important;
+      transition: transform 0.15s ease, background 0.15s ease !important;
+    }}
+    .btn-cta-gold:hover {{
+      background: linear-gradient(135deg, #0088E8 0%, #006AB8 100%) !important;
+      transform: translateY(-1px) !important;
+      color: #FFFFFF !important;
+    }}
 
     /* Section Flash Animation */
     @keyframes sectionFlash {{
