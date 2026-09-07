@@ -19,26 +19,21 @@ Every article page consists of a **Full-Bleed Header Banner** followed by a **2-
 +-------------------------------------------------------------------------------+
 
 +---------------------------------------------------+  +------------------------+
-|           LEFT COLUMN: MAIN ARTICLE BODY          |  |   RIGHT COLUMN:        |
-|                                                   |  |   STICKY 5-WIDGET      |
-|  • Executive Context Lead Paragraph               |  |   SIDEBAR (360px)      |
+|   LEFT COLUMN: SINGLE CONTINUOUS A4-STYLE SHEET   |  |   RIGHT COLUMN:        |
+|   (article-a4-sheet: padding:44px 48px, white)    |  |   STICKY 2-WIDGET      |
+|                                                   |  |   SIDEBAR (340px)      |
+|  • Executive Summary (Immediate Topic Answer)     |  |                        |
+|                                                   |  |  Card 1: Broker Profile|
+|  [H2: 1. Market Analysis & Ranked Data Breakdown] |  |     - Avatar & Profile |
+|     - Deep-dive narrative & ranked suburb table   |  |     - 1-Row Action Grid|
+|     - Exact prices, commutes, & stamp duty data   |  |       [Call] [Consult] |
 |                                                   |  |                        |
-|  [1. Accordion: Overview & Data Matrix [-]]       |  |  1. Broker Profile Card|
-|     - Deep-dive narrative                        |  |     - Avatar & Star (14|
-|     - 3-Column Comparative Matrix Data Table      |  |     - 3 Action CTAs    |
+|  [H2: 2. Pricing, Repayment & Stamp Duty Math]    |  |  Card 2: Highlights    |
+|     - APRA 3% buffer & repayment calculation      |  |     - Section anchors  |
+|     - LVR, LMI, & SRO $0 duty exemption callout   |  |     - Direct Jump Links|
 |                                                   |  |                        |
-|  [2. Accordion: Technical & Policy Deep-Dive [+]] |  |  2. Crimson Highlights |
-|     - Underwriting / regulatory standards         |  |     - Date & Bullets   |
-|                                                   |  |     - Top of Article ↑ |
-|  [3. Accordion: Regulatory Compliance & BID [+]]  |  |                        |
-|     - ASIC / APRA / AUSTRAC context               |  |  3. Google Reviews Card|
-|                                                   |  |     - 5.0 Rating ⭐     |
-|  [4. Accordion: Action Checklist [+]]             |  |                        |
-|     - 4-Phase Green Checkmark Box                 |  |  4. Mortgage           |
-|                                                   |  |     Calculators Card   |
-|  [5. Accordion: Advisory & Source Attribution [+]]|  |                        |
-|     - Specialist Help Callout & Citation          |  |  5. Sticky Advisory    |
-|                                                   |  |     Direct Call CTA    |
+|  [H2: 3. Strategic Broker Advisory (BID)]         |  |                        |
+|     - MFAA compliance & tactical steps            |  |                        |
 +---------------------------------------------------+  +------------------------+
 ```
 

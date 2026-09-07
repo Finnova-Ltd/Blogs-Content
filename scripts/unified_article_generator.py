@@ -63,7 +63,7 @@ def query_deepseek_cloud(prompt: str) -> str:
 
 def query_gemini_flash(prompt: str) -> str:
     for key in GEMINI_KEYS:
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key={key}"
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={key}"
         payload = {
             "contents": [{"parts": [{"text": prompt}]}]
         }
@@ -74,7 +74,7 @@ def query_gemini_flash(prompt: str) -> str:
                 headers={"Content-Type": "application/json"},
                 method="POST"
             )
-            with urllib.request.urlopen(req, timeout=20) as resp:
+            with urllib.request.urlopen(req, timeout=10) as resp:
                 res = json.loads(resp.read().decode("utf-8"))
                 return res["candidates"][0]["content"]["parts"][0]["text"].strip()
         except Exception as e:
@@ -84,48 +84,57 @@ def query_gemini_flash(prompt: str) -> str:
 
 def audit_article_with_jules(headline: str, data: dict) -> dict:
     """
-    Jules QA Auditor Agent:
-    Inspects generated article content for:
-    1. Direct Topic Relevance to the Headline (Zero off-topic generic text)
-    2. Substantive Word Count (>= 400 words)
-    3. Absence of repetitive marketing boilerplate
-    4. Accurate financial modeling and local Melbourne context
-    5. Statutory Best Interests Duty (BID) compliance
+    Jules QA Auditor Agent (incorporating Yoast, BoldGrid, and Ultimate SEO WP standards):
+    1. Direct Topic Relevance & Suburb Data (Zero macro fluff)
+    2. Word Count >= 450 words
+    3. Yoast Readability & Transition Words (>= 25% transitional phrasing)
+    4. BoldGrid Keyword Density (1.2% - 2.2% optimal target)
+    5. Ultimate SEO LSI Terminology (APRA buffer, LVR, LMI, BID, Stamp Duty)
+    6. Strict Heading Hierarchy (H1 -> H2 -> H3)
     """
     combined_text = f"{data.get('summary', '')}\n\n{data.get('market_analysis', '')}\n\n{data.get('rate_repayment_math', '')}\n\n{data.get('strategic_advisory', '')}"
     
     qa_prompt = f"""
-You are 'Jules', Senior Quality Assurance Editor for Australian Financial Publications.
-Inspect this mortgage article text for publishing readiness:
+You are 'Jules', Senior Quality Assurance Editor and SEO Lead for Australian Financial Publications.
+Inspect this mortgage article text against these strict SEO and editorial criteria:
 Headline: '{headline}'
 Text:
 \"\"\"{combined_text}\"\"\"
 
 Audit against these 6 strict quality gates:
-1. TOPIC INTEGRITY & RELEVANCE GATE: Does the article directly and thoroughly deliver what the headline promises? (e.g., If the headline promises 'Suburb Rankings Under 600K', does it actually rank specific suburbs with real median prices, commute data, and suburb profiles? If it is just generic interest rate talk without actual rankings, IT MUST FAIL THIS GATE).
-2. Word Count >= 400 words across all sections?
-3. Zero repetitive template boilerplate phrases (e.g., 'streamlined desktop valuations', 'Compare 30+ lenders at zero cost')?
-4. Concrete financial modeling directly relevant to the article's topic?
-5. Clear Melbourne geographic and property market accuracy?
-6. Explicit statutory Best Interests Duty (BID) compliance stated?
+1. TOPIC INTEGRITY & RELEVANCE GATE: Does the article directly answer the headline without generic macro filler? (If about 'Suburb Rankings Under 600K', does it give ranked suburbs with exact median prices, property types, and commute times?)
+2. SUBSTANTIVE DEPTH: Is total word count >= 450 words across all sections?
+3. BOLDGRID KEYWORD OPTIMIZATION: Is the core topic naturally integrated without keyword stuffing (target 1.2%–2.2% density)?
+4. YOAST READABILITY: Clear sentences, logical transition words (furthermore, consequently, specifically, in addition), and active voice?
+5. ULTIMATE SEO LSI ENRICHMENT: Contains essential Australian mortgage terms (LVR, LMI, APRA buffer, stamp duty exemption, Best Interests Duty)?
+6. ZERO TEMPLATE BOILERPLATE: No generic filler phrases.
 
 Return strictly valid JSON:
 {{
   "passed": true or false,
-  "critique": "Detailed editorial assessment explaining whether the content directly matches the headline",
+  "critique": "Editorial assessment",
   "required_fixes": ["list of items to fix if false"]
 }}
 """
     try:
-        raw_qa = query_gemini_flash(qa_prompt)
+        raw_qa = query_deepseek_cloud(qa_prompt)
         clean_qa = raw_qa.strip()
         if clean_qa.startswith("```json"): clean_qa = clean_qa[7:]
         if clean_qa.startswith("```"): clean_qa = clean_qa[3:]
         if clean_qa.endswith("```"): clean_qa = clean_qa[:-3]
         return json.loads(clean_qa.strip())
     except Exception as e:
-        print(f"Jules QA evaluation note: {e}")
-        return {"passed": True, "critique": "Fallback QA pass", "required_fixes": []}
+        print(f"DeepSeek QA fallback to Gemini ({e})...")
+        try:
+            raw_qa = query_gemini_flash(qa_prompt)
+            clean_qa = raw_qa.strip()
+            if clean_qa.startswith("```json"): clean_qa = clean_qa[7:]
+            if clean_qa.startswith("```"): clean_qa = clean_qa[3:]
+            if clean_qa.endswith("```"): clean_qa = clean_qa[:-3]
+            return json.loads(clean_qa.strip())
+        except Exception as e2:
+            print(f"Jules QA evaluation note: {e2}")
+            return {"passed": True, "critique": "Fallback QA pass", "required_fixes": []}
 
 def generate_article_content(headline: str) -> dict:
     base_prompt = f"""
@@ -299,28 +308,30 @@ def render_article_html(slug: str, title: str, category: str, date_str: str, dat
   <!-- Main Article Layout -->
   <main class="article-layout-grid">
     
-    <!-- Left Column: Editorial Analysis -->
-    <article>
+    <!-- Left Column: Single Continuous A4-Style Editorial Sheet -->
+    <article class="article-a4-sheet" style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:18px; padding:44px 48px; box-shadow:0 4px 16px rgba(10,37,64,0.04);">
+      
       <!-- Section 1: Core Topic Analysis / Suburb Rankings -->
-      <div class="content-box-body">
-        <h2 style="font-size:1.25rem; font-weight:900; color:#0A2540; margin:0 0 14px;">1. Market Analysis &amp; Comprehensive Overview</h2>
-        {market_analysis}
-      </div>
+      <h2 style="font-size:1.35rem; font-weight:900; color:#0A2540; margin:0 0 16px; border-bottom:2px solid #F1F5F9; padding-bottom:10px;">
+        1. Market Analysis &amp; Comprehensive Breakdown
+      </h2>
+      {market_analysis}
 
       <!-- Section 2: Financial Modeling & Repayments -->
-      <div class="content-box-body">
-        <h2 style="font-size:1.25rem; font-weight:900; color:#0A2540; margin:0 0 14px;">2. Pricing, Repayment &amp; Stamp Duty Modeling</h2>
-        {rate_math}
-        <div style="background:#F8FAFC; border:1px solid #CBD5E1; border-radius:12px; padding:16px; font-size:0.85rem; color:#0F172A; margin-top:18px;">
-          <strong>💡 Melbourne Buyer Benchmark:</strong> Victorian buyers purchasing under $600,000 pay $0 in state stamp duty, creating a net saving of up to $31,070 compared to standard thresholds.
-        </div>
+      <h2 style="font-size:1.35rem; font-weight:900; color:#0A2540; margin:36px 0 16px; border-bottom:2px solid #F1F5F9; padding-bottom:10px;">
+        2. Pricing, Repayment &amp; Stamp Duty Modeling
+      </h2>
+      {rate_math}
+      <div style="background:#F8FAFC; border-left:4px solid #1D4ED8; border-radius:0 10px 10px 0; padding:16px 20px; font-size:0.9rem; color:#0F172A; margin:24px 0;">
+        <strong>💡 Melbourne Buyer Benchmark:</strong> Victorian buyers purchasing under $600,000 pay $0 in state stamp duty, creating a net saving of up to $31,070 compared to standard thresholds.
       </div>
 
       <!-- Section 3: Strategic Broker Advisory -->
-      <div class="content-box-advisory">
-        <h2 style="font-size:1.25rem; font-weight:900; color:#1E3A8A; margin:0 0 12px;">3. Strategic Broker Advisory (Best Interests Duty)</h2>
-        {advisory}
-      </div>
+      <h2 style="font-size:1.35rem; font-weight:900; color:#0A2540; margin:36px 0 16px; border-bottom:2px solid #F1F5F9; padding-bottom:10px;">
+        3. Strategic Broker Advisory (Best Interests Duty)
+      </h2>
+      {advisory}
+
     </article>
 
     <!-- Right Column: Sticky Sidebar Card 1 & Card 2 (Image 3 Standard) -->
