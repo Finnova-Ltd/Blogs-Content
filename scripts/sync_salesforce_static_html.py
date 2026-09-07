@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """
 Sync static HTML pages for your-three-year-salesforce-backlog with:
-- Red Highlights Header (#990000) & Navigational Sub-headings
+- Card 1: Joe Williams profile card with background image (/images/melbourne-bourke-street-header.webp)
+- Card 2: Red Highlights Header (#990000) & Navigational Sub-headings
+- Card 3: Consultation Card moved to Column 2
 - Center-aligned ASCII diagram with green monospace text on deep black
-- Interactive Salesforce Code Playground with basic.html, basic.js, InvoiceServiceTest.cls, theme switch, and copy button
+- Code Box: 1 single top row with tabs on left and theme/copy on right
 """
 
 import os
@@ -15,13 +17,13 @@ PUBLIC_FILE = EZ_DIR / "public" / "pages" / "blog" / "your-three-year-salesforce
 DIST_FILE = EZ_DIR / "dist" / "pages" / "blog" / "your-three-year-salesforce-backlog-is-now-this-week-s-sprint.html"
 
 from enhance_salesforce_article_ui import (
-    generate_salesforce_playground,
+    generate_tabbed_code_box,
     generate_mcp_config_box,
     generate_centered_architecture_diagram,
     generate_centered_cicd_diagram
 )
 
-playground_html = generate_salesforce_playground()
+tabbed_code_html = generate_tabbed_code_box()
 mcp_box_html = generate_mcp_config_box()
 arch_diag_html = generate_centered_architecture_diagram()
 cicd_diag_html = generate_centered_cicd_diagram()
@@ -298,46 +300,6 @@ static_html_content = f"""<!DOCTYPE html>
       line-height: 1.55;
     }}
 
-    /* Bottom CTA Box */
-    .consultation-cta-card {{
-      margin-top: 48px;
-      background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-950) 100%);
-      border: 2px solid rgba(0, 119, 200, 0.4);
-      border-radius: 16px;
-      padding: 28px 32px;
-      color: #FFFFFF;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }}
-    @media (min-width: 640px) {{
-      .consultation-cta-card {{ flex-direction: row; align-items: center; justify-content: space-between; }}
-    }}
-    .cta-badge {{
-      font-size: 0.72rem;
-      font-weight: 800;
-      color: #38BDF8;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 4px;
-    }}
-    .cta-heading {{ font-size: 1.25rem; font-weight: 900; margin: 0 0 6px; }}
-    .cta-desc {{ font-size: 0.85rem; color: #CBD5E1; margin: 0; line-height: 1.4; }}
-    .btn-cta-gold {{
-      background: var(--blue-600);
-      color: #FFFFFF;
-      font-weight: 800;
-      padding: 12px 24px;
-      border-radius: 10px;
-      text-decoration: none;
-      white-space: nowrap;
-      font-size: 0.88rem;
-      transition: background 0.15s ease;
-      box-shadow: 0 4px 12px rgba(0, 119, 200, 0.3);
-      text-align: center;
-    }}
-    .btn-cta-gold:hover {{ background: var(--blue-700); }}
-
     /* Sticky Sidebar */
     .sticky-sidebar {{
       position: -webkit-sticky;
@@ -359,24 +321,24 @@ static_html_content = f"""<!DOCTYPE html>
     }}
     .profile-header-bg {{
       background: linear-gradient(135deg, rgba(8, 69, 130, 0.45) 0%, rgba(6, 40, 77, 0.75) 100%), url('/images/melbourne-bourke-street-header.webp') center/cover no-repeat;
-      height: 90px;
+      height: 96px;
       position: relative;
       display: flex;
       justify-content: center;
     }}
     .profile-avatar {{
       position: absolute;
-      bottom: -34px;
-      width: 68px;
-      height: 68px;
+      bottom: -32px;
+      width: 64px;
+      height: 64px;
       border-radius: 50%;
-      border: 3px solid #FFFFFF;
+      border: 2.5px solid #FFFFFF;
       overflow: hidden;
       background: #FFFFFF;
       box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }}
     .profile-avatar img {{ width: 100%; height: 100%; object-fit: cover; }}
-    .profile-body {{ padding: 42px 16px 18px; }}
+    .profile-body {{ padding: 40px 16px 18px; }}
     .profile-name {{
       font-size: 1.05rem;
       font-weight: 900;
@@ -532,6 +494,16 @@ static_html_content = f"""<!DOCTYPE html>
       color: var(--blue-600);
     }}
 
+    /* Card 3: Consultation CTA Card */
+    .sidebar-cta-card {{
+      background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-950) 100%);
+      border: 2px solid rgba(0, 119, 200, 0.4);
+      border-radius: 18px;
+      padding: 20px;
+      color: #FFFFFF;
+      box-shadow: 0 4px 14px rgba(10,37,64,0.06);
+    }}
+
     /* Section Flash Animation */
     @keyframes sectionFlash {{
       0% {{
@@ -577,7 +549,7 @@ static_html_content = f"""<!DOCTYPE html>
     }}
 
     /* Salesforce Developer Code Playground & Theme Modes */
-    .salesforce-code-playground, .code-box-wrapper {{
+    .code-box-wrapper {{
       box-shadow: 0 4px 14px rgba(10,37,64,0.06);
     }}
     .code-viewport {{
@@ -702,16 +674,15 @@ static_html_content = f"""<!DOCTYPE html>
           When configured with an understanding of Salesforce architecture, the agent can systematically work down legacy backlogs.
         </p>
 
-        <h3 class="sub-heading">Interactive Component Reference &amp; Enterprise Mocking Playground</h3>
-        <p class="editorial-p">
-          Test-driven LWC and Apex development requires isolating dependencies. Below is an interactive reproduction of Salesforce Lightning progress orchestration along with enterprise <code>fflib_ApexMocks</code> unit test verification:
-        </p>
-
-        {playground_html}
-
         <h3 class="sub-heading">Scenario A: Refactoring Monolithic Triggers to Domain Frameworks (fflib)</h3>
         <p class="editorial-p">
-          Legacy orgs frequently house 1,500-line triggers intermixing SOQL queries, business logic, and DML operations. Using the agentic toolchain:
+          Legacy orgs frequently house 1,500-line triggers intermixing SOQL queries, business logic, and DML operations. Below are the decoupled LWC and Apex test mocking patterns generated by the agentic toolchain:
+        </p>
+
+        {tabbed_code_html}
+
+        <p class="editorial-p">
+          Using the agentic toolchain for enterprise refactoring:
         </p>
         <ul style="color:#334155; line-height:1.7; margin-bottom:24px;">
           <li><strong>Context Ingestion:</strong> The agent uses MCP to crawl the legacy trigger, its companion test classes, and all referenced SObject fields.</li>
@@ -779,31 +750,16 @@ static_html_content = f"""<!DOCTYPE html>
         </div>
       </section>
 
-      <!-- Bottom Consultation CTA -->
-      <div class="consultation-cta-card">
-        <div style="display:flex; align-items:center; gap:16px;">
-          <div style="width:56px; height:68px; flex-shrink:0; background:#FFFFFF; padding:4px; border-radius:8px; display:flex; align-items:center; justify-content:center;">
-            <img src="/images/nsw-government-approved-supplier.svg" alt="NSW Government Supplier" style="max-width:100%; max-height:100%; object-fit:contain;" />
-          </div>
-          <div>
-            <div class="cta-badge">Accredited NSW Government Supplier (buy.nsw)</div>
-            <h3 class="cta-heading">Ready to Modernize Your Salesforce Architecture?</h3>
-            <p class="cta-desc">EZ Consultants delivers ISO 27001 &amp; APRA CPS 234 compliant Salesforce implementations and CI/CD pipelines.</p>
-          </div>
-        </div>
-        <a href="/contact" class="btn-cta-gold">Book Architecture Audit</a>
-      </div>
-
     </article>
 
-    <!-- Right Column: Sticky Sidebar Card 1 & Card 2 -->
+    <!-- Right Column: Sticky Sidebar Card 1, Card 2, Card 3 -->
     <aside class="sticky-sidebar">
       
-      <!-- Card 1: Principal Technical Architect Profile Card -->
+      <!-- Card 1: Principal Technical Architect Profile Card (With Header BG) -->
       <div class="profile-card">
         <div class="profile-header-bg">
           <div class="profile-avatar">
-            <img src="/images/ez-consultants-avatar.svg" alt="EZ Consultants Advisory">
+            <img src="/images/ez-consultants-avatar.svg" alt="Joe Williams">
           </div>
         </div>
         <div class="profile-body">
@@ -812,14 +768,13 @@ static_html_content = f"""<!DOCTYPE html>
             LEAD TECHNICAL ARCHITECT &amp; CONSULTANT
           </div>
           <p class="profile-bio">
-            Specializing in Salesforce enterprise architecture, Agentforce, MuleSoft/Boomi integrations, and APRA CPS 234 compliant DevOps pipelines.
+            Specializing in Salesforce enterprise architecture, Agentforce, MuleSoft integrations, and APRA CPS 234 compliant DevOps pipelines.
           </p>
           <div class="profile-creds">
-            <div><strong>Supplier:</strong> NSW Government (buy.nsw)</div>
+            <div><strong>Supplier:</strong> NSW Government (buy.nsw 180179)</div>
             <div><strong>Certifications:</strong> Salesforce CTA Track, MuleSoft</div>
             <div><strong>Compliance:</strong> APRA CPS 234, ISO 27001</div>
           </div>
-          <!-- 1-Row Action Grid -->
           <div class="profile-actions">
             <a href="tel:1300050099" class="btn-profile-call">
               <span>📞 Call Us</span>
@@ -859,6 +814,23 @@ static_html_content = f"""<!DOCTYPE html>
         </div>
       </div>
 
+      <!-- Card 3: Enterprise Consultation Card (Moved to Column 2) -->
+      <div class="sidebar-cta-card">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+          <div style="width:48px; height:58px; flex-shrink:0; background:#FFFFFF; padding:4px; border-radius:8px; display:flex; align-items:center; justify-content:center;">
+            <img src="/images/nsw-government-approved-supplier.svg" alt="NSW Government Supplier" style="max-width:100%; max-height:100%; object-fit:contain;" />
+          </div>
+          <div>
+            <div style="font-size:0.68rem; font-weight:800; color:#38BDF8; text-transform:uppercase; letter-spacing:0.04em;">Accredited NSW Supplier</div>
+            <h4 style="font-size:0.92rem; font-weight:900; margin:2px 0 0; line-height:1.25; color:#FFFFFF;">Ready to Modernize Your Salesforce Architecture?</h4>
+          </div>
+        </div>
+        <p style="font-size:0.75rem; color:#CBD5E1; margin:0 0 14px; line-height:1.45;">
+          EZ Consultants delivers ISO 27001 &amp; APRA CPS 234 compliant Salesforce implementations and CI/CD pipelines.
+        </p>
+        <a href="/contact" class="btn-cta-gold" style="display:block; text-align:center; padding:10px 16px; font-size:0.8rem; width:100%;">Book Architecture Audit ↗</a>
+      </div>
+
     </aside>
   </main>
 
@@ -884,38 +856,23 @@ static_html_content = f"""<!DOCTYPE html>
       }}
     }}
 
-    function switchCodeTab(e, targetId) {{
-      const parent = e.currentTarget.closest('.salesforce-code-playground');
-      if (!parent) return;
-      parent.querySelectorAll('.tab-btn').forEach(btn => {{
-        btn.classList.remove('active-tab', 'bg-white', 'text-[#0077c8]', 'shadow-xs');
-        btn.classList.add('text-slate-700');
-      }});
-      e.currentTarget.classList.add('active-tab', 'bg-white', 'text-[#0077c8]', 'shadow-xs');
-      e.currentTarget.classList.remove('text-slate-700');
-      
-      parent.querySelectorAll('.playground-panel').forEach(p => p.classList.add('hidden'));
-      const targetPanel = parent.querySelector('#' + targetId);
-      if (targetPanel) targetPanel.classList.remove('hidden');
-    }}
-
     function switchSubTab(e, subtargetId) {{
-      const parent = e.currentTarget.closest('.salesforce-code-playground');
-      if (!parent) return;
-      parent.querySelectorAll('.subtab-btn').forEach(btn => {{
+      const wrapper = e.currentTarget.closest('.code-box-wrapper');
+      if (!wrapper) return;
+      wrapper.querySelectorAll('.subtab-btn').forEach(btn => {{
         btn.classList.remove('active-subtab', 'border-b-2', 'border-[#0077c8]', 'text-[#0077c8]', 'font-extrabold');
         btn.classList.add('text-slate-600', 'font-bold');
       }});
       e.currentTarget.classList.add('active-subtab', 'border-b-2', 'border-[#0077c8]', 'text-[#0077c8]', 'font-extrabold');
       e.currentTarget.classList.remove('text-slate-600');
 
-      parent.querySelectorAll('.subtab-pane').forEach(p => p.classList.add('hidden'));
-      const targetPane = parent.querySelector('#' + subtargetId);
+      wrapper.querySelectorAll('.subtab-pane').forEach(p => p.classList.add('hidden'));
+      const targetPane = wrapper.querySelector('#' + subtargetId);
       if (targetPane) targetPane.classList.remove('hidden');
     }}
 
     function toggleCodeTheme(e) {{
-      const wrapper = e.currentTarget.closest('.salesforce-code-playground, .code-box-wrapper');
+      const wrapper = e.currentTarget.closest('.code-box-wrapper');
       if (!wrapper) return;
       wrapper.classList.toggle('code-theme-light');
       const icon = wrapper.querySelector('.theme-icon');
@@ -925,7 +882,7 @@ static_html_content = f"""<!DOCTYPE html>
     }}
 
     function copyActiveCode(e) {{
-      const wrapper = e.currentTarget.closest('.salesforce-code-playground, .code-box-wrapper');
+      const wrapper = e.currentTarget.closest('.code-box-wrapper');
       if (!wrapper) return;
       let codeEl = wrapper.querySelector('.subtab-pane:not(.hidden) code') || wrapper.querySelector('pre code');
       if (codeEl) {{
@@ -939,39 +896,6 @@ static_html_content = f"""<!DOCTYPE html>
           label.innerHTML = originalText;
           e.currentTarget.classList.remove('bg-emerald-600');
         }}, 2000);
-      }}
-    }}
-
-    let progressVal = 50;
-    let progressTimer = null;
-    function toggleProgressBarDemo() {{
-      const btn = document.getElementById('progress-demo-toggle-btn');
-      const fill = document.getElementById('progress-bar-fill');
-      const text = document.getElementById('progress-val-text');
-      if (!btn || !fill || !text) return;
-
-      if (progressTimer) {{
-        clearInterval(progressTimer);
-        progressTimer = null;
-        btn.textContent = 'Start';
-        btn.classList.remove('bg-rose-600');
-        btn.classList.add('bg-[#0077c8]');
-      }} else {{
-        btn.textContent = 'Stop';
-        btn.classList.remove('bg-[#0077c8]');
-        btn.classList.add('bg-rose-600');
-        progressTimer = setInterval(() => {{
-          progressVal = progressVal >= 100 ? 0 : progressVal + 10;
-          fill.style.width = progressVal + '%';
-          text.textContent = progressVal + '%';
-          if (progressVal === 100) {{
-            clearInterval(progressTimer);
-            progressTimer = null;
-            btn.textContent = 'Start';
-            btn.classList.remove('bg-rose-600');
-            btn.classList.add('bg-[#0077c8]');
-          }}
-        }}, 300);
       }}
     }}
   </script>

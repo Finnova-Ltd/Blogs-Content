@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """
-Comprehensive Enhancer Script for Salesforce Articles and Interactive Components:
-1. Highlights in Red Header (#990000) with Navigational Sub-headings (Image 1).
-2. ASCII Architecture Diagram Center-Aligned with Black Background (#06111C) and Green Text (#10B981) (Image 2).
-3. Salesforce Developer Style Code Playground with Multi-Tabs (basic.html, basic.js, InvoiceServiceTest.cls, mcp-config.json), Copy button with feedback, Theme toggle (Light/Dark), and Multi-Color Syntax Highlighting (Image 3 & 4).
+Updated Enhancer Script for Salesforce Article & Components based on User Feedback:
+1. Card 1 in Col 2 (Joe Williams Profile Card) with background image (/images/melbourne-bourke-street-header.webp).
+2. Card 2 in Col 2 (Highlights with Red #990000 header & navigational subheadings).
+3. Card 3 in Col 2 (Move Consultation Card to Col 2 as annotated in red).
+4. Code Block: 2 Tabs (basic.html | basic.js | InvoiceServiceTest.cls), in 1 SINGLE top row with tabs on left and theme toggle & copy button on right.
+5. Center-aligned architecture diagram on deep black background with emerald green text.
 """
 
 import os
@@ -18,7 +20,6 @@ STATIC_BLOG_DIR = EZ_DIR / "pages" / "blog"
 PUBLIC_BLOG_DIR = EZ_DIR / "public" / "pages" / "blog"
 DIST_BLOG_DIR = EZ_DIR / "dist" / "pages" / "blog"
 
-# Multi-Color Syntax Highlighting Helpers
 def highlight_json(code: str) -> str:
     lines = code.split("\n")
     out = []
@@ -109,8 +110,8 @@ def highlight_apex(code: str) -> str:
         out.append(f'<span class="line-number" style="color:#64748B; user-select:none; margin-right:16px; display:inline-block; width:22px; text-align:right;">{i}</span>{l_final}')
     return "\n".join(out)
 
-# Build Tabbed Salesforce Playground HTML
-def generate_salesforce_playground():
+# Clean 1-Row Tabbed Code Box for Section 2 (basic.html | basic.js | InvoiceServiceTest.cls)
+def generate_tabbed_code_box():
     html_raw = """<template>
   <div class="slds-p-bottom_medium">
     <lightning-button label={computedLabel} onclick={toggleProgress}>
@@ -187,112 +188,55 @@ private class InvoiceServiceTest {
 }"""
 
     return f"""
-<div class="salesforce-code-playground bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm my-8 font-sans">
+<div class="code-box-wrapper bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm my-6 font-sans">
   
-  <!-- Select Example / Header Bar -->
-  <div class="bg-slate-50 border-b border-slate-200 px-5 py-3.5 flex flex-wrap items-center justify-between gap-3">
-    <div>
-      <div class="text-[10px] font-extrabold tracking-wider uppercase text-slate-500">Salesforce Component Reference</div>
-      <div class="text-sm font-black text-slate-900">Basic Progress Bar &amp; Enterprise Mocking</div>
+  <!-- 1-Row Top Header: Tabs on Left, Theme & Copy on Right -->
+  <div class="bg-slate-100 border-b border-slate-200 px-4 pt-1 flex items-center justify-between flex-wrap gap-2">
+    <!-- Left: Tabs (basic.html | basic.js | InvoiceServiceTest.cls) -->
+    <div class="flex items-center gap-1">
+      <button type="button" class="subtab-btn active-subtab px-3.5 py-2.5 text-xs font-extrabold border-b-2 border-[#0077c8] text-[#0077c8] cursor-pointer" data-subtarget="tab-sec2-html" onclick="window.switchSubTab(event, 'tab-sec2-html')">
+        basic.html
+      </button>
+      <button type="button" class="subtab-btn px-3.5 py-2.5 text-xs font-bold text-slate-600 hover:text-slate-900 cursor-pointer" data-subtarget="tab-sec2-js" onclick="window.switchSubTab(event, 'tab-sec2-js')">
+        basic.js
+      </button>
+      <button type="button" class="subtab-btn px-3.5 py-2.5 text-xs font-bold text-slate-600 hover:text-slate-900 cursor-pointer" data-subtarget="tab-sec2-apex" onclick="window.switchSubTab(event, 'tab-sec2-apex')">
+        InvoiceServiceTest.cls
+      </button>
     </div>
+
+    <!-- Right: Theme Switcher & Copy Button (Same 1 Row) -->
+    <div class="flex items-center gap-2 py-1.5">
+      <button type="button" onclick="window.toggleCodeTheme(event)" class="code-theme-toggle p-1.5 rounded-md hover:bg-slate-200 text-slate-700 text-xs flex items-center gap-1 font-semibold cursor-pointer" title="Toggle Light/Dark Theme">
+        <span class="theme-icon">🌙</span> <span class="text-[11px] hidden sm:inline">Theme</span>
+      </button>
+      <button type="button" onclick="window.copyActiveCode(event)" class="code-copy-btn px-2.5 py-1.5 rounded-md bg-[#0077c8] hover:bg-[#005a9c] text-white text-xs flex items-center gap-1 font-bold shadow-xs transition cursor-pointer" title="Copy to Clipboard">
+        <span>📋</span> <span class="copy-label text-[11px]">Copy</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Multi-Color Syntax Highlighting Viewport -->
+  <div class="code-viewport bg-[#071324] text-slate-100 p-5 font-mono text-xs overflow-x-auto leading-relaxed">
     
-    <!-- Top Mode Tabs -->
-    <div class="flex items-center gap-1 bg-slate-200/70 p-1 rounded-lg text-xs font-bold">
-      <button type="button" class="tab-btn active-tab px-3 py-1.5 rounded-md bg-white text-[#0077c8] shadow-xs" data-target="panel-example" onclick="window.switchCodeTab(event, 'panel-example')">Example (Live)</button>
-      <button type="button" class="tab-btn px-3 py-1.5 rounded-md text-slate-700 hover:text-slate-900" data-target="panel-develop" onclick="window.switchCodeTab(event, 'panel-develop')">Develop</button>
-      <button type="button" class="tab-btn px-3 py-1.5 rounded-md text-slate-700 hover:text-slate-900" data-target="panel-specs" onclick="window.switchCodeTab(event, 'panel-specs')">Specifications</button>
-    </div>
-  </div>
-
-  <!-- Panel 1: Live Interactive Component Demo (Matching Salesforce Playground) -->
-  <div id="panel-example" class="playground-panel p-6 sm:p-8 space-y-6">
-    <div class="space-y-2">
-      <div class="text-xs font-bold text-slate-500 uppercase tracking-wider">Select Example</div>
-      <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold text-slate-800 flex items-center justify-between">
-        <span>Basic Progress Bar (SLDS 2 Blueprint)</span>
-        <span class="text-slate-400">▼</span>
-      </div>
-      <p class="text-xs text-slate-600">A progress bar can be displayed with an initial value and supports multiple sizes and interactive states.</p>
+    <div id="tab-sec2-html" class="subtab-pane">
+      <pre><code class="language-html">{highlight_html(html_raw)}</code></pre>
     </div>
 
-    <!-- Live Interactive Progress Bar Canvas -->
-    <div class="p-6 bg-slate-50/80 border border-slate-200 rounded-xl space-y-4">
-      <div class="flex items-center justify-between">
-        <button id="progress-demo-toggle-btn" type="button" onclick="window.toggleProgressBarDemo()" class="px-4 py-2 rounded-lg bg-[#0077c8] hover:bg-[#005a9c] text-white text-xs font-extrabold shadow-sm transition cursor-pointer">
-          Start
-        </button>
-        <div class="text-xs font-bold text-slate-700">
-          Value: <span id="progress-val-text" class="text-[#0077c8] font-mono font-bold">50%</span>
-        </div>
-      </div>
-      
-      <!-- SLDS Progress Bar -->
-      <div class="w-full bg-slate-200 rounded-full h-3 overflow-hidden">
-        <div id="progress-bar-fill" class="bg-[#0077c8] h-3 rounded-full transition-all duration-200 ease-out" style="width: 50%;"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Panel 2: Develop (Code Tabs: basic.html, basic.js, InvoiceServiceTest.cls) -->
-  <div id="panel-develop" class="playground-panel hidden p-0">
-    <!-- Sub-tab Navigation (basic.html / basic.js / InvoiceServiceTest.cls) -->
-    <div class="border-b border-slate-200 px-4 pt-2 bg-slate-100 flex items-center justify-between flex-wrap gap-2">
-      <div class="flex items-center gap-2">
-        <button type="button" class="subtab-btn active-subtab px-3 py-2 text-xs font-extrabold border-b-2 border-[#0077c8] text-[#0077c8] cursor-pointer" data-subtarget="sub-html" onclick="window.switchSubTab(event, 'sub-html')">basic.html</button>
-        <button type="button" class="subtab-btn px-3 py-2 text-xs font-bold text-slate-600 hover:text-slate-900 cursor-pointer" data-subtarget="sub-js" onclick="window.switchSubTab(event, 'sub-js')">basic.js</button>
-        <button type="button" class="subtab-btn px-3 py-2 text-xs font-bold text-slate-600 hover:text-slate-900 cursor-pointer" data-subtarget="sub-apex" onclick="window.switchSubTab(event, 'sub-apex')">InvoiceServiceTest.cls</button>
-      </div>
-
-      <!-- Action Toolbar (Theme Toggle + Copy Button) -->
-      <div class="flex items-center gap-2 py-1.5">
-        <button type="button" onclick="window.toggleCodeTheme(event)" class="code-theme-toggle p-1.5 rounded-md hover:bg-slate-200 text-slate-700 text-xs flex items-center gap-1 font-semibold cursor-pointer" title="Toggle Light/Dark Theme">
-          <span class="theme-icon">🌙</span> <span class="text-[11px] hidden sm:inline">Theme</span>
-        </button>
-        <button type="button" onclick="window.copyActiveCode(event)" class="code-copy-btn px-2.5 py-1.5 rounded-md bg-[#0077c8] hover:bg-[#005a9c] text-white text-xs flex items-center gap-1 font-bold shadow-xs transition cursor-pointer" title="Copy to Clipboard">
-          <span>📋</span> <span class="copy-label text-[11px]">Copy</span>
-        </button>
-      </div>
+    <div id="tab-sec2-js" class="subtab-pane hidden">
+      <pre><code class="language-javascript">{highlight_js(js_raw)}</code></pre>
     </div>
 
-    <!-- Code Panes -->
-    <div class="code-viewport bg-[#071324] text-slate-100 p-5 font-mono text-xs overflow-x-auto leading-relaxed">
-      
-      <div id="sub-html" class="subtab-pane">
-        <pre><code class="language-html">{highlight_html(html_raw)}</code></pre>
-      </div>
-
-      <div id="sub-js" class="subtab-pane hidden">
-        <pre><code class="language-javascript">{highlight_js(js_raw)}</code></pre>
-      </div>
-
-      <div id="sub-apex" class="subtab-pane hidden">
-        <pre><code class="language-apex">{highlight_apex(apex_raw)}</code></pre>
-      </div>
-
+    <div id="tab-sec2-apex" class="subtab-pane hidden">
+      <pre><code class="language-apex">{highlight_apex(apex_raw)}</code></pre>
     </div>
-  </div>
 
-  <!-- Panel 3: Specifications -->
-  <div id="panel-specs" class="playground-panel hidden p-6 space-y-4">
-    <h4 class="text-sm font-bold text-slate-900">Component Blueprint &amp; SLDS Attributes</h4>
-    <div class="overflow-x-auto">
-      <table class="w-full text-left text-xs border-collapse">
-        <thead class="bg-slate-100 text-slate-700">
-          <tr><th class="p-2.5 border-b">Attribute</th><th class="p-2.5 border-b">Type</th><th class="p-2.5 border-b">Default</th><th class="p-2.5 border-b">Description</th></tr>
-        </thead>
-        <tbody class="divide-y divide-slate-200 text-slate-800">
-          <tr><td class="p-2.5 font-mono text-[#0077c8]">value</td><td class="p-2.5">Number</td><td class="p-2.5">0</td><td class="p-2.5">The percentage completion value (0 - 100).</td></tr>
-          <tr><td class="p-2.5 font-mono text-[#0077c8]">size</td><td class="p-2.5">String</td><td class="p-2.5">'medium'</td><td class="p-2.5">Height options: x-small (2px), small (4px), medium (8px), large (12px).</td></tr>
-          <tr><td class="p-2.5 font-mono text-[#0077c8]">variant</td><td class="p-2.5">String</td><td class="p-2.5">'base'</td><td class="p-2.5">Visual shape: 'base' (squared) or 'circular' (rounded pill).</td></tr>
-        </tbody>
-      </table>
-    </div>
   </div>
 
 </div>
 """
 
-# Build Single Code Box with Copy & Multi-Color Syntax (e.g. MCP Config)
+# Clean 1-Row Single Code Box for Section 1 (mcp-config.json)
 def generate_mcp_config_box():
     json_raw = """{
   "mcpServers": {
@@ -308,13 +252,16 @@ def generate_mcp_config_box():
 }"""
     return f"""
 <div class="code-box-wrapper bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm my-6 font-sans">
-  <div class="bg-slate-100 border-b border-slate-200 px-4 py-2.5 flex items-center justify-between">
-    <div class="flex items-center gap-2 text-xs font-extrabold text-slate-800">
-      <span class="text-[#0077c8] font-mono">&lt;&gt;</span>
-      <span>mcp-config.json</span>
-      <span class="px-2 py-0.5 rounded-full bg-slate-200 text-slate-600 text-[10px] font-bold">JSON</span>
+  
+  <!-- 1-Row Top Header: Tab on Left, Theme & Copy on Right -->
+  <div class="bg-slate-100 border-b border-slate-200 px-4 pt-1 flex items-center justify-between flex-wrap gap-2">
+    <div class="flex items-center gap-1">
+      <span class="px-3.5 py-2.5 text-xs font-extrabold border-b-2 border-[#0077c8] text-[#0077c8] flex items-center gap-1.5">
+        <span class="text-[#0077c8] font-mono">&lt;&gt;</span>
+        <span>mcp-config.json</span>
+      </span>
     </div>
-    <div class="flex items-center gap-2">
+    <div class="flex items-center gap-2 py-1.5">
       <button type="button" onclick="window.toggleCodeTheme(event)" class="code-theme-toggle p-1.5 rounded-md hover:bg-slate-200 text-slate-700 text-xs flex items-center gap-1 font-semibold cursor-pointer" title="Toggle Light/Dark Theme">
         <span class="theme-icon">🌙</span> <span class="text-[11px] hidden sm:inline">Theme</span>
       </button>
@@ -323,13 +270,13 @@ def generate_mcp_config_box():
       </button>
     </div>
   </div>
+
   <div class="code-viewport bg-[#071324] text-slate-100 p-5 font-mono text-xs overflow-x-auto leading-relaxed">
     <pre><code class="language-json">{highlight_json(json_raw)}</code></pre>
   </div>
 </div>
 """
 
-# Center-Aligned Green on Black Architecture Diagram
 def generate_centered_architecture_diagram():
     return """
 <div class="ascii-diagram-container" style="background:#06111C; border:1px solid #1e293b; border-radius:14px; padding:24px; margin:28px 0; display:flex; justify-content:center; text-align:center; overflow-x:auto;">
@@ -356,7 +303,6 @@ def generate_centered_architecture_diagram():
 </div>
 """
 
-# Center-Aligned Green on Black CI/CD Pipeline Diagram
 def generate_centered_cicd_diagram():
     return """
 <div class="ascii-diagram-container" style="background:#06111C; border:1px solid #1e293b; border-radius:14px; padding:24px; margin:28px 0; display:flex; justify-content:center; text-align:center; overflow-x:auto;">
@@ -406,7 +352,7 @@ def update_blog_posts_js():
     content_file = BLOG_POSTS_JS.read_text(encoding="utf-8")
     
     mcp_box = generate_mcp_config_box()
-    playground = generate_salesforce_playground()
+    tabbed_code = generate_tabbed_code_box()
     arch_diag = generate_centered_architecture_diagram()
     cicd_diag = generate_centered_cicd_diagram()
     
@@ -437,13 +383,12 @@ def update_blog_posts_js():
 <h2 class=\\"text-2xl font-bold text-slate-900 mt-10 mb-4 border-b border-slate-200 pb-3\\">2. Tackling the Debt: Concrete Remediations</h2>
 <p class=\\"mb-4\\">When configured with an understanding of Salesforce architecture, the agent can systematically work down legacy backlogs.</p>
 
-<h3 class=\\"text-lg font-bold text-slate-900 mt-6 mb-3\\">Interactive Component Reference &amp; Enterprise Mocking Playground</h3>
-<p class=\\"mb-3\\">Test-driven LWC and Apex development requires isolating dependencies. Below is an interactive reproduction of Salesforce Lightning progress orchestration along with enterprise <code>fflib_ApexMocks</code> unit test verification:</p>
-
-{playground}
-
 <h3 class=\\"text-lg font-bold text-slate-900 mt-6 mb-3\\">Scenario A: Refactoring Monolithic Triggers to Domain Frameworks (fflib)</h3>
-<p class=\\"mb-3\\">Legacy orgs frequently house 1,500-line triggers intermixing SOQL queries, business logic, and DML operations. Using the agentic toolchain:</p>
+<p class=\\"mb-3\\">Legacy orgs frequently house 1,500-line triggers intermixing SOQL queries, business logic, and DML operations. Below are the decoupled LWC and Apex test mocking patterns generated by the agentic toolchain:</p>
+
+{tabbed_code}
+
+<p class=\\"mb-3\\">Using the agentic toolchain for enterprise refactoring:</p>
 <ul class=\\"list-disc pl-6 space-y-2 mb-6\\">
 <li class=\\"leading-relaxed\\"><strong>Context Ingestion:</strong> The agent uses MCP to crawl the legacy trigger, its companion test classes, and all referenced SObject fields.</li>
 <li class=\\"leading-relaxed\\"><strong>Structural Decomposition:</strong> The agent partitions the logic into enterprise patterns (Trigger Handler dispatch, Domain validation, Selector cached SOQL, and Service orchestration).</li>
