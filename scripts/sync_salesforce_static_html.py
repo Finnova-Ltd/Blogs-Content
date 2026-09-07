@@ -863,15 +863,25 @@ static_html_content = f"""<!DOCTYPE html>
       const wrapper = e.currentTarget.closest('.code-box-wrapper');
       if (!wrapper) return;
       wrapper.querySelectorAll('.subtab-btn').forEach(btn => {{
-        btn.classList.remove('active-subtab', 'border-b-2', 'border-[#0077c8]', 'text-[#0077c8]', 'font-extrabold');
-        btn.classList.add('text-slate-600', 'font-bold');
+        btn.classList.remove('active-subtab');
+        btn.style.borderBottom = '2px solid transparent';
+        btn.style.color = '#64748b';
+        btn.style.fontWeight = '700';
       }});
-      e.currentTarget.classList.add('active-subtab', 'border-b-2', 'border-[#0077c8]', 'text-[#0077c8]', 'font-extrabold');
-      e.currentTarget.classList.remove('text-slate-600');
+      e.currentTarget.classList.add('active-subtab');
+      e.currentTarget.style.borderBottom = '2px solid #0077c8';
+      e.currentTarget.style.color = '#0077c8';
+      e.currentTarget.style.fontWeight = '800';
 
-      wrapper.querySelectorAll('.subtab-pane').forEach(p => p.classList.add('hidden'));
+      wrapper.querySelectorAll('.subtab-pane').forEach(p => {{
+        p.classList.add('hidden');
+        p.style.display = 'none';
+      }});
       const targetPane = wrapper.querySelector('#' + subtargetId);
-      if (targetPane) targetPane.classList.remove('hidden');
+      if (targetPane) {{
+        targetPane.classList.remove('hidden');
+        targetPane.style.display = 'block';
+      }}
     }}
 
     function toggleCodeTheme(e) {{
@@ -879,25 +889,30 @@ static_html_content = f"""<!DOCTYPE html>
       if (!wrapper) return;
       wrapper.classList.toggle('code-theme-light');
       const icon = wrapper.querySelector('.theme-icon');
+      const label = wrapper.querySelector('.theme-label');
+      const isLight = wrapper.classList.contains('code-theme-light');
       if (icon) {{
-        icon.textContent = wrapper.classList.contains('code-theme-light') ? '☀️' : '🌙';
+        icon.textContent = isLight ? '☀️' : '🌙';
+      }}
+      if (label) {{
+        label.textContent = isLight ? 'Light' : 'Dark';
       }}
     }}
 
     function copyActiveCode(e) {{
       const wrapper = e.currentTarget.closest('.code-box-wrapper');
       if (!wrapper) return;
-      let codeEl = wrapper.querySelector('.subtab-pane:not(.hidden) code') || wrapper.querySelector('pre code');
+      let codeEl = wrapper.querySelector('.subtab-pane:not(.hidden):not([style*="display: none"]) code') || wrapper.querySelector('pre code');
       if (codeEl) {{
         const text = codeEl.innerText || codeEl.textContent;
         navigator.clipboard.writeText(text);
         const label = e.currentTarget.querySelector('.copy-label') || e.currentTarget;
         const originalText = label.innerHTML;
         label.innerHTML = 'Copied! ✓';
-        e.currentTarget.classList.add('bg-emerald-600');
+        e.currentTarget.style.background = '#10b981';
         setTimeout(() => {{
           label.innerHTML = originalText;
-          e.currentTarget.classList.remove('bg-emerald-600');
+          e.currentTarget.style.background = '#0077c8';
         }}, 2000);
       }}
     }}

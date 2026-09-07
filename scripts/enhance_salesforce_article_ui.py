@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 """
 Updated Enhancer Script for Salesforce Article & Components based on User Feedback:
-1. Card 1 in Col 2 (Joe Williams Profile Card) with background image (/images/melbourne-bourke-street-header.webp).
-2. Card 2 in Col 2 (Highlights with Red #990000 header & navigational subheadings).
-3. Card 3 in Col 2 (Move Consultation Card to Col 2 as annotated in red).
-4. Code Block: 2 Tabs (basic.html | basic.js | InvoiceServiceTest.cls), in 1 SINGLE top row with tabs on left and theme toggle & copy button on right.
-5. Center-aligned architecture diagram on deep black background with emerald green text.
+1. Tabs should be HTML and JSON.
+2. Theme toggle (Light/Dark) and Copy button must be in 1 SINGLE top row (flex-nowrap).
+3. Code block background defaults to dark (#071324).
+4. Full syntax highlighting across HTML and JSON.
 """
 
 import os
@@ -30,6 +29,7 @@ def highlight_json(code: str) -> str:
         l = re.sub(r':\s*(".*?")', r': <span style="color:#7EE787;">\1</span>', l)
         l = re.sub(r'(\[|\,)\s*(".*?")', r'\1 <span style="color:#7EE787;">\2</span>', l)
         l = re.sub(r'\b(\d+(\.\d+)?)\b', r'<span style="color:#FFA657;">\1</span>', l)
+        l = re.sub(r'\b(true|false|null)\b', r'<span style="color:#FF7B72; font-weight:bold;">\1</span>', l)
         out.append(f'<span class="line-number" style="color:#64748B; user-select:none; margin-right:16px; display:inline-block; width:22px; text-align:right;">{i}</span>{l}')
     return "\n".join(out)
 
@@ -47,197 +47,21 @@ def highlight_html(code: str) -> str:
         out.append(f'<span class="line-number" style="color:#64748B; user-select:none; margin-right:16px; display:inline-block; width:22px; text-align:right;">{i}</span>{l}')
     return "\n".join(out)
 
-def highlight_js(code: str) -> str:
-    lines = code.split("\n")
-    out = []
-    for i, line in enumerate(lines, 1):
-        l = line
-        l = l.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-        if "//" in l:
-            parts = l.split("//", 1)
-            code_part = parts[0]
-            comment_part = f'<span style="color:#8B949E; font-style:italic;">//{parts[1]}</span>'
-        else:
-            code_part = l
-            comment_part = ""
-        
-        kw = ["import", "export", "default", "class", "extends", "get", "if", "else", "return", "this", "const", "let", "var", "function", "new"]
-        for k in kw:
-            code_part = re.sub(r'\b(' + k + r')\b', r'<span style="color:#FF7B72; font-weight:bold;">\1</span>', code_part)
-        
-        types = ["LightningElement", "DemoComponent"]
-        for t in types:
-            code_part = re.sub(r'\b(' + t + r')\b', r'<span style="color:#FFA657; font-weight:bold;">\1</span>', code_part)
-        
-        funcs = ["updateProgress", "resetProgress", "disconnectedCallback", "toggleProgress", "clearInterval", "setInterval", "bind"]
-        for f in funcs:
-            code_part = re.sub(r'\b(' + f + r')(?=\()', r'<span style="color:#D2A8FF;">\1</span>', code_part)
-            
-        code_part = re.sub(r'(".*?")', r'<span style="color:#A5D6FF;">\1</span>', code_part)
-        code_part = re.sub(r'\b(\d+)\b', r'<span style="color:#79C0FF;">\1</span>', code_part)
-        
-        l_final = code_part + comment_part
-        out.append(f'<span class="line-number" style="color:#64748B; user-select:none; margin-right:16px; display:inline-block; width:22px; text-align:right;">{i}</span>{l_final}')
-    return "\n".join(out)
-
-def highlight_apex(code: str) -> str:
-    lines = code.split("\n")
-    out = []
-    for i, line in enumerate(lines, 1):
-        l = line
-        l = l.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-        if "//" in l:
-            parts = l.split("//", 1)
-            code_part = parts[0]
-            comment_part = f'<span style="color:#8B949E; font-style:italic;">//{parts[1]}</span>'
-        else:
-            code_part = l
-            comment_part = ""
-            
-        code_part = re.sub(r'(@\w+)', r'<span style="color:#FFA657; font-weight:bold;">\1</span>', code_part)
-        kw = ["private", "public", "class", "static", "void", "new", "return", "with sharing", "without sharing"]
-        for k in kw:
-            code_part = re.sub(r'\b(' + k + r')\b', r'<span style="color:#FF7B72; font-weight:bold;">\1</span>', code_part)
-            
-        types = ["Account", "Set", "Id", "List", "fflib_ApexMocks", "IAccountsSelector", "fflib_IDGenerator", "Application", "Test", "InvoiceService"]
-        for t in types:
-            code_part = re.sub(r'\b(' + t + r')\b', r'<span style="color:#79C0FF; font-weight:bold;">\1</span>', code_part)
-            
-        code_part = re.sub(r"('.*?')", r'<span style="color:#A5D6FF;">\1</span>', code_part)
-        code_part = re.sub(r'\b(\d+)\b', r'<span style="color:#79C0FF;">\1</span>', code_part)
-        
-        l_final = code_part + comment_part
-        out.append(f'<span class="line-number" style="color:#64748B; user-select:none; margin-right:16px; display:inline-block; width:22px; text-align:right;">{i}</span>{l_final}')
-    return "\n".join(out)
-
-# Clean 1-Row Tabbed Code Box for Section 2 (basic.html | basic.js | InvoiceServiceTest.cls)
-def generate_tabbed_code_box():
+# 1-Row Code Box with HTML & JSON Tabs + Dark/Light Toggle + Copy on 1 single row
+def generate_mcp_config_box(box_id="mcp-box"):
     html_raw = """<template>
-  <div class="slds-p-bottom_medium">
-    <lightning-button label={computedLabel} onclick={toggleProgress}>
-    </lightning-button>
-  </div>
-  <lightning-progress-bar value={progress} size="large">
-  </lightning-progress-bar>
+  <lightning-card title="Salesforce MCP Runtime" icon-name="standard:bot">
+    <div class="slds-p-around_medium">
+      <div class="slds-badge slds-theme_success">
+        Connected: tooling-api-v63
+      </div>
+      <p class="slds-m-top_small">
+        Model Context Protocol Server active on stdio endpoint.
+      </p>
+    </div>
+  </lightning-card>
 </template>"""
 
-    js_raw = """import { LightningElement } from "lwc";
-
-export default class DemoComponent extends LightningElement {
-  progress = 50;
-  isProgressing = false;
-
-  updateProgress() {
-    this.progress = this.progress === 100 ? this.resetProgress() : this.progress + 10;
-  }
-
-  resetProgress() {
-    this.progress = 0;
-    clearInterval(this._interval);
-  }
-
-  disconnectedCallback() {
-    clearInterval(this._interval);
-  }
-
-  get computedLabel() {
-    return this.isProgressing ? "Stop" : "Start";
-  }
-
-  toggleProgress() {
-    if (this.isProgressing) {
-      this.isProgressing = false;
-      clearInterval(this._interval);
-    } else {
-      this.isProgressing = true;
-      this._interval = setInterval(this.updateProgress.bind(this), 200);
-    }
-  }
-}"""
-
-    apex_raw = """@IsTest
-private class InvoiceServiceTest {
-    @IsTest
-    static void calculateTax_givenCommercialAccount_appliesDiscount() {
-        // Given: Instantiate enterprise mock container
-        fflib_ApexMocks mocks = new fflib_ApexMocks();
-        IAccountsSelector mockSelector = (IAccountsSelector) mocks.mock(IAccountsSelector.class);
-        
-        Account testAcc = new Account(
-            Id = fflib_IDGenerator.generate(Account.SObjectType),
-            Tier__c = 'Enterprise'
-        );
-        
-        mocks.startStubbing();
-        mocks.when(mockSelector.sObjectType()).thenReturn(Account.SObjectType);
-        mocks.when(mockSelector.selectByIdWithContracts(new Set<Id>{ testAcc.Id }))
-             .thenReturn(new List<Account>{ testAcc });
-        mocks.stopStubbing();
-        
-        Application.Selector.setMock(mockSelector);
-
-        // When: Execute service orchestration
-        Test.startTest();
-        InvoiceService.processInvoices(new Set<Id>{ testAcc.Id });
-        Test.stopTest();
-
-        // Then: Verify mock interactions & DML integrity
-        ((IAccountsSelector) mocks.verify(mockSelector, 1))
-            .selectByIdWithContracts(new Set<Id>{ testAcc.Id });
-    }
-}"""
-
-    return f"""
-<div class="code-box-wrapper bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm my-6 font-sans">
-  
-  <!-- 1-Row Top Header: Tabs on Left, Theme & Copy on Right -->
-  <div class="bg-slate-100 border-b border-slate-200 px-4 pt-1 flex items-center justify-between flex-wrap gap-2">
-    <!-- Left: Tabs (basic.html | basic.js | InvoiceServiceTest.cls) -->
-    <div class="flex items-center gap-1">
-      <button type="button" class="subtab-btn active-subtab px-3.5 py-2.5 text-xs font-extrabold border-b-2 border-[#0077c8] text-[#0077c8] cursor-pointer" data-subtarget="tab-sec2-html" onclick="window.switchSubTab(event, 'tab-sec2-html')">
-        basic.html
-      </button>
-      <button type="button" class="subtab-btn px-3.5 py-2.5 text-xs font-bold text-slate-600 hover:text-slate-900 cursor-pointer" data-subtarget="tab-sec2-js" onclick="window.switchSubTab(event, 'tab-sec2-js')">
-        basic.js
-      </button>
-      <button type="button" class="subtab-btn px-3.5 py-2.5 text-xs font-bold text-slate-600 hover:text-slate-900 cursor-pointer" data-subtarget="tab-sec2-apex" onclick="window.switchSubTab(event, 'tab-sec2-apex')">
-        InvoiceServiceTest.cls
-      </button>
-    </div>
-
-    <!-- Right: Theme Switcher & Copy Button (Same 1 Row) -->
-    <div class="flex items-center gap-2 py-1.5">
-      <button type="button" onclick="window.toggleCodeTheme(event)" class="code-theme-toggle p-1.5 rounded-md hover:bg-slate-200 text-slate-700 text-xs flex items-center gap-1 font-semibold cursor-pointer" title="Toggle Light/Dark Theme">
-        <span class="theme-icon">🌙</span> <span class="text-[11px] hidden sm:inline">Theme</span>
-      </button>
-      <button type="button" onclick="window.copyActiveCode(event)" class="code-copy-btn px-2.5 py-1.5 rounded-md bg-[#0077c8] hover:bg-[#005a9c] text-white text-xs flex items-center gap-1 font-bold shadow-xs transition cursor-pointer" title="Copy to Clipboard">
-        <span>📋</span> <span class="copy-label text-[11px]">Copy</span>
-      </button>
-    </div>
-  </div>
-
-  <!-- Multi-Color Syntax Highlighting Viewport -->
-  <div class="code-viewport bg-[#071324] text-slate-100 p-5 font-mono text-xs overflow-x-auto leading-relaxed">
-    
-    <div id="tab-sec2-html" class="subtab-pane">
-      <pre><code class="language-html">{highlight_html(html_raw)}</code></pre>
-    </div>
-
-    <div id="tab-sec2-js" class="subtab-pane hidden">
-      <pre><code class="language-javascript">{highlight_js(js_raw)}</code></pre>
-    </div>
-
-    <div id="tab-sec2-apex" class="subtab-pane hidden">
-      <pre><code class="language-apex">{highlight_apex(apex_raw)}</code></pre>
-    </div>
-
-  </div>
-
-</div>
-"""
-
-# Clean 1-Row Single Code Box for Section 1 (mcp-config.json)
-def generate_mcp_config_box():
     json_raw = """{
   "mcpServers": {
     "salesforce-tooling": {
@@ -250,36 +74,119 @@ def generate_mcp_config_box():
     }
   }
 }"""
+
     return f"""
-<div class="code-box-wrapper bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm my-6 font-sans">
+<div class="code-box-wrapper" style="background:#ffffff; border:1px solid #e2e8f0; border-radius:14px; overflow:hidden; box-shadow:0 4px 14px rgba(10,37,64,0.06); margin:24px 0; font-family:'Plus Jakarta Sans', sans-serif;">
   
-  <!-- 1-Row Top Header: Tab on Left, Theme & Copy on Right -->
-  <div class="bg-slate-100 border-b border-slate-200 px-4 pt-1 flex items-center justify-between flex-wrap gap-2">
-    <div class="flex items-center gap-1">
-      <span class="px-3.5 py-2.5 text-xs font-extrabold border-b-2 border-[#0077c8] text-[#0077c8] flex items-center gap-1.5">
-        <span class="text-[#0077c8] font-mono">&lt;&gt;</span>
-        <span>mcp-config.json</span>
-      </span>
-    </div>
-    <div class="flex items-center gap-2 py-1.5">
-      <button type="button" onclick="window.toggleCodeTheme(event)" class="code-theme-toggle p-1.5 rounded-md hover:bg-slate-200 text-slate-700 text-xs flex items-center gap-1 font-semibold cursor-pointer" title="Toggle Light/Dark Theme">
-        <span class="theme-icon">🌙</span> <span class="text-[11px] hidden sm:inline">Theme</span>
+  <!-- 1-Row Top Header: Tabs on Left, Theme & Copy on Right (Strictly 1 Row, flex-nowrap) -->
+  <div class="code-box-header" style="background:#f1f5f9; border-bottom:1px solid #e2e8f0; padding:6px 14px; display:flex; justify-content:space-between; align-items:center; flex-wrap:nowrap; gap:8px;">
+    
+    <!-- Left: Tabs (HTML | JSON) -->
+    <div style="display:flex; align-items:center; gap:6px; flex-shrink:1; overflow-x:auto;">
+      <button type="button" class="subtab-btn active-subtab" data-subtarget="{box_id}-json" onclick="window.switchSubTab(event, '{box_id}-json')" style="padding:6px 12px; font-size:12px; font-weight:800; border:none; background:transparent; border-bottom:2px solid #0077c8; color:#0077c8; cursor:pointer; display:flex; align-items:center; gap:5px; white-space:nowrap;">
+        <span style="font-family:'JetBrains Mono', monospace; font-size:11px;">&#123;&#125;</span>
+        <span>JSON</span>
       </button>
-      <button type="button" onclick="window.copyActiveCode(event)" class="code-copy-btn px-2.5 py-1.5 rounded-md bg-[#0077c8] hover:bg-[#005a9c] text-white text-xs flex items-center gap-1 font-bold shadow-xs transition cursor-pointer" title="Copy to Clipboard">
-        <span>📋</span> <span class="copy-label text-[11px]">Copy</span>
+      <button type="button" class="subtab-btn" data-subtarget="{box_id}-html" onclick="window.switchSubTab(event, '{box_id}-html')" style="padding:6px 12px; font-size:12px; font-weight:700; border:none; background:transparent; border-bottom:2px solid transparent; color:#64748b; cursor:pointer; display:flex; align-items:center; gap:5px; white-space:nowrap;">
+        <span style="font-family:'JetBrains Mono', monospace; font-size:11px;">&lt;&gt;</span>
+        <span>HTML</span>
+      </button>
+    </div>
+
+    <!-- Right: Theme Switcher & Copy Button (Same 1 Row) -->
+    <div style="display:flex; align-items:center; gap:8px; flex-shrink:0;">
+      <button type="button" onclick="window.toggleCodeTheme(event)" class="code-theme-toggle" title="Toggle Light/Dark Theme" style="padding:6px 10px; border-radius:6px; border:1px solid #cbd5e1; background:#ffffff; color:#334155; font-size:11px; font-weight:700; display:flex; align-items:center; gap:4px; cursor:pointer; white-space:nowrap;">
+        <span class="theme-icon">🌙</span> <span class="theme-label" style="font-size:11px;">Dark</span>
+      </button>
+      <button type="button" onclick="window.copyActiveCode(event)" class="code-copy-btn" title="Copy to Clipboard" style="padding:6px 12px; border-radius:6px; border:none; background:#0077c8; color:#ffffff; font-size:11px; font-weight:800; display:flex; align-items:center; gap:4px; cursor:pointer; white-space:nowrap; box-shadow:0 1px 3px rgba(0,119,200,0.2);">
+        <span>📋</span> <span class="copy-label">Copy</span>
       </button>
     </div>
   </div>
 
-  <div class="code-viewport bg-[#071324] text-slate-100 p-5 font-mono text-xs overflow-x-auto leading-relaxed">
-    <pre><code class="language-json">{highlight_json(json_raw)}</code></pre>
+  <!-- Multi-Color Syntax Highlighting Viewport (Default: Dark) -->
+  <div class="code-viewport" style="background:#071324; color:#f8fafc; padding:18px 20px; font-family:'JetBrains Mono', monospace; font-size:12px; line-height:1.65; overflow-x:auto;">
+    
+    <div id="{box_id}-json" class="subtab-pane">
+      <pre style="margin:0;"><code class="language-json">{highlight_json(json_raw)}</code></pre>
+    </div>
+
+    <div id="{box_id}-html" class="subtab-pane" style="display:none;">
+      <pre style="margin:0;"><code class="language-html">{highlight_html(html_raw)}</code></pre>
+    </div>
+
+  </div>
+</div>
+"""
+
+# Tabbed Code Box for Section 2 (HTML & JSON Tabs)
+def generate_tabbed_code_box(box_id="refactor-box"):
+    html_raw = """<template>
+  <div class="slds-p-bottom_medium">
+    <lightning-button label={computedLabel} onclick={toggleProgress}>
+    </lightning-button>
+  </div>
+  <lightning-progress-bar value={progress} size="large">
+  </lightning-progress-bar>
+</template>"""
+
+    json_raw = """{
+  "refactoringTask": {
+    "sourceTrigger": "ContractTrigger.trigger",
+    "targetArchitecture": "fflib_ApexMocks / Domain Layer",
+    "soqlGovernorLimitCheck": "PASSED (Zero queries in loops)",
+    "testCoverageTarget": 0.88,
+    "apraCompliance": true
+  }
+}"""
+
+    return f"""
+<div class="code-box-wrapper" style="background:#ffffff; border:1px solid #e2e8f0; border-radius:14px; overflow:hidden; box-shadow:0 4px 14px rgba(10,37,64,0.06); margin:24px 0; font-family:'Plus Jakarta Sans', sans-serif;">
+  
+  <!-- 1-Row Top Header: Tabs on Left, Theme & Copy on Right (Strictly 1 Row, flex-nowrap) -->
+  <div class="code-box-header" style="background:#f1f5f9; border-bottom:1px solid #e2e8f0; padding:6px 14px; display:flex; justify-content:space-between; align-items:center; flex-wrap:nowrap; gap:8px;">
+    
+    <!-- Left: Tabs (HTML | JSON) -->
+    <div style="display:flex; align-items:center; gap:6px; flex-shrink:1; overflow-x:auto;">
+      <button type="button" class="subtab-btn active-subtab" data-subtarget="{box_id}-html" onclick="window.switchSubTab(event, '{box_id}-html')" style="padding:6px 12px; font-size:12px; font-weight:800; border:none; background:transparent; border-bottom:2px solid #0077c8; color:#0077c8; cursor:pointer; display:flex; align-items:center; gap:5px; white-space:nowrap;">
+        <span style="font-family:'JetBrains Mono', monospace; font-size:11px;">&lt;&gt;</span>
+        <span>HTML</span>
+      </button>
+      <button type="button" class="subtab-btn" data-subtarget="{box_id}-json" onclick="window.switchSubTab(event, '{box_id}-json')" style="padding:6px 12px; font-size:12px; font-weight:700; border:none; background:transparent; border-bottom:2px solid transparent; color:#64748b; cursor:pointer; display:flex; align-items:center; gap:5px; white-space:nowrap;">
+        <span style="font-family:'JetBrains Mono', monospace; font-size:11px;">&#123;&#125;</span>
+        <span>JSON</span>
+      </button>
+    </div>
+
+    <!-- Right: Theme Switcher & Copy Button (Same 1 Row) -->
+    <div style="display:flex; align-items:center; gap:8px; flex-shrink:0;">
+      <button type="button" onclick="window.toggleCodeTheme(event)" class="code-theme-toggle" title="Toggle Light/Dark Theme" style="padding:6px 10px; border-radius:6px; border:1px solid #cbd5e1; background:#ffffff; color:#334155; font-size:11px; font-weight:700; display:flex; align-items:center; gap:4px; cursor:pointer; white-space:nowrap;">
+        <span class="theme-icon">🌙</span> <span class="theme-label" style="font-size:11px;">Dark</span>
+      </button>
+      <button type="button" onclick="window.copyActiveCode(event)" class="code-copy-btn" title="Copy to Clipboard" style="padding:6px 12px; border-radius:6px; border:none; background:#0077c8; color:#ffffff; font-size:11px; font-weight:800; display:flex; align-items:center; gap:4px; cursor:pointer; white-space:nowrap; box-shadow:0 1px 3px rgba(0,119,200,0.2);">
+        <span>📋</span> <span class="copy-label">Copy</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Multi-Color Syntax Highlighting Viewport (Default: Dark) -->
+  <div class="code-viewport" style="background:#071324; color:#f8fafc; padding:18px 20px; font-family:'JetBrains Mono', monospace; font-size:12px; line-height:1.65; overflow-x:auto;">
+    
+    <div id="{box_id}-html" class="subtab-pane">
+      <pre style="margin:0;"><code class="language-html">{highlight_html(html_raw)}</code></pre>
+    </div>
+
+    <div id="{box_id}-json" class="subtab-pane" style="display:none;">
+      <pre style="margin:0;"><code class="language-json">{highlight_json(json_raw)}</code></pre>
+    </div>
+
   </div>
 </div>
 """
 
 def generate_centered_architecture_diagram():
     return """
-<div class="ascii-diagram-container" style="background:#06111C; border:1px solid #1e293b; border-radius:14px; padding:24px; margin:28px 0; display:flex; justify-content:center; text-align:center; overflow-x:auto;">
+<div class="ascii-diagram-container" style="background:#06111C; border:1px solid #1e293b; border-radius:14px; padding:24px; margin:28px 0; display:flex; justify-content:center; text-align:center; overflow-x:auto; max-width:100%; box-sizing:border-box;">
   <pre style="color:#10b981; font-family:'JetBrains Mono', ui-monospace, monospace; font-size:0.78rem; line-height:1.35; margin:0 auto; display:inline-block; text-align:left;">┌─────────────────────────────────────────────────────────────┐
 │                      Cursor / Claude Code                   │
 │         (Autonomous Agent: Plans, Reads, Edits, Shells)     │
@@ -305,7 +212,7 @@ def generate_centered_architecture_diagram():
 
 def generate_centered_cicd_diagram():
     return """
-<div class="ascii-diagram-container" style="background:#06111C; border:1px solid #1e293b; border-radius:14px; padding:24px; margin:28px 0; display:flex; justify-content:center; text-align:center; overflow-x:auto;">
+<div class="ascii-diagram-container" style="background:#06111C; border:1px solid #1e293b; border-radius:14px; padding:24px; margin:28px 0; display:flex; justify-content:center; text-align:center; overflow-x:auto; max-width:100%; box-sizing:border-box;">
   <pre style="color:#10b981; font-family:'JetBrains Mono', ui-monospace, monospace; font-size:0.78rem; line-height:1.35; margin:0 auto; display:inline-block; text-align:left;">  ┌────────────────────────────────────────────────────────┐
   │                 Cursor / Claude Code                   │
   └──────────────────────────┬─────────────────────────────┘
@@ -351,8 +258,8 @@ def update_blog_posts_js():
     print(f"Updating {BLOG_POSTS_JS}...")
     content_file = BLOG_POSTS_JS.read_text(encoding="utf-8")
     
-    mcp_box = generate_mcp_config_box()
-    tabbed_code = generate_tabbed_code_box()
+    mcp_box = generate_mcp_config_box(box_id="sec1-code")
+    tabbed_code = generate_tabbed_code_box(box_id="sec2-code")
     arch_diag = generate_centered_architecture_diagram()
     cicd_diag = generate_centered_cicd_diagram()
     
