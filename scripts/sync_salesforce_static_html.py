@@ -136,14 +136,65 @@ static_html_content = f"""<!DOCTYPE html>
       font-size: 0.82rem;
     }}
 
-    /* Hero Banner */
+    /* Hero Banner with Auto-Changing Blurred Backgrounds */
     .article-hero-section {{
-      background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-950) 100%);
+      position: relative;
+      background-color: var(--navy-950);
       color: #FFFFFF;
-      padding: 52px 0 44px;
+      padding: 56px 0 48px;
       border-bottom: 1px solid var(--slate-800);
+      overflow: hidden;
     }}
-    .article-hero-inner {{ max-width: 1200px; margin: 0 auto; padding: 0 24px; }}
+    .hero-bg-carousel {{
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      overflow: hidden;
+    }}
+    .hero-bg-slide {{
+      position: absolute;
+      inset: -20px;
+      background-size: cover;
+      background-position: center;
+      filter: blur(5px) brightness(0.65);
+      transform: scale(1.05);
+      opacity: 0;
+      animation: heroSlideFade 18s infinite ease-in-out;
+    }}
+    .hero-bg-slide:nth-child(1) {{
+      background-image: url('/images/melbourne-bourke-street-header.webp');
+      animation-delay: 0s;
+    }}
+    .hero-bg-slide:nth-child(2) {{
+      background-image: url('https://images.pexels.com/photos/17489150/pexels-photo-17489150.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+      animation-delay: 6s;
+    }}
+    .hero-bg-slide:nth-child(3) {{
+      background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80');
+      animation-delay: 12s;
+    }}
+    @keyframes heroSlideFade {{
+      0% {{ opacity: 0; }}
+      10% {{ opacity: 0.45; }}
+      33% {{ opacity: 0.45; }}
+      43% {{ opacity: 0; }}
+      100% {{ opacity: 0; }}
+    }}
+    .hero-gradient-scrim {{
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(6, 27, 46, 0.90) 0%, rgba(10, 37, 64, 0.82) 50%, rgba(6, 17, 28, 0.94) 100%);
+      z-index: 2;
+      pointer-events: none;
+    }}
+    .article-hero-inner {{
+      position: relative;
+      z-index: 3;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }}
     .breadcrumb-nav {{
       display: flex;
       align-items: center;
@@ -625,8 +676,14 @@ static_html_content = f"""<!DOCTYPE html>
     </div>
   </header>
 
-  <!-- Hero Banner -->
+  <!-- Hero Banner with Auto-Changing Blurred Background -->
   <section class="article-hero-section">
+    <div class="hero-bg-carousel">
+      <div class="hero-bg-slide"></div>
+      <div class="hero-bg-slide"></div>
+      <div class="hero-bg-slide"></div>
+    </div>
+    <div class="hero-gradient-scrim"></div>
     <div class="article-hero-inner">
       <nav class="breadcrumb-nav">
         <a href="/">Home</a>
@@ -656,14 +713,6 @@ static_html_content = f"""<!DOCTYPE html>
     <!-- Left Column: Single Continuous A4-Style Editorial Sheet -->
     <article class="article-a4-sheet">
       
-      <!-- Executive Advisory Summary -->
-      <div class="summary-card">
-        <div class="summary-title">Executive Advisory Summary</div>
-        <p class="summary-text">
-          For years, enterprise Salesforce backlogs have resembled digital sediment: legacy Workflow Rules half-migrated to Flows, monolithic 2,000-line Apex triggers with zero separation of concerns, and untested batch jobs skirting SOQL limits. The combination of agentic coding IDEs (Claude Code, Cursor) and the Model Context Protocol (MCP) changes this dynamic entirely, enabling autonomous refactoring, live org schema querying, and ephemeral test deployments while strictly enforcing APRA CPS 234 and ISO 27001 data boundaries.
-        </p>
-      </div>
-
       <!-- Section 1 -->
       <section id="mcp-workspace">
         <h2 class="section-heading">1. The Architectural Shift: The Agentic Developer Workspace</h2>

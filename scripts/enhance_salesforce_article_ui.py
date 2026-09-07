@@ -263,9 +263,7 @@ def update_blog_posts_js():
     arch_diag = generate_centered_architecture_diagram()
     cicd_diag = generate_centered_cicd_diagram()
     
-    new_article_content = f"""<div class=\\"summary-card p-6 bg-blue-50 border-l-4 border-[#0077c8] rounded-r-xl mb-8\\"><strong class=\\"text-[#0077c8] block mb-1 text-xs uppercase tracking-wider font-extrabold\\">Executive Advisory Summary</strong><p class=\\"text-slate-800 text-base leading-relaxed m-0\\">For years, enterprise Salesforce backlogs have resembled digital sediment: legacy Workflow Rules half-migrated to Flows, monolithic 2,000-line Apex triggers with zero separation of concerns, and untested batch jobs skirting SOQL limits. The combination of agentic coding IDEs (Claude Code, Cursor) and the Model Context Protocol (MCP) changes this dynamic entirely, enabling autonomous refactoring, live org schema querying, and ephemeral test deployments while strictly enforcing APRA CPS 234 and ISO 27001 data boundaries.</p></div>
-
-<section id=\\"mcp-workspace\\">
+    new_article_content = f"""<section id=\\"mcp-workspace\\">
 <h2 class=\\"text-2xl font-bold text-slate-900 mb-4 border-b border-slate-200 pb-3\\">1. The Architectural Shift: The Agentic Developer Workspace</h2>
 <p class=\\"mb-4\\">Traditional LLM coding assistants act as intelligent autocomplete engines: they suggest functions based on the open file. Agentic IDEs behave as autonomous engineers: they parse Abstract Syntax Trees (ASTs), execute terminal commands, crawl dependencies across your repository, and iteratively test their work.</p>
 
