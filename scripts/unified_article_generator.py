@@ -23,6 +23,9 @@ from zoneinfo import ZoneInfo
 from datetime import datetime, timezone
 from dotenv import load_dotenv
 
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from scripts.seo_engine import audit_article_seo
+
 AEST = ZoneInfo("Australia/Melbourne")
 BASE_DIR = Path(__file__).resolve().parent.parent
 EZ_DIR = Path("/Volumes/Samsung SSD 2TB/03. Documents/GitHub/ezmortgagebroker")
@@ -148,6 +151,9 @@ CRITICAL INSTRUCTIONS FOR TOPIC RELEVANCE:
 - If the headline is about REFINANCING: Focus on bank loyalty taxes, break-even periods, clawbacks, and switching costs.
 - If the headline is about SMSF / PROPERTY INVESTING: Focus on LRBAs, trustee borrowing limits, and rental yields.
 - In all cases: Provide concrete financial numbers, calculations, and Melbourne-specific data.
+- YOAST READABILITY RULE: Keep sentences crisp and clear (under 20 words). Use natural transition words (furthermore, specifically, consequently, in addition, however, therefore, meanwhile) in at least 25% of sentences.
+- BOLDGRID KEYWORD OPTIMIZATION: Naturally incorporate the primary topic keywords at a 1.2% - 2.0% density without keyword stuffing.
+- ULTIMATE SEO LSI ENRICHMENT: Explicitly mention co-occurring financial terms: LVR, LMI, APRA buffer, stamp duty exemption, and Best Interests Duty (BID).
 - Conclude with broker advice under statutory Best Interests Duty (BID).
 - NO repetitive marketing boilerplate.
 
@@ -247,6 +253,20 @@ def render_article_html(slug: str, title: str, category: str, date_str: str, dat
   <title>{title} | EZ Mortgage Broker Melbourne</title>
   <meta name="description" content="{summary}">
   <link rel="canonical" href="https://ezmortgagebroker.com.au/pages/blog/{slug}.html">
+  
+  <!-- OpenGraph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="{title}">
+  <meta property="og:description" content="{summary}">
+  <meta property="og:url" content="https://ezmortgagebroker.com.au/pages/blog/{slug}.html">
+  <meta property="og:image" content="https://ezmortgagebroker.com.au/assets/luxury-home-refinance-hero-OeZc7gD4.webp">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{title}">
+  <meta name="twitter:description" content="{summary}">
+  <meta name="twitter:image" content="https://ezmortgagebroker.com.au/assets/luxury-home-refinance-hero-OeZc7gD4.webp">
+
   <link rel="stylesheet" href="/css/styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -345,7 +365,7 @@ def render_article_html(slug: str, title: str, category: str, date_str: str, dat
           </div>
         </div>
         <div style="padding:42px 16px 16px;">
-          <h4 style="font-size:1.05rem; font-weight:900; color:#0A2540; margin:0 0 2px; text-transform:uppercase; letter-spacing:0.02em;">R BAKSHI</h4>
+          <h3 style="font-size:1.05rem; font-weight:900; color:#0A2540; margin:0 0 2px; text-transform:uppercase; letter-spacing:0.02em;">R BAKSHI</h3>
           <div style="font-size:0.7rem; font-weight:800; color:#00876C; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.04em;">
             PRINCIPAL FINANCE BROKER (MFAA ACCREDITED)
           </div>
@@ -407,6 +427,18 @@ def publish_article(headline: str, category: str = "Home Loans"):
     print(f"[{date_str}] Generating rich financial article for: '{headline}'...")
     data = generate_article_content(headline)
     html_content = render_article_html(slug, headline, category, date_str, data)
+
+    # Run deterministic SEO engine audit (Yoast + BoldGrid + Ultimate SEO WP)
+    seo_scorecard = audit_article_seo(html_content, headline)
+    print("\n📊 Jules Multi-Engine SEO Audit Scorecard:")
+    print(f"   • Overall Score: {seo_scorecard['overall_score']}% ({'✅ PASS' if seo_scorecard['passed'] else '⚠️ REVIEW'})")
+    print(f"   • Yoast Flesch Reading Ease: {seo_scorecard['yoast']['flesch_reading_ease']} / 100")
+    print(f"   • Yoast Transition Words Ratio: {seo_scorecard['yoast']['transition_words_ratio']}%")
+    print(f"   • BoldGrid Keyword Density: {seo_scorecard['boldgrid']['keyword_density']}%")
+    print(f"   • BoldGrid Heading Hierarchy: {seo_scorecard['boldgrid']['heading_hierarchy']['reason']}")
+    print(f"   • BoldGrid Content-to-Code: {seo_scorecard['boldgrid']['content_to_code_ratio']}%")
+    print(f"   • Ultimate SEO LSI Term Match: {seo_scorecard['ultimate_seo']['lsi_terms']['score']}% (Matched: {', '.join(seo_scorecard['ultimate_seo']['lsi_terms']['matched'])})")
+    print(f"   • Ultimate SEO Social Parity: {'✅ Verified' if seo_scorecard['ultimate_seo']['social_graph']['compliant'] else '❌ Incomplete'}\n")
 
     out_file = BLOG_DIR / f"{slug}.html"
     with open(out_file, "w", encoding="utf-8") as fp:
