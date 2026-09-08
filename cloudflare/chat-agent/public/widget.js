@@ -248,12 +248,12 @@
         { text: "Cloud Security Architecture", prompt: "How do you secure multi-cloud Kubernetes & AWS workloads?" }
       ];
       brandCtaText = "Request Cyber Advisory Call &rarr;";
-      brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/friday_avatar_female_poster.jpg";
-      brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_ezconsultants.mp4";
+      brandPoster = backendUrl + "/images/friday_avatar_ezconsultants_poster.jpg?v=20260908c";
+      brandVideo = backendUrl + "/videos/friday_avatar_ezconsultants.mp4?v=20260908c";
       brandVideoId = "";
       brandBadgeName = "EZ CONSULTANTS";
       brandBadgeColor = "#00afeb";
-      brandLogoImg = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/logos/ezconsultants-avatar.svg";
+      brandLogoImg = backendUrl + "/images/ez-consultants-avatar.svg?v=20260908c";
       brandVoiceId = "Dh68koMHNSYl8A1jH9Je";
       brandAvatarId = "ezconsultants-cyber";
     } else if (isESignature) {
