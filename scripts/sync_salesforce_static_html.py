@@ -298,6 +298,14 @@ static_html_content = f"""<!DOCTYPE html>
       margin: 0;
     }}
 
+    html {{
+      scroll-behavior: smooth;
+      scroll-padding-top: 110px;
+    }}
+    section[id], h2[id], h3[id], .section-heading, .sub-heading {{
+      scroll-margin-top: 110px !important;
+    }}
+
     /* Typography inside article */
     .section-heading {{
       font-size: 1.45rem;
@@ -307,6 +315,7 @@ static_html_content = f"""<!DOCTYPE html>
       border-bottom: 2px solid var(--slate-100);
       padding-bottom: 10px;
       letter-spacing: -0.01em;
+      scroll-margin-top: 110px !important;
     }}
     .section-heading:first-of-type {{ margin-top: 0; }}
     .sub-heading {{
@@ -314,6 +323,7 @@ static_html_content = f"""<!DOCTYPE html>
       font-weight: 800;
       color: var(--navy-900);
       margin: 28px 0 12px;
+      scroll-margin-top: 110px !important;
     }}
     .editorial-p {{
       font-size: 1.02rem;
@@ -930,9 +940,16 @@ static_html_content = f"""<!DOCTYPE html>
   <script>
     function scrollToSection(e, id) {{
       if (e && e.preventDefault) e.preventDefault();
-      const el = document.getElementById(id);
+      const cleanId = id ? id.replace(/^#/, '') : '';
+      const el = document.getElementById(cleanId);
       if (el) {{
-        el.scrollIntoView({{ behavior: 'smooth', block: 'start' }});
+        const headerOffset = 110;
+        const elementPosition = el.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        window.scrollTo({{
+          top: offsetPosition,
+          behavior: 'smooth'
+        }});
         el.classList.remove('section-highlight-flash');
         void el.offsetWidth;
         el.classList.add('section-highlight-flash');

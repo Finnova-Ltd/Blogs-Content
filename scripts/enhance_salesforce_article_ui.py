@@ -23,13 +23,11 @@ def highlight_json(code: str) -> str:
     lines = code.split("\n")
     out = []
     for i, line in enumerate(lines, 1):
-        l = line
-        l = l.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-        l = re.sub(r'("[\w\-]+")\s*:', r'<span style="color:#79C0FF; font-weight:bold;">\1</span>:', l)
-        l = re.sub(r':\s*(".*?")', r': <span style="color:#7EE787;">\1</span>', l)
-        l = re.sub(r'(\[|\,)\s*(".*?")', r'\1 <span style="color:#7EE787;">\2</span>', l)
-        l = re.sub(r'\b(\d+(\.\d+)?)\b', r'<span style="color:#FFA657;">\1</span>', l)
-        l = re.sub(r'\b(true|false|null)\b', r'<span style="color:#FF7B72; font-weight:bold;">\1</span>', l)
+        l = line.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+        l = re.sub(r'("[\w\-]+")(\s*:)', r'<span style="color:#79C0FF; font-weight:bold;">\1</span>\2', l)
+        l = re.sub(r'(:\s*)(".*?")', r'\1<span style="color:#7EE787;">\2</span>', l)
+        l = re.sub(r'(:\s*)(\d+(\.\d+)?)', r'\1<span style="color:#FFA657;">\2</span>', l)
+        l = re.sub(r'(:\s*)(true|false|null)', r'\1<span style="color:#FF7B72; font-weight:bold;">\2</span>', l)
         out.append(f'<span class="line-number" style="color:#64748B; user-select:none; margin-right:16px; display:inline-block; width:22px; text-align:right;">{i}</span>{l}')
     return "\n".join(out)
 
@@ -37,13 +35,33 @@ def highlight_html(code: str) -> str:
     lines = code.split("\n")
     out = []
     for i, line in enumerate(lines, 1):
-        l = line
-        l = l.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-        l = re.sub(r'(&lt;/?)([\w\-]+)', r'\1<span style="color:#FF7B72; font-weight:bold;">\2</span>', l)
-        l = re.sub(r'(/&gt;|&gt;)', r'<span style="color:#FF7B72; font-weight:bold;">\1</span>', l)
-        l = re.sub(r'\b([\w\-]+)=', r'<span style="color:#79C0FF;">\1</span>=', l)
-        l = re.sub(r'(".*?")', r'<span style="color:#A5D6FF;">\1</span>', l)
-        l = re.sub(r'(\{[^}]+\})', r'<span style="color:#FFA657; font-weight:bold;">\1</span>', l)
+        l = line.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+        
+        def tag_replacer(match):
+            slash_start = match.group(1) or ""
+            tag_name = match.group(2)
+            attrs = match.group(3) or ""
+            slash_end = match.group(4) or ""
+            
+            def attr_replacer(m):
+                attr_name = m.group(1)
+                eq = m.group(2)
+                val = m.group(3)
+                if val.startswith("{") and val.endswith("}"):
+                    val_colored = f'<span style="color:#FFA657; font-weight:bold;">{val}</span>'
+                else:
+                    val_colored = f'<span style="color:#A5D6FF;">{val}</span>'
+                return f'<span style="color:#79C0FF;">{attr_name}</span>{eq}{val_colored}'
+            
+            colored_attrs = re.sub(r'([\w\-]+)(=)(["\'][^"\']*["\']|\{[^}]+\})', attr_replacer, attrs)
+            
+            return (
+                f'&lt;{slash_start}<span style="color:#FF7B72; font-weight:bold;">{tag_name}</span>'
+                f'{colored_attrs}'
+                f'<span style="color:#FF7B72; font-weight:bold;">{slash_end}&gt;</span>'
+            )
+            
+        l = re.sub(r'&lt;(/?)(\w[\w\-]*)(.*?)(/?)&gt;', tag_replacer, l)
         out.append(f'<span class="line-number" style="color:#64748B; user-select:none; margin-right:16px; display:inline-block; width:22px; text-align:right;">{i}</span>{l}')
     return "\n".join(out)
 
