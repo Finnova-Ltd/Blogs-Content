@@ -194,12 +194,12 @@
     ];
     let brandCtaText = "Connect me with a licensed broker &rarr;";
     let brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/friday_avatar_female_poster.jpg";
-    let brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_female.mp4";
-    let brandVideoId = "FCw4vx5Z3LmiTbUCRLS3";
+    let brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_ezmortgage.mp4";
+    let brandVideoId = "";
     let brandBadgeName = "EZ MORTGAGE BROKER";
     let brandBadgeColor = "#3b82f6";
     let brandVoiceId = "Dh68koMHNSYl8A1jH9Je";
-    let brandAvatarId = "FCw4vx5Z3LmiTbUCRLS3";
+    let brandAvatarId = "ezmortgage-ai";
 
     if (isFinnova) {
       brandSpecialistTitle = "AI Community Guide";
@@ -212,12 +212,12 @@
       ];
       brandCtaText = "Contact Finnova Community Team &rarr;";
       brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/friday_avatar_female_poster.jpg";
-      brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_female.mp4";
-      brandVideoId = "j5ck0gcoPY3vyiBPJy6h";
+      brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_finnova.mp4";
+      brandVideoId = "";
       brandBadgeName = "FINNOVA CHARITY";
       brandBadgeColor = "#ec4899";
       brandVoiceId = "7xOqQceOZC5dhvkaqKtD";
-      brandAvatarId = "j5ck0gcoPY3vyiBPJy6h";
+      brandAvatarId = "finnova-guide";
     } else if (isProCrm) {
       brandSpecialistTitle = "AI Enterprise Architect";
       brandIntro = "Hi there! I'm Friday, your AI Enterprise Architect at <strong>Pro CRM Australia</strong>. We deliver Salesforce Agentforce, Zero-ETL Data Cloud integrations, and sovereign enterprise automation. What can we build for you today?";
@@ -230,6 +230,7 @@
       brandCtaText = "Book Enterprise AI Consultation &rarr;";
       brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/friday_avatar_procrm_poster.jpg";
       brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_procrm.mp4";
+      brandVideoId = "";
       brandBadgeName = "PRO CRM AUSTRALIA";
       brandBadgeColor = "#6366f1";
       brandVoiceId = "cjVigY5qzO86Huf0OWal";
@@ -245,7 +246,8 @@
       ];
       brandCtaText = "Request Cyber Advisory Call &rarr;";
       brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/friday_avatar_female_poster.jpg";
-      brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_female.mp4";
+      brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_ezconsultants.mp4";
+      brandVideoId = "";
       brandBadgeName = "EZ CONSULTANTS";
       brandBadgeColor = "#00afeb";
       brandVoiceId = "Dh68koMHNSYl8A1jH9Je";
@@ -262,6 +264,7 @@
       brandCtaText = "Start Free Document Trial &rarr;";
       brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/friday_avatar_female_poster.jpg";
       brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_female.mp4";
+      brandVideoId = "";
       brandBadgeName = "EZ SIGNATURE";
       brandBadgeColor = "#2563eb";
       brandVoiceId = "Dh68koMHNSYl8A1jH9Je";
