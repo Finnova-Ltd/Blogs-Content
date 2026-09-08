@@ -1,93 +1,1402 @@
 <!DOCTYPE html>
 <html lang="en-AU">
 <head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4107133850485301" crossorigin="anonymous"></script>
+  <link rel="icon" type="image/webp" href="/images/ez-mortgage-broker.webp">
+  <link rel="apple-touch-icon" href="/images/ez-mortgage-broker.webp">
+  <meta name="theme-color" content="#0A2540">
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>404 Page Not Found | EZ Mortgage Broker</title>
+  <title>404 - Page Not Found | Mortgage Broker | EZ Mortgage Broker</title>
+  <meta name="description" content="Compare home loans, calculate repayments, and secure the right rate with EZ Mortgage Broker. Independent expert credit advice across 50+ Australian lenders.'re trying to view isn't here. But you're still on the path to securing the lowest home loan rate and maximizing your borrowing power with EZ Mortgage Broker.">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/calculators.css">
+  
+  <!-- Lottie Player for 404 Interactive Animation -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
   <style>
-    .error-hero {
-      min-height: 70vh;
+    :root {
+      --ez-navy: #084582;
+      --ez-navy-dark: #052a50;
+      --ez-blue-light: #f0f7ff;
+      --ez-amber: #f59e0b;
+      --ez-amber-hover: #d97706;
+      --ez-teal: #00a884;
+    }
+    
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Global Header */
+    .top-nav {
+      background: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .top-nav-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 14px 24px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 60px 20px;
-      background: #f8fafc;
+      justify-content: space-between;
     }
-    .error-card {
-      max-width: 580px;
-      background: #ffffff;
-      padding: 48px 32px;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(10, 37, 64, 0.08);
-      border: 1.5px solid #e2e8f0;
+    .logo-brand {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
     }
-    .error-code {
-      font-size: 5rem;
-      font-weight: 900;
-      color: #0A2540;
-      line-height: 1;
-      margin-bottom: 12px;
+    .brand-logo-img {
+      height: clamp(52px, 5.5vw, 68px);
+      width: auto;
+      max-width: 260px;
+      display: inline-block;
+      object-fit: contain;
     }
-    .error-title {
-      font-size: 1.6rem;
-      color: #1E293B;
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .nav-links a {
+      color: #334155;
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 600;
+      transition: color 0.15s ease;
+    }
+    .nav-links a:hover {
+      color: var(--ez-navy);
+    }
+    .btn-consult-nav {
+      background: var(--ez-navy);
+      color: #ffffff !important;
+      padding: 10px 22px;
+      border-radius: 9999px;
       font-weight: 700;
-      margin-bottom: 14px;
+      font-size: 0.85rem;
+      transition: all 0.2s ease;
     }
-    .error-desc {
-      color: #64748B;
-      font-size: 1.05rem;
+    .btn-consult-nav:hover {
+      background: var(--ez-navy-dark);
+      transform: translateY(-1px);
+    }
+
+    /* Hero 404 Section - 2 Column Full Width White Background */
+    .hero-404 {
+      width: 100%;
+      background: #ffffff;
+      padding: 56px 0 72px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .hero-404-container {
+      width: 100%;
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 32px;
+      box-sizing: border-box;
+    }
+    .hero-404-grid {
+      display: grid;
+      grid-template-columns: 1.12fr 0.88fr;
+      gap: 56px;
+      align-items: center;
+    }
+    @media (max-width: 1024px) {
+      .hero-404-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+      }
+      .hero-404-text {
+        align-items: center !important;
+      }
+      .hero-404-ctas {
+        justify-content: center !important;
+      }
+      .hero-404-pills {
+        justify-content: center !important;
+      }
+    }
+    
+    .hero-404-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .floating-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #eff6ff;
+      color: var(--ez-navy);
+      font-weight: 800;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 7px 16px;
+      border-radius: 9999px;
+      margin-bottom: 20px;
+      border: 1px solid #bfdbfe;
+      box-shadow: 0 2px 10px rgba(8, 69, 130, 0.05);
+    }
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: #0284c7;
+      border-radius: 50%;
+      animation: pulseDot 1.5s ease-in-out infinite;
+    }
+    @keyframes pulseDot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.5); opacity: 0.4; }
+    }
+
+    .headline-404 {
+      font-size: clamp(2.2rem, 3.6vw, 3.1rem);
+      font-weight: 900;
+      color: #0f172a;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin: 0 0 16px;
+    }
+    .headline-404 span {
+      color: #224a91;
+    }
+    .subheadline-404 {
+      font-size: clamp(1.08rem, 1.8vw, 1.25rem);
+      font-weight: 700;
+      color: #1e293b;
+      line-height: 1.45;
+      margin: 0 0 14px;
+      letter-spacing: -0.01em;
+    }
+    .desc-404 {
+      font-size: 0.98rem;
+      color: #475569;
       line-height: 1.6;
-      margin-bottom: 28px;
+      margin: 0 0 24px;
+      max-width: 620px;
     }
-    .error-nav-links {
+    .hero-ctas {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
+      margin-bottom: 24px;
+    }
+    .btn-primary-ez {
+      background: #224a91;
+      color: #ffffff !important;
+      padding: 13px 26px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(34, 74, 145, 0.25);
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-primary-ez:hover {
+      background: #1b3e7a;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(34, 74, 145, 0.35);
+    }
+    .btn-accent-ez {
+      background: #f5a623;
+      color: #ffffff !important;
+      padding: 13px 24px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(245, 166, 35, 0.25);
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-accent-ez:hover {
+      background: #e09010;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(245, 166, 35, 0.35);
+    }
+    .btn-outline-ez {
+      background: #ffffff;
+      color: #0f172a !important;
+      border: 1.5px solid #cbd5e1;
+      padding: 12px 22px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-outline-ez:hover {
+      background: #f8fafc;
+      border-color: #224a91;
+      color: #224a91 !important;
+      transform: translateY(-2px);
+    }
+
+    /* Direct Phone Pill */
+    .hero-404-phone {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.92rem;
+      color: #334155;
+      text-decoration: none;
+      margin-bottom: 24px;
+      font-weight: 600;
+    }
+    .hero-404-phone strong {
+      color: #224a91;
+      font-weight: 800;
+    }
+    .hero-404-phone:hover {
+      color: #224a91;
+      text-decoration: underline;
+    }
+
+    /* Shortcuts list */
+    .hero-404-shortcuts {
+      border-top: 1px dashed #cbd5e1;
+      padding-top: 18px;
+      width: 100%;
+    }
+    .hero-404-shortcuts-label {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .hero-404-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .hero-404-pill {
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: #334155;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+    .hero-404-pill:hover {
+      background: #eff6ff;
+      color: #224a91;
+      border-color: #bfdbfe;
+    }
+
+    /* Col 2 Media Presentation (Static Image + Lazy Loaded GIF) */
+    .hero-404-media-wrapper {
+      position: relative;
+      width: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+      border: 1.5px solid #e2e8f0;
+      background: #ffffff;
+      aspect-ratio: 4 / 3;
+      display: flex;
+      align-items: center;
       justify-content: center;
     }
-    .btn-404-primary {
-      background: #00876C;
-      color: #ffffff !important;
-      font-weight: 700;
-      padding: 12px 24px;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: all 0.2s ease;
+    .hero-404-img-static {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+      transition: opacity 0.4s ease-in-out;
     }
-    .btn-404-primary:hover { background: #006852; }
-    .btn-404-outline {
-      background: transparent;
-      color: #0A2540 !important;
-      border: 1.5px solid #0A2540;
-      font-weight: 700;
-      padding: 12px 24px;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: all 0.2s ease;
+    .hero-404-img-gif {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      z-index: 2;
+      transition: opacity 0.4s ease-in-out;
     }
-    .btn-404-outline:hover { background: #0A2540; color: #ffffff !important; }
+    .hero-404-img-gif.loaded {
+      opacity: 1;
+    }
+    .hero-404-loader-indicator {
+      position: absolute;
+      bottom: 14px;
+      right: 14px;
+      z-index: 3;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(4px);
+      color: #ffffff;
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .hero-404-loader-indicator.hidden {
+      opacity: 0;
+    }
+
+    /* Blog & Guides Preview Section (Exact Image 2 Match) */
+    .guides-section {
+      max-width: 1200px;
+      margin: 20px auto 64px;
+      padding: 0 24px;
+      text-align: center;
+    }
+    .guides-eyebrow {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: #0284c7;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .guides-title {
+      font-size: clamp(1.75rem, 3vw, 2.25rem);
+      font-weight: 900;
+      color: #0f172a;
+      letter-spacing: -0.02em;
+      margin: 0 0 10px;
+    }
+    .guides-desc {
+      font-size: 1rem;
+      color: #64748b;
+      max-width: 650px;
+      margin: 0 auto 36px;
+      line-height: 1.5;
+    }
+    .guides-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      text-align: left;
+    }
+    @media (max-width: 960px) {
+      .guides-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 640px) {
+      .guides-grid {
+        grid-template-columns: 1fr;
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+    .guide-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+      display: flex;
+      flex-direction: column;
+      transition: all 0.25s ease;
+    }
+    .guide-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(8, 69, 130, 0.1);
+      border-color: #cbd5e1;
+    }
+    .guide-img-wrap {
+      position: relative;
+      height: 180px;
+      background: #e2e8f0;
+      overflow: hidden;
+    }
+    .guide-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .guide-card:hover .guide-img-wrap img {
+      transform: scale(1.03);
+    }
+    .guide-category-badge {
+      position: absolute;
+      bottom: 12px;
+      left: 14px;
+      background: #f59e0b;
+      color: #ffffff;
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+    .guide-content {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
+    }
+    .guide-meta {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #94a3b8;
+      margin-bottom: 10px;
+    }
+    .guide-headline {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #084582;
+      line-height: 1.4;
+      margin-bottom: 12px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .guide-excerpt {
+      font-size: 0.88rem;
+      color: #475569;
+      line-height: 1.55;
+      margin-bottom: 20px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .guide-link {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: #0284c7;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap 0.2s ease;
+    }
+    .guide-link:hover {
+      gap: 10px;
+      color: #0369a1;
+    }
+
+    /* Popular Destinations Directory */
+    .destinations-section {
+      background: #ffffff;
+      border-top: 1px solid #e2e8f0;
+      padding: 64px 24px;
+    }
+    .destinations-container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .dest-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--ez-navy);
+      margin-bottom: 32px;
+      text-align: center;
+    }
+    .dest-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 32px;
+    }
+    .dest-column h4 {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 8px;
+    }
+    .dest-column ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .dest-column a {
+      color: #475569;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.15s ease;
+    }
+    .dest-column a:hover {
+      color: #0284c7;
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    .footer-404 {
+      background: var(--ez-navy-dark);
+      color: #94a3b8;
+      padding: 32px 24px;
+      text-align: center;
+      font-size: 0.85rem;
+    }
+    .footer-404 a {
+      color: #cbd5e1;
+      text-decoration: none;
+    }
   </style>
+  <link rel="canonical" href="https://ezmortgagebroker.com.au/404.html">
+  <meta property="og:image" content="https://ezmortgagebroker.com.au/images/ez-mortgage-broker.webp">
+  <meta name="twitter:image" content="https://ezmortgagebroker.com.au/images/ez-mortgage-broker.webp">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "FinancialService",
+      "name": "EZ Mortgage Broker",
+      "url": "https://ezmortgagebroker.com.au/",
+      "logo": "https://ezmortgagebroker.com.au/images/ez-mortgage-broker.webp",
+      "telephone": "1300050099",
+      "email": "info@ezmortgagebroker.com.au",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Melbourne",
+        "addressRegion": "VIC",
+        "addressCountry": "AU"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://ezmortgagebroker.com.au/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "404 - Page Not Found | EZ Mortgage Broker",
+          "item": "https://ezmortgagebroker.com.au/404.html"
+        }
+      ]
+    }
+  ]
+}
+  </script>
 </head>
 <body>
-  <div class="error-hero">
-    <div class="error-card">
-      <div class="error-code">404</div>
-      <h1 class="error-title">Page Not Found</h1>
-      <p class="error-desc">The financial guide, calculator, or page you are looking for may have moved or no longer exists. Let's get you back on track.</p>
-      <div class="error-nav-links">
-        <a href="/" class="btn-404-primary">🏠 Return to Home</a>
-        <a href="/calculators" class="btn-404-outline">📊 Mortgage Calculators</a>
-        <a href="/pages/blog" class="btn-404-outline">📚 Blog & Insights</a>
-        <a href="tel:1300050099" class="btn-404-outline">📞 Call 1300 050 099</a>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <div class="top-nav-inner">
+      <a href="/" class="logo-brand">
+        <img width="180" height="48" src="/images/ez-mortgage-broker.webp" alt="EZ Mortgage Broker" class="brand-logo-img">
+      </a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/pages/loans/first-home-buyers.html">First Home Buyers</a>
+        <a href="/pages/refinancing.html">Refinancing</a>
+        <a href="/calculators.html">Calculators</a>
+        <a href="/pages/blog">News & Insights</a>
+        <a href="/#contact" class="btn-consult-nav">Book Consultation</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Hero 404 Section (2 Column Full-Width White Background) -->
+  <main>
+    <section class="hero-404">
+      <div class="hero-404-container">
+        <div class="hero-404-grid">
+          
+          <!-- Column 1: Text, Context & Quick Action Hub -->
+          <div class="hero-404-text">
+            <div class="floating-badge">
+              <span class="pulse-dot"></span>
+              <span>404 • Page Not Found</span>
+            </div>
+            
+            <h1 class="headline-404">
+              Oops, the page you're looking for <span>isn't here</span>.
+            </h1>
+            
+            <p class="subheadline-404">
+              The link may be outdated, moved, or misspelled. But you're still in the right place to get expert Australian mortgage advice.
+            </p>
+            
+            <p class="desc-404">
+              Compare 30+ accredited Australian lenders, unlock borrowing capacity with 18 native calculators, and eliminate bank loyalty tax with EZ Mortgage Broker.
+            </p>
+            
+            <div class="hero-ctas">
+              <a href="/" class="btn-primary-ez">
+                🏠 Back to Home
+              </a>
+              <a href="/calculators.html" class="btn-accent-ez">
+                🧮 18 Loan Calculators
+              </a>
+              <a href="/#contact" class="btn-outline-ez">
+                📅 Free Consultation
+              </a>
+            </div>
+
+            <a href="tel:1300050099" class="hero-404-phone">
+              📞 Direct Broker Line: <strong>1300 050 099</strong>
+            </a>
+
+            <!-- Quick Navigation Shortcuts -->
+            <div class="hero-404-shortcuts">
+              <span class="hero-404-shortcuts-label">Popular Destinations:</span>
+              <div class="hero-404-pills">
+                <a href="/pages/loans/first-home-buyers.html" class="hero-404-pill">First Home Buyer Loans</a>
+                <a href="/pages/refinancing.html" class="hero-404-pill">Home Loan Refinance</a>
+                <a href="/calculators.html#borrowing-power" class="hero-404-pill">Borrowing Power Calculator</a>
+                <a href="/calculators.html#stamp-duty" class="hero-404-pill">VIC Stamp Duty Calculator</a>
+                <a href="/calculators.html#offset" class="hero-404-pill">Offset Account Calculator</a>
+                <a href="/pages/blog" class="hero-404-pill">Market News &amp; RBA Alerts</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 2: Visual Media (Static Image Placeholder + Lazy Loaded 404 GIF) -->
+          <div class="hero-404-media-wrapper" id="hero404MediaWrapper">
+            <!-- Static Image (Image 5 from Downloads) for instant display -->
+            <img 
+              id="hero404StaticImg" 
+              src="/images/404-static.jpg" 
+              alt="404 Page Not Found Illustration" 
+              class="hero-404-img-static" 
+              width="680" 
+              height="510" 
+              fetchpriority="high"
+            >
+            <!-- Animated 404.gif with lazy loading and smooth crossfade -->
+            <img 
+              id="hero404GifImg" 
+              data-src="/images/404.gif" 
+              alt="404 Interactive Animation" 
+              class="hero-404-img-gif" 
+              width="680" 
+              height="510" 
+              loading="lazy"
+            >
+            <div class="hero-404-loader-indicator" id="hero404LoaderIndicator">
+              <span>⚡ Loading Animation...</span>
+            </div>
+          </div>
+
+        </div>
       </div>
+    </section>
+
+    <!-- Mortgage Guides & Insights Preview Section (Exact Image 2 Match) -->
+    <section class="guides-section">
+      <span class="guides-eyebrow">RESOURCES & RESEARCH</span>
+      <h3 class="guides-title">Mortgage Guides & Insights</h3>
+      <p class="guides-desc">Free resources, government grant guides, and strategy playbooks to help you make smarter loan decisions.</p>
+
+      <div class="guides-grid">
+        <!-- Card 1: First Home Buyer Grants -->
+        <article class="guide-card">
+          <div class="guide-img-wrap">
+            <img width="600" height="400" src="/images/first-home-buyers-hero-BWDoVOZm.jpg" alt="First Home Buyer Grants Guide" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=600&q=80'">
+            <span class="guide-category-badge">HOME BUYING</span>
+          </div>
+          <div class="guide-content">
+            <div>
+              <div class="guide-meta">By R BAKSHI • 6 min read</div>
+              <h4 class="guide-headline">First Home Buyer's Complete Guide to Australian Government Grants</h4>
+              <p class="guide-excerpt">A complete breakdown of every grant and scheme available across VIC, NSW, QLD, WA, SA, including the 5% Deposit Guarantee and stamp duty waivers.</p>
+            </div>
+            <a href="/pages/blog/first-home-buyers-grant-2026-guide.html" class="guide-link">Read full guide →</a>
+          </div>
+        </article>
+
+        <!-- Card 2: How to Refinance -->
+        <article class="guide-card">
+          <div class="guide-img-wrap">
+            <img width="600" height="400" src="/images/assets-ez-mortgage-broker/06._refinance.png" alt="Refinance Playbook" onerror="this.src='https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=600&q=80'">
+            <span class="guide-category-badge">REFINANCING</span>
+          </div>
+          <div class="guide-content">
+            <div>
+              <div class="guide-meta">By R BAKSHI • 7 min read</div>
+              <h4 class="guide-headline">How to Refinance EZ Mortgage Insights in Australia: Step-by-Step Playbook</h4>
+              <p class="guide-excerpt">How to renegotiate your interest rate, switch lenders without penalties, and structure offset accounts to save thousands over your loan term.</p>
+            </div>
+            <a href="/pages/blog/how-to-refinance-mortgage-australia-playbook.html" class="guide-link">Read full guide →</a>
+          </div>
+        </article>
+
+        <!-- Card 3: Property Investment Structuring -->
+        <article class="guide-card">
+          <div class="guide-img-wrap">
+            <img width="600" height="400" src="/images/assets-ez-mortgage-broker/cgt-property-investment-australia-2027.jpg" alt="Property Investment Structuring" onerror="this.src='https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80'">
+            <span class="guide-category-badge">INVESTMENT</span>
+          </div>
+          <div class="guide-content">
+            <div>
+              <div class="guide-meta">By R BAKSHI • 8 min read</div>
+              <h4 class="guide-headline">Property Investment Structuring, Tax Strategy & Wealth Creation</h4>
+              <p class="guide-excerpt">Using usable equity, interest-only buffers, and portfolio structuring to build a scalable Australian property investment portfolio.</p>
+            </div>
+            <a href="/pages/blog/property-investment-structuring-tax-wealth.html" class="guide-link">Read full guide →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Popular Destinations Links Directory -->
+    <section class="destinations-section">
+      <div class="destinations-container">
+        <h3 class="dest-title">Popular Destinations & Tools</h3>
+        
+        <div class="dest-grid">
+          <!-- Column 1: Loan Solutions -->
+          <div class="dest-column">
+            <h4>Loan Solutions</h4>
+            <ul>
+              <li><a href="/pages/loans/first-home-buyers.html">First Home Buyer Loans</a></li>
+              <li><a href="/pages/refinancing.html">Refinance & Rate Bargaining</a></li>
+              <li><a href="/pages/loans/self-employed-alt-doc-loans.html">Self-Employed Alt-Doc Loans</a></li>
+              <li><a href="/pages/loans/ndis-sda-property-finance.html">NDIS / SDA Property Finance</a></li>
+              <li><a href="/pages/blog/smsf-property-lending-investing-super-guide.html">SMSF Property Lending</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 2: Calculators & Tools -->
+          <div class="dest-column">
+            <h4>Financial Calculators</h4>
+            <ul>
+              <li><a href="/calculators.html#borrowing-power">Borrowing Power Calculator</a></li>
+              <li><a href="/calculators.html#loan-repayment">Mortgage Repayment Calculator</a></li>
+              <li><a href="/calculators.html#stamp-duty">Stamp Duty & Concessions Tool</a></li>
+              <li><a href="/calculators.html#refinance-savings">Refinance Savings Estimator</a></li>
+              <li><a href="/calculators.html#extra-repayments">Extra Repayments & Offset Tool</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 3: Market News & Guides -->
+          <div class="dest-column">
+            <h4>Market Intelligence</h4>
+            <ul>
+              <li><a href="/pages/blog">All News & Market Alerts</a></li>
+              <li><a href="/pages/blog/rba-cash-rate-decision-mortgage-repayments-2026.html">RBA Cash Rate Forecasts</a></li>
+              <li><a href="/pages/blog/mortgage-brokers-settle-80-percent-australian-home-loans-mfaa.html">Why 80% Choose Brokers (BID)</a></li>
+              <li><a href="/pages/blog/apra-serviceability-buffer-borrowing-power-2026-guide.html">APRA 3% Buffer Guidelines</a></li>
+              <li><a href="/pages/blog/first-home-buyers-grant-2026-guide.html">First Home Guarantee Concessions</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 4: Broker Support -->
+          <div class="dest-column">
+            <h4>Broker Support</h4>
+            <ul>
+              <li><a href="/#contact">Book Free Strategy Consult</a></li>
+              <li><a href="tel:1300050099">Call 1300 050 099</a></li>
+              <li><a href="/pages/locations/mortgage-broker-tarneit.html">Mortgage Broker Tarneit</a></li>
+              <li><a href="/pages/locations/mortgage-broker-point-cook.html">Mortgage Broker Point Cook</a></li>
+              <li><a href="/pages/locations/mortgage-broker-werribee.html">Mortgage Broker Werribee</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-404">
+    <p>© 2026 EZ Mortgage Broker. All rights reserved. | Australian Credit License Representative | <a href="/terms-of-use.html">Terms of Use</a></li>
+            <li><a href="/sitemap.html" style="color:#FFDC4A !important; font-weight:700; margin-right:16px;">Sitemap</a><a href="/privacy-policy.html">Privacy Policy</a> | <a href="/cookie-policy.html">Cookie Policy</a></p>
+  <p class="footer-disclaimer" style="font-size:0.75rem; color:#64748B; line-height:1.6; margin-top:12px; border-top:1px solid #E2E8F0; padding-top:12px;"><strong>Disclaimer:</strong> The information provided on this website is general in nature and does not constitute financial advice. It should not be relied upon as a substitute for tailored financial or legal guidance. Before making any financial decisions, consider your personal circumstances, goals, and objectives. We recommend seeking independent legal and financial advice where appropriate. All Rates, Fees, and charges are indicative and are subject to change.</p>
+  </footer>
+
+
+  
+  
+  
+  <!-- ========== SALESFORCE-STYLE 3-COLUMN LIVE RATE & SAVINGS CALCULATOR MODAL ========== -->
+  <div id="rateImpactModalBackdrop" class="live-tool-modal-backdrop">
+    <div class="live-tool-modal-card">
+      <button type="button" onclick="closeRateImpactModal()" aria-label="Close Rate Tool" style="position:absolute; top:18px; right:20px; background:#F1F5F9; border:none; width:36px; height:36px; border-radius:50%; font-size:1.4rem; cursor:pointer; color:#0A2540; display:flex; align-items:center; justify-content:center; line-height:1; transition:background 0.2s; z-index:10;">&times;</button>
+      
+      <!-- Top Brand Header -->
+      <div style="text-align:center; margin-bottom:12px;">
+        <img width="600" height="400" src="/images/ez-mortgage-broker.webp" alt="EZ Mortgage Broker" style="height:46px; width:auto; margin-bottom:6px; display:inline-block;">
+        <h2 style="color:#0A2540; font-size:clamp(1.4rem, 2.4vw, 1.85rem); font-weight:800; margin:0 0 4px;">Live Rate Shift &amp; Refinance Savings Calculator</h2>
+        <p style="color:#475569; font-size:0.92rem; margin:0;">Calculate real-time repayment variances, uncover market savings, and model RBA interest rate shifts.</p>
+      </div>
+
+      <!-- Salesforce-style Chevron Path / Progress Bar -->
+      <div class="sfdc-path-container" role="progressbar" aria-valuemin="1" aria-valuemax="3" aria-valuenow="1">
+        <div class="sfdc-path-step active" id="pathStep1">
+          <span>1. Loan &amp; Rate Details</span>
+        </div>
+        <div class="sfdc-path-step" id="pathStep2">
+          <span>2. Contact Details</span>
+        </div>
+        <div class="sfdc-path-step" id="pathStep3">
+          <span>3. Savings &amp; Strategy</span>
+        </div>
+      </div>
+
+      <!-- 3-Column Interactive Workspace -->
+      <div class="live-tool-3col-grid">
+        
+        <!-- COLUMN 1: Inputs & Dynamic Controls -->
+        <div class="lt-col">
+          <div class="lt-col-header">
+            <span class="lt-col-badge">COL 1</span>
+            <h3 class="lt-col-title">Loan &amp; Rate Parameters</h3>
+          </div>
+
+          <!-- Loan Amount Slider & Input -->
+          <div style="margin-bottom:16px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <label style="font-size:0.88rem; font-weight:700; color:#334155;">Loan Amount:</label>
+              <strong style="color:#1D4ED8; font-size:1.15rem;" id="col1LoanVal">$750,000</strong>
+            </div>
+            <input type="range" class="rate-slider" id="col1LoanSlider" min="100000" max="2500000" step="25000" value="750000" oninput="handleThreeColCalc()">
+          </div>
+
+          <!-- Current Existing Rate -->
+          <div style="margin-bottom:16px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <label style="font-size:0.88rem; font-weight:700; color:#334155;">Current Interest Rate (p.a.):</label>
+              <strong style="color:#0A2540; font-size:1.05rem;" id="col1CurrentRateVal">6.25%</strong>
+            </div>
+            <input type="range" class="rate-slider" id="col1CurrentRateSlider" min="4.50" max="9.50" step="0.05" value="6.25" oninput="handleThreeColCalc()">
+          </div>
+
+          <!-- Rate Shift Quick Selectors -->
+          <div style="margin-bottom:18px;">
+            <label style="display:block; font-size:0.88rem; font-weight:700; color:#334155; margin-bottom:8px;">Select Rate Shift / Market Target:</label>
+            <div class="rate-shift-pills" style="display:flex; flex-wrap:wrap; gap:6px;">
+              <button type="button" class="rate-shift-pill" onclick="setThreeColShift(-0.50, this)">-0.50% (Refinance)</button>
+              <button type="button" class="rate-shift-pill active" onclick="setThreeColShift(-0.25, this)">-0.25%</button>
+              <button type="button" class="rate-shift-pill" onclick="setThreeColShift(0.25, this)">+0.25% (RBA Hike)</button>
+              <button type="button" class="rate-shift-pill" onclick="setThreeColShift(0.50, this)">+0.50%</button>
+            </div>
+          </div>
+
+          <!-- Contact Form for Unlocking / Emailing -->
+          <div id="col1ContactBox" style="background:#FFFFFF; border:1.5px solid #CBD5E1; border-radius:12px; padding:14px; margin-top:auto;">
+            <strong style="display:block; color:#0A2540; font-size:0.9rem; margin-bottom:8px;">Enter details to reveal &amp; receive full breakdown:</strong>
+            <form id="threeColLeadForm" onsubmit="handleThreeColSubmit(event)">
+              <div style="margin-bottom:8px;">
+                <input type="text" id="tcName" required placeholder="Full Name *" style="width:100%; padding:8px 12px; border:1.5px solid #CBD5E1; border-radius:6px; font-size:0.88rem; box-sizing:border-box;">
+              </div>
+              <div style="margin-bottom:8px;">
+                <input type="email" id="tcEmail" required placeholder="Email Address *" style="width:100%; padding:8px 12px; border:1.5px solid #CBD5E1; border-radius:6px; font-size:0.88rem; box-sizing:border-box;">
+              </div>
+              <div style="margin-bottom:10px;">
+                <input type="tel" id="tcPhone" required placeholder="Mobile Number *" style="width:100%; padding:8px 12px; border:1.5px solid #CBD5E1; border-radius:6px; font-size:0.88rem; box-sizing:border-box;">
+              </div>
+
+              <!-- Cloudflare Turnstile -->
+              <div style="margin-bottom:10px; display:flex; justify-content:center;">
+                <div class="cf-turnstile" data-sitekey="0x4AAAAAAAx7Y8B8eE9dFk0Z" data-theme="light"></div>
+              </div>
+
+              <button type="submit" id="tcSubmitBtn" class="btn" style="width:100%; background:#1D4ED8; color:#FFFFFF; font-weight:800; font-size:0.92rem; padding:10px; border-radius:8px; border:none; cursor:pointer;">⚡ Calculate &amp; Reveal My Savings</button>
+            </form>
+            <div id="tcEmailError" style="display:none; color:#DC2626; font-size:0.8rem; font-weight:700; margin-top:6px; text-align:center;">Please enter a valid email format.</div>
+          </div>
+        </div>
+
+        <!-- COLUMN 2: Real-time Results, SVG Chart & Actions -->
+        <div class="lt-col" style="background:#FFFFFF;">
+          <div class="lt-col-header">
+            <span class="lt-col-badge" style="background:#1D4ED8;">COL 2</span>
+            <h3 class="lt-col-title">Calculated Impact &amp; Chart</h3>
+          </div>
+
+          <!-- Highlight Savings Card -->
+          <div style="background:linear-gradient(135deg, #0A2540 0%, #17345F 100%); color:#FFFFFF; border-radius:14px; padding:18px; margin-bottom:16px;">
+            <div style="font-size:0.75rem; font-weight:800; color:#93C5FD; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:4px;">ESTIMATED MONTHLY VARIANCE</div>
+            <div style="font-size:1.9rem; font-weight:900; color:#FFDC4A; line-height:1.1;" id="col2MonthlyImpact">-$121 / month</div>
+            <div style="font-size:0.88rem; color:#CBD5E1; margin-top:4px;" id="col2YearlyImpact">Approx. $1,452 / year savings</div>
+          </div>
+
+          <!-- Interactive Comparison Visual Chart -->
+          <div class="rate-chart-wrap">
+            <strong style="display:block; color:#0A2540; font-size:0.85rem; margin-bottom:10px;">Monthly Repayment Comparison:</strong>
+            
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:0.78rem; font-weight:700; color:#475569; margin-bottom:3px;">
+                <span>Current Loan (<span id="chartCurrRateText">6.25%</span>)</span>
+                <span id="chartCurrRepaymentText">$4,618/mo</span>
+              </div>
+              <div class="rate-bar-track">
+                <div class="rate-bar-fill current" id="chartCurrBar" style="width:100%;"></div>
+                <span class="rate-bar-text" id="chartCurrBarLabel">$4,618</span>
+              </div>
+            </div>
+
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:0.78rem; font-weight:700; color:#475569; margin-bottom:3px;">
+                <span>New Shifted Rate (<span id="chartNewRateText">6.00%</span>)</span>
+                <span id="chartNewRepaymentText">$4,497/mo</span>
+              </div>
+              <div class="rate-bar-track">
+                <div class="rate-bar-fill shifted" id="chartNewBar" style="width:97%;"></div>
+                <span class="rate-bar-text" id="chartNewBarLabel">$4,497</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div style="margin-top:auto; display:flex; flex-direction:column; gap:10px;">
+            <button type="button" onclick="closeRateImpactModal(); openBookingModal('Rate & Savings Strategy');" class="btn btn-primary" style="width:100%; padding:12px; font-weight:800; font-size:0.95rem; text-align:center; justify-content:center;">📅 Book Broker Appointment</button>
+            <button type="button" onclick="sendBreakdownEmailDirect()" class="btn btn-outline" style="width:100%; padding:10px; font-weight:700; font-size:0.88rem; text-align:center; justify-content:center; display:inline-flex; align-items:center; gap:6px;">📧 Send These Rates to My Email</button>
+          </div>
+
+          <div id="col2SuccessMsg" style="display:none; margin-top:10px; background:#DCFCE7; color:#166534; border:1px solid #86EFAC; padding:8px 12px; border-radius:8px; font-size:0.82rem; font-weight:700; text-align:center;">
+            &#10003; Full repayment schedule sent to your email &amp; info@ezmortgagebroker.com.au
+          </div>
+        </div>
+
+        <!-- COLUMN 3: Recent Articles & 5-Star Reviews -->
+        <div class="lt-col">
+          <div class="lt-col-header">
+            <span class="lt-col-badge" style="background:#F59E0B;">COL 3</span>
+            <h3 class="lt-col-title">Market Intel &amp; Reviews</h3>
+          </div>
+
+          <!-- 5-Star Reviews -->
+          <div style="margin-bottom:14px;">
+            <div style="display:flex; align-items:center; gap:6px; margin-bottom:8px;">
+              <span style="color:#F59E0B; font-weight:800; font-size:0.95rem;">★★★★★</span>
+              <strong style="color:#0A2540; font-size:0.85rem;">5.0 Google Rating</strong>
+            </div>
+
+            <div class="review-mini-card">
+              <div class="review-quote">"EZ Mortgage Broker negotiated a 0.65% discount with our lender within 4 days. Saved us thousands!"</div>
+              <div class="review-author">— Marcus &amp; Sarah T., Tarneit</div>
+            </div>
+
+            <div class="review-mini-card">
+              <div class="review-quote">"Smooth, transparent process from initial rate calculation through to settlement. Highly recommend."</div>
+              <div class="review-author">— Priya K., Point Cook</div>
+            </div>
+          </div>
+
+          <!-- Recent Market Articles -->
+          <div>
+            <strong style="display:block; color:#0A2540; font-size:0.85rem; margin-bottom:8px;">Latest Market Updates:</strong>
+            
+            <a href="/pages/blog/fixed-vs-variable-navigating-rba-rate-cycle.html" class="article-mini-link">
+              <div class="article-mini-title">Fixed vs Variable: Navigating RBA Rate Cycles</div>
+              <div class="article-mini-meta">⏱️ 4 min read • Money &amp; Banking</div>
+            </a>
+
+            <a href="/pages/blog/how-to-refinance-mortgage-australia-playbook.html" class="article-mini-link">
+              <div class="article-mini-title">Refinancing Playbook: How to Cut Repayments</div>
+              <div class="article-mini-meta">⏱️ 5 min read • Loan Strategy</div>
+            </a>
+          </div>
+
+          <!-- Accreditations / Broker License Badge -->
+          <div style="margin-top:auto; padding-top:10px; border-top:1px solid #E2E8F0; font-size:0.72rem; color:#64748B; line-height:1.4;">
+            <strong>MFAA Accredited Credit Advisors</strong><br>
+            Mortgage Broker Online Pty Ltd t/a EZ Mortgage Broker | Credit Rep 538522 (nMB ACL 391209)
+          </div>
+        </div>
+
+      </div>
+
+      <p style="color:#94A3B8; font-size:0.74rem; line-height:1.4; margin:16px 0 0; text-align:center;">*Disclaimer: All rates, fees, and calculations are indicative only and subject to change. Repayment calculations are based on a 30-year principal and interest loan structure.</p>
     </div>
   </div>
+
+  <!-- Cloudflare Turnstile API Script -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+  <!-- Scroll-to-Top Floating Button (Left of Chat Icon) -->
+  <button type="button" id="scrollToTopBtn" class="btn-scroll-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})" aria-label="Scroll to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+
+  <script>
+    var currentRateShiftVal = -0.25;
+    var userLeadSubmitted = false;
+
+    window.openRateImpactModal = function() {
+      var m = document.getElementById('rateImpactModalBackdrop');
+      if (m) {
+        m.style.display = 'flex';
+        handleThreeColCalc();
+      }
+    };
+
+    window.closeRateImpactModal = function() {
+      var m = document.getElementById('rateImpactModalBackdrop');
+      if (m) m.style.display = 'none';
+    };
+
+    window.setThreeColShift = function(val, btn) {
+      currentRateShiftVal = parseFloat(val);
+      var parent = btn.parentElement;
+      if (parent) {
+        parent.querySelectorAll('.rate-shift-pill').forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+      }
+      handleThreeColCalc();
+    };
+
+    window.handleThreeColCalc = function() {
+      var loanSlider = document.getElementById('col1LoanSlider');
+      var currRateSlider = document.getElementById('col1CurrentRateSlider');
+      if (!loanSlider || !currRateSlider) return;
+
+      var P = parseFloat(loanSlider.value);
+      var currRate = parseFloat(currRateSlider.value);
+      var newRate = Math.max(0.1, currRate + currentRateShiftVal);
+
+      document.getElementById('col1LoanVal').textContent = '$' + new Intl.NumberFormat('en-AU').format(P);
+      document.getElementById('col1CurrentRateVal').textContent = currRate.toFixed(2) + '%';
+
+      var N = 360; // 30 years
+      function calcMonthly(principal, annualRatePct) {
+        var r = (annualRatePct / 100) / 12;
+        return principal * (r * Math.pow(1 + r, N)) / (Math.pow(1 + r, N) - 1);
+      }
+
+      var currMonthly = calcMonthly(P, currRate);
+      var newMonthly = calcMonthly(P, newRate);
+      var diffMonthly = Math.round(newMonthly - currMonthly);
+      var diffYearly = Math.abs(diffMonthly * 12);
+
+      var monthlyDisplay = document.getElementById('col2MonthlyImpact');
+      var yearlyDisplay = document.getElementById('col2YearlyImpact');
+
+      if (monthlyDisplay) {
+        if (diffMonthly < 0) {
+          monthlyDisplay.textContent = '-$' + Math.abs(diffMonthly) + ' / month';
+          monthlyDisplay.style.color = '#4ADE80'; // Green savings
+          yearlyDisplay.textContent = 'Approx. $' + new Intl.NumberFormat('en-AU').format(diffYearly) + ' / year savings';
+        } else {
+          monthlyDisplay.textContent = '+$' + diffMonthly + ' / month';
+          monthlyDisplay.style.color = '#FFDC4A'; // Gold hike
+          yearlyDisplay.textContent = 'Approx. +$' + new Intl.NumberFormat('en-AU').format(diffYearly) + ' / year impact';
+        }
+      }
+
+      // Update Chart Elements
+      document.getElementById('chartCurrRateText').textContent = currRate.toFixed(2) + '%';
+      document.getElementById('chartCurrRepaymentText').textContent = '$' + new Intl.NumberFormat('en-AU').format(Math.round(currMonthly)) + '/mo';
+      document.getElementById('chartCurrBarLabel').textContent = '$' + new Intl.NumberFormat('en-AU').format(Math.round(currMonthly));
+
+      document.getElementById('chartNewRateText').textContent = newRate.toFixed(2) + '%';
+      document.getElementById('chartNewRepaymentText').textContent = '$' + new Intl.NumberFormat('en-AU').format(Math.round(newMonthly)) + '/mo';
+      document.getElementById('chartNewBarLabel').textContent = '$' + new Intl.NumberFormat('en-AU').format(Math.round(newMonthly));
+
+      var maxRepay = Math.max(currMonthly, newMonthly);
+      var currPct = Math.round((currMonthly / maxRepay) * 100);
+      var newPct = Math.round((newMonthly / maxRepay) * 100);
+
+      document.getElementById('chartCurrBar').style.width = currPct + '%';
+      document.getElementById('chartNewBar').style.width = newPct + '%';
+    };
+
+    function validateEmail(email) {
+      return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(String(email).toLowerCase());
+    }
+
+    async function handleThreeColSubmit(e) {
+      e.preventDefault();
+      var name = document.getElementById('tcName').value.trim();
+      var email = document.getElementById('tcEmail').value.trim();
+      var phone = document.getElementById('tcPhone').value.trim();
+      var errEl = document.getElementById('tcEmailError');
+
+      if (!validateEmail(email)) {
+        if (errEl) errEl.style.display = 'block';
+        return;
+      }
+      if (errEl) errEl.style.display = 'none';
+
+      // Update Salesforce Path Step Progress
+      userLeadSubmitted = true;
+      document.getElementById('pathStep1').className = 'sfdc-path-step completed';
+      document.getElementById('pathStep2').className = 'sfdc-path-step completed';
+      document.getElementById('pathStep3').className = 'sfdc-path-step active';
+
+      var p1 = document.getElementById('col1LoanSlider').value;
+      var cRate = document.getElementById('col1CurrentRateSlider').value;
+      var monthlyDiff = document.getElementById('col2MonthlyImpact').textContent;
+      var yearlyDiff = document.getElementById('col2YearlyImpact').textContent;
+
+      var succ = document.getElementById('col2SuccessMsg');
+      if (succ) succ.style.display = 'block';
+
+      try {
+        await fetch('/api/send-calculator-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            fullName: name,
+            email: email,
+            phone: phone,
+            calculatorTitle: 'Live 3-Column Rate & Savings Tool',
+            summaryData: {
+              'Loan Amount': '$' + new Intl.NumberFormat('en-AU').format(p1),
+              'Current Rate': cRate + '%',
+              'Rate Shift': (currentRateShiftVal >= 0 ? '+' : '') + currentRateShiftVal + '%',
+              'Monthly Impact': monthlyDiff,
+              'Annual Variance': yearlyDiff,
+              'Submission Date': new Date().toLocaleString('en-AU', { timeZone: 'Australia/Melbourne' })
+            },
+            notes: 'User calculated rate savings via 3-column modal.'
+          })
+        });
+      } catch (err) {
+        console.warn('[Dispatch Error]', err);
+      }
+    }
+
+    async function sendBreakdownEmailDirect() {
+      var email = document.getElementById('tcEmail').value.trim();
+      if (!email || !validateEmail(email)) {
+        document.getElementById('tcEmail').focus();
+        var errEl = document.getElementById('tcEmailError');
+        if (errEl) errEl.style.display = 'block';
+        return;
+      }
+      handleThreeColSubmit(new Event('submit'));
+    }
+  </script>
+
+
+  <!-- Scroll-to-Top Floating Button (Left of Chat Icon) -->
+  <button type="button" id="scrollToTopBtn" class="btn-scroll-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})" aria-label="Scroll to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+
+  <script>
+    var currentRateShift = 0.25;
+    var isResultUnlocked = false;
+
+    window.addEventListener('scroll', function() {
+      var btn = document.getElementById('scrollToTopBtn');
+      if (btn) {
+        if (window.scrollY > 220) {
+          btn.classList.add('visible');
+        } else {
+          btn.classList.remove('visible');
+        }
+      }
+    });
+
+    window.openRateImpactModal = function() {
+      var m = document.getElementById('rateImpactModalBackdrop');
+      if (m) {
+        m.style.display = 'flex';
+        updateRateImpactCalc('modal');
+      }
+    };
+
+    window.closeRateImpactModal = function() {
+      var m = document.getElementById('rateImpactModalBackdrop');
+      if (m) m.style.display = 'none';
+    };
+
+    window.handleRateShiftChange = function() {
+      updateRateImpactCalc('modal');
+      if (!isResultUnlocked) {
+        var formBox = document.getElementById('rateLeadFormBox');
+        if (formBox) {
+          formBox.style.borderColor = '#1D4ED8';
+          formBox.style.boxShadow = '0 0 0 4px rgba(29, 78, 216, 0.15)';
+        }
+      }
+    };
+
+    window.setRateShift = function(val, btn, context) {
+      currentRateShift = parseFloat(val);
+      var parent = btn.parentElement;
+      if (parent) {
+        parent.querySelectorAll('.rate-shift-pill').forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+      }
+      handleRateShiftChange();
+    };
+
+    window.updateRateImpactCalc = function(context) {
+      var slider = document.getElementById(context === 'modal' ? 'modalLoanSlider' : 'embedLoanSlider');
+      var valDisplay = document.getElementById(context === 'modal' ? 'modalLoanBalanceVal' : 'embedLoanBalanceVal');
+      var amountDisplay = document.getElementById(context === 'modal' ? 'modalRateImpactAmount' : 'embedRateImpactAmount');
+      var yearlyDisplay = document.getElementById(context === 'modal' ? 'modalRateImpactYearly' : null);
+
+      if (!slider) return;
+      var P = parseFloat(slider.value);
+      if (valDisplay) valDisplay.textContent = '$' + new Intl.NumberFormat('en-AU').format(P);
+
+      var baseRate = 0.060; // 6.00% p.a.
+      var newRate = baseRate + (currentRateShift / 100);
+      var N = 360; // 30 years
+
+      function calcMonthly(principal, annualRate) {
+        var r = annualRate / 12;
+        return principal * (r * Math.pow(1 + r, N)) / (Math.pow(1 + r, N) - 1);
+      }
+
+      var monthlyBase = calcMonthly(P, baseRate);
+      var monthlyNew = calcMonthly(P, newRate);
+      var diff = Math.round(monthlyNew - monthlyBase);
+
+      if (amountDisplay) {
+        if (diff >= 0) {
+          amountDisplay.textContent = '+$' + diff + ' / month';
+          amountDisplay.classList.remove('decrease');
+        } else {
+          amountDisplay.textContent = '-$' + Math.abs(diff) + ' / month';
+          amountDisplay.classList.add('decrease');
+        }
+      }
+
+      if (yearlyDisplay) {
+        var yearlyDiff = Math.abs(diff * 12);
+        yearlyDisplay.textContent = (diff >= 0 ? 'Approx. +$' : 'Approx. -$') + new Intl.NumberFormat('en-AU').format(yearlyDiff) + ' / year on 30-yr P&I';
+      }
+    };
+
+    function validateEmailFormat(email) {
+      var re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      return re.test(String(email).toLowerCase());
+    }
+
+    async function handleRateImpactSubmit(e) {
+      e.preventDefault();
+      var name = document.getElementById('rtName').value.trim();
+      var email = document.getElementById('rtEmail').value.trim();
+      var phone = document.getElementById('rtPhone').value.trim();
+      var errEl = document.getElementById('rtEmailError');
+
+      if (!validateEmailFormat(email)) {
+        if (errEl) errEl.style.display = 'block';
+        return;
+      }
+      if (errEl) errEl.style.display = 'none';
+
+      var loanBal = document.getElementById('modalLoanSlider').value;
+      var impact = document.getElementById('modalRateImpactAmount').textContent;
+      var yearlyImpact = document.getElementById('modalRateImpactYearly').textContent;
+
+      // Reveal Result Box with Smooth Animation
+      isResultUnlocked = true;
+      var resBox = document.getElementById('rateResultBox');
+      if (resBox) resBox.style.display = 'flex';
+
+      var succ = document.getElementById('rateSuccessBanner');
+      if (succ) succ.style.display = 'block';
+
+      // Dispatch to Backend APIs for immediate email to info@ezmortgagebroker.com.au & user
+      try {
+        await fetch('/api/send-calculator-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            fullName: name,
+            email: email,
+            phone: phone,
+            calculatorTitle: 'Live Rate Change Impact Tool',
+            summaryData: {
+              'Loan Balance': '$' + new Intl.NumberFormat('en-AU').format(loanBal),
+              'Rate Shift': (currentRateShift >= 0 ? '+' : '') + currentRateShift + '%',
+              'Monthly Impact': impact,
+              'Annual Impact': yearlyImpact,
+              'Submission Date': new Date().toLocaleString('en-AU', { timeZone: 'Australia/Melbourne' })
+            },
+            notes: 'User requested rate impact analysis via live header tool.'
+          })
+        });
+      } catch (err) {
+        console.warn('[Rate Email Error]', err);
+      }
+    }
+  </script>
+
+  <!-- Lazy Loading Handler for 404.gif with Static Placeholder Image 5 -->
+  <script>
+    (function() {
+      function load404Gif() {
+        var gifEl = document.getElementById('hero404GifImg');
+        var staticEl = document.getElementById('hero404StaticImg');
+        var indicator = document.getElementById('hero404LoaderIndicator');
+        if (!gifEl) return;
+        
+        var src = gifEl.getAttribute('data-src');
+        if (!src) return;
+        
+        var img = new Image();
+        img.src = src;
+        img.onload = function() {
+          gifEl.src = src;
+          gifEl.classList.add('loaded');
+          if (indicator) indicator.classList.add('hidden');
+        };
+      }
+
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              load404Gif();
+              observer.disconnect();
+            }
+          });
+        }, { rootMargin: '120px' });
+        var wrapper = document.getElementById('hero404MediaWrapper');
+        if (wrapper) observer.observe(wrapper);
+        else load404Gif();
+      } else {
+        if (document.readyState === 'complete') load404Gif();
+        else window.addEventListener('load', load404Gif);
+      }
+    })();
+  </script>
+
 </body>
 </html>
