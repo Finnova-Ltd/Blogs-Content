@@ -198,6 +198,7 @@
     let brandVideoId = "";
     let brandBadgeName = "EZ MORTGAGE BROKER";
     let brandBadgeColor = "#3b82f6";
+    let brandLogoImg = "";
     let brandVoiceId = "Dh68koMHNSYl8A1jH9Je";
     let brandAvatarId = "ezmortgage-ai";
 
@@ -216,6 +217,7 @@
       brandVideoId = "";
       brandBadgeName = "FINNOVA CHARITY";
       brandBadgeColor = "#ec4899";
+      brandLogoImg = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/logos/finnova-logo.png";
       brandVoiceId = "7xOqQceOZC5dhvkaqKtD";
       brandAvatarId = "finnova-guide";
     } else if (isProCrm) {
@@ -233,6 +235,7 @@
       brandVideoId = "";
       brandBadgeName = "PRO CRM AUSTRALIA";
       brandBadgeColor = "#6366f1";
+      brandLogoImg = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/logos/procrm-logo.png";
       brandVoiceId = "cjVigY5qzO86Huf0OWal";
       brandAvatarId = "procrm-agentforce";
     } else if (isEzConsultants) {
@@ -250,6 +253,7 @@
       brandVideoId = "";
       brandBadgeName = "EZ CONSULTANTS";
       brandBadgeColor = "#00afeb";
+      brandLogoImg = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/logos/ezconsultants-logo.png";
       brandVoiceId = "Dh68koMHNSYl8A1jH9Je";
       brandAvatarId = "ezconsultants-cyber";
     } else if (isESignature) {
@@ -444,7 +448,7 @@
           `}
           <!-- Floating Brand / Project Logo Badge -->
           <div class="piper-video-logo-badge" id="piperVideoLogoBadge">
-            <span class="piper-badge-dot" style="background:${brandBadgeColor};"></span>
+            ${brandLogoImg ? `<img src="${brandLogoImg}" alt="${brandBadgeName}" style="width:16px; height:16px; border-radius:50%; object-fit:cover; display:inline-block;" />` : `<span class="piper-badge-dot" style="background:${brandBadgeColor};"></span>`}
             <span>${brandBadgeName}</span>
           </div>
           <!-- Prominent Centered Speak Now Button (Image 1) -->
