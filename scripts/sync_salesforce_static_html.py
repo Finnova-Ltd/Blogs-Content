@@ -373,14 +373,27 @@ static_html_content = f"""<!DOCTYPE html>
       line-height: 1.55;
     }}
 
-    /* Sticky Sidebar */
+    /* Sticky Sidebar (Column 2 Fixed in Viewport) */
     .sticky-sidebar {{
       position: -webkit-sticky;
       position: sticky;
       top: 90px;
+      align-self: start;
+      max-height: calc(100vh - 100px);
+      overflow-y: auto;
+      padding-right: 4px;
+      scrollbar-width: thin;
+      scrollbar-color: #cbd5e1 transparent;
       display: flex;
       flex-direction: column;
       gap: 20px;
+    }}
+    .sticky-sidebar::-webkit-scrollbar {{
+      width: 4px;
+    }}
+    .sticky-sidebar::-webkit-scrollbar-thumb {{
+      background: #cbd5e1;
+      border-radius: 4px;
     }}
 
     /* Card 1: Principal Consultant Profile Card */
