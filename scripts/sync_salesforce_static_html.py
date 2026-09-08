@@ -157,34 +157,34 @@ static_html_content = f"""<!DOCTYPE html>
       inset: -20px;
       background-size: cover;
       background-position: center;
-      filter: blur(5px) brightness(0.65);
-      transform: scale(1.05);
+      filter: blur(4px) brightness(0.85);
+      transform: scale(1.04);
       opacity: 0;
-      animation: heroSlideFade 18s infinite ease-in-out;
+      animation: heroSlideFade 15s infinite ease-in-out;
     }}
     .hero-bg-slide:nth-child(1) {{
-      background-image: url('/images/melbourne-bourke-street-header.webp');
+      background-image: url('https://images.pexels.com/photos/1181354/pexels-photo-1181354.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
       animation-delay: 0s;
     }}
     .hero-bg-slide:nth-child(2) {{
-      background-image: url('https://images.pexels.com/photos/17489150/pexels-photo-17489150.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
-      animation-delay: 6s;
+      background-image: url('https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+      animation-delay: 5s;
     }}
     .hero-bg-slide:nth-child(3) {{
-      background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80');
-      animation-delay: 12s;
+      background-image: url('https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+      animation-delay: 10s;
     }}
     @keyframes heroSlideFade {{
-      0% {{ opacity: 0; }}
-      10% {{ opacity: 0.45; }}
-      33% {{ opacity: 0.45; }}
-      43% {{ opacity: 0; }}
-      100% {{ opacity: 0; }}
+      0% {{ opacity: 0; transform: scale(1.02); }}
+      8% {{ opacity: 0.85; transform: scale(1.04); }}
+      33% {{ opacity: 0.85; transform: scale(1.06); }}
+      40% {{ opacity: 0; transform: scale(1.08); }}
+      100% {{ opacity: 0; transform: scale(1.02); }}
     }}
     .hero-gradient-scrim {{
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(6, 27, 46, 0.90) 0%, rgba(10, 37, 64, 0.82) 50%, rgba(6, 17, 28, 0.94) 100%);
+      background: linear-gradient(135deg, rgba(6, 27, 46, 0.65) 0%, rgba(10, 37, 64, 0.55) 50%, rgba(6, 17, 28, 0.75) 100%);
       z-index: 2;
       pointer-events: none;
     }}
@@ -194,6 +194,15 @@ static_html_content = f"""<!DOCTYPE html>
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 24px;
+    }}
+    .article-title {{
+      font-size: clamp(2rem, 3.5vw, 2.75rem);
+      font-weight: 900;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin: 0 0 16px;
+      max-width: 980px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.6);
     }}
     .breadcrumb-nav {{
       display: flex;
