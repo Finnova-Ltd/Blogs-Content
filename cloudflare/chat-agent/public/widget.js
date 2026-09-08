@@ -254,7 +254,7 @@
       brandBadgeName = "EZ CONSULTANTS";
       brandBadgeColor = "#00afeb";
       brandLogoImg = backendUrl + "/images/ez-consultants-avatar.svg?v=20260908c";
-      brandVoiceId = "Dh68koMHNSYl8A1jH9Je";
+      brandVoiceId = "IKne3meq5aSn9XLyUdCD";
       brandAvatarId = "ezconsultants-cyber";
     } else if (isESignature) {
       brandSpecialistTitle = "AI Document Specialist";
@@ -652,6 +652,38 @@
       }
     }
 
+    function syncVideoPlaybackWithAudio(audioEl, durationEstimate) {
+      if (!video) return;
+      video.muted = true;
+      video.defaultMuted = true;
+      video.volume = 0;
+      video.currentTime = 0;
+      
+      const targetDuration = (audioEl && audioEl.duration && !isNaN(audioEl.duration) && audioEl.duration > 0) 
+        ? audioEl.duration 
+        : (durationEstimate || 10);
+
+      const applyRate = (dur) => {
+        if (video.duration && !isNaN(video.duration) && dur > 0) {
+          const rate = video.duration / dur;
+          video.playbackRate = Math.min(1.4, Math.max(0.65, rate));
+        }
+      };
+
+      if (audioEl) {
+        if (audioEl.readyState >= 1 && audioEl.duration) {
+          applyRate(audioEl.duration);
+        } else {
+          audioEl.addEventListener('loadedmetadata', () => applyRate(audioEl.duration), { once: true });
+        }
+      } else {
+        applyRate(targetDuration);
+      }
+
+      video.loop = true;
+      video.play().catch(() => {});
+    }
+
     function fallbackBrowserSpeech(cleanText, onComplete, speechId) {
       if (!('speechSynthesis' in window) || (speechId !== undefined && speechId !== currentSpeechId)) {
         if (onComplete) onComplete();
@@ -664,14 +696,8 @@
       const voice = getAuVoice();
       if (voice) utter.voice = voice;
       
-      if (video) {
-        video.muted = true;
-        video.defaultMuted = true;
-        video.volume = 0;
-        video.currentTime = 0;
-        video.loop = true;
-        video.play().catch(() => {});
-      }
+      const estimatedSec = Math.max(2, cleanText.split(/\s+/).length * 0.38);
+      syncVideoPlaybackWithAudio(null, estimatedSec);
 
       utter.onend = () => {
         if (speechId !== undefined && speechId !== currentSpeechId) return;
@@ -698,13 +724,13 @@
 
     function getPreRenderedGreetingUrl() {
       if (isProCrm) {
-        return "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/audio/friday_greeting_procrm.mp3";
+        return backendUrl + "/audio/friday_greeting_procrm.mp3?v=20260908c";
       } else if (isFinnova) {
-        return "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/audio/friday_greeting_finnova.mp3";
+        return backendUrl + "/audio/friday_greeting_finnova.mp3?v=20260908c";
       } else if (isEzConsultants) {
-        return "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/audio/friday_greeting_ezconsultants.mp3";
+        return backendUrl + "/audio/friday_greeting_ezconsultants.mp3?v=20260908c";
       } else if (isEzMortgage) {
-        return "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/audio/friday_greeting_ezmortgage.mp3";
+        return backendUrl + "/audio/friday_greeting_ezmortgage.mp3?v=20260908c";
       }
       return null;
     }
@@ -726,14 +752,6 @@
 
       const speechId = currentSpeechId;
       isSpeaking = true;
-      if (video) {
-        video.muted = true;
-        video.defaultMuted = true;
-        video.volume = 0;
-        video.currentTime = 0;
-        video.loop = true; // Actively move lips and head throughout speech
-        video.play().catch(() => {});
-      }
 
       const handleSpeechEnd = () => {
         if (speechId !== currentSpeechId) return;
@@ -744,7 +762,6 @@
           video.currentTime = 0;
         }
         if (onComplete) onComplete();
-        // Automatically open mic for user to speak when Friday finishes talking
         if (isVoiceActive || win.classList.contains('is-conversing')) {
           setTimeout(() => {
             if (!isSpeaking) startListening();
@@ -752,8 +769,6 @@
         }
       };
 
-      // FAST-PATH: ONLY play pre-rendered audio for the initial greeting!
-      // NEVER trigger the cached greeting for normal answers to user questions!
       if (isGreeting) {
         const cachedGreetingUrl = getPreRenderedGreetingUrl();
         if (cachedGreetingUrl) {
@@ -765,11 +780,11 @@
                 fetchTtsAndPlay(clean, onComplete, speechId);
               }
             };
+            syncVideoPlaybackWithAudio(currentVoiceAudio);
             await currentVoiceAudio.play();
             return;
           } catch (err) {
             console.log("Cached greeting playback note:", err);
-            // DO NOT fall through to fetchTtsAndPlay if user aborted/paused
             return;
           }
         }
@@ -780,7 +795,6 @@
 
     async function fetchTtsAndPlay(cleanText, onComplete, speechId) {
       if (speechId !== currentSpeechId) return;
-      // Dynamic High-Fidelity Ultra-Realistic ElevenLabs Neural Voice
       try {
         const res = await fetch(`${backendUrl}/api/tts`, {
           method: "POST",
@@ -819,6 +833,7 @@
             if (onComplete) onComplete();
           };
 
+          syncVideoPlaybackWithAudio(currentVoiceAudio);
           await currentVoiceAudio.play();
           return;
         }
@@ -826,7 +841,6 @@
         console.log("ElevenLabs audio streaming note:", err);
       }
 
-      // Fallback to browser synthesis only if this speech is still the active one
       if (speechId === currentSpeechId) {
         fallbackBrowserSpeech(cleanText, onComplete, speechId);
       }
