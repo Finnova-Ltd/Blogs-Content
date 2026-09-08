@@ -541,9 +541,9 @@ static_html_content = f"""<!DOCTYPE html>
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: var(--blue-600);
+      background: #990000;
       border: 2px solid #FFFFFF;
-      box-shadow: 0 0 0 2px #E0F2FE;
+      box-shadow: 0 0 0 2px #FEE2E2;
       transition: transform 0.15s ease;
     }}
     .timeline-item:hover .timeline-bullet {{
@@ -552,7 +552,7 @@ static_html_content = f"""<!DOCTYPE html>
     .timeline-label {{
       font-size: 0.7rem;
       font-weight: 900;
-      color: var(--blue-600);
+      color: #990000;
       text-transform: uppercase;
       letter-spacing: 0.03em;
     }}
@@ -564,7 +564,7 @@ static_html_content = f"""<!DOCTYPE html>
       transition: color 0.15s ease;
     }}
     .timeline-item:hover .timeline-heading {{
-      color: var(--blue-600);
+      color: #990000;
     }}
 
     /* Card 3: Consultation CTA Card */
@@ -890,18 +890,23 @@ static_html_content = f"""<!DOCTYPE html>
           <div class="highlights-timeline">
             <a href="#mcp-workspace" onclick="scrollToSection(event, 'mcp-workspace')" class="timeline-item">
               <span class="timeline-bullet"></span>
-              <div class="timeline-label">01. MCP WORKSPACE</div>
-              <div class="timeline-heading">Cursor, Claude Code &amp; Tooling API</div>
+              <div class="timeline-label">01. THE ARCHITECTURAL SHIFT</div>
+              <div class="timeline-heading">The Agentic Developer Workspace</div>
             </a>
             <a href="#fflib-refactoring" onclick="scrollToSection(event, 'fflib-refactoring')" class="timeline-item">
               <span class="timeline-bullet"></span>
-              <div class="timeline-label">02. FFLIB REFACTORING</div>
-              <div class="timeline-heading">Apex Mocks, Triggers &amp; Unit Tests</div>
+              <div class="timeline-label">02. TACKLING THE DEBT</div>
+              <div class="timeline-heading">Refactoring Monolithic Triggers to fflib</div>
             </a>
             <a href="#governance-cicd" onclick="scrollToSection(event, 'governance-cicd')" class="timeline-item">
               <span class="timeline-bullet"></span>
-              <div class="timeline-label">03. REGULATORY CI/CD</div>
+              <div class="timeline-label">03. GOVERNANCE &amp; COMPLIANCE</div>
               <div class="timeline-heading">APRA CPS 234 &amp; ISO 27001 Guardrails</div>
+            </a>
+            <a href="#engineering-protocol" onclick="scrollToSection(event, 'engineering-protocol')" class="timeline-item">
+              <span class="timeline-bullet"></span>
+              <div class="timeline-label">04. ENGINEERING PROTOCOL</div>
+              <div class="timeline-heading">The New AI-First Delivery Paradigm</div>
             </a>
           </div>
         </div>

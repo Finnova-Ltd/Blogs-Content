@@ -353,21 +353,27 @@ def update_blog_posts_js():
     new_highlights = """[
       {
         "id": "mcp-workspace",
-        "time": "01. MCP WORKSPACE",
-        "title": "Cursor, Claude Code & Tooling API",
-        "text": "Direct Tooling API connection via local stdio."
+        "time": "01. THE ARCHITECTURAL SHIFT",
+        "title": "The Agentic Developer Workspace",
+        "text": "Cursor, Claude Code & Tooling API connection."
       },
       {
         "id": "fflib-refactoring",
-        "time": "02. FFLIB REFACTORING",
-        "title": "Apex Mocks, Triggers & Unit Tests",
-        "text": "Enterprise pattern decoupling & 85%+ coverage."
+        "time": "02. TACKLING THE DEBT",
+        "title": "Refactoring Monolithic Triggers to fflib",
+        "text": "Apex Mocks, Triggers & Domain Layer decoupling."
       },
       {
         "id": "governance-cicd",
-        "time": "03. REGULATORY CI/CD",
+        "time": "03. GOVERNANCE & COMPLIANCE",
         "title": "APRA CPS 234 & ISO 27001 Guardrails",
-        "text": "Ephemeral scratch orgs & static analysis."
+        "text": "Ephemeral scratch orgs & static security analysis."
+      },
+      {
+        "id": "engineering-protocol",
+        "time": "04. ENGINEERING PROTOCOL",
+        "title": "The New AI-First Delivery Paradigm",
+        "text": "Multi-agent orchestration and automated reviews."
       }
     ]"""
 
