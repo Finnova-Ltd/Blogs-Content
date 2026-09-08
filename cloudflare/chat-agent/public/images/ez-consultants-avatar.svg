@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="ezBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A2540"/>
+      <stop offset="100%" stop-color="#061B2E"/>
+    </linearGradient>
+    <linearGradient id="ezAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00A3FF"/>
+      <stop offset="100%" stop-color="#0077C8"/>
+    </linearGradient>
+  </defs>
+  <!-- Background Circle -->
+  <circle cx="50" cy="50" r="48" fill="url(#ezBg)" stroke="#0077C8" stroke-width="3"/>
+  
+  <!-- Outer Glow Tech Ring -->
+  <circle cx="50" cy="50" r="42" fill="none" stroke="#38BDF8" stroke-width="1" stroke-dasharray="4 2" opacity="0.6"/>
+
+  <!-- EZ Monogram -->
+  <g fill="#FFFFFF" font-family="'Plus Jakarta Sans', 'Segoe UI', sans-serif" font-weight="900">
+    <text x="36" y="58" font-size="28" text-anchor="middle" fill="#FFFFFF" letter-spacing="-1">E</text>
+    <text x="62" y="58" font-size="28" text-anchor="middle" fill="url(#ezAccent)" letter-spacing="-1">Z</text>
+  </g>
+  
+  <!-- Subtext CONSULTANTS -->
+  <text x="50" y="74" font-family="'Plus Jakarta Sans', sans-serif" font-size="7.5" font-weight="800" text-anchor="middle" fill="#FBBF24" letter-spacing="1.5">CONSULTANTS</text>
+</svg>

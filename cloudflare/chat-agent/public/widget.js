@@ -253,7 +253,7 @@
       brandVideoId = "";
       brandBadgeName = "EZ CONSULTANTS";
       brandBadgeColor = "#00afeb";
-      brandLogoImg = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/logos/ezconsultants-logo.png";
+      brandLogoImg = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/logos/ezconsultants-avatar.svg";
       brandVoiceId = "Dh68koMHNSYl8A1jH9Je";
       brandAvatarId = "ezconsultants-cyber";
     } else if (isESignature) {
@@ -404,7 +404,7 @@
       </div>
       <div id="omni-chat-bubble" class="omni-avatar-trigger" title="Chat with Friday">
         <div class="omni-avatar-disc">
-          <img src="${brandPoster}" alt="Friday AI Avatar" class="omni-avatar-face" />
+          <img src="${brandLogoImg || brandPoster}" alt="Friday AI Avatar" class="omni-avatar-face" />
           <span class="omni-avatar-online-dot"></span>
           <span class="omni-avatar-wave-badge">👋</span>
         </div>
@@ -419,9 +419,12 @@
     win.id = 'omni-chat-window';
     win.innerHTML = `
       <div id="omni-chat-header">
-        <div class="title-wrap">
-          <span class="title">Friday</span>
-          <span class="badge">${brandSpecialistTitle}</span>
+        <div class="title-wrap" style="display:flex; align-items:center; gap:8px;">
+          ${brandLogoImg ? `<img src="${brandLogoImg}" alt="${brandBadgeName}" style="width:24px; height:24px; border-radius:50%; object-fit:cover; border:1px solid rgba(0,175,235,0.4);" />` : ''}
+          <div style="display:flex; align-items:center; gap:6px;">
+            <span class="title">Friday</span>
+            <span class="badge">${brandSpecialistTitle}</span>
+          </div>
         </div>
         <div class="omni-hdr-actions">
           <button class="omni-btn-endchat" id="omniEndChat" title="Email Transcript">✉️ Email</button>
@@ -448,8 +451,13 @@
           `}
           <!-- Floating Brand / Project Logo Badge -->
           <div class="piper-video-logo-badge" id="piperVideoLogoBadge">
-            ${brandLogoImg ? `<img src="${brandLogoImg}" alt="${brandBadgeName}" style="width:16px; height:16px; border-radius:50%; object-fit:cover; display:inline-block;" />` : `<span class="piper-badge-dot" style="background:${brandBadgeColor};"></span>`}
+            ${brandLogoImg ? `<img src="${brandLogoImg}" alt="${brandBadgeName}" style="width:18px; height:18px; border-radius:50%; object-fit:cover; display:inline-block; vertical-align:middle; border:1px solid rgba(255,255,255,0.3);" />` : `<span class="piper-badge-dot" style="background:${brandBadgeColor};"></span>`}
             <span>${brandBadgeName}</span>
+          </div>
+          <!-- Floating Brand Watermark Logo on Top-Right -->
+          <div style="position: absolute; top: 10px; right: 12px; z-index: 9; display: flex; align-items: center; gap: 5px; background: rgba(10, 37, 64, 0.75); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding: 3px 8px; border-radius: 999px; border: 1px solid rgba(0, 175, 235, 0.35); pointer-events: none;">
+            ${brandLogoImg ? `<img src="${brandLogoImg}" alt="${brandBadgeName}" style="width:16px; height:16px; border-radius:50%; object-fit:cover;" />` : ''}
+            <span style="color: #ffffff; font-size: 10px; font-weight: 800; letter-spacing: 0.5px;">EZ CONSULTANTS</span>
           </div>
           <!-- Prominent Centered Speak Now Button (Image 1) -->
           <button type="button" class="piper-speak-now-btn" id="piperSpeakBtn">
