@@ -14,3 +14,6 @@ scripts/asset_cache/
 .adobe_token_cache.json
 .*token_cache.json
 
+
+__pycache__/
+*.pyc
