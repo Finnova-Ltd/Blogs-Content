@@ -1,5 +1,19 @@
 [
   {
+    "id": "asd-acsc-alert-adobe-commerce-magento-rce-cve-2026-75650",
+    "slug": "asd-acsc-alert-adobe-commerce-magento-rce-cve-2026-75650",
+    "title": "ASD ACSC Alert: Active Exploitation of Critical Adobe Commerce & Magento Vulnerability (CVE-2026-75650)",
+    "date": "10-Sep-2026",
+    "iso_date": "2026-09-10T07:50:00Z",
+    "author": "Robin Bakshi (Lead Security Architect)",
+    "category": "Cybersecurity & Compliance",
+    "badge": "ASD CRITICAL ALERT",
+    "readTime": "6 min read",
+    "image": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80",
+    "excerpt": "The Australian Cyber Security Centre (ASD ACSC) has issued an urgent critical advisory regarding active exploitation of CVE-2026-75650 affecting Adobe Commerce and Magento Open Source storefronts across Australia.",
+    "url": "/pages/blog/asd-acsc-alert-adobe-commerce-magento-rce-cve-2026-75650.html"
+  },
+  {
     "id": "census-2026-digital-assistance-multilingual-support",
     "slug": "census-2026-digital-assistance-multilingual-support",
     "title": "Census 2026 Digital Assistance & Multilingual Support: Free In-Person Guidance for Australian Seniors & Migrants",
