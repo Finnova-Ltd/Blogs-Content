@@ -193,7 +193,7 @@
       { text: "Latest RBA cash rate update", prompt: "What are the current RBA interest rate forecasts?" }
     ];
     let brandCtaText = "Connect me with a licensed broker &rarr;";
-    let brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/friday_avatar_female_poster.jpg";
+    let brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/gemini_chat_avatar_poster.jpg";
     let brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/gemini_chat_avatar.mp4";
     let brandVideoId = "";
     let brandBadgeName = "EZ MORTGAGE BROKER";
@@ -445,7 +445,7 @@
             <source src="${brandVideo}" type="video/mp4">
           </video>
           ` : `
-          <video id="piper-hero-video" playsinline muted preload="auto" poster="${brandPoster}">
+          <video id="piper-hero-video" playsinline muted autoplay loop preload="auto" poster="${brandPoster}">
             <source src="${brandVideo}" type="video/mp4">
           </video>
           `}
