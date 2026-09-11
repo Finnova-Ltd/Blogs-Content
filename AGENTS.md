@@ -26,3 +26,8 @@
 * **Mandatory Human-in-the-Loop Value Addition:** Every published post must contain original borrower utility (worked financial calculation tables, trade-off matrices, MFAA Principal Broker commentary by R Bakshi, or accredited solution architecture advice).
 * **Cluster Termination Prevention:** Protect domain trust and accumulated user engagement signals. Quality and dwell time strictly take precedence over publishing volume.
 
+## 6. Semgrep & Agentic AI Generator Sandbox Standards
+* `.semgrep.yml` codifies declarative AST rules for repository security, Australian Timezone enforcement, credential protection, and escaped CSS braces.
+* `scripts/agentic_generator_sandbox.py` executes deterministic pre-write checks on all LLM-generated articles and code snippets.
+* Prohibited functions (`eval`, `exec`, `os.system`, raw socket calls) and thin boilerplate stubs are blocked at the AST level before touching disk.
+* All scripts in `TARGET_SCRIPTS` must pass `pytest tests/test_autopost_guard.py` with 100% clean status.

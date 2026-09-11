@@ -1,0 +1,71 @@
+rules:
+  - id: enforce-australian-timezone
+    message: "CRITICAL: Naive datetime.now() detected. All datetime operations must explicitly specify Australian timezone (AEST/AEDT UTC+10/+11)."
+    languages: [python]
+    severity: ERROR
+    patterns:
+      - pattern: datetime.now()
+      - pattern-not: datetime.now(tz=...)
+      - pattern-not: datetime.now(...)
+    metadata:
+      category: security
+      technology: [python]
+      compliance: ASD-ACSC-Localisation
+
+  - id: prevent-hardcoded-api-secrets
+    message: "SECURITY VIOLATION: Potential hardcoded secret or API credential detected. Use environment variables (os.environ.get)."
+    languages: [python, javascript]
+    severity: ERROR
+    patterns:
+      - pattern-either:
+          - pattern-regex: "(sk-[a-zA-Z0-9]{20,})"
+          - pattern-regex: "(ghp_[a-zA-Z0-9]{20,})"
+          - pattern-regex: "(xox[baprs]-[a-zA-Z0-9]{10,})"
+          - pattern-regex: "(CF_API_TOKEN\\s*=\\s*['\"][a-zA-Z0-9_-]{20,}['\"])"
+          - pattern-regex: "(ELEVENLABS_API_KEY\\s*=\\s*['\"][a-zA-Z0-9_-]{20,}['\"])"
+    metadata:
+      category: security
+      technology: [secrets]
+      cwe: CWE-798
+
+  - id: prevent-unescaped-fstring-keyframes
+    message: "BUILD FAILURE: Unescaped CSS brace found in Python f-string. Keyframe blocks must use escaped double braces {{ and }}."
+    languages: [python]
+    severity: ERROR
+    patterns:
+      - pattern-regex: "(?i)@keyframes[^{]+{[^}]*(?:0%|100%)\\s*\\{[^{]"
+    metadata:
+      category: correctness
+      technology: [python, css]
+
+  - id: prohibit-dangerous-eval-exec
+    message: "ARBITRARY CODE EXECUTION RISK: Dynamic eval() or exec() is strictly prohibited in generation pipelines."
+    languages: [python]
+    severity: ERROR
+    patterns:
+      - pattern-either:
+          - pattern: eval(...)
+          - pattern: exec(...)
+    metadata:
+      category: security
+      cwe: CWE-95
+
+  - id: enforce-least-privilege-subprocess
+    message: "COMMAND INJECTION RISK: subprocess execution with shell=True is prohibited without strict parameter sanitization."
+    languages: [python]
+    severity: WARNING
+    patterns:
+      - pattern: subprocess.$FUNC(..., shell=True, ...)
+    metadata:
+      category: security
+      cwe: CWE-78
+
+  - id: anti-slop-canned-template-phrase
+    message: "S-CTS ANTI-CLUSTER PROTOCOL: Canned boilerplate template detected. All articles must contain original human/broker analysis."
+    languages: [python, html, json]
+    severity: ERROR
+    patterns:
+      - pattern-regex: "The Reserve Bank of Australia and major retail banks have updated residential mortgage assessment benchmarks"
+    metadata:
+      category: anti-spam
+      compliance: Google-Search-Central-Essentials

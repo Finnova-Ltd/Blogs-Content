@@ -184,7 +184,7 @@ def generate_value_dense_content(headline, snippet, category):
     3. Action / Broker Tip: 1-2 sentences advising buffer review or loan health check (35-45 words)
     """
     if "rba" in headline.lower() or "rate" in category.lower():
-        summary = "The Reserve Bank of Australia and major retail banks have updated residential mortgage assessment benchmarks. Variable mortgage rates across standard owner-occupier loans are adjusting in line with interbank cash rate trajectories and lender margin reviews."
+        summary = f"Recent financial and regulatory announcements regarding {headline.strip()} highlight key shifts in Australian lending benchmarks. Borrowers evaluating current monetary policy settings must actively review serviceability buffers, net disposable income thresholds, and lender discretionary pricing."
         b1 = "<strong>Borrowing Capacity:</strong> Every 0.25% change shifts average household borrowing limits by approximately 2.5% to 3.0%."
         b2 = "<strong>Monthly Repayments:</strong> On a standard $600,000 mortgage, a 25 bps movement translates to roughly $95–$105 in monthly cash-flow adjustments."
         b3 = "<strong>Lender Pricing Discretion:</strong> Non-bank and second-tier lenders are introducing unadvertised rate discounts to attract quality refinancers."
