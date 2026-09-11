@@ -18,3 +18,11 @@
 * Agent Baniya ([Baniya.md](file:///Volumes/Samsung%20SSD%202TB/03.%20Documents/GitHub/Blogs-Content/Baniya.md)) actively monitors and audits all AI credits (ElevenLabs, Cloudflare Workers AI) and cloud compute.
 * Cost target is strictly $0.00/month for cloud operations, with paid ElevenLabs Pro credits safeguarded and rationed via two-tier routing.
 * Daily audits must be executable via `python3 scripts/track_ai_credits.py` with results logged in Australian Timezone (`Australia/Melbourne`).
+
+## 5. Google Spam Update & S-CTS Anti-Cluster Protocol (Zero AI Slop)
+* **Governing Mandate:** Complete alignment with Google Search Central Essentials and the **S-CTS (Scalable Cluster Termination System)** anti-spam research standards.
+* **Prohibition of Programmatic Mass-Production:** Under no circumstances may automated scripts churn out boilerplate, thin factsheet stubs (< 250 words), or canned recurring templates (e.g. *"The Reserve Bank of Australia and major retail banks have updated residential mortgage assessment benchmarks..."*).
+* **Zero Doorway / Trend-Spam Pages:** No pages may be generated solely to rank for trending news or keyword variations without delivering original financial calculations, verified regulatory data, or professional broker commentary.
+* **Mandatory Human-in-the-Loop Value Addition:** Every published post must contain original borrower utility (worked financial calculation tables, trade-off matrices, MFAA Principal Broker commentary by R Bakshi, or accredited solution architecture advice).
+* **Cluster Termination Prevention:** Protect domain trust and accumulated user engagement signals. Quality and dwell time strictly take precedence over publishing volume.
+

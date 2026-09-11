@@ -59,3 +59,36 @@ def test_timezone_localization_enforcement(script_path):
             f"CRITICAL: Naive datetime.now() call found in {script_path}. "
             f"GitHub Actions runs on UTC. You must localize it to Australian Time (AEST/AEDT UTC+10)."
         )
+
+def test_anti_ai_slop_and_canned_template_guard():
+    """
+    S-CTS Anti-Cluster & Spam Update Gatekeeper:
+    Ensures no canned boilerplate templates, mass-generated thin stubs,
+    or raw timestamped slugs exist in posts.json.
+    """
+    import json
+    posts_path = "posts.json"
+    if not os.path.exists(posts_path):
+        pytest.skip("posts.json not found.")
+
+    with open(posts_path, "r", encoding="utf-8") as f:
+        posts = json.load(f)
+
+    canned_signature = "The Reserve Bank of Australia and major retail banks have updated residential mortgage assessment benchmarks"
+    timestamp_regex = re.compile(r"-\d{9,12}$")
+
+    for p in posts:
+        slug = p.get("slug") or p.get("id") or ""
+        title = p.get("title") or ""
+        body_text = " ".join(p.get("body", [])) if isinstance(p.get("body"), list) else p.get("body", "")
+
+        # 1. No canned boilerplate signature allowed
+        assert canned_signature not in body_text, f"Canned template signature found in post {slug}"
+
+        # 2. No raw epoch timestamped slugs
+        assert not timestamp_regex.search(slug), f"Raw timestamped slug found in post {slug}"
+
+        # 3. Must have valid title and category
+        assert title.strip(), f"Post {slug} has an empty title"
+        assert p.get("category"), f"Post {slug} is missing a category"
+
