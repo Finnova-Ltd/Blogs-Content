@@ -1,5 +1,19 @@
 [
   {
+    "id": "asd-acsc-agentic-ai-harnesses-secure-design-guide",
+    "slug": "asd-acsc-agentic-ai-harnesses-secure-design-guide",
+    "title": "ASD ACSC Secure Design Guidance: Agentic AI Harnesses \u2014 Governing the Critical Layer Above the Model",
+    "date": "11-Sep-2026",
+    "iso_date": "2026-09-11T20:56:00Z",
+    "author": "Robin Bakshi (Lead Security & Enterprise AI Architect)",
+    "category": "Cybersecurity & Compliance",
+    "badge": "ASD PARTNER ADVISORY",
+    "readTime": "7 min read",
+    "image": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80",
+    "excerpt": "As an Australian Cyber Security Centre (ASD ACSC) Network Partner, PRO CRM examines the landmark 11 September 2026 guidance: why enterprises must govern the software harness connecting LLMs to business systems.",
+    "url": "/pages/blog/asd-acsc-agentic-ai-harnesses-secure-design-guide.html"
+  },
+  {
     "id": "asd-acsc-alert-adobe-commerce-magento-rce-cve-2026-75650",
     "slug": "asd-acsc-alert-adobe-commerce-magento-rce-cve-2026-75650",
     "title": "ASD ACSC Alert: Active Exploitation of Critical Adobe Commerce & Magento Vulnerability (CVE-2026-75650)",
