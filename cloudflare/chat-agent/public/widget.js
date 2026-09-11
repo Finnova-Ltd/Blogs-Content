@@ -194,7 +194,7 @@
     ];
     let brandCtaText = "Connect me with a licensed broker &rarr;";
     let brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/gemini_chat_avatar_poster.jpg";
-    let brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/gemini_chat_avatar.mp4";
+    let brandVideo = "/assets/videos/gemini_chat_avatar.mp4";
     let brandVideoId = "";
     let brandBadgeName = "EZ MORTGAGE BROKER";
     let brandBadgeColor = "#3b82f6";
@@ -447,17 +447,13 @@
           ` : `
           <video id="piper-hero-video" playsinline muted autoplay loop preload="auto" poster="${brandPoster}">
             <source src="${brandVideo}" type="video/mp4">
+            <source src="https://omni-agent.testcustomer2022.workers.dev/videos/gemini_chat_avatar.mp4" type="video/mp4">
           </video>
           `}
           <!-- Floating Brand / Project Logo Badge -->
           <div class="piper-video-logo-badge" id="piperVideoLogoBadge">
             ${brandLogoImg ? `<img src="${brandLogoImg}" alt="${brandBadgeName}" style="width:18px; height:18px; border-radius:50%; object-fit:cover; display:inline-block; vertical-align:middle; border:1px solid rgba(255,255,255,0.3);" />` : `<span class="piper-badge-dot" style="background:${brandBadgeColor};"></span>`}
             <span>${brandBadgeName}</span>
-          </div>
-          <!-- Floating Brand Watermark Logo on Top-Right -->
-          <div style="position: absolute; top: 10px; right: 12px; z-index: 9; display: flex; align-items: center; gap: 5px; background: rgba(10, 37, 64, 0.75); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding: 3px 8px; border-radius: 999px; border: 1px solid rgba(0, 175, 235, 0.35); pointer-events: none;">
-            ${brandLogoImg ? `<img src="${brandLogoImg}" alt="${brandBadgeName}" style="width:16px; height:16px; border-radius:50%; object-fit:cover;" />` : ''}
-            <span style="color: #ffffff; font-size: 10px; font-weight: 800; letter-spacing: 0.5px;">EZ CONSULTANTS</span>
           </div>
           <!-- Prominent Centered Speak Now Button (Image 1) -->
           <button type="button" class="piper-speak-now-btn" id="piperSpeakBtn">
@@ -514,6 +510,29 @@
       </div>
     `;
     appendToBody(win);
+    const videoStage = document.getElementById("piperVideoStage");
+    const heroVideo = document.getElementById("piper-hero-video");
+    if (videoStage && heroVideo) {
+      videoStage.style.cursor = "pointer";
+      function triggerPlay() {
+        heroVideo.muted = true;
+        heroVideo.playsInline = true;
+        const playPromise = heroVideo.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(function(err) {
+            console.log("Auto-play interaction needed:", err);
+          });
+        }
+      }
+      videoStage.addEventListener("mouseenter", triggerPlay);
+      videoStage.addEventListener("mousemove", function() {
+        if (heroVideo.paused) triggerPlay();
+      });
+      videoStage.addEventListener("click", triggerPlay);
+      // Attempt autoplay immediately
+      triggerPlay();
+    }
+
 
     function openChat() {
       win.style.display = 'flex';

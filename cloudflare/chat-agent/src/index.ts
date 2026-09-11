@@ -1924,7 +1924,7 @@ const WIDGET_SCRIPT = `(function () {
     ];
     let brandCtaText = "Connect me with a licensed broker &rarr;";
     let brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/gemini_chat_avatar_poster.jpg";
-    let brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/gemini_chat_avatar.mp4";
+    let brandVideo = "/assets/videos/gemini_chat_avatar.mp4";
     let brandVideoId = "";
     let brandBadgeName = "EZ MORTGAGE BROKER";
     let brandBadgeColor = "#3b82f6";
@@ -2167,6 +2167,7 @@ const WIDGET_SCRIPT = `(function () {
           \` : \`
           <video id="piper-hero-video" playsinline muted autoplay loop preload="auto" poster="\${brandPoster}">
             <source src="\${brandVideo}" type="video/mp4">
+            <source src="https://omni-agent.testcustomer2022.workers.dev/videos/gemini_chat_avatar.mp4" type="video/mp4">
           </video>
           \`}
           <!-- Floating Brand / Project Logo Badge -->
@@ -2229,6 +2230,29 @@ const WIDGET_SCRIPT = `(function () {
       </div>
     \`;
     appendToBody(win);
+    const videoStage = document.getElementById("piperVideoStage");
+    const heroVideo = document.getElementById("piper-hero-video");
+    if (videoStage && heroVideo) {
+      videoStage.style.cursor = "pointer";
+      function triggerPlay() {
+        heroVideo.muted = true;
+        heroVideo.playsInline = true;
+        const playPromise = heroVideo.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(function(err) {
+            console.log("Auto-play interaction needed:", err);
+          });
+        }
+      }
+      videoStage.addEventListener("mouseenter", triggerPlay);
+      videoStage.addEventListener("mousemove", function() {
+        if (heroVideo.paused) triggerPlay();
+      });
+      videoStage.addEventListener("click", triggerPlay);
+      // Attempt autoplay immediately
+      triggerPlay();
+    }
+
 
     function openChat() {
       win.style.display = 'flex';
