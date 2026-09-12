@@ -1921,6 +1921,8 @@ const WIDGET_SCRIPT = `((function () {
         keywords: ["fee", "fees", "commission", "commissions", "how do your fees", "compensated", "cost", "charge", "pay you"],
         title: "Broker Fees & Commissions (Transparency & Trust)",
         duration: "~10–11 seconds",
+        localVideo: "/assets/videos/concept_1_fees.mp4",
+        localPoster: "/images/concept_1_fees_poster.jpg",
         videoUrl: "https://share.gemini.google/JZ01AoekO0Ny",
         script: "We're compensated via lender commissions, though a fee may apply depending on your loan's complexity. Everything is disclosed upfront, and we're legally bound to act in your best interests!"
       },
@@ -1930,6 +1932,8 @@ const WIDGET_SCRIPT = `((function () {
         keywords: ["borrow", "borrowing", "capacity", "how much can i borrow", "how fast is approval", "fast loan approvals", "qualify", "borrowing power"],
         title: "Borrowing Power & Speed (Action & Encouragement)",
         duration: "~10 seconds",
+        localVideo: "/assets/videos/concept_2_borrowing.mp4",
+        localPoster: "/images/concept_2_borrowing_poster.jpg",
         videoUrl: "https://share.gemini.google/98xInqAFLLrm",
         script: "Every lender assesses borrowing capacity differently! We compare multiple lenders to maximise your borrowing power and secure fast loan approvals. Ready to see what you qualify for?"
       },
@@ -1939,6 +1943,8 @@ const WIDGET_SCRIPT = `((function () {
         keywords: ["saving", "saving money", "current mortgage", "refinance", "refinancing", "lower rates", "overpaying", "health check"],
         title: "Refinancing & Savings (Solving Pain Points)",
         duration: "~10 seconds",
+        localVideo: "/assets/videos/concept_3_refinancing.mp4",
+        localPoster: "/images/concept_3_refinancing_poster.jpg",
         videoUrl: "https://share.gemini.google/Gn6TIIKibsT7",
         script: "If you haven't reviewed your rate recently, you might be overpaying. We compare multiple lenders to find lower rates and trim your repayments. Let's run a quick health check!"
       }
@@ -2076,6 +2082,9 @@ const WIDGET_SCRIPT = `((function () {
       .piper-hero-video-stage video { width: 100%; height: 100%; object-fit: cover; display: block; }
       
       /* Centered Prominent Speak Now Pill Button (Image 1) */
+      .piper-unmute-overlay-btn { position: absolute; bottom: 12px; right: 12px; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.25); color: #ffffff; padding: 5px 11px; border-radius: 999px; font-size: 11.5px; font-weight: 700; cursor: pointer; z-index: 10; display: flex; align-items: center; gap: 5px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35); transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); }
+      .piper-unmute-overlay-btn:hover { background: #0066f5; transform: scale(1.04); }
+      .piper-unmute-overlay-btn.unmuted { background: #10B981; border-color: rgba(16, 185, 129, 0.4); }
       .piper-speak-now-btn { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); background: #0066f5; color: #ffffff; font-size: 13.5px; font-weight: 700; padding: 7px 20px; border-radius: 999px; border: none; cursor: pointer; box-shadow: 0 4px 14px rgba(0, 102, 245, 0.45); display: flex; align-items: center; gap: 6px; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); z-index: 10; white-space: nowrap; }
       .piper-speak-now-btn:hover { background: #0052cc; transform: translateX(-50%) scale(1.05); }
       .piper-speak-now-btn.speaking { background: #10B981; }
@@ -2205,12 +2214,17 @@ const WIDGET_SCRIPT = `((function () {
             <span class="piper-badge-dot" style="background:\${brandBadgeColor};"></span>
             <span>\${brandBadgeName}</span>
           </div>
+          <!-- Floating Sound Toggle Button (Bottom-Right) -->
+          <button type="button" class="piper-unmute-overlay-btn" id="piperUnmuteBtn" title="Click to listen with sound">
+            <span>🔊</span> Tap for Sound
+          </button>
           <!-- Prominent Centered Speak Now Button (Image 1) -->
           <button type="button" class="piper-speak-now-btn" id="piperSpeakBtn">
             <span>🎙️</span> Speak now
           </button>
           <!-- Video Call Controls Bar (Image 2 & 3) -->
           <div class="piper-call-bar" id="piperCallBar">
+            <button type="button" class="piper-ctrl-btn" id="piperSoundToggle" title="Audio Sound Mute/Unmute">🔇</button>
             <button type="button" class="piper-ctrl-btn" id="piperMicToggle" title="Microphone Mute/Unmute">🎙️</button>
             <button type="button" class="piper-ctrl-btn" id="piperExpandBtn" title="Expand Stage">⤢</button>
             <button type="button" class="piper-ctrl-end" id="piperEndBtn" title="End Voice Conversation">End</button>
@@ -2262,10 +2276,77 @@ const WIDGET_SCRIPT = `((function () {
     appendToBody(win);
     const videoStage = document.getElementById("piperVideoStage");
     const heroVideo = document.getElementById("piper-hero-video");
+    const unmuteBtn = document.getElementById("piperUnmuteBtn");
+    const callSoundBtn = document.getElementById("piperSoundToggle");
+
+    function updateSoundUi(isUnmuted) {
+      if (unmuteBtn) {
+        if (isUnmuted) {
+          unmuteBtn.innerHTML = "<span>🔊</span> Sound On";
+          unmuteBtn.classList.add("unmuted");
+        } else {
+          unmuteBtn.innerHTML = "<span>🔇</span> Tap for Sound";
+          unmuteBtn.classList.remove("unmuted");
+        }
+      }
+      if (callSoundBtn) {
+        callSoundBtn.textContent = isUnmuted ? "🔊" : "🔇";
+      }
+    }
+
+    function toggleSound(forceUnmute) {
+      if (!heroVideo) return;
+      const willUnmute = (forceUnmute === true) || heroVideo.muted || heroVideo.volume === 0;
+      if (willUnmute) {
+        heroVideo.muted = false;
+        heroVideo.volume = 1.0;
+        const p = heroVideo.play();
+        if (p !== undefined) {
+          p.then(() => updateSoundUi(true)).catch(() => {
+            heroVideo.muted = true;
+            updateSoundUi(false);
+          });
+        } else {
+          updateSoundUi(true);
+        }
+      } else {
+        heroVideo.muted = true;
+        updateSoundUi(false);
+      }
+    }
+
+    function playVideoWithVoice(src, poster, badgeText) {
+      if (!heroVideo) return;
+      if (src && !heroVideo.src.includes(src)) {
+        heroVideo.src = src;
+        if (poster) heroVideo.poster = poster;
+        heroVideo.currentTime = 0;
+      }
+      heroVideo.muted = false;
+      heroVideo.volume = 1.0;
+      const p = heroVideo.play();
+      if (p !== undefined) {
+        p.then(() => updateSoundUi(true)).catch((err) => {
+          console.log("Unmuted playback restricted, user gesture needed:", err);
+          heroVideo.muted = true;
+          heroVideo.play().catch(() => {});
+          updateSoundUi(false);
+        });
+      }
+      if (badgeText && brandBadgeName) {
+        const badgeEl = document.getElementById("piperVideoLogoBadge");
+        if (badgeEl) {
+          badgeEl.innerHTML = \`<span class="piper-badge-dot" style="background:\${brandBadgeColor};"></span><span>\${badgeText}</span>\`;
+        }
+      }
+    }
+
+    if (unmuteBtn) unmuteBtn.onclick = (e) => { e.stopPropagation(); toggleSound(); };
+    if (callSoundBtn) callSoundBtn.onclick = (e) => { e.stopPropagation(); toggleSound(); };
+
     if (videoStage && heroVideo) {
       videoStage.style.cursor = "pointer";
       function triggerPlay() {
-        heroVideo.muted = true;
         heroVideo.playsInline = true;
         const playPromise = heroVideo.play();
         if (playPromise !== undefined) {
@@ -2274,25 +2355,42 @@ const WIDGET_SCRIPT = `((function () {
           });
         }
       }
-      videoStage.addEventListener("mouseenter", triggerPlay);
+      videoStage.addEventListener("mouseenter", function() {
+        if (heroVideo.paused) triggerPlay();
+      });
       videoStage.addEventListener("mousemove", function() {
         if (heroVideo.paused) triggerPlay();
       });
-      videoStage.addEventListener("click", triggerPlay);
-      // Attempt autoplay immediately
+      videoStage.addEventListener("click", function(e) {
+        if (e.target === unmuteBtn || (unmuteBtn && unmuteBtn.contains(e.target))) return;
+        toggleSound();
+      });
       triggerPlay();
-    }
 
+      // Return to brand default video when finished
+      heroVideo.addEventListener("ended", function() {
+        if (heroVideo.src && !heroVideo.src.includes("gemini_chat_avatar")) {
+          heroVideo.src = brandVideo;
+          heroVideo.poster = brandPoster;
+          heroVideo.currentTime = 0;
+          heroVideo.muted = true;
+          heroVideo.loop = true;
+          heroVideo.play().catch(() => {});
+          updateSoundUi(false);
+          const badgeEl = document.getElementById("piperVideoLogoBadge");
+          if (badgeEl) {
+            badgeEl.innerHTML = \`<span class="piper-badge-dot" style="background:\${brandBadgeColor};"></span><span>\${brandBadgeName}</span>\`;
+          }
+        }
+      });
+    }
 
     function openChat() {
       win.style.display = 'flex';
       if (bubble) bubble.classList.add('is-open');
       if (greetingPill) greetingPill.style.display = 'none';
-      const video = document.getElementById('piper-hero-video');
-      if (video) {
-        video.muted = true;
-        video.defaultMuted = true;
-        video.volume = 0;
+      if (heroVideo && heroVideo.paused) {
+        heroVideo.play().catch(() => {});
       }
     }
 
@@ -2913,6 +3011,15 @@ const WIDGET_SCRIPT = `((function () {
       if (matchedConcept) {
         loadingMsg.classList.remove('loading');
 
+        // Switch hero video to concept video and play with authentic voice
+        if (matchedConcept.localVideo) {
+          playVideoWithVoice(
+            matchedConcept.localVideo, 
+            matchedConcept.localPoster, 
+            \`EZ MORTGAGE BROKER • \${matchedConcept.title.split('(' )[0].trim()}\`
+          );
+        }
+
         // Render rich canned response with Video Player / Card and Transcript
         const videoResponseHtml = \`
           <div style="font-weight:700; margin-bottom:8px; color:\${primaryColor}; display:flex; align-items:center; gap:6px;">
@@ -2922,16 +3029,31 @@ const WIDGET_SCRIPT = `((function () {
           <div style="margin-bottom:10px; line-height:1.55; color:\${assistantText}; font-size:13.5px;">
             "\${matchedConcept.script}"
           </div>
-          <div style="background:#f8fafc; border-radius:8px; padding:10px; border:1px solid #e2e8f0; margin-top:8px; display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+          <div style="background:#f8fafc; border-radius:8px; padding:10px; border:1px solid #e2e8f0; margin-top:8px; display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap;">
             <div style="font-size:11.5px; color:#475569; display:flex; align-items:center; gap:6px;">
-              <span>📹</span> <span><strong>AI Specialist Video:</strong> \${matchedConcept.title.split('(')[0].trim()}</span>
+              <span>📹</span> <span><strong>AI Specialist Video:</strong> \${matchedConcept.title.split('(' )[0].trim()}</span>
             </div>
-            <a href="\${matchedConcept.videoUrl}" target="_blank" rel="noopener noreferrer" style="background:#0176D3; color:#ffffff; text-decoration:none; padding:6px 12px; border-radius:6px; font-size:11.5px; font-weight:700; display:inline-flex; align-items:center; gap:5px; box-shadow:0 1px 3px rgba(0,0,0,0.1); transition:opacity 0.15s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
-              ▶️ Watch Video Response &rarr;
-            </a>
+            <div style="display:flex; gap:6px; align-items:center; margin-left:auto;">
+              <button type="button" class="omni-replay-voice-btn" data-video="\${matchedConcept.localVideo || ''}" data-poster="\${matchedConcept.localPoster || ''}" data-title="\${matchedConcept.title.split('(' )[0].trim()}" style="background:#10B981; color:#ffffff; border:none; padding:6px 11px; border-radius:6px; font-size:11.5px; font-weight:700; cursor:pointer; display:inline-flex; align-items:center; gap:4px; box-shadow:0 1px 3px rgba(0,0,0,0.1);">
+                ▶️ Play with Voice
+              </button>
+              <a href="\${matchedConcept.videoUrl}" target="_blank" rel="noopener noreferrer" style="background:#F1F5F9; color:#0f172a; text-decoration:none; padding:6px 9px; border-radius:6px; font-size:11px; font-weight:600; border:1px solid #CBD5E1;" title="View on Google Gemini">
+                Gemini ↗
+              </a>
+            </div>
           </div>
         \`;
         loadingMsg.innerHTML = videoResponseHtml;
+
+        const replayBtn = loadingMsg.querySelector(' .omni-replay-voice-btn');
+        if (replayBtn) {
+          replayBtn.onclick = () => {
+            const vSrc = replayBtn.getAttribute('data-video');
+            const vPost = replayBtn.getAttribute('data-poster');
+            const vTitle = replayBtn.getAttribute('data-title');
+            playVideoWithVoice(vSrc, vPost, \`EZ MORTGAGE BROKER • \${vTitle}\`);
+          };
+        }
 
         const actionsDiv = document.createElement('div');
         actionsDiv.className = 'omni-msg-actions';
@@ -2941,11 +3063,11 @@ const WIDGET_SCRIPT = `((function () {
           <span class="omni-action-btn" title="Smiley">😊</span>
           <span class="omni-quote-btn" title="Quote reply">💬 Quote</span>
         \`;
-        actionsDiv.querySelector('.omni-quote-btn').onclick = () => {
-          chatInput.value = '> "' + matchedConcept.script.substring(0, 80) + '..."\\n';
+        actionsDiv.querySelector(' .omni-quote-btn').onclick = () => {
+          chatInput.value = \`> "\${matchedConcept.script.substring(0, 80)}..."\\n\`;
           chatInput.focus();
         };
-        actionsDiv.querySelectorAll('.omni-action-btn').forEach(btn => {
+        actionsDiv.querySelectorAll(' .omni-action-btn').forEach(btn => {
           btn.onclick = () => {
             btn.style.transform = 'scale(1.4)';
             setTimeout(() => btn.style.transform = 'scale(1)', 200);
@@ -2954,9 +3076,6 @@ const WIDGET_SCRIPT = `((function () {
         loadingMsg.appendChild(actionsDiv);
         msgContainer.scrollTop = msgContainer.scrollHeight;
 
-        if (isVoiceActive) {
-          speakWithElevenLabs(matchedConcept.script);
-        }
         return;
       }
 
