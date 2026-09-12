@@ -2362,7 +2362,7 @@ const WIDGET_SCRIPT = `((function () {
         if (heroVideo.paused) triggerPlay();
       });
       videoStage.addEventListener("click", function(e) {
-        if (e.target === unmuteBtn || (unmuteBtn && unmuteBtn.contains(e.target))) return;
+        if (e.target.closest("#piperUnmuteBtn") || e.target.closest("#piperCallBar") || e.target.closest("#piperSpeakBtn")) return;
         toggleSound();
       });
       triggerPlay();
@@ -2469,15 +2469,9 @@ const WIDGET_SCRIPT = `((function () {
     const micBtn = document.getElementById("omniMicBtn");
 
     if (video) {
+      // Initialize video to start muted for browser autoplay compliance
       video.muted = true;
-      video.defaultMuted = true;
-      video.volume = 0;
-      video.addEventListener('volumechange', () => {
-        if (!video.muted || video.volume > 0) {
-          video.muted = true;
-          video.volume = 0;
-        }
-      });
+      video.playsInline = true;
     }
 
     function getAuVoice() {
@@ -2534,7 +2528,6 @@ const WIDGET_SCRIPT = `((function () {
       if (video) {
         video.muted = true;
         video.defaultMuted = true;
-        video.volume = 0;
         video.currentTime = 0;
         video.loop = true;
         video.play().catch(() => {});
@@ -2596,7 +2589,6 @@ const WIDGET_SCRIPT = `((function () {
       if (video) {
         video.muted = true;
         video.defaultMuted = true;
-        video.volume = 0;
         video.currentTime = 0;
         video.loop = true; // Actively move lips and head throughout speech
         video.play().catch(() => {});
