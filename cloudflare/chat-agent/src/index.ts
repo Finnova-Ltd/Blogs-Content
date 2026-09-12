@@ -1728,7 +1728,7 @@ return new Response(JSON.stringify({ error: err.message || "Vision AI processing
 };
 
 // Universal Standalone Widget JavaScript (with Cookie-Based Lead Scoring & Proactive AI)
-const WIDGET_SCRIPT = `(function () {
+const WIDGET_SCRIPT = `((function () {
   if (window.__OMNI_AGENT_INITIALIZED__) return;
   window.__OMNI_AGENT_INITIALIZED__ = true;
 
@@ -1914,22 +1914,53 @@ const WIDGET_SCRIPT = `(function () {
     const isESignature = /esignature|ezsignature/.test(currentDomain);
     const isEzMortgage = !isFinnova && !isProCrm && !isEzConsultants && !isESignature;
 
+    const EZ_MORTGAGE_CANNED_CONCEPTS = [
+      {
+        id: "concept-1-fees",
+        chip: "💳 How do your fees and commissions work?",
+        keywords: ["fee", "fees", "commission", "commissions", "how do your fees", "compensated", "cost", "charge", "pay you"],
+        title: "Broker Fees & Commissions (Transparency & Trust)",
+        duration: "~10–11 seconds",
+        videoUrl: "https://share.gemini.google/JZ01AoekO0Ny",
+        script: "We're compensated via lender commissions, though a fee may apply depending on your loan's complexity. Everything is disclosed upfront, and we're legally bound to act in your best interests!"
+      },
+      {
+        id: "concept-2-borrowing",
+        chip: "📈 How much can I borrow, and how fast is approval?",
+        keywords: ["borrow", "borrowing", "capacity", "how much can i borrow", "how fast is approval", "fast loan approvals", "qualify", "borrowing power"],
+        title: "Borrowing Power & Speed (Action & Encouragement)",
+        duration: "~10 seconds",
+        videoUrl: "https://share.gemini.google/98xInqAFLLrm",
+        script: "Every lender assesses borrowing capacity differently! We compare multiple lenders to maximise your borrowing power and secure fast loan approvals. Ready to see what you qualify for?"
+      },
+      {
+        id: "concept-3-refinancing",
+        chip: "🔄 Could I be saving money on my current mortgage?",
+        keywords: ["saving", "saving money", "current mortgage", "refinance", "refinancing", "lower rates", "overpaying", "health check"],
+        title: "Refinancing & Savings (Solving Pain Points)",
+        duration: "~10 seconds",
+        videoUrl: "https://share.gemini.google/Gn6TIIKibsT7",
+        script: "If you haven't reviewed your rate recently, you might be overpaying. We compare multiple lenders to find lower rates and trim your repayments. Let's run a quick health check!"
+      }
+    ];
+
     let brandSpecialistTitle = "AI Lending Specialist";
     let brandIntro = "G'day! I'm Friday, your AI Lending Specialist at <strong>EZ Mortgage Broker</strong>. I compare 30+ accredited Australian lenders to find lower interest rates, maximize your borrowing capacity, and secure fast loan approvals. How can I help you with your mortgage today?";
     let brandPillGreeting = "G'day! I'm Friday 👋 Ask me anything";
     let brandPrompts = [
-      { text: "Calculate my borrowing power", prompt: "How much can I borrow on my salary?" },
-      { text: "Compare 30+ bank rates", prompt: "Compare lowest 2-year fixed rates across Australian banks" },
-      { text: "Latest RBA cash rate update", prompt: "What are the current RBA interest rate forecasts?" }
+      { text: "💳 Fees & Commissions", prompt: "How do your fees and commissions work?" },
+      { text: "📈 Borrowing Power & Speed", prompt: "How much can I borrow, and how fast is approval?" },
+      { text: "🔄 Refinancing & Savings", prompt: "Could I be saving money on my current mortgage?" }
     ];
     let brandCtaText = "Connect me with a licensed broker &rarr;";
-    let brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/gemini_chat_avatar_poster.jpg";
+    let brandPoster = "/images/gemini_chat_avatar_poster.jpg";
     let brandVideo = "/assets/videos/gemini_chat_avatar.mp4";
+    let brandIntroVideoUrl = "https://share.gemini.google/w0iGnx8e65Lk";
     let brandVideoId = "";
     let brandBadgeName = "EZ MORTGAGE BROKER";
     let brandBadgeColor = "#3b82f6";
     let brandVoiceId = "Dh68koMHNSYl8A1jH9Je";
-    let brandAvatarId = "FCw4vx5Z3LmiTbUCRLS3";
+    let brandAvatarId = null;
 
     if (isFinnova) {
       brandSpecialistTitle = "AI Community Guide";
@@ -2165,9 +2196,8 @@ const WIDGET_SCRIPT = `(function () {
             <source src="\${brandVideo}" type="video/mp4">
           </video>
           \` : \`
-          <video id="piper-hero-video" playsinline muted autoplay loop preload="auto" poster="\${brandPoster}">
+          <video id="piper-hero-video" playsinline muted loop autoplay preload="auto" poster="\${brandPoster}">
             <source src="\${brandVideo}" type="video/mp4">
-            <source src="https://omni-agent.testcustomer2022.workers.dev/videos/gemini_chat_avatar.mp4" type="video/mp4">
           </video>
           \`}
           <!-- Floating Brand / Project Logo Badge -->
@@ -2872,6 +2902,64 @@ const WIDGET_SCRIPT = `(function () {
       msgContainer.appendChild(loadingMsg);
       msgContainer.scrollTop = msgContainer.scrollHeight;
 
+      // Check for Canned Video Concept Matches for EZ Mortgage Broker
+      const lowerMsg = msg.toLowerCase().trim();
+      const matchedConcept = isEzMortgage && EZ_MORTGAGE_CANNED_CONCEPTS.find(c => 
+        lowerMsg.includes(c.title.toLowerCase()) ||
+        lowerMsg.includes(c.chip.toLowerCase().replace(/[^a-z0-9 ]/gi, '')) ||
+        c.keywords.some(k => lowerMsg.includes(k))
+      );
+
+      if (matchedConcept) {
+        loadingMsg.classList.remove('loading');
+
+        // Render rich canned response with Video Player / Card and Transcript
+        const videoResponseHtml = \`
+          <div style="font-weight:700; margin-bottom:8px; color:\${primaryColor}; display:flex; align-items:center; gap:6px;">
+            <span>🎬</span> <span>\${matchedConcept.title}</span>
+            <span style="font-size:10px; background:#e0f2fe; color:#0369a1; padding:2px 6px; border-radius:4px; font-weight:600; margin-left:auto;">\${matchedConcept.duration}</span>
+          </div>
+          <div style="margin-bottom:10px; line-height:1.55; color:\${assistantText}; font-size:13.5px;">
+            "\${matchedConcept.script}"
+          </div>
+          <div style="background:#f8fafc; border-radius:8px; padding:10px; border:1px solid #e2e8f0; margin-top:8px; display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+            <div style="font-size:11.5px; color:#475569; display:flex; align-items:center; gap:6px;">
+              <span>📹</span> <span><strong>AI Specialist Video:</strong> \${matchedConcept.title.split('(')[0].trim()}</span>
+            </div>
+            <a href="\${matchedConcept.videoUrl}" target="_blank" rel="noopener noreferrer" style="background:#0176D3; color:#ffffff; text-decoration:none; padding:6px 12px; border-radius:6px; font-size:11.5px; font-weight:700; display:inline-flex; align-items:center; gap:5px; box-shadow:0 1px 3px rgba(0,0,0,0.1); transition:opacity 0.15s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+              ▶️ Watch Video Response &rarr;
+            </a>
+          </div>
+        \`;
+        loadingMsg.innerHTML = videoResponseHtml;
+
+        const actionsDiv = document.createElement('div');
+        actionsDiv.className = 'omni-msg-actions';
+        actionsDiv.innerHTML = \`
+          <span class="omni-action-btn" title="Thumbs Up">👍</span>
+          <span class="omni-action-btn" title="Thumbs Down">👎</span>
+          <span class="omni-action-btn" title="Smiley">😊</span>
+          <span class="omni-quote-btn" title="Quote reply">💬 Quote</span>
+        \`;
+        actionsDiv.querySelector('.omni-quote-btn').onclick = () => {
+          chatInput.value = '> "' + matchedConcept.script.substring(0, 80) + '..."\\n';
+          chatInput.focus();
+        };
+        actionsDiv.querySelectorAll('.omni-action-btn').forEach(btn => {
+          btn.onclick = () => {
+            btn.style.transform = 'scale(1.4)';
+            setTimeout(() => btn.style.transform = 'scale(1)', 200);
+          };
+        });
+        loadingMsg.appendChild(actionsDiv);
+        msgContainer.scrollTop = msgContainer.scrollHeight;
+
+        if (isVoiceActive) {
+          speakWithElevenLabs(matchedConcept.script);
+        }
+        return;
+      }
+
       try {
         const response = await fetch(\`\${backendUrl}/api/chat\`, {
           method: 'POST',
@@ -2988,4 +3076,5 @@ const WIDGET_SCRIPT = `(function () {
     document.getElementById('omni-chat-input').onkeypress = (e) => { if (e.key === 'Enter') sendMessage(); };
   }
 })();
+
 `;

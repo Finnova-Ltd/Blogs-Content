@@ -184,23 +184,53 @@
     const isESignature = /esignature|ezsignature/.test(currentDomain);
     const isEzMortgage = !isFinnova && !isProCrm && !isEzConsultants && !isESignature;
 
+    const EZ_MORTGAGE_CANNED_CONCEPTS = [
+      {
+        id: "concept-1-fees",
+        chip: "💳 How do your fees and commissions work?",
+        keywords: ["fee", "fees", "commission", "commissions", "how do your fees", "compensated", "cost", "charge", "pay you"],
+        title: "Broker Fees & Commissions (Transparency & Trust)",
+        duration: "~10–11 seconds",
+        videoUrl: "https://share.gemini.google/JZ01AoekO0Ny",
+        script: "We're compensated via lender commissions, though a fee may apply depending on your loan's complexity. Everything is disclosed upfront, and we're legally bound to act in your best interests!"
+      },
+      {
+        id: "concept-2-borrowing",
+        chip: "📈 How much can I borrow, and how fast is approval?",
+        keywords: ["borrow", "borrowing", "capacity", "how much can i borrow", "how fast is approval", "fast loan approvals", "qualify", "borrowing power"],
+        title: "Borrowing Power & Speed (Action & Encouragement)",
+        duration: "~10 seconds",
+        videoUrl: "https://share.gemini.google/98xInqAFLLrm",
+        script: "Every lender assesses borrowing capacity differently! We compare multiple lenders to maximise your borrowing power and secure fast loan approvals. Ready to see what you qualify for?"
+      },
+      {
+        id: "concept-3-refinancing",
+        chip: "🔄 Could I be saving money on my current mortgage?",
+        keywords: ["saving", "saving money", "current mortgage", "refinance", "refinancing", "lower rates", "overpaying", "health check"],
+        title: "Refinancing & Savings (Solving Pain Points)",
+        duration: "~10 seconds",
+        videoUrl: "https://share.gemini.google/Gn6TIIKibsT7",
+        script: "If you haven't reviewed your rate recently, you might be overpaying. We compare multiple lenders to find lower rates and trim your repayments. Let's run a quick health check!"
+      }
+    ];
+
     let brandSpecialistTitle = "AI Lending Specialist";
     let brandIntro = "G'day! I'm Friday, your AI Lending Specialist at <strong>EZ Mortgage Broker</strong>. I compare 30+ accredited Australian lenders to find lower interest rates, maximize your borrowing capacity, and secure fast loan approvals. How can I help you with your mortgage today?";
     let brandPillGreeting = "G'day! I'm Friday 👋 Ask me anything";
     let brandPrompts = [
-      { text: "Calculate my borrowing power", prompt: "How much can I borrow on my salary?" },
-      { text: "Compare 30+ bank rates", prompt: "Compare lowest 2-year fixed rates across Australian banks" },
-      { text: "Latest RBA cash rate update", prompt: "What are the current RBA interest rate forecasts?" }
+      { text: "💳 Fees & Commissions", prompt: "How do your fees and commissions work?" },
+      { text: "📈 Borrowing Power & Speed", prompt: "How much can I borrow, and how fast is approval?" },
+      { text: "🔄 Refinancing & Savings", prompt: "Could I be saving money on my current mortgage?" }
     ];
     let brandCtaText = "Connect me with a licensed broker &rarr;";
-    let brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/gemini_chat_avatar_poster.jpg";
+    let brandPoster = "/images/gemini_chat_avatar_poster.jpg";
     let brandVideo = "/assets/videos/gemini_chat_avatar.mp4";
+    let brandIntroVideoUrl = "https://share.gemini.google/w0iGnx8e65Lk";
     let brandVideoId = "";
     let brandBadgeName = "EZ MORTGAGE BROKER";
     let brandBadgeColor = "#3b82f6";
-    let brandLogoImg = "";
     let brandVoiceId = "Dh68koMHNSYl8A1jH9Je";
-    let brandAvatarId = "ezmortgage-ai";
+    let brandAvatarId = null;
 
     if (isFinnova) {
       brandSpecialistTitle = "AI Community Guide";
@@ -213,13 +243,12 @@
       ];
       brandCtaText = "Contact Finnova Community Team &rarr;";
       brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/friday_avatar_female_poster.jpg";
-      brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_finnova.mp4";
-      brandVideoId = "";
+      brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_female.mp4";
+      brandVideoId = "j5ck0gcoPY3vyiBPJy6h";
       brandBadgeName = "FINNOVA CHARITY";
       brandBadgeColor = "#ec4899";
-      brandLogoImg = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/logos/finnova-logo.png";
       brandVoiceId = "7xOqQceOZC5dhvkaqKtD";
-      brandAvatarId = "finnova-guide";
+      brandAvatarId = "j5ck0gcoPY3vyiBPJy6h";
     } else if (isProCrm) {
       brandSpecialistTitle = "AI Enterprise Architect";
       brandIntro = "Hi there! I'm Friday, your AI Enterprise Architect at <strong>Pro CRM Australia</strong>. We deliver Salesforce Agentforce, Zero-ETL Data Cloud integrations, and sovereign enterprise automation. What can we build for you today?";
@@ -232,10 +261,8 @@
       brandCtaText = "Book Enterprise AI Consultation &rarr;";
       brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/friday_avatar_procrm_poster.jpg";
       brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_procrm.mp4";
-      brandVideoId = "";
       brandBadgeName = "PRO CRM AUSTRALIA";
       brandBadgeColor = "#6366f1";
-      brandLogoImg = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/logos/procrm-logo.png";
       brandVoiceId = "cjVigY5qzO86Huf0OWal";
       brandAvatarId = "procrm-agentforce";
     } else if (isEzConsultants) {
@@ -248,13 +275,11 @@
         { text: "Cloud Security Architecture", prompt: "How do you secure multi-cloud Kubernetes & AWS workloads?" }
       ];
       brandCtaText = "Request Cyber Advisory Call &rarr;";
-      brandPoster = backendUrl + "/images/friday_avatar_ezconsultants_poster.jpg?v=20260908c";
-      brandVideo = backendUrl + "/videos/friday_avatar_ezconsultants.mp4?v=20260908c";
-      brandVideoId = "";
+      brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/friday_avatar_female_poster.jpg";
+      brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_female.mp4";
       brandBadgeName = "EZ CONSULTANTS";
       brandBadgeColor = "#00afeb";
-      brandLogoImg = backendUrl + "/images/ez-consultants-avatar.svg?v=20260908c";
-      brandVoiceId = "IKne3meq5aSn9XLyUdCD";
+      brandVoiceId = "Dh68koMHNSYl8A1jH9Je";
       brandAvatarId = "ezconsultants-cyber";
     } else if (isESignature) {
       brandSpecialistTitle = "AI Document Specialist";
@@ -268,7 +293,6 @@
       brandCtaText = "Start Free Document Trial &rarr;";
       brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/friday_avatar_female_poster.jpg";
       brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_female.mp4";
-      brandVideoId = "";
       brandBadgeName = "EZ SIGNATURE";
       brandBadgeColor = "#2563eb";
       brandVoiceId = "Dh68koMHNSYl8A1jH9Je";
@@ -404,7 +428,7 @@
       </div>
       <div id="omni-chat-bubble" class="omni-avatar-trigger" title="Chat with Friday">
         <div class="omni-avatar-disc">
-          <img src="${brandLogoImg || brandPoster}" alt="Friday AI Avatar" class="omni-avatar-face" />
+          <img src="${brandPoster}" alt="Friday AI Avatar" class="omni-avatar-face" />
           <span class="omni-avatar-online-dot"></span>
           <span class="omni-avatar-wave-badge">👋</span>
         </div>
@@ -419,12 +443,9 @@
     win.id = 'omni-chat-window';
     win.innerHTML = `
       <div id="omni-chat-header">
-        <div class="title-wrap" style="display:flex; align-items:center; gap:8px;">
-          ${brandLogoImg ? `<img src="${brandLogoImg}" alt="${brandBadgeName}" style="width:24px; height:24px; border-radius:50%; object-fit:cover; border:1px solid rgba(0,175,235,0.4);" />` : ''}
-          <div style="display:flex; align-items:center; gap:6px;">
-            <span class="title">Friday</span>
-            <span class="badge">${brandSpecialistTitle}</span>
-          </div>
+        <div class="title-wrap">
+          <span class="title">Friday</span>
+          <span class="badge">${brandSpecialistTitle}</span>
         </div>
         <div class="omni-hdr-actions">
           <button class="omni-btn-endchat" id="omniEndChat" title="Email Transcript">✉️ Email</button>
@@ -445,14 +466,13 @@
             <source src="${brandVideo}" type="video/mp4">
           </video>
           ` : `
-          <video id="piper-hero-video" playsinline muted autoplay loop preload="auto" poster="${brandPoster}">
+          <video id="piper-hero-video" playsinline muted loop autoplay preload="auto" poster="${brandPoster}">
             <source src="${brandVideo}" type="video/mp4">
-            <source src="https://omni-agent.testcustomer2022.workers.dev/videos/gemini_chat_avatar.mp4" type="video/mp4">
           </video>
           `}
           <!-- Floating Brand / Project Logo Badge -->
           <div class="piper-video-logo-badge" id="piperVideoLogoBadge">
-            ${brandLogoImg ? `<img src="${brandLogoImg}" alt="${brandBadgeName}" style="width:18px; height:18px; border-radius:50%; object-fit:cover; display:inline-block; vertical-align:middle; border:1px solid rgba(255,255,255,0.3);" />` : `<span class="piper-badge-dot" style="background:${brandBadgeColor};"></span>`}
+            <span class="piper-badge-dot" style="background:${brandBadgeColor};"></span>
             <span>${brandBadgeName}</span>
           </div>
           <!-- Prominent Centered Speak Now Button (Image 1) -->
@@ -671,38 +691,6 @@
       }
     }
 
-    function syncVideoPlaybackWithAudio(audioEl, durationEstimate) {
-      if (!video) return;
-      video.muted = true;
-      video.defaultMuted = true;
-      video.volume = 0;
-      video.currentTime = 0;
-      
-      const targetDuration = (audioEl && audioEl.duration && !isNaN(audioEl.duration) && audioEl.duration > 0) 
-        ? audioEl.duration 
-        : (durationEstimate || 10);
-
-      const applyRate = (dur) => {
-        if (video.duration && !isNaN(video.duration) && dur > 0) {
-          const rate = video.duration / dur;
-          video.playbackRate = Math.min(1.4, Math.max(0.65, rate));
-        }
-      };
-
-      if (audioEl) {
-        if (audioEl.readyState >= 1 && audioEl.duration) {
-          applyRate(audioEl.duration);
-        } else {
-          audioEl.addEventListener('loadedmetadata', () => applyRate(audioEl.duration), { once: true });
-        }
-      } else {
-        applyRate(targetDuration);
-      }
-
-      video.loop = true;
-      video.play().catch(() => {});
-    }
-
     function fallbackBrowserSpeech(cleanText, onComplete, speechId) {
       if (!('speechSynthesis' in window) || (speechId !== undefined && speechId !== currentSpeechId)) {
         if (onComplete) onComplete();
@@ -715,8 +703,14 @@
       const voice = getAuVoice();
       if (voice) utter.voice = voice;
       
-      const estimatedSec = Math.max(2, cleanText.split(/\s+/).length * 0.38);
-      syncVideoPlaybackWithAudio(null, estimatedSec);
+      if (video) {
+        video.muted = true;
+        video.defaultMuted = true;
+        video.volume = 0;
+        video.currentTime = 0;
+        video.loop = true;
+        video.play().catch(() => {});
+      }
 
       utter.onend = () => {
         if (speechId !== undefined && speechId !== currentSpeechId) return;
@@ -743,13 +737,13 @@
 
     function getPreRenderedGreetingUrl() {
       if (isProCrm) {
-        return backendUrl + "/audio/friday_greeting_procrm.mp3?v=20260908c";
+        return "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/audio/friday_greeting_procrm.mp3";
       } else if (isFinnova) {
-        return backendUrl + "/audio/friday_greeting_finnova.mp3?v=20260908c";
+        return "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/audio/friday_greeting_finnova.mp3";
       } else if (isEzConsultants) {
-        return backendUrl + "/audio/friday_greeting_ezconsultants.mp3?v=20260908c";
+        return "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/audio/friday_greeting_ezconsultants.mp3";
       } else if (isEzMortgage) {
-        return backendUrl + "/audio/friday_greeting_ezmortgage.mp3?v=20260908c";
+        return "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/audio/friday_greeting_ezmortgage.mp3";
       }
       return null;
     }
@@ -771,6 +765,14 @@
 
       const speechId = currentSpeechId;
       isSpeaking = true;
+      if (video) {
+        video.muted = true;
+        video.defaultMuted = true;
+        video.volume = 0;
+        video.currentTime = 0;
+        video.loop = true; // Actively move lips and head throughout speech
+        video.play().catch(() => {});
+      }
 
       const handleSpeechEnd = () => {
         if (speechId !== currentSpeechId) return;
@@ -781,6 +783,7 @@
           video.currentTime = 0;
         }
         if (onComplete) onComplete();
+        // Automatically open mic for user to speak when Friday finishes talking
         if (isVoiceActive || win.classList.contains('is-conversing')) {
           setTimeout(() => {
             if (!isSpeaking) startListening();
@@ -788,6 +791,8 @@
         }
       };
 
+      // FAST-PATH: ONLY play pre-rendered audio for the initial greeting!
+      // NEVER trigger the cached greeting for normal answers to user questions!
       if (isGreeting) {
         const cachedGreetingUrl = getPreRenderedGreetingUrl();
         if (cachedGreetingUrl) {
@@ -799,11 +804,11 @@
                 fetchTtsAndPlay(clean, onComplete, speechId);
               }
             };
-            syncVideoPlaybackWithAudio(currentVoiceAudio);
             await currentVoiceAudio.play();
             return;
           } catch (err) {
             console.log("Cached greeting playback note:", err);
+            // DO NOT fall through to fetchTtsAndPlay if user aborted/paused
             return;
           }
         }
@@ -814,6 +819,7 @@
 
     async function fetchTtsAndPlay(cleanText, onComplete, speechId) {
       if (speechId !== currentSpeechId) return;
+      // Dynamic High-Fidelity Ultra-Realistic ElevenLabs Neural Voice
       try {
         const res = await fetch(`${backendUrl}/api/tts`, {
           method: "POST",
@@ -852,7 +858,6 @@
             if (onComplete) onComplete();
           };
 
-          syncVideoPlaybackWithAudio(currentVoiceAudio);
           await currentVoiceAudio.play();
           return;
         }
@@ -860,6 +865,7 @@
         console.log("ElevenLabs audio streaming note:", err);
       }
 
+      // Fallback to browser synthesis only if this speech is still the active one
       if (speechId === currentSpeechId) {
         fallbackBrowserSpeech(cleanText, onComplete, speechId);
       }
@@ -1165,6 +1171,64 @@
       loadingMsg.textContent = 'Agent is thinking...';
       msgContainer.appendChild(loadingMsg);
       msgContainer.scrollTop = msgContainer.scrollHeight;
+
+      // Check for Canned Video Concept Matches for EZ Mortgage Broker
+      const lowerMsg = msg.toLowerCase().trim();
+      const matchedConcept = isEzMortgage && EZ_MORTGAGE_CANNED_CONCEPTS.find(c => 
+        lowerMsg.includes(c.title.toLowerCase()) ||
+        lowerMsg.includes(c.chip.toLowerCase().replace(/[^a-z0-9 ]/gi, '')) ||
+        c.keywords.some(k => lowerMsg.includes(k))
+      );
+
+      if (matchedConcept) {
+        loadingMsg.classList.remove('loading');
+
+        // Render rich canned response with Video Player / Card and Transcript
+        const videoResponseHtml = `
+          <div style="font-weight:700; margin-bottom:8px; color:${primaryColor}; display:flex; align-items:center; gap:6px;">
+            <span>🎬</span> <span>${matchedConcept.title}</span>
+            <span style="font-size:10px; background:#e0f2fe; color:#0369a1; padding:2px 6px; border-radius:4px; font-weight:600; margin-left:auto;">${matchedConcept.duration}</span>
+          </div>
+          <div style="margin-bottom:10px; line-height:1.55; color:${assistantText}; font-size:13.5px;">
+            "${matchedConcept.script}"
+          </div>
+          <div style="background:#f8fafc; border-radius:8px; padding:10px; border:1px solid #e2e8f0; margin-top:8px; display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+            <div style="font-size:11.5px; color:#475569; display:flex; align-items:center; gap:6px;">
+              <span>📹</span> <span><strong>AI Specialist Video:</strong> ${matchedConcept.title.split('(')[0].trim()}</span>
+            </div>
+            <a href="${matchedConcept.videoUrl}" target="_blank" rel="noopener noreferrer" style="background:#0176D3; color:#ffffff; text-decoration:none; padding:6px 12px; border-radius:6px; font-size:11.5px; font-weight:700; display:inline-flex; align-items:center; gap:5px; box-shadow:0 1px 3px rgba(0,0,0,0.1); transition:opacity 0.15s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+              ▶️ Watch Video Response &rarr;
+            </a>
+          </div>
+        `;
+        loadingMsg.innerHTML = videoResponseHtml;
+
+        const actionsDiv = document.createElement('div');
+        actionsDiv.className = 'omni-msg-actions';
+        actionsDiv.innerHTML = `
+          <span class="omni-action-btn" title="Thumbs Up">👍</span>
+          <span class="omni-action-btn" title="Thumbs Down">👎</span>
+          <span class="omni-action-btn" title="Smiley">😊</span>
+          <span class="omni-quote-btn" title="Quote reply">💬 Quote</span>
+        `;
+        actionsDiv.querySelector('.omni-quote-btn').onclick = () => {
+          chatInput.value = '> "' + matchedConcept.script.substring(0, 80) + '..."\n';
+          chatInput.focus();
+        };
+        actionsDiv.querySelectorAll('.omni-action-btn').forEach(btn => {
+          btn.onclick = () => {
+            btn.style.transform = 'scale(1.4)';
+            setTimeout(() => btn.style.transform = 'scale(1)', 200);
+          };
+        });
+        loadingMsg.appendChild(actionsDiv);
+        msgContainer.scrollTop = msgContainer.scrollHeight;
+
+        if (isVoiceActive) {
+          speakWithElevenLabs(matchedConcept.script);
+        }
+        return;
+      }
 
       try {
         const response = await fetch(`${backendUrl}/api/chat`, {
