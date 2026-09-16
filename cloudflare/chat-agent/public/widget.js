@@ -268,8 +268,8 @@
         { text: "APRA CPS 234 Compliance", prompt: "How do you enforce security and sovereign data boundaries?" }
       ];
       brandCtaText = "Book Enterprise AI Consultation &rarr;";
-      brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/procrm_avatar_xavier_poster.jpg";
-      brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/procrm_avatar_xavier.mp4";
+      brandPoster = "https://omni-agent.testcustomer2022.workers.dev/images/procrm_avatar_xavier_poster.jpg";
+      brandVideo = "https://omni-agent.testcustomer2022.workers.dev/videos/procrm_avatar_xavier.mp4";
       brandBadgeName = "PRO CRM AUSTRALIA";
       brandBadgeColor = "#6366f1";
       brandVoiceId = "cjVigY5qzO86Huf0OWal";
@@ -489,7 +489,7 @@
             <source src="${brandVideo}" type="video/mp4">
           </video>
           ` : `
-          <video id="piper-hero-video" playsinline muted loop autoplay preload="auto" poster="${brandPoster}">
+          <video id="piper-hero-video" src="${brandVideo}" playsinline webkit-playsinline muted loop autoplay preload="auto" poster="${brandPoster}">
             <source src="${brandVideo}" type="video/mp4">
           </video>
           `}
@@ -567,14 +567,22 @@
 
     function toggleSound(forceUnmute) {
       if (!heroVideo) return;
+      if (!heroVideo.src || heroVideo.src === window.location.href) {
+        heroVideo.src = brandVideo;
+      }
       const willUnmute = (forceUnmute === true) || heroVideo.muted || heroVideo.volume === 0;
       if (willUnmute) {
         heroVideo.muted = false;
         heroVideo.volume = 1.0;
+        if (heroVideo.paused || heroVideo.ended) {
+          heroVideo.currentTime = 0;
+        }
         const p = heroVideo.play();
         if (p !== undefined) {
-          p.then(() => updateSoundUi(true)).catch(() => {
+          p.then(() => updateSoundUi(true)).catch((err) => {
+            console.log("Unmute play restricted:", err);
             heroVideo.muted = true;
+            heroVideo.play().catch(() => {});
             updateSoundUi(false);
           });
         } else {
@@ -723,7 +731,14 @@
     if (videoStage && heroVideo) {
       videoStage.style.cursor = "pointer";
       function triggerPlay() {
+        if (!heroVideo) return;
+        heroVideo.muted = true;
         heroVideo.playsInline = true;
+        heroVideo.setAttribute("playsinline", "");
+        heroVideo.setAttribute("webkit-playsinline", "");
+        if (!heroVideo.src || heroVideo.src === window.location.href) {
+          heroVideo.src = brandVideo;
+        }
         const playPromise = heroVideo.play();
         if (playPromise !== undefined) {
           playPromise.catch(function(err) {
@@ -743,11 +758,16 @@
       });
       triggerPlay();
 
-      // Clean transition when video finishes: freeze on friendly listening frame, no silent lip flaps!
+      // Seamless video loop when muted; attentive pause when unmuted
       heroVideo.addEventListener("ended", function() {
-        heroVideo.pause();
-        heroVideo.currentTime = 0;
-        triggerVoicePromptAfterSpeech();
+        if (heroVideo.muted) {
+          heroVideo.currentTime = 0;
+          heroVideo.play().catch(() => {});
+        } else {
+          heroVideo.pause();
+          heroVideo.currentTime = 0;
+          triggerVoicePromptAfterSpeech();
+        }
       });
     }
 

@@ -2010,8 +2010,8 @@ const WIDGET_SCRIPT = `((function () {
         { text: "APRA CPS 234 Compliance", prompt: "How do you enforce security and sovereign data boundaries?" }
       ];
       brandCtaText = "Book Enterprise AI Consultation &rarr;";
-      brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/procrm_avatar_xavier_poster.jpg";
-      brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/procrm_avatar_xavier.mp4";
+      brandPoster = "https://omni-agent.testcustomer2022.workers.dev/images/procrm_avatar_xavier_poster.jpg";
+      brandVideo = "https://omni-agent.testcustomer2022.workers.dev/videos/procrm_avatar_xavier.mp4";
       brandBadgeName = "PRO CRM AUSTRALIA";
       brandBadgeColor = "#6366f1";
       brandVoiceId = "cjVigY5qzO86Huf0OWal";
@@ -2227,11 +2227,11 @@ const WIDGET_SCRIPT = `((function () {
             allowfullscreen 
             style="width: 100%; height: 100%; border: none; border-radius: 14px; display: block; position: absolute; top: 0; left: 0; z-index: 1;">
           </iframe>
-          <video id="piper-hero-video" playsinline muted preload="auto" poster="\${brandPoster}" style="display:none;">
+          <video id="piper-hero-video" src="\${brandVideo}" playsinline webkit-playsinline muted loop autoplay preload="auto" poster="\${brandPoster}">
             <source src="\${brandVideo}" type="video/mp4">
           </video>
           \` : \`
-          <video id="piper-hero-video" playsinline muted loop autoplay preload="auto" poster="\${brandPoster}">
+          <video id="piper-hero-video" src="\${brandVideo}" playsinline webkit-playsinline muted loop autoplay preload="auto" poster="\${brandPoster}">
             <source src="\${brandVideo}" type="video/mp4">
           </video>
           \`}
@@ -2280,15 +2280,16 @@ const WIDGET_SCRIPT = `((function () {
 
       <!-- Unified Ask Input Box (Matching Image 1) -->
       <div id="omni-chat-input-container">
-        <input type="file" id="omniFileInput" accept="image/*" style="display:none;" />
-        \${config.features?.imageUpload !== false ? '<button class="omni-attach-btn" id="omniAttachBtn" title="Attach Image">📎</button>' : ''}
-        <input type="text" id="omni-chat-input" placeholder="Ask \${brandAvatarName} a question" />
-        <button class="omni-mic-btn" id="omniMicBtn" title="Speak with \${brandAvatarName}">🎙️</button>
-        <button id="omni-chat-send" title="Send message">&rarr;</button>
-      </div>
-
-      <div class="omni-disclaimer-footer">
-        \${brandAvatarName} is an AI and can make mistakes. Please note, by continuing, you agree to the terms of our privacy policy. This conversation will be recorded.
+        <div class="omni-input-wrapper">
+          <label for="omni-image-upload" id="omni-attach-btn" title="Upload Document / Screenshot">📎</label>
+          <input type="file" id="omni-image-upload" accept="image/*,application/pdf" style="display:none;" />
+          <textarea id="omni-chat-input" rows="1" placeholder="Ask \${brandAvatarName} a question" aria-label="Type your message"></textarea>
+          <button type="button" id="omniMicBtn" class="omni-btn-action" title="Voice / Speech to Text">🎙️</button>
+          <button type="button" id="omni-chat-send" class="omni-btn-action" title="Send message">&rarr;</button>
+        </div>
+        <div class="omni-disclaimer">
+          \${brandAvatarName} is an AI and can make mistakes. Please note, by continuing, you agree to the terms of our privacy policy. This conversation will be recorded.
+        </div>
       </div>
     \`;
     appendToBody(win);
@@ -2309,14 +2310,22 @@ const WIDGET_SCRIPT = `((function () {
 
     function toggleSound(forceUnmute) {
       if (!heroVideo) return;
+      if (!heroVideo.src || heroVideo.src === window.location.href) {
+        heroVideo.src = brandVideo;
+      }
       const willUnmute = (forceUnmute === true) || heroVideo.muted || heroVideo.volume === 0;
       if (willUnmute) {
         heroVideo.muted = false;
         heroVideo.volume = 1.0;
+        if (heroVideo.paused || heroVideo.ended) {
+          heroVideo.currentTime = 0;
+        }
         const p = heroVideo.play();
         if (p !== undefined) {
-          p.then(() => updateSoundUi(true)).catch(() => {
+          p.then(() => updateSoundUi(true)).catch((err) => {
+            console.log("Unmute play restricted:", err);
             heroVideo.muted = true;
+            heroVideo.play().catch(() => {});
             updateSoundUi(false);
           });
         } else {
@@ -2465,7 +2474,14 @@ const WIDGET_SCRIPT = `((function () {
     if (videoStage && heroVideo) {
       videoStage.style.cursor = "pointer";
       function triggerPlay() {
+        if (!heroVideo) return;
+        heroVideo.muted = true;
         heroVideo.playsInline = true;
+        heroVideo.setAttribute("playsinline", "");
+        heroVideo.setAttribute("webkit-playsinline", "");
+        if (!heroVideo.src || heroVideo.src === window.location.href) {
+          heroVideo.src = brandVideo;
+        }
         const playPromise = heroVideo.play();
         if (playPromise !== undefined) {
           playPromise.catch(function(err) {
@@ -2485,11 +2501,16 @@ const WIDGET_SCRIPT = `((function () {
       });
       triggerPlay();
 
-      // Clean transition when video finishes: freeze on friendly listening frame, no silent lip flaps!
+      // Seamless video loop when muted; attentive pause when unmuted
       heroVideo.addEventListener("ended", function() {
-        heroVideo.pause();
-        heroVideo.currentTime = 0;
-        triggerVoicePromptAfterSpeech();
+        if (heroVideo.muted) {
+          heroVideo.currentTime = 0;
+          heroVideo.play().catch(() => {});
+        } else {
+          heroVideo.pause();
+          heroVideo.currentTime = 0;
+          triggerVoicePromptAfterSpeech();
+        }
       });
     }
 
