@@ -1,5 +1,37 @@
 [
   {
+    "id": "salesforce-service-disruption-incident-20004433-status-analysis",
+    "slug": "salesforce-service-disruption-incident-20004433-status-analysis",
+    "title": "Salesforce Service Disruption (Incident ID: 20004433): Root Cause Analysis, Impact on Australian Orgs & Enterprise Business Continuity Playbook",
+    "date": "16-Sep-2026",
+    "iso_date": "2026-09-16T12:20:00Z",
+    "author": "Robin Bakshi (Principal Enterprise & Sovereign Cloud Architect)",
+    "category": "Technology & Infrastructure",
+    "badge": "LIVE INCIDENT ADVISORY",
+    "readTime": "8 min read",
+    "image": "/images/salesforce-status-service-disruption-dashboard.png",
+    "excerpt": "On 16 September 2026, Salesforce experienced a severe global service disruption (Incident ID: 20004433) affecting Core Services across Australia, APAC, EMEA, and the Americas. PRO CRM provides an in-depth architectural post-mortem, real-time status monitoring links, and an enterprise continuity playbook for Australian organisations.",
+    "url": "/pages/blog/salesforce-service-disruption-incident-20004433-status-analysis.html",
+    "diagram": "/images/salesforce-incident-20004433-details-timeline.png",
+    "figures": [
+      {
+        "src": "/images/salesforce-status-service-disruption-dashboard.png",
+        "title": "Figure 1: Salesforce Trust Status (status.salesforce.com) Incident Overview",
+        "caption": "Salesforce Trust Status dashboard reporting ongoing global service disruption across Core Service and hundreds of production pods (AP, ARE, AUS, BRA, CAN, CHE, CS, DEU, EU, FRA, GBR, IND, ISR, ITA, JPN, KOR, NA, SGP, SWE, USA, ZAF)."
+      },
+      {
+        "src": "/images/salesforce-incident-20004433-details-timeline.png",
+        "title": "Figure 2: Incident ID 20004433 Chronology & Remediation Rollout",
+        "caption": "Official Salesforce engineering incident log detailing the failure of rolling restarts, external dependency bottleneck isolation, API endpoint blocking, and the subsequent fleetwide progressive fix rollout."
+      },
+      {
+        "src": "/images/salesforce-outage-downdetector-spike-chart.png",
+        "title": "Figure 3: DownDetector Australia Incident Outage Telemetry",
+        "caption": "DownDetector crowd-sourced incident volume showing sharp surge in user-reported login failures, connection timeouts, and support portal lockouts across Australian and global enterprise tenants."
+      }
+    ]
+  },
+  {
     "id": "asd-acsc-agentic-ai-harnesses-secure-design-guide",
     "slug": "asd-acsc-agentic-ai-harnesses-secure-design-guide",
     "title": "ASD ACSC Secure Design Guidance: Agentic AI Harnesses \u2014 Governing the Critical Layer Above the Model",
