@@ -12,7 +12,6 @@
     "image": "/images/salesforce-status-service-disruption-dashboard.png",
     "excerpt": "On 16 September 2026, Salesforce experienced a severe global service disruption (Incident ID: 20004433) affecting Core Services across Australia, APAC, EMEA, and the Americas. PRO CRM provides an in-depth architectural post-mortem, real-time status monitoring links, and an enterprise continuity playbook for Australian organisations.",
     "url": "/pages/blog/salesforce-service-disruption-incident-20004433-status-analysis.html",
-    "diagram": "/images/salesforce-incident-20004433-details-timeline.png",
     "figures": [
       {
         "src": "/images/salesforce-status-service-disruption-dashboard.png",
