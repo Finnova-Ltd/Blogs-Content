@@ -1316,13 +1316,16 @@
       }
     };
 
-    async function sendMessage() {
+    async function sendMessage(textOverride) {
       // Immediately stop any active audio, speech synthesis, or speaking state so questions never overlap with greetings
       stopSpeaking();
       stopListening();
 
-      const msg = chatInput.value.trim();
+      const inputElem = document.getElementById('omni-chat-input');
+      const msg = (typeof textOverride === 'string' ? textOverride : (inputElem ? inputElem.value : '')).trim();
       if (!msg && !attachedImageBase64) return;
+
+      const lowerMsg = msg.toLowerCase().trim();
 
       updateLeadScore(10, "Sent Message");
 
@@ -1339,7 +1342,7 @@
       msgContainer.appendChild(userMsgDiv);
 
       const sentImage = attachedImageBase64;
-      chatInput.value = '';
+      if (inputElem) inputElem.value = '';
       attachedImageBase64 = "";
       previewBar.style.display = 'none';
       msgContainer.scrollTop = msgContainer.scrollHeight;
@@ -1366,7 +1369,6 @@
       }
 
       // Check for Canned Video Concept Matches for EZ Mortgage Broker
-      const lowerMsg = msg.toLowerCase().trim();
       const matchedConcept = isEzMortgage && EZ_MORTGAGE_CANNED_CONCEPTS.find(c => 
         lowerMsg.includes(c.title.toLowerCase()) ||
         lowerMsg.includes(c.chip.toLowerCase().replace(/[^a-z0-9 ]/gi, '')) ||
@@ -1556,7 +1558,18 @@
       };
     }
 
-    document.getElementById('omni-chat-send').onclick = sendMessage;
-    document.getElementById('omni-chat-input').onkeypress = (e) => { if (e.key === 'Enter') sendMessage(); };
+    const sendBtn = document.getElementById('omni-chat-send');
+    if (sendBtn) {
+      sendBtn.onclick = (e) => { e.preventDefault(); sendMessage(); };
+    }
+    const mainChatInput = document.getElementById('omni-chat-input');
+    if (mainChatInput) {
+      mainChatInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          sendMessage();
+        }
+      });
+    }
   }
 })();
