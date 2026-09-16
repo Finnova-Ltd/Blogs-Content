@@ -810,13 +810,11 @@
     let isVoiceActive = false;
     let isSpeaking = false;
     const video = document.getElementById("piper-hero-video");
-    const callBar = document.getElementById("piperCallBar");
     const endBtn = document.getElementById("piperEndBtn");
     const micBtn = document.getElementById("omniMicBtn");
     if (micBtn) micBtn.onclick = startListening;
 
     if (video) {
-      // Initialize video to start muted for browser autoplay compliance
       video.muted = true;
       video.playsInline = true;
     }
@@ -935,7 +933,7 @@
         video.muted = true;
         video.defaultMuted = true;
         video.currentTime = 0;
-        video.loop = true; // Actively move lips and head throughout speech
+        video.loop = true;
         video.play().catch(() => {});
       }
 
@@ -948,16 +946,13 @@
           video.currentTime = 0;
         }
         if (onComplete) onComplete();
-        // Automatically open mic for user to speak when Friday finishes talking
-        if (isVoiceActive || win.classList.contains('is-conversing')) {
+        if (isVoiceActive || (win && win.classList.contains('is-conversing'))) {
           setTimeout(() => {
             if (!isSpeaking) startListening();
           }, 350);
         }
       };
 
-      // FAST-PATH: ONLY play pre-rendered audio for the initial greeting!
-      // NEVER trigger the cached greeting for normal answers to user questions!
       if (isGreeting) {
         const cachedGreetingUrl = getPreRenderedGreetingUrl();
         if (cachedGreetingUrl) {
@@ -973,7 +968,6 @@
             return;
           } catch (err) {
             console.log("Cached greeting playback note:", err);
-            // DO NOT fall through to fetchTtsAndPlay if user aborted/paused
             return;
           }
         }
@@ -984,7 +978,6 @@
 
     async function fetchTtsAndPlay(cleanText, onComplete, speechId) {
       if (speechId !== currentSpeechId) return;
-      // Dynamic High-Fidelity Ultra-Realistic ElevenLabs Neural Voice
       try {
         const res = await fetch(`${backendUrl}/api/tts`, {
           method: "POST",
@@ -1030,45 +1023,14 @@
         console.log("ElevenLabs audio streaming note:", err);
       }
 
-      // Fallback to browser synthesis only if this speech is still the active one
       if (speechId === currentSpeechId) {
         fallbackBrowserSpeech(cleanText, onComplete, speechId);
       }
     }
 
-    function startListening() {
-      if (!recognition) return;
-      if (isSpeaking) {
-        stopSpeaking();
-      }
-      isVoiceActive = true;
-      if (isListening) return;
-      try {
-        recognition.start();
-      } catch (err) {
-        console.log("Speech recognition start note:", err);
-      }
-    }
-
-    function stopListening() {
-      if (recognition && isListening) {
-        try { recognition.stop(); } catch(e) {}
-      }
-      isListening = false;
-      if (micBtn) micBtn.classList.remove("active");
-      if (micToggle) {
-        micToggle.classList.remove("active");
-        micToggle.classList.add("muted");
-      }
-      const input = document.getElementById("omni-chat-input");
-      if (input && input.placeholder.includes("Listening")) {
-        input.placeholder = "Ask " + brandAvatarName + " a question";
-      }
-    }
-
     function startVoiceConversation() {
       isVoiceActive = true;
-      win.classList.add('is-conversing');
+      if (win) win.classList.add('is-conversing');
       
       const msgContainer = document.getElementById('omni-chat-messages');
       const greetingFullText = brandIntro.replace(/<[^>]+>/g, " ").trim();
@@ -1081,7 +1043,6 @@
         msgContainer.scrollTop = 0;
       }
 
-      // Play exact brand greeting aloud with animated lipsync (isGreeting = true)
       speakFriday(greetingFullText, () => {
         if (isVoiceActive) startListening();
       }, true);
@@ -1091,26 +1052,10 @@
       isVoiceActive = false;
       stopListening();
       stopSpeaking();
-      win.classList.remove('is-conversing');
+      if (win) win.classList.remove('is-conversing');
     }
 
-    if (speakBtn) speakBtn.onclick = startVoiceConversation;
     if (endBtn) endBtn.onclick = endVoiceConversation;
-    if (expandBtn) {
-      expandBtn.onclick = () => win.classList.toggle('is-expanded');
-    }
-    if (micToggle) {
-      micToggle.onclick = () => {
-        if (isListening) {
-          stopListening();
-        } else {
-          isVoiceActive = true;
-          win.classList.add('is-conversing');
-          stopSpeaking();
-          startListening();
-        }
-      };
-    }
 
     // Connect with Sales Rep / Broker Buttons
     const handleConnectClick = () => {
@@ -1120,144 +1065,37 @@
         input.value = isProCrm 
           ? "I'd like to book an enterprise consultation with a Pro CRM architect." 
           : "I'd like to connect directly with a licensed specialist for a consultation.";
-        document.getElementById('omni-chat-send').click();
+        sendMessage();
       }
     };
     const connectBtn = document.getElementById('piperConnectRep');
     if (connectBtn) connectBtn.onclick = handleConnectClick;
 
-    // Web Speech Recognition Initialization
-    if (SpeechRecognition) {
-      try {
-        recognition = new SpeechRecognition();
-        recognition.continuous = true;
-        recognition.interimResults = true;
-        recognition.lang = "en-AU";
-
-        let silenceTimer = null;
-
-        recognition.onstart = () => {
-          isListening = true;
-          if (micBtn) micBtn.classList.add("active");
-          if (micToggle) {
-            micToggle.classList.remove("muted");
-            micToggle.classList.add("active");
-          }
-          const input = document.getElementById("omni-chat-input");
-          if (input && !input.value) input.placeholder = "🎙️ Listening... speak now";
-        };
-
-        recognition.onend = () => {
-          isListening = false;
-          if (micBtn) micBtn.classList.remove("active");
-          if (micToggle) {
-            micToggle.classList.remove("active");
-            micToggle.classList.add("muted");
-          }
-          const input = document.getElementById("omni-chat-input");
-          if (input && input.placeholder.includes("Listening")) {
-            input.placeholder = "Ask " + brandAvatarName + " a question";
-          }
-          // Bidirectional voice loop: Auto-restart listening if voice conversation is active and Friday isn't speaking
-          if ((isVoiceActive || win.classList.contains('is-conversing')) && !isSpeaking) {
-            setTimeout(() => {
-              if (!isSpeaking && !isListening && (isVoiceActive || win.classList.contains('is-conversing'))) {
-                startListening();
-              }
-            }, 300);
-          }
-        };
-
-        recognition.onerror = (e) => {
-          if (e.error === 'no-speech') {
-            // Normal silence timeout while listening, do not crash or log loud error
-            return;
-          }
-          if (e.error === 'not-allowed') {
-            console.warn("Microphone access blocked.");
-            isVoiceActive = false;
-          }
-          isListening = false;
-          if (micBtn) micBtn.classList.remove("active");
-          if (micToggle) {
-            micToggle.classList.remove("active");
-            micToggle.classList.add("muted");
-          }
-        };
-
-        recognition.onresult = (event) => {
-          let interimTranscript = '';
-          let finalTranscript = '';
-
-          for (let i = event.resultIndex; i < event.results.length; ++i) {
-            if (event.results[i].isFinal) {
-              finalTranscript += event.results[i][0].transcript;
-            } else {
-              interimTranscript += event.results[i][0].transcript;
-            }
-          }
-
-          const input = document.getElementById("omni-chat-input");
-          const liveText = (finalTranscript || interimTranscript).trim();
-          if (input && liveText) {
-            input.value = liveText;
-          }
-
-          if (finalTranscript.trim()) {
-            clearTimeout(silenceTimer);
-            silenceTimer = setTimeout(() => {
-              if (input && input.value.trim()) {
-                win.classList.add('is-conversing');
-                stopListening();
-                sendMessage();
-              }
-            }, 800);
-          }
-        };
-
-        if (micBtn) {
-          micBtn.onclick = () => {
-            if (isListening) {
-              stopListening();
-            } else {
-              isVoiceActive = true;
-              win.classList.add('is-conversing');
-              stopSpeaking();
-              startListening();
-            }
-          };
-        }
-      } catch (err) {
-        console.log("Speech setup note:", err);
-      }
-    } else if (micBtn) {
-      micBtn.onclick = () => {
-        alert("Voice speech recognition is supported in Chrome, Safari, and Edge.");
-      };
-    }
-
-    const fileInput = document.getElementById('omniFileInput');
-    const attachBtn = document.getElementById('omniAttachBtn');
+    const fileInput = document.getElementById('omni-image-upload') || document.getElementById('omniFileInput');
+    const attachBtn = document.getElementById('omni-attach-btn') || document.getElementById('omniAttachBtn');
     const previewBar = document.getElementById('omni-image-preview-bar');
     const previewImg = document.getElementById('omniPreviewImg');
     const removeImgBtn = document.getElementById('omniRemoveImg');
     const chatInput = document.getElementById('omni-chat-input');
 
-    if (attachBtn) {
-      attachBtn.onclick = () => fileInput.click();
+    if (attachBtn && fileInput) {
+      attachBtn.onclick = (e) => {
+        e.preventDefault();
+        fileInput.click();
+      };
       fileInput.onchange = (e) => {
-        const file = e.target.files[0];
+        const file = e.target.files && e.target.files[0];
         if (file) handleImageFile(file);
       };
     }
 
-    if (config.features?.imageUpload !== false) {
+    if (chatInput && config.features?.imageUpload !== false) {
       chatInput.addEventListener('paste', (e) => {
-        const items = (e.clipboardData || e.originalEvent.clipboardData).items;
+        const items = (e.clipboardData || (e.originalEvent && e.originalEvent.clipboardData) || {}).items || [];
         for (let item of items) {
-          if (item.type.indexOf('image') === 0) {
+          if (item.type && item.type.indexOf('image') === 0) {
             const blob = item.getAsFile();
-            handleImageFile(blob);
+            if (blob) handleImageFile(blob);
           }
         }
       });
@@ -1267,42 +1105,46 @@
       const reader = new FileReader();
       reader.onload = (evt) => {
         attachedImageBase64 = evt.target.result;
-        previewImg.src = attachedImageBase64;
-        previewBar.style.display = 'flex';
+        if (previewImg) previewImg.src = attachedImageBase64;
+        if (previewBar) previewBar.style.display = 'flex';
       };
       reader.readAsDataURL(file);
     }
 
-    removeImgBtn.onclick = () => {
-      attachedImageBase64 = "";
-      previewBar.style.display = 'none';
-      if (fileInput) fileInput.value = "";
-    };
+    if (removeImgBtn) {
+      removeImgBtn.onclick = () => {
+        attachedImageBase64 = "";
+        if (previewBar) previewBar.style.display = 'none';
+        if (fileInput) fileInput.value = "";
+      };
+    }
 
-    document.getElementById('omniEndChat').onclick = async () => {
-      const userEmail = prompt("Enter your email address to receive the full chat transcript:", "");
-      if (!userEmail || !userEmail.includes("@")) return;
+    const endChatBtn = document.getElementById('omniEndChat');
+    if (endChatBtn) {
+      endChatBtn.onclick = async () => {
+        const userEmail = prompt("Enter your email address to receive the full chat transcript:", "");
+        if (!userEmail || !userEmail.includes("@")) return;
 
-      try {
-        await fetch(`${backendUrl}/api/email-transcript`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            sessionId: sessionId,
-            email: userEmail,
-            domain: currentDomain
-          })
-        });
-        alert(`Transcript successfully queued for ${userEmail}!`);
-        sessionId = 'sess_' + Math.random().toString(36).substring(2, 9);
-        localStorage.setItem('omni_chat_session', sessionId);
-      } catch (err) {
-        alert("Unable to export transcript.");
-      }
-    };
+        try {
+          await fetch(`${backendUrl}/api/email-transcript`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              sessionId: sessionId,
+              email: userEmail,
+              domain: currentDomain
+            })
+          });
+          alert(`Transcript successfully queued for ${userEmail}!`);
+          sessionId = 'sess_' + Math.random().toString(36).substring(2, 9);
+          localStorage.setItem('omni_chat_session', sessionId);
+        } catch (err) {
+          alert("Unable to export transcript.");
+        }
+      };
+    }
 
     async function sendMessage(textOverride) {
-      // Immediately stop any active audio, speech synthesis, or speaking state so questions never overlap with greetings
       stopSpeaking();
       stopListening();
 
@@ -1324,7 +1166,6 @@
       }
 
       const lowerMsg = msg.toLowerCase().trim();
-
       updateLeadScore(10, "Sent Message");
 
       let userHtml = parseMarkdown(msg, primaryColor);
@@ -1335,19 +1176,23 @@
       const userMsgDiv = document.createElement('div');
       userMsgDiv.className = 'omni-msg user';
       userMsgDiv.innerHTML = userHtml;
-      msgContainer.appendChild(userMsgDiv);
+      if (msgContainer) {
+        msgContainer.appendChild(userMsgDiv);
+      }
 
       const sentImage = attachedImageBase64;
       if (inputElem) inputElem.value = '';
       attachedImageBase64 = "";
       if (previewBar) previewBar.style.display = 'none';
-      msgContainer.scrollTop = msgContainer.scrollHeight;
+      if (msgContainer) msgContainer.scrollTop = msgContainer.scrollHeight;
 
       const loadingMsg = document.createElement('div');
       loadingMsg.className = 'omni-msg assistant loading';
       loadingMsg.textContent = brandAvatarName + " is thinking...";
-      msgContainer.appendChild(loadingMsg);
-      msgContainer.scrollTop = msgContainer.scrollHeight;
+      if (msgContainer) {
+        msgContainer.appendChild(loadingMsg);
+        msgContainer.scrollTop = msgContainer.scrollHeight;
+      }
 
       // Client-Side Strict Legal & Anti-Fraud Interceptor (NCCP Act & Best Interests Duty)
       const FRAUD_AND_UNETHICAL_REGEX = /(trick the bank|hide debt|hide loan|hide credit card|fake payslip|doctor payslip|falsify income|omit dependent|omit debt|cheat serviceability|lie on application|bypass apra|evade tax|straw buyer|fake bonus|off the books cash|unethical tips|against the law|forge statement|forge payslip)/i;
@@ -1359,7 +1204,7 @@
                             "*Disclaimer: All advice is regulated credit assistance under Australian credit law.*";
         
         loadingMsg.innerHTML = parseMarkdown(refusalText, primaryColor);
-        msgContainer.scrollTop = msgContainer.scrollHeight;
+        if (msgContainer) msgContainer.scrollTop = msgContainer.scrollHeight;
         triggerVoicePromptAfterSpeech();
         return;
       }
@@ -1408,7 +1253,7 @@
         `;
         loadingMsg.innerHTML = videoResponseHtml;
 
-        const replayBtn = loadingMsg.querySelector(' .omni-replay-voice-btn');
+        const replayBtn = loadingMsg.querySelector('.omni-replay-voice-btn');
         if (replayBtn) {
           replayBtn.onclick = () => {
             const vSrc = replayBtn.getAttribute('data-video');
@@ -1426,19 +1271,21 @@
           <span class="omni-action-btn" title="Smiley">😊</span>
           <span class="omni-quote-btn" title="Quote reply">💬 Quote</span>
         `;
-        actionsDiv.querySelector(' .omni-quote-btn').onclick = () => {
-          chatInput.value = `> "${matchedConcept.script.substring(0, 80)}..."\n`;
-          chatInput.focus();
-        };
-        actionsDiv.querySelectorAll(' .omni-action-btn').forEach(btn => {
+        const quoteBtn = actionsDiv.querySelector('.omni-quote-btn');
+        if (quoteBtn && chatInput) {
+          quoteBtn.onclick = () => {
+            chatInput.value = `> "${matchedConcept.script.substring(0, 80)}..."\n`;
+            chatInput.focus();
+          };
+        }
+        actionsDiv.querySelectorAll('.omni-action-btn').forEach(btn => {
           btn.onclick = () => {
             btn.style.transform = 'scale(1.4)';
             setTimeout(() => btn.style.transform = 'scale(1)', 200);
           };
         });
         loadingMsg.appendChild(actionsDiv);
-        msgContainer.scrollTop = msgContainer.scrollHeight;
-
+        if (msgContainer) msgContainer.scrollTop = msgContainer.scrollHeight;
         return;
       }
 
@@ -1470,10 +1317,13 @@
           <span class="omni-quote-btn" title="Quote reply">💬 Quote</span>
         `;
         
-        actionsDiv.querySelector('.omni-quote-btn').onclick = () => {
-          chatInput.value = '> "' + replyRaw.substring(0, 80).replace(/\n/g, ' ') + '..."\n';
-          chatInput.focus();
-        };
+        const quoteBtn = actionsDiv.querySelector('.omni-quote-btn');
+        if (quoteBtn && chatInput) {
+          quoteBtn.onclick = () => {
+            chatInput.value = '> "' + replyRaw.substring(0, 80).replace(/\n/g, ' ') + '..."\n';
+            chatInput.focus();
+          };
+        }
 
         actionsDiv.querySelectorAll('.omni-action-btn').forEach(btn => {
           btn.onclick = () => {
@@ -1484,7 +1334,7 @@
 
         loadingMsg.appendChild(actionsDiv);
 
-        if (isVoiceActive || win.classList.contains('is-conversing')) {
+        if (isVoiceActive || (win && win.classList.contains('is-conversing'))) {
           isVoiceActive = true;
           speakFriday(replyRaw, () => {
             if (isVoiceActive) {
@@ -1499,7 +1349,7 @@
       } catch (err) {
         loadingMsg.classList.remove('loading');
         loadingMsg.textContent = "Unable to connect to AI assistant service.";
-        if (isVoiceActive || win.classList.contains('is-conversing')) {
+        if (isVoiceActive || (win && win.classList.contains('is-conversing'))) {
           isVoiceActive = true;
           speakFriday("I'm sorry, I'm having trouble connecting right now. Please feel free to try again.", () => {
             if (isVoiceActive) startListening();
@@ -1507,7 +1357,7 @@
         }
       }
 
-      msgContainer.scrollTop = msgContainer.scrollHeight;
+      if (msgContainer) msgContainer.scrollTop = msgContainer.scrollHeight;
     }
 
     function renderLeadCard(container, cfg) {
@@ -1526,37 +1376,43 @@
       container.appendChild(card);
       container.scrollTop = container.scrollHeight;
 
-      document.getElementById('submitLead').onclick = async () => {
-        const name = document.getElementById('leadName').value;
-        const email = document.getElementById('leadEmail').value;
-        const phone = document.getElementById('leadPhone').value;
-        if (!name || (!email && !phone)) {
-          alert("Please provide your name and an email or phone number.");
-          return;
-        }
+      const submitBtn = document.getElementById('submitLead');
+      if (submitBtn) {
+        submitBtn.onclick = async () => {
+          const name = document.getElementById('leadName')?.value;
+          const email = document.getElementById('leadEmail')?.value;
+          const phone = document.getElementById('leadPhone')?.value;
+          if (!name || (!email && !phone)) {
+            alert("Please provide your name and an email or phone number.");
+            return;
+          }
 
-        await fetch(`${backendUrl}/api/lead`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            sessionId: sessionId,
-            domain: currentDomain,
-            category: cfg.category,
-            name: name,
-            email: email,
-            phone: phone,
-            leadScore: getLeadScoreFromCookie(),
-            notes: "Lead captured via behavioral qualification pipeline"
-          })
-        });
+          await fetch(`${backendUrl}/api/lead`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              sessionId: sessionId,
+              domain: currentDomain,
+              category: cfg.category,
+              name: name,
+              email: email,
+              phone: phone,
+              leadScore: getLeadScoreFromCookie(),
+              notes: "Lead captured via behavioral qualification pipeline"
+            })
+          });
 
-        card.innerHTML = '<p style="color:#10b981; margin:0; font-weight:600;">✅ Thank you! We will reach out shortly.</p>';
-      };
+          card.innerHTML = '<p style="color:#10b981; margin:0; font-weight:600;">✅ Thank you! We will reach out shortly.</p>';
+        };
+      }
     }
 
     const sendBtn = document.getElementById('omni-chat-send');
     if (sendBtn) {
-      sendBtn.onclick = (e) => { e.preventDefault(); sendMessage(); };
+      sendBtn.onclick = (e) => { 
+        e.preventDefault(); 
+        sendMessage(); 
+      };
     }
     const mainChatInput = document.getElementById('omni-chat-input');
     if (mainChatInput) {
@@ -1569,3 +1425,4 @@
     }
   }
 })();
+
