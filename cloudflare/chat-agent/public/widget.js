@@ -43,10 +43,7 @@
 
     if (newScore >= 35 && !window.__OMNI_PROACTIVE_TRIGGERED__) {
       window.__OMNI_PROACTIVE_TRIGGERED__ = true;
-      const win = document.getElementById('omni-chat-window');
-      if (win && win.style.display !== 'flex') {
-        win.style.display = 'flex';
-      }
+      // Default remains minimized - do not force open window
     }
   }
 
@@ -183,6 +180,13 @@
     const isEzConsultants = /ezconsultants/.test(currentDomain);
     const isESignature = /esignature|ezsignature/.test(currentDomain);
     const isEzMortgage = !isFinnova && !isProCrm && !isEzConsultants && !isESignature;
+
+    let isVoiceActive = false;
+    let isSpeaking = false;
+    let recognition = null;
+    let isListening = false;
+    let currentVoiceAudio = null;
+    let currentSpeechId = 0;
 
     const EZ_MORTGAGE_CANNED_CONCEPTS = [
       {
@@ -612,6 +616,46 @@
     const pipPlayer = document.getElementById('omni-pip-player');
     const pipVideo = document.getElementById('omni-pip-video');
 
+    if (pipVideo) {
+      pipVideo.muted = true;
+      pipVideo.defaultMuted = true;
+      pipVideo.playsInline = true;
+      pipVideo.loop = true;
+      pipVideo.setAttribute('muted', '');
+      pipVideo.setAttribute('playsinline', '');
+      pipVideo.setAttribute('webkit-playsinline', '');
+      pipVideo.setAttribute('loop', '');
+      pipVideo.setAttribute('autoplay', '');
+
+      // Keep playing the 3-second video in a continuous seamless loop when minimized
+      pipVideo.addEventListener('ended', function() {
+        pipVideo.currentTime = 0;
+        pipVideo.play().catch(function() {});
+      });
+
+      const startPipLoop = function() {
+        if (pipPlayer && pipPlayer.style.display !== 'none' && (!win || win.style.display !== 'flex')) {
+          pipVideo.muted = true;
+          pipVideo.play().catch(function() {});
+        }
+      };
+
+      pipVideo.addEventListener('canplay', startPipLoop);
+      pipVideo.addEventListener('loadeddata', startPipLoop);
+      pipVideo.addEventListener('pause', function() {
+        if (pipPlayer && pipPlayer.style.display !== 'none' && (!win || win.style.display !== 'flex')) {
+          pipVideo.play().catch(function() {});
+        }
+      });
+      startPipLoop();
+
+      document.addEventListener('visibilitychange', function() {
+        if (!document.hidden && pipPlayer && pipPlayer.style.display !== 'none' && (!win || win.style.display !== 'flex')) {
+          pipVideo.play().catch(function() {});
+        }
+      });
+    }
+
     const win = document.createElement('div');
     win.id = 'omni-chat-window';
     win.innerHTML = `
@@ -801,8 +845,6 @@
       }
     }
 
-    let recognition = null;
-    let isListening = false;
 
     function initSpeechRecognition() {
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -946,12 +988,17 @@
         } else {
           heroVideo.pause();
           heroVideo.currentTime = 0;
+          const talkPill = document.getElementById("piperClickTalkPill");
+          if (talkPill) {
+            talkPill.innerHTML = `<span>🎙️</span> <span>Click to Talk with ${brandAvatarName}</span>`;
+            talkPill.classList.remove("talking");
+          }
           triggerVoicePromptAfterSpeech();
         }
       });
     }
 
-    function openChat() {
+    function openChat(withSound = true) {
       win.style.display = 'flex';
       if (pipPlayer) pipPlayer.style.display = 'none';
       if (bubble) {
@@ -962,17 +1009,23 @@
       if (pipVideo) {
         try { pipVideo.pause(); } catch(e) {}
       }
-      if (heroVideo) {
-        heroVideo.muted = true;
-        updateSoundUi(false);
-        if (heroVideo.paused) {
-          heroVideo.play().catch(() => {});
+
+      if (withSound) {
+        // Direct click to chat: make window bigger, unmute, and start talking
+        toggleSound(true);
+      } else {
+        if (heroVideo) {
+          heroVideo.muted = true;
+          updateSoundUi(false);
+          if (heroVideo.paused) {
+            heroVideo.play().catch(() => {});
+          }
         }
-      }
-      const talkPill = document.getElementById("piperClickTalkPill");
-      if (talkPill) {
-        talkPill.innerHTML = `<span>🔊</span> <span>Click to Talk with ${brandAvatarName}</span>`;
-        talkPill.classList.remove("talking");
+        const talkPill = document.getElementById("piperClickTalkPill");
+        if (talkPill) {
+          talkPill.innerHTML = `<span>🔊</span> <span>Click to Talk with ${brandAvatarName}</span>`;
+          talkPill.classList.remove("talking");
+        }
       }
     }
 
@@ -999,7 +1052,9 @@
 
       if (pipPlayer) {
         pipPlayer.style.display = 'block';
-        if (pipVideo && pipVideo.paused) {
+        if (pipVideo) {
+          pipVideo.currentTime = 0;
+          pipVideo.muted = true;
           pipVideo.play().catch(() => {});
         }
       }
@@ -1010,7 +1065,7 @@
 
     if (pipPlayer) {
       pipPlayer.onclick = () => {
-        openChat();
+        openChat(true);
       };
     }
 
@@ -1023,15 +1078,10 @@
       };
     }
 
-    if (getLeadScoreFromCookie() >= 35 && !window.__OMNI_PROACTIVE_TRIGGERED__) {
-      window.__OMNI_PROACTIVE_TRIGGERED__ = true;
-      openChat();
-    }
-
     if (bubble) {
       bubble.onclick = () => {
         if (win.style.display !== 'flex') {
-          openChat();
+          openChat(true);
         } else {
           closeChat();
         }
@@ -1046,7 +1096,7 @@
           sessionStorage.setItem('omni_pill_dismissed', 'true');
           return;
         }
-        openChat();
+        openChat(true);
       };
     }
 
@@ -1054,8 +1104,6 @@
     if (closeBtn) closeBtn.onclick = closeChat;
 
     // Voice & Conversational AI Engine (Salesforce Piper Parity)
-    let isVoiceActive = false;
-    let isSpeaking = false;
     const video = document.getElementById("piper-hero-video");
     const endBtn = document.getElementById("piperEndBtn");
     const micBtn = document.getElementById("omniMicBtn");
@@ -1079,8 +1127,6 @@
       window.speechSynthesis.onvoiceschanged = () => getAuVoice();
     }
 
-    let currentVoiceAudio = null;
-    let currentSpeechId = 0;
 
     function stopSpeaking() {
       currentSpeechId++;
