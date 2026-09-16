@@ -54,11 +54,11 @@
     const html = document.documentElement;
     const body = document.body;
     const isDomDark = 
-      (html && html.classList.contains('dark')) || 
-      (body && body.classList.contains('dark')) || 
-      (html && html.getAttribute('data-theme') === 'dark') || 
-      (body && body.getAttribute('data-theme') === 'dark') ||
-      (html && html.getAttribute('color-scheme') === 'dark');
+      (html && html.classList && html.classList.contains('dark')) || 
+      (body && body.classList && body.classList.contains('dark')) || 
+      (html && html.getAttribute && html.getAttribute('data-theme') === 'dark') || 
+      (body && body.getAttribute && body.getAttribute('data-theme') === 'dark') ||
+      (html && html.getAttribute && html.getAttribute('color-scheme') === 'dark');
 
     return isDomDark ? 'dark' : 'light';
   }
@@ -187,6 +187,7 @@
     let isListening = false;
     let currentVoiceAudio = null;
     let currentSpeechId = 0;
+    let win = null;
 
     const EZ_MORTGAGE_CANNED_CONCEPTS = [
       {
@@ -633,10 +634,24 @@
         pipVideo.play().catch(function() {});
       });
 
+      // Continuous loop restart via timeupdate right before duration ends (prevents browser freezing on final frame)
+      pipVideo.addEventListener('timeupdate', function() {
+        if (pipVideo.duration && pipVideo.currentTime >= (pipVideo.duration - 0.12)) {
+          pipVideo.currentTime = 0;
+          pipVideo.play().catch(function() {});
+        }
+      });
+
       const startPipLoop = function() {
         if (pipPlayer && pipPlayer.style.display !== 'none' && (!win || win.style.display !== 'flex')) {
           pipVideo.muted = true;
-          pipVideo.play().catch(function() {});
+          pipVideo.defaultMuted = true;
+          const p = pipVideo.play();
+          if (p !== undefined) {
+            p.catch(function(err) {
+              console.log("PiP autoplay note:", err);
+            });
+          }
         }
       };
 
@@ -647,16 +662,28 @@
           pipVideo.play().catch(function() {});
         }
       });
-      startPipLoop();
+
+      // Browser autoplay policy gesture unlock
+      const unlockAutoplay = function() {
+        if (pipVideo && pipVideo.paused && pipPlayer && pipPlayer.style.display !== 'none' && (!win || win.style.display !== 'flex')) {
+          pipVideo.muted = true;
+          pipVideo.play().catch(function() {});
+        }
+      };
+      ['click', 'touchstart', 'scroll', 'mousemove', 'pointerdown'].forEach(function(evt) {
+        window.addEventListener(evt, unlockAutoplay, { once: true, passive: true });
+      });
 
       document.addEventListener('visibilitychange', function() {
         if (!document.hidden && pipPlayer && pipPlayer.style.display !== 'none' && (!win || win.style.display !== 'flex')) {
           pipVideo.play().catch(function() {});
         }
       });
+
+      startPipLoop();
     }
 
-    const win = document.createElement('div');
+    win = document.createElement('div');
     win.id = 'omni-chat-window';
     win.innerHTML = `
       <div id="omni-chat-header">
