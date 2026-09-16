@@ -232,6 +232,8 @@
     let brandCtaText = "Connect me with a licensed broker &rarr;";
     let brandPoster = "/images/gemini_chat_avatar_poster.jpg";
     let brandVideo = "/assets/videos/gemini_chat_avatar.mp4";
+    let brandPipVideo = brandVideo;
+    let brandPipPoster = brandPoster;
     let brandIntroVideoUrl = "https://share.gemini.google/w0iGnx8e65Lk";
     let brandVideoId = "";
     let brandBadgeName = "EZ MORTGAGE BROKER";
@@ -252,6 +254,8 @@
       brandCtaText = "Contact Finnova Community Team &rarr;";
       brandPoster = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/images/friday_avatar_female_poster.jpg";
       brandVideo = "https://raw.githubusercontent.com/Finnova-Ltd/Blogs-Content/main/assets/videos/friday_avatar_female.mp4";
+      brandPipVideo = brandVideo;
+      brandPipPoster = brandPoster;
       brandVideoId = "j5ck0gcoPY3vyiBPJy6h";
       brandBadgeName = "FINNOVA CHARITY";
       brandBadgeColor = "#ec4899";
@@ -270,6 +274,8 @@
       brandCtaText = "Book Enterprise AI Consultation &rarr;";
       brandPoster = "https://omni-agent.testcustomer2022.workers.dev/images/procrm_avatar_xavier_poster.jpg";
       brandVideo = "https://omni-agent.testcustomer2022.workers.dev/videos/procrm_avatar_xavier.mp4";
+      brandPipVideo = "https://omni-agent.testcustomer2022.workers.dev/videos/procrm_welcome_xavier.mp4";
+      brandPipPoster = "https://omni-agent.testcustomer2022.workers.dev/images/procrm_welcome_xavier_poster.jpg";
       brandBadgeName = "PRO CRM AUSTRALIA";
       brandBadgeColor = "#6366f1";
       brandVoiceId = "cjVigY5qzO86Huf0OWal";
@@ -364,13 +370,153 @@
       #omni-chat-window.is-expanded .piper-hero-video-stage { height: 275px; }
       .piper-hero-video-stage video { width: 100%; height: 100%; object-fit: cover; display: block; }
       
-      /* Centered Prominent Speak Now Pill Button (Image 1) */
-      .piper-unmute-overlay-btn { position: absolute; bottom: 12px; right: 12px; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.25); color: #ffffff; padding: 5px 11px; border-radius: 999px; font-size: 11.5px; font-weight: 700; cursor: pointer; z-index: 10; display: flex; align-items: center; gap: 5px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35); transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); }
-      .piper-unmute-overlay-btn:hover { background: #0066f5; transform: scale(1.04); }
-      .piper-unmute-overlay-btn.unmuted { background: #10B981; border-color: rgba(16, 185, 129, 0.4); }
-      .piper-speak-now-btn { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); background: #0066f5; color: #ffffff; font-size: 13.5px; font-weight: 700; padding: 7px 20px; border-radius: 999px; border: none; cursor: pointer; box-shadow: 0 4px 14px rgba(0, 102, 245, 0.45); display: flex; align-items: center; gap: 6px; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); z-index: 10; white-space: nowrap; }
-      .piper-speak-now-btn:hover { background: #0052cc; transform: translateX(-50%) scale(1.05); }
-      .piper-speak-now-btn.speaking { background: #10B981; }
+      /* Centered Click to Talk Overlay Pill on Video Stage */
+      .piper-click-talk-pill {
+        position: absolute;
+        bottom: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(15, 23, 42, 0.88);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        color: #ffffff;
+        border: 1.5px solid rgba(255, 255, 255, 0.3);
+        padding: 6px 14px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+        z-index: 10;
+        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        white-space: nowrap;
+      }
+      .piper-click-talk-pill:hover {
+        background: #0066f5;
+        border-color: #0066f5;
+        transform: translateX(-50%) scale(1.05);
+      }
+      .piper-click-talk-pill.talking {
+        background: #10B981;
+        border-color: rgba(16, 185, 129, 0.5);
+      }
+
+      /* PiP (Picture-in-Picture) Floating Video Player Card */
+      .omni-pip-player {
+        position: relative;
+        width: 140px;
+        height: 95px;
+        border-radius: 14px;
+        overflow: hidden;
+        cursor: pointer;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25), 0 2px 10px rgba(0, 82, 255, 0.25);
+        border: 2px solid #ffffff;
+        background: #0A2540;
+        transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+        user-select: none;
+      }
+      .omni-pip-player:hover {
+        transform: translateY(-4px) scale(1.04);
+        box-shadow: 0 16px 38px rgba(0, 0, 0, 0.35), 0 4px 18px rgba(0, 82, 255, 0.35);
+      }
+      .omni-pip-video-container {
+        width: 100%;
+        height: 100%;
+        position: relative;
+      }
+      .omni-pip-video-container video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .omni-pip-overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 6px;
+        background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.65) 100%);
+        pointer-events: none;
+      }
+      .omni-pip-top-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+      .omni-pip-badge {
+        font-size: 10px;
+        font-weight: 700;
+        color: #ffffff;
+        background: rgba(15, 23, 42, 0.75);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        padding: 2px 7px;
+        border-radius: 999px;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      .omni-pip-dot {
+        width: 6px;
+        height: 6px;
+        background: #10B981;
+        border-radius: 50%;
+        display: inline-block;
+        box-shadow: 0 0 6px #10B981;
+      }
+      .omni-pip-minimize {
+        font-size: 11px;
+        color: rgba(255,255,255,0.7);
+        padding: 2px 5px;
+        border-radius: 50%;
+        pointer-events: auto;
+        cursor: pointer;
+        line-height: 1;
+        transition: color 0.15s;
+      }
+      .omni-pip-minimize:hover {
+        color: #ef4444;
+      }
+      .omni-pip-bottom-bar {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+      }
+      .omni-pip-action-pill {
+        font-size: 10px;
+        font-weight: 700;
+        color: #ffffff;
+        background: ${primaryColor};
+        padding: 3px 9px;
+        border-radius: 999px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        display: inline-flex;
+        align-items: center;
+        gap: 3px;
+        animation: omniPipPulse 2.5s infinite;
+      }
+      @keyframes omniPipPulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+      }
+      @media (max-width: 640px) {
+        .omni-pip-player {
+          width: 115px;
+          height: 80px;
+          border-radius: 12px;
+        }
+        .omni-pip-action-pill {
+          font-size: 9px;
+          padding: 2px 6px;
+        }
+      }
 
       /* Video Call Controls Bar (Image 2 & 3) - Floating top-right HUD so video captions are 100% visible */
       .piper-call-bar { position: absolute; top: 10px; right: 12px; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); padding: 4px 10px; border-radius: 999px; display: none; align-items: center; gap: 8px; z-index: 10; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35); }
@@ -437,7 +583,21 @@
         <span class="omni-pill-text">${brandPillGreeting}</span>
         <span class="omni-pill-close" id="omniPillClose" title="Dismiss">✕</span>
       </div>
-      <div id="omni-chat-bubble" class="omni-avatar-trigger" title="Chat with ${brandAvatarName}">
+      <div id="omni-pip-player" class="omni-pip-player" title="Click to chat with ${brandAvatarName}">
+        <div class="omni-pip-video-container">
+          <video id="omni-pip-video" src="${brandPipVideo}" poster="${brandPipPoster}" playsinline webkit-playsinline muted loop autoplay preload="auto"></video>
+          <div class="omni-pip-overlay">
+            <div class="omni-pip-top-bar">
+              <span class="omni-pip-badge"><span class="omni-pip-dot"></span> ${brandAvatarName}</span>
+              <span class="omni-pip-minimize" id="omniPipMinimize" title="Minimize">✕</span>
+            </div>
+            <div class="omni-pip-bottom-bar">
+              <span class="omni-pip-action-pill">Chat with ${brandAvatarName} &rarr;</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="omni-chat-bubble" class="omni-avatar-trigger" title="Chat with ${brandAvatarName}" style="display:none;">
         <div class="omni-avatar-disc">
           <img src="${brandPoster}" alt="${brandAvatarName} AI Avatar" class="omni-avatar-face" />
           <span class="omni-avatar-online-dot"></span>
@@ -449,6 +609,8 @@
     appendToBody(triggerGroup);
     const bubble = document.getElementById('omni-chat-bubble');
     const greetingPill = document.getElementById('omni-chat-greeting-pill');
+    const pipPlayer = document.getElementById('omni-pip-player');
+    const pipVideo = document.getElementById('omni-pip-video');
 
     const win = document.createElement('div');
     win.id = 'omni-chat-window';
@@ -486,6 +648,10 @@
           <div class="piper-video-logo-badge" id="piperVideoLogoBadge">
             <span class="piper-badge-dot" style="background:${brandBadgeColor};"></span>
             <span>${brandBadgeName}</span>
+          </div>
+          <!-- Centered Click to Talk Overlay Pill on Video Stage -->
+          <div class="piper-click-talk-pill" id="piperClickTalkPill">
+            <span>🔊</span> <span>Click to Talk with ${brandAvatarName}</span>
           </div>
           <!-- Video Call Controls Bar (Clean Top-Right HUD) -->
           <div class="piper-call-bar" id="piperCallBar" style="display:flex;">
@@ -550,10 +716,16 @@
       if (!heroVideo.src || heroVideo.src === window.location.href) {
         heroVideo.src = brandVideo;
       }
+      const talkPill = document.getElementById("piperClickTalkPill");
       const willUnmute = (forceUnmute === true) || heroVideo.muted || heroVideo.volume === 0;
       if (willUnmute) {
         heroVideo.muted = false;
         heroVideo.volume = 1.0;
+        isVoiceActive = true;
+        if (talkPill) {
+          talkPill.innerHTML = `<span>🔊</span> <span>${brandAvatarName} Talking • Click to Mute</span>`;
+          talkPill.classList.add("talking");
+        }
         if (heroVideo.paused || heroVideo.ended) {
           heroVideo.currentTime = 0;
         }
@@ -564,13 +736,24 @@
             heroVideo.muted = true;
             heroVideo.play().catch(() => {});
             updateSoundUi(false);
+            isVoiceActive = false;
+            if (talkPill) {
+              talkPill.innerHTML = `<span>🔊</span> <span>Click to Talk with ${brandAvatarName}</span>`;
+              talkPill.classList.remove("talking");
+            }
           });
         } else {
           updateSoundUi(true);
         }
       } else {
         heroVideo.muted = true;
+        stopSpeaking();
+        isVoiceActive = false;
         updateSoundUi(false);
+        if (talkPill) {
+          talkPill.innerHTML = `<span>🔊</span> <span>Click to Talk with ${brandAvatarName}</span>`;
+          talkPill.classList.remove("talking");
+        }
       }
     }
 
@@ -578,19 +761,19 @@
       const isMax = win.classList.toggle("is-maximized");
       if (maxHdrBtn) maxHdrBtn.innerHTML = isMax ? "⤡" : "⤢";
       if (maxStageBtn) maxStageBtn.innerHTML = isMax ? "⤡" : "⤢";
-      if (isMax) {
-        // Automatic unmuted audio playback on user maximize!
-        if (heroVideo) {
-          heroVideo.muted = false;
-          heroVideo.volume = 1.0;
-          heroVideo.play().then(() => updateSoundUi(true)).catch(() => updateSoundUi(false));
-        }
-      }
     }
 
     if (maxHdrBtn) maxHdrBtn.onclick = (e) => { e.stopPropagation(); toggleMaximize(); };
     if (maxStageBtn) maxStageBtn.onclick = (e) => { e.stopPropagation(); toggleMaximize(); };
     if (callSoundBtn) callSoundBtn.onclick = (e) => { e.stopPropagation(); toggleSound(); };
+
+    const clickTalkPill = document.getElementById("piperClickTalkPill");
+    if (clickTalkPill) {
+      clickTalkPill.onclick = (e) => {
+        e.stopPropagation();
+        toggleSound();
+      };
+    }
 
     function playVideoWithVoice(src, poster, badgeText) {
       if (!heroVideo) return;
@@ -770,28 +953,75 @@
 
     function openChat() {
       win.style.display = 'flex';
-      if (bubble) bubble.classList.add('is-open');
+      if (pipPlayer) pipPlayer.style.display = 'none';
+      if (bubble) {
+        bubble.style.display = 'flex';
+        bubble.classList.add('is-open');
+      }
       if (greetingPill) greetingPill.style.display = 'none';
-      if (heroVideo && heroVideo.paused) {
-        heroVideo.play().catch(() => {});
+      if (pipVideo) {
+        try { pipVideo.pause(); } catch(e) {}
+      }
+      if (heroVideo) {
+        heroVideo.muted = true;
+        updateSoundUi(false);
+        if (heroVideo.paused) {
+          heroVideo.play().catch(() => {});
+        }
+      }
+      const talkPill = document.getElementById("piperClickTalkPill");
+      if (talkPill) {
+        talkPill.innerHTML = `<span>🔊</span> <span>Click to Talk with ${brandAvatarName}</span>`;
+        talkPill.classList.remove("talking");
       }
     }
 
     function closeChat() {
       win.style.display = 'none';
-      if (bubble) bubble.classList.remove('is-open');
+      if (bubble) {
+        bubble.classList.remove('is-open');
+        bubble.style.display = 'none';
+      }
       sessionStorage.setItem('piper_chat_dismissed', 'true');
+      if (heroVideo) {
+        heroVideo.pause();
+        heroVideo.muted = true;
+      }
+      stopSpeaking();
+      stopListening();
+      isVoiceActive = false;
+      updateSoundUi(false);
+      const talkPill = document.getElementById("piperClickTalkPill");
+      if (talkPill) {
+        talkPill.innerHTML = `<span>🔊</span> <span>Click to Talk with ${brandAvatarName}</span>`;
+        talkPill.classList.remove("talking");
+      }
+
+      if (pipPlayer) {
+        pipPlayer.style.display = 'block';
+        if (pipVideo && pipVideo.paused) {
+          pipVideo.play().catch(() => {});
+        }
+      }
       if (greetingPill && !sessionStorage.getItem('omni_pill_dismissed')) {
         greetingPill.style.display = 'flex';
       }
     }
 
-    // 10-Second Salesforce Piper Auto-Open Timer
-    setTimeout(() => {
-      if (!sessionStorage.getItem('piper_chat_dismissed')) {
+    if (pipPlayer) {
+      pipPlayer.onclick = () => {
         openChat();
-      }
-    }, 10000);
+      };
+    }
+
+    const pipMinBtn = document.getElementById('omniPipMinimize');
+    if (pipMinBtn) {
+      pipMinBtn.onclick = (e) => {
+        e.stopPropagation();
+        if (pipPlayer) pipPlayer.style.display = 'none';
+        if (bubble) bubble.style.display = 'flex';
+      };
+    }
 
     if (getLeadScoreFromCookie() >= 35 && !window.__OMNI_PROACTIVE_TRIGGERED__) {
       window.__OMNI_PROACTIVE_TRIGGERED__ = true;
@@ -1351,8 +1581,7 @@
 
         loadingMsg.appendChild(actionsDiv);
 
-        if (isVoiceActive || (win && win.classList.contains('is-conversing'))) {
-          isVoiceActive = true;
+        if (isVoiceActive) {
           speakFriday(replyRaw, () => {
             if (isVoiceActive) {
               startListening();
@@ -1366,8 +1595,7 @@
       } catch (err) {
         loadingMsg.classList.remove('loading');
         loadingMsg.textContent = "Unable to connect to AI assistant service.";
-        if (isVoiceActive || (win && win.classList.contains('is-conversing'))) {
-          isVoiceActive = true;
+        if (isVoiceActive) {
           speakFriday("I'm sorry, I'm having trouble connecting right now. Please feel free to try again.", () => {
             if (isVoiceActive) startListening();
           }, false);
