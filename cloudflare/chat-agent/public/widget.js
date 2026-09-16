@@ -688,6 +688,23 @@
       }
     }
 
+    function stopListening() {
+      if (recognition && isListening) {
+        try {
+          recognition.stop();
+        } catch (e) {}
+      }
+      isListening = false;
+      const micBtn = document.getElementById("omniMicBtn");
+      const micToggle = document.getElementById("piperMicToggle");
+      const chatInput = document.getElementById("omni-chat-input");
+      if (micBtn) micBtn.classList.remove("active");
+      if (micToggle) micToggle.classList.remove("active");
+      if (chatInput && chatInput.placeholder && chatInput.placeholder.includes("Listening")) {
+        chatInput.placeholder = "Ask " + brandAvatarName + " a question";
+      }
+    }
+
     function triggerVoicePromptAfterSpeech() {
       const msgContainer = document.getElementById("omni-chat-messages");
       if (!msgContainer) return;
