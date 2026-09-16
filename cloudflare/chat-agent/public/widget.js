@@ -393,10 +393,8 @@
       /* Conversation Mode Toggling */
       #omni-chat-window.is-conversing .piper-card-welcome { display: none !important; }
       #omni-chat-window.is-conversing #omni-chat-messages { display: flex !important; }
-      #omni-chat-window.is-conversing .piper-prompts-tray { display: block !important; }
       #omni-chat-window.is-conversing .piper-speak-now-btn { display: none !important; }
       #omni-chat-window.is-conversing .piper-call-bar { display: flex !important; }
-      #omni-chat-window.is-conversing #piperConnectRepSub { display: none !important; }
 
       #omni-chat-messages { flex: 1; padding: 10px 14px; overflow-y: auto; display: none; flex-direction: column; gap: 8px; font-size: 13.5px; background: ${msgAreaBg} !important; min-height: 140px; }
       .omni-msg { padding: 9px 13px; border-radius: 12px; max-width: 88%; word-break: break-word; line-height: 1.48; }
@@ -406,15 +404,6 @@
       .omni-msg-actions { display: flex; gap: 8px; margin-top: 6px; font-size: 12px; opacity: 0.8; }
       .omni-action-btn { cursor: pointer; user-select: none; transition: transform 0.1s; }
       .omni-action-btn:hover { transform: scale(1.2); }
-
-      /* Prompts Tray (Image 2 & 3) */
-      .piper-prompts-tray { padding: 4px 14px 6px; font-size: 12px; }
-      .piper-prompts-title { font-weight: 700; color: #64748B; margin-bottom: 4px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; }
-      .piper-prompts-list { display: flex; flex-direction: column; gap: 4px; max-height: 90px; overflow-y: auto; }
-      .piper-prompt-item { padding: 5px 8px; background: #ffffff; border: 1px solid #CBD5E1; border-radius: 6px; color: #0A2540; font-weight: 600; cursor: pointer; transition: all 0.15s; display: flex; align-items: center; justify-content: space-between; font-size: 11.5px; }
-      .piper-prompt-item:hover { background: #EFF6FF; border-color: #93C5FD; color: #0052FF; transform: translateX(2px); }
-      .piper-connect-btn-sub { width: 100%; background: #0066f5; color: #ffffff; border: none; padding: 7px 12px; border-radius: 6px; font-weight: 700; font-size: 12px; cursor: pointer; margin-top: 6px; transition: background 0.15s; }
-      .piper-connect-btn-sub:hover { background: #0052cc; }
 
       /* Lead Form Styling Parity */
       .omni-lead-card { background: #F8FAFC !important; border: 1px solid #CBD5E1 !important; border-radius: 12px; padding: 12px; margin: 8px 0; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
@@ -519,15 +508,6 @@
       <!-- Dialogue Message Stream (Image 2 & 3) -->
       <div id="omni-chat-messages">
         <!-- Messages stream here -->
-      </div>
-
-      <!-- Prompts Tray (Image 2 & 3) -->
-      <div class="piper-prompts-tray" id="piperPromptsTray">
-        <div class="piper-prompts-title">Ask me things like:</div>
-        <div class="piper-prompts-list">
-          ${brandPrompts.map(p => `<div class="piper-prompt-item" data-prompt="${p.prompt}">${p.text} <span>&rarr;</span></div>`).join('')}
-        </div>
-        <button type="button" class="piper-connect-btn-sub" id="piperConnectRepSub">${brandCtaText}</button>
       </div>
 
       <div id="omni-image-preview-bar">
@@ -825,19 +805,6 @@
 
     const closeBtn = document.getElementById('omni-close');
     if (closeBtn) closeBtn.onclick = closeChat;
-
-    // Piper Interactive Prompt Pills (Click to instantly query AI)
-    document.querySelectorAll(".piper-prompt-item").forEach(item => {
-      item.onclick = (e) => {
-        e.preventDefault();
-        const promptText = item.getAttribute("data-prompt");
-        const input = document.getElementById("omni-chat-input");
-        if (input && promptText) {
-          input.value = promptText;
-          sendMessage();
-        }
-      };
-    });
 
     // Voice & Conversational AI Engine (Salesforce Piper Parity)
     let isVoiceActive = false;
@@ -1149,7 +1116,7 @@
     const handleConnectClick = () => {
       const input = document.getElementById('omni-chat-input');
       if (input) {
-        win.classList.add('is-conversing');
+        if (win) win.classList.add('is-conversing');
         input.value = isProCrm 
           ? "I'd like to book an enterprise consultation with a Pro CRM architect." 
           : "I'd like to connect directly with a licensed specialist for a consultation.";
@@ -1158,8 +1125,6 @@
     };
     const connectBtn = document.getElementById('piperConnectRep');
     if (connectBtn) connectBtn.onclick = handleConnectClick;
-    const connectBtnSub = document.getElementById('piperConnectRepSub');
-    if (connectBtnSub) connectBtnSub.onclick = handleConnectClick;
 
     // Web Speech Recognition Initialization
     if (SpeechRecognition) {
@@ -1345,12 +1310,23 @@
       const msg = (typeof textOverride === 'string' ? textOverride : (inputElem ? inputElem.value : '')).trim();
       if (!msg && !attachedImageBase64) return;
 
+      // Switch window to conversing/dialogue mode immediately
+      if (win) {
+        win.classList.add('is-conversing');
+      }
+      const welcomeCard = document.getElementById('piperCardWelcome');
+      if (welcomeCard) {
+        welcomeCard.style.display = 'none';
+      }
+      const msgContainer = document.getElementById('omni-chat-messages');
+      if (msgContainer) {
+        msgContainer.style.display = 'flex';
+      }
+
       const lowerMsg = msg.toLowerCase().trim();
 
       updateLeadScore(10, "Sent Message");
 
-      const msgContainer = document.getElementById('omni-chat-messages');
-      
       let userHtml = parseMarkdown(msg, primaryColor);
       if (attachedImageBase64) {
         userHtml += `<br/><img src="${attachedImageBase64}" style="max-width:180px; border-radius:6px; margin-top:6px;" />`;
@@ -1364,12 +1340,12 @@
       const sentImage = attachedImageBase64;
       if (inputElem) inputElem.value = '';
       attachedImageBase64 = "";
-      previewBar.style.display = 'none';
+      if (previewBar) previewBar.style.display = 'none';
       msgContainer.scrollTop = msgContainer.scrollHeight;
 
       const loadingMsg = document.createElement('div');
       loadingMsg.className = 'omni-msg assistant loading';
-      loadingMsg.textContent = 'Agent is thinking...';
+      loadingMsg.textContent = brandAvatarName + " is thinking...";
       msgContainer.appendChild(loadingMsg);
       msgContainer.scrollTop = msgContainer.scrollHeight;
 
